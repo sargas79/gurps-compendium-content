@@ -12,7 +12,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
 import { setRuleReader } from "../../../shared/book-tables.js";
-import { COMPUTER_TABLES, computerOf, readyComputers } from "../../../shared/computers/index.js";
+import { COMPUTER_TABLES, computerOf, readyComputers, syncComplexity } from "../../../shared/computers/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { ultraTechComputers } from "../../ultra-tech/computers/index.js";
 import { highTechComputers, readyInformation } from "../information/index.js";
@@ -147,6 +147,24 @@ describe("computerEras (HT:EE pp. 36-37)", () => {
     const mini = record("Minicomputer", { tl: "7", cost: 100_000, weight: 400 }, { options: { transistor: true } });
     expect(price.apply(mini, { cost: 100_000, weight: 400 })).toMatchObject({ cost: 100_000, weight: 200 });
     expect(complexityOf(mini)).toBe(1);
+  });
+
+  it("writes a computer's Complexity to the system's own field, and leaves anything else alone", async () => {
+    on = new Set([key("computerEras")]);
+    const pc = record("Workstation", { tl: "8", cost: 10_000, weight: 40, complexity: 0 }, { options: { compact: true, slow: true, earlyVlsi: true } });
+    pc.isOwner = true;
+    expect(await syncComplexity(pc)).toBe(true);
+    expect(pc.system.complexity).toBe(2);
+    expect(await syncComplexity(pc)).toBe(false);
+    // Not one of a switched-on book's computers: untouched.
+    on = new Set();
+    pc.system.extensions[MODULE_ID].computer.options = {};
+    expect(await syncComplexity(pc)).toBe(false);
+    expect(pc.system.complexity).toBe(2);
+    const pen = LIGHT_PEN();
+    pen.isOwner = true;
+    on = new Set([key("computerEras")]);
+    expect(await syncComplexity(pen)).toBe(false);
   });
 
   it("gives High-Tech's own records the supplement's figures, and leaves them High-Tech's with the switch off", () => {
