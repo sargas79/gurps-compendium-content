@@ -154,6 +154,29 @@ export function sideOf(item: any): WornSide | null {
   if (item?.system?.frontOnly !== true) return null;
   return htArmorData(item).back ? "back" : "front";
 }
+/** Whether one-sided pieces are read by side, and whether the table plays front-only armour: set when ready. */
+let readsSides: () => boolean = () => false;
+let frontArmorOn: () => boolean = () => false;
+
+/**
+ * The worn pieces at a location that a blow from `arc` met, less those a
+ * listener refused: a piece at the front alone isn't struck from behind
+ * (Characters p. 282), and one worn at the back only from behind (p. 67).
+ */
+export function piecesMet(actor: any, location: string, arc: string | null, refused: readonly string[]): any[] {
+  return [...(actor?.items ?? [])].filter((item: any) => {
+    if (!isWorn(item) || !covers(item, location) || refused.includes(item.id)) return false;
+    const side = sideOf(item);
+    return !(side === "back" && readsSides() ? arc !== "back" : side !== null && arc && arc !== "front" && frontArmorOn());
+  });
+}
+
+/** The DR of the rigid armour a blow met at a location: the worn pieces that aren't flexible, added up. */
+export function rigidDrMet(actor: any, location: string, arc: string | null, refused: readonly string[], damageType: string): number {
+  return piecesMet(actor, location, arc, refused)
+    .filter((item) => item.system?.flexible !== true)
+    .reduce((sum, item) => sum + pieceDrAt(item.system ?? {}, damageType, location), 0);
+}
 const plateLost = (item: any): number => Math.max(0, Math.floor(Number(item?.getFlag?.(MODULE_ID, PLATE_FLAG) ?? item?.flags?.[MODULE_ID]?.[PLATE_FLAG]) || 0));
 const d6 = () => Math.floor(CONFIG.Dice.randomUniform() * 6) + 1;
 
@@ -342,6 +365,8 @@ function itemListeners(element: HTMLElement, item: any): void {
 export function readyHighTechArmor(api: GWorldApi, switches: ArmorSwitches): void {
   // A piece's side counts only where the table plays front-only armour (the system's frontArmor switch).
   const on: ArmorSwitches = { ...switches, sided: () => switches.partial() && api.registry.isRuleOn("frontArmor") };
+  readsSides = on.sided!;
+  frontArmorOn = () => api.registry.isRuleOn("frontArmor");
   const anyOn = () => on.partial() || on.conceal() || on.materials();
 
   // A piece or shield remade in steel, smart foam or titanium (p. 65).
@@ -545,12 +570,8 @@ export function readyHighTechArmor(api: GWorldApi, switches: ArmorSwitches): voi
     const arc = context.damage?.arc ?? null;
     const refused: string[] = result.refusedPieces ?? [];
     const cards: string[] = [];
-    for (const item of actor.items ?? []) {
-      if (!isWorn(item) || !covers(item, location) || refused.includes(item.id) || !htArmorData(item).semiAblative) continue;
-      // A plate at the front alone isn't struck from behind (Characters p. 282),
-      // and one worn at the back only from behind (p. 67).
-      const side = sideOf(item);
-      if (side === "back" && on.sided!() ? arc !== "back" : side !== null && arc && arc !== "front" && api.registry.isRuleOn("frontArmor")) continue;
+    for (const item of piecesMet(actor, location, arc, refused)) {
+      if (!htArmorData(item).semiAblative) continue;
       const already = plateLost(item);
       const lost = plateLoss(basic, Math.max(0, Math.floor(Number(item.system?.dr) || 0) - already));
       if (lost <= 0) continue;
