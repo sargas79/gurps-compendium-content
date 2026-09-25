@@ -10325,7 +10325,8 @@
           "stylus": "Stylus",
           "voice": "Voice control",
           "voiceUntrained": "Voice control not yet trained",
-          "bci": "Brain-computer interface"
+          "bci": "Brain-computer interface",
+          "earlyTouch": "Early touch screen"
         },
         "LanguageLabel": "Programmed in",
         "LanguageHint": "What programs for the computer are written in, for Computer Programming rolls made with it or a program on it (High-Tech: Electricity and Electronics p. 38).",
@@ -10372,7 +10373,9 @@
         "PriceModifier": "The computer's price",
         "Repaired": "The burned-out tube is replaced.",
         "LightPen": "Light pen strain",
-        "LightPenRoll": "{name}: HT roll after {minutes} minutes"
+        "LightPenRoll": "{name}: HT roll after {minutes} minutes",
+        "EarlyTouch": "Early touch screen (before 1988)",
+        "EarlyTouchHint": "Before 1988 a touch screen couldn't tell exactly where a finger was: -2 to effective skill on every roll made through it (High-Tech: Electricity and Electronics p. 40)."
       },
       "Energy": {
         "Title": "Power (Electricity and Electronics)",
