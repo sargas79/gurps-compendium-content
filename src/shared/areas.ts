@@ -32,11 +32,22 @@ export function areaCentre(actor: any): { x: number; y: number } | null {
 }
 
 /**
+ * A light an area gives out over its radius (GWorld API 1.102.0), which the
+ * system's `darknessAt` reads: the darkness it leaves at most (3, a torch's,
+ * left out), and the kind of light only some can see (`areas.registerLitFor`).
+ */
+export interface AreaLight {
+  darknessCap?: number;
+  litFor?: string | null;
+}
+
+/**
  * Places an area of `radiusYards` round the centre for `seconds`; the key names
  * what it is. An area with no lines is refused unless `bare` says it is kept
- * only to be found again (a flare's light). Returns its id or null.
+ * only to be found again (a flare's light). With `light` it also lights its
+ * radius. Returns its id or null.
  */
-export async function placeArea(api: GWorldApi, options: { key: string; label: string; actor: any; radiusYards: number; lines: AreaLine[]; seconds: number | null; bare?: boolean }): Promise<string | null> {
+export async function placeArea(api: GWorldApi, options: { key: string; label: string; actor: any; radiusYards: number; lines: AreaLine[]; seconds: number | null; bare?: boolean; light?: AreaLight }): Promise<string | null> {
   const scene = sceneNow();
   const center = areaCentre(options.actor);
   if (!scene || !center || !(options.radiusYards > 0) || (!options.lines.length && !options.bare)) return null;
@@ -48,6 +59,13 @@ export async function placeArea(api: GWorldApi, options: { key: string; label: s
     radius: options.radiusYards,
     lines: options.lines,
     expires: options.seconds === null ? null : now + options.seconds,
+    ...(options.light ? {
+      light: {
+        radius: options.radiusYards,
+        ...(options.light.darknessCap === undefined ? {} : { darknessCap: options.light.darknessCap }),
+        ...(options.light.litFor ? { litFor: options.light.litFor } : {}),
+      },
+    } : {}),
   } as any);
 }
 

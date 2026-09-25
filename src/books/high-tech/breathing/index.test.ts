@@ -408,7 +408,8 @@ describe("the diver's depth, and the bends on pure oxygen (High-Tech pp. 74, 76)
     rollOutcome = { success: true, margin: 2 };
     const message: any = {};
     await cards.get("ht-bends").actions.roll({ message, data: posted[0].data, actor: diver });
-    expect(rolls.at(-1)).toMatchObject({ base: 11, tags: ["bends", "HT"] });
+    // A roll to resist, never refused below 3.
+    expect(rolls.at(-1)).toMatchObject({ base: 11, tags: ["bends", "HT"], resistance: true });
     expect(conditions).toEqual([{ key: "agony" }]);
     expect(message.data.result).toContain("Bends.agony");
     // Once up, the risk is spent.
@@ -470,7 +471,7 @@ describe("environment suits' details (High-Tech pp. 74-76)", () => {
     rollOutcome = { success: false, margin: -3, criticalFailure: true };
     await actions.get("ht-acceleration").run(suit, pilot);
     await flush();
-    expect(rolls.at(-1)).toMatchObject({ base: 11, tags: ["acceleration", "HT"], modifiers: [{ label: expect.stringContaining("GForceLine"), value: -4 }, { label: "GCC.HT.Breathing.Braced", value: 2 }] });
+    expect(rolls.at(-1)).toMatchObject({ base: 11, tags: ["acceleration", "HT"], resistance: true, modifiers: [{ label: expect.stringContaining("GForceLine"), value: -4 }, { label: "GCC.HT.Breathing.Braced", value: 2 }] });
     expect(injuries).toEqual([expect.objectContaining({ amount: 3, fatigue: true })]);
     expect(conditions).toEqual([{ key: "unconscious", holdRecovery: { seconds: 30 } }]);
     // The suit's +3 goes on any roll tagged for acceleration.

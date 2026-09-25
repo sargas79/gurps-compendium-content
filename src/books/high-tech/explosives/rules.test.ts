@@ -25,6 +25,8 @@ import {
   shockNumber,
   skimOutcome,
   thermiteDr,
+  thermiteDrDestroyed,
+  thermiteDrOnVictim,
   thermiteOnObject,
   thermiteSeconds,
 } from "./rules.js";
@@ -149,6 +151,16 @@ describe("incendiaries (p. 188)", () => {
     expect(thermiteDr(10, 9)).toBe(10);
     expect(thermiteDr(10, 25)).toBe(8);
     expect(thermiteDr(1, 40)).toBe(0);
+  });
+
+  it("counts the DR a second destroys, and what's left on a victim whose armour took some of it", () => {
+    expect(thermiteDrDestroyed(8, 12)).toBe(1);
+    expect(thermiteDrDestroyed(12, 18)).toBe(0);
+    expect(thermiteDrDestroyed(9, 31)).toBe(3);
+    // 25 damage destroyed 2; the armour already lost 1 of them, so 1 more comes off the DR now.
+    expect(thermiteDrOnVictim(5, 25, 1)).toBe(4);
+    expect(thermiteDrOnVictim(5, 25, 2)).toBe(5);
+    expect(thermiteDrOnVictim(1, 60, 0)).toBe(0);
   });
 
   it("works thermite on an object second by second", () => {

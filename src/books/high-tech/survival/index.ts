@@ -580,15 +580,25 @@ function crashesOf(actor: any): Crash[] {
   return Array.isArray(stored) ? stored.filter((c: any) => Number.isFinite(Number(c?.at))).map((c: any) => ({ at: Number(c.at), fp: Math.max(0, Math.trunc(Number(c.fp) || 0)), item: String(c.item ?? "") })) : [];
 }
 
+/** The characters whose crashes are being settled now, by uuid: a second tick before the flag is written skips them. */
+const settling = new Set<string>();
+
 /** The FP a snack eaten on the move takes back when its two hours are up: not exertion, so Very Fit doesn't halve it. */
 async function settleCrashes(api: GWorldApi, actor: any): Promise<void> {
-  const { due, later } = dueCrashes(crashesOf(actor), worldNow());
-  if (!due.length) return;
-  if (later.length) await actor.setFlag(MODULE_ID, CRASH_FLAG, later);
-  else await actor.unsetFlag(MODULE_ID, CRASH_FLAG);
-  for (const crash of due) {
-    if (crash.fp > 0) await api.actors.spendFatigue(actor, crash.fp, { reason: "module", exertion: false, details: { rule: "snackCrash", item: crash.item } } as any);
-    await say(actor, crash.item, [F("SnackCrash", { name: String(actor.name ?? ""), fp: crash.fp, item: crash.item })]);
+  const key = String(actor?.uuid ?? "");
+  if (!key || settling.has(key)) return;
+  settling.add(key);
+  try {
+    const { due, later } = dueCrashes(crashesOf(actor), worldNow());
+    if (!due.length) return;
+    if (later.length) await actor.setFlag(MODULE_ID, CRASH_FLAG, later);
+    else await actor.unsetFlag(MODULE_ID, CRASH_FLAG);
+    for (const crash of due) {
+      if (crash.fp > 0) await api.actors.spendFatigue(actor, crash.fp, { reason: "module", exertion: false, details: { rule: "snackCrash", item: crash.item } } as any);
+      await say(actor, crash.item, [F("SnackCrash", { name: String(actor.name ?? ""), fp: crash.fp, item: crash.item })]);
+    }
+  } finally {
+    settling.delete(key);
   }
 }
 

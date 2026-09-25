@@ -2204,6 +2204,8 @@
         "SupplyPacks": "{cells} {size} cells, worn as a pack",
         "EnduranceScaled": "lasts {endurance}, x{factor} for this build",
         "UsesLeft": "{left} of {total} uses",
+        "CountLeft": "{left} of {total} {unit}",
+        "Counted": { "tests": "tests", "readings": "readings", "quarts": "quarts" },
         "UsesUsed": "Used",
         "UsesHint": "Uses spent since the cells were changed."
       },
@@ -5067,7 +5069,7 @@
         },
         "forcedEntryTools": {
           "Name": "Forced-entry tools",
-          "Hint": "Saws, drills, cutters and torches get a Forced Entry row with the damage they do each second (or each use) and what they work on; the rock drill and lock buster pass on a maul's blow. The hand ram (below ST 20), door opener and spreader/cutter need their Ready maneuvers before each use; the glass cutter and duct tape are row actions (High-Tech pp. 25-30)."
+          "Hint": "Saws, drills, cutters and torches get a Forced Entry row with the damage they do each second (or each use) and what they work on; the rock drill and lock buster pass on a maul's blow. The hand ram (below ST 20), door opener and spreader/cutter need their Ready maneuvers before each use; the glass cutter and duct tape are row actions. A fire extinguisher's bursts put out a flamethrower's burning fuel, and a fire shelter gives DR 10 against burning to whoever is inside (High-Tech pp. 25-30)."
         },
         "chainsaws": {
           "Name": "Chainsaws and nail guns",
@@ -6210,6 +6212,8 @@
         "LimbTitle": "Realistic limb wound",
         "LimbPermanent": "{name}'s {part}: {injury} injury, at least twice the {least} that cripples it: crippled for good, with no HT roll for how long.",
         "LimbSevered": "{name}'s {part}: {injury} injury, enough to sever it.",
+        "PermanentLabel": "{part}: crippled for good (High-Tech p. 162)",
+        "SeveredLabel": "{part}: severed (High-Tech p. 162)",
         "FrightTitle": "\"You shot me, Mister!\"",
         "FrightText": "{name} took a serious wound: a Fright Check ({modifier}) this turn. The GM may make it worse for a wound that spurts blood or breaks a bone, or better for someone used to injuries.",
         "FrightRoll": "Fright Check ({modifier})",
@@ -7027,8 +7031,10 @@
         "Used": "used (hr.)",
         "UsedHint": "Hours the gadget has run on these batteries.",
         "UsesUsed": "Used",
-        "UsesHint": "Uses spent since the batteries were changed.",
+        "UsesHint": "Uses spent since the batteries were changed: each test, reading or quart for gear that counts those.",
         "UsesLeft": "{left} of {total} uses",
+        "CountLeft": "{left} of {total} {unit}",
+        "Counted": { "tests": "tests", "readings": "readings", "quarts": "quarts" },
         "Change": "Change batteries",
         "Recharge": "Recharge",
         "Changed": "Changed the {supply}: {seconds} seconds.",
@@ -7259,6 +7265,27 @@
       },
       "Tools": {
         "Title": "Tools (High-Tech)",
+        "Extinguisher": {
+          "Action": "Spray the extinguisher",
+          "Target": "Target whoever is to be sprayed: a burst each.",
+          "Line": "{left} of {bursts} one-second bursts left, out to {yards} yards; each puts a fire out on {target} or less (High-Tech p. 29).",
+          "Empty": "{name} is empty.",
+          "OutOfRange": "{name} is past the extinguisher's {yards} yards.",
+          "Missed": "{name}: rolled {roll} against {target}; the fire isn't out.",
+          "PutOut": "{name}: rolled {roll} against {target}; the fire is out.",
+          "PutOutGm": "{name}: rolled {roll} against {target}; the fire is out (the GM takes the burning off).",
+          "Doused": "{name}: rolled {roll} against {target}; nothing on them was burning.",
+          "BurnsOn": "Thermite or napalm on {name} burns on: an extinguisher doesn't put it out.",
+          "Left": "{left} of {bursts} bursts left."
+        },
+        "Shelter": {
+          "Action": "Get into or out of the fire shelter",
+          "Line": "DR {dr} against burning damage for whoever is inside it (High-Tech p. 30).",
+          "InsideLine": "In use: DR {dr} against burning damage for whoever is inside it.",
+          "GotIn": "{name} is inside the fire shelter: DR {dr} against burning. The heat of the air still counts (Campaigns p. 434).",
+          "GotOut": "{name} is out of the fire shelter.",
+          "Reason": "A fire shelter: DR 10 against burning (High-Tech p. 30)"
+        },
         "KitLabel": "Kit",
         "KitTooltip": "What size of kit this is: a mini-tool kit, a portable kit or a workshop (High-Tech p. 24). Set its skill and specialty in the item's skills.",
         "Kit": {
@@ -8321,6 +8348,9 @@
           "NoTargets": "Target those in the mine's cone first.",
           "VolleyTitle": "{name}: who is in the cone",
           "VolleyHint": "Yards from the mine to each (the mine's token, where it has one). Past {max} yards nothing is hit.",
+          "Facing": "Facing (degrees)",
+          "FacingHint": "Which way the mine faces, in degrees clockwise from east, as a template measures it; to start with, toward the targets. Only those in its {degrees}-degree cone are attacked.",
+          "RowOutside": "{distance} yd.",
           "Fire": "Fire",
           "Row": "{distance} yd, skill {skill}, rolled {roll}",
           "RowHalf": "{distance} yd (past 1/2D), skill {skill}, rolled {roll}",
@@ -8328,7 +8358,8 @@
           "Miss": "missed (by {margin})",
           "Missed": {
             "range": "out of range",
-            "spent": "the pellets are spent"
+            "spent": "the pellets are spent",
+            "cone": "outside the cone"
           },
           "VolleyCard": "Pellets left:",
           "RollDamage": "Roll hits",
@@ -8421,6 +8452,11 @@
         "KeroseneDouses": "It douses itself: no fire.",
         "NoPlace": "Nowhere to set it down: no token or template on the viewed scene.",
         "SetDownLine": "{name} is set down, lighting {yards} yards round it.",
+        "Infrared": "Infrared",
+        "InfraredFilterHint": "A snap-on IR filter (+${cost}): the light is seen only through night-vision gear, or by eyes that see infrared (p. 52).",
+        "InfraredModeHint": "Its infrared version or mode: the light is seen only through night-vision gear, or by eyes that see infrared (p. 52).",
+        "InfraredLine": "Infrared: it lights only for night-vision gear and eyes that see infrared, and blinds nobody.",
+        "IrFilterPrice": "IR filter",
         "PickUp": "Pick up",
         "PickedUp": "{name} is picked up.",
         "LitDarkness": "{label} (lit by {light})",
@@ -8495,9 +8531,9 @@
         "Rappelling": "Shooting while rappelling",
         "RappellingSure": "Shooting while rappelling (Sure-Footed)",
         "FallAction": "Fall on the rope",
-        "FallHint": "A roped climber falls at most twice the distance between the last fastener and where they were.",
+        "FallHint": "A roped climber falls at most twice the distance between the last fastener and where they were. The fall is rolled at that distance, as the sheet's Fall rolls one.",
         "FallYards": "Yards above the last fastener",
-        "FallLine": "{name}, {above} yards past the last fastener, falls at most {yards} yards: roll it with the sheet's Fall.",
+        "FallLine": "{name}, {above} yards past the last fastener, falls at most {yards} yards.",
         "GrapnelAction": "Throw the grapnel",
         "GrapnelLine": "Reaches {yards} yards at most; holds {lbs} lbs.",
         "GrapnelRing": "On stone or concrete it rings: an unmodified Hearing roll at 1 yard (-2 for a padded grapnel).",
@@ -9126,6 +9162,10 @@
           "cattleFence": "Cattle fence",
           "lethalFence": "Lethal fence",
           "carStopper": "Electromagnetic car stopper",
+          "spikeStrip": "Spike strip",
+          "tiresChanged": "Tires changed after a spike strip",
+          "FlatTire": "Flat tire (spike strip)",
+          "EngineOut": "Engine out (car stopper)",
           "Spot": "Spotting the {trap} (Per-based Traps)",
           "MoveSpeed": "Moving at Move {move}",
           "NotWatching": "Not watching the ground",
@@ -9171,7 +9211,10 @@
           "Stunned": "{name} is stunned, and may roll HT each second to recover.",
           "StunnedHeld": "{name} is stunned while touching the fence, {seconds} second(s) more; the rolls to recover begin once the contact ends.",
           "Unaffected": "{name} has no electronics for it to disable.",
-          "KnockedOut": "{name} is out of action for {seconds} second(s)."
+          "KnockedOut": "{name} is out of action for {seconds} second(s).",
+          "NoTires": "{name} has no tires to puncture.",
+          "Punctured": "{name} runs over the spike strip: a tire is flat in {seconds} seconds, then {driving} to control rolls and half Top Speed until it is changed.",
+          "TiresChanged": "{name}'s punctured tire is changed."
         },
         "Item": {
           "Safe": "DR {dr}, HP {hp}; the lock's own toughness doesn't count.",

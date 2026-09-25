@@ -496,7 +496,12 @@ describe("darkness and lasers (pp. 155-157)", () => {
     const pistol = gun(actor);
     const eyes = actions.find((a) => a.key === "ht-tactical-light-eyes");
     expect(eyes.visible(pistol)).toBe(false);
-    accessory(actor, "Small Tactical Light (TL8)", pistol);
+    const light = accessory(actor, "Small Tactical Light (TL8)", pistol);
+    expect(eyes.visible(pistol)).toBe(true);
+    // Filtered to infrared, it blinds nobody: no dazzle from the gun's row.
+    light.system.extensions[MODULE_ID].expedition = { light: { kind: "tactical", radius: 0, beam: 25, infrared: true } };
+    expect(eyes.visible(pistol)).toBe(false);
+    light.system.extensions[MODULE_ID].expedition.light.infrared = false;
     expect(eyes.visible(pistol)).toBe(true);
     // No target: nothing posted, a warning.
     const warn = vi.fn();

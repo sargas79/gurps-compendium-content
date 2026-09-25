@@ -357,6 +357,8 @@ describe("maritime gear (High-Tech pp. 59-60)", () => {
     expect(roll(swimmer, ["skill"], { kind: "skill", skill: "Swimming" })).toEqual([{ label: expect.any(String), value: 6 }]);
     expect(roll(swimmer, ["contest", "quickContest"], { kind: "contest", skill: "Swimming" })).toEqual([{ label: expect.any(String), value: -3 }]);
     expect(roll(swimmer, ["skill"], { kind: "skill", skill: "Climbing" })).toEqual([]);
+    // The system's Swimming rolls while drowning (Campaigns p. 436; API 1.103.0) take it too.
+    expect(roll(swimmer, ["skill", "swimming", "drowning"], { kind: "skill", skill: "Swimming" })).toEqual([{ label: expect.stringContaining("JacketLine"), value: 6 }]);
     jacket.system.equipped = false;
     expect(roll(swimmer, ["skill"], { kind: "skill", skill: "Swimming" })).toEqual([]);
   });
@@ -561,6 +563,21 @@ describe("rations (High-Tech p. 35)", () => {
     expect(injuries[1]).toMatchObject({ amount: 2, spent: true, exertion: false, details: { rule: "snackCrash", item: "Snack" } });
     expect(hiker.getFlag(MODULE_ID, "htSnackCrash")).toBeUndefined();
     expect(chat.at(-1)).toContain("SnackCrash");
+  });
+
+  it("charges a snack's crash once, however many ticks come before it is settled", async () => {
+    const hiker = person([], { flags: { htSnackCrash: [{ at: 1000, fp: 2, item: "Snack" }] } });
+    // The flag is written only after a round trip to the server, as in Foundry.
+    const clear = hiker.unsetFlag;
+    hiker.unsetFlag = async (scope: string, key: string) => { await Promise.resolve(); await clear(scope, key); };
+    const world = (game as any);
+    vi.stubGlobal("game", { ...world, actors: [hiker], scenes: [], user: { id: "gm", isGM: true }, users: { activeGM: { id: "gm" } }, get time() { return { worldTime }; } });
+    // Two ticks in a row, the second before the first has cleared the flag.
+    fire("updateWorldTime");
+    fire("updateWorldTime");
+    await flush();
+    expect(injuries.filter((i) => i.spent)).toHaveLength(1);
+    expect(hiker.getFlag(MODULE_ID, "htSnackCrash")).toBeUndefined();
   });
 
   it("eats nothing when the dialog is closed", async () => {

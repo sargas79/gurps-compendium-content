@@ -211,6 +211,27 @@ export type MineTask = keyof typeof MINE_TASKS;
 /** A bounding mine's burst is five feet up: whoever is flat on the ground at once takes none of its fragments (p. 189). */
 export const avoidsBoundingFragments = (posture: unknown): boolean => ["lying", "prone", "crawling"].includes(String(posture ?? ""));
 
+/** A directional mine's cone: everyone out to its Max in a 60-degree cone (p. 189). */
+export const DIRECTIONAL_CONE_DEGREES = 60;
+
+/** A cone's width at `length` yards from its apex, for its angle in degrees. */
+export function coneWidth(length: number, degrees: number = DIRECTIONAL_CONE_DEGREES): number {
+  return 2 * Math.max(0, Number(length) || 0) * Math.tan(((Number(degrees) || 0) / 2) * (Math.PI / 180));
+}
+
+/**
+ * The bearing from a point to the middle of others, in whole degrees
+ * clockwise from east (the scene's +x, y down), 0-359, as Foundry measures a
+ * template: which way a mine faces to take them in. Null for none.
+ */
+export function bearingToward(from: { x: number; y: number }, points: ReadonlyArray<{ x: number; y: number }>): number | null {
+  if (!points.length) return null;
+  const x = points.reduce((sum, p) => sum + p.x, 0) / points.length - from.x;
+  const y = points.reduce((sum, p) => sum + p.y, 0) / points.length - from.y;
+  if (!x && !y) return null;
+  return (Math.round((Math.atan2(y, x) * 180) / Math.PI) + 360) % 360;
+}
+
 /** One target of a directional mine's shotload, as resolved. */
 export interface VolleyTarget {
   id: string;

@@ -20,11 +20,16 @@
  *     long. An attack on a target a light reaches -- one
  *     set down round it, one carried within its radius, or the attacker's own
  *     beam out to its length -- takes its darkness down to that of a lit spot
- *     (Campaigns p. 394's -3; the keyed `darkness` line). A tactical light
- *     shone in the eyes asks each target for HT-4 against 10 seconds'
- *     blindness per point of failure; one fitted to a gun does the same from
- *     the gun's row (`shineTacticalLight`), and the gadget table counts
- *     tactical lights as rugged and expensive already.
+ *     (Campaigns p. 394's -3; the keyed `darkness` line); a light set down
+ *     also lights its radius for the system's `darknessAt` (API 1.102.0). A
+ *     flashlight's IR filter (+$25), an IR mode or an IR chemlight lights
+ *     only for eyes that see infrared, on the attack as in `darknessAt`
+ *     (`../infrared.ts`), an infrared beam set down included, and blinds
+ *     nobody. A tactical light shone in the eyes asks each target for HT-4
+ *     against 10 seconds' blindness per point of failure; one fitted to a
+ *     gun does the same from the gun's row (`shineTacticalLight`), unless it
+ *     shines infrared, and the gadget table counts tactical lights as rugged
+ *     and expensive already.
  *   - **Navigation gear (navigationGear):** the best bonus of a compass,
  *     chronometer, navigating or surveying instruments or a GPS receiver as a
  *     line on Navigation and Mathematics (Surveying), and the map line on
@@ -39,7 +44,7 @@
  *     a pack (1d or 2d seconds); and a canteen not full sloshing away LBE's
  *     Stealth benefit.
  *   - **Climbing gear (climbingGear):** the fall to twice the distance past
- *     the last fastener, shooting while rappelling (-4, -2 with Sure-Footed),
+ *     the last fastener, rolled by the system's falling procedure, shooting while rappelling (-4, -2 with Sure-Footed),
  *     throwing a grapnel and who hears it land (a padded one, +1 lb., at
  *     -2), snowshoes' -1 Move, and crampons' +2 to a kick
  *     (beside the system's +1 for boots, which they are worn over); an
@@ -51,6 +56,7 @@
  */
 
 import { placeArea } from "../../../shared/areas.js";
+import { infraredLight, seesInfrared } from "../infrared.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { registerPowerAdjuster } from "../../../shared/power/data.js";
@@ -79,6 +85,7 @@ import {
   lbeStealth,
   FITS,
   GLASS_LANTERN_FIRE_YARDS,
+  IR_FILTER_COST,
   LIGHT_KINDS,
   NAVIGATION_KINDS,
   RELIGHT_SECONDS,
@@ -87,6 +94,7 @@ import {
   anchoredFall,
   blindedSeconds,
   breaksWhenDropped,
+  canBeInfrared,
   drawsFromLbe,
   fittingRoll,
   GRAPNEL_RING_YARDS,
@@ -94,6 +102,7 @@ import {
   grapnelLoad,
   grapnelRange,
   grapnelRoll,
+  infraredCost,
   lanternSurvives,
   lbeBonus,
   litPenalty,
@@ -120,6 +129,8 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 
 const FIELD = "expedition";
 const LIGHT_AREA = "ht-light";
+/** What an infrared beam's area has in its id, after the item's: it lights only for eyes that see infrared. */
+const IR_BEAM = "-ir-";
 const FIRE_AREA = "ht-lantern-fire";
 const FIRE_CARD = "ht-lantern-fire";
 const EYES_CARD = "ht-light-eyes";
@@ -169,7 +180,7 @@ export function initExpedition(): void {
   const yards = () => new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 });
   addExtensionFields("Item", ITEM_EXTENSION_TYPES, {
     [FIELD]: new f.SchemaField({
-      light: new f.SchemaField({ kind: choice(LIGHT_KINDS), radius: yards(), beam: yards() }),
+      light: new f.SchemaField({ kind: choice(LIGHT_KINDS), radius: yards(), beam: yards(), infrared: new f.BooleanField({ initial: false }) }),
       navigation: choice(NAVIGATION_KINDS),
       mapPenalty: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: -5, max: 0 }),
       carry: choice(CARRY_KINDS),
@@ -186,7 +197,7 @@ export function expeditionData(item: any): ExpeditionData {
   const kind = LIGHT_KINDS.includes(l.kind) ? l.kind : "";
   const yards = (v: unknown) => Math.max(0, Number(v) || 0);
   return {
-    light: kind ? { kind, radius: yards(l.radius), beam: yards(l.beam) } : null,
+    light: kind ? { kind, radius: yards(l.radius), beam: yards(l.beam), infrared: l.infrared === true && canBeInfrared(kind) } : null,
     navigation: NAVIGATION_KINDS.includes(d.navigation) ? d.navigation : "",
     mapPenalty: Math.max(-5, Math.min(0, Math.trunc(Number(d.mapPenalty) || 0))),
     carry: CARRY_KINDS.includes(d.carry) ? d.carry : "",
@@ -269,12 +280,20 @@ function yardsBetween(a: any, b: any): number | null {
 
 // ── light sources (pp. 51-52) ──
 
-/** The lit lights a character carries: not one they have set down, which lights where it lies, nor one burned out. */
-function litLights(actor: any): Array<{ item: any; light: Light }> {
+/**
+ * The lit lights a character carries: not one they have set down, which lights
+ * where it lies, nor one burned out. With `forEyes`, an infrared one only
+ * where those eyes see it.
+ */
+function litLights(actor: any, forEyes?: (light: Light) => boolean): Array<{ item: any; light: Light }> {
   return gearOf(actor)
     .map((item) => ({ item, light: expeditionData(item).light, state: expeditionState(item) }))
-    .filter((l): l is { item: any; light: Light; state: ExpeditionState } => l.light !== null && l.state.lit && !l.state.broken && !l.state.placed && !spent(l.item));
+    .filter((l): l is { item: any; light: Light; state: ExpeditionState } => l.light !== null && l.state.lit && !l.state.broken && !l.state.placed && !spent(l.item))
+    .filter((l) => !forEyes || forEyes(l.light));
 }
+
+/** A smart flashlight switches to infrared-only by itself (p. 52): no filter to buy. */
+const hasIrMode = (item: any): boolean => /^smart flashlight\b/i.test(String(item?.name ?? ""));
 
 /**
  * The light a target stands in, by name, or null: a light set down round it,
@@ -283,6 +302,9 @@ function litLights(actor: any): Array<{ item: any; light: Light }> {
  * length.
  */
 export function lightOver(api: GWorldApi, attacker: any, target: any): string | null {
+  // An infrared light counts only for an attacker who sees infrared.
+  const sees = seesInfrared(api, attacker);
+  const visible = (light: Light) => !light.infrared || sees;
   const scene = stage()?.scene;
   if (scene) {
     const now = worldNow();
@@ -290,18 +312,20 @@ export function lightOver(api: GWorldApi, attacker: any, target: any): string | 
       if (!String(area?.id ?? "").startsWith(`${MODULE_ID}-${LIGHT_AREA}-`)) continue;
       // A light set down goes out when its fuel does.
       if (typeof area.expires === "number" && now >= area.expires) continue;
+      // An infrared one, round it or a beam, lights only for eyes that see infrared.
+      if ((area?.light?.litFor || String(area.id).includes(IR_BEAM)) && !sees) continue;
       const inside: any[] = (api.areas as any).standsIn?.(scene, area) ?? [];
       if (inside.some((t) => t?.id === target?.id)) return String(area.label ?? "");
     }
   }
   for (const token of (stage()?.tokens?.placeables ?? []) as any[]) {
-    for (const { item, light } of litLights(token?.actor)) {
+    for (const { item, light } of litLights(token?.actor, visible)) {
       const yards = token?.document?.id === target?.id ? 0 : yardsBetween(token, target);
       if (yards !== null && reaches(light, yards, false)) return String(item.name ?? "");
     }
   }
   const own = attacker?.getActiveTokens?.()?.[0];
-  for (const { item, light } of litLights(attacker)) {
+  for (const { item, light } of litLights(attacker, visible)) {
     const yards = own ? yardsBetween(own, target) : null;
     if (yards !== null && reaches(light, yards, true)) return String(item.name ?? "");
   }
@@ -404,7 +428,9 @@ async function setDown(api: GWorldApi, item: any, actor: any): Promise<void> {
   const left = lightLeft(item);
   const seconds = left === null ? null : left;
   if (data.light.radius > 0) {
-    const id = await placeArea(api, { key: `${LIGHT_AREA}-${item.id}`, label: name, actor, radiusYards: data.light.radius, lines: [], seconds, bare: true });
+    // It lights its radius for the system's darknessAt too: an infrared one only for those who see it.
+    const light = { litFor: data.light.infrared ? infraredLight(api) : null };
+    const id = await placeArea(api, { key: `${LIGHT_AREA}-${item.id}`, label: name, actor, radiusYards: data.light.radius, lines: [], seconds, bare: true, light });
     if (!id) return void ui.notifications?.warn(L("NoPlace"));
     await setState(item, { placed: true });
     await say(actor, name, [F("SetDownLine", { name, yards: data.light.radius })]);
@@ -412,15 +438,19 @@ async function setDown(api: GWorldApi, item: any, actor: any): Promise<void> {
   }
   // A beam set down shines where it points: toward the one token targeted, or the way its bearer's token faces.
   if (data.light.beam > 0) {
-    const id = await placeBeam(api, item, actor, data.light.beam, seconds);
+    const id = await placeBeam(api, item, actor, data.light.beam, seconds, data.light.infrared);
     if (!id) return void ui.notifications?.warn(L("NoPlaceBeam"));
     await setState(item, { placed: true });
     await say(actor, name, [F("SetDownBeam", { name, yards: data.light.beam, width: beamWidth(data.light.beam) })]);
   }
 }
 
-/** Places a beam light set down as a cone from its bearer's token. */
-async function placeBeam(api: GWorldApi, item: any, actor: any, yards: number, seconds: number | null): Promise<string | null> {
+/**
+ * Places a beam light set down as a cone from its bearer's token. An infrared
+ * one is marked in its id (`IR_BEAM`), and `lightOver` counts it only for eyes
+ * that see infrared.
+ */
+async function placeBeam(api: GWorldApi, item: any, actor: any, yards: number, seconds: number | null, infrared = false): Promise<string | null> {
   const scene = stage()?.scene;
   const own = actor?.getActiveTokens?.()?.[0];
   const from = centreOf(own);
@@ -432,7 +462,7 @@ async function placeBeam(api: GWorldApi, item: any, actor: any, yards: number, s
   const cone = toward ? { toward, length: yards, width: beamWidth(yards) } : { direction: ((Number.isFinite(direction) ? direction : 0) + 90) % 360, length: yards, width: beamWidth(yards) };
   const now = worldNow();
   return api.areas.add(scene, {
-    id: `${MODULE_ID}-${LIGHT_AREA}-${item.id}-${foundry.utils.randomID(8)}`,
+    id: `${MODULE_ID}-${LIGHT_AREA}-${item.id}${infrared ? IR_BEAM : "-"}${foundry.utils.randomID(8)}`,
     label: String(item.name ?? ""),
     center: from,
     cone,
@@ -478,6 +508,9 @@ async function pickUp(api: GWorldApi, item: any): Promise<void> {
 }
 
 type EyesData = { victimUuid: string; victim: string; light: string; result: string; surprised?: string };
+
+/** Whether a light shines infrared only (p. 52): it blinds nobody. */
+export const shinesInfrared = (item: any): boolean => expeditionData(item).light?.infrared === true;
 
 /** Shines a tactical light in the eyes of each targeted token within its beam (p. 52). */
 async function shineInEyes(api: GWorldApi, item: any, actor: any): Promise<void> {
@@ -650,7 +683,9 @@ function itemContext(api: GWorldApi, item: any, on: ExpeditionSwitches): Record<
     lines.push(L(state.broken ? "BrokenLine" : state.lit ? (state.placed ? "PlacedLine" : "LitLine") : "UnlitLine"));
     if (breaksWhenDropped(data.light.kind)) lines.push(L(`KindLine.${data.light.kind}`));
     if (data.light.kind === "electric" || data.light.kind === "tactical") lines.push(L("ReadyLine"));
-    if (data.light.kind === "tactical") lines.push(F("TacticalLine", { ht: TACTICAL_BLINDING_HT }));
+    if (data.light.kind === "tactical" && !data.light.infrared) lines.push(F("TacticalLine", { ht: TACTICAL_BLINDING_HT }));
+    if (data.light.infrared) lines.push(L("InfraredLine"));
+    if (canBeInfrared(data.light.kind)) context.light = { infrared: data.light.infrared === true, hint: F(hasIrMode(item) || data.light.kind === "chemical" ? "InfraredModeHint" : "InfraredFilterHint", { cost: IR_FILTER_COST }) };
     // How long it burns on its fuel, and what is left (pp. 51-52).
     const burn = burnOf(String(item.name ?? ""), tlOf(item));
     if (burn) {
@@ -712,6 +747,9 @@ function itemListeners(element: HTMLElement, item: any): void {
   element.querySelector<HTMLInputElement>("[data-gcc-ht-padded]")?.addEventListener("change", async (event) => {
     await item.update({ [`system.extensions.${MODULE_ID}.${FIELD}.padded`]: (event.currentTarget as HTMLInputElement).checked });
   });
+  element.querySelector<HTMLInputElement>("[data-gcc-ht-infrared]")?.addEventListener("change", async (event) => {
+    await item.update({ [`system.extensions.${MODULE_ID}.${FIELD}.light.infrared`]: (event.currentTarget as HTMLInputElement).checked });
+  });
   element.querySelector<HTMLInputElement>("[data-gcc-ht-gps]")?.addEventListener("change", async (event) => {
     await setState(item, { noSignal: (event.currentTarget as HTMLInputElement).checked });
   });
@@ -721,6 +759,8 @@ function itemListeners(element: HTMLElement, item: any): void {
 }
 
 export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
+  // The infrared kind of light, registered while the system is readying.
+  infraredLight(api);
   api.sheets.registerSheetSection({
     module: MODULE_ID,
     key: "ht-expedition-item",
@@ -795,7 +835,8 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
     itemTypes: ["equipment"],
     label: L("EyesAction"),
     icon: "fa-solid fa-eye-slash",
-    visible: (item) => on.lights() && lightOf(item)?.kind === "tactical" && !expeditionState(item).broken,
+    // An infrared light blinds nobody: it is only seen through night-vision gear (p. 52).
+    visible: (item) => on.lights() && lightOf(item)?.kind === "tactical" && !lightOf(item)?.infrared && !expeditionState(item).broken,
     run: (item, actor) => { void shineInEyes(api, item, actor); },
   });
   api.chat.registerChatCard({
@@ -950,6 +991,17 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
     },
   });
 
+  // A flashlight's IR filter (p. 52).
+  api.data.registerPriceModifier({
+    module: MODULE_ID,
+    key: "ht-ir-filter",
+    types: ["equipment"],
+    apply: (item, price) => {
+      const cost = on.lights() ? infraredCost(expeditionData(item).light, hasIrMode(item)) : 0;
+      return cost ? { cost: Math.round((price.cost + cost) * 100) / 100, weight: price.weight, label: L("IrFilterPrice") } : null;
+    },
+  });
+
   // A padded grapnel's extra pound (p. 55).
   api.data.registerPriceModifier({
     module: MODULE_ID,
@@ -998,7 +1050,10 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
           rejectClose: false,
         });
         if (!asked) return;
-        await say(actor, String(item.name ?? ""), [F("FallLine", { name: actor?.name ?? "", above: asked.yards, yards: anchoredFall(asked.yards) })]);
+        const yards = anchoredFall(asked.yards);
+        await say(actor, String(item.name ?? ""), [F("FallLine", { name: actor?.name ?? "", above: asked.yards, yards })]);
+        // The fall itself, as the system's falling procedure rolls it (Campaigns pp. 430-431).
+        if (yards > 0 && actor) await api.hazards.fall(actor, { yards });
       })();
     },
   });

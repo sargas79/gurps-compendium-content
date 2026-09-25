@@ -2,15 +2,16 @@
  * The optional wounding rules at the table (High-Tech p. 162), each under its
  * own switch:
  *
- *   - **Body hits** (vitalsOnTorsoHits): an impaling or piercing hit on the
- *     torso rolls 1d; a 1 moves it to the vitals. Otherwise, and on the groin,
+ *   - **Body hits** (vitalsOnTorsoHits): an impaling, piercing or tight-beam
+ *     burning hit on the torso rolls 1d; a 1 moves it to the vitals. Otherwise, and on the groin,
  *     the blow is capped at the victim's HP (twice that without Bleeding,
  *     Campaigns p. 420), and what the cap took off still counts toward the
  *     bleeding roll's -1 per 5 HP.
  *   - **Limb hits** (realisticLimbWounds): a limb or extremity that takes at
  *     least twice the injury that cripples it, before the cap, is crippled
- *     for good; an impaling or piercing blow must do twice that again to
- *     sever it. The GM is told.
+ *     for good; an impaling, piercing or tight-beam burning blow must do twice
+ *     that again to sever it. The GM is told, and the part goes on the sheet
+ *     as crippled for good (`actors.cripple`).
  *   - **Stopping the bleeding** (vitalBleeding): a wound to the skull, an eye,
  *     the neck or the vitals bleeds every 30 seconds, at -2 more for the neck
  *     and -4 for the vitals, and needs Surgery. First Aid and Surgery take
@@ -90,7 +91,7 @@ export function readyWounding(api: GWorldApi, on: WoundingSwitches): void {
   Hooks.on(api.combat.hooks.injury, (context: any) => {
     const damage = context?.damage;
     if (!on.vitals() || !damage || damage.largeArea || damage.blastPlacement === "internal") return;
-    const where = { hitLocation: String(damage.hitLocation ?? ""), addonLocation: damage.addonLocation ?? null, damageType: String(damage.type ?? "") };
+    const where = { hitLocation: String(damage.hitLocation ?? ""), addonLocation: damage.addonLocation ?? null, damageType: String(damage.type ?? ""), tightBeam: damage.tightBeam === true };
     let roll: number | null = null;
     if (rollsForVitals(where)) {
       roll = d6();
@@ -173,8 +174,10 @@ export function readyWounding(api: GWorldApi, on: WoundingSwitches): void {
       const limbs = { arms: 2 + (Number(traits.extraArms) || 0), legs: 2 + (Number(traits.extraLegs) || 0) };
       const threshold = Number((api.rules as any).cripplingThreshold?.(location, Number(victim.system?.hp?.max) || 10, limbs));
       if (Number.isFinite(threshold)) {
-        const outcome = limbOutcome({ injury: uncapped, threshold, damageType: type });
+        const outcome = limbOutcome({ injury: uncapped, threshold, damageType: type, tightBeam: damage?.tightBeam === true });
         if (outcome) {
+          // Crippled for good, or severed, with no HT roll for how long (Campaigns p. 422): on the sheet as a permanent part.
+          await api.actors.cripple(victim, location, { duration: "permanent", label: F(outcome === "severed" ? "SeveredLabel" : "PermanentLabel", { part: part(location) }) });
           await post(victim, L("LimbTitle"), F(outcome === "severed" ? "LimbSevered" : "LimbPermanent", {
             name: String(victim.name ?? ""), part: part(location), injury: uncapped, least: leastCrippling(threshold),
           }), true);

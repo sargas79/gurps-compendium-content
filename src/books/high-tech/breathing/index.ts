@@ -387,7 +387,8 @@ async function accelerationRoll(api: GWorldApi, actor: any): Promise<void> {
     ...(answer.braced ? [{ label: L("Braced"), value: 2 }] : []),
     ...(answer.inverted ? [{ label: L("Inverted"), value: -2 }] : []),
   ];
-  const outcome: any = await api.roll.success({ actor, base: ht, label: F("AccelerationRoll", { g: answer.g }), skill: "HT", kind: "attribute", modifiers, tags: ["acceleration", "HT"] } as any);
+  // A roll to resist: made however low, never refused below 3 (Campaigns p. 348).
+  const outcome: any = await api.roll.success({ actor, base: ht, label: F("AccelerationRoll", { g: answer.g }), skill: "HT", kind: "attribute", modifiers, tags: ["acceleration", "HT"], resistance: true } as any);
   if (!outcome || "refused" in outcome || outcome.success) return;
   const harm = api.rules.accelerationHarm({ margin: Number(outcome.margin) || 0, criticalFailure: outcome.criticalFailure === true });
   if (harm.fatigue > 0) await api.actors.applyInjury(actor, { amount: harm.fatigue, fatigue: true, label: L("AccelerationAction") } as any);
@@ -575,7 +576,7 @@ export function readyBreathing(api: GWorldApi, on: BreathingSwitches): void {
     actions: {
       roll: async ({ message, data, actor }: any) => {
         if (!on.breathing() || data?.result || !actor) return;
-        const outcome: any = await api.roll.success({ actor, base: Number(api.actors.attribute(actor, "HT")) || 10, label: L("BendsRoll"), skill: "HT", kind: "attribute", tags: ["bends", "HT"] } as any);
+        const outcome: any = await api.roll.success({ actor, base: Number(api.actors.attribute(actor, "HT")) || 10, label: L("BendsRoll"), skill: "HT", kind: "attribute", tags: ["bends", "HT"], resistance: true } as any);
         if (!outcome || "refused" in outcome) return;
         const result = api.rules.bendsOutcome({ success: outcome.success === true, criticalSuccess: outcome.criticalSuccess === true, criticalFailure: outcome.criticalFailure === true });
         if (result === "agony") await api.actors.applyCondition(actor, { key: "agony" } as any);

@@ -382,6 +382,22 @@ export function thermiteDr(dr: number, damageSoFar: number): number {
   return Math.max(0, Math.floor(Number(dr) || 0) - lost);
 }
 
+/** The points of DR a second of thermite destroys: those its damage so far crosses a 10 for. */
+export function thermiteDrDestroyed(damageBefore: number, damageAfter: number): number {
+  const lost = (damage: number) => Math.floor(Math.max(0, Number(damage) || 0) / THERMITE.damagePerDr);
+  return Math.max(0, lost(damageAfter) - lost(damageBefore));
+}
+
+/**
+ * The DR thermite meets on a victim: the DR there now, which already lacks
+ * what it wore off the armour for good (`worn`), less what it destroyed
+ * beyond that, of DR no armour carries (natural DR, say).
+ */
+export function thermiteDrOnVictim(drNow: number, damageSoFar: number, worn: number): number {
+  const lost = Math.floor(Math.max(0, Number(damageSoFar) || 0) / THERMITE.damagePerDr);
+  return Math.max(0, Math.floor(Number(drNow) || 0) - Math.max(0, lost - Math.max(0, Math.floor(Number(worn) || 0))));
+}
+
 /** Thermite burning on an object, second by second, from the seconds' rolls. */
 export interface ThermiteOnObject {
   /** Seconds it burned before the object's HP ran out, or all of them. */

@@ -1,44 +1,45 @@
 {{!-- The character's gear that runs on cells, and what is left in each
-     (Ultra-Tech pp. 18-19; High-Tech pp. 13-14), in the words of the first book whose cell table
-     applies (`ns`). --}}
+     (Ultra-Tech pp. 18-19; High-Tech pp. 13-14): a card for each book whose cell table
+     applies, in that book's words (`g.ns`). --}}
+{{#each groups as |g|}}
 <section class="card" data-gcc-power-gear>
-  <div class="card-head"><h3>{{localize (concat @root.ns ".Power.GearTitle")}}</h3></div>
+  <div class="card-head"><h3>{{localize (concat g.ns ".Power.GearTitle")}}</h3></div>
   <table class="gtable">
     <thead>
       <tr>
-        <th>{{localize (concat @root.ns ".Power.Item")}}</th>
-        <th>{{localize (concat @root.ns ".Power.Cells")}}</th>
-        <th>{{localize (concat @root.ns ".Power.Charge")}}</th>
+        <th>{{localize (concat g.ns ".Power.Item")}}</th>
+        <th>{{localize (concat g.ns ".Power.Cells")}}</th>
+        <th>{{localize (concat g.ns ".Power.Charge")}}</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      {{#each rows as |r|}}
+      {{#each g.rows as |r|}}
         <tr data-item-id="{{r.id}}">
           <td>{{r.name}}</td>
           <td>{{r.supply}}</td>
           <td>
             {{r.charge}}
             {{#if r.pluggable}}
-              <label data-tooltip="{{localize (concat @root.ns ".Power.ExternalHint")}}"><input type="checkbox" data-gcc-power-external {{#if r.external}}checked{{/if}} {{#unless ../editable}}disabled{{/unless}} /> {{localize (concat @root.ns ".Power.External")}}</label>
+              <label data-tooltip="{{localize (concat g.ns ".Power.ExternalHint")}}"><input type="checkbox" data-gcc-power-external {{#if r.external}}checked{{/if}} {{#unless @root.editable}}disabled{{/unless}} /> {{localize (concat g.ns ".Power.External")}}</label>
             {{/if}}
             {{#if r.tracksHours}}
-              <label data-tooltip="{{localize (concat @root.ns ".Power.UsedHint")}}">{{localize (concat @root.ns ".Power.Used")}}
-                <input type="number" data-gcc-power-used value="{{r.hoursUsed}}" step="0.5" min="0" style="width:60px" {{#unless ../editable}}disabled{{/unless}} />
+              <label data-tooltip="{{localize (concat g.ns ".Power.UsedHint")}}">{{localize (concat g.ns ".Power.Used")}}
+                <input type="number" data-gcc-power-used value="{{r.hoursUsed}}" step="0.5" min="0" style="width:60px" {{#unless @root.editable}}disabled{{/unless}} />
               </label>
             {{/if}}
             {{#if r.tracksUses}}
-              <label data-tooltip="{{localize (concat @root.ns ".Power.UsesHint")}}">{{localize (concat @root.ns ".Power.UsesUsed")}}
-                <input type="number" data-gcc-power-uses value="{{r.usesUsed}}" step="1" min="0" style="width:50px" {{#unless ../editable}}disabled{{/unless}} />
+              <label data-tooltip="{{localize (concat g.ns ".Power.UsesHint")}}">{{localize (concat g.ns ".Power.UsesUsed")}}
+                <input type="number" data-gcc-power-uses value="{{r.usesUsed}}" step="1" min="0" style="width:50px" {{#unless @root.editable}}disabled{{/unless}} />
               </label>
             {{/if}}
           </td>
           <td>
             {{#if r.cosmic}}
             {{else if r.weapon}}
-              <span class="ihint" data-tooltip="{{localize (concat @root.ns ".Power.WeaponHint")}}">{{localize (concat @root.ns ".Power.ReloadOnCombat")}}</span>
+              <span class="ihint" data-tooltip="{{localize (concat g.ns ".Power.WeaponHint")}}">{{localize (concat g.ns ".Power.ReloadOnCombat")}}</span>
             {{else}}
-              <button type="button" class="ibtn tiny" data-gcc-power-change {{#unless ../editable}}disabled{{/unless}}>{{#if r.recharge}}{{localize (concat @root.ns ".Power.Recharge")}}{{else}}{{localize (concat @root.ns ".Power.Change")}}{{/if}}</button>
+              <button type="button" class="ibtn tiny" data-gcc-power-change {{#unless @root.editable}}disabled{{/unless}}>{{#if r.recharge}}{{localize (concat g.ns ".Power.Recharge")}}{{else}}{{localize (concat g.ns ".Power.Change")}}{{/if}}</button>
             {{/if}}
           </td>
         </tr>
@@ -46,3 +47,4 @@
     </tbody>
   </table>
 </section>
+{{/each}}
