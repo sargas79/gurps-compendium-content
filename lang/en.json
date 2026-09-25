@@ -5501,7 +5501,17 @@
           "strips": "Long strips",
           "crosscut": "Small pieces (cross-cut)"
         },
-        "SelectInvestigator": "Select the character putting the documents back together."
+        "SelectInvestigator": "Select the character putting the documents back together.",
+        "PrintAction": "Make a part",
+        "PrintLabel": "{name}: {skill}",
+        "UnfamiliarMethod": "Unfamiliar with the design method",
+        "PrintPictureAction": "Print a picture",
+        "PrintPictureTitle": "Printing a picture on {name}",
+        "ArtistSkill": "Artist skill",
+        "Resolution": "{name}'s resolution",
+        "ScanAction": "Scan an artistic image",
+        "ScanLabel": "Scanning with {name}",
+        "ScanArtLine": "Artistic or enlarged image"
       },
       "Electromedicine": {
         "Title": "Electromedicine (Electricity and Electronics)",

@@ -19,7 +19,11 @@
  *     an electromagnet's ST, the most it holds and the reach of its pull, from
  *     its core and size; remote control priced at +10%; and an emergency stop
  *     whose row action shuts the machine down with an equipment failure roll
- *     (`items.equipmentFailure`).
+ *     (`items.equipmentFailure`); row actions that print a picture on Artist
+ *     with the printer's resolution (dot matrix -5, laser +1), scan an
+ *     artistic image on a flatbed scanner at -2 to Electronics Operation
+ *     (Media), and make a part on a 3D printer with Machinist or Artist
+ *     (Sculpting), -2 until familiar with it (HT:EE pp. 23-24, 33).
  *   - **Power tools (powerTools):** a derived work row for the supplement's
  *     power drills, circular saws (with a diamond blade's divisor against
  *     concrete and brick), arc welder, hot plate, soldering irons and wire
@@ -49,8 +53,14 @@ import {
   WEATHER_APPLIANCES,
   applianceHazardOf,
   hazardApplies,
+  FLATBED_SCANNER,
+  PRINT_3D_SKILLS,
+  UNFAMILIAR,
+  is3dPrinter,
+  isFlatbedScanner,
   isShopvac,
   isShredder,
+  printerModifier,
   kitchenGearOf,
   kitchenModifier,
   kitchenSkillOf,
@@ -286,6 +296,57 @@ export async function reconstructShredding(api: GWorldApi): Promise<void> {
   await api.roll.success({ actor, base, skill, label: L("ShreddedTitle"), modifiers: penalty ? [{ label: L("Shredding.crosscut"), value: penalty }] : [], tags: ["shreddedDocuments"] } as any);
 }
 
+// ── printing and scanning (HT:EE pp. 23-24, 33) ──
+
+/** A character's best of some skills, each at its own default where it isn't known. */
+function bestOf(api: GWorldApi, actor: any, skills: ReadonlyArray<{ skill: string; attribute: "IQ" | "DX"; default: number }>): { skill: string; level: number } {
+  const levels = skills.map((s) => ({ skill: s.skill, level: api.actors.skillLevel(actor, s.skill) ?? (Number(api.actors.attribute(actor, s.attribute)) || 10) + s.default }));
+  return levels.sort((a, b) => b.level - a.level)[0]!;
+}
+
+/** Makes a model or a part on a 3D printer: Machinist or Artist (Sculpting), -2 until familiar (HT:EE p. 24). */
+export async function print3d(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const best = bestOf(api, actor, PRINT_3D_SKILLS);
+  const familiar = api.actors.isFamiliar(actor, String(item.name ?? "")) !== false;
+  await api.roll.success({
+    actor, base: best.level, skill: best.skill, label: F("PrintLabel", { name: item.name, skill: best.skill }), item,
+    modifiers: familiar ? [] : [{ label: L("UnfamiliarMethod"), value: UNFAMILIAR }], tags: ["fabrication"],
+  } as any);
+}
+
+/** The Artist skills a character knows, for printing a picture; Illustration where none. */
+function artistSkills(actor: any): string[] {
+  const known = [...(actor?.items ?? [])].filter((i: any) => i?.type === "skill" && /^artist\b/i.test(String(i.name ?? ""))).map((i: any) => String(i.name));
+  return known.length ? known : ["Artist (Illustration)"];
+}
+
+/** Prints a picture: the artist's roll, with the printer's resolution on it (HT:EE pp. 23-24, 33). */
+export async function printPicture(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const modifier = printerModifier(item?.name) ?? 0;
+  const skills = artistSkills(actor);
+  const answer = skills.length === 1 ? { skill: skills[0]! } : await ask<{ skill: string }>(F("PrintPictureTitle", { name: item.name }),
+    row(L("ArtistSkill"), `<select name="skill">${skills.map((s) => `<option value="${esc(s)}">${esc(s)}</option>`).join("")}</select>`),
+    (form) => ({ skill: form.querySelector<HTMLSelectElement>("[name=skill]")?.value ?? skills[0]! }));
+  if (!answer) return;
+  // Artist defaults to IQ-6 (p. B179).
+  const base = api.actors.skillLevel(actor, answer.skill) ?? (Number(api.actors.attribute(actor, "IQ")) || 10) - 6;
+  await api.roll.success({
+    actor, base, skill: answer.skill, label: F("PrintPictureTitle", { name: item.name }), item,
+    modifiers: modifier ? [{ label: F("Resolution", { name: item.name }), value: modifier }] : [], tags: ["printing"],
+  } as any);
+}
+
+/** Scans an artistic image, or one to be enlarged: Electronics Operation (Media) at -2 (HT:EE p. 33). */
+export async function scanPicture(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const skill = "Electronics Operation (Media)";
+  // Electronics Operation defaults to IQ-5 (p. B189).
+  const base = api.actors.skillLevel(actor, skill) ?? (Number(api.actors.attribute(actor, "IQ")) || 10) - 5;
+  await api.roll.success({ actor, base, skill, label: F("ScanLabel", { name: item.name }), item, modifiers: [{ label: L("ScanArtLine"), value: FLATBED_SCANNER }], tags: ["scanning"] } as any);
+}
+
 // ── registration ──
 
 export function readyAppliances(api: GWorldApi, on: ApplianceSwitches): void {
@@ -364,6 +425,15 @@ export function readyAppliances(api: GWorldApi, on: ApplianceSwitches): void {
     visible: (item) => on.appliances() && isDevice(item) && isShopvac(item.name),
     run: (item, actor) => { void cleanScene(item, actor); },
   });
+
+  const printing: Array<{ key: string; label: string; icon: string; visible: (item: any) => boolean; run: (item: any, actor: any) => Promise<void> }> = [
+    { key: "ee-3d-print", label: L("PrintAction"), icon: "fa-solid fa-cube", visible: (item) => is3dPrinter(item?.name), run: (item, actor) => print3d(api, item, actor) },
+    { key: "ee-print-picture", label: L("PrintPictureAction"), icon: "fa-solid fa-print", visible: (item) => printerModifier(item?.name) !== null, run: (item, actor) => printPicture(api, item, actor) },
+    { key: "ee-scan-picture", label: L("ScanAction"), icon: "fa-solid fa-image", visible: (item) => isFlatbedScanner(item?.name), run: (item, actor) => scanPicture(api, item, actor) },
+  ];
+  for (const action of printing) {
+    api.sheets.registerRowAction({ module: MODULE_ID, itemTypes: ["equipment"], ...action, visible: (item: any) => on.appliances() && isDevice(item) && action.visible(item), run: (item: any, actor: any) => { void action.run(item, actor); } });
+  }
 
   api.sheets.registerGmTool({
     module: MODULE_ID,
