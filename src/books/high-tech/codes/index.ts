@@ -10,14 +10,19 @@
  *     given; a TL5-6 system the Basic Set's Quick Contest of Cryptography. The
  *     other selected characters with Cryptography 17+ are the team, +1 each to
  *     the leader (at most +4). The encryption standards are a Cryptography
- *     roll with Time Spent against their base time and the program carried;
- *     secure encryption can't be broken at TL8. With the supplement
+ *     roll with Time Spent against their base time and the program carried,
+ *     which runs only on a carried computer of the standard's Complexity and
+ *     its own; secure encryption can't be broken at TL8. The encryption
+ *     gear's sheets say what code each makes, how long breaking it takes,
+ *     and secure encryption's delay. With the supplement
  *     Electricity and Electronics' cipher machines (cipherMachines), a
  *     code-breaking machine joins the attempt: the bombe, +1 against a cipher
  *     machine's code, or Colossus, +2 (HT:EE p. 48).
  *   - **Disguise and smuggling (disguiseAndSmuggling):** forging with the
  *     book's forgery and counterfeiting tools through the shared forgery
- *     engine (`src/shared/forgery/`), a computer and printer needed from TL7;
+ *     engine (`src/shared/forgery/`), a computer and printer needed from TL7,
+ *     and money printed at TL8 taking a secret Counterfeiting roll the first
+ *     time a printer is used, for whether it marks its pages;
  *     an improvised disguise from the Disguise skill's row (-5 in place of any
  *     kit); a disguise kit's row rolls Disguise with it, the advanced kit's
  *     day of preparation and hours of fitting on the card; smuggler's luggage
@@ -38,14 +43,18 @@ import { timeSpentModifier } from "../../../shared/time-spent.js";
 import {
   ADVANCED_DISGUISE,
   BURST_PACKET,
+  CIPHER_WHEEL_MINUTES,
   CIPHER_WHEEL_SKILL,
   CODES,
   IMPROVISED_DISGUISE,
   NO_COMPUTER,
+  SECURE_DELAY,
   SPOTTER_SKILLS,
   TEAM,
   XRAY_SKILLS,
+  computerNeeded,
   disguiseKitByName,
+  encryptionGearByName,
   forgeryNeeds,
   forgerySkills,
   forgeryToolByName,
@@ -61,6 +70,7 @@ import {
   luggageByName,
   muleModifier,
   muleOutcome,
+  programComplexity,
   standard,
   teamBonus,
   teamHelps,
@@ -69,6 +79,8 @@ import {
   type ForgeryTool,
 } from "./rules.js";
 import { DECRYPTION_MACHINES, machineBonus, type DecryptionMachine } from "../sigint/rules.js";
+import { complexityOf } from "../computing/index.js";
+import { computerData } from "../../../shared/computers/data.js";
 
 const NS = "GCC.HT.Codes";
 const L = (key: string) => game.i18n.localize(`${NS}.${key}`);
@@ -77,6 +89,8 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 
 const CRYPTOGRAPHY = "Cryptography";
 const BURST = "mulePillBurst";
+/** Whether a printer marks its pages, once a TL8 counterfeiter's Counterfeiting roll has found out (p. 214). */
+const TRACED_PRINTER = "htTracedPrinter";
 /** Pain already as bad as the cramps or worse (Campaigns p. 428). */
 const PAINS = ["moderatePain", "severePain", "terriblePain", "agony"];
 
@@ -139,6 +153,28 @@ function makerLevel(api: GWorldApi, maker: any, code: Code): number {
   return code === "improvised" ? improvisedLevel(attribute(api, maker, "IQ"), cryptography) : cryptography ?? CIPHER_WHEEL_SKILL;
 }
 
+/** A computer's Complexity: a High-Tech computer's as its table works it out, or the system's own `complexity` (Campaigns p. 472); 0 where neither says. */
+const measured = (item: any): number => Math.max(complexityOf(item) ?? 0, Math.floor(Number(item?.system?.complexity) || 0));
+
+/**
+ * The computers a code-breaker can run the program on: those carried, and
+ * the one the program is installed on (`runsOn`) wherever it is. The
+ * highest Complexity among them, and the first computer whose Complexity
+ * can't be measured -- an ordinary record that states none -- or null.
+ */
+export function computersFor(actor: any, program: any = null): { best: number; unmeasured: any } {
+  const host = program ? actor?.items?.get?.(computerData(program).runsOn) ?? [...(actor?.items ?? [])].find((i: any) => i.id === computerData(program).runsOn) ?? null : null;
+  let best = 0;
+  let unmeasured: any = null;
+  for (const item of actor?.items ?? []) {
+    if (item !== host && !carried(item)) continue;
+    const complexity = measured(item);
+    if (complexity > 0) best = Math.max(best, complexity);
+    else if (item === host || isComputer(String(item.name ?? ""))) unmeasured ??= item;
+  }
+  return { best, unmeasured };
+}
+
 /** Hours as the card says them. */
 function duration(hours: number): string {
   if (hours >= 365 * 24) return F("Years", { count: Math.round(hours / (365 * 24)) });
@@ -199,10 +235,19 @@ export async function breakCode(api: GWorldApi, breaker: any, program: any = nul
   // From TL7 a program on a computer does the work: basic equipment at its TL, a bonus by its grade (p. 211).
   const software = program ?? [...(breaker.items ?? [])].find((i: any) => carried(i) && isCodeBreakingProgram(String(i.name)));
   if (answer.code !== "basic6" && !software) return void say(breaker, title, [F("NeedsProgram", { complexity: figures.complexity })]);
+  // The program runs on a computer of the standard's Complexity, and of its own (p. 211).
+  const notes: string[] = [];
+  if (answer.code !== "basic6") {
+    const needs = computerNeeded(figures.complexity ?? 0, programComplexity(String(software.name ?? "")));
+    const { best, unmeasured } = computersFor(breaker, software);
+    // A computer whose Complexity can't be measured is let through, with the question left to the GM.
+    if (best < needs && unmeasured) notes.push(F("ComplexityUnknown", { name: unmeasured.name, complexity: needs }));
+    else if (best < needs) return void say(breaker, title, [best > 0 ? F("ComputerTooSmall", { complexity: needs, best }) : F("NeedsComputer", { complexity: needs })]);
+  }
   const time = timeSpentModifier(answer.spent * figures.hours, figures.hours);
   if (time) modifiers.push({ label: F("TimeLine", { times: answer.spent }), value: time });
   await api.roll.success({ actor: breaker, base: cryptography!, skill: CRYPTOGRAPHY, label, modifiers, tags: ["codeBreaking"], ...(software ? { item: software } : {}) } as any);
-  await say(breaker, title, [F("StandardLine", { time: duration(figures.hours * answer.spent), base: duration(figures.hours), complexity: figures.complexity })]);
+  await say(breaker, title, [F("StandardLine", { time: duration(figures.hours * answer.spent), base: duration(figures.hours), complexity: figures.complexity }), ...notes]);
 }
 
 // ── forgery (pp. 213-214) ──
@@ -216,9 +261,38 @@ function forgeryOutcome(api: GWorldApi, options: { actor: any; item: any; tool: 
   const modifiers: Array<{ label: string; value: number }> = [];
   const hasComputer = gear.some((i) => isComputer(i.name)) && (needs.cardGear || gear.some((i) => isPrinter(i.name)));
   if (needs.computer && !hasComputer) modifiers.push({ label: L(needs.cardGear ? "NoComputer" : "NoComputerPrinter"), value: NO_COMPUTER });
-  const lines = tool !== "forgery" && options.documentTl >= tracedPrinterTl ? [L("TracedPrinter")] : [];
   const base = level(api, options.actor, options.skill) ?? attribute(api, options.actor, "IQ") - 5;
-  return { base, skill: options.skill, modifiers, lines };
+  // Money printed at TL8 on a desktop printer: whether the printer marks its pages (p. 214).
+  const printer = tool === "counterfeiting" && options.documentTl >= tracedPrinterTl ? gear.find((i) => isPrinter(i.name)) : null;
+  if (!printer) return { base, skill: options.skill, modifiers };
+  const known = printer.flags?.[MODULE_ID]?.[TRACED_PRINTER];
+  // Known already: the GMs are told again, and the forger's card says only that it was settled.
+  if (typeof known === "boolean") {
+    return {
+      base, skill: options.skill, modifiers,
+      after: async () => {
+        await say(options.actor, String(printer.name ?? ""), [F(known ? "PrinterTraced" : "PrinterClean", { name: printer.name })], true);
+        return [F("PrinterChecked", { name: printer.name })];
+      },
+    };
+  }
+  return { base, skill: options.skill, modifiers, after: () => checkPrinter(api, options.actor, printer) };
+}
+
+/**
+ * Whether a TL8 counterfeiter's printer marks each page with a serial number
+ * that traces it (p. 214): the Counterfeiting roll to avoid buying one, made
+ * the first time the printer is used and kept on it. The GM rolls it in
+ * secret, and only the GMs are told; the forger's card says it was rolled.
+ */
+async function checkPrinter(api: GWorldApi, actor: any, printer: any): Promise<string[]> {
+  const base = level(api, actor, "Counterfeiting") ?? attribute(api, actor, "IQ") - 5;
+  const result: any = await api.roll.success({ actor, base, skill: "Counterfeiting", label: F("PrinterLabel", { name: printer.name }), modifiers: [], tags: ["counterfeiting"], secret: true } as any);
+  if (!result) return [];
+  const traced = !result.success;
+  await printer.setFlag?.(MODULE_ID, TRACED_PRINTER, traced);
+  await say(actor, String(printer.name ?? ""), [F(traced ? "PrinterTraced" : "PrinterClean", { name: printer.name })], true);
+  return [F("PrinterChecked", { name: printer.name })];
 }
 
 // ── disguise (pp. 214-215) ──
@@ -354,10 +428,48 @@ export async function spotMule(api: GWorldApi): Promise<void> {
   await say(screener, title, [found && pellets > 0 ? F("Spotted", { mule: mule.name, count: pellets }) : F("NotSpotted", { mule: mule.name })], true);
 }
 
+// ── encryption gear (p. 211) ──
+
+/** The lines on an encryption record's sheet, and a code-breaking program's. */
+export function codeLines(item: any): string[] {
+  const name = String(item?.name ?? "");
+  const lines: string[] = [];
+  const program = programComplexity(name);
+  if (program !== null) lines.push(F("Gear.Program", { complexity: program }));
+  const gear = encryptionGearByName(name);
+  if (!gear) return lines;
+  switch (gear.code) {
+    case "manual":
+      lines.push(F("Gear.Wheel", { low: CIPHER_WHEEL_SKILL - 1, high: CIPHER_WHEEL_SKILL + 1, minutes: CIPHER_WHEEL_MINUTES }));
+      break;
+    case "basic6":
+      lines.push(F("Gear.Machine", { slow: duration(standard("basic6", 1)!.hours!), fast: duration(standard("basic6", 2)!.hours!) }));
+      break;
+    case "basic7":
+    case "basic8": {
+      const figures = standard(gear.code)!;
+      lines.push(F("Gear.Basic", { time: duration(figures.hours!), complexity: figures.complexity }));
+      break;
+    }
+    default:
+      lines.push(F(gear.code === "secure7" ? "Gear.SecureTl7" : "Gear.SecureTl8", { complexity: gear.complexity ?? 0, delay: L(`Gear.Delay.${SECURE_DELAY[gear.code === "secure7" ? 7 : 8]}`) }));
+  }
+  return lines;
+}
+
 // ── registration ──
 
 export function readyHighTechCodes(api: GWorldApi, on: CodesSwitches): void {
   machinesOn = on.cipher ?? (() => false);
+  // Encryption gear and the code-breaking programs: what each makes or needs (p. 211).
+  api.sheets.registerSheetSection({
+    module: MODULE_ID,
+    key: "ht-codes-item",
+    sheet: "item",
+    template: `modules/${MODULE_ID}/templates/ht-codes-item.hbs`,
+    visible: (item) => on.encryption() && item?.type === "equipment" && codeLines(item).length > 0,
+    context: (item) => ({ lines: codeLines(item) }),
+  });
   api.data.registerPoison({ module: MODULE_ID, key: BURST, label: `${NS}.BurstPoison`, poison: BURST_PACKET as any, available: () => on.disguise() });
 
   FORGERY_TABLES.register({

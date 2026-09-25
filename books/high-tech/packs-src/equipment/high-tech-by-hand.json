@@ -2251,6 +2251,15 @@
         "drByLocationTop": {
           "mainTurret": 20
         }
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "turretReadies": 2,
+            "riveted": true,
+            "tank": true
+          }
+        }
       }
     }
   },
@@ -2494,6 +2503,14 @@
         "drUnderbody": 5,
         "drByLocation": {
           "largeWindow": 10
+        }
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "gunPorts": 2,
+            "gunPortPenalty": -7
+          }
         }
       }
     }
@@ -2842,6 +2859,21 @@
             "front"
           ]
         }
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "iff": true,
+            "crewArmour": [
+              {
+                "post": "pilot",
+                "front": 15,
+                "side": 15,
+                "rear": 25
+              }
+            ]
+          }
+        }
       }
     }
   },
@@ -2897,6 +2929,20 @@
           "smallWindow": [
             "front"
           ]
+        }
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "iff": true,
+            "crewArmour": [
+              {
+                "post": "pilot",
+                "front": 20,
+                "rear": 35
+              }
+            ]
+          }
         }
       }
     }
@@ -2958,6 +3004,33 @@
         "drByLocationTop": {
           "mainTurret": 55
         }
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "turretReadies": 3,
+            "extinguisher": true,
+            "smokeDischargers": true,
+            "tank": true,
+            "intercom": true,
+            "skirts": [
+              {
+                "part": "hull",
+                "arcs": [
+                  "side"
+                ],
+                "dr": 10
+              },
+              {
+                "part": "turret",
+                "arcs": [
+                  "side"
+                ],
+                "dr": 15
+              }
+            ]
+          }
+        }
       }
     }
   },
@@ -3017,6 +3090,17 @@
         },
         "drByLocationTop": {
           "mainTurret": 70
+        }
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "turretReadies": 3,
+            "extinguisher": true,
+            "gunPorts": 1,
+            "tank": true,
+            "intercom": true
+          }
         }
       }
     }
@@ -3219,6 +3303,85 @@
         "drByLocationTop": {
           "mainTurret": 20
         }
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "turretReadies": 3,
+            "searchlightMiles": 0.25,
+            "smokeDischargers": true,
+            "extinguisher": true,
+            "runFlat": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "497db6c7597c5d46",
+    "name": "Panhard AML60-7 (Diesel)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 12200.0,
+      "cost": 150000,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 240",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 150000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 88,
+        "handling": -1,
+        "stability": 4,
+        "ht": 10,
+        "fragility": "x",
+        "acceleration": 1,
+        "topSpeed": 28,
+        "loadedWeight": 6.1,
+        "load": 1,
+        "sm": 3,
+        "occupants": "3",
+        "dr": 35,
+        "range": 495,
+        "skill": "Driving (Heavy Wheeled)",
+        "locations": "T4W",
+        "locomotion": "wheels",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0,
+        "drOther": 20,
+        "drTop": 20,
+        "drUnderbody": 20,
+        "drByLocation": {
+          "mainTurret": 35
+        },
+        "drByLocationTop": {
+          "mainTurret": 20
+        }
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "turretReadies": 3,
+            "searchlightMiles": 0.25,
+            "smokeDischargers": true,
+            "extinguisher": true,
+            "runFlat": true
+          }
+        }
       }
     }
   },
@@ -3279,6 +3442,17 @@
         "secondLocomotion": "water",
         "secondAcceleration": 1,
         "secondTopSpeed": 3
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "turretReadies": 2,
+            "searchlightMiles": 0.25,
+            "gunPorts": 2,
+            "extinguisher": true,
+            "ctis": true
+          }
+        }
       }
     }
   },
@@ -3327,6 +3501,13 @@
         "roadBound": false,
         "draft": 0,
         "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "iff": true
+          }
+        }
       }
     }
   },
@@ -3375,6 +3556,13 @@
         "roadBound": false,
         "draft": 0,
         "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "iff": true
+          }
+        }
       }
     }
   },
@@ -3423,6 +3611,13 @@
         "roadBound": false,
         "draft": 0,
         "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "iff": true
+          }
+        }
       }
     }
   },
@@ -3477,6 +3672,29 @@
         "drByLocationTop": {
           "independentTurret": 0
         }
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "turretSeconds": 1,
+            "searchlightMiles": 0.25,
+            "soundBaffling": true,
+            "crewArmour": [
+              {
+                "post": "coxswain",
+                "front": 20,
+                "side": 20,
+                "rear": 20
+              }
+            ],
+            "gunShields": [
+              {
+                "mount": "rearPintle",
+                "dr": 35
+              }
+            ]
+          }
+        }
       }
     }
   },
@@ -3528,6 +3746,14 @@
         "drByLocation": {
           "largeWindow": 15
         }
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "improvedBrakes": true,
+            "runFlat": true
+          }
+        }
       }
     }
   },
@@ -3576,6 +3802,16 @@
         "roadBound": false,
         "draft": 0,
         "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "turretReadies": 2,
+            "improvedBrakes": true,
+            "runFlat": true,
+            "iff": true
+          }
+        }
       }
     }
   },
@@ -3627,6 +3863,14 @@
         "drByLocation": {
           "largeWindow": 25
         }
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "improvedBrakes": true,
+            "runFlat": true
+          }
+        }
       }
     }
   },
@@ -3676,6 +3920,14 @@
         "draft": 0,
         "stall": 0,
         "drTop": 25
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "improvedBrakes": true,
+            "runFlat": true
+          }
+        }
       }
     }
   },
@@ -3823,6 +4075,13 @@
         "drByLocation": {
           "largeWindow": 8
         }
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "fireSuppression": true
+          }
+        }
       }
     }
   },
@@ -3882,6 +4141,31 @@
         },
         "drByLocationTop": {
           "mainTurret": 180
+        }
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "htVehicleFit": {
+            "turretReadies": 3,
+            "searchlightMiles": 0.75,
+            "smokeDischargers": true,
+            "fireSuppression": true,
+            "intercom": true,
+            "spaced": [
+              {
+                "part": "hull",
+                "arcs": [
+                  "front"
+                ]
+              },
+              {
+                "part": "turret",
+                "arcs": [
+                  "front"
+                ]
+              }
+            ]
+          }
         }
       }
     }

@@ -377,3 +377,79 @@ export function jammableByName(name: unknown, tl: number): { skill: string; kind
 
 /** A white noise generator defeats laser mikes, audio bugs and tape recorders (p. 213). */
 export const isWhiteNoise = (name: unknown): boolean => /^white noise generator\b/i.test(String(name ?? "").trim());
+
+// ── wireless cameras (pp. 206, 212) ──
+
+/** A video surveillance camera, by its record's name (p. 206). */
+export const isSurveillanceCamera = (name: unknown): boolean => /^video surveillance camera\b/i.test(String(name ?? "").trim());
+
+/**
+ * A wireless surveillance camera (p. 206): $100 more on the final cost, and
+ * it sends its picture half a mile. A radio jammer works against it (p. 212),
+ * and it is used with Electronics Operation (Surveillance), as a bug is.
+ */
+export const WIRELESS_CAMERA = Object.freeze({ cost: 100, range: MILE / 2 });
+
+// ── cellular monitoring (p. 209) ──
+
+/** The cellular monitoring system, by its record's name (p. 209). */
+export const isCellMonitor = (name: unknown): boolean => /^cellular monitoring system$/i.test(String(name ?? "").trim());
+
+/** It monitors up to four calls at a time (p. 209). */
+export const CELL_MONITOR_CALLS = 4;
+
+/**
+ * What the system does to a phone it follows (p. 209): logs its calls,
+ * keeps incoming calls from reaching it, or jams it outright. Tracing a call
+ * is done once, and follows nothing.
+ */
+export const MONITOR_MODES = ["log", "block", "jam"] as const;
+export type MonitorMode = (typeof MONITOR_MODES)[number];
+
+/** A phone the system follows: the phone's key, its name and its holder's, and what is done to it. */
+export interface Monitored {
+  phone: string;
+  name: string;
+  holder: string;
+  mode: MonitorMode;
+}
+
+/**
+ * The phones a system follows once one is set to a mode: a phone it
+ * already follows changes mode; another joins only while fewer than four
+ * are followed. Null where the system is full.
+ */
+export function monitorPhone(list: readonly Monitored[], entry: Monitored): Monitored[] | null {
+  if (list.some((m) => m.phone === entry.phone)) return list.map((m) => (m.phone === entry.phone ? entry : m));
+  return list.length < CELL_MONITOR_CALLS ? [...list, entry] : null;
+}
+
+/** A phone that carries calls over the cell network, as the jammable table reads it: what the system can follow. */
+export const isCallPhone = (name: unknown, tl: number): boolean => {
+  const gear = jammableByName(name, tl);
+  return gear?.kind === "cellPhone" && gear.voice === true;
+};
+
+// ── computer intrusion (p. 215) ──
+
+/** Computer monitoring gear, TL7 or TL8, by its record's name (p. 215). */
+export const isComputerMonitoring = (name: unknown): boolean => /^computer monitoring gear\b/i.test(String(name ?? "").trim());
+
+/** The keyboard bug, by its record's name (p. 215). */
+export const isKeyboardBug = (name: unknown): boolean => /^keyboard bug$/i.test(String(name ?? "").trim());
+
+/**
+ * Reading a device's emissions with computer monitoring gear (p. 215): an
+ * Electronics Operation (EW) roll at -1 per 100 yards past 300, out to
+ * 1,000 yards (-7); electrical noise and tall buildings hold it to 100 yards
+ * in many urban areas; -3 more to pick out one machine among many. The TL8
+ * gear runs Complexity 3 software on a laptop.
+ */
+export const COMPUTER_MONITORING = Object.freeze({ free: 300, per: 100, max: 1000, urban: 100, specific: -3, complexity: 3 });
+
+/** The range penalty to read emissions this many yards off, or null beyond reach. */
+export function computerMonitoringPenalty(yards: number, urban: boolean): number | null {
+  const distance = Math.max(0, Number(yards) || 0);
+  if (distance > (urban ? COMPUTER_MONITORING.urban : COMPUTER_MONITORING.max)) return null;
+  return distance > COMPUTER_MONITORING.free ? -Math.ceil((distance - COMPUTER_MONITORING.free) / COMPUTER_MONITORING.per) : 0;
+}

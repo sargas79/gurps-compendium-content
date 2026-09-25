@@ -20,9 +20,10 @@ export type ForgeryOutcome =
   /**
    * The roll: `base` is the level rolled against (the forger's skill, or the
    * tool's own), `skill` names it where it is the forger's, `modifiers` are
-   * the lines the tool adds, and `lines` go on a card after the roll.
+   * the lines the tool adds, and `lines` go on a card after the roll;
+   * `after` runs once the roll is made, and its lines join them.
    */
-  | { base: number; skill?: string; modifiers: Array<{ label: string; value: number }>; lines?: string[] };
+  | { base: number; skill?: string; modifiers: Array<{ label: string; value: number }>; lines?: string[]; after?: () => Promise<string[]> };
 
 export interface ForgeryTable extends BookTable {
   /** Whether the book's forgery rule is on. */
@@ -95,8 +96,9 @@ export async function forge(api: GWorldApi, item: any, actor: any): Promise<void
   const outcome = table.roll(api, { actor, item, tool, skill: answer.skill, toolTl, documentTl: answer.tl });
   if ("fails" in outcome) return void say(actor, String(item.name), [outcome.fails]);
   const label = game.i18n.format(`${table.i18n}.Forgery.Label`, { name: item.name, skill: answer.skill });
-  await api.roll.success({ actor, base: outcome.base, ...(outcome.skill ? { skill: outcome.skill } : {}), label, modifiers: outcome.modifiers } as any);
-  if (outcome.lines?.length) await say(actor, String(item.name), outcome.lines);
+  const result = await api.roll.success({ actor, base: outcome.base, ...(outcome.skill ? { skill: outcome.skill } : {}), label, modifiers: outcome.modifiers } as any);
+  const lines = [...(outcome.lines ?? []), ...(result && outcome.after ? await outcome.after() : [])];
+  if (lines.length) await say(actor, String(item.name), lines);
 }
 
 let readied = false;

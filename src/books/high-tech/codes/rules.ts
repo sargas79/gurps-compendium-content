@@ -73,6 +73,58 @@ export function isCodeBreakingProgram(name: string): boolean {
   return /code-breaking program/i.test(String(name ?? ""));
 }
 
+/**
+ * A code-breaking program's Complexity (p. 211): the basic programs of TL7
+ * and TL8 are Complexity 3, the good one 5 (+1 to Cryptography), the fine
+ * one 7 (+2). Null for another record.
+ */
+export function programComplexity(name: string): number | null {
+  const text = String(name ?? "").trim();
+  if (/^basic code-breaking program\b/i.test(text)) return 3;
+  if (/^good code-breaking program$/i.test(text)) return 5;
+  if (/^fine code-breaking program$/i.test(text)) return 7;
+  return null;
+}
+
+/**
+ * The Complexity of computer an attempt on an encryption standard needs: the
+ * standard's own (p. 211), and enough to run the program, whose Complexity
+ * the computer must match (Campaigns p. 472) -- whichever is higher.
+ */
+export function computerNeeded(standardComplexity: number, program: number | null): number {
+  return Math.max(standardComplexity, program ?? 0);
+}
+
+// ── encryption hardware (p. 211) ──
+
+/** Enciphering or deciphering with a cipher wheel takes two minutes a line (p. 211). */
+export const CIPHER_WHEEL_MINUTES = 2;
+
+/**
+ * Secure encryption's delay as messages are sent or data is processed
+ * (p. 211): 1-2 minutes at TL7, 1-2 seconds at TL8.
+ */
+export const SECURE_DELAY = Object.freeze({ 7: "minutes", 8: "seconds" } as const);
+
+/**
+ * The encryption gear a record's name is (p. 211), and the code it makes:
+ * the cipher wheel's, a TL5-6 system broken by hand; the cipher machine's
+ * TL6 basic encryption; TL7 basic encryption, a modification to telecomm
+ * gear; the basic encryption unit's TL8 basic encryption; and secure
+ * encryption, TL7 software on a dedicated computer (Complexity 2), a TL8
+ * chip, or the TL8 secure encryption unit.
+ */
+export function encryptionGearByName(name: string): { code: Code; complexity?: number } | null {
+  const text = String(name ?? "").trim();
+  if (/^cipher wheel$/i.test(text)) return { code: "manual" };
+  if (/^cipher machine$/i.test(text)) return { code: "basic6" };
+  if (/^basic encryption \(tl7\)$/i.test(text)) return { code: "basic7" };
+  if (/^basic encryption unit$/i.test(text)) return { code: "basic8" };
+  if (/^secure encryption \(tl7\)$/i.test(text)) return { code: "secure7", complexity: 2 };
+  if (/^secure encryption \(tl8\)$|^secure encryption unit$/i.test(text)) return { code: "secure8" };
+  return null;
+}
+
 // ── forgery and counterfeiting (pp. 213-214) ──
 
 export type ForgeryTool = "forgery" | "counterfeiting" | "cards";

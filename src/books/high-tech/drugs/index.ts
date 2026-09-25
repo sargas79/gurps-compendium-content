@@ -22,7 +22,10 @@
  *     before one comes off the count (`items.changeQuantity`). Morphine or
  *     truth serum given to a patient already under one of them is another
  *     dose of a depressant: -2 per doubling to resist, and an overdose on a
- *     critical failure (Campaigns p. 441).
+ *     critical failure (Campaigns p. 441). Truth serum works after 30
+ *     seconds, and swallowed morphine after 20 minutes (injected, at once):
+ *     the dose waits on the giver until world time reaches it, and the
+ *     active GM's client then makes it work.
  *   - **High-Tech poisons (highTechPoisons):** curare, ricin, strychnine,
  *     botulin and irradiated thallium as poisons the system doses and cycles
  *     (in the sheet's dose dialog too), their damage "regardless of the roll"
@@ -92,6 +95,12 @@ const MORPHINE = "htMorphine";
 const ANALGESIC = "htAnalgesic";
 const WOUND_ANTIBIOTICS = "htWoundAntibiotics";
 const TRUTH_SERUM_KEY = "htTruthSerum";
+/**
+ * Doses given that haven't taken effect yet, kept on the character who gave
+ * them: `{ kind, name, patient, due }`, the patient's uuid and the world time
+ * the dose works at.
+ */
+const PENDING_FLAG = "htPendingDoses";
 /** A day's psychiatric drug: `{ until, name, mitigates }`. */
 const PSYCHIATRIC_FLAG = "htPsychiatric";
 /** Per dose of a High-Tech poison: ricin's failed first roll, strychnine's rolled cycles. */
@@ -433,18 +442,12 @@ async function giveDrug(api: GWorldApi, item: any, actor: any): Promise<void> {
       return say(patient, name, [F(outcome.success ? "AmmoniaWakes" : "AmmoniaFails", { name: who })]);
     }
     case "morphine": {
-      // Painkillers (Campaigns p. 441): HT-4 to resist; failure brings the relief, for the margin's hours.
+      // Painkillers are mostly swallowed and take about 20 minutes to work (Campaigns p. 441); injected, at once.
+      const route = await choose(name, L("RouteHint"), select(L("Route"), "route", [{ value: "injected", label: L("RouteInjected") }, { value: "oral", label: L("RouteOral") }]));
+      if (!route) return;
       if (!(await useDose(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
-      const count = doseCount(api, patient, PAINKILLER.resistanceModifier);
-      const modifiers = [{ label: L("PainkillerLine"), value: PAINKILLER.resistanceModifier }, ...(count.line ? [count.line] : [])];
-      const outcome = await resist(api, patient, F("MorphineLabel", { name: who }), modifiers, ["drug", "painkiller"]);
-      if (outcome.success) return say(patient, name, [F("MorphineResisted", { name: who })]);
-      const seconds = painkillerSeconds(outcome.margin);
-      await api.actors.applyCondition(patient, { module: MODULE_ID, key: MORPHINE, label: name, duration: { seconds } } as any);
-      await api.actors.applyCondition(patient, { key: "euphoria", duration: { seconds } } as any);
-      const lines = [F("MorphineWorks", { name: who, hours: seconds / 3600 })];
-      if (overdoses(count.doses, outcome)) lines.push(await overdose(api, patient, name, outcome.margin, count.hardest));
-      return say(patient, name, lines);
+      if (route.route === "oral") return delayDose(actor, patient, "morphine", name, api.rules.DRUGS.painkiller.delaySeconds);
+      return doseTakesEffect(api, patient, "morphine", name);
     }
     case "analgesics": {
       if (!(await useDose(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
@@ -493,27 +496,9 @@ async function giveDrug(api: GWorldApi, item: any, actor: any): Promise<void> {
       return say(patient, name, lines);
     }
     case "truthSerum": {
-      // 1d FP after 30 seconds, and HT-1 against -2 to Will and self-control for (20 - HT)/2 minutes (p. 227).
+      // It works after 30 seconds (p. 227).
       if (!(await useDose(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
-      const roll = new Roll(TRUTH_SERUM.fatigue.replace(/d$/, "d6"));
-      await roll.evaluate();
-      // A drug's FP, not exertion: through the fatigue chart, unhalved (Campaigns p. 426).
-      if ((roll.total ?? 0) > 0) await api.actors.spendFatigue(patient, roll.total ?? 0, { exertion: false, details: { rule: "truthSerum" } });
-      const count = doseCount(api, patient, TRUTH_SERUM.resistanceModifier);
-      const modifiers = [{ label: name, value: TRUTH_SERUM.resistanceModifier }, ...(count.line ? [count.line] : [])];
-      const outcome = await resist(api, patient, F("TruthSerumLabel", { name: who }), modifiers, ["drug", "truthSerum"]);
-      const lines = [F("TruthSerumFp", { name: who, fp: roll.total ?? 0 })];
-      if (!outcome.success) {
-        const seconds = truthSerumSeconds(htOf(api, patient));
-        await api.actors.applyCondition(patient, {
-          module: MODULE_ID, key: TRUTH_SERUM_KEY, label: name,
-          effects: { modifiers: [{ label: L("TruthSerumLine"), value: TRUTH_SERUM.penalty, rolls: ["Will", "selfControl"] }] },
-          duration: { seconds },
-        } as any);
-        lines.push(F("TruthSerumWorks", { name: who, penalty: TRUTH_SERUM.penalty, minutes: seconds / 60 }));
-      } else lines.push(F("TruthSerumResisted", { name: who }));
-      if (overdoses(count.doses, outcome)) lines.push(await overdose(api, patient, name, outcome.margin, count.hardest));
-      return say(patient, name, lines);
+      return delayDose(actor, patient, "truthSerum", name, TRUTH_SERUM.delaySeconds);
     }
     case "psychiatric": {
       if (!(await useDose(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
@@ -525,6 +510,140 @@ async function giveDrug(api: GWorldApi, item: any, actor: any): Promise<void> {
       return mixDmso(api, item, actor);
     default:
   }
+}
+
+/** The drugs that act after a delay: oral morphine, and truth serum (p. 227; Campaigns p. 441). */
+type DelayedDrug = "morphine" | "truthSerum";
+
+/** A dose given and not yet at work. */
+interface PendingDose {
+  /** Its own id, so a dose is applied once however often the list is read. */
+  id: string;
+  kind: DelayedDrug;
+  name: string;
+  patient: string;
+  due: number;
+}
+
+/** The doses a character has given that haven't taken effect. */
+function pendingDoses(actor: any): PendingDose[] {
+  const list = actor?.getFlag?.(MODULE_ID, PENDING_FLAG);
+  if (!Array.isArray(list)) return [];
+  return list
+    .filter((d: any) => d && (d.kind === "morphine" || d.kind === "truthSerum"))
+    .map((d: any) => ({ id: String(d.id ?? ""), kind: d.kind, name: String(d.name ?? ""), patient: String(d.patient ?? ""), due: Number(d.due) || 0 }));
+}
+
+/**
+ * Whether an actor's pending doses are its own: an unlinked token's actor
+ * reads its base actor's flags until its own delta writes them, and those
+ * doses are the base actor's to apply.
+ */
+function ownsPending(actor: any): boolean {
+  if (!actor?.isToken) return true;
+  return actor.token?.delta?._source?.flags?.[MODULE_ID]?.[PENDING_FLAG] !== undefined;
+}
+
+/** A new dose's id. */
+const doseId = (): string => (globalThis as any).foundry?.utils?.randomID?.() ?? Math.random().toString(36).slice(2, 18);
+
+/**
+ * A dose that works after a delay: kept on the character who gave it until
+ * world time reaches it, when the active GM's client makes it take effect.
+ */
+async function delayDose(giver: any, patient: any, kind: DelayedDrug, name: string, seconds: number): Promise<void> {
+  const holder = giver ?? patient;
+  await holder.setFlag(MODULE_ID, PENDING_FLAG, [...pendingDoses(holder), { id: doseId(), kind, name, patient: String(patient.uuid ?? ""), due: worldNow() + seconds }]);
+  const who = String(patient.name ?? "");
+  await say(patient, name, [seconds >= 60 ? F("DoseInMinutes", { name: who, minutes: seconds / 60 }) : F("DoseInSeconds", { name: who, seconds })]);
+}
+
+/** The givers whose doses are being applied now, so two quick ticks don't both apply them. */
+const applying = new Set<string>();
+/** The doses applied so far, by id: a list read again before its update lands still applies each once. */
+const applied = new Set<string>();
+
+/**
+ * Makes the doses a character gave take effect once world time reaches
+ * them, or all of them at once (`now`, the GM's tool); a patient who can't
+ * be found any more is let go. Each dose comes off the list before it
+ * works. Returns how many took effect.
+ */
+export async function checkPendingDoses(api: GWorldApi, giver: any, now = false): Promise<number> {
+  if (!giver?.isOwner || !ownsPending(giver)) return 0;
+  const key = String(giver.uuid ?? giver.id ?? "");
+  if (applying.has(key)) return 0;
+  const pending = pendingDoses(giver).filter((d) => !d.id || !applied.has(d.id));
+  const time = worldNow();
+  const due = pending.filter((d) => now || d.due <= time);
+  if (!due.length) return 0;
+  applying.add(key);
+  try {
+    for (const dose of due) if (dose.id) applied.add(dose.id);
+    await giver.setFlag(MODULE_ID, PENDING_FLAG, pending.filter((d) => !due.includes(d)));
+    let count = 0;
+    for (const dose of due) {
+      const patient = dose.patient && dose.patient === String(giver.uuid ?? "") ? giver : (globalThis as any).fromUuidSync?.(dose.patient) ?? null;
+      if (!patient) continue;
+      await doseTakesEffect(api, patient, dose.kind, dose.name);
+      count += 1;
+    }
+    return count;
+  } finally {
+    applying.delete(key);
+  }
+}
+
+/** World actors, and the unlinked tokens' own on every scene. */
+function everyActor(): any[] {
+  const unlinked = [...((game as any).scenes ?? [])].flatMap((scene: any) => [...(scene.tokens ?? [])].filter((t: any) => !t.actorLink && t.actor).map((t: any) => t.actor));
+  return [...((game as any).actors ?? []), ...unlinked];
+}
+
+/** The GM's tool: every delayed dose works now, for a game that doesn't move world time on. */
+export async function applyDelayedDosesNow(api: GWorldApi): Promise<number> {
+  let count = 0;
+  for (const actor of everyActor()) if (actor.getFlag?.(MODULE_ID, PENDING_FLAG)?.length) count += await checkPendingDoses(api, actor, true);
+  if (!count) ui.notifications?.info(L("NoDelayedDoses"));
+  return count;
+}
+
+/** What a dose of morphine or truth serum does once it works. */
+async function doseTakesEffect(api: GWorldApi, patient: any, kind: DelayedDrug, name: string): Promise<void> {
+  const who = String(patient.name ?? "");
+  if (kind === "morphine") {
+    // Painkillers (Campaigns p. 441): HT-4 to resist; failure brings the relief, for the margin's hours.
+    const count = doseCount(api, patient, PAINKILLER.resistanceModifier);
+    const modifiers = [{ label: L("PainkillerLine"), value: PAINKILLER.resistanceModifier }, ...(count.line ? [count.line] : [])];
+    const outcome = await resist(api, patient, F("MorphineLabel", { name: who }), modifiers, ["drug", "painkiller"]);
+    if (outcome.success) return say(patient, name, [F("MorphineResisted", { name: who })]);
+    const seconds = painkillerSeconds(outcome.margin);
+    await api.actors.applyCondition(patient, { module: MODULE_ID, key: MORPHINE, label: name, duration: { seconds } } as any);
+    await api.actors.applyCondition(patient, { key: "euphoria", duration: { seconds } } as any);
+    const lines = [F("MorphineWorks", { name: who, hours: seconds / 3600 })];
+    if (overdoses(count.doses, outcome)) lines.push(await overdose(api, patient, name, outcome.margin, count.hardest));
+    return say(patient, name, lines);
+  }
+  // Truth serum: 1d FP, and HT-1 against -2 to Will and self-control for (20 - HT)/2 minutes (p. 227).
+  const roll = new Roll(TRUTH_SERUM.fatigue.replace(/d$/, "d6"));
+  await roll.evaluate();
+  // A drug's FP, not exertion: through the fatigue chart, unhalved (Campaigns p. 426).
+  if ((roll.total ?? 0) > 0) await api.actors.spendFatigue(patient, roll.total ?? 0, { exertion: false, details: { rule: "truthSerum" } });
+  const count = doseCount(api, patient, TRUTH_SERUM.resistanceModifier);
+  const modifiers = [{ label: name, value: TRUTH_SERUM.resistanceModifier }, ...(count.line ? [count.line] : [])];
+  const outcome = await resist(api, patient, F("TruthSerumLabel", { name: who }), modifiers, ["drug", "truthSerum"]);
+  const lines = [F("TruthSerumFp", { name: who, fp: roll.total ?? 0 })];
+  if (!outcome.success) {
+    const seconds = truthSerumSeconds(htOf(api, patient));
+    await api.actors.applyCondition(patient, {
+      module: MODULE_ID, key: TRUTH_SERUM_KEY, label: name,
+      effects: { modifiers: [{ label: L("TruthSerumLine"), value: TRUTH_SERUM.penalty, rolls: ["Will", "selfControl"] }] },
+      duration: { seconds },
+    } as any);
+    lines.push(F("TruthSerumWorks", { name: who, penalty: TRUTH_SERUM.penalty, minutes: seconds / 60 }));
+  } else lines.push(F("TruthSerumResisted", { name: who }));
+  if (overdoses(count.doses, outcome)) lines.push(await overdose(api, patient, name, outcome.margin, count.hardest));
+  return say(patient, name, lines);
 }
 
 /** Mixes a dose of DMSO into one of the character's blood or digestive poisons (p. 227). */
@@ -681,19 +800,29 @@ export function readyDrugs(api: GWorldApi, on: DrugSwitches): void {
   api.combat.registerHitLocation({ module: MODULE_ID, key: NERVES_KEY, label: L("LungsAndSpine"), parent: "torso", penalty: 0, available: () => false } as any);
   // It heals with world time, or when the GM takes it off the sheet: the GM's client lifts the paralysis.
   const isActiveGm = () => (game as any).user?.isGM === true && (game as any).users?.activeGM?.id === (game as any).user?.id;
-  // A psychiatric drug's day runs out with world time too (p. 227).
+  // A psychiatric drug's day runs out with world time too (p. 227), and a delayed dose comes due.
   Hooks.on("updateWorldTime", () => {
     if (!(on.poisons() || on.hygiene()) || !isActiveGm()) return;
-    // World actors, and the unlinked tokens' own on every scene.
-    const unlinked = [...((game as any).scenes ?? [])].flatMap((scene: any) => [...(scene.tokens ?? [])].filter((t: any) => !t.actorLink && t.actor).map((t: any) => t.actor));
-    for (const actor of [...((game as any).actors ?? []), ...unlinked]) {
+    for (const actor of everyActor()) {
       if (on.poisons() && actor.getFlag?.(MODULE_ID, BOTULIN_FLAG)) void checkBotulinHealed(api, actor);
       if (on.hygiene() && actor.getFlag?.(MODULE_ID, PSYCHIATRIC_FLAG)) void checkPsychiatricExpired(actor);
+      // Oral morphine and truth serum work once their delay is up.
+      if (on.hygiene() && actor.getFlag?.(MODULE_ID, PENDING_FLAG)?.length) void checkPendingDoses(api, actor);
     }
   });
   Hooks.on("updateActor", (actor: any, changes: any) => {
     if (!on.poisons() || !isActiveGm() || changes?.flags?.gworld?.crippled === undefined) return;
     if (actor.getFlag?.(MODULE_ID, BOTULIN_FLAG)) void checkBotulinHealed(api, actor);
+  });
+
+  // Delayed doses given now, for a game that doesn't move world time on.
+  api.sheets.registerGmTool({
+    module: MODULE_ID,
+    key: "ht-delayed-doses",
+    label: L("ApplyDelayedTitle"),
+    icon: "fa-solid fa-hourglass-end",
+    visible: () => on.hygiene(),
+    open: () => { void applyDelayedDosesNow(api); },
   });
 
   // ── row actions ──

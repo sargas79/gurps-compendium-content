@@ -143,12 +143,12 @@ describe("High-Tech's vehicles and personal conveyances (pp. 230-244)", () => {
   const vehicles = byHand("equipment").filter((d) => d.system.category === "vehicle");
   const vehicle = (name: string) => named(vehicles, name).system.vehicle;
 
-  it("keeps the 37 vehicles of the chapter and its 15 personal conveyances", () => {
+  it("keeps the 37 vehicles of the chapter, the AML's diesel variant, and its 15 personal conveyances", () => {
     const pages = (from: number, to: number) => vehicles.filter((d) => {
       const page = Number(/(\d+)$/.exec(d.system.reference)?.[1]);
       return page >= from && page <= to;
     });
-    expect(vehicles).toHaveLength(52);
+    expect(vehicles).toHaveLength(53);
     expect(pages(230, 231)).toHaveLength(9);
     expect(vehicles.filter((d) => d.system.vehicle.skill === "Piloting (Glider)" || d.name === "Rocket Belt")).toHaveLength(6);
   });

@@ -136,12 +136,58 @@ export function fitWith(base: VehicleFit, fittings: readonly string[]): VehicleF
   return fit;
 }
 
+const ARCS: readonly Arc[] = ["front", "side", "rear", "top", "underbody"];
+const PARTS: readonly ArmourPart[] = ["hull", "turret", "all"];
+const FLAGS = ["extinguisher", "fireSuppression", "runFlat", "ctis", "airbags", "improvedBrakes", "soundBaffling", "smokeDischargers", "iff", "riveted", "tank", "intercom"] as const;
+const NUMBERS = ["gunPorts", "gunPortPenalty", "searchlightMiles", "turretReadies", "turretSeconds"] as const;
+
+/**
+ * A fit as a record carries it in its own data (`htVehicleFit`), read
+ * safely: the components it names with the right kind of value, and nothing
+ * else. Null where the record carries none.
+ */
+export function fitFromData(data: unknown): VehicleFit | null {
+  if (!data || typeof data !== "object" || Array.isArray(data)) return null;
+  const raw = data as Record<string, any>;
+  const fit: Record<string, unknown> = {};
+  for (const key of FLAGS) if (raw[key] === true) fit[key] = true;
+  for (const key of NUMBERS) if (typeof raw[key] === "number" && Number.isFinite(raw[key])) fit[key] = raw[key];
+  const list = (value: unknown) => (Array.isArray(value) ? value.filter((v) => v && typeof v === "object") : []);
+  const spot = (s: any): ArmourSpot | null => {
+    if (!PARTS.includes(s.part)) return null;
+    const arcs = Array.isArray(s.arcs) ? s.arcs.filter((a: unknown) => ARCS.includes(a as Arc)) : null;
+    return arcs?.length ? { part: s.part, arcs } : { part: s.part };
+  };
+  for (const key of ["spaced", "laminated"] as const) {
+    const spots = list(raw[key]).map(spot).filter((s): s is ArmourSpot => s !== null);
+    if (spots.length) fit[key] = spots;
+  }
+  const skirts = list(raw.skirts).flatMap((s: any) => {
+    const at = spot(s);
+    return at && Number(s.dr) > 0 ? [{ ...at, dr: Number(s.dr) }] : [];
+  });
+  if (skirts.length) fit.skirts = skirts;
+  const crew = list(raw.crewArmour).flatMap((c: any) => {
+    if (c.post !== "pilot" && c.post !== "coxswain") return [];
+    const armour: CrewArmour = { post: c.post };
+    for (const face of ["front", "side", "rear"] as const) if (Number(c[face]) > 0) armour[face] = Number(c[face]);
+    return [armour];
+  });
+  if (crew.length) fit.crewArmour = crew;
+  const shields = list(raw.gunShields).flatMap((g: any) => (g.mount === "rearPintle" && Number(g.dr) > 0 ? [{ mount: g.mount, dr: Number(g.dr) } as GunShield] : []));
+  if (shields.length) fit.gunShields = shields;
+  return fit as VehicleFit;
+}
+
 const FRONT: readonly Arc[] = ["front"];
 const SIDES: readonly Arc[] = ["side"];
 
 /**
  * The chapter's vehicles, by their records' names: the components their
- * text and notes give them (pp. 232-244).
+ * text and notes give them (pp. 232-244). Each record carries its own in
+ * its data (`htVehicleFit`), which is what a vehicle reads, so a renamed or
+ * copied vehicle keeps it; the table stays for copies of the records made
+ * before they carried it, and a test holds the packs to it.
  */
 export const HT_VEHICLES: Readonly<Record<string, VehicleFit>> = Object.freeze({
   // Riveted armour; turret two Ready maneuvers a facing; no headsets yet (pp. 234-235).

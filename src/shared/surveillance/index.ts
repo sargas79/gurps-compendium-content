@@ -13,7 +13,8 @@
  *     reaches. A jammer is switched on from its row; the gear's row button
  *     then finds every switched-on jammer on the map within reach of its
  *     user's token and rolls the contest or the roll for each, and a jammer
- *     that blocks one kind of gear outright simply blocks it. Where a book
+ *     that blocks one kind of gear outright simply blocks it, as does one
+ *     that names a single piece of gear, wherever it is. Where a book
  *     prints the varieties (HT:EE pp. 49-50), a jammer runs broad-spectrum
  *     (its operator's roll to switch it on, then a penalty on every user in
  *     reach) or selective (a roll or contest to catch each user's frequency,
@@ -100,7 +101,16 @@ export interface Jammer {
    * itself: a device adapted to jam that wasn't built for it (HT:EE p. 49).
    */
   operatorLines?: ReadonlyArray<{ label: string; value: number }>;
+  /**
+   * Gear it acts on alone, by `gearKey`, wherever on the map it is: a
+   * system that jams one phone outright (High-Tech p. 209). Such a jammer
+   * is never switched on or off; it works while it lists any.
+   */
+  targets?: readonly string[];
 }
+
+/** How a jammer that acts on single pieces of gear names them: the item's uuid, or its id. */
+export const gearKey = (item: any): string => String(item?.uuid ?? item?.id ?? "");
 
 /** Gear a jammer hinders, as its book's table reads its record. */
 export interface Jammable {
@@ -204,6 +214,13 @@ function actorsOnMap(): any[] {
   return [...new Set(tokens.map((t) => t.actor).filter(Boolean))];
 }
 
+/** Every actor in the world: the world's actors, and every scene's unlinked tokens' own. */
+function actorsInWorld(): any[] {
+  const game_ = (globalThis as any).game;
+  const unlinked = [...(game_?.scenes ?? [])].flatMap((scene: any) => [...(scene.tokens ?? [])].filter((t: any) => !t.actorLink && t.actor).map((t: any) => t.actor));
+  return [...(game_?.actors ?? []), ...unlinked];
+}
+
 /**
  * How a jammer reaches gear this many yards away: a jammer that hinders some
  * kinds of gear ignores the rest; one that blocks a kind blocks it within its
@@ -221,17 +238,30 @@ export function jammerReach(jammer: Jammer, gear: Jammable, yards: number, shado
   return jammingReach(yards, jammer.range, shadow);
 }
 
-/** Every switched-on jammer that reaches gear of this kind in the character's hands, nearest first. */
-export function jammersReaching(actor: any, gear: Jammable, actors: any[] = actorsOnMap()): JammerInReach[] {
+/**
+ * Every switched-on jammer that reaches gear of this kind in the character's
+ * hands, nearest first; and every jammer that names this piece of gear
+ * (`gearItem`) among its targets, which blocks it at any distance.
+ */
+export function jammersReaching(actor: any, gear: Jammable, actors: any[] = actorsOnMap(), gearItem: any = null): JammerInReach[] {
   const found: JammerInReach[] = [];
-  for (const holder of actors) {
+  const key = gearItem ? gearKey(gearItem) : "";
+  // A jammer that names this gear blocks it from anywhere: its holder needn't be on the map in view.
+  const named = key ? actorsInWorld().filter((a) => !actors.includes(a)) : [];
+  for (const holder of [...actors, ...named]) {
+    const onMap = actors.includes(holder);
     for (const item of holder?.items ?? []) {
-      if (!carried(item) || !isSwitchedOn(item)) continue;
+      if (!carried(item)) continue;
       const own = jammerOf(item);
       if (!own) continue;
+      const { jammer, table } = own;
+      if (jammer.targets) {
+        if (key && jammer.targets.includes(key)) found.push({ holder, item, table, jammer, yards: holder === actor ? 0 : (yardsBetween(actor, holder) ?? Infinity), reach: "blocked" });
+        continue;
+      }
+      if (!onMap || !isSwitchedOn(item)) continue;
       const yards = holder === actor ? 0 : yardsBetween(actor, holder);
       if (yards === null) continue;
-      const { jammer, table } = own;
       const reach = jammerReach(jammer, gear, yards, table.shadow);
       if (reach !== "clear") found.push({ holder, item, table, jammer, yards, reach });
     }
@@ -357,7 +387,7 @@ export async function useNearJammers(api: GWorldApi, item: any, actor: any, acto
   if (!actor || !own) return null;
   const { table, gear } = own;
   const ns = table.i18n;
-  const reaching = jammersReaching(actor, gear, actors);
+  const reaching = jammersReaching(actor, gear, actors, item);
   const name = String(item.name ?? "");
   const title = F(ns, "UseLabel", { name });
   if (!reaching.length) {
@@ -482,7 +512,11 @@ export function readyJamming(api: GWorldApi): void {
     itemTypes: ["equipment"],
     label: L(ns(), "SwitchTitle"),
     icon: "fa-solid fa-tower-broadcast",
-    visible: (item) => jammerOf(item) !== null,
+    // A jammer that acts on single pieces of gear is never switched.
+    visible: (item) => {
+      const own = jammerOf(item);
+      return own !== null && !own.jammer.targets;
+    },
     run: (item, actor) => {
       const own = jammerOf(item);
       return own ? toggleJammer(api, item, actor, own.table, own.jammer) : Promise.resolve();

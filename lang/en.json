@@ -5286,11 +5286,11 @@
         },
         "encryption": {
           "Name": "Encryption and code-breaking",
-          "Hint": "\"Break a code\" on the Cryptography skill's row, a code-breaking program's row, or the GM's token controls for the selected character. An ad-libbed code is a Quick Contest of IQ-5 (either side may use Cryptography) with its maker: the targeted character, or a level given. A TL5-6 system such as a cipher wheel's is the Basic Set's Quick Contest of Cryptography, which only Cryptography may attempt. By hand at TL5-6, each other selected character with Cryptography 17+ gives the leader +1 (at most +4). The encryption standards are a Cryptography roll with Time Spent against their base time (TL6 basic: 10 years, or a year with Complexity 2 apparatus; TL7 basic: a week on a Complexity 3 computer; TL8 basic: a day on Complexity 5) and the code-breaking program carried, whose grade gives its bonus; secure encryption can't be broken before TL9 (High-Tech pp. 210-211; Characters p. 186)."
+          "Hint": "\"Break a code\" on the Cryptography skill's row, a code-breaking program's row, or the GM's token controls for the selected character. An ad-libbed code is a Quick Contest of IQ-5 (either side may use Cryptography) with its maker: the targeted character, or a level given. A TL5-6 system such as a cipher wheel's is the Basic Set's Quick Contest of Cryptography, which only Cryptography may attempt. By hand at TL5-6, each other selected character with Cryptography 17+ gives the leader +1 (at most +4). The encryption standards are a Cryptography roll with Time Spent against their base time (TL6 basic: 10 years, or a year with Complexity 2 apparatus; TL7 basic: a week on a Complexity 3 computer; TL8 basic: a day on Complexity 5) and the code-breaking program carried, whose grade gives its bonus; the program runs only on a carried computer of the standard's Complexity and its own (basic 3, good 5, fine 7). Secure encryption can't be broken before TL9. The encryption gear's sheets say what each makes, how long breaking it takes, and secure encryption's delay (High-Tech pp. 210-211; Characters p. 186)."
         },
         "disguiseAndSmuggling": {
           "Name": "Forgery, disguise and smuggling",
-          "Hint": "Forgery and counterfeiting tools forge from their row: a TL7+ document needs a computer and printer too (-5 without, as improvised equipment), fake credit cards a card printer and magnetic strip decoder/encoder, and a TL8 counterfeiter must avoid a printer that marks its pages. The Disguise skill's row rolls an improvised disguise at -5 in place of any kit; a disguise kit's row rolls Disguise with it, the advanced kit (+2) needing a day to prepare and two to six hours of fitting. Smuggler's luggage (+2) rolls Smuggling for what its secret area holds, a tenth of its capacity. A mule's row rolls HT at -1 per 50 pellets carried: failure is an incident, a critical failure bursts a packet, a dose of the Basic Set's overdose. The GM's token controls screen the targeted character: a Quick Contest of Search or Observation against Acting, or an X-ray machine's Electronics Operation roll and then Search (High-Tech pp. 213-215)."
+          "Hint": "Forgery and counterfeiting tools forge from their row: a TL7+ document needs a computer and printer too (-5 without, as improvised equipment), fake credit cards a card printer and magnetic strip decoder/encoder, and money printed at TL8 takes a secret Counterfeiting roll the first time a printer is used, for whether it marks its pages (the answer kept on the printer). The Disguise skill's row rolls an improvised disguise at -5 in place of any kit; a disguise kit's row rolls Disguise with it, the advanced kit (+2) needing a day to prepare and two to six hours of fitting. Smuggler's luggage (+2) rolls Smuggling for what its secret area holds, a tenth of its capacity. A mule's row rolls HT at -1 per 50 pellets carried: failure is an incident, a critical failure bursts a packet, a dose of the Basic Set's overdose. The GM's token controls screen the targeted character: a Quick Contest of Search or Observation against Acting, or an X-ray machine's Electronics Operation roll and then Search (High-Tech pp. 213-215)."
         },
         "partialCoverage": {
           "Name": "Partial armour coverage",
@@ -5310,11 +5310,11 @@
         },
         "surveillanceGear": {
           "Name": "Surveillance gear and countersurveillance",
-          "Hint": "A spike mike in use (equipped) is Parabolic Hearing at TL-4 levels. Row buttons: a contact mike listens through a barrier at -(DR+HP)/5, -5 more into a shielded room; a pinhead mike's cable is guided on a DX-based Electronics Operation (Surveillance) roll; a search endoscope gives +3 to Search or +2 to Lockpicking; the document scanner copies a sealed document at -2; a bug is built at home on Electronics Repair (Surveillance) at SM+9 below a matchbox's size; a bug detector sweeps a minute per 100 square feet, a Quick Contest of Electronics Operation (Surveillance) with whoever hid the bug, at its quality, +4 for a radio beacon, and never finds a phone tap, laser mike or laser pinhead mike (High-Tech pp. 208-212)."
+          "Hint": "A spike mike in use (equipped) is Parabolic Hearing at TL-4 levels. Row buttons: a contact mike listens through a barrier at -(DR+HP)/5, -5 more into a shielded room; a pinhead mike's cable is guided on a DX-based Electronics Operation (Surveillance) roll; a search endoscope gives +3 to Search or +2 to Lockpicking; the document scanner copies a sealed document at -2; a bug is built at home on Electronics Repair (Surveillance) at SM+9 below a matchbox's size; a bug detector sweeps a minute per 100 square feet, a Quick Contest of Electronics Operation (Surveillance) with whoever hid the bug, at its quality, +4 for a radio beacon, and never finds a phone tap, laser mike or laser pinhead mike. A cellular monitoring system follows up to four of the targeted character's phones, logging their calls, keeping incoming calls from them, or jamming one outright wherever it is, and traces a call to its holder. Computer monitoring gear reads a device's emissions on Electronics Operation (EW) at -1 per 100 yards past 300 (1,000 yards at most, 100 in a noisy city; -3 for one machine among many); a keyboard bug is installed on Electronics Operation (Surveillance) (High-Tech pp. 208-212, 215)."
         },
         "jamming": {
           "Name": "Electronic signals jamming",
-          "Hint": "A jammer's row button switches it on (everyone near knows, not where it is). Radio gear's row button then rolls against each switched-on jammer on the map: within its range, a Quick Contest of the user's Electronics Operation for the gear against the operator's Electronics Operation (EW) (the expendable jammer's 18); within 10 times its range, an unopposed roll. A cell-phone jammer blocks cellular beacons within 15 yards, and a call through it takes a Hearing roll at -2 to follow, unmodified out to 10 times its range (High-Tech pp. 212-213, as High-Tech: Electricity and Electronics p. 50 revises the cell-phone jammer)."
+          "Hint": "A jammer's row button switches it on (everyone near knows, not where it is). Radio gear's row button then rolls against each switched-on jammer on the map: within its range, a Quick Contest of the user's Electronics Operation for the gear against the operator's Electronics Operation (EW) (the expendable jammer's 18); within 10 times its range, an unopposed roll. A cell-phone jammer blocks cellular beacons within 15 yards, and a call through it takes a Hearing roll at -2 to follow, unmodified out to 10 times its range. A surveillance camera may be built wireless ($100 more; the option shows here or under security screening), and a radio jammer then hinders it (High-Tech pp. 206, 212-213, as High-Tech: Electricity and Electronics p. 50 revises the cell-phone jammer)."
         },
         "covertListening": {
           "Name": "Bugs, taps and countersurveillance (Electricity and Electronics)",
@@ -5394,7 +5394,7 @@
         },
         "hygieneAndDrugs": {
           "Name": "Hygiene and drugs",
-          "Hint": "Soap, hand sanitizer, foot powder, insect repellent, salt tablets, quinine and antimalarials worn in daily use give their bonuses to Contagion, Infection, illness and heat rolls; a row action gives a dose: smelling salts' HT roll to come round, morphine as a painkiller (High Pain Threshold, Unfazeable and euphoria for the margin's hours), aspirin taking 1 or 2 off pain, antibiotics' +TL/2 against an illness or a wound's infection, castor oil, charcoal, chelating agents and antitoxins against a poison, truth serum's FP and -2 to Will and self-control, DMSO making a blood or digestive poison a contact agent, and a psychiatric drug holding its disadvantages at bay (High-Tech pp. 221, 226-227)."
+          "Hint": "Soap, hand sanitizer, foot powder, insect repellent, salt tablets, quinine and antimalarials worn in daily use give their bonuses to Contagion, Infection, illness and heat rolls; a row action gives a dose: smelling salts' HT roll to come round, morphine as a painkiller (High Pain Threshold, Unfazeable and euphoria for the margin's hours), aspirin taking 1 or 2 off pain, antibiotics' +TL/2 against an illness or a wound's infection, castor oil, charcoal, chelating agents and antitoxins against a poison, truth serum's FP and -2 to Will and self-control after 30 seconds (and swallowed morphine after 20 minutes: the dose works once world time reaches it), DMSO making a blood or digestive poison a contact agent, and a psychiatric drug holding its disadvantages at bay (High-Tech pp. 221, 226-227)."
         },
         "highTechPoisons": {
           "Name": "High-Tech poisons",
@@ -5580,6 +5580,26 @@
         "MitigatedReason": "Mitigated by a course of electroconvulsive therapy ({name})"
       },
       "Codes": {
+        "ComplexityUnknown": "{name} states no Complexity: the GM decides whether it can run the program, which needs Complexity {complexity} (p. 211).",
+        "NeedsComputer": "The program needs a Complexity {complexity} computer to run on, and none is carried (p. 211).",
+        "ComputerTooSmall": "The program needs a Complexity {complexity} computer to run on; the best carried is Complexity {best} (p. 211).",
+        "PrinterLabel": "Counterfeiting: avoiding a printer that marks its pages ({name})",
+        "PrinterTraced": "{name} marks each page with a serial number that traces it back to the printer (p. 214).",
+        "PrinterClean": "{name} doesn't mark its pages (p. 214).",
+        "PrinterChecked": "The GM rolled Counterfeiting in secret for whether {name} marks its pages with a traceable serial number (p. 214).",
+        "Gear": {
+          "Title": "Encryption",
+          "Program": "Code-breaking software of Complexity {complexity}: it runs on a computer of that Complexity or more (p. 211).",
+          "Wheel": "Enciphers at its maker's Cryptography, typically {low}-{high}; enciphering or deciphering takes {minutes} minutes a line. Breaking it is a Quick Contest of Cryptography (p. 211).",
+          "Machine": "Basic encryption (TL6), text only, without a digital computer. Breaking it takes {slow} with apparatus like a Complexity 1 computer, or {fast} with one like Complexity 2 (p. 211).",
+          "Basic": "Basic encryption: breaking it takes at least {time} and a Complexity {complexity} computer running code-breaking software (p. 211).",
+          "SecureTl7": "Secure encryption: software of Complexity {complexity}, usually on a computer of its own; each message is held up {delay}. It can't be broken before TL9 (p. 211).",
+          "SecureTl8": "Secure encryption: each message is held up {delay}. It can't be broken before TL9 (p. 211).",
+          "Delay": {
+            "minutes": "1-2 minutes",
+            "seconds": "1-2 seconds"
+          }
+        },
         "BreakTitle": "Break a code",
         "BreakLabel": "{name} breaks {code}",
         "PickBreaker": "Select the character breaking the code.",
@@ -5615,7 +5635,6 @@
         "NeedsCardGear": "Fake credit cards need a card printer and a magnetic strip decoder/encoder.",
         "NoComputerPrinter": "No computer and printer (improvised)",
         "NoComputer": "No computer (improvised)",
-        "TracedPrinter": "Roll Counterfeiting to avoid a printer that marks each page with its serial number.",
         "ImprovisedTitle": "Improvised disguise",
         "ImprovisedLabel": "{name}: an improvised disguise",
         "ImprovisedLine": "Improvised disguise (wig, heel lift)",
@@ -9904,6 +9923,61 @@
         "ToePreview": "steel toe box DR {dr} on {n} in 6 foot hits (High-Tech p. 68)"
       },
       "Surveillance": {
+        "Camera": {
+          "Wireless": "Wireless: sends its picture up to {range}, and a radio jammer works against it, at ${cost} more (pp. 206, 212).",
+          "WirelessCheck": "Wireless",
+          "WirelessHint": "A wireless camera sends its picture up to {range}, for ${cost} more on the final cost; a radio jammer works against it (pp. 206, 212).",
+          "WirelessLabel": "Wireless"
+        },
+        "Monitor": {
+          "Action": "Monitor a phone",
+          "Title": "Monitoring with {name}",
+          "Line": "Follows up to {calls} calls at a time and logs them; can keep incoming calls from a phone, jam it outright, or trace its calls (p. 209).",
+          "Following": "Following {phone} ({holder}): {mode}.",
+          "Jamming": "Jams the phones set to jam wherever they are: using one is blocked (p. 209).",
+          "NoPhone": "Target a character carrying a cell phone, or pick a phone this system already follows.",
+          "Phone": "Phone",
+          "PhoneOf": "{phone} ({holder})",
+          "Do": "Do",
+          "Mode": {
+            "log": "Log its calls",
+            "block": "Keep incoming calls from it",
+            "jam": "Jam it outright",
+            "trace": "Trace a call",
+            "stop": "Stop following it"
+          },
+          "Now": {
+            "log": "Logging the calls of {phone} ({holder}).",
+            "block": "Incoming calls no longer reach {phone} ({holder}); its calls are logged.",
+            "jam": "{phone} ({holder}) is jammed outright; its calls are logged."
+          },
+          "Full": "It already follows {calls} calls; stop following one first (p. 209).",
+          "Stopped": "No longer following {phone} ({holder}).",
+          "Traced": "Traced: {phone} is with {holder}, {distance} away.",
+          "TracedOff": "Traced: {phone} is with {holder}, who isn't on this scene; the GM says where."
+        },
+        "Emissions": {
+          "Action": "Read emissions",
+          "Title": "Reading emissions with {name}",
+          "Line": "Reads screens and captures printers', typewriters' and faxes' signatures on an Electronics Operation (EW) roll: -1 per {per} yards past {free}, out to {max} yards ({least}); often {urban} yards at most in a city; {specific} to pick out one machine among many (p. 215).",
+          "Software": "Runs Complexity {complexity} software on a laptop (p. 215).",
+          "Distance": "Distance (yards)",
+          "Urban": "Noisy urban area ({range} yards at most)",
+          "Specific": "One machine among many ({modifier})",
+          "RangeLine": "{yards} yards away",
+          "SpecificLine": "One machine among many",
+          "OutOfReach": "{yards} yards is past its reach of {range} yards (p. 215).",
+          "OutOfUrbanReach": "{yards} yards is past the {range} yards it reaches here, for the electrical noise and tall buildings (p. 215).",
+          "Read": "The display or machine is read.",
+          "Nothing": "Nothing readable comes through."
+        },
+        "KeyboardBug": {
+          "Action": "Install",
+          "Label": "Installing {name}",
+          "Line": "Sends whatever is typed by radio, phone or the Internet; installing it takes tools, a few minutes at the keyboard and an Electronics Operation (Surveillance) roll (p. 215).",
+          "Installed": "Installed: it passes on whatever is typed (p. 215).",
+          "Failed": "It isn't working."
+        },
         "Title": "Security and surveillance",
         "Screen": {
           "Action": "Screen",
@@ -10289,6 +10363,14 @@
         "RideTired": "{name} loses {fp} FP to the ride."
       },
       "Drugs": {
+        "ApplyDelayedTitle": "Delayed doses: work now",
+        "NoDelayedDoses": "No delayed dose is waiting.",
+        "Route": "Given",
+        "RouteHint": "Swallowed, a painkiller takes about 20 minutes to work; injected, it works at once (Campaigns p. 441).",
+        "RouteInjected": "Injected (at once)",
+        "RouteOral": "Swallowed (about 20 minutes)",
+        "DoseInMinutes": "The dose reaches {name} in {minutes} minutes of game time.",
+        "DoseInSeconds": "The dose reaches {name} in {seconds} seconds of game time.",
         "Title": "Hygiene, drugs and poisons (High-Tech)",
         "LungsAndSpine": "Lungs and spine",
         "BotulinCrippled": "{name}'s lungs and spine are crippled: a lasting injury that heals in {months} month(s) of immobility on a ventilator, the paralysis lasting as long (High-Tech p. 227; Campaigns p. 422).",
