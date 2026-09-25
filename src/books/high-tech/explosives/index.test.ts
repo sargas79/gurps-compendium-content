@@ -46,6 +46,7 @@ let dialog: Record<string, string> | null;
 let targets: any[];
 let traitsAdded: any[];
 let worldTime: number;
+let damages: any[];
 
 const fire = (name: string, ...args: any[]) => (hooks.get(name) ?? []).map((fn) => fn(...args));
 const flush = async () => { for (let i = 0; i < 20; i += 1) await Promise.resolve(); };
@@ -112,6 +113,7 @@ function fakeApi() {
       update: async (message: any, data: any) => { message.data = data; return true; },
     },
     items: {
+      changeQuantity: async (item: any, delta: number) => { const from = item.system.quantity; item.system.quantity = Math.max(0, from + delta); return { from, to: item.system.quantity }; },
       // Wears the piece down, and the DR at the place with it, as the system's pipeline would show it.
       wearDr: async (item: any, amount: number, o: any) => {
         const from = Number(item.system.drLost) || 0;
@@ -136,7 +138,10 @@ function fakeApi() {
       applyInjury: async (actor: any, injury: any) => { injuries.push({ actor: actor.name, ...injury }); return null; },
       changeTrait: async (actor: any, o: any) => { traitsAdded.push({ actor: actor.name, ...o }); return { itemId: "t1", from: null, to: { name: o.add }, added: true, removed: false }; },
     },
-    roll: { success: async (o: any) => { successes.push(o); return outcomes.shift() ?? { success: true, criticalFailure: false, margin: 0 }; } },
+    roll: {
+      success: async (o: any) => { successes.push(o); return outcomes.shift() ?? { success: true, criticalFailure: false, margin: 0 }; },
+      damage: async (o: any) => { damages.push(o); return 0; },
+    },
   };
 }
 
@@ -172,6 +177,7 @@ beforeEach(() => {
   targets = [];
   traitsAdded = [];
   worldTime = 1000;
+  damages = [];
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
@@ -237,6 +243,47 @@ describe("demolition charges (pp. 182-183)", () => {
     expect(detonations[0].structure).toMatchObject({ dr: 5, hp: 60 });
   });
 
+  it("shakes a structure apart with a flat charge whose blast can't get through its DR (p. 183)", async () => {
+    const tnt = record("TNT (per pound)", "TNT");
+    const sapper = actorWith("Sapper", [tnt]);
+    // A pound of TNT is 6dx2, at most 72: not through DR 100, so 7 cutting against DR 1.
+    dialog = { pounds: "1", placement: "contact", distance: "1", structure: "custom", dr: "100", hp: "50", taken: "0", shaped: "", flat: "on" };
+    actions.get("ht-detonate").run(tnt, sapper);
+    await flush();
+    expect(detonations[0]).toMatchObject({ weightLbs: 1, placement: "contact", structure: null });
+    expect(detonations[0].label).toContain("Flat.Tag");
+    expect(chat.at(-1)).toContain('"damage":72,"dr":100,"cut":7,"divided":1,"injury":6,"hp":44,"max":50');
+    expect(chat.at(-1)).toContain("Structure.States.standing");
+
+    // Through DR 50 the blast is an ordinary one.
+    dialog = { ...dialog, dr: "50" };
+    actions.get("ht-detonate").run(tnt, sapper);
+    await flush();
+    expect(detonations[1].structure).toMatchObject({ dr: 50, hp: 50 });
+  });
+
+  it("cuts with cutting cord: a pound per 2', 4dx2 nearby, and 24 against a fifth of the DR (p. 188)", async () => {
+    const cord = { id: "cord", name: "Cutting Cord (per pound)", type: "equipment", isOwner: true, system: { quantity: 3, carried: true, meleeModes: [], rangedModes: [] } };
+    const sapper = actorWith("Sapper", [cord]);
+    expect(actions.get("ht-cutting-cord").visible(cord)).toBe(true);
+    expect(actions.get("ht-cutting-cord").visible(record("TNT (per pound)", "TNT"))).toBe(false);
+    dialog = { feet: "3", structure: "custom", dr: "12", hp: "20", taken: "0" };
+    actions.get("ht-cutting-cord").run(cord, sapper);
+    await flush();
+    // 3' of cord is two 2' lengths: 2 lb.
+    expect(cord.system.quantity).toBe(1);
+    expect(damages[0]).toMatchObject({ formula: "4dx2", damageType: "cr", explosive: true, actor: sapper });
+    // 24 against DR 12/5 = 2: 22 injury of 20 HP.
+    expect(chat.at(-1)).toContain('"damage":24,"dr":12,"divided":2,"injury":22,"hp":-2,"max":20');
+    expect(chat.at(-1)).toContain("Structure.RollsToHold");
+
+    dialog = { feet: "4", structure: "", dr: "0", hp: "0", taken: "0" };
+    actions.get("ht-cutting-cord").run(cord, sapper);
+    await flush();
+    expect(damages).toHaveLength(1);
+    expect(cord.system.quantity).toBe(1);
+  });
+
   it("works out the charge a job takes and rolls for it", async () => {
     const c4 = record("Plastic Explosive (per pound)", "Composition C4");
     const sapper = { ...actorWith("Sapper"), skills: { "Explosives (Demolition)": 13 } };
@@ -281,6 +328,19 @@ describe("side effects of explosions (pp. 181-182)", () => {
     const context = { item: grenade, mode: { index: 0, ranged: true }, formula: "8d", modifiers: [] };
     fire(HOOKS.damageModifiers, context);
     expect(context.formula).toBe("12d");
+  });
+
+  it("scales a HEAT round's linked blast indoors, and leaves its jet alone", async () => {
+    const heat = { name: "HEAT", isOwner: true, system: { meleeModes: [], rangedModes: [{ explosive: false, damageFormula: "6dx3", linked: { damage: "7dx2", explosive: true } }] } };
+    expect(options.find((o) => o.key === "ht-enclosure").available({ item: heat })).toBe(true);
+    fire(HOOKS.attackModifiers, { item: heat, options: { [`${MODULE_ID}.ht-enclosure`]: "sealed" }, modifiers: [] });
+    await flush();
+    const jet = { item: heat, mode: { index: 0, ranged: true }, formula: "6dx3", modifiers: [] };
+    fire(HOOKS.damageModifiers, jet);
+    expect(jet.formula).toBe("6dx3");
+    const blast = { item: heat, mode: { index: 0, ranged: true }, formula: "7d×2", modifiers: [] };
+    fire(HOOKS.damageModifiers, blast);
+    expect(blast.formula).toBe("7dx4");
   });
 
   it("leaves a card for the concussion and flash rolls, and applies what a failure does", async () => {
@@ -417,6 +477,43 @@ describe("unstable explosives (pp. 184-187)", () => {
     expect(detonations).toHaveLength(1);
   });
 
+  it("keeps the GM's number from a player, who judges it by eye with Explosives (Demolition) (p. 185)", async () => {
+    const sweating = record("Dynamite, 80% (per pound)", "Dynamite (80%)", 1, { shockOn: 9 });
+    const section = sections.find((s) => s.key === "ht-explosives-item");
+    expect(section.context(sweating).line).toContain("ShockLine");
+    (game as any).user.isGM = false;
+    expect(section.context(sweating)).toMatchObject({ sweats: false, line: "GCC.HT.Explosives.ShockUnknown" });
+    // Nitro's own 12 is no secret.
+    expect(section.context(record("Nitroglycerin (per pound)", "Nitroglycerin (NG)")).line).toContain("ShockLine");
+
+    const judge = actions.get("ht-explosive-judge");
+    expect(judge.visible(sweating)).toBe(true);
+    expect(judge.visible(record("Dynamite, 80% (per pound)", "Dynamite (80%)"))).toBe(false);
+    const sapper = { ...actorWith("Sapper"), skills: { "Explosives (Demolition)": 12 } };
+    judge.run(sweating, sapper);
+    await flush();
+    expect(successes[0]).toMatchObject({ base: 12, skill: "Explosives (Demolition)" });
+    expect(chat.at(-1)).toContain('Judged {"name":"Dynamite, 80% (per pound)","number":9}');
+    outcomes = [{ success: false, margin: 1 }];
+    judge.run(sweating, sapper);
+    await flush();
+    expect(chat.at(-1)).toContain("NotJudged");
+  });
+
+  it("cushions nitro in a rubber ball with a DX roll when its carrier is hit, not the 3d (p. 185)", async () => {
+    const ball = record("Nitroglycerin (per pound)", "Nitroglycerin (NG)", 0.5, { cushioned: true });
+    const yegg = { ...actorWith("Yegg", [ball]), attributes: { DX: 13 } };
+    expect(sections.find((s) => s.key === "ht-explosives-item").context(ball)).toMatchObject({ nitro: true, cushioned: true });
+    fire(HOOKS.afterDamage, { actor: yegg, damage: { type: "cr", basicDamage: 3 }, result: { injury: 3 } });
+    await flush();
+    expect(successes[0]).toMatchObject({ base: 13, kind: "attribute" });
+    expect(detonations).toHaveLength(0);
+    outcomes = [{ success: false, margin: 2 }];
+    fire(HOOKS.afterDamage, { actor: yegg, damage: { type: "cr", basicDamage: 3 }, result: { injury: 3 } });
+    await flush();
+    expect(detonations[0]).toMatchObject({ weightLbs: 0.5, placement: "contact" });
+  });
+
   it("skims nitro, and a failure by 2 blows half the dynamite up", async () => {
     const dynamite = record("Dynamite, 80% (per pound)", "Dynamite (80%)", 1);
     dynamite.system.quantity = 4;
@@ -503,6 +600,63 @@ describe("incendiaries (p. 188)", () => {
     fire(HOOKS.turnStart, null, { actor: victim });
     await flush();
     expect(injuries[1].amount).toBe(7);
+  });
+
+  it("throws sparks and heat on everyone within two yards of a burning victim each second (p. 188)", async () => {
+    // The burning token's own scene, a yard a 100-pixel square; the GM is viewing another.
+    const scene: any = { grid: { size: 100, distance: 1 }, tokens: [] };
+    const at = (name: string, x: number) => {
+      const actor: any = actorWith(name);
+      actor.id = name;
+      const token = { id: `t-${name}-${x}`, actor, x: x * 100, y: 0, width: 1, height: 1, parent: scene };
+      actor.token = token;
+      scene.tokens.push(token);
+      return token;
+    };
+    const victim = at("Victim", 0);
+    at("Near", 1);
+    at("Far", 2);
+    at("Away", 5);
+    vi.stubGlobal("canvas", { scene: { tokens: [] }, tokens: { placeables: [] } });
+    targets = [{ actor: victim.actor }];
+    derived.drByLocation = { torso: 0 };
+    dialog = { pounds: "1", on: "actor", location: "torso", structure: "custom", dr: "0", hp: "0" };
+    actions.get("ht-thermite").run(thermiteRecord(), actorWith("Saboteur"));
+    await flush();
+    dice = [1, 1, 1];
+    fire(HOOKS.turnStart, null, { actor: victim.actor });
+    await flush();
+    // 3 a yard off, 1 at two, nothing at five; the victim's own 3d is its own line.
+    expect(injuries.filter((i) => i.label === "GCC.HT.Explosives.Thermite.SparksTitle")).toEqual([
+      { actor: "Near", amount: 3, label: "GCC.HT.Explosives.Thermite.SparksTitle" },
+      { actor: "Far", amount: 1, label: "GCC.HT.Explosives.Thermite.SparksTitle" },
+    ]);
+    expect(chat.some((c) => c.includes('"name":"Near","yards":1,"damage":3,"injury":3'))).toBe(true);
+  });
+
+  it("sparks every token of one unlinked actor, the burning one's copies included", async () => {
+    const scene: any = { grid: { size: 100, distance: 1 }, tokens: [] };
+    // Three goons of one actor, each token with its own synthetic actor of the same id.
+    const goon = (x: number) => {
+      const actor: any = actorWith("Goon");
+      actor.id = "goon";
+      const token = { id: `goon-${x}`, actor, x: x * 100, y: 0, width: 1, height: 1, parent: scene };
+      actor.token = token;
+      scene.tokens.push(token);
+      return token;
+    };
+    const burning = goon(0);
+    goon(1);
+    goon(2);
+    targets = [{ actor: burning.actor }];
+    derived.drByLocation = { torso: 0 };
+    dialog = { pounds: "1", on: "actor", location: "torso", structure: "custom", dr: "0", hp: "0" };
+    actions.get("ht-thermite").run(thermiteRecord(), actorWith("Saboteur"));
+    await flush();
+    dice = [1, 1, 1];
+    fire(HOOKS.turnStart, null, { actor: burning.actor });
+    await flush();
+    expect(injuries.filter((i) => i.label === "GCC.HT.Explosives.Thermite.SparksTitle").map((i) => i.amount)).toEqual([3, 1]);
   });
 
   it("wears the armour it burns through for good, 1 DR in 10 points", async () => {

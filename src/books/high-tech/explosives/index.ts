@@ -7,7 +7,9 @@
  *   - **Side effects of explosions (explosionSideEffects):** a blast in a
  *     sealed room or vehicle does double damage to everyone in it, 1.5 times
  *     with doors and windows to blow out -- chosen as an attack option on an
- *     explosive row and in the charge's dialog, and rolled as the scaled dice.
+ *     explosive row (or one whose linked line explodes, as a HEAT round's
+ *     blast, which alone is scaled) and in the charge's dialog, and rolled as
+ *     the scaled dice.
  *     Anyone a blast's crushing damage reaches rolls HT against concussion,
  *     and anyone its crushing or burning damage reaches and who was looking
  *     toward it rolls HT against the flash, from a card the blow leaves:
@@ -20,18 +22,25 @@
  *     explosives the system's Demolition tool and `hazards.detonate` offer; a
  *     row action on an explosive record that sets it off (its pounds, packed
  *     against a door or wall or set nearby, a shaped charge dividing the
- *     structure's DR by 10); and one that works out the charge a job takes
+ *     structure's DR by 10, a flat charge whose blast can't get through it
+ *     doing a tenth of its most, cutting, against a hundredth of the DR);
+ *     and one that works out the charge a job takes
  *     (a crater, timbers, girders, holes in walls and plates), tamped or
- *     shaped, and rolls Explosives (Demolition) for it.
+ *     shaped, and rolls Explosives (Demolition) for it; and cutting cord laid
+ *     along a cut, a pound for each 2', 4dx2 to anyone nearby and 4d(5) at
+ *     its maximum to what it cuts.
  *   - **Unstable explosives (unstableExplosives):** nitroglycerin that is
  *     jolted -- a row action, or a blow to whoever carries it -- goes off on
  *     12+ on 3d, and anything with a number set on it (impure nitro, sweating
- *     dynamite) on that number, which the item sheet asks for only on an
- *     explosive with nitro in it; skimming nitro from dynamite; home-cooked
+ *     dynamite) on that number, which the item sheet asks the GM for only on
+ *     an explosive with nitro in it, and which a player judges by eye with
+ *     an Explosives (Demolition) roll; nitro slung in a rubber ball, cushioned
+ *     by a DX roll instead of the 3d; skimming nitro from dynamite; home-cooked
  *     black powder, plastique, ANFO and fuel-air devices, with what a failed
  *     batch comes out as; and a fuel-air blast's slower falloff.
  *   - **Incendiaries (incendiaryAgents):** thermite set burning on a victim
- *     (3d a second against the DR where it burns, which it wears down) or on
+ *     (3d a second against the DR where it burns, which it wears down; its
+ *     sparks and heat 3 a second on anyone else within a yard, 1 at two) or on
  *     an object, and napalm that clings and burns for a minute, both through
  *     the lingering-burn engine (`../burning.ts`) the flamethrower's fuel
  *     uses.
@@ -42,7 +51,7 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { registerLingeringBurn, startBurn, type LingeringBurn } from "../burning.js";
+import { burnDrByLocation, registerLingeringBurn, startBurn, type LingeringBurn } from "../burning.js";
 import { chargeOf } from "../records.js";
 import { EXPLOSIVES, type ExplosiveRow } from "./ref.js";
 import {
@@ -57,25 +66,33 @@ import {
   SKIM_MODIFIER,
   THERMITE,
   THERMITE_SPARKS,
+  sparksAt,
   UNSTABLE_PENALTY,
   WEAK_FACTOR,
   blowsUpOnCriticalFailure,
   canShape,
   canTamp,
   carriesNitro,
+  CUTTING_CORD,
   chargeFor,
   concussionModifier,
+  cordCut,
+  cordPounds,
   enclosureFactor,
   eyeBonus,
   failedBatch,
+  flatCharge,
   flashModifier,
   lastingSenseTrait,
+  maxDamage,
   senseRecovery,
   formatDamage,
   hearingBonus,
   isDynamite,
+  isCuttingCord,
   isFuelAir,
   isNapalm,
+  isNitro,
   parseDamage,
   recipeFor,
   scaleDamage,
@@ -146,14 +163,39 @@ export function poundsOf(item: any): number {
 /** Thermite: an incendiary record, by name (p. 188). */
 export const isThermite = (item: any): boolean => item?.type === "equipment" && /^thermite\b/i.test(String(item?.name ?? "")) && !chargeOf(item);
 
-/** Every mode of an item that explodes. */
-const explosiveModes = (item: any): any[] => [...(item?.system?.meleeModes ?? []), ...(item?.system?.rangedModes ?? [])].filter((m) => m?.explosive === true);
+/** A mode's own explosive linked or follow-up lines: a HEAT round's blast. */
+const explosiveLines = (mode: any): any[] => [mode?.linked, mode?.linkedAlso].filter((line) => line?.explosive === true && line?.damage);
+
+/** Every mode of an item that explodes, itself or on a line linked to it. */
+const explosiveModes = (item: any): any[] => [...(item?.system?.meleeModes ?? []), ...(item?.system?.rangedModes ?? [])].filter((m) => m?.explosive === true || explosiveLines(m).length > 0);
+
+/**
+ * Whether the damage being rolled from a mode explodes: the mode's own, or a
+ * linked line of its that does, known by its dice (the roll names no line).
+ */
+export function rollExplodes(mode: any, formula: string): boolean {
+  if (mode?.explosive === true) return true;
+  const rolled = parseDamage(formula);
+  if (!rolled) return false;
+  return explosiveLines(mode).some((line) => {
+    const own = parseDamage(String(line.damage));
+    return own !== null && formatDamage(own) === formatDamage(rolled);
+  });
+}
 
 async function say(actor: any, title: string, lines: string[]): Promise<void> {
   await ChatMessage.implementation.create({
     speaker: ChatMessage.implementation.getSpeaker({ actor }),
     content: `<div class="gworld gworld-chat"><div class="gc-head"><span class="gc-label">${esc(title)}</span></div>${lines.map((l) => `<div class="gc-result">${esc(l)}</div>`).join("")}</div>`,
   });
+}
+
+/** What a blow left a structure as, and the HT roll it now calls for (Campaigns p. 484). */
+function structureLines(blast: { state: string; rollsToHold: boolean; rollsToStand: boolean }): string[] {
+  return [
+    L(`Structure.States.${blast.state}`),
+    ...(blast.rollsToHold || blast.rollsToStand ? [L(blast.rollsToStand ? "Structure.RollsToStand" : "Structure.RollsToHold")] : []),
+  ];
 }
 
 function field(form: HTMLElement | null | undefined, name: string): string {
@@ -230,7 +272,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
   let pending: { label: string; factor: number } | null = null;
 
   /** Sets off a record's charge: the system's detonation, with this book's settings. */
-  const setOff = async (actor: any, item: any, options: { pounds: number; placement: "contact" | "nearby"; distance: number; structure: any; shaped: boolean; enclosure: Enclosure; label?: string }) => {
+  const setOff = async (actor: any, item: any, options: { pounds: number; placement: "contact" | "nearby"; distance: number; structure: any; shaped: boolean; flat?: boolean; enclosure: Enclosure; label?: string }) => {
     const charge = chargeOf(item);
     if (!charge || !(options.pounds > 0)) return null;
     const name = String(item.name ?? "");
@@ -250,16 +292,24 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     const enclosure = on.sideEffects() ? enclosureFactor(options.enclosure) : 1;
     const weak = flaw === "weak" ? WEAK_FACTOR : 1;
     const factor = enclosure * weak;
+    // A flat charge packed against a structure its blast can't get through shakes it apart instead (p. 183).
+    const flat = options.flat && !options.shaped && options.structure && options.placement === "contact" && on.demolition()
+      ? flatBlow(options.pounds, charge.row.ref, options.structure.dr)
+      : null;
     const bits = [
       ...(enclosure !== 1 ? [F("EnclosedTag", { times: enclosure })] : []),
       ...(weak !== 1 ? [L("WeakTag")] : []),
       ...(options.shaped && options.structure ? [L("ShapedTag")] : []),
+      ...(flat ? [L("Flat.Tag")] : []),
     ];
     const label = options.label ?? F("ChargeLabel", { pounds: options.pounds, name, extra: bits.length ? ` (${bits.join(", ")})` : "" });
-    const structure = options.structure && options.shaped && on.demolition()
-      ? { ...options.structure, dr: shapedDr(options.structure.dr), label: F("ShapedStructure", { label: options.structure.label ?? "" }) }
-      : options.structure;
+    const structure = flat
+      ? null
+      : options.structure && options.shaped && on.demolition()
+        ? { ...options.structure, dr: shapedDr(options.structure.dr), label: F("ShapedStructure", { label: options.structure.label ?? "" }) }
+        : options.structure;
     pending = factor !== 1 ? { label, factor } : null;
+    let result: any;
     try {
       const id = ids.get(charge.row);
       const call = (api as any).hazards.detonate({
@@ -267,10 +317,28 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
         weightLbs: options.pounds, placement: options.placement, distanceYards: options.distance, structure: structure ?? null, actor, label,
       });
       pending = null;
-      return await call;
+      result = await call;
     } finally {
       pending = null;
     }
+    if (flat && options.structure) {
+      const target = options.structure;
+      const blast = (api.rules as any).blastAgainstStructure({ damage: flat.damage, dr: flat.dr, hp: target.hp, damageTaken: target.damageTaken });
+      await say(actor, L("Flat.Title"), [
+        F("Flat.Hit", { label: target.label ?? "", damage: flat.most, dr: target.dr, cut: flat.damage, divided: flat.dr, injury: blast.injury, hp: blast.hp, max: target.hp }),
+        ...structureLines(blast),
+      ]);
+    }
+    return result;
+  };
+
+  /** A flat charge's blow on a structure, where its most can't get through the DR; null where it can (p. 183). */
+  const flatBlow = (pounds: number, ref: number, dr: number): { most: number; damage: number; dr: number } | null => {
+    const dice = (api.rules as any).chargeDamage?.(pounds, ref)?.dice ?? null;
+    if (!dice) return null;
+    const most = maxDamage(dice);
+    const blow = flatCharge(most, dr);
+    return blow ? { most, ...blow } : null;
   };
 
   // What the charge's dialog scales: the dice `detonate` rolls (it has no item).
@@ -280,11 +348,12 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
       if (dice) context.formula = formatDamage(scaleDamage(dice, pending.factor));
       return;
     }
-    // A blast in an enclosed space, chosen on the attack (p. 181).
+    // A blast in an enclosed space, chosen on the attack (p. 181): the mode's
+    // own, or the blast on a line linked to it.
     const item = context?.item;
     if (!on.sideEffects() || !item || context.mode?.derived) return;
     const modes = context.mode?.ranged ? item.system?.rangedModes : item.system?.meleeModes;
-    if (modes?.[Number(context.mode?.index) || 0]?.explosive !== true) return;
+    if (!rollExplodes(modes?.[Number(context.mode?.index) || 0], String(context.formula ?? ""))) return;
     const times = enclosureFactor((api.combat.getWeaponState(item, MODULE_ID) as any)?.htEnclosure);
     const dice = times !== 1 ? parseDamage(String(context.formula ?? "")) : null;
     if (dice) context.formula = formatDamage(scaleDamage(dice, times));
@@ -387,6 +456,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
           row(L("CustomHp"), number("hp", 0, "1")),
           row(L("DamageTaken"), number("taken", 0, "1")),
           checkbox("shaped", L("Shaped")),
+          checkbox("flat", L("Flat.Label")),
           ...(on.sideEffects() ? [row(L("Enclosure"), select("enclosure", ENCLOSURES.map((e) => ({ value: e, label: L(`Enclosures.${e || "none"}`) }))))] : []),
           `<p class="ihint" style="margin:0">${esc(L("DetonateHint"))}</p>`,
         ].join(""), L("Detonate"));
@@ -397,11 +467,51 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
           distance: Number(value("distance")) || 0,
           structure: structureFrom(value),
           shaped: value("shaped") === "on",
+          flat: value("flat") === "on",
           enclosure: ((ENCLOSURES as readonly string[]).includes(value("enclosure")) ? value("enclosure") : "") as Enclosure,
         });
       })();
     },
   } as any);
+
+  // Cutting cord laid along a cut (p. 188): a pound for each 2', 4dx2 to anyone
+  // nearby, and 4d(5) at its maximum to the thing it cuts.
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-cutting-cord",
+    itemTypes: ["equipment"],
+    label: L("Cord.Action"),
+    icon: "fa-solid fa-scissors",
+    visible: (item: any) => on.demolition() && api.registry.isRuleOn("explosions") && isCuttingCord(item),
+    run: (item: any, actor: any) => { void cutWithCord(item, actor); },
+  } as any);
+
+  const cutWithCord = async (item: any, actor: any) => {
+    const value = await ask(String(item.name ?? ""), [
+      row(L("Cord.Feet"), number("feet", CUTTING_CORD.feetPerPound)),
+      row(L("Target"), select("structure", structures())),
+      row(L("CustomDr"), number("dr", 0, "1")),
+      row(L("CustomHp"), number("hp", 0, "1")),
+      row(L("DamageTaken"), number("taken", 0, "1")),
+      `<p class="ihint" style="margin:0">${esc(L("Cord.Hint"))}</p>`,
+    ].join(""), L("Cord.Action"));
+    if (!value) return;
+    const feet = Math.max(0, Number(value("feet")) || 0);
+    const pounds = cordPounds(feet);
+    if (!(pounds > 0)) return;
+    const have = Math.max(0, Number(item.system?.quantity) || 0);
+    if (pounds > have) return void ui.notifications?.warn(F("Cord.Short", { pounds, have }));
+    await api.items.changeQuantity(item, -pounds, { reason: L("Cord.Action") } as any);
+    await api.roll.damage({ actor, item, label: F("Cord.BlastLabel", { feet }), formula: CUTTING_CORD.blast, damageType: "cr", explosive: true } as any);
+    const structure = structureFrom(value);
+    if (!structure) return;
+    const cut = cordCut(structure.dr);
+    const blast = (api.rules as any).blastAgainstStructure({ damage: cut.damage, dr: cut.dr, hp: structure.hp, damageTaken: structure.damageTaken });
+    await say(actor, L("Cord.Title"), [
+      F("Cord.Cut", { label: structure.label, damage: cut.damage, dr: structure.dr, divided: cut.dr, injury: blast.injury, hp: blast.hp, max: structure.hp }),
+      ...structureLines(blast),
+    ]);
+  };
 
   // How much a job takes, and the Explosives (Demolition) roll to do it (pp. 182-183).
   api.sheets.registerRowAction({
@@ -463,10 +573,22 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
 
   // ── unstable and home-made explosives (pp. 184-187) ──
   const jolt = async (actor: any, item: any, number: number, fromBlow: boolean) => {
-    const rolled = roll3d();
     const name = String(item.name ?? "");
-    const goes = shockDetonates(rolled, number);
-    await say(actor, name, [F(fromBlow ? "JoltedByBlow" : "Jolted", { name, roll: rolled, number }), L(goes ? "JoltExplodes" : "JoltHolds")]);
+    const charge = chargeOf(item);
+    let goes: boolean;
+    if (charge?.cushioned && isNitro(charge.row)) {
+      // Nitro slung in a rubber ball: a DX roll cushions it, and a failure sets it off (p. 185).
+      const outcome: any = await api.roll.success({ actor, base: Number(api.actors.attribute(actor, "DX")) || 10, kind: "attribute", label: F("CushionRoll", { name }), tags: ["DX", "nitro"] } as any);
+      if (!outcome) return;
+      goes = !outcome.success;
+      await say(actor, name, [F(fromBlow ? "CushionByBlow" : "Cushion", { name }), L(goes ? "JoltExplodes" : "Cushioned")]);
+    } else {
+      const rolled = roll3d();
+      goes = shockDetonates(rolled, number);
+      // The number the GM set on old dynamite or impure nitro is his to know, until someone judges it.
+      const secret = (charge?.shockOn ?? 0) > 0;
+      await say(actor, name, [F(secret ? (fromBlow ? "JoltedByBlowUnknown" : "JoltedUnknown") : fromBlow ? "JoltedByBlow" : "Jolted", { name, roll: rolled, number }), L(goes ? "JoltExplodes" : "JoltHolds")]);
+    }
     if (goes) await setOff(actor, item, { pounds: poundsOf(item), placement: "contact", distance: 0, structure: null, shaped: false, enclosure: "", label: F("JoltLabel", { name, pounds: poundsOf(item) }) });
   };
 
@@ -479,16 +601,40 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     context: (item: any) => {
       const charge = chargeOf(item)!;
       const number = shockNumber(charge.row, charge.shockOn);
+      const gm = (game as any).user?.isGM === true;
       return {
         editable: item.isOwner,
         field: `system.extensions.${MODULE_ID}.explosive`,
         shockOn: charge.shockOn,
         // Only nitro sweats or comes out impure: the number is for an explosive with nitro in it, or one already set (pp. 184-185).
-        sweats: carriesNitro(charge.row) || charge.shockOn > 0,
+        // It is the GM's to decide, and to know: a player judges it by eye (p. 185).
+        sweats: gm && (carriesNitro(charge.row) || charge.shockOn > 0),
+        nitro: isNitro(charge.row),
+        cushioned: charge.cushioned,
         homeMade: charge.homeMade,
         flaws: FLAWS.map((f) => ({ value: f, label: L(`Flaws.${f || "none"}`), selected: f === charge.homeMade })),
-        line: number === null ? L("Stable") : F("ShockLine", { number }),
+        line: number === null ? L("Stable") : charge.shockOn > 0 && !gm ? L("ShockUnknown") : F("ShockLine", { number }),
       };
+    },
+  } as any);
+
+  // Old, sweating dynamite (or impure nitro): judging by eye what sets it off takes an Explosives (Demolition) roll (p. 185).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-explosive-judge",
+    itemTypes: ["equipment"],
+    label: L("Judge"),
+    icon: "fa-solid fa-magnifying-glass",
+    visible: (item: any) => on.unstable() && (chargeOf(item)?.shockOn ?? 0) > 0,
+    run: (item: any, actor: any) => {
+      void (async () => {
+        const charge = chargeOf(item);
+        if (!charge?.shockOn) return;
+        const name = String(item.name ?? "");
+        const outcome = await skillRoll(api, actor, [{ skill: DEMOLITION, modifier: 0 }], F("JudgeRoll", { name }), [], ["judgeShock"]);
+        if (!outcome) return;
+        await say(actor, name, [outcome.success ? F("Judged", { name, number: charge.shockOn }) : F("NotJudged", { name })]);
+      })();
     },
   } as any);
 
@@ -591,6 +737,22 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     }
     return points - left;
   };
+  // A second of its sparks and heat on everyone else near the burning victim: 3 burn within a
+  // yard, 1 at two, against their DR against burning, which it doesn't wear down (p. 188). The
+  // burn ticks on the GM's client, which may hurt anyone.
+  const sparks = async (victim: any) => {
+    const lines: string[] = [];
+    const reach = Math.max(...THERMITE_SPARKS.map((band) => band.yards));
+    for (const { actor, yards } of actorsNear(victim, reach)) {
+      const damage = sparksAt(yards);
+      if (!damage) continue;
+      const injury = Math.max(0, damage - largeAreaDr(api, actor));
+      if (injury > 0) await api.actors.applyInjury(actor, { amount: injury, label: L("Thermite.SparksTitle") } as any);
+      lines.push(F("Thermite.SparksSecond", { name: String(actor.name ?? ""), yards, damage, injury }));
+    }
+    if (lines.length) await say(victim, L("Thermite.SparksTitle"), lines);
+  };
+
   const thermite: LingeringBurn = {
     flag: THERMITE_FLAG,
     condition: THERMITE_CONDITION,
@@ -600,13 +762,14 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     dice: { dice: THERMITE.dice, adds: THERMITE.adds },
     // Its 3d burning a second touches one spot: injury there, with the place's wounding modifier (API 1.148.0).
     location: (state) => String(state.location ?? "torso"),
-    dr: (a, actor, state) => thermiteDrOnVictim(Number((a.actors.derived(actor) as any)?.drByLocation?.[String(state.location ?? "torso")]) || 0, Number(state.damage) || 0, Number(state.worn) || 0),
+    dr: (a, actor, state) => thermiteDrOnVictim(Number(burnDrByLocation(a, actor)[String(state.location ?? "torso")]) || 0, Number(state.damage) || 0, Number(state.worn) || 0),
     // Every 10 points destroy a point of DR for good, even on armour (p. 188): worn off the
     // armour on the spot (`items.wearDr`), and counted against the rest of the DR there.
     after: async (state, rolled, actor) => {
       const before = Number(state.damage) || 0;
       const destroyed = thermiteDrDestroyed(before, before + rolled);
       const worn = destroyed > 0 ? await wearArmor(actor, String(state.location ?? "torso"), destroyed) : 0;
+      await sparks(actor);
       return { ...state, damage: before + rolled, ...(worn > 0 ? { worn: (Number(state.worn) || 0) + worn } : {}) };
     },
     secondLine: ({ name, roll, dr, injury, state }) => F("Thermite.Second", { name, roll, dr, injury, location: String(state.location ?? "torso") }),
@@ -713,9 +876,41 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
   });
 }
 
+/** A token document's centre in the scene's pixels. */
+function centreOf(token: any, size: number): { x: number; y: number } {
+  return { x: (Number(token.x) || 0) + ((Number(token.width) || 1) * size) / 2, y: (Number(token.y) || 0) + ((Number(token.height) || 1) * size) / 2 };
+}
+
+/**
+ * Every other token within `yards` of the actor's token, on that token's own
+ * scene (not whichever the GM is viewing), and how far away in whole yards.
+ * Tokens are told apart by the token, so each copy of an unlinked actor counts.
+ */
+function actorsNear(actor: any, yards: number): Array<{ actor: any; yards: number }> {
+  // An unlinked actor is its token's; a linked one, its token on the scene being viewed, else on any scene.
+  const from = actor?.token
+    ?? actor?.getActiveTokens?.(false, true)?.[0]
+    ?? [...((game as any).scenes ?? [])].flatMap((s: any) => [...(s.tokens ?? [])]).find((t: any) => t?.actorLink && t.actorId === actor?.id)
+    ?? null;
+  const scene = from?.parent;
+  if (!from || !scene?.tokens) return [];
+  const size = Number(scene.grid?.size) || 100;
+  const perSquare = Number(scene.grid?.distance) || 1;
+  const here = centreOf(from, size);
+  const out: Array<{ actor: any; yards: number }> = [];
+  for (const token of scene.tokens) {
+    if (!token?.actor || token.id === from.id) continue;
+    const there = centreOf(token, size);
+    const distance = Math.round((Math.hypot(there.x - here.x, there.y - here.y) / size) * perSquare);
+    if (distance <= yards) out.push({ actor: token.actor, yards: distance });
+  }
+  return out;
+}
+
 /** A victim's large-area DR: the torso's and the least-protected location's, averaged (Campaigns p. 400). */
 function largeAreaDr(api: GWorldApi, actor: any): number {
-  const byLocation = (api.actors.derived(actor) as any)?.drByLocation ?? {};
+  // Against burning, where a location's DR is split.
+  const byLocation = burnDrByLocation(api, actor);
   const rules = api.rules as any;
   const locations: readonly string[] = rules.LARGE_AREA_LOCATIONS ?? ["torso"];
   const exposed = locations.map((location) => ({ location, dr: Number(byLocation[location]) || 0 }));

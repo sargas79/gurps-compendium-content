@@ -27,6 +27,7 @@ const HOOKS = {
   weaponTargets: "gworld.weaponTargets",
   successRollModifiers: "gworld.successRollModifiers",
   afflictionEffect: "gworld.afflictionEffect",
+  afterVehicleHit: "gworld.afterVehicleHit",
 };
 
 let hooks: Map<string, Listener[]>;
@@ -235,6 +236,47 @@ describe("flamethrowers (flamethrowers)", () => {
     await flush();
     expect(injuries).toEqual([{ actor: "Victim", amount: 4, label: "GCC.HT.Projectors.Flame.Title" }]);
     expect(victim.flags.htFlameBurn).toEqual({ seconds: 9 });
+  });
+
+  it("burns against the DR a split piece gives against burning, not its headline figure", async () => {
+    on.flamethrowers = true;
+    const item = flamethrower();
+    const victim = actorWith("Victim");
+    fire(HOOKS.damageModifiers, { item, mode: { index: 0, ranged: true }, distanceYards: 30, modifiers: [] });
+    await flush();
+    dice = [2];
+    fire(HOOKS.afterDamage, { actor: victim, item, damage: { basicDamage: 10 }, result: { injury: 8 } });
+    await flush();
+    // Everywhere DR 10, but only 5 against burning: large-area DR 5, a fifth of it 1. A 4 does 3.
+    const keys = ["torso", "skull", "face", "eye", "neck", "groin", "arm", "hand", "leg", "foot"];
+    derived.drByLocation = Object.fromEntries(keys.map((k) => [k, 10]));
+    derived.hitLocations = keys.map((key) => ({ key, dr: 10, exceptions: [{ dr: 5, types: ["burn", "cor"] }] }));
+    dice = [4];
+    fire(HOOKS.turnStart, null, { actor: victim });
+    await flush();
+    expect(injuries).toEqual([{ actor: "Victim", amount: 3, label: "GCC.HT.Projectors.Flame.Title" }]);
+  });
+
+  it("rolls an air-breathing engine's HT every 3 seconds after a hit in its vital area, until it breaks down (p. 179)", async () => {
+    on.flamethrowers = true;
+    const item = flamethrower();
+    const shooter = actorWith("Shooter", [item]);
+    const jeep = { name: "Willys MB", type: "vehicle", system: { vehicle: { stHp: 59, ht: 11, fragility: "f" } } };
+    // 2d x 5 = 20 seconds of fuel; HT 11: a 9 holds, a 17 breaks it down.
+    dice = [2, 2, 3, 3, 3, 6, 6, 5];
+    fire(HOOKS.afterVehicleHit, { vehicle: jeep, actor: shooter, item, location: "vitalArea", penetrating: 5, injury: 15 });
+    await flush();
+    expect(chat.at(-1)).toContain('Engine.Burns {"vehicle":"Willys MB","seconds":20}');
+    expect(chat.at(-1)).toContain('Engine.CheckMade {"second":0,"roll":9,"ht":11}');
+    expect(chat.at(-1)).toContain('Engine.CheckFailed {"second":3,"roll":17,"ht":11}');
+    expect(chat.at(-1)).toContain("Engine.BrokenDown");
+
+    // Elsewhere on the vehicle, or an electric one, nothing.
+    const before = chat.length;
+    fire(HOOKS.afterVehicleHit, { vehicle: jeep, actor: shooter, item, location: "body", penetrating: 5, injury: 5 });
+    fire(HOOKS.afterVehicleHit, { vehicle: { name: "Electric Bike", system: { vehicle: { stHp: 15, ht: 10, fragility: "" } } }, actor: shooter, item, location: "vitalArea", penetrating: 5, injury: 5 });
+    await flush();
+    expect(chat.length).toBe(before);
   });
 
   it("stops burning when the GM takes the condition off", async () => {
