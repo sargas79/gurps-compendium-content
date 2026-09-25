@@ -5069,7 +5069,7 @@
         },
         "forcedEntryTools": {
           "Name": "Forced-entry tools",
-          "Hint": "Saws, drills, cutters and torches get a Forced Entry row with the damage they do each second (or each use) and what they work on; the rock drill and lock buster pass on a maul's blow. The hand ram (below ST 20), door opener and spreader/cutter need their Ready maneuvers before each use; the glass cutter and duct tape are row actions (High-Tech pp. 25-30)."
+          "Hint": "Saws, drills, cutters and torches get a Forced Entry row with the damage they do each second (or each use) and what they work on; the rock drill and lock buster pass on a maul's blow. The hand ram (below ST 20), door opener and spreader/cutter need their Ready maneuvers before each use; the glass cutter and duct tape are row actions. A fire extinguisher's bursts put out a flamethrower's burning fuel, and a fire shelter gives DR 10 against burning to whoever is inside (High-Tech pp. 25-30)."
         },
         "chainsaws": {
           "Name": "Chainsaws and nail guns",
@@ -7240,6 +7240,27 @@
       },
       "Tools": {
         "Title": "Tools (High-Tech)",
+        "Extinguisher": {
+          "Action": "Spray the extinguisher",
+          "Target": "Target whoever is to be sprayed: a burst each.",
+          "Line": "{left} of {bursts} one-second bursts left, out to {yards} yards; each puts a fire out on {target} or less (High-Tech p. 29).",
+          "Empty": "{name} is empty.",
+          "OutOfRange": "{name} is past the extinguisher's {yards} yards.",
+          "Missed": "{name}: rolled {roll} against {target}; the fire isn't out.",
+          "PutOut": "{name}: rolled {roll} against {target}; the fire is out.",
+          "PutOutGm": "{name}: rolled {roll} against {target}; the fire is out (the GM takes the burning off).",
+          "Doused": "{name}: rolled {roll} against {target}; nothing on them was burning.",
+          "BurnsOn": "Thermite or napalm on {name} burns on: an extinguisher doesn't put it out.",
+          "Left": "{left} of {bursts} bursts left."
+        },
+        "Shelter": {
+          "Action": "Get into or out of the fire shelter",
+          "Line": "DR {dr} against burning damage for whoever is inside it (High-Tech p. 30).",
+          "InsideLine": "In use: DR {dr} against burning damage for whoever is inside it.",
+          "GotIn": "{name} is inside the fire shelter: DR {dr} against burning. The heat of the air still counts (Campaigns p. 434).",
+          "GotOut": "{name} is out of the fire shelter.",
+          "Reason": "A fire shelter: DR 10 against burning (High-Tech p. 30)"
+        },
         "KitLabel": "Kit",
         "KitTooltip": "What size of kit this is: a mini-tool kit, a portable kit or a workshop (High-Tech p. 24). Set its skill and specialty in the item's skills.",
         "Kit": {

@@ -16,7 +16,12 @@
  *     each tool that works at so much a second (or a bite, or a blow), with
  *     Forced Entry; the Ready maneuvers the hand ram, door opener and
  *     spreader take, counted by a row action and required before the attack;
- *     the glass cutter's roll and the duct-tape restraint as row actions.
+ *     the glass cutter's roll and the duct-tape restraint as row actions. A
+ *     fire extinguisher's bursts, each a roll to put out the fire on a
+ *     targeted character (a flamethrower's fuel taken off; the system's
+ *     `burning` left for the GM to take off, as no call ends it; never
+ *     thermite or napalm), counted on the item; a fire shelter, got
+ *     into and out of by a row action, DR 10 against burning inside it.
  *   - **Chainsaws (chainsaws):** Forced Entry rows for rescue work, one at
  *     the (0.5) divisor for hard material; a blow from it that fails to
  *     penetrate (or the row action, for a door or a car) rolls the stall or
@@ -48,6 +53,10 @@ import {
   WORK_MATERIALS,
   breakFreeRoll,
   chainsawMishap,
+  extinguisherOf,
+  extinguishes,
+  isFireShelter,
+  FIRE_SHELTER_DR,
   diceRange,
   glassCutterOutcome,
   kitPriceMultipliers,
@@ -75,6 +84,15 @@ const LEAD = "leadPoisoning";
 const WORK_MODE = "ht-tool-work";
 const RESCUE_MODE = "ht-chainsaw-rescue";
 const HARD_MODE = "ht-chainsaw-hard";
+/** The bursts spent from a fire extinguisher; and a fire shelter someone is inside. */
+const BURSTS_FLAG = "htBurstsUsed";
+const SHELTER_FLAG = "htShelterInside";
+/**
+ * The fire a burst puts out that this module keeps: a flamethrower's fuel (pp. 178, 29). The
+ * system's own `burning` has no call to end it, so the GM takes that off; thermite and napalm burn on.
+ */
+const PUT_OUT = [`${MODULE_ID}.ht-flame-burning`];
+const BURNING_ON = [`${MODULE_ID}.ht-thermite-burning`, `${MODULE_ID}.ht-napalm-burning`];
 
 /** What a record is beyond a kit, a working tool or a hazard: the tools with a rule of their own. */
 export const TOOL_USES = ["", "chainsaw", "nailGun", "glassCutter", "ductTape"] as const;
@@ -343,6 +361,61 @@ async function hazardDamage(api: GWorldApi, item: any, actor: any): Promise<void
   });
 }
 
+/** Sprays a fire extinguisher at each targeted character within its range, a burst each (p. 29). */
+async function extinguish(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const figures = extinguisherOf(String(item.name ?? ""));
+  if (!figures) return;
+  const name = String(item.name ?? "");
+  const victims = [...((game as any).user?.targets ?? [])];
+  if (!victims.length) return void ui.notifications?.warn(L("Extinguisher.Target"));
+  const tl = api.rules.parseTechLevel(item.system?.tl) ?? 6;
+  let used = Number(item.getFlag?.(MODULE_ID, BURSTS_FLAG)) || 0;
+  const own = actor?.getActiveTokens?.()?.[0] ?? null;
+  const lines: string[] = [];
+  const rolls: any[] = [];
+  for (const token of victims) {
+    const victim = token?.actor;
+    if (!victim) continue;
+    if (used >= figures.bursts) {
+      lines.push(F("Extinguisher.Empty", { name }));
+      break;
+    }
+    const yards = yardsApart(own, token);
+    if (yards !== null && yards > figures.yards) {
+      lines.push(F("Extinguisher.OutOfRange", { name: String(victim.name ?? ""), yards: figures.yards }));
+      continue;
+    }
+    used += 1;
+    const roll = new Roll("3d6");
+    await roll.evaluate();
+    rolls.push(roll);
+    const conditions = ((api.actors.conditions(victim) ?? []) as any[]).map((c) => String(c?.id ?? ""));
+    if (!extinguishes(Number(roll.total), tl)) {
+      lines.push(F("Extinguisher.Missed", { name: String(victim.name ?? ""), roll: roll.total, target: tl + 2 }));
+      continue;
+    }
+    const out = conditions.filter((id) => PUT_OUT.includes(id));
+    const put = victim.isOwner ? out : [];
+    for (const id of put) await api.actors.removeCondition(victim, id);
+    // The system's own burning, and fuel on a victim this user can't change: the GM takes it off.
+    const left = out.length > put.length || Boolean(victim.statuses?.has?.("burning"));
+    const key = left ? "Extinguisher.PutOutGm" : put.length ? "Extinguisher.PutOut" : "Extinguisher.Doused";
+    lines.push(F(key, { name: String(victim.name ?? ""), roll: roll.total, target: tl + 2 }));
+    if (conditions.some((id) => BURNING_ON.includes(id))) lines.push(F("Extinguisher.BurnsOn", { name: String(victim.name ?? "") }));
+  }
+  if (item.isOwner) await item.setFlag(MODULE_ID, BURSTS_FLAG, Math.min(figures.bursts, used));
+  lines.push(F("Extinguisher.Left", { left: Math.max(0, figures.bursts - used), bursts: figures.bursts }));
+  await say(actor, name, lines, rolls);
+}
+
+/** Yards between two tokens' centres, where the map knows both. */
+function yardsApart(a: any, b: any): number | null {
+  const grid = (globalThis as any).canvas?.grid;
+  if (!a?.center || !b?.center || !grid?.measurePath) return null;
+  const distance = Number(grid.measurePath([a.center, b.center])?.distance);
+  return Number.isFinite(distance) ? distance : null;
+}
+
 // ── the item sheet ──
 
 const workLabel = (work: Work): string => {
@@ -388,6 +461,14 @@ function itemContext(api: GWorldApi, item: any, on: ToolSwitches): Record<string
     if (state) lines.push(L(state === "stalled" ? "StalledLine" : "SnappedLine"));
   }
   if (on.chainsaws() && data.use === "nailGun") lines.push(F("NailGunLine", { penalty: NAIL_GUN_PENALTY }));
+  if (on.forcedEntry()) {
+    const extinguisher = extinguisherOf(String(item.name ?? ""));
+    if (extinguisher) {
+      const used = Number(item.getFlag?.(MODULE_ID, BURSTS_FLAG)) || 0;
+      lines.push(F("Extinguisher.Line", { left: Math.max(0, extinguisher.bursts - used), bursts: extinguisher.bursts, yards: extinguisher.yards, target: (api.rules.parseTechLevel(item.system?.tl) ?? 6) + 2 }));
+    }
+    if (isFireShelter(String(item.name ?? ""))) lines.push(F(item.getFlag?.(MODULE_ID, SHELTER_FLAG) ? "Shelter.InsideLine" : "Shelter.Line", { dr: FIRE_SHELTER_DR }));
+  }
   if (on.hazards() && data.hazard) {
     lines.push(data.hazard.kind === "explosion"
       ? F("PropaneLine", { dr: PROPANE_DR, damage: data.hazard.damage, fragments: PROPANE_FRAGMENTS })
@@ -553,6 +634,39 @@ export function readyTools(api: GWorldApi, on: ToolSwitches): void {
       breakFree: async ({ message, data }: any) => { if (on.forcedEntry()) await breakFree(api, message, data as TapeData); },
     },
   } as any);
+
+  // ── rescue tools (pp. 29-30) ──
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-extinguisher",
+    itemTypes: ["equipment"],
+    label: L("Extinguisher.Action"),
+    icon: "fa-solid fa-fire-extinguisher",
+    visible: (item) => on.forcedEntry() && extinguisherOf(String(item.name ?? "")) !== null,
+    run: (item, actor) => { void extinguish(api, item, actor); },
+  });
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-fire-shelter",
+    itemTypes: ["equipment"],
+    label: L("Shelter.Action"),
+    icon: "fa-solid fa-tent",
+    visible: (item) => on.forcedEntry() && isFireShelter(String(item.name ?? "")),
+    run: (item, actor) => {
+      void (async () => {
+        const inside = !item.getFlag?.(MODULE_ID, SHELTER_FLAG);
+        await item.setFlag(MODULE_ID, SHELTER_FLAG, inside);
+        await say(actor, String(item.name ?? ""), [F(inside ? "Shelter.GotIn" : "Shelter.GotOut", { name: String(actor?.name ?? ""), dr: FIRE_SHELTER_DR })]);
+      })();
+    },
+  });
+  // Inside a fire shelter: DR 10 against burning (p. 30), a layer of its own over everything else.
+  Hooks.on(api.combat.hooks.armorDr, (context: any) => {
+    if (!on.forcedEntry() || context?.damageType !== "burn" || !Array.isArray(context.lines)) return;
+    const shelter = [...(context.actor?.items ?? [])].find((i: any) => i?.type === "equipment" && isFireShelter(String(i.name ?? "")) && i.getFlag?.(MODULE_ID, SHELTER_FLAG) === true);
+    if (!shelter) return;
+    context.lines.push({ label: String(shelter.name ?? ""), dr: FIRE_SHELTER_DR, applies: true, forceField: false, flexible: true, hardened: 0, itemId: shelter.id, source: "armor", reason: L("Shelter.Reason") });
+  });
 
   // ── chainsaws (pp. 27-28) ──
   const sawRow = (item: any, actor: any, helpers: any, hard: boolean) => {

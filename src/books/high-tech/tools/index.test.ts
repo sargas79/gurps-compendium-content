@@ -19,6 +19,7 @@ const HOOKS = {
   attackModifiers: "gworld.attackModifiers",
   afterDamage: "gworld.afterDamage",
   afterSuccessRoll: "gworld.afterSuccessRoll",
+  armorDr: "gworld.armorDr",
   poisonCycle: "gworld.poisonCycle",
 };
 
@@ -66,6 +67,8 @@ function fakeApi() {
       update: async () => true,
     },
     actors: {
+      conditions: (actor: any) => actor?.conditionList ?? [],
+      removeCondition: async (actor: any, id: string) => { actor.conditionList = (actor.conditionList ?? []).filter((c: any) => c.id !== id); },
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? 10,
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
     },
@@ -155,6 +158,63 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.unstubAllGlobals();
+});
+
+/** Flags on a test item, as Foundry keeps them. */
+function flagged(item: any): any {
+  const flags: Record<string, unknown> = {};
+  item.getFlag = (_scope: string, key: string) => flags[key];
+  item.setFlag = async (_scope: string, key: string, value: unknown) => { flags[key] = value; };
+  return item;
+}
+
+describe("rescue tools (High-Tech pp. 29-30)", () => {
+  beforeEach(() => { on = { forcedEntryTools: true }; ready(); });
+
+  it("puts a flamethrower's fuel out on TL+2 or less, a burst each, and leaves thermite and the system's burning be", async () => {
+    const small = flagged(equipment("Fire Extinguisher, Small", {}, { tl: "6" }));
+    const firefighter = worker([small]);
+    const fuel = { id: `${MODULE_ID}.ht-flame-burning` };
+    const soaked: any = { name: "Soaked", isOwner: true, conditionList: [fuel], statuses: new Set() };
+    const alight: any = { name: "Alight", isOwner: true, conditionList: [{ id: `${MODULE_ID}.ht-thermite-burning` }], statuses: new Set(["burning"]) };
+    targets = [{ actor: soaked }, { actor: alight }];
+    expect(actions.get("ht-extinguisher").visible(small)).toBe(true);
+    dieRoll = 8;
+    actions.get("ht-extinguisher").run(small, firefighter);
+    await flush();
+    expect(soaked.conditionList).toEqual([]);
+    expect(chat.at(-1)).toContain("Extinguisher.PutOut {");
+    expect(chat.at(-1)).toContain("Extinguisher.PutOutGm");
+    expect(chat.at(-1)).toContain("Extinguisher.BurnsOn");
+    expect(small.getFlag(MODULE_ID, "htBurstsUsed")).toBe(2);
+    // A 9 misses at TL6; and the eight bursts run out.
+    soaked.conditionList = [fuel];
+    targets = [{ actor: soaked }];
+    dieRoll = 9;
+    actions.get("ht-extinguisher").run(small, firefighter);
+    await flush();
+    expect(soaked.conditionList).toEqual([fuel]);
+    expect(chat.at(-1)).toContain("Extinguisher.Missed");
+    await small.setFlag(MODULE_ID, "htBurstsUsed", 8);
+    actions.get("ht-extinguisher").run(small, firefighter);
+    await flush();
+    expect(chat.at(-1)).toContain("Extinguisher.Empty");
+    expect(actions.get("ht-extinguisher").visible(equipment("Spanner Wrench"))).toBe(false);
+  });
+
+  it("gives whoever is inside a fire shelter DR 10 against burning, and nothing else", async () => {
+    const shelter = flagged(equipment("Fire Shelter"));
+    const ranger = worker([shelter]);
+    const armor = (damageType: string) => fire(HOOKS.armorDr, { actor: ranger, damageType, lines: [] }).lines;
+    expect(armor("burn")).toEqual([]);
+    actions.get("ht-fire-shelter").run(shelter, ranger);
+    await flush();
+    expect(armor("burn")).toEqual([expect.objectContaining({ dr: 10, applies: true, source: "armor", label: "Fire Shelter" })]);
+    expect(armor("cut")).toEqual([]);
+    actions.get("ht-fire-shelter").run(shelter, ranger);
+    await flush();
+    expect(armor("burn")).toEqual([]);
+  });
 });
 
 describe("with every switch off", () => {
