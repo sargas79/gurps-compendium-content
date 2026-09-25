@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { ablativeLoss } from "../../../../system/src/rules/armor.js";
+import { ablativeLoss, drAgainst } from "../../../../system/src/rules/armor.js";
 import {
   armorHoldoutPenalty,
   canTurnUpTops,
@@ -13,7 +13,9 @@ import {
   materialDr,
   materialPrice,
   partialStands,
+  pieceDrAt,
   plateLoss,
+  sideMeets,
   sixths,
   strikeAroundPenalty,
 } from "./rules.js";
@@ -98,6 +100,28 @@ describe("materials (High-Tech pp. 65, 67)", () => {
   it("wears a trauma plate down as semi-ablative DR does", () => {
     for (const [basic, dr] of [[23, 25], [9, 25], [40, 2], [0, 5]] as const) {
       expect(plateLoss(basic, dr)).toBe(ablativeLoss({ ablative: "semiAblative", dr, basicDamage: basic }));
+    }
+  });
+});
+
+describe("one-sided pieces (Characters p. 282; High-Tech p. 67)", () => {
+  it("meets a blow from the front, or from no known arc, at the front; only from behind at the back", () => {
+    expect([null, "front", "side", "back"].map((arc) => sideMeets("front", arc))).toEqual([true, true, false, false]);
+    expect([null, "front", "side", "back"].map((arc) => sideMeets("back", arc))).toEqual([false, false, false, true]);
+  });
+
+  it("reads a piece's DR as the system does", () => {
+    const pieces = [
+      { dr: 25, drSplit: null, drSplitAppliesTo: [], drByLocation: [], drLost: 0 },
+      { dr: 12, drSplit: 5, drSplitAppliesTo: ["cr"], drByLocation: [], drLost: 2 },
+      { dr: 5, drSplit: null, drSplitAppliesTo: [], drByLocation: [{ locations: ["skull"], dr: 7 }], drLost: 0 },
+    ];
+    for (const piece of pieces) {
+      for (const type of ["cr", "pi"] as const) {
+        for (const location of ["torso", "skull"] as const) {
+          expect(pieceDrAt(piece, type, location)).toBe(drAgainst({ ...piece, locations: [] } as never, type, location));
+        }
+      }
     }
   });
 });

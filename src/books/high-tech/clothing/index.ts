@@ -14,7 +14,8 @@
  *     fur winter or arctic clothes, through `gworld.armorDr`; an outfit's
  *     weight by TL, as a price modifier; and body armour's 2 FP on a hot
  *     day's battle (`gworld.fatigueCost`, the day's temperature since API
- *     1.138.0).
+ *     1.138.0), which a worn ghillie suit costs too, as an overcoat, under
+ *     the camouflage switch (p. 77).
  *   - **Frostbite (frostbite):** where the cold costs FP, a damage card for
  *     each exposed hit location, a point of injury per FP it came to after
  *     Very Fit, through no DR (`gworld.afterFatigue`).
@@ -32,6 +33,8 @@
 import { CLIMATE_TABLES, readyClimate, workingClimateGear, type ClimateGear } from "../../../shared/climate/index.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { camouflageData } from "../../../shared/stealth/data.js";
+import { patternShowing } from "../camouflage/rules.js";
 import {
   COOLING_SYSTEM,
   COOLING_VEST,
@@ -72,6 +75,8 @@ export interface ClothingSwitches {
   clothing: () => boolean;
   frostbite: () => boolean;
   climate: () => boolean;
+  /** Camouflage's switch: a worn ghillie suit counts as an overcoat for fatigue (p. 77). */
+  ghillie?: () => boolean;
 }
 
 /** What this module keeps on an outfit. */
@@ -204,6 +209,15 @@ function missingFor(actor: any, clothing: ClothingClass, on: ClothingSwitches): 
 function bodyArmour(actor: any): any {
   return [...(actor?.items ?? [])].find((i: any) => i?.type === "armor" && i.system?.equipped === true && i.system?.carried !== false
     && (!(i.system?.locations?.length) || i.system.locations.includes("torso"))) ?? null;
+}
+
+/** A worn ghillie suit, or null (p. 77). A ghillie net laid over gear isn't worn. */
+function wornGhillie(actor: any): any {
+  return [...(actor?.items ?? [])].find((i: any) => {
+    if ((i?.type !== "equipment" && i?.type !== "armor") || i.system?.equipped !== true || i.system?.carried === false) return false;
+    const data = camouflageData(i);
+    return patternShowing(data) === "ghillie" && !data.net;
+  }) ?? null;
 }
 
 // ── frostbite (p. 63) ──
@@ -370,11 +384,15 @@ export function readyClothing(api: GWorldApi, on: ClothingSwitches): void {
 
     // Body armour on a hot day's battle: the Basic Set's 2 FP for anyone in
     // plate or an overcoat (p. 65; Campaigns p. 426), unless worn gear cools.
-    if (on.clothing() && context.reason === "battle" && details.hot === true) {
-      const armour = bodyArmour(actor);
-      if (armour && !workingClimateGear(actor).some(({ gear }) => gear.zone.heatF > 0)) {
+    // A ghillie suit is hot and heavy: an overcoat for this (p. 77). Once,
+    // whatever else is worn.
+    if (context.reason === "battle" && details.hot === true) {
+      const armour = on.clothing() ? bodyArmour(actor) : null;
+      const ghillie = !armour && on.ghillie?.() ? wornGhillie(actor) : null;
+      const garment = armour ?? ghillie;
+      if (garment && !workingClimateGear(actor).some(({ gear }) => gear.zone.heatF > 0)) {
         context.fp = (Number(context.fp) || 0) + HOT_BATTLE_ARMOUR_FP;
-        context.sources.push(F("HotBattleLine", { name: armour.name, fp: HOT_BATTLE_ARMOUR_FP }));
+        context.sources.push(F(armour ? "HotBattleLine" : "HotGhillieLine", { name: garment.name, fp: HOT_BATTLE_ARMOUR_FP }));
       }
     }
 

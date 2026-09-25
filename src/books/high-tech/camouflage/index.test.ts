@@ -16,8 +16,12 @@ const api: any = {
   registry: { isRuleOn: () => true },
   data: { hooks: { skillBonuses: "sb" }, registerPriceModifier: () => undefined },
   combat: { hooks: { successRollModifiers: "srm", detectionModifiers: "dm" } },
-  sheets: { registerSheetSection: () => undefined, registerRowAction: () => undefined },
+  sheets: { registerSheetSection: () => undefined, registerRowAction: (a: any) => rows.push(a) },
+  actors: { skillLevel: (actor: any) => actor.camouflage ?? null, attribute: () => 10 },
+  roll: { success: async (o: any) => { rolled.push(o); return { success: true, margin: 3 }; } },
 };
+const rows: any[] = [];
+const rolled: any[] = [];
 
 /** A High-Tech record with its camouflage fields. */
 function piece(name: string, camouflage: Record<string, unknown>, extra: Record<string, unknown> = {}): any {
@@ -103,5 +107,48 @@ describe("High-Tech's scent masking (p. 77)", () => {
     const none = { subject: off, skill: "Tracking", modifiers: [] as any[] };
     fire("dm", none);
     expect(none.modifiers).toEqual([]);
+  });
+});
+
+describe("customising ghillie suits as a team (p. 77)", () => {
+  /** A character with a Camouflage skill item at a level, and a suit whose writes are kept. */
+  function member(name: string, level: number | null, custom = 0, isOwner = true): any {
+    const suit: any = piece(`${name}'s Ghillie Suit`, { pattern: "ghillie", custom }, { tl: "6" });
+    suit.type = "equipment";
+    suit.isOwner = isOwner;
+    suit.update = async (patch: Record<string, unknown>) => {
+      for (const [path, value] of Object.entries(patch)) suit.system.extensions[MODULE_ID].camouflage[path.split(".").pop()!] = value;
+    };
+    const skill = level === null ? [] : [{ type: "skill", name: "Camouflage", system: {} }];
+    return { name, uuid: `Actor.${name}`, camouflage: level, items: [suit, ...skill], getFlag: () => undefined, suit };
+  }
+  const flush = async () => { for (let i = 0; i < 10; i += 1) await Promise.resolve(); };
+  const custom = (m: any) => m.suit.system.extensions[MODULE_ID].camouflage.custom;
+
+  it("has the best Camouflage among the targeted team roll once, and customises every suit", async () => {
+    const chat: string[] = [];
+    vi.stubGlobal("ChatMessage", { implementation: { create: async (m: any) => { chat.push(m.content); }, getSpeaker: () => ({}) } });
+    vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s } });
+    const me = member("Me", 11);
+    const sniper = member("Sniper", 15, 5);
+    const stranger = member("Stranger", 9, 0, false);
+    (globalThis as any).game.user = { targets: new Set([{ actor: sniper }, { actor: stranger }, { actor: me }]) };
+    rolled.length = 0;
+    const action = rows.find((r) => r.key === "camouflage-customise");
+    expect(action.visible(me.suit)).toBe(true);
+    await action.run(me.suit, me);
+    await flush();
+    expect(rolled).toHaveLength(1);
+    expect(rolled[0]).toMatchObject({ actor: sniper, base: 15, item: sniper.suit });
+    // A margin of 3; the sniper's suit keeps its better 5; the stranger's is left to its owner.
+    expect(custom(me)).toBe(3);
+    expect(custom(sniper)).toBe(5);
+    expect(custom(stranger)).toBe(0);
+    expect(chat[0]).toContain("CustomisedNotOwned");
+    // Alone, the wearer rolls for himself.
+    (globalThis as any).game.user = { targets: new Set() };
+    rolled.length = 0;
+    await action.run(sniper.suit, sniper);
+    expect(rolled[0].actor).toBe(sniper);
   });
 });
