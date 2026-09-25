@@ -16,17 +16,24 @@
  *     (Characters p. 112); the patient rolls HT-2 or forgets the 1d days
  *     before it, a quirk's worth of Amnesia.
  *   - **The laser scalpel (HT:EE p. 14):** +2 to the Surgery rolls that High
- *     Manual Dexterity helps.
+ *     Manual Dexterity helps; each specialty of Surgery needs its own design,
+ *     so one built for a specialty helps only that one.
+ *   - **Electrocautery and the cautery pen (HT:EE pp. 13-14):** a Surgery
+ *     roll stops superficial bleeding (Campaigns p. 420) or burns off a small
+ *     growth; the heat causes Severe Pain unless the patient has had a local
+ *     anaesthetic. The battery pen is thrown away after use.
  */
 
 /** What a record is to these rules, by its name. */
-export type Electromedicine = "diathermy" | "heatingPad" | "ect" | "laserScalpel";
+export type Electromedicine = "diathermy" | "heatingPad" | "ect" | "laserScalpel" | "cautery" | "cauteryPen";
 
 const KINDS: ReadonlyArray<readonly [RegExp, Electromedicine]> = [
   [/^portable diathermy apparatus$|^diathermy\b/i, "diathermy"],
   [/^heating pad$/i, "heatingPad"],
   [/^electroconvulsive therapy device$/i, "ect"],
   [/^laser scalpel$/i, "laserScalpel"],
+  [/^electrocautery$/i, "cautery"],
+  [/^cautery pen$/i, "cauteryPen"],
 ];
 
 export function electromedicineOf(name: unknown): Electromedicine | null {
@@ -76,3 +83,34 @@ export function stillMitigated(until: unknown, now: number): boolean {
 
 /** The laser scalpel's bonus to Surgery (HT:EE p. 14). */
 export const LASER_SCALPEL = 2;
+
+/**
+ * Whether a laser scalpel built for a specialty of Surgery (blank for none
+ * named) helps a roll against a Surgery skill: one built for a specialty
+ * helps only that specialty's rolls; a Surgery with no specialty, as the
+ * Basic Set's has none, takes any.
+ */
+export function scalpelFits(builtFor: unknown, skill: unknown): boolean {
+  const wanted = String(builtFor ?? "").trim().toLowerCase();
+  const specialty = /\(([^)]+)\)/.exec(String(skill ?? ""))?.[1]?.trim().toLowerCase() ?? "";
+  return !wanted || !specialty || specialty === wanted;
+}
+
+/** Cauterizing (HT:EE pp. 13-14): the skill, and the pain the heat causes without a local anaesthetic (Campaigns p. 428). */
+export const CAUTERY = Object.freeze({ skill: "Surgery", pain: "severePain" as const });
+
+/** Surgery has no attribute default: First Aid-12, Physician-5, Physiology-8 or Veterinary-5 (Characters p. 223). */
+export const SURGERY_DEFAULTS: ReadonlyArray<{ skill: string; modifier: number }> = Object.freeze([
+  { skill: "Physician", modifier: -5 },
+  { skill: "Veterinary", modifier: -5 },
+  { skill: "Physiology", modifier: -8 },
+  { skill: "First Aid", modifier: -12 },
+]);
+
+/** The best Surgery level a character can roll: the skill, else its best default; null for none. */
+export function surgeryLevel(level: (skill: string) => number | null): number | null {
+  const own = level(CAUTERY.skill);
+  if (typeof own === "number") return own;
+  const defaults = SURGERY_DEFAULTS.map((d) => { const l = level(d.skill); return typeof l === "number" ? l + d.modifier : null; }).filter((l): l is number => l !== null);
+  return defaults.length ? Math.max(...defaults) : null;
+}

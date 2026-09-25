@@ -50,6 +50,25 @@ export interface Skirt extends ArmourSpot {
   dr: number;
 }
 
+/**
+ * Armour around one crew post against an occupant hit (Campaigns p. 555):
+ * DR by the face the shot came in from. A face the text gives nothing for
+ * has none.
+ */
+export interface CrewArmour {
+  /** Who sits behind it: the pilot, the coxswain. */
+  post: "pilot" | "coxswain";
+  front?: number;
+  side?: number;
+  rear?: number;
+}
+
+/** A gun shield on one of a vehicle's several mounts: it guards that mount's gunner alone. */
+export interface GunShield {
+  mount: "rearPintle";
+  dr: number;
+}
+
 /** What a vehicle is fitted with, of the components the book rules for. */
 export interface VehicleFit {
   /** Gun ports, and the penalty to hit someone at one from outside (-4 to -7, p. 228). */
@@ -78,6 +97,22 @@ export interface VehicleFit {
   tank?: boolean;
   /** Headsets for the crew, from late TL6 (p. 234). */
   intercom?: boolean;
+  /** Cockpit armour around a crewman, against occupant hits (pp. 237-238, 242). */
+  crewArmour?: readonly CrewArmour[];
+  /** Gun shields on single mounts (p. 242). */
+  gunShields?: readonly GunShield[];
+}
+
+/**
+ * What a crew post's armour gives against an occupant hit from a face: its
+ * DR there, or null where it has none. A shot with no face comes from the
+ * front; from above or below, the cockpit armour the book prints doesn't
+ * reach.
+ */
+export function crewArmourDr(armour: CrewArmour, arc: string | null | undefined): number | null {
+  const face = arc ?? "front";
+  const dr = face === "front" ? armour.front : face === "side" ? armour.side : face === "rear" ? armour.rear : undefined;
+  return typeof dr === "number" && dr > 0 ? dr : null;
 }
 
 /** The components a GM can fit a vehicle with, as switches. */
@@ -113,8 +148,10 @@ export const HT_VEHICLES: Readonly<Record<string, VehicleFit>> = Object.freeze({
   "Renault FT17": { turretReadies: 2, riveted: true, tank: true },
   // Armoured windows that slide down as gun ports (p. 236).
   "Cadillac V-16 Armored": { gunPorts: 2, gunPortPenalty: -7 },
-  "Focke-Wulf Fw 190A-6 Würger": { iff: true },
-  "NAA P-51D Mustang IV": { iff: true },
+  // Cockpit armour on an occupant hit: DR 15 front and sides, 25 behind (p. 237).
+  "Focke-Wulf Fw 190A-6 Würger": { iff: true, crewArmour: [{ post: "pilot", front: 15, side: 15, rear: 25 }] },
+  // Cockpit armour on an occupant hit: DR 20 from the front, 35 from the back (p. 238).
+  "NAA P-51D Mustang IV": { iff: true, crewArmour: [{ post: "pilot", front: 20, rear: 35 }] },
   // Skirts on the turret and body sides work as spaced armour; an extinguisher; smoke discharger on some (pp. 238-239).
   "Krupp Panzer IV Ausf H": {
     turretReadies: 3, extinguisher: true, smokeDischargers: true, tank: true, intercom: true,
@@ -129,8 +166,12 @@ export const HT_VEHICLES: Readonly<Record<string, VehicleFit>> = Object.freeze({
   "Aérospatiale SA316B Alouette III": { iff: true },
   "Hughes OH-6A Cayuse": { iff: true },
   "MDHC AH-6J Little Bird": { iff: true },
-  // The bow gun tub turns a facing a second and fires as it turns; a searchlight; sound baffling (p. 242).
-  "Uniflite PBR MK 2": { turretSeconds: 1, searchlightMiles: 0.25, soundBaffling: true },
+  // The bow gun tub turns a facing a second and fires as it turns; a searchlight; sound baffling;
+  // the coxswain's cockpit armour, DR 20 all round; a DR 35 gun shield on the rear pintle (p. 242).
+  "Uniflite PBR MK 2": {
+    turretSeconds: 1, searchlightMiles: 0.25, soundBaffling: true,
+    crewArmour: [{ post: "coxswain", front: 20, side: 20, rear: 20 }], gunShields: [{ mount: "rearPintle", dr: 35 }],
+  },
   // Improved brakes and run-flat tyres (p. 242).
   "AM General M1025": { improvedBrakes: true, runFlat: true },
   "Boeing M998 Avenger": { turretReadies: 2, improvedBrakes: true, runFlat: true, iff: true },

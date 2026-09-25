@@ -27,6 +27,10 @@ export interface GrenadeFacts {
   readies: number;
   /** Seconds of smoke over a radius in yards, left where it lands. */
   cloud?: { radius: number; seconds: number };
+  /** The cloud is tear gas, not smoke (the M7, p. 192). */
+  tearGas?: boolean;
+  /** A canister that burns bare flesh touching it: the burn's dice (the AN-M8, p. 192). */
+  hotCanister?: string;
   /** A flashbang: a Vision- and Hearing-Based affliction, stun recovered at HT-5 (note [7]). */
   flashbang?: boolean;
   /** Thermite: seconds it burns (p. 192). */
@@ -56,7 +60,9 @@ export const GRENADES: Readonly<Record<string, GrenadeFacts>> = Object.freeze({
   "AMC MK II": pin([4, 5]),
   "AMC MK III": pin([4, 5]),
   "Eihandgranate 39": { fuse: [4, 5], igniter: "string", readies: 1 },
-  "AN-M8": pin([1, 2], { cloud: { radius: 7, seconds: 80 } }),
+  "AN-M8": pin([1, 2], { cloud: { radius: 7, seconds: 80 }, hotCanister: "1d-2" }),
+  // The AN-M8's tear-gas sibling: a 7-yard cloud for 25 seconds (p. 192).
+  M7: pin([1, 2], { cloud: { radius: 7, seconds: 25 }, tearGas: true, hotCanister: "1d-2" }),
   M18: pin([1, 2], { cloud: { radius: 7, seconds: 70 } }),
   M83: pin([1, 2], { cloud: { radius: 7, seconds: 50 } }),
   "AN-M14": pin([1, 2], { thermiteSeconds: 40 }),
@@ -197,8 +203,8 @@ export const mineFacts = (name: string): MineFacts | null => MINES[String(name ?
 export const MINE_TASKS = {
   place: [{ skill: "Explosives (Demolition)", modifier: 4 }, { skill: "Soldier", modifier: 0 }, { skill: "Traps", modifier: 2 }],
   improvised: [{ skill: "Explosives (Demolition)", modifier: -2 }],
-  probe: [{ skill: "Explosives (EOD)", modifier: 0 }, { skill: "Soldier", modifier: -5 }],
-  disarm: [{ skill: "Explosives (EOD)", modifier: 0 }],
+  probe: [{ skill: "Explosives (Explosive Ordnance Disposal)", modifier: 0 }, { skill: "Soldier", modifier: -5 }],
+  disarm: [{ skill: "Explosives (Explosive Ordnance Disposal)", modifier: 0 }],
 } as const;
 export type MineTask = keyof typeof MINE_TASKS;
 

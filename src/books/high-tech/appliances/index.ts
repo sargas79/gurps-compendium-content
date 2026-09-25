@@ -11,7 +11,9 @@
  *     gear in use is the equipment line on Cooking and Housekeeping
  *     (`gworld.skillBonuses`): a microwave oven's -2 and -1, an induction
  *     cooker's +1 (-2 more until the cook is familiar with it), a hot plate's
- *     improvised equipment; a GM tool that rolls Forensics to reconstruct
+ *     improvised equipment; a row action that rolls an appliance's burn at a
+ *     touch (an early resistance wire heater's 1d-3 a second, the induction
+ *     furnace's molten metal 3d at first contact); a GM tool that rolls Forensics to reconstruct
  *     shredded documents, -5 for a cross-cut shredder's; a shopvac's row
  *     action that marks the scene cleaned, -2 to Forensics rolls there after;
  *     an electromagnet's ST, the most it holds and the reach of its pull, from
@@ -20,7 +22,8 @@
  *     (`items.equipmentFailure`).
  *   - **Power tools (powerTools):** a derived work row for the supplement's
  *     power drills, circular saws (with a diamond blade's divisor against
- *     concrete and brick), arc welder, hot plate and soldering irons, with
+ *     concrete and brick), arc welder, hot plate, soldering irons and wire
+ *     cutters (a cut each use), with
  *     Forced Entry as High-Tech's forced-entry tools have (High-Tech pp.
  *     25-30); an early drill's -2. The weapon-table rows the supplement gives
  *     some of them (HT:EE pp. 50-51) are the records' own attacks.
@@ -44,6 +47,8 @@ import {
   SUPERCONDUCTING_TL,
   VACUUMED_SCENE,
   WEATHER_APPLIANCES,
+  applianceHazardOf,
+  hazardApplies,
   isShopvac,
   isShredder,
   kitchenGearOf,
@@ -54,6 +59,7 @@ import {
   powerToolWork,
   printedMagnet,
   weatherApplianceOf,
+  type ApplianceHazard,
   type KitchenSkill,
   type Magnet,
   type Shredding,
@@ -121,7 +127,7 @@ export function workOf(item: any): Work | null {
 }
 
 const paceLabel = (work: Work) => {
-  const pace = game.i18n.localize("GCC.HT.Tools.PerSecond");
+  const pace = game.i18n.localize(work.every === 0 ? "GCC.HT.Tools.PerUse" : "GCC.HT.Tools.PerSecond");
   return work.against ? game.i18n.format("GCC.HT.Tools.WorkAgainst", { pace, against: game.i18n.localize(`GCC.HT.Tools.Against.${work.against}`) }) : pace;
 };
 
@@ -169,6 +175,8 @@ function itemLines(api: GWorldApi, item: any, on: ApplianceSwitches): string[] {
       lines.push(F("MagnetLine", { st: figures.st, bl: figures.basicLift, load: figures.load.toLocaleString("en-US"), reach: figures.reach }));
       if (magnet.core === "superconducting") lines.push(F("SuperconductingLine", { tl: SUPERCONDUCTING_TL }));
     }
+    const hazard = applianceHazardOf(item.name);
+    if (hazardApplies(hazard, data.earlyModel)) lines.push(F(hazard.perSecond ? "HazardLinePerSecond" : "HazardLine", { damage: hazard.damage }));
     if (data.remoteControl) lines.push(L("RemoteLine"));
     if (data.emergencyStop) lines.push(F("EmergencyStopLine", { per: signed(EMERGENCY_STOP_PER) }));
   }
@@ -193,7 +201,9 @@ function itemContext(api: GWorldApi, item: any, on: ApplianceSwitches): Record<s
     lines: itemLines(api, item, on),
     remote: appliances && isElectrical(item) ? { checked: data.remoteControl } : null,
     stop: appliances && isElectrical(item) ? { checked: data.emergencyStop } : null,
-    early: tool?.earlyPenalty ? { checked: data.earlyModel } : null,
+    early: tool?.earlyPenalty
+      ? { checked: data.earlyModel, hint: L("EarlyHint") }
+      : appliances && applianceHazardOf(item?.name)?.earlyOnly ? { checked: data.earlyModel, hint: L("EarlyHeaterHint") } : null,
     diamond: tool?.diamond ? { checked: data.diamondBlade } : null,
     magnet: appliances && mayBeMagnet(item)
       ? {
@@ -221,6 +231,23 @@ function itemListeners(element: HTMLElement, item: any): void {
       if (field === "magnet.diameter" || field === "magnet.length") await storeDevice(item, { [field]: Math.max(0, Number(input.value) || 0) });
     });
   });
+}
+
+// ── hazards (HT:EE p. 21) ──
+
+/** The hazard an appliance is, where it applies: an early heater's screening, a furnace's molten metal. */
+export function hazardOf(item: any): ApplianceHazard | null {
+  if (!isDevice(item)) return null;
+  const hazard = applianceHazardOf(item?.name);
+  return hazardApplies(hazard, deviceData(item).earlyModel) ? hazard : null;
+}
+
+/** Rolls what the appliance does to whoever touches it, as a damage card to apply (HT:EE p. 21). */
+export async function applianceHazard(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const hazard = hazardOf(item);
+  if (!hazard) return;
+  const label = F(hazard.perSecond ? "HazardPerSecond" : "HazardLabel", { name: String(item.name ?? "") });
+  await api.roll.damage({ actor, item, label, formula: hazard.damage, damageType: "burn" as never, source: "applianceHazard" } as any);
 }
 
 // ── Forensics (HT:EE p. 23) ──
@@ -316,6 +343,16 @@ export function readyAppliances(api: GWorldApi, on: ApplianceSwitches): void {
     visible: (item) => on.appliances() && isDevice(item) && deviceData(item).emergencyStop,
     // A machine stopped in a hurry: HT against equipment failure (HT:EE p. 25; Campaigns p. 485).
     run: (item, actor) => { void api.items.equipmentFailure({ actor, item, label: F("EmergencyStopRoll", { name: item.name }) } as any); },
+  });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ee-appliance-hazard",
+    itemTypes: ["equipment"],
+    label: L("HazardAction"),
+    icon: "fa-solid fa-fire",
+    visible: (item) => on.appliances() && hazardOf(item) !== null,
+    run: (item, actor) => { void applianceHazard(api, item, actor); },
   });
 
   api.sheets.registerRowAction({

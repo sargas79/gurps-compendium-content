@@ -76,6 +76,9 @@ describe("High-Tech's hand-kept weapons", () => {
   it("gives the extracted weapons the modes the file couldn't carry", () => {
     expect(named(extracted, "AN-M8").system.rangedModes[0]).toMatchObject({ damageSpecial: true, radius: 7, thrown: true });
     expect(named(extracted, "AN-M14").system.rangedModes[0]).toMatchObject({ damageSpecial: true, damageType: "burn" });
+    // p. 192 note 7: the stun grenade's affliction covers a 10-yard radius; the M34's fragments are (0.2).
+    expect(named(extracted, "Schermuly Stun").system.rangedModes[0]).toMatchObject({ affliction: true, afflictionModifier: -5, areaAttack: true, radius: 10 });
+    expect(named(extracted, "M34 WP").system.rangedModes[0]).toMatchObject({ fragmentation: "1d", fragmentationDivisor: 0.2 });
     expect(named(extracted, "Dan-Inject JM Standard, 11mm").system.rangedModes[0].linked).toMatchObject({ followUp: true, label: "drug effect" });
     expect(named(extracted, "Elgin Cutlass Pistol, .54 Caplock").system.meleeModes[0]).toMatchObject({ skill: "Knife", skillModifier: -1 });
     expect(named(extracted, "Condor AM-402, 12G 2.75''").system.meleeModes[0]).toMatchObject({ skill: "Shortsword", damageBase: "sw" });
@@ -136,6 +139,14 @@ describe("High-Tech's vehicles and personal conveyances (pp. 230-244)", () => {
     expect(named(vehicles, "Rolls-Royce Phantom II").system.cost).toBe(105000);
     // p. 231: a kayak's draft; p. 232: a glider's stall speed.
     expect(vehicle("Folding Kayak")).toMatchObject({ locomotion: "water", draft: 2, range: 0 });
+    // p. 231 note 1: every kayak can take a removable sail, Move 2/4 -- a second Move on the water.
+    for (const kayak of ["Traditional Kayak", "Folding Kayak", "Expedition Kayak", "Sport Kayak"]) {
+      expect(vehicle(kayak)).toMatchObject({ secondLocomotion: "water", secondAcceleration: 2, secondTopSpeed: 4 });
+    }
+    // p. 230: the electric bike's L/2 hours and the PTP's rechargeable 2×L/2 hours.
+    const power = (name: string) => named(vehicles, name).system.extensions?.["gurps-compendium-content"]?.power;
+    expect(power("Electric Bike")).toEqual({ draw: { cell: "L", cells: 1, endurance: "2 hours", raw: "L/2 hours" } });
+    expect(power("Personal Transport Platform")).toMatchObject({ draw: { cell: "L", cells: 2, endurance: "2 hours" }, rechargeable: true });
     expect(vehicle("Glider")).toMatchObject({ locomotion: "air", stall: 7, fragility: "c" });
   });
 
@@ -516,6 +527,9 @@ describe("High-Tech's covert-ops, security and medical gear (#350)", () => {
     expect(draw("Audio Bug (TL8)")).toEqual({ cell: "T", cells: 1, endurance: "1 month", raw: "T/month" });
     expect(draw("Electronic Stethoscope")).toMatchObject({ cell: "T", cells: 4, endurance: "1 week" });
     expect(sys("Portable X-Ray Machine (TL8)")).toMatchObject({ cost: 50000, weight: 25, lc: 3 });
+    // The advanced prosthetics' hours between recharges, as built-in batteries (p. 226).
+    expect(draw("Advanced Arm Prosthetic")).toEqual({ cell: "", cells: 0, endurance: "8 hours", raw: "8 hours between recharges" });
+    expect(draw("Advanced Leg Prosthetic")).toMatchObject({ endurance: "30 hours" });
   });
 
   it("settles the kits' figures and quality against the page (pp. 220-221)", () => {

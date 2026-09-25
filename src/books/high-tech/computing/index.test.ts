@@ -205,6 +205,31 @@ describe("computerEras (HT:EE pp. 36-37)", () => {
     expect(repair).toMatchObject({ base: 7, modifiers: [{ value: -1 }] });
     expect(tube.system.extensions[MODULE_ID].htComputer.burntOut).toBe(false);
   });
+
+  it("refuses a roll with a computer whose tube has burned out, or a program on it, until it is repaired", () => {
+    const tube = record("Minicomputer", { tl: "7", cost: 100_000 }, { options: { vacuumTube: true } }, { burntOut: true });
+    const app = record("Payroll", { tl: "7" }, { complexity: 1, program: true, runsOn: "Minicomputer" });
+    const actor = character([tube, app]);
+    const roll = (item: any) => fire("gworld.successRollModifiers", { actor, item, skill: "Computer Operation/TL7", modifiers: [], refusal: null });
+    // The eras' switch alone holds the rule.
+    expect(roll(tube).refusal).toBeNull();
+    on = new Set([key("computerEras")]);
+    expect(roll(tube).refusal).toContain("BurntOutRefusal");
+    expect(roll(app).refusal).toContain("BurntOutRefusal");
+    // A Research program picked as the skill's tool isn't refused: its bonus is taken back, with a line that says why.
+    const research = record("Research Database", { tl: "7" }, { complexity: 1, program: true, runsOn: "Minicomputer" });
+    actor.items.push(research, { id: "skill", name: "Research/TL7", type: "skill", system: { derived: { toolItemId: research.id, toolBonus: 2 } } });
+    research.actor = actor;
+    const study = fire("gworld.successRollModifiers", { actor, item: research, skill: "Research/TL7", modifiers: [], refusal: null });
+    expect(study.refusal).toBeNull();
+    expect(study.modifiers).toEqual([{ key: "ht.burntOut", label: expect.stringContaining("BurntOutProgram"), value: -2 }]);
+    // A transistor machine has no tubes to burn out, whatever its flag says.
+    const transistor = record("Minicomputer", { tl: "7" }, { options: { transistor: true } }, { burntOut: true });
+    character([transistor]);
+    expect(roll(transistor).refusal).toBeNull();
+    tube.system.extensions[MODULE_ID].htComputer.burntOut = false;
+    expect(roll(tube).refusal).toBeNull();
+  });
 });
 
 describe("computerInterfaces (HT:EE pp. 39-41)", () => {

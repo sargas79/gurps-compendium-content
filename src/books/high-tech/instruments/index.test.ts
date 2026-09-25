@@ -44,7 +44,7 @@ const values = (roll: any) => roll.modifiers.map((m: any) => m.value);
 function character(name: string, options: { skills?: Record<string, number>; attributes?: Record<string, number>; items?: any[]; derived?: any } = {}): any {
   const skills = Object.fromEntries(Object.entries(options.skills ?? {}).map(([k, v]) => [api.rules.toolSkillKey(k), v]));
   const skillItems = Object.keys(options.skills ?? {}).map((name) => ({ type: "skill", name }));
-  return { id: name, name, skills, attributes: options.attributes ?? {}, items: [...skillItems, ...(options.items ?? [])], derived: options.derived };
+  return { id: name, name, isOwner: true, skills, attributes: options.attributes ?? {}, items: [...skillItems, ...(options.items ?? [])], derived: options.derived };
 }
 const gear = (name: string, extra: Record<string, unknown> = {}, book: string | null = "high-tech") => ({
   name,
@@ -392,6 +392,58 @@ describe("the laboratory instruments (HT:EE pp. 10-13)", () => {
     expect(cards[0]).toContain("CopyCost");
     expect(cards[0]).toContain(`"cost":"${(6000).toLocaleString()}"`);
     expect(cards[0]).toContain('"time":"2d/2"');
+  });
+
+  it("compares two signals on an oscilloscope with Electronics Operation (Scientific) and time spent (HT:EE p. 11)", async () => {
+    const scope = gear("Oscilloscope");
+    const analyst = character("Analyst", { skills: { "Electronics Operation (Scientific)": 12 }, items: [scope] });
+    expect(action("ht-instrument-compare").visible(scope)).toBe(true);
+    expect(action("ht-instrument-compare").visible(gear("Oscillograph"))).toBe(false);
+    form = { time: "2" };
+    await action("ht-instrument-compare").run(scope, analyst);
+    expect(rolls[0]).toMatchObject({ base: 12, skill: "Electronics Operation (Scientific)", tags: ["instrument", "compare"], item: scope });
+    expect(values(rolls[0])).toEqual([1]);
+    expect(cards[0]).toContain("Instruments.Compared");
+    switches.instruments = false;
+    expect(action("ht-instrument-compare").visible(scope)).toBe(false);
+  });
+
+  it("gives the bare Geiger-Müller tube its supply's 5d lethal shock, and says what building one takes (HT:EE p. 12)", async () => {
+    const tube = gear("Geiger-Müller Tube");
+    const physicist = character("Physicist", { skills: { Physics: 13 }, items: [tube] });
+    expect(action("ht-geiger-supply").visible(tube)).toBe(true);
+    expect(action("ht-geiger-supply").visible(gear("Geiger Counter (TL6)"))).toBe(false);
+    expect(action("ht-geiger-supply").visible(gear("Geiger-Müller Tube", {}, "ultra-tech"))).toBe(false);
+    const victim = character("Victim");
+    targets = [victim];
+    await action("ht-geiger-supply").run(tube, physicist);
+    expect(shocks[0]).toMatchObject({ actor: victim, kind: "lethal", formula: "5d", continuous: true, source: "geigerSupply" });
+  });
+
+  it("shocks no one the user doesn't own, from the Geiger supply or the Van de Graaff, and warns", async () => {
+    const stranger = { ...character("Stranger"), isOwner: false };
+    targets = [stranger];
+    const tube = gear("Geiger-Müller Tube");
+    await action("ht-geiger-supply").run(tube, character("Physicist", { items: [tube] }));
+    const generator = gear("Van de Graaff Generator");
+    form = { sphere: "9" };
+    await action("ht-instrument-discharge").run(generator, character("Teacher", { items: [generator] }));
+    expect(shocks).toEqual([]);
+    expect(ui.notifications!.warn).toHaveBeenCalledTimes(2);
+    expect(ui.notifications!.warn).toHaveBeenCalledWith(expect.stringContaining("NotYourVictim"));
+  });
+
+  it("builds an analog computer from Mechanic (Analog Computers)-6 for one without the Engineer skill", async () => {
+    const computer = gear("General-Purpose Analog Computer", { tl: "7", cost: 30000, listCost: 30000 });
+    const mechanic = character("Mechanic", { skills: { "Mechanic (Analog Computers)": 12 }, items: [computer] });
+    form = { grade: "average", labour: false };
+    await action("ht-instrument-build").run(computer, mechanic);
+    expect(rolls[0]).toMatchObject({ base: 6, skill: "Engineer (Analog Computers)" });
+
+    rolls.length = 0;
+    const layman = character("Layman", { items: [computer] });
+    await action("ht-instrument-build").run(computer, layman);
+    expect(rolls).toEqual([]);
   });
 
   it("plots a waveform by hand at -2, with time spent", async () => {

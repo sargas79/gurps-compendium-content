@@ -21,7 +21,7 @@
  */
 
 /** The chemistries a battery of a size can be made with (HT:EE pp. 16-18). */
-export const CHEMISTRY_KEYS = ["wetCell", "carbonZinc", "alkaline", "leadAcid", "nicad", "nimh", "lithiumIon"] as const;
+export const CHEMISTRY_KEYS = ["wetCell", "daniellCell", "gravityCell", "carbonZinc", "alkaline", "leadAcid", "nicad", "nimh", "lithiumIon"] as const;
 export type Chemistry = (typeof CHEMISTRY_KEYS)[number];
 
 /** One chemistry against an alkaline battery of the same size. */
@@ -42,6 +42,9 @@ export interface ChemistryFigures {
 export const CHEMISTRIES: Readonly<Record<Chemistry, ChemistryFigures>> = Object.freeze({
   // A quarter as long as an alkaline battery of its size (p. 17).
   wetCell: { tl: 5, endurance: 1 / 4, cost: 1, weight: 1, rechargeable: false },
+  // The two wet cells the book names, with the same figures: the Daniell cell's barrier and the gravity cell's upkeep are rules (p. 17).
+  daniellCell: { tl: 5, endurance: 1 / 4, cost: 1, weight: 1, rechargeable: false },
+  gravityCell: { tl: 5, endurance: 1 / 4, cost: 1, weight: 1, rechargeable: false },
   // A quarter as long, 10% lighter and cheaper (p. 17).
   carbonZinc: { tl: 6, endurance: 1 / 4, cost: 0.9, weight: 0.9, rechargeable: false },
   // The base the sizes are rated in (pp. 16-17).
@@ -149,6 +152,36 @@ export const CHARGER_SKILLS = ["Electrician", "Mechanic (Gasoline Engine)"] as c
  */
 export function chargerExplosion(size: string): { formula: string; acidYards: number } {
   return size === "VL" ? { formula: "6dx3", acidYards: 3 } : { formula: "6d", acidYards: 1 };
+}
+
+// ── the wet cells (HT:EE pp. 16-17) ─────────────────────────────────────────
+
+/** The chemistries that are wet cells: stationary, and priced and weighed as the size. */
+export const isWetCell = (chemistry: unknown): boolean => chemistry === "wetCell" || chemistry === "daniellCell" || chemistry === "gravityCell";
+
+/** The Daniell cell's porous barrier weakens the current: -1 to Electrician or Electronics Operation with what it powers. */
+export const DANIELL_PENALTY = -1;
+export const daniellSkill = (skill: unknown): boolean => /^(?:electrician|electronics operation)\b/i.test(String(skill ?? "").trim());
+
+/**
+ * The gravity cell's upkeep (HT:EE p. 17): a daily roll against Electronics
+ * Operation (Communications) -- at TL5-7, the telegraph stations' -- or
+ * Chemistry, or it loses its power; setting up a new cell is Electronics
+ * Repair (Communications) at TL5-7 or Chemistry, and it gives power an hour
+ * later.
+ */
+export const GRAVITY_CELL = Object.freeze({
+  tend: ["Electronics Operation (Communications)", "Chemistry"] as const,
+  setUp: ["Electronics Repair (Communications)", "Chemistry"] as const,
+  /** The TLs at which the Communications skills serve. */
+  commTl: Object.freeze({ min: 5, max: 7 }),
+  setUpHours: 1,
+});
+
+/** The skills a gravity cell's task can be rolled with at a TL: Chemistry always, Communications at TL5-7 (or an unknown TL). */
+export function gravityCellSkills(task: "tend" | "setUp", tl: number | null): readonly string[] {
+  const [comm, chemistry] = GRAVITY_CELL[task];
+  return tl === null || (tl >= GRAVITY_CELL.commTl.min && tl <= GRAVITY_CELL.commTl.max) ? [comm, chemistry] : [chemistry];
 }
 
 // ── the voltaic pile (HT:EE p. 16) ───────────────────────────────────────────
