@@ -25,7 +25,11 @@
  *   - **Medical facilities (medicalFacilities):** an imaging instrument's
  *     button rolls Electronics Operation (Medical), then Diagnosis with its
  *     +TL/2 (the early X-ray giving both 1d rads) -- carried, it is no
- *     Diagnosis tool; portable surgery's +2 to First Aid; a
+ *     Diagnosis tool; the portable X-ray turned on a victim at maximum
+ *     intensity, 1,000 rads an hour; a specialized operating theater +TL/2 to
+ *     Surgery in the specialty its row says the operation is in, basic
+ *     equipment otherwise (`data.registerToolGrade`); portable surgery's +2
+ *     to First Aid; a
  *     surgical kit's own TL modifier in place of the Basic Set table's on an
  *     operation, its resupply's price, and a suturing kit improvised (-5) for
  *     one; putting a patient
@@ -63,7 +67,10 @@ import {
   PORTABLE_SURGERY_FIRST_AID,
   SUTURING_IMPROVISED,
   WITHOUT_FLUIDS_BEST,
+  XRAY_MAXIMUM,
   XRAY_RADS_DICE,
+  maximumIntensityRads,
+  specialtyTheaterGrade,
   cprFatigue,
   depletedGrade,
   fibrillationPenalty,
@@ -83,6 +90,9 @@ const FIELD = "medical";
 const CPR_FLAG = "htCpr";
 const ANESTHESIA_FLAG = "htAnesthesia";
 const ANTISEPTIC_FLAG = "htAntiseptic";
+/** A specialized operating theater in use for an operation in its own specialty. */
+const SPECIALTY_FLAG = "htInSpecialty";
+const inSpecialty = (item: any): boolean => item?.getFlag?.(MODULE_ID, SPECIALTY_FLAG) === true;
 const CAUSES = ["heartAttack", "drowning", "asphyxiation"] as const;
 type Cause = (typeof CAUSES)[number];
 
@@ -474,6 +484,31 @@ async function scan(api: GWorldApi, item: any, actor: any): Promise<void> {
 }
 
 /**
+ * The portable X-ray machine turned on the targeted victim at maximum
+ * intensity: 1,000 rads an hour (p. 223). A victim this user can't change is
+ * the GM's to dose.
+ */
+async function irradiateAtMaximum(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const victim = targetedActor();
+  if (!victim) return void ui.notifications?.warn(L("OneTarget"));
+  const minutes: any = await foundry.applications.api.DialogV2.prompt({
+    window: { title: nameOf(item) },
+    content: `<div class="gworld"><p class="ihint">${esc(F("XrayMaximumHint", { rads: XRAY_MAXIMUM.radsPerHour }))}</p>
+      <div class="ifields"><label>${esc(L("XrayMinutes"))} <input type="number" name="minutes" value="1" min="0" step="any"></label></div></div>`,
+    ok: {
+      label: L("XrayMaximumAction"),
+      callback: (_event: Event, button: HTMLElement) => Number(button.closest<HTMLElement>(".application")?.querySelector<HTMLInputElement>('[name="minutes"]')?.value) || 0,
+    },
+    rejectClose: false,
+  });
+  const rads = maximumIntensityRads(Number(minutes) || 0);
+  if (!(rads > 0)) return;
+  if (!victim.isOwner) return void say(victim, nameOf(item), [F("XrayMaximumGm", { name: victim.name, rads, minutes })]);
+  await api.hazards.irradiate({ actor: victim, rads, protectionFactor: 1, modifier: 0 });
+  await say(victim, nameOf(item), [F("XrayMaximumDone", { name: victim.name, rads, minutes, operator: String(actor?.name ?? "") })]);
+}
+
+/**
  * The instrument's +TL/2 (quality) on the Diagnosis roll its scan allows
  * (p. 222), less the equipment line the skill already has from other gear:
  * a quality bonus stands in for another, it doesn't add to it.
@@ -585,7 +620,14 @@ function itemLines(item: any, on: MedicineSwitches): string[] {
   }
   if (on.facilities()) {
     switch (data.kind) {
-      case "imaging": lines.push(L("ImagingItem")); if (data.value > 0) lines.push(F("XrayItem", { dice: data.value * XRAY_RADS_DICE })); break;
+      case "imaging":
+        lines.push(L("ImagingItem"));
+        if (data.value > 0) lines.push(F("XrayItem", { dice: data.value * XRAY_RADS_DICE }));
+        if (XRAY_MAXIMUM.pattern.test(nameOf(item))) lines.push(F("XrayMaximumItem", { rads: XRAY_MAXIMUM.radsPerHour }));
+        break;
+      case "specialtyTheater":
+        lines.push(L(inSpecialty(item) ? "TheaterInSpecialty" : "TheaterOtherSpecialty"));
+        break;
       case "portableSurgery": lines.push(F("PortableSurgeryItem", { bonus: PORTABLE_SURGERY_FIRST_AID })); break;
       case "surgicalKit": {
         lines.push(L("SurgicalKitItem"));
@@ -705,6 +747,23 @@ export function readyMedicine(api: GWorldApi, on: MedicineSwitches): void {
   action("ht-scan", "ScanAction", "fa-solid fa-x-ray", (item) => on.facilities() && kindIs("imaging")(item), (item, actor) => scan(api, item, actor));
   action("ht-anesthetize", "AnesthesiaAction", "fa-solid fa-mask-ventilator", (item) => on.facilities() && kindIs("anesthesia")(item), (item, actor) => anesthetize(api, item, actor));
   action("ht-antiseptic", "AntisepticAction", "fa-solid fa-pump-medical", (item) => on.facilities() && kindIs("antiseptic")(item), (item, actor) => cleanWound(api, item, actor));
+  action("ht-xray-maximum", "XrayMaximumAction", "fa-solid fa-radiation", (item) => on.facilities() && XRAY_MAXIMUM.pattern.test(nameOf(item)), (item, actor) => irradiateAtMaximum(api, item, actor));
+  action("ht-theater-specialty", "TheaterAction", "fa-solid fa-bed-pulse", (item) => on.facilities() && kindIs("specialtyTheater")(item) && item.isOwner, async (item, actor) => {
+    const now = !inSpecialty(item);
+    await item.setFlag(MODULE_ID, SPECIALTY_FLAG, now);
+    await say(actor, nameOf(item), [L(now ? "TheaterInSpecialty" : "TheaterOtherSpecialty")]);
+  });
+
+  // A specialized theater: +TL/2 (quality) to Surgery in its specialty, basic otherwise (p. 224).
+  api.data.registerToolGrade({
+    module: MODULE_ID,
+    key: "ht-specialty-theater",
+    grade: (item, skill) => {
+      if (!on.facilities() || medicalData(item).kind !== "specialtyTheater") return null;
+      if (api.rules.toolSkillKey(String(skill?.name ?? "")) !== "surgery") return null;
+      return specialtyTheaterGrade(inSpecialty(item));
+    },
+  });
 
   api.sheets.registerGmTool({
     module: MODULE_ID,

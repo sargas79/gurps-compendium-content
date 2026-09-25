@@ -19,7 +19,7 @@
         },
         "monsterHuntersGear": {
           "Name": "Monster Hunters gear",
-          "Hint": "Gadgets and clothing take improvements priced by cost factor (cutting-edge, disguised, rugged, good and fine quality, scent-masking, undercover), and Signature Gear costs a point per $10,000 of each item (Monster Hunters 1 pp. 53-54, 59)."
+          "Hint": "Gadgets and clothing take improvements priced by cost factor (cutting-edge, disguised, rugged, good and fine quality, scent-masking, undercover), and Signature Gear costs a point per $10,000 of each item; the mind disruptor and neutralizer are resisted with Mind Shield, not DR (Monster Hunters 1 pp. 53-54, 58-59)."
         },
         "bonusPointSpending": {
           "Name": "Destiny and wildcard points",
@@ -474,7 +474,8 @@
       "Migration": {
         "Done": "Monster Hunters 1: moved the book's data from the system into this module ({changed} changes).",
         "Failed": "Monster Hunters 1: {failed} documents could not be moved into this module. The steps that failed run again the next time the world loads; see the console for which."
-      }
+      },
+      "MindShield": "Mind Shield (Monster Hunters 1 p. 58)"
     },
     "Magic": {
       "Rules": {
@@ -1918,7 +1919,7 @@
       "Rules": {
         "gadgetOptions": {
           "Name": "Gadget options and statistics",
-          "Hint": "Disguised, styling, rugged, cheap and expensive as options on an item that reprice it from the table's figures, and the hit points, HT and DR the book assumes for a gadget that states none. A rugged gadget is HT 12 with twice the DR, a fifth heavier and twice the price."
+          "Hint": "Disguised, styling, rugged, cheap and expensive as options on an item that reprice it from the table's figures, and the hit points, HT and DR the book assumes for a gadget that states none. A rugged gadget is HT 12 with twice the DR, a fifth heavier and twice the price. Gear worth maintaining has a maintenance-check button, each check missed or failed a point of HT off its equipment failure rolls until a major repair puts it back (Campaigns pp. 484-485)."
         },
         "adjustingForSm": {
           "Name": "Adjusting for SM",
@@ -2149,7 +2150,26 @@
         "Antique": "Obsolete at TL{campaign}: carried as LC{lc} rather than LC{was}.",
         "Maintained": "Worth maintenance checks at TL{campaign}: it costs more than ${threshold}.",
         "Simple": "Too simple to maintain at TL{campaign}: under ${threshold}, assume it works indefinitely.",
-        "Rugged": "Rugged"
+        "Rugged": "Rugged",
+        "MaintenanceAction": "Maintenance check",
+        "MaintenanceHint": "A maintenance check against a technical skill; a check missed or failed costs the gadget a point of HT on all its HT rolls, until a major repair puts it back (Campaigns p. 485; Ultra-Tech p. 14).",
+        "MaintenanceSkill": "Skill",
+        "MaintenanceMissed": "The check was missed",
+        "MaintenanceLabel": "{skill}: maintenance of {name}",
+        "MaintenanceKept": "Maintained: it keeps its HT.",
+        "MaintenanceFailed": "The check failed: -1 HT, {missed} point(s) lost to maintenance in all.",
+        "MaintenanceSkipped": "The check was missed: -1 HT, {missed} point(s) lost to maintenance in all.",
+        "MissedChecks": "{missed} point(s) of HT lost to missed or failed maintenance checks.",
+        "MissedChecksLine": "Missed maintenance (-{missed} HT)",
+        "RestoreAction": "Repair lost HT",
+        "RestoreHint": "Each point of HT lost to maintenance comes back as a major repair: the repair skill at an extra -2, with parts costing 1d x 10% of the price (Campaigns pp. 484-485).",
+        "RestoreLabel": "{skill}: major repair of {name}",
+        "MajorRepair": "Major repair",
+        "RestoreFailed": "The repair fails; the parts cost ${parts}.",
+        "Restored": "A point of HT is back ({missed} still lost); the parts cost ${parts}.",
+        "MaintenanceFailedSheet": "The check failed: -1 HT. A firearm's missed checks are the item sheet's Missed maintenance field: set it to {missed}.",
+        "MaintenanceSkippedSheet": "The check was missed: -1 HT. A firearm's missed checks are the item sheet's Missed maintenance field: set it to {missed}.",
+        "MissedChecksSheet": "{missed} missed maintenance check(s), on the item sheet's Missed maintenance field."
       },
       "Power": {
         "Title": "Power",
@@ -4802,7 +4822,7 @@
       "Rules": {
         "equipmentOptions": {
           "Name": "Equipment options and statistics",
-          "Hint": "Gear takes options that reprice it: disguised (x2 mass-produced, x5 custom), styling in three tiers (+1 reaction from collectors and buyers for x2, +2 for x5, +3 for x10, while the piece is marked as shown), rugged (+2 HT, twice the DR, x2 cost, x1.2 weight), cheap (x1/2 cost, and either x1.5 weight or fragile at -2 HT and half the DR) and expensive (x2 cost, x2/3 weight); cheap and expensive leave the batteries out of the weight. Rugged, cheap and expensive aren't offered on clothing, weapons or armour. The item sheet shows HP, HT and DR as assumed (HT 10, rugged +2, good quality +1 and fine +2 on top), and whether gear under a thousandth of the campaign TL's average starting wealth may skip maintenance (High-Tech pp. 9-11)."
+          "Hint": "Gear takes options that reprice it: disguised (x2 mass-produced, x5 custom), styling in three tiers (+1 reaction from collectors and buyers for x2, +2 for x5, +3 for x10, while the piece is marked as shown), rugged (+2 HT, twice the DR, x2 cost, x1.2 weight), cheap (x1/2 cost, and either x1.5 weight or fragile at -2 HT and half the DR) and expensive (x2 cost, x2/3 weight); cheap and expensive leave the batteries out of the weight. Rugged, cheap and expensive aren't offered on clothing, weapons or armour. The item sheet shows HP, HT and DR as assumed (HT 10, rugged +2, good quality +1 and fine +2 on top), and whether gear under a thousandth of the campaign TL's average starting wealth may skip maintenance; gear worth maintaining has a maintenance-check button, each check missed or failed a point of HT off its equipment failure rolls until a major repair puts it back (High-Tech pp. 9-11; Campaigns pp. 484-485)."
         },
         "combinationGadgets": {
           "Name": "Combination gadgets",
@@ -5074,7 +5094,7 @@
         },
         "forcedEntryTools": {
           "Name": "Forced-entry tools",
-          "Hint": "Saws, drills, cutters and torches get a Forced Entry row with the damage they do each second (or each use) and what they work on; the rock drill and lock buster pass on a maul's blow. The hand ram (below ST 20), door opener and spreader/cutter need their Ready maneuvers before each use; the glass cutter and duct tape are row actions. A fire extinguisher's bursts put out a flamethrower's burning fuel, and a fire shelter gives DR 10 against burning to whoever is inside (High-Tech pp. 25-30)."
+          "Hint": "Saws, drills, cutters and torches get a Forced Entry row with the damage they do each second (or each use) and what they work on; the rock drill and lock buster pass on a maul's blow. The hand ram (below ST 20), door opener and spreader/cutter need their Ready maneuvers before each use; a torch's burn time and the doorbuster's strips run down as they are used and are refilled from the row; a jack, lift bags, a hoist, a spreader or a come-along says whether it manages a load; the glass cutter and duct tape are row actions. A fire extinguisher's bursts put out a flamethrower's burning fuel, and a fire shelter gives DR 10 against burning to whoever is inside (High-Tech pp. 25-30)."
         },
         "chainsaws": {
           "Name": "Chainsaws and nail guns",
@@ -5082,7 +5102,7 @@
         },
         "householdHazards": {
           "Name": "Household hazards",
-          "Hint": "A row action rolls what a ruptured propane cylinder (a burning explosion with 1d cutting fragments), a hot stove, a blender, hot coffee, a hotplate, toaster or waffle iron, or an institutional microwave does. Lead is a poison the sheet doses; past half the victim's HP the worse symptoms are named (High-Tech pp. 31-33)."
+          "Hint": "A row action rolls what a ruptured propane cylinder (a burning explosion with 1d cutting fragments), a hot stove, a blender, hot coffee, a hotplate, toaster or waffle iron, or an institutional microwave does; a blow struck at a propane cylinder ruptures it through DR 6 with anything but crushing, and sets it off near a flame. Lead is a poison the sheet doses; past half the victim's HP the worse symptoms are named, and a second failed roll intensifies them (High-Tech pp. 31-33)."
         },
         "flamethrowers": {
           "Name": "Flamethrowers",
@@ -5262,7 +5282,7 @@
         },
         "medicalFacilities": {
           "Name": "Medical facilities",
-          "Hint": "An imaging instrument's row button rolls Electronics Operation (Medical), then Diagnosis with its bonus (the TL6 X-ray machine giving patient and operator 1d rads). Portable surgery gives +2 to First Aid. On an operation, a surgical kit's own TL modifier (-2 at TL5 to +2 at TL8) stands in for the Basic Set table's by the surgeon's TL, and a suturing kit is improvised (-5). A chloroform mask's button rolls Physician to put the targeted patient under (a portable anaesthesia machine at +2); if it failed, the operation is at -2. Antiseptic cleans the targeted patient's wound: +2 on the next infection roll (High-Tech pp. 222-225)."
+          "Hint": "An imaging instrument's row button rolls Electronics Operation (Medical), then Diagnosis with its bonus (the TL6 X-ray machine giving patient and operator 1d rads; the portable one at maximum intensity 1,000 rads an hour). Portable surgery gives +2 to First Aid; a specialized operating theater is +TL/2 to Surgery in its specialty, set on its row, and basic equipment otherwise. On an operation, a surgical kit's own TL modifier (-2 at TL5 to +2 at TL8) stands in for the Basic Set table's by the surgeon's TL, and a suturing kit is improvised (-5). A chloroform mask's button rolls Physician to put the targeted patient under (a portable anaesthesia machine at +2); if it failed, the operation is at -2. Antiseptic cleans the targeted patient's wound: +2 on the next infection roll (High-Tech pp. 222-225)."
         },
         "encryption": {
           "Name": "Encryption and code-breaking",
@@ -5362,7 +5382,7 @@
         },
         "restraintDevices": {
           "Name": "Restraints",
-          "Hint": "Shackles, handcuffs, flex cuffs, leg irons and the straitjacket are put on from the item's sheet, on the prisoner's own sheet. Cuffed behind the back: -1 DX, -4 on tasks done with the hands alone, and no weapon use; in front: -1 on hands-only tasks and no one-handed blows. A straitjacket is cuffed behind with no slipping the arms round. Leg irons are Crippled Legs. Row buttons roll Escape at the restraint's modifier (shackles 0, handcuffs -5, flex cuffs -1, leg irons 0 or -5 ratcheting, straitjacket -10) and Acrobatics or Escape to bring cuffed wrists to the front (High-Tech p. 217)."
+          "Hint": "Shackles, handcuffs, flex cuffs, leg irons and the straitjacket are put on from the item's sheet, on the prisoner's own sheet. Cuffed behind the back: -1 DX, -4 on tasks done with the hands alone, and no weapon use; in front: -1 on hands-only tasks and no one-handed blows. A straitjacket is cuffed behind with no slipping the arms round, and leaves no hands for hands-only tasks. Leg irons are Crippled Legs. Row buttons roll Escape at the restraint's modifier (shackles 0, handcuffs -5, flex cuffs -1, leg irons 0 or -5 ratcheting, straitjacket -10), Acrobatics or Escape to bring cuffed wrists to the front, and a blow at a restraint's DR and HP that frees the prisoner once it is at 0 HP (High-Tech p. 217)."
         },
         "prosthetics": {
           "Name": "Prosthetics and elective surgery",
@@ -5701,7 +5721,26 @@
         "Rugged": "Rugged",
         "Quality": "Quality ({quality})",
         "StylingLine": "Styling: {name}",
-        "BuiltIn": "Built {options} as listed: the list price already pays for it, and it isn't added again (tactical lights, High-Tech p. 52)."
+        "BuiltIn": "Built {options} as listed: the list price already pays for it, and it isn't added again (tactical lights, High-Tech p. 52).",
+        "MaintenanceAction": "Maintenance check",
+        "MaintenanceHint": "A maintenance check against a technical skill; a check missed or failed costs the gadget a point of HT on all its HT rolls, until a major repair puts it back (Campaigns p. 485; High-Tech p. 9).",
+        "MaintenanceSkill": "Skill",
+        "MaintenanceMissed": "The check was missed",
+        "MaintenanceLabel": "{skill}: maintenance of {name}",
+        "MaintenanceKept": "Maintained: it keeps its HT.",
+        "MaintenanceFailed": "The check failed: -1 HT, {missed} point(s) lost to maintenance in all.",
+        "MaintenanceSkipped": "The check was missed: -1 HT, {missed} point(s) lost to maintenance in all.",
+        "MissedChecks": "{missed} point(s) of HT lost to missed or failed maintenance checks.",
+        "MissedChecksLine": "Missed maintenance (-{missed} HT)",
+        "RestoreAction": "Repair lost HT",
+        "RestoreHint": "Each point of HT lost to maintenance comes back as a major repair: the repair skill at an extra -2, with parts costing 1d x 10% of the price (Campaigns pp. 484-485).",
+        "RestoreLabel": "{skill}: major repair of {name}",
+        "MajorRepair": "Major repair",
+        "RestoreFailed": "The repair fails; the parts cost ${parts}.",
+        "Restored": "A point of HT is back ({missed} still lost); the parts cost ${parts}.",
+        "MaintenanceFailedSheet": "The check failed: -1 HT. A firearm's missed checks are the item sheet's Missed maintenance field: set it to {missed}.",
+        "MaintenanceSkippedSheet": "The check was missed: -1 HT. A firearm's missed checks are the item sheet's Missed maintenance field: set it to {missed}.",
+        "MissedChecksSheet": "{missed} missed maintenance check(s), on the item sheet's Missed maintenance field."
       },
       "Equipment": {
         "ItemTitle": "High-Tech equipment",
@@ -6208,14 +6247,14 @@
         "DoneStandard": "The scene is in air.",
         "UnderwaterNote": "Underwater: range /{factor}, Malf. -{malf}",
         "UnderwaterHint": "Only cased ammunition with sealed primers is reliable; caseless ammo fails in time; hollow-points can't be fired (High-Tech p. 85).",
-    "HollowPointNote": "Hollow-points: can't be fired underwater",
-    "HollowPointHint": "They expand before they leave the barrel, damaging the gun or leaving no effective range. Load other rounds (High-Tech p. 85).",
-    "HollowPointRefusal": "Hollow-points can't be fired underwater: they expand in the barrel (High-Tech p. 85).",
-    "CaselessNote": "Caseless: fails in time underwater",
-    "CaselessHint": "Caseless rounds may work for a while after immersion but eventually fail; the GM says when (High-Tech p. 85).",
-    "SteepNote": "Steeply up: 1/2D and Max at 80%",
-    "SteepOn": "{gun} is aimed steeply up (50-90 degrees): its 1/2D and Max are at 80%.",
-    "SteepOff": "{gun} is aimed level again.",
+        "HollowPointNote": "Hollow-points: can't be fired underwater",
+        "HollowPointHint": "They expand before they leave the barrel, damaging the gun or leaving no effective range. Load other rounds (High-Tech p. 85).",
+        "HollowPointRefusal": "Hollow-points can't be fired underwater: they expand in the barrel (High-Tech p. 85).",
+        "CaselessNote": "Caseless: fails in time underwater",
+        "CaselessHint": "Caseless rounds may work for a while after immersion but eventually fail; the GM says when (High-Tech p. 85).",
+        "SteepNote": "Steeply up: 1/2D and Max at 80%",
+        "SteepOn": "{gun} is aimed steeply up (50-90 degrees): its 1/2D and Max are at 80%.",
+        "SteepOff": "{gun} is aimed level again.",
         "SpaceNote": "In space: Malf. {malf}",
         "SpaceHint": "Vacuum and temperature extremes: an automatic TL6-8 gun malfunctions on 14 (High-Tech p. 85).",
         "IntoWater": "Into water (feet deep)",
@@ -7651,7 +7690,66 @@
         "HazardLabel": "{name}",
         "HazardPerSecond": "{name}, for a second",
         "Lead": "Lead",
-        "LeadWorse": "{name} has lost half their HP to lead: worse symptoms now, as the GM chooses: Bad Temper (15) or Laziness, or spells of agony, daze or retching, and a lost appetite. More failed rolls bring seizures and coma (High-Tech p. 33)."
+        "LeadWorse": "{name} has lost half their HP to lead: worse symptoms now, as the GM chooses: Bad Temper (15) or Laziness, or spells of agony, daze or retching, and a lost appetite. More failed rolls bring seizures and coma (High-Tech p. 33).",
+        "LeadPoison": "Lead (a dose of 0.25 oz. or more)",
+        "LeadIntensifies": "{name} has failed {failed} rolls against lead: the symptoms intensify, toward seizures and coma (Campaigns p. 429) as the GM judges (High-Tech p. 33).",
+        "Propane": {
+          "Strike": "Strike the cylinder",
+          "StrikeHint": "The blow's basic damage goes on the cylinder at its DR {dr}. Anything but crushing that gets through ruptures it; near a flame it goes up in a fireball (High-Tech p. 31).",
+          "Damage": "Damage",
+          "Type": "Type",
+          "Divisor": "Armor divisor",
+          "NearFlame": "Near a flame",
+          "Struck": "{name} is struck",
+          "Holds": "{name} holds: nothing but crushing damage through its DR ruptures it.",
+          "Vents": "{name} ruptures, but with no flame near, the gas escapes without igniting.",
+          "Fireball": "{name} ruptures near a flame and ignites into a huge fireball.",
+          "DrNote": "A propane cylinder: DR {dr} (High-Tech p. 31)"
+        },
+        "Supply": {
+          "Action": "Refill",
+          "secondsLine": "Burn time: {left} of {amount} left; refilled with a {refill} (High-Tech p. 27).",
+          "shotsLine": "{left} of {amount} left in the strip; refilled with a {refill} (High-Tech pp. 28, 30).",
+          "secondsRefusal": "{name} is out of burn time: fit a new {refill} first (High-Tech p. 27).",
+          "shotsRefusal": "{name} has fired its strip: load a new {refill} first (High-Tech pp. 28, 30).",
+          "Refilled": "Refilled with a new {refill}: {amount}.",
+          "Shots": "{shots} shot(s)",
+          "Refill": {
+            "refill": "refill",
+            "bottle": "bottle",
+            "airTank": "small air tank (or an air compressor)",
+            "strip": "10-shot strip"
+          }
+        },
+        "Lift": {
+          "Action": "Lift a load",
+          "Load": "Load (lbs.)",
+          "RatedLine": "Lifts up to {load} (High-Tech pp. 25, 29-30).",
+          "StLine": "ST {st}, Basic Lift {bl} lbs.: lifts {lift} and shifts {shift} a little (High-Tech pp. 29-30; Campaigns p. 353).",
+          "Tons": "{tons} tons",
+          "Lbs": "{lbs} lbs.",
+          "lifts": "{name} lifts the load of {load}.",
+          "shifts": "{name} can only shift the load of {load} a little.",
+          "tooHeavy": "The load of {load} is too heavy for {name}."
+        },
+        "Alert": {
+          "Action": "Set off or reset the alarm",
+          "Line": "Worn: sounds an alarm when its wearer stops moving, +{bonus} to Hearing to find him; it sounds by itself once he is out cold (High-Tech p. 30).",
+          "SoundingLine": "Sounding: +{bonus} to Hearing to find its wearer (High-Tech p. 30).",
+          "Sounds": "{name}'s alert is sounding: +{bonus} to Hearing to find them.",
+          "Reset": "{name}'s alert is reset.",
+          "HearingLine": "{name} sounding (High-Tech p. 30)"
+        },
+        "Litter": {
+          "Action": "Drop the litter",
+          "Line": "Its occupant has DR {dr} if it is dropped or in a collision (High-Tech p. 29).",
+          "Target": "Target the one token in the litter.",
+          "Hint": "{name} falls in the litter, with DR {dr} against the fall (High-Tech p. 29).",
+          "Yards": "Yards fallen",
+          "Soft": "Onto something soft",
+          "DrLine": "Stokes litter, DR {dr}",
+          "Gm": "{name} falls {yards} yards in the litter, with DR {dr}: the GM runs the fall."
+        }
       },
       "Projectors": {
         "Engine": {
@@ -9656,7 +9754,16 @@
         "AntisepticAction": "Clean a wound",
         "Depleted": "Depleted",
         "DepletedHint": "Used for several treatments: the reusable tools left work a grade lower (High-Tech p. 221).",
-        "RoundsWithoutSupplies": "No medical supplies: Medical Care as at TL5 (High-Tech p. 223)."
+        "RoundsWithoutSupplies": "No medical supplies: Medical Care as at TL5 (High-Tech p. 223).",
+        "XrayMaximumItem": "Deliberately set to maximum intensity, it exposes a victim to {rads} rads an hour (p. 223).",
+        "XrayMaximumAction": "Maximum intensity",
+        "XrayMaximumHint": "Turned on the targeted victim at maximum intensity, the machine gives {rads} rads an hour (High-Tech p. 223).",
+        "XrayMinutes": "Minutes",
+        "XrayMaximumDone": "{operator} turns the X-ray machine on {name} at maximum intensity for {minutes} minute(s): {rads} rads.",
+        "XrayMaximumGm": "{name} takes {rads} rads from {minutes} minute(s) at maximum intensity: the GM applies the dose.",
+        "TheaterAction": "Operation in its specialty",
+        "TheaterInSpecialty": "In use for an operation in its own specialty: +TL/2 (quality) to Surgery (p. 224). Switch it off for any other operation.",
+        "TheaterOtherSpecialty": "Basic equipment for Surgery outside its specialty; switch it on for an operation in its specialty, +TL/2 (quality) (p. 224)."
       },
       "Armor": {
         "Title": "High-Tech armour",
@@ -9809,7 +9916,18 @@
             "vision": "Vision {modifier}",
             "observation": "Observation",
             "traps": "Per-based Traps"
-          }
+          },
+          "RecognitionTitle": "Watch for a face",
+          "RecognitionTarget": "Target the one character the cameras are watching.",
+          "RecognitionPer": "Recognition",
+          "Recognition": {
+            "conservative": "Per {conservative} (conservative)",
+            "generous": "Per {generous} (generous)"
+          },
+          "RecognitionLabel": "{name} watches {subject}",
+          "RecognitionNote": "Optical recognition",
+          "Recognized": "The software recognizes {subject}.",
+          "NotRecognized": "The software doesn't recognize {subject}."
         },
         "Mike": {
           "Spike": "In use (equipped): Parabolic Hearing {levels}, hearing {factor} times as far through the wall (p. 208).",
@@ -9990,9 +10108,18 @@
         "Toughness": "DR {dr}, HP {hp}.",
         "Behind": "Cuffed behind: {dx} DX, {hands} on tasks done with the hands alone (worked blind behind the back), and nothing that needs the arms free. Acrobatics or Escape brings the wrists to the front.",
         "Front": "Cuffed in front: {hands} on hands-only tasks; one-handed blows are impossible, two-handed weapons and guns unhindered, other weapons -1 to -4 (the GM's call).",
-        "Straitjacket": "As cuffed behind the back ({dx} DX, no weapon use), with the hands useless in the sleeves and no slipping the arms round to the front.",
+        "Straitjacket": "As cuffed behind the back ({dx} DX, no weapon use), with the hands useless in the sleeves -- no task done with the hands alone -- and no slipping the arms round to the front.",
         "LegIrons": "Crippled Legs: Move is half Basic Speed, -3 on skills that need the legs; kicking is impossible. TL5 leg irons don't ratchet (Escape unmodified); TL6-8 ones do (Escape-5).",
-        "Ball": "The prisoner carries the {weight}-lb. iron ball, which counts toward encumbrance."
+        "Ball": "The prisoner carries the {weight}-lb. iron ball, which counts toward encumbrance.",
+        "NoHands": "In {name}, the hands are useless in the sleeves: no task done with the hands alone (High-Tech p. 217).",
+        "Break": "Break the restraint",
+        "BreakHint": "The blow's basic damage goes on the restraint at DR {dr}, HP {hp}; brought to 0 HP or less, it no longer holds (High-Tech p. 217; Campaigns p. 483).",
+        "BreakDamage": "Damage",
+        "BreakType": "Type",
+        "BreakDivisor": "Armor divisor",
+        "BreakLabel": "{name} is struck",
+        "Unbroken": "{restraint} still holds: {left} HP left.",
+        "Broken": "{restraint} breaks: {name} is free of it."
       },
       "Prosthetics": {
         "Mitigated": "Mitigated by {item} (High-Tech pp. 225-226)",

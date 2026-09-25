@@ -21,6 +21,7 @@ const HOOKS = {
   afterSuccessRoll: "gworld.afterSuccessRoll",
   armorDr: "gworld.armorDr",
   poisonCycle: "gworld.poisonCycle",
+  detectionModifiers: "gworld.detectionModifiers",
 };
 
 let hooks: Map<string, Listener[]>;
@@ -41,13 +42,16 @@ let dialogAnswer: any;
 let targets: any[];
 let needsEquipment: any[];
 let graders: any[];
+let applied: any[];
+let appliedResult: any;
+let falls: any[];
 
 function fakeApi() {
   return {
     rules,
     registry: { isRuleOn: (key: string) => key === "equipmentModifiers" },
     data: {
-      hooks: { skillBonuses: "gworld.skillBonuses" },
+      hooks: { skillBonuses: "gworld.skillBonuses", objectStats: "gworld.objectStats" },
       registerPriceModifier: (m: any) => prices.push(m),
       registerPoison: (p: any) => poisons.push(p),
       registerNeedsEquipment: (r: any) => { needsEquipment.push(r); return `${r.module}.${r.key}`; },
@@ -70,10 +74,13 @@ function fakeApi() {
     },
     actors: {
       conditions: (actor: any) => actor?.conditionList ?? [],
+      activePoisons: (actor: any) => actor?.poisons ?? [],
       removeCondition: async (actor: any, id: string) => { actor.conditionList = (actor.conditionList ?? []).filter((c: any) => c.id !== id); },
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? 10,
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
     },
+    items: { applyDamage: async (o: any) => { applied.push(o); return appliedResult; } },
+    hazards: { fall: async (actor: any, o: any) => { falls.push({ actor, ...o }); return 0; } },
     roll: {
       damage: async (o: any) => { damage.push(o); return 0; },
       success: async (o: any) => { successes.push(o); return successResult; },
@@ -141,6 +148,9 @@ beforeEach(() => {
   targets = [];
   needsEquipment = [];
   graders = [];
+  applied = [];
+  appliedResult = null;
+  falls = [];
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
@@ -455,15 +465,152 @@ describe("household hazards (High-Tech pp. 31-33)", () => {
     expect(damage[1]).toMatchObject({ formula: "1", ignoresDr: true, noKnockback: true });
   });
 
-  it("registers lead, and names the worse symptoms past half the victim's HP", () => {
-    expect(poisons[0]).toMatchObject({ key: "leadPoisoning", poison: { resistanceModifier: -4, damage: "toxic" } });
+  it("registers lead, and names the worse symptoms past half the victim's HP", async () => {
+    expect(poisons[0]).toMatchObject({ key: "leadPoisoning", label: "GCC.HT.Tools.LeadPoison", poison: { resistanceModifier: -4, damage: "toxic" } });
     expect(poisons[0].available()).toBe(true);
     const victim = { name: "Explorer", isOwner: true };
     fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.leadPoisoning`, symptomsNow: ["1/3"] });
     fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGas`, symptomsNow: ["1/2"] });
+    await flush();
     expect(chat).toEqual([]);
     fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.leadPoisoning`, symptomsNow: ["1/2"] });
+    await flush();
     expect(chat).toHaveLength(1);
+  });
+
+  it("counts lead's failed rolls by the dose: the second, and each after, intensifies the symptoms", async () => {
+    const victim = flagged({ name: "Explorer", isOwner: true, poisons: [{ id: "dose1" }, { id: "dose2" }] });
+    victim.unsetFlag = async () => { await victim.setFlag(MODULE_ID, "htLeadCourse", undefined); };
+    const cycle = (id: string, resisted: boolean | null, symptomsNow: string[] = [], finished = false) =>
+      fire(HOOKS.poisonCycle, { actor: victim, poison: { id }, source: `${MODULE_ID}.leadPoisoning`, resisted, symptomsNow, finished });
+    cycle("dose1", false);
+    await flush();
+    expect(chat).toEqual([]);
+    // Another dose keeps its own count.
+    cycle("dose2", false);
+    await flush();
+    expect(chat).toEqual([]);
+    cycle("dose1", true, ["1/2"]);
+    await flush();
+    expect(chat.at(-1)).toContain("LeadWorse");
+    cycle("dose1", false);
+    await flush();
+    expect(chat.at(-1)).toContain('LeadIntensifies {"name":"Explorer","failed":2}');
+    expect(victim.getFlag(MODULE_ID, "htLeadCourse")).toEqual({ dose1: { failed: 2, pastHalf: true }, dose2: { failed: 1, pastHalf: false } });
+    // The second dose is cleared from the sheet: its count goes on the next cycle.
+    victim.poisons = [{ id: "dose1" }];
+    cycle("dose1", false, [], true);
+    await flush();
+    expect(chat.at(-1)).toContain('"failed":3');
+    expect(victim.getFlag(MODULE_ID, "htLeadCourse")).toBeUndefined();
+  });
+
+  it("ruptures a struck cylinder through its DR 6 with anything but crushing, a fireball only near a flame", async () => {
+    const tank = flagged(equipment("Propane Cylinder, Small", { hazard: { kind: "explosion", damage: "4dx2" } }));
+    const actor = worker([tank]);
+    expect(actions.get("ht-propane-strike").visible(tank)).toBe(true);
+    expect(fire("gworld.objectStats", { item: tank, dr: 0, notes: [] }).dr).toBe(6);
+    // A crushing blow that gets through doesn't rupture it.
+    dialogAnswer = { damage: 10, type: "cr", divisor: 1, flame: true };
+    appliedResult = { penetrating: 4 };
+    actions.get("ht-propane-strike").run(tank, actor);
+    await flush();
+    expect(applied[0]).toMatchObject({ item: tank, damage: 10, type: "cr" });
+    expect(chat.at(-1)).toContain("Propane.Holds");
+    expect(damage).toEqual([]);
+    // A bullet through it, with no flame near: the gas escapes.
+    dialogAnswer = { damage: 10, type: "pi", divisor: 1, flame: false };
+    actions.get("ht-propane-strike").run(tank, actor);
+    await flush();
+    expect(chat.at(-1)).toContain("Propane.Vents");
+    // Near a flame: the fireball.
+    dialogAnswer = { damage: 10, type: "pi", divisor: 1, flame: true };
+    actions.get("ht-propane-strike").run(tank, actor);
+    await flush();
+    expect(damage[0]).toMatchObject({ formula: "4dx2", damageType: "burn", explosive: true, fragmentation: "1d" });
+    // Stopped by the DR.
+    appliedResult = { penetrating: 0 };
+    actions.get("ht-propane-strike").run(tank, actor);
+    await flush();
+    expect(chat.at(-1)).toContain("Propane.Holds");
+    expect(damage).toHaveLength(1);
+  });
+});
+
+describe("torches, the doorbuster and lifting gear (High-Tech pp. 25-30)", () => {
+  beforeEach(() => { on = { forcedEntryTools: true }; ready(); });
+
+  it("burns a cutting torch's 30 seconds a second at a time, refuses once out, and refills", async () => {
+    const torch = flagged(equipment("Cutting Torch", { work: { damage: "1d+3", type: "burn", divisor: 2 }, supply: { kind: "seconds", amount: 30, refill: "bottle" } }));
+    const actor = worker([torch]);
+    await torch.setFlag(MODULE_ID, "htSupplyUsed", 29);
+    expect(attack(torch, actor).refusal).toBeNull();
+    fire(HOOKS.afterSuccessRoll, { actor, item: torch, tags: ["attack"], outcome: { success: true } });
+    await flush();
+    expect(torch.getFlag(MODULE_ID, "htSupplyUsed")).toBe(30);
+    expect(attack(torch, actor).refusal).toContain("Supply.secondsRefusal");
+    actions.get("ht-tool-refill").run(torch, actor);
+    await flush();
+    expect(torch.getFlag(MODULE_ID, "htSupplyUsed")).toBe(0);
+    expect(chat.at(-1)).toContain("Supply.Refilled");
+    expect(attack(torch, actor).refusal).toBeNull();
+  });
+
+  it("fires the doorbuster's strip a shot a blow, and spends nothing on another roll", async () => {
+    const buster = flagged(equipment("Doorbuster", { supply: { kind: "shots", amount: 10, refill: "strip" } }));
+    const actor = worker([buster]);
+    attack(buster, actor);
+    fire(HOOKS.afterSuccessRoll, { actor, tags: ["skill"], outcome: { success: true } });
+    await flush();
+    expect(buster.getFlag(MODULE_ID, "htSupplyUsed")).toBeUndefined();
+    fire(HOOKS.afterSuccessRoll, { actor, item: buster, tags: ["attack"], outcome: { success: false } });
+    await flush();
+    expect(buster.getFlag(MODULE_ID, "htSupplyUsed")).toBe(1);
+    expect(actions.get("ht-tool-refill").visible(equipment("Hacksaw"))).toBe(false);
+  });
+
+  it("says whether a jack lifts a load, and how a spreader's Arm ST lifts or shifts one", async () => {
+    const jack = equipment("Jack", { lift: { lbs: 8000 } });
+    dialogAnswer = 6000;
+    actions.get("ht-tool-lift").run(jack, worker([jack]));
+    await flush();
+    expect(chat.at(-1)).toContain("Lift.lifts");
+    dialogAnswer = 9000;
+    actions.get("ht-tool-lift").run(jack, worker([jack]));
+    await flush();
+    expect(chat.at(-1)).toContain("Lift.tooHeavy");
+    // Arm ST 36: BL 259, lifts 2,074 lbs., shifts 12,960.
+    const spreader = equipment("Rescue Spreader/Cutter (TL7)", { lift: { st: 36 } });
+    dialogAnswer = 10000;
+    actions.get("ht-tool-lift").run(spreader, worker([spreader]));
+    await flush();
+    expect(chat.at(-1)).toContain("Lift.shifts");
+  });
+
+  it("sounds a worn firefighter alert, set off or its wearer out cold: +4 to Hearing to find him", async () => {
+    const alert = flagged(equipment("Firefighter Alert System", {}, { equipped: true }));
+    const wearer: any = { name: "Firefighter", items: [alert], statuses: new Set() };
+    const listen = (subject: any) => fire(HOOKS.detectionModifiers, { subject, sense: "hearing", modifiers: [] }).modifiers;
+    expect(listen(wearer)).toEqual([]);
+    wearer.statuses.add("unconscious");
+    expect(listen(wearer).map((m: any) => m.value)).toEqual([4]);
+    expect(fire(HOOKS.detectionModifiers, { subject: wearer, sense: "vision", modifiers: [] }).modifiers).toEqual([]);
+    wearer.statuses.clear();
+    actions.get("ht-firefighter-alert").run(alert, wearer);
+    await flush();
+    expect(listen(wearer).map((m: any) => m.value)).toEqual([4]);
+    alert.system.equipped = false;
+    expect(listen(wearer)).toEqual([]);
+  });
+
+  it("drops a Stokes litter's occupant with DR 5 off the fall", async () => {
+    const litter = equipment("Stokes Litter");
+    const casualty = { name: "Casualty", isOwner: true };
+    targets = [{ actor: casualty }];
+    dialogAnswer = { yards: 3, soft: false };
+    actions.get("ht-stokes-litter").run(litter, worker([litter]));
+    await flush();
+    expect(falls[0]).toMatchObject({ actor: casualty, yards: 3, onto: "hard", modifiers: [{ value: -5 }] });
   });
 });
 

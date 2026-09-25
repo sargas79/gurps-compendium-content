@@ -15,6 +15,7 @@
 import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { marginOfFailure } from "../../../shared/margin.js";
+import { bookOf } from "../../../shared/book-tables.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
   immunity,
@@ -73,7 +74,10 @@ export function initNeuralSonic(): void {
   });
 }
 
+/** A beam weapon's family, by its name; never another book's record of that name (Monster Hunters' mind disruptor). */
 function familyOf(item: any): BeamFamily | null {
+  const book = bookOf(item);
+  if (book && book !== "ultra-tech") return null;
   return item?.type === "equipment" ? beamFamily(String(item.name ?? "")) : null;
 }
 

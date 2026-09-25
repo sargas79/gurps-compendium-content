@@ -21,6 +21,7 @@
  *     disintegrated target, through `gworld.afterDamage`.
  */
 
+import { bookOf } from "../../../shared/book-tables.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { ENVIRONMENT_FLAG, environmentScene, sceneEnvironment } from "../../../shared/environment/index.js";
@@ -67,7 +68,10 @@ export function beamEnvironment(): BeamEnvironment {
 }
 
 /** The family of the item an attack was made with. */
+/** A beam weapon's family, by its name; never another book's record of that name (Monster Hunters' mind disruptor). */
 function familyOf(item: any): BeamFamily | null {
+  const book = bookOf(item);
+  if (book && book !== "ultra-tech") return null;
   return item ? beamFamily(String(item.name ?? "")) : null;
 }
 

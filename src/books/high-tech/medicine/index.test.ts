@@ -33,6 +33,7 @@ let targets: any[];
 let controlled: any[];
 let worldTime: number;
 let systemRules: Set<string>;
+let graders: any[] = [];
 
 function fire(hook: string, ...args: any[]): any {
   for (const listener of hooks.get(hook) ?? []) listener(...args);
@@ -44,7 +45,7 @@ function fakeApi() {
     rules,
     items: { changeQuantity: async (i: any, delta: number, o: any = {}) => { const from = Number(i.system.quantity) || 0; i.system.quantity = Math.max(0, from + delta); return { from, to: i.system.quantity, reason: o.reason ?? "" }; } },
     registry: { isRuleOn: (key: string) => systemRules.has(key) },
-    data: { hooks: { skillBonuses: "gworld.skillBonuses" } },
+    data: { hooks: { skillBonuses: "gworld.skillBonuses" }, registerToolGrade: (g: any) => { graders.push(g); return `${g.module}.${g.key}`; } },
     combat: { hooks: HOOKS },
     sheets: {
       registerSheetSection: (x: any) => sections.push(x),
@@ -141,6 +142,7 @@ beforeEach(() => {
   resuscitations = [];
   injuries = [];
   rads = [];
+  graders = [];
   chat = [];
   on = {};
   successResults = [];
@@ -454,6 +456,38 @@ describe("medical facilities (High-Tech pp. 222-225)", () => {
     await run("ht-scan", gear("Portable Ultrasound", { kind: "imaging" }), operator);
     expect(rads).toEqual([]);
     expect(successes).toHaveLength(3);
+  });
+
+  it("turns the portable X-ray on a victim at maximum intensity: 1,000 rads an hour (p. 223)", async () => {
+    const operator = person("Operator");
+    const victim = person("Victim");
+    targets = [victim];
+    const portable = gear("Portable X-Ray Machine (TL7)", { kind: "imaging" }, { tl: "7" });
+    expect(actions.get("ht-xray-maximum").visible(portable)).toBe(true);
+    expect(actions.get("ht-xray-maximum").visible(gear("Compact X-Ray Machine", { kind: "imaging" }))).toBe(false);
+    dialogAnswer = 6;
+    await run("ht-xray-maximum", portable, operator);
+    expect(rads).toEqual([{ actor: victim, rads: 100, protectionFactor: 1, modifier: 0 }]);
+    // A victim this user can't change is the GM's to dose.
+    const other = person("Other", [], { isOwner: false });
+    targets = [other];
+    await run("ht-xray-maximum", portable, operator);
+    expect(rads).toHaveLength(1);
+    expect(chat.at(-1)).toContain("XrayMaximumGm");
+  });
+
+  it("grades a specialized theater +TL/2 for Surgery in its specialty, basic otherwise (p. 224)", async () => {
+    const theater = gear("Specialized Operating Theater", { kind: "specialtyTheater" }, { equipmentQuality: "best", forSkills: ["Surgery/TL"] });
+    const grader = graders.find((g) => g.key === "ht-specialty-theater");
+    const surgery = { name: "Surgery/TL8" };
+    expect(grader.grade(theater, surgery)).toBe("basic");
+    await run("ht-theater-specialty", theater, person("Surgeon", [theater]));
+    expect(grader.grade(theater, surgery)).toBe("best");
+    expect(chat.at(-1)).toContain("TheaterInSpecialty");
+    expect(grader.grade(theater, { name: "Physician/TL8" })).toBeNull();
+    expect(grader.grade(gear("Operating Theater", null, { forSkills: ["Surgery/TL"] }), surgery)).toBeNull();
+    on.medicalFacilities = false;
+    expect(grader.grade(theater, surgery)).toBeNull();
   });
 
   it("gives an imaging instrument's +TL/2 only on the Diagnosis roll its scan allows, over the skill's own gear (p. 222)", async () => {

@@ -18,6 +18,7 @@ import {
   supplementJammerByName,
   sweepMinutes,
   type ScreeningSearch,
+  recognitionCover,
 } from "./rules.js";
 
 const search = (more: Partial<ScreeningSearch> = {}): ScreeningSearch => ({ skill: "Search", metallic: true, explosive: false, patDown: false, sensitivity: 1, tl: 7, ...more });
@@ -147,5 +148,14 @@ describe("the supplement's jammers (HT:EE pp. 49-50)", () => {
     expect(isSpectrumAnalyzer("Spectrum Analyzer (Digital)")).toBe(true);
     expect(isSpectrumAnalyzer("Digital Spectrum Analyzer")).toBe(true);
     expect(isSpectrumAnalyzer("Spectrum Vision")).toBe(false);
+  });
+});
+
+describe("optical recognition (p. 207)", () => {
+  it("is fooled by the better of Disguise and Acting, and by nothing without either", () => {
+    expect(recognitionCover(13, 15)).toEqual({ skill: "Acting", level: 15 });
+    expect(recognitionCover(14, null)).toEqual({ skill: "Disguise", level: 14 });
+    expect(recognitionCover(12, 12)).toEqual({ skill: "Disguise", level: 12 });
+    expect(recognitionCover(null, null)).toBeNull();
   });
 });

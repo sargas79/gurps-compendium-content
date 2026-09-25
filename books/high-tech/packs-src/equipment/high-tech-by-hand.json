@@ -11721,5 +11721,362 @@
         }
       }
     }
+  },
+  {
+    "_id": "0f2194151c96cdbb",
+    "name": "Rotary Hammer",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 27",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "2d+2",
+              "type": "pi++",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "concreteRock",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "548d2a85ee1cc536",
+    "name": "Rotary Hammer, Battery-Powered",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 27",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "2d+2",
+              "type": "pi++",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "concreteRock",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          },
+          "power": {
+            "draw": {
+              "cell": "M",
+              "cells": 1,
+              "endurance": "30 min.",
+              "raw": "M/30 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "ebcb27148128d845",
+    "name": "Power Drill, Battery-Powered",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 27",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "1d+2",
+              "type": "pi++",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "woodPlasticMetal",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          },
+          "power": {
+            "draw": {
+              "cell": "M",
+              "cells": 1,
+              "endurance": "30 min.",
+              "raw": "M/30 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "aa40655413227d8e",
+    "name": "Circular Saw (TL8)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 75,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 27",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 75,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "sw+3",
+              "type": "cut",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "5900f97a4f1292a4",
+    "name": "Circular Saw, Cordless",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 75,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 27",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 75,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "sw+3",
+              "type": "cut",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          },
+          "power": {
+            "draw": {
+              "cell": "M",
+              "cells": 1,
+              "endurance": "30 min.",
+              "raw": "M/30 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "0d4331eceb4d3cef",
+    "name": "Drill Bit, Carbide or Diamond",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 40,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 27",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 40,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "7aec60d688213956",
+    "name": "Cutting Torch Bottle",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 27",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "70dbee05973bdc36",
+    "name": "Pocket Torch Refill",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 1,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 27",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "3ba197e86b2b2e93",
+    "name": "Jack, Hydraulic",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 37.5,
+      "cost": 75,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 25",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 75,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "lift": {
+              "lbs": 16000,
+              "st": 0
+            }
+          }
+        }
+      }
+    }
   }
 ]

@@ -226,6 +226,34 @@ export function needsMaintenanceChecks(figures: GadgetFigures, options: { cost: 
 }
 
 /**
+ * The technical skills a maintenance check is made against (Campaigns
+ * p. 485), as High-Tech names them for each kind of gear (p. 9): Armoury for
+ * weapons and defenses, Computer Operation for software, Electrician for
+ * appliances, Electronics Repair for electronic devices, Machinist for tools,
+ * Mechanic for power plants and vehicles, Sewing for fabric.
+ */
+export const MAINTENANCE_SKILLS = Object.freeze(["Armoury", "Computer Operation", "Electrician", "Electronics Repair", "Machinist", "Mechanic", "Sewing"]);
+
+/** The skill a gadget's maintenance is likeliest to take, from what it is. */
+export function maintenanceSkillFor(facts: { weapon: boolean; armor: boolean; vehicle: boolean; powered: boolean }): string {
+  if (facts.weapon || facts.armor) return "Armoury";
+  if (facts.vehicle) return "Mechanic";
+  return facts.powered ? "Electronics Repair" : "Machinist";
+}
+
+/**
+ * Missed or failed maintenance checks cost the gadget a point of HT each,
+ * cumulative, on its HT rolls; each point comes back as a major repair, at an
+ * extra -2 with parts costing 1d x 10% of its price (Campaigns pp. 484-485).
+ */
+export const MAJOR_REPAIR = Object.freeze({ modifier: -2, partsShare: 0.1 });
+
+/** A maintenance check's result: kept up, or a point of HT lost (Campaigns p. 485). */
+export function maintenanceOutcome(options: { missed: boolean; success: boolean }): "kept" | "lost" {
+  return !options.missed && options.success ? "kept" : "lost";
+}
+
+/**
  * An obsolete gadget's Legality Class: for every two full TLs by which it is
  * obsolete its LC rises by one, as far as the book allows (Ultra-Tech p. 14;
  * High-Tech p. 8), counted from the TL of the gadget itself rather than the

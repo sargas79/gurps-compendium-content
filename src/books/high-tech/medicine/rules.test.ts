@@ -4,6 +4,9 @@ import { surgeryEquipment } from "../../../../system/src/rules/medicine.js";
 import { deviceIn, deviceSkill } from "../../../shared/medical/rules.js";
 import {
   ANTISEPTIC,
+  XRAY_MAXIMUM,
+  maximumIntensityRads,
+  specialtyTheaterGrade,
   CPR_MINUTES_PER_FP,
   HT_DEVICES,
   PORTABLE_SURGERY_FIRST_AID,
@@ -79,5 +82,20 @@ describe("surgery (High-Tech pp. 223-225)", () => {
 
   it("takes -2 off the infection roll with antiseptic", () => {
     expect(ANTISEPTIC.bonus).toBe(2);
+  });
+});
+
+describe("the portable X-ray at maximum intensity and the specialized theater (pp. 223-224)", () => {
+  it("gives 1,000 rads an hour, by the minute, on the TL7 portable machine only", () => {
+    expect(maximumIntensityRads(60)).toBe(1000);
+    expect(maximumIntensityRads(3)).toBe(50);
+    expect(maximumIntensityRads(-5)).toBe(0);
+    expect(XRAY_MAXIMUM.pattern.test("Portable X-Ray Machine (TL7)")).toBe(true);
+    expect(XRAY_MAXIMUM.pattern.test("Portable X-Ray Machine (TL8)")).toBe(false);
+  });
+
+  it("is the best equipment in its specialty and basic otherwise", () => {
+    expect(specialtyTheaterGrade(true)).toBe("best");
+    expect(specialtyTheaterGrade(false)).toBe("basic");
   });
 });

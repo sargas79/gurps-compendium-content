@@ -28,10 +28,18 @@
  *     the snap, which refuses the saw's attacks until it is restarted or
  *     repaired; the carbide chain, which costs double and ends both; and the
  *     nail gun's -4.
+ *     A torch's burn time and the doorbuster's strips are counted as the
+ *     tool is used, a second or a shot at a time, and the tool refuses to
+ *     work once they run out until it is refilled; a jack, lift bags, a
+ *     hoist, a spreader or a come-along tells whether it manages a load. A
+ *     firefighter alert, set off or on a wearer out cold, is +4 to Hearing
+ *     to find him; a Stokes litter dropped runs its occupant's fall with DR 5.
  *   - **Household hazards (householdHazards):** a row action on a propane
- *     cylinder or an appliance that rolls what it does, and lead as a poison
- *     the sheet doses, whose worse symptoms are named once the victim is past
- *     half their HP.
+ *     cylinder or an appliance that rolls what it does; a blow struck at a
+ *     cylinder, which ruptures it through DR 6 with anything but crushing and
+ *     sets it off near a flame; and lead as a poison the sheet doses, whose
+ *     worse symptoms are named once the victim is past half their HP, and
+ *     intensifying ones after a second failed roll.
  */
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
@@ -56,20 +64,33 @@ import {
   extinguishes,
   isFireShelter,
   FIRE_SHELTER_DR,
+  FIREFIGHTER_ALERT,
+  STOKES_LITTER,
+  alertSounding,
   diceRange,
   glassCutterOutcome,
   kitFor,
   kitPriceMultipliers,
+  leadStage,
   leadSymptomsWorsen,
+  liftOutcome,
   listOf,
   nailGunLevel,
   needsKit,
+  propaneRuptures,
   readiesNeeded,
   snapStrikesWielder,
+  supplyLeft,
+  SUPPLY_KINDS,
+  SUPPLY_PER_USE,
+  SUPPLY_REFILLS,
+  TON_LBS,
   workDamage,
   type CarriedKit,
   type HazardKind,
   type KitSize,
+  type Lifting,
+  type Supply,
   type Work,
 } from "./rules.js";
 
@@ -86,6 +107,12 @@ const HARD_MODE = "ht-chainsaw-hard";
 /** The bursts spent from a fire extinguisher; and a fire shelter someone is inside. */
 const BURSTS_FLAG = "htBurstsUsed";
 const SHELTER_FLAG = "htShelterInside";
+/** The burn time or shots used from a tool's supply since it was last refilled. */
+const SUPPLY_FLAG = "htSupplyUsed";
+/** A firefighter alert set off by hand, its wearer trapped. */
+const ALERT_FLAG = "htAlertSounding";
+/** Lead poisoning's course on its victim: the failed resistance rolls, and whether half the HP is gone. */
+const LEAD_FLAG = "htLeadCourse";
 /**
  * The fire a burst puts out that this module keeps: a flamethrower's fuel (pp. 178, 29). The
  * system's own `burning` has no call to end it, so the GM takes that off; thermite and napalm burn on.
@@ -122,6 +149,10 @@ export interface ToolData {
   readiesWaivedAtSt: number;
   work: Work | null;
   hazard: { kind: HazardKind; damage: string; upTo: string; perSecond: boolean } | null;
+  /** A torch's burn time or the doorbuster's strips (pp. 27, 30), or null. */
+  supply: Supply | null;
+  /** What a jack, lift bags, a hoist, a spreader or a come-along lifts (pp. 25, 29-30), or null. */
+  lift: Lifting | null;
 }
 
 /** Registers the fields this module keeps on a tool. */
@@ -158,6 +189,15 @@ export function initTools(): void {
         upTo: text(),
         perSecond: new f.BooleanField({ initial: false }),
       }),
+      supply: new f.SchemaField({
+        kind: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...SUPPLY_KINDS] }),
+        amount: whole(86400),
+        refill: new f.StringField({ required: true, nullable: false, blank: false, initial: "refill", choices: [...SUPPLY_REFILLS] }),
+      }),
+      lift: new f.SchemaField({
+        lbs: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
+        st: whole(1000),
+      }),
     }),
   });
 }
@@ -168,6 +208,10 @@ export function toolData(item: any): ToolData {
   const count = (v: unknown) => Math.max(0, Math.floor(Number(v) || 0));
   const w = d.work ?? {};
   const h = d.hazard ?? {};
+  const sp = d.supply ?? {};
+  const lf = d.lift ?? {};
+  const supplyKind = SUPPLY_KINDS.includes(sp.kind) ? sp.kind : "";
+  const lift: Lifting = { lbs: Math.max(0, Number(lf.lbs) || 0), st: count(lf.st) };
   const damage = String(w.damage ?? "").trim();
   const hazardKind: HazardKind = HAZARD_KINDS.includes(h.kind) ? h.kind : "";
   return {
@@ -195,8 +239,15 @@ export function toolData(item: any): ToolData {
         }
       : null,
     hazard: hazardKind ? { kind: hazardKind, damage: String(h.damage ?? "").trim(), upTo: String(h.upTo ?? "").trim(), perSecond: h.perSecond === true } : null,
+    supply: supplyKind && count(sp.amount) > 0
+      ? { kind: supplyKind, amount: count(sp.amount), refill: SUPPLY_REFILLS.includes(sp.refill) ? sp.refill : "refill" }
+      : null,
+    lift: lift.lbs > 0 || lift.st > 0 ? lift : null,
   };
 }
+
+/** What is used of a tool's supply since it was last refilled. */
+const supplyUsed = (item: any): number => Math.max(0, Math.floor(Number(item?.getFlag?.(MODULE_ID, SUPPLY_FLAG)) || 0));
 
 const tlOf = (item: any): number => Number(/\d+/.exec(String(item?.system?.tl ?? ""))?.[0]) || 0;
 const meleeModes = (item: any): any[] => item?.system?.meleeModes ?? [];
@@ -347,10 +398,7 @@ async function hazardDamage(api: GWorldApi, item: any, actor: any): Promise<void
     formula = String(chosen.dice);
   }
   const label = F(hazard.perSecond ? "HazardPerSecond" : "HazardLabel", { name });
-  if (hazard.kind === "explosion") {
-    await api.roll.damage({ actor, item, label, formula, damageType: "burn" as never, explosive: true, fragmentation: PROPANE_FRAGMENTS, source: "propane" });
-    return;
-  }
+  if (hazard.kind === "explosion") return propaneBlast(api, item, actor, formula);
   // An institutional microwave does hit points, not damage (p. 32): nothing stops it and nothing is shoved.
   const injury = hazard.kind === "injury";
   await api.roll.damage({
@@ -362,6 +410,108 @@ async function hazardDamage(api: GWorldApi, item: any, actor: any): Promise<void
     ...(injury ? { ignoresDr: true, noKnockback: true } : {}),
     source: "householdHazard",
   });
+}
+
+/** A ruptured propane cylinder's fireball: burning explosive damage, with 1d cutting fragments (p. 31). */
+async function propaneBlast(api: GWorldApi, item: any, actor: any, formula: string): Promise<void> {
+  await api.roll.damage({ actor, item, label: F("HazardLabel", { name: String(item.name ?? "") }), formula, damageType: "burn" as never, explosive: true, fragmentation: PROPANE_FRAGMENTS, source: "propane" });
+}
+
+/** The damage types a blow at a cylinder can be, as the system's things take them. */
+const BLOW_TYPES = ["cr", "cut", "imp", "pi-", "pi", "pi+", "pi++", "burn", "cor"] as const;
+
+/**
+ * A blow struck at a propane cylinder (p. 31): the system puts it on the
+ * cylinder at its DR 6 (`items.applyDamage`), and anything but crushing that
+ * gets through ruptures it -- a fireball near a flame, escaping gas elsewhere.
+ */
+async function strikeCylinder(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const name = String(item.name ?? "");
+  const answer: any = await foundry.applications.api.DialogV2.prompt({
+    window: { title: name },
+    content: `<div class="gworld"><p class="ihint">${esc(F("Propane.StrikeHint", { dr: PROPANE_DR }))}</p>
+      <div class="ifields">
+        <label>${esc(L("Propane.Damage"))} <input type="number" name="damage" value="0" min="0" step="1"></label>
+        <label>${esc(L("Propane.Type"))} <select name="type">${BLOW_TYPES.map((t) => `<option value="${t}">${t}</option>`).join("")}</select></label>
+        <label>${esc(L("Propane.Divisor"))} <input type="number" name="divisor" value="1" min="0.1" step="any"></label>
+      </div>
+      <div class="ichecks"><label class="icheck"><input type="checkbox" name="flame"> ${esc(L("Propane.NearFlame"))}</label></div></div>`,
+    ok: {
+      label: L("Propane.Strike"),
+      callback: (_event: Event, button: HTMLElement) => {
+        const root = button.closest<HTMLElement>(".application");
+        const value = (n: string) => root?.querySelector<HTMLInputElement>(`[name="${n}"]`);
+        return { damage: Number(value("damage")?.value) || 0, type: String(value("type")?.value ?? "cr"), divisor: Number(value("divisor")?.value) || 1, flame: Boolean(value("flame")?.checked) };
+      },
+    },
+    rejectClose: false,
+  });
+  if (!answer) return;
+  const result: any = await (api.items as any).applyDamage({ item, damage: answer.damage, type: answer.type, armorDivisor: answer.divisor, label: F("Propane.Struck", { name }) });
+  if (!result) return;
+  if (!propaneRuptures(answer.type, Number(result.penetrating) || 0)) return void say(actor, name, [F("Propane.Holds", { name })]);
+  if (!answer.flame) return void say(actor, name, [F("Propane.Vents", { name })]);
+  await say(actor, name, [F("Propane.Fireball", { name })]);
+  const hazard = toolData(item).hazard;
+  if (hazard?.damage) await propaneBlast(api, item, actor, hazard.damage);
+}
+
+// ── lifting (pp. 25, 29-30) ──
+
+/** The line saying what a lifting tool lifts. */
+function liftLine(api: GWorldApi, lift: Lifting): string {
+  if (lift.lbs > 0) return F("Lift.RatedLine", { load: loadText(lift.lbs) });
+  const bl = Number(api.rules.basicLift(lift.st)) || 0;
+  return F("Lift.StLine", { st: lift.st, bl: Math.round(bl), lift: loadText(bl * 8), shift: loadText(bl * 50) });
+}
+
+/** A load in tons from two tons up, else in pounds. */
+function loadText(lbs: number): string {
+  return lbs >= 2 * TON_LBS ? F("Lift.Tons", { tons: Math.round((lbs / TON_LBS) * 10) / 10 }) : F("Lift.Lbs", { lbs: Math.round(lbs).toLocaleString("en-US") });
+}
+
+/** Asks a load's weight and says whether the tool manages it. */
+async function liftLoad(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const lift = toolData(item).lift;
+  if (!lift) return;
+  const name = String(item.name ?? "");
+  const lbs: any = await foundry.applications.api.DialogV2.prompt({
+    window: { title: name },
+    content: `<div class="gworld"><p class="ihint">${esc(liftLine(api, lift))}</p>
+      <div class="ifields"><label>${esc(L("Lift.Load"))} <input type="number" name="lbs" value="0" min="0" step="any"></label></div></div>`,
+    ok: {
+      label: L("Lift.Action"),
+      callback: (_event: Event, button: HTMLElement) => Number(button.closest<HTMLElement>(".application")?.querySelector<HTMLInputElement>('[name="lbs"]')?.value) || 0,
+    },
+    rejectClose: false,
+  });
+  if (lbs === null || lbs === undefined) return;
+  const outcome = liftOutcome(lift, Number(lbs), (st) => Number(api.rules.basicLift(st)) || 0);
+  await say(actor, name, [F(`Lift.${outcome}`, { name, load: loadText(Number(lbs)) })]);
+}
+
+/** A Stokes litter dropped with its occupant (the one token targeted) in it: a fall with DR 5 (p. 29). */
+async function dropLitter(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const occupant = targetedActor();
+  if (!occupant) return void ui.notifications?.warn(L("Litter.Target"));
+  const name = String(item.name ?? "");
+  const answer: any = await foundry.applications.api.DialogV2.prompt({
+    window: { title: name },
+    content: `<div class="gworld"><p class="ihint">${esc(F("Litter.Hint", { name: String(occupant.name ?? ""), dr: STOKES_LITTER.dr }))}</p>
+      <div class="ifields"><label>${esc(L("Litter.Yards"))} <input type="number" name="yards" value="1" min="0" step="any"></label></div>
+      <div class="ichecks"><label class="icheck"><input type="checkbox" name="soft"> ${esc(L("Litter.Soft"))}</label></div></div>`,
+    ok: {
+      label: L("Litter.Action"),
+      callback: (_event: Event, button: HTMLElement) => {
+        const root = button.closest<HTMLElement>(".application");
+        return { yards: Number(root?.querySelector<HTMLInputElement>('[name="yards"]')?.value) || 0, soft: Boolean(root?.querySelector<HTMLInputElement>('[name="soft"]')?.checked) };
+      },
+    },
+    rejectClose: false,
+  });
+  if (!answer || !(answer.yards > 0)) return;
+  if (!occupant.isOwner) return void say(actor, name, [F("Litter.Gm", { name: String(occupant.name ?? ""), yards: answer.yards, dr: STOKES_LITTER.dr })]);
+  await api.hazards.fall(occupant, { yards: answer.yards, onto: answer.soft ? "soft" : "hard", modifiers: [{ label: F("Litter.DrLine", { dr: STOKES_LITTER.dr }), value: -STOKES_LITTER.dr }] } as any);
 }
 
 /** Sprays a fire extinguisher at each targeted character within its range, a burst each (p. 29). */
@@ -426,6 +576,12 @@ const workLabel = (work: Work): string => {
   return work.against ? F("WorkAgainst", { pace, against: L(`Against.${work.against}`) }) : pace;
 };
 
+/** A supply's amount as the book gives it: minutes of burn time past a minute, else seconds; shots. */
+function supplyAmount(supply: Supply, amount: number): string {
+  if (supply.kind === "shots") return F("Supply.Shots", { shots: amount });
+  return amount >= 60 && amount % 60 === 0 ? F("Minutes", { minutes: amount / 60 }) : F("Seconds", { seconds: amount });
+}
+
 function itemContext(api: GWorldApi, item: any, on: ToolSwitches): Record<string, unknown> {
   const data = toolData(item);
   const lines: string[] = [];
@@ -454,6 +610,11 @@ function itemContext(api: GWorldApi, item: any, on: ToolSwitches): Record<string
     }
     if (data.work?.carbideBonus) context.carbide = { checked: data.carbide, label: L("CarbideEdge"), hint: F("CarbideEdgeHint", { bonus: data.work.carbideBonus }) };
     if (data.readies) lines.push(F(data.readiesWaivedAtSt ? "ReadiesWaivedLine" : "ReadiesLine", { readies: data.readies, st: data.readiesWaivedAtSt }));
+    if (data.supply) {
+      const left = supplyLeft(data.supply, supplyUsed(item));
+      lines.push(F(`Supply.${data.supply.kind}Line`, { left: supplyAmount(data.supply, left), amount: supplyAmount(data.supply, data.supply.amount), refill: L(`Supply.Refill.${data.supply.refill}`) }));
+    }
+    if (data.lift) lines.push(liftLine(api, data.lift));
     if (data.use === "glassCutter") lines.push(F("GlassLine", { penalty: GLASS_CUTTER_REALISTIC }));
     if (data.use === "ductTape") lines.push(L("TapeItemLine"));
   }
@@ -471,6 +632,8 @@ function itemContext(api: GWorldApi, item: any, on: ToolSwitches): Record<string
       lines.push(F("Extinguisher.Line", { left: Math.max(0, extinguisher.bursts - used), bursts: extinguisher.bursts, yards: extinguisher.yards, target: (api.rules.parseTechLevel(item.system?.tl) ?? 6) + 2 }));
     }
     if (isFireShelter(String(item.name ?? ""))) lines.push(F(item.getFlag?.(MODULE_ID, SHELTER_FLAG) ? "Shelter.InsideLine" : "Shelter.Line", { dr: FIRE_SHELTER_DR }));
+    if (FIREFIGHTER_ALERT.pattern.test(String(item.name ?? ""))) lines.push(F(item.getFlag?.(MODULE_ID, ALERT_FLAG) ? "Alert.SoundingLine" : "Alert.Line", { bonus: FIREFIGHTER_ALERT.hearing }));
+    if (STOKES_LITTER.pattern.test(String(item.name ?? ""))) lines.push(F("Litter.Line", { dr: STOKES_LITTER.dr }));
   }
   if (on.hazards() && data.hazard) {
     lines.push(data.hazard.kind === "explosion"
@@ -605,6 +768,35 @@ export function readyTools(api: GWorldApi, on: ToolSwitches): void {
     },
   });
 
+  // A torch's burn time, the doorbuster's strips (pp. 27, 30): refilled from the row.
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-tool-refill",
+    itemTypes: ["equipment"],
+    label: L("Supply.Action"),
+    icon: "fa-solid fa-gas-pump",
+    visible: (item) => on.forcedEntry() && toolData(item).supply !== null,
+    run: (item, actor) => {
+      void (async () => {
+        const supply = toolData(item).supply;
+        if (!supply || !item.isOwner) return;
+        await item.setFlag(MODULE_ID, SUPPLY_FLAG, 0);
+        await say(actor, String(item.name ?? ""), [F("Supply.Refilled", { refill: L(`Supply.Refill.${supply.refill}`), amount: supplyAmount(supply, supply.amount) })]);
+      })();
+    },
+  });
+
+  // A jack, lift bags, a hoist, a spreader or a come-along against a load (pp. 25, 29-30).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-tool-lift",
+    itemTypes: ["equipment"],
+    label: L("Lift.Action"),
+    icon: "fa-solid fa-weight-hanging",
+    visible: (item) => on.forcedEntry() && toolData(item).lift !== null,
+    run: (item, actor) => { void liftLoad(api, item, actor); },
+  });
+
   api.sheets.registerRowAction({
     module: MODULE_ID,
     key: "ht-glass-cutter",
@@ -667,6 +859,43 @@ export function readyTools(api: GWorldApi, on: ToolSwitches): void {
     context.lines.push({ label: String(shelter.name ?? ""), dr: FIRE_SHELTER_DR, applies: true, forceField: false, flexible: true, hardened: 0, itemId: shelter.id, source: "armor", reason: L("Shelter.Reason") });
   });
 
+  // The firefighter alert (p. 30): set off by hand, or sounding by itself once its wearer is out cold.
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-firefighter-alert",
+    itemTypes: ["equipment"],
+    label: L("Alert.Action"),
+    icon: "fa-solid fa-bell",
+    visible: (item) => on.forcedEntry() && FIREFIGHTER_ALERT.pattern.test(String(item.name ?? "")) && item.isOwner,
+    run: (item, actor) => {
+      void (async () => {
+        const sounding = !item.getFlag?.(MODULE_ID, ALERT_FLAG);
+        await item.setFlag(MODULE_ID, ALERT_FLAG, sounding);
+        await say(actor, String(item.name ?? ""), [F(sounding ? "Alert.Sounds" : "Alert.Reset", { name: String(actor?.name ?? ""), bonus: FIREFIGHTER_ALERT.hearing })]);
+      })();
+    },
+  });
+  // Someone listening for a downed firefighter hears the alarm: +4 to Hearing.
+  Hooks.on(api.combat.hooks.detectionModifiers, (context: any) => {
+    const subject = context?.subject;
+    if (!on.forcedEntry() || !subject || context.sense !== "hearing" || !Array.isArray(context.modifiers)) return;
+    const unconscious = Boolean(subject.statuses?.has?.("unconscious"));
+    const alert = [...(subject.items ?? [])].find((i: any) => i?.type === "equipment" && FIREFIGHTER_ALERT.pattern.test(String(i.name ?? ""))
+      && alertSounding({ worn: i.system?.equipped === true, set: i.getFlag?.(MODULE_ID, ALERT_FLAG) === true, unconscious }));
+    if (alert) context.modifiers.push({ label: F("Alert.HearingLine", { name: String(alert.name ?? "") }), value: FIREFIGHTER_ALERT.hearing });
+  });
+
+  // The Stokes litter dropped (p. 29): its occupant falls with DR 5, taken off the fall's damage.
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-stokes-litter",
+    itemTypes: ["equipment"],
+    label: L("Litter.Action"),
+    icon: "fa-solid fa-bed-pulse",
+    visible: (item) => on.forcedEntry() && STOKES_LITTER.pattern.test(String(item.name ?? "")),
+    run: (item, actor) => { void dropLitter(api, item, actor); },
+  });
+
   // ── chainsaws (pp. 27-28) ──
   const sawRow = (item: any, actor: any, helpers: any, hard: boolean) => {
     const own = helpers.rows?.(item)?.melee?.[0] ?? {};
@@ -727,12 +956,22 @@ export function readyTools(api: GWorldApi, on: ToolSwitches): void {
   // The count starts again once the attack is rolled (`gworld.afterSuccessRoll`), which an
   // attack refused afterwards (by another rule, or below skill 3) never reaches.
   const spending = new Map<string, any>();
+  const supplying = new Map<string, any>();
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
     const item = context?.item;
     if (!item) return;
     spending.delete(String(context.actor?.uuid ?? ""));
+    supplying.delete(String(context.actor?.uuid ?? ""));
     if (context.refusal) return;
     const data = toolData(item);
+    // A torch out of burn time, a doorbuster out of strips (pp. 27, 30).
+    if (on.forcedEntry() && data.supply) {
+      if (supplyLeft(data.supply, supplyUsed(item)) < SUPPLY_PER_USE) {
+        context.refusal = F(`Supply.${data.supply.kind}Refusal`, { name: item.name, refill: L(`Supply.Refill.${data.supply.refill}`) });
+        return;
+      }
+      if (item.isOwner) supplying.set(String(context.actor?.uuid ?? ""), item);
+    }
     if (on.chainsaws() && data.use === "chainsaw") {
       const state = sawState(api, item);
       if (state) {
@@ -753,6 +992,13 @@ export function readyTools(api: GWorldApi, on: ToolSwitches): void {
   });
   Hooks.on(api.combat.hooks.afterSuccessRoll, (context: any) => {
     const key = String(context?.actor?.uuid ?? "");
+    const fed = supplying.get(key);
+    if (fed && (context?.tags ?? []).includes("attack")) {
+      supplying.delete(key);
+      if (!context.item || context.item === fed || String(context.item.id ?? "") === String(fed.id ?? "")) {
+        void fed.setFlag(MODULE_ID, SUPPLY_FLAG, supplyUsed(fed) + SUPPLY_PER_USE);
+      }
+    }
     const item = spending.get(key);
     if (!item || !(context?.tags ?? []).includes("attack")) return;
     spending.delete(key);
@@ -806,13 +1052,52 @@ export function readyTools(api: GWorldApi, on: ToolSwitches): void {
     run: (item, actor) => { void hazardDamage(api, item, actor); },
   });
 
-  api.data.registerPoison({ module: MODULE_ID, key: LEAD, label: "GCC.HT.Tools.Lead", poison: LEAD_POISON as any, available: () => on.hazards() });
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-propane-strike",
+    itemTypes: ["equipment"],
+    label: L("Propane.Strike"),
+    icon: "fa-solid fa-burst",
+    visible: (item) => on.hazards() && toolData(item).hazard?.kind === "explosion" && item.isOwner,
+    run: (item, actor) => { void strikeCylinder(api, item, actor); },
+  });
 
-  // Past half their HP, the victim's worse symptoms (p. 33): the GM's to pick.
+  // A propane cylinder's DR 6 (p. 31), as the thing a blow is put on.
+  Hooks.on(api.data.hooks.objectStats, (context: any) => {
+    if (!on.hazards() || toolData(context?.item).hazard?.kind !== "explosion") return;
+    context.dr = PROPANE_DR;
+    context.notes?.push?.(F("Propane.DrNote", { dr: PROPANE_DR }));
+  });
+
+  api.data.registerPoison({ module: MODULE_ID, key: LEAD, label: "GCC.HT.Tools.LeadPoison", poison: LEAD_POISON as any, available: () => on.hazards() });
+
+  // Past half their HP, the victim's worse symptoms (p. 33): the GM's to pick. A
+  // second failed roll, and every one after, intensifies them toward seizures and coma.
   Hooks.on(api.combat.hooks.poisonCycle, (context: any) => {
-    if (!on.hazards() || context?.source !== `${MODULE_ID}.${LEAD}` || !context.actor?.isOwner) return;
-    if (!leadSymptomsWorsen(context.symptomsNow ?? [])) return;
-    void say(context.actor, L("Lead"), [F("LeadWorse", { name: context.actor.name })]);
+    const actor = context?.actor;
+    if (!on.hazards() || context?.source !== `${MODULE_ID}.${LEAD}` || !actor?.isOwner) return;
+    void (async () => {
+      // One course per dose, by the active poison's id; doses gone from the actor are forgotten.
+      const id = String(context.poison?.id ?? "");
+      const live = new Set(((api.actors.activePoisons(actor) ?? []) as any[]).map((p) => String(p?.id ?? "")));
+      const stored = (actor.getFlag?.(MODULE_ID, LEAD_FLAG) ?? {}) as Record<string, { failed?: number; pastHalf?: boolean }>;
+      const courses: Record<string, { failed: number; pastHalf: boolean }> = {};
+      for (const [key, value] of Object.entries(stored)) {
+        if (live.has(key) && key !== id) courses[key] = { failed: Number(value?.failed) || 0, pastHalf: value?.pastHalf === true };
+      }
+      const course = stored[id] ?? {};
+      const failedNow = context.resisted === false;
+      const failed = (Number(course.failed) || 0) + (failedNow ? 1 : 0);
+      const pastHalf = course.pastHalf === true || leadSymptomsWorsen(context.symptomsNow ?? []);
+      if (id && !context.finished) courses[id] = { failed, pastHalf };
+      // The whole flag is written, so doses cleared or finished leave no entry behind.
+      await actor.unsetFlag?.(MODULE_ID, LEAD_FLAG);
+      if (Object.keys(courses).length) await actor.setFlag?.(MODULE_ID, LEAD_FLAG, courses);
+      const stage = leadStage({ pastHalf, failedRolls: failed });
+      // The worse symptoms are named once, as the victim passes half their HP; intensifying ones on each failed roll.
+      if (stage === "intensifying" && failedNow) await say(actor, L("Lead"), [F("LeadIntensifies", { name: actor.name, failed })]);
+      else if (stage === "worse" && leadSymptomsWorsen(context.symptomsNow ?? [])) await say(actor, L("Lead"), [F("LeadWorse", { name: actor.name })]);
+    })();
   });
 }
 

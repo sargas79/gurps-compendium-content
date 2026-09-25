@@ -722,3 +722,58 @@ describe("High-Tech's personal conveyances (#394)", () => {
     expect(defaults("Sports (Sailboarding)")).toEqual([["DX", -5], ["Boating (Sailboat)", -5], ["Sports (Motorsurfing)", -3], ["Sports (Surfing)", -2]]);
   });
 });
+
+describe("High-Tech's tools in play (pp. 24-31)", () => {
+  const gear = pack(join(PACKS, "equipment"));
+  const sys = (name: string) => named(gear, name).system;
+  const tool = (name: string) => sys(name).extensions?.["gurps-compendium-content"]?.tool ?? {};
+  const melee = (name: string) => sys(name).meleeModes.map((m: any) => [m.skill, m.damageBase, m.damageModifier, m.damageType, m.skillModifier ?? 0]);
+
+  it("gives the hand tools the weapons the book treats them as", () => {
+    // Axes as great axes (pp. 24-25), the broad axe and splitting maul at -3.
+    expect(melee("Felling Axe")).toEqual([["Two-Handed Axe/Mace", "sw", 3, "cut", 0]]);
+    expect(melee("Broad Axe")).toEqual([["Two-Handed Axe/Mace", "sw", 3, "cut", -3]]);
+    expect(melee("Spike or Fireman's Axe").map((m: any) => m[3])).toEqual(["cut", "imp"]);
+    expect(melee("Multi-Purpose Rescue Axe")).toEqual([["Axe/Mace", "sw", 2, "cut", 0], ["Axe/Mace", "sw", 1, "imp", 0]]);
+    // A hammer is a small mace, a sledgehammer a maul at -2, a shovel a cheap great axe at -2 (p. 25).
+    expect(melee("Hammer")).toEqual([["Axe/Mace", "sw", 2, "cr", 0]]);
+    expect(melee("Sledgehammer")).toEqual([["Two-Handed Axe/Mace", "sw", 4, "cr", -2]]);
+    expect(melee("Shovel")).toEqual([["Two-Handed Axe/Mace", "sw", 3, "cut", -2]]);
+    expect(melee("Shovel, Titanium")).toEqual(melee("Shovel"));
+    expect(melee("Shovel, Folding")).toEqual([["Axe/Mace", "sw", 2, "cut", -2]]);
+    // A utility knife only cuts; a pocketknife is a small knife at -1 damage (pp. 25, 31).
+    expect(melee("Utility Knife")).toEqual([["Knife", "sw", -3, "cut", 0]]);
+    expect(melee("Pocketknife")).toEqual([["Knife", "sw", -4, "cut", 0], ["Knife", "thr", -2, "imp", 0]]);
+    // The rescue tools (pp. 29-30).
+    expect(melee("Spanner Wrench")).toEqual([["Axe/Mace", "sw", 2, "cr", -2]]);
+    expect(melee("Go-Bar")).toEqual([["Two-Handed Axe/Mace", "sw", 4, "cr", -2]]);
+    expect(melee("Crowbar, Titanium")).toEqual([["Axe/Mace", "sw", 2, "cr", -1]]);
+  });
+
+  it("gives the torches their burn time, the doorbuster its strips, and the lifting gear its loads", () => {
+    expect(tool("Pocket Torch").supply).toEqual({ kind: "seconds", amount: 1200, refill: "refill" });
+    expect(tool("Cutting Torch").supply).toEqual({ kind: "seconds", amount: 30, refill: "bottle" });
+    expect(tool("Plasma Torch").supply).toEqual({ kind: "seconds", amount: 600, refill: "airTank" });
+    expect(tool("Doorbuster").supply).toEqual({ kind: "shots", amount: 10, refill: "strip" });
+    expect(tool("Jack").lift).toEqual({ lbs: 8000, st: 0 });
+    expect(tool("Jack, Hydraulic").lift).toEqual({ lbs: 16000, st: 0 });
+    expect(tool("Lift-Bag Kit").lift.lbs).toBe(140000);
+    expect(tool("Rescue Hoist").lift.lbs).toBe(500);
+    expect(tool("Come-A-Long").lift.st).toBe(25);
+    expect(tool("Rescue Spreader/Cutter (TL7)").lift.st).toBe(36);
+    expect(rules.basicLift(tool("Rescue Spreader/Cutter (TL8)").lift.st)).toBe(405);
+  });
+
+  it("carries the rotary hammer, the battery-powered tools, the TL8 saw and the refills (p. 27)", () => {
+    expect(sys("Rotary Hammer")).toMatchObject({ tl: "6", cost: 500, weight: 10 });
+    expect(tool("Rotary Hammer").work).toMatchObject({ damage: "2d+2", type: "pi++", divisor: 2, against: "concreteRock" });
+    for (const name of ["Rotary Hammer, Battery-Powered", "Power Drill, Battery-Powered", "Circular Saw, Cordless"]) {
+      expect(sys(name).extensions["gurps-compendium-content"].power.draw, name).toMatchObject({ cell: "M", cells: 1 });
+      expect(sys(name).tl, name).toBe("8");
+    }
+    expect(sys("Circular Saw (TL8)")).toMatchObject({ cost: 75, weight: 10 });
+    expect(sys("Drill Bit, Carbide or Diamond").cost).toBe(40);
+    expect(sys("Cutting Torch Bottle")).toMatchObject({ cost: 50, weight: 5 });
+    expect(sys("Pocket Torch Refill").cost).toBe(1);
+  });
+});

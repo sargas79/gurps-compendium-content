@@ -25,6 +25,11 @@
  *     the legs (Characters p. 141), and no kick.
  *   - Row buttons: Escape at the restraint's modifier (freed on a success),
  *     and Acrobatics or Escape to slip cuffed wrists round to the front.
+ *   - **No hands (a straitjacket):** the skills done with the hands alone
+ *     can't be rolled at all.
+ *   - **Breaking one:** a restraint its book gives DR and HP is that object
+ *     (`gworld.objectStats`), and a row button puts a blow on it
+ *     (`items.applyDamage`); brought to 0 HP or less, it no longer holds.
  *
  * Ultra-Tech's own restraints (breaking free by ST, tape and electronic
  * cuffs) stay in its security rules; this engine carries what restraints do
@@ -52,6 +57,9 @@ export interface Restraint {
   slip: boolean;
   /** Whether the hands can't be used at all (a straitjacket's sleeves). */
   noHands?: boolean;
+  /** Its DR and HP as an object, where its book gives them, for breaking it. */
+  dr?: number;
+  hp?: number;
 }
 
 /** What wrists held in one position cost: on DX-based rolls, and on tasks done with the hands alone. */
@@ -162,6 +170,24 @@ export function cuffedRollLine(actor: any, context: { kind?: string; skill?: str
   return null;
 }
 
+/**
+ * Why a restrained character can't make a success roll at all, or null: with
+ * the hands held where they can't be used (a straitjacket's sleeves), no skill
+ * done with the hands alone.
+ */
+export function noHandsRefusal(actor: any, context: { kind?: string; skill?: string; tags?: string[] }): string | null {
+  const wrists = restrainedBy(actor).wrists;
+  if (!wrists?.held.restraint.noHands || (context.tags ?? []).includes(OWN_ROLL)) return null;
+  const skill = baseSkill(context.skill);
+  const { table, item } = wrists.held;
+  return skill && table.handSkills.some((s) => baseSkill(s) === skill) ? F(table.i18n, "NoHands", { name: item.name }) : null;
+}
+
+/** Whether a restraint has been broken: at 0 HP or less (Campaigns p. 483). */
+export function restraintBroken(hpLost: number, hp: number): boolean {
+  return hp > 0 && (Number(hpLost) || 0) >= hp;
+}
+
 /** Why cuffed wrists stop an attack with this weapon, or null. */
 export function cuffedRefusal(actor: any, item: any, mode: { index?: number; ranged?: boolean } | null): string | null {
   const wrists = restrainedBy(actor).wrists;
@@ -239,6 +265,40 @@ async function slipForward(api: GWorldApi, held: Held, actor: any): Promise<void
   await say(actor, String(item.name), [F(ns, result.success ? "Slipped" : "NotSlipped", { name: actor?.name ?? "" })]);
 }
 
+/** The damage types a blow at a restraint can be, as the system's things take them. */
+const BLOW_TYPES = ["cr", "cut", "imp", "pi-", "pi", "pi+", "pi++", "burn", "cor"] as const;
+
+/** A blow struck at a restraint on its wearer: freed once it is brought to 0 HP or less. */
+async function breakRestraint(api: GWorldApi, held: Held, actor: any): Promise<void> {
+  const { item, table, restraint } = held;
+  const ns = table.i18n;
+  const answer: any = await foundry.applications.api.DialogV2.prompt({
+    window: { title: String(item.name ?? "") },
+    content: `<div class="gworld"><p class="ihint">${esc(F(ns, "BreakHint", { dr: restraint.dr ?? 0, hp: restraint.hp ?? 0 }))}</p>
+      <div class="ifields">
+        <label>${esc(L(ns, "BreakDamage"))} <input type="number" name="damage" value="0" min="0" step="1"></label>
+        <label>${esc(L(ns, "BreakType"))} <select name="type">${BLOW_TYPES.map((t) => `<option value="${t}">${t}</option>`).join("")}</select></label>
+        <label>${esc(L(ns, "BreakDivisor"))} <input type="number" name="divisor" value="1" min="0.1" step="any"></label>
+      </div></div>`,
+    ok: {
+      label: L(ns, "Break"),
+      callback: (_event: Event, button: HTMLElement) => {
+        const root = button.closest<HTMLElement>(".application");
+        const value = (n: string) => root?.querySelector<HTMLInputElement>(`[name="${n}"]`)?.value;
+        return { damage: Number(value("damage")) || 0, type: String(value("type") ?? "cr"), divisor: Number(value("divisor")) || 1 };
+      },
+    },
+    rejectClose: false,
+  });
+  if (!answer) return;
+  const result: any = await (api.items as any).applyDamage({ item, damage: answer.damage, type: answer.type, armorDivisor: answer.divisor, label: F(ns, "BreakLabel", { name: item.name }) });
+  if (!result) return;
+  const hp = Number(result.hp) || restraint.hp || 0;
+  if (!restraintBroken(Number(result.to) || 0, hp)) return void say(actor, String(item.name), [F(ns, "Unbroken", { restraint: item.name, left: Math.max(0, hp - (Number(result.to) || 0)) })]);
+  await item.setFlag(MODULE_ID, RESTRAINT_FLAG, "off");
+  await say(actor, String(item.name), [F(ns, "Broken", { name: actor?.name ?? "", restraint: item.name })]);
+}
+
 /** The item sheet's section: whether the restraint is on, and where, and what it does. */
 function sectionContext(item: any): Record<string, unknown> {
   const held = restraintOf(item)!;
@@ -314,6 +374,30 @@ export function readyRestraints(api: GWorldApi): void {
     },
   });
 
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "restraint-break",
+    itemTypes: ["equipment", "armor"],
+    label: L(ns, "Break"),
+    icon: "fa-solid fa-hammer",
+    visible: (item) => {
+      const held = restraintOf(item);
+      return Boolean(held && (held.restraint.hp ?? 0) > 0 && restraintState(item, held.restraint) && item?.isOwner);
+    },
+    run: (item, actor) => {
+      const held = restraintOf(item);
+      return held ? breakRestraint(api, held, actor) : undefined;
+    },
+  });
+
+  // A restraint's DR and HP, where its book gives them, as the object a blow is put on.
+  Hooks.on(api.data.hooks.objectStats, (context: any) => {
+    const held = restraintOf(context?.item);
+    if (!held || !((held.restraint.hp ?? 0) > 0)) return;
+    context.dr = held.restraint.dr ?? context.dr;
+    context.hp = held.restraint.hp;
+  });
+
   // Leg irons are Crippled Legs: Lame, crippled (Characters p. 141).
   Hooks.on("gworld.traitEffects", (context: any) => {
     if (!context?.actor || !context.effects) return;
@@ -328,6 +412,11 @@ export function readyRestraints(api: GWorldApi): void {
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     const actor = context?.actor;
     if (!actor || !Array.isArray(context.modifiers)) return;
+    const refusal = context.refusal === null ? noHandsRefusal(actor, context) : null;
+    if (refusal) {
+      context.refusal = refusal;
+      return;
+    }
     const line = cuffedRollLine(actor, context);
     if (line) context.modifiers.push(line);
   });

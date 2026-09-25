@@ -29,11 +29,18 @@
  *     wielder for 1d cutting; at TL8 the saw is broken until repaired). A
  *     carbide chain costs double and drops the divisor and the mishaps.
  *   - **Nail guns (p. 28):** fired at DX-4 or Guns (Pistol)-4.
+ *   - **Supplies and loads (pp. 25-30):** a torch's burn time and the
+ *     doorbuster's 10-shot strips run down with use; a jack, lift bags or a
+ *     hoist lift up to their rating, a spreader or a come-along as its Arm or
+ *     Lifting ST would.
  *   - **Rescue tools (pp. 29-30):** a fire extinguisher's one-second bursts
  *     (20 from a large one out to 3 yards, 8 from a small one out to 2) each
  *     put a fire out on 3d of TL+2 or less; a fire shelter gives those inside
- *     DR 10 against burning.
- *   - **Household hazards (pp. 31-33):** a ruptured propane cylinder is a
+ *     DR 10 against burning; a firefighter alert sounds for a wearer who stops
+ *     moving, +4 to Hearing; a Stokes litter gives its occupant DR 5 if it is
+ *     dropped.
+ *   - **Household hazards (pp. 31-33):** a propane cylinder ruptures when
+ *     anything but crushing gets through its DR 6, and near a flame is a
  *     burning explosion with 1d cutting fragments; stoves, blenders, coffee,
  *     hotplates, toasters and waffle irons burn or cut; an institutional
  *     microwave does a hit point a second; and lead is a slow digestive
@@ -177,6 +184,73 @@ export function readiesNeeded(readies: number, waivedAtSt: number, st: number): 
   return Math.max(0, Math.floor(Number(readies) || 0));
 }
 
+// ── what a tool burns or fires through (pp. 27-30) ──
+
+/**
+ * What a tool runs through as it works: seconds of burn time (the pocket
+ * torch's 20 minutes, the cutting torch's 30 seconds a bottle, the plasma
+ * torch's 10 minutes on a small air tank), or shots (the doorbuster's
+ * 10-shot strips).
+ */
+export const SUPPLY_KINDS = ["", "seconds", "shots"] as const;
+export type SupplyKind = (typeof SUPPLY_KINDS)[number];
+
+/** What a tool is refilled with: a refill, a bottle, an air tank, a strip. */
+export const SUPPLY_REFILLS = ["refill", "bottle", "airTank", "strip"] as const;
+export type SupplyRefill = (typeof SUPPLY_REFILLS)[number];
+
+export interface Supply {
+  kind: Exclude<SupplyKind, "">;
+  /** Seconds of burn time, or shots, in one fill. */
+  amount: number;
+  refill: SupplyRefill;
+}
+
+/** What each use of a tool's attack row takes from its supply: a second's work, or a shot. */
+export const SUPPLY_PER_USE = 1;
+
+/** What is left of a tool's supply with so much used. */
+export function supplyLeft(supply: Supply, used: number): number {
+  return Math.max(0, supply.amount - Math.max(0, Math.floor(Number(used) || 0)));
+}
+
+// ── what a lifting tool lifts (pp. 25, 29-30) ──
+
+/**
+ * A tool rated for a load: the jack's 4 tons (8 for the hydraulic jack), the
+ * lift-bag kit's 70, the rescue hoist's 500 lbs. A tool given a ST instead
+ * lifts as someone of that ST would: the spreader's Arm ST 36 or 45, the
+ * come-along's Lifting ST 25.
+ */
+export interface Lifting {
+  /** The load it is rated for, in pounds; 0 for a tool rated by ST. */
+  lbs: number;
+  /** Its Arm ST or Lifting ST; 0 for a tool rated by load. */
+  st: number;
+}
+
+/** The pounds in a ton, as the book's tons are (Characters p. 17). */
+export const TON_LBS = 2000;
+
+/** What a lifting tool does with a load: lifts it, shifts it a little, or neither. */
+export type LiftOutcome = "lifts" | "shifts" | "tooHeavy";
+
+/**
+ * Whether a lifting tool manages a load (pp. 25, 29-30). A rated tool lifts
+ * up to its rating. One rated by ST lifts as that ST would: up to eight times
+ * its Basic Lift with both hands, and shifts up to fifty times it a little
+ * (Campaigns p. 353), which is as far as a spreader's jaws or a come-along
+ * move a load.
+ */
+export function liftOutcome(lifting: Lifting, loadLbs: number, basicLift: (st: number) => number): LiftOutcome {
+  const load = Math.max(0, Number(loadLbs) || 0);
+  if (lifting.lbs > 0) return load <= lifting.lbs ? "lifts" : "tooHeavy";
+  if (lifting.st <= 0) return "tooHeavy";
+  const bl = basicLift(lifting.st);
+  if (load <= bl * 8) return "lifts";
+  return load <= bl * 50 ? "shifts" : "tooHeavy";
+}
+
 /** A chainsaw's armour divisor against concrete, metal and the like (p. 27). */
 export const HARD_MATERIAL_DIVISOR = 0.5;
 
@@ -227,6 +301,21 @@ export function extinguishes(roll: number, tl: number): boolean {
 export const FIRE_SHELTER_DR = 10;
 export const isFireShelter = (name: string): boolean => /^fire shelter$/i.test(String(name ?? "").trim());
 
+/**
+ * The firefighter alert (p. 30): worn by a firefighter who stops moving --
+ * trapped or out cold -- it sounds a piercing alarm, +4 to Hearing to find
+ * him.
+ */
+export const FIREFIGHTER_ALERT = Object.freeze({ pattern: /^firefighter alert system$/i, hearing: 4 });
+
+/** Whether a firefighter's alert is sounding: set off by hand, or its wearer out cold and so not moving. */
+export function alertSounding(options: { worn: boolean; set: boolean; unconscious: boolean }): boolean {
+  return options.worn && (options.set || options.unconscious);
+}
+
+/** The Stokes litter (p. 29): DR 5 for its occupant if it is dropped or in a collision. */
+export const STOKES_LITTER = Object.freeze({ pattern: /^stokes litter$/i, dr: 5 });
+
 /** The glass cutter (p. 26): -6 in a realistic game; a critical failure cuts the hand. */
 export const GLASS_CUTTER_REALISTIC = -6;
 export const GLASS_CUTTER_WOUND = Object.freeze({ damage: "1d-2", type: "cut" });
@@ -254,6 +343,14 @@ export type HazardKind = (typeof HAZARD_KINDS)[number];
 export const PROPANE_FRAGMENTS = "1d";
 /** The DR a propane cylinder's rupturing blow has to get through (p. 31). */
 export const PROPANE_DR = 6;
+
+/**
+ * Whether a blow ruptures a propane cylinder (p. 31): any damage but crushing
+ * that gets through its DR 6. It goes up in a fireball only near a flame.
+ */
+export function propaneRuptures(damageType: string, penetrating: number): boolean {
+  return String(damageType ?? "").trim() !== "cr" && (Number(penetrating) || 0) > 0;
+}
 
 /** GURPS's dice in order: 1d-1, 1d, 1d+1, 1d+2, 2d-1, 2d, ... */
 function diceIndex(formula: string): number | null {
@@ -304,4 +401,19 @@ export const LEAD_POISON = Object.freeze({
 /** Whether a cycle of lead poisoning has taken the victim past half their HP, where the worse symptoms start (p. 33). */
 export function leadSymptomsWorsen(thresholds: readonly string[]): boolean {
   return thresholds.includes("1/2");
+}
+
+/** The least dose of lead that poisons a typical human, in ounces (p. 33). */
+export const LEAD_DOSE_OZ = 0.25;
+
+/**
+ * What lead poisoning has come to after a cycle (p. 33): from the second
+ * failed resistance roll on, symptoms that intensify toward seizures and
+ * coma; before that, once half the victim's HP is gone, the worse symptoms
+ * (the GM's pick of Bad Temper (15), Laziness, or spells of agony, daze or
+ * retching, and loss of appetite); otherwise nothing more than the damage.
+ */
+export function leadStage(options: { pastHalf: boolean; failedRolls: number }): "" | "worse" | "intensifying" {
+  if (Math.floor(Number(options.failedRolls) || 0) >= 2) return "intensifying";
+  return options.pastHalf ? "worse" : "";
 }

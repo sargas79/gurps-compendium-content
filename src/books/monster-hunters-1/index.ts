@@ -31,7 +31,7 @@ const RULES = [
   { key: "talentsSkipWildcards", pages: "p. 24", implemented: true },
   { key: "holyAttacks", pages: "p. 51", implemented: true },
   { key: "ritualPathMagic", pages: "pp. 32-39", implemented: true },
-  { key: "monsterHuntersGear", pages: "pp. 53-54, 59", implemented: true },
+  { key: "monsterHuntersGear", pages: "pp. 53-54, 58-59", implemented: true },
   { key: "bonusPointSpending", pages: "pp. 23, 28, 31", implemented: true },
 ] as const;
 
