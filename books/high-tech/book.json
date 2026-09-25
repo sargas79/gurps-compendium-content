@@ -6720,6 +6720,18 @@
         }
       },
       "reason": "fires canister: Dmg 1d+1 pi++, Acc 3, Range 60/1,200, RoF 1x75, Rcl 1 (p. 128) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": ".",
+      "where": {
+        "system.rangedModes.0.name": "Indirect fire",
+        "system.rangedModes.0.skill": "Artillery (Cannon)"
+      },
+      "set": {
+        "system.rangedModes.0.scatterSquared": true
+      },
+      "reason": "an Indirect fire mode shoots at a target its gunner can't see (p. 139), so a miss scatters by the square of the margin (Campaigns p. 414) (#510)"
     }
   ]
 }

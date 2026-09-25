@@ -16987,7 +16987,8 @@
           "mount": "mounted",
           "bulk": -8,
           "recoil": 5,
-          "malfunction": 17
+          "malfunction": 17,
+          "scatterSquared": true
         },
         {
           "name": "Direct fire",
@@ -17087,7 +17088,8 @@
           "mount": "mounted",
           "bulk": -13,
           "recoil": 5,
-          "malfunction": 17
+          "malfunction": 17,
+          "scatterSquared": true
         },
         {
           "name": "Direct fire",
@@ -17196,7 +17198,8 @@
             "fragmentation": "3d-1",
             "followUp": true,
             "label": "Follow-up"
-          }
+          },
+          "scatterSquared": true
         },
         {
           "name": "Direct fire",
@@ -17314,7 +17317,8 @@
             "fragmentation": "4d-1",
             "followUp": true,
             "label": "Follow-up"
-          }
+          },
+          "scatterSquared": true
         },
         {
           "name": "Direct fire",
@@ -17432,7 +17436,8 @@
             "fragmentation": "2d",
             "followUp": true,
             "label": "Follow-up"
-          }
+          },
+          "scatterSquared": true
         },
         {
           "name": "Direct fire",
@@ -17550,7 +17555,8 @@
             "fragmentation": "2d",
             "followUp": true,
             "label": "Follow-up"
-          }
+          },
+          "scatterSquared": true
         },
         {
           "name": "Direct fire",
@@ -17668,7 +17674,8 @@
             "fragmentation": "5d+1",
             "followUp": true,
             "label": "Follow-up"
-          }
+          },
+          "scatterSquared": true
         },
         {
           "name": "Direct fire",
@@ -17786,7 +17793,8 @@
             "fragmentation": "4d-1",
             "followUp": true,
             "label": "Follow-up"
-          }
+          },
+          "scatterSquared": true
         },
         {
           "name": "Direct fire",
@@ -17904,7 +17912,8 @@
             "fragmentation": "4d-1",
             "followUp": true,
             "label": "Follow-up"
-          }
+          },
+          "scatterSquared": true
         },
         {
           "name": "Direct fire",
@@ -18020,7 +18029,8 @@
             "armorDivisor": 1,
             "explosive": true,
             "label": "Linked"
-          }
+          },
+          "scatterSquared": true
         },
         {
           "name": "Direct fire",
@@ -18144,7 +18154,8 @@
             "fragmentation": "3d",
             "followUp": true,
             "label": "Follow-up"
-          }
+          },
+          "scatterSquared": true
         },
         {
           "name": "Direct fire",
@@ -18260,7 +18271,8 @@
             "armorDivisor": 1,
             "explosive": true,
             "label": "Linked"
-          }
+          },
+          "scatterSquared": true
         },
         {
           "name": "Direct fire",

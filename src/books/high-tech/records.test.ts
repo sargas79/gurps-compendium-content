@@ -83,6 +83,15 @@ describe("High-Tech's hand-kept weapons", () => {
     expect(named(extracted, "Elgin Cutlass Pistol, .54 Caplock").system.meleeModes[0]).toMatchObject({ skill: "Knife", skillModifier: -1 });
     expect(named(extracted, "Condor AM-402, 12G 2.75''").system.meleeModes[0]).toMatchObject({ skill: "Shortsword", damageBase: "sw" });
   });
+
+  it("scatters an Indirect fire mode's miss by the square of the margin, and never its Direct fire mode's (p. 139)", () => {
+    const guns = extracted.filter((d) => d.system.rangedModes?.[0]?.name === "Indirect fire");
+    expect(guns.length).toBe(12);
+    for (const gun of guns) {
+      expect(gun.system.rangedModes[0].scatterSquared).toBe(true);
+      expect(gun.system.rangedModes[1]?.scatterSquared).toBeUndefined();
+    }
+  });
 });
 
 describe("High-Tech's hand-kept traits, skills and the Way of the Pistol", () => {
