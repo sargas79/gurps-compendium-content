@@ -16,7 +16,9 @@ type Listener = (...args: any[]) => void;
 const HOOKS = {
   weaponAttacks: "gworld.weaponAttacks",
   attackModifiers: "gworld.attackModifiers",
+  damageModifiers: "gworld.damageModifiers",
   afterShots: "gworld.afterShots",
+  landed: "gworld.landed",
   shotsEntry: "gworld.shotsEntry",
   poisonCycle: "gworld.poisonCycle",
   explosionFalloff: "gworld.explosionFalloff",
@@ -33,6 +35,7 @@ let areas: any[];
 let placed: any[];
 let advanced: any[];
 let inArea: any[];
+let asked: any[];
 let litFor: Map<string, (observer: any) => boolean>;
 let doses: any[];
 let conditions: any[];
@@ -54,7 +57,7 @@ function fakeApi() {
     areas: {
       add: async (scene: any, area: any, options?: any) => { areas.push(area); placed.push({ scene, source: options?.source }); return area.id; },
       list: () => areas,
-      standsIn: () => inArea,
+      standsIn: (_scene: any, area: any) => { asked.push(area); return inArea; },
       registerLitFor: (r: any) => { litFor.set(`${r.module}.${r.key}`, r.test); return `${r.module}.${r.key}`; },
     },
     actors: {
@@ -138,6 +141,7 @@ beforeEach(() => {
   placed = [];
   advanced = [];
   inArea = [];
+  asked = [];
   litFor = new Map();
   doses = [];
   conditions = [];
@@ -181,16 +185,68 @@ describe("explosive rounds on the sheet (pp. 169-170, 175)", () => {
     expect(labels(shown)).toContain('GCC.HT.Ammunition.Note.airburstFragments {}');
   });
 
+  it("opens an airburst round's cone of fragments from where it came down, along the line of fire (p. 175; API 1.154.0)", async () => {
+    on.explosiveProjectiles = true;
+    on.projectileUpgrades = true;
+    const ab = m79([load({ projectile: "he", projectileUpgrades: ["airburst"] })]);
+    ab.actor.isOwner = true;
+    ab.actor.getActiveTokens = () => [{ center: { x: 100, y: 500 } }];
+    inArea = [{ name: "Goon" }, { name: "Other goon" }];
+    // A hit on the one target at (500, 500): the cone opens east from there, 2d of fragments reaching 10 yards.
+    fire(HOOKS.landed, { actor: ab.actor, item: ab, mode: { index: 0, ranged: true }, thrown: false, hit: true, target: {}, point: { x: 500, y: 500 }, scatter: null });
+    await flush();
+    expect(asked[0].cone).toMatchObject({ direction: 0, length: 1000, width: 1000, base: 100, origin: { x: 500, y: 500 } });
+    expect(asked[0].center).toEqual({ x: 500, y: 500 });
+    expect(chat.at(-1)).toContain('AirburstCone {"fragments":"2d","reach":10}');
+    expect(chat.at(-1)).toContain("Goon, Other goon");
+    // A miss waits for its Scatter roll; a plain HE round has no cone.
+    fire(HOOKS.landed, { actor: ab.actor, item: ab, mode: { index: 0, ranged: true }, thrown: false, hit: false, target: {}, point: null, scatter: null });
+    const he = m79([load({ projectile: "he" })]);
+    he.actor.isOwner = true;
+    fire(HOOKS.landed, { actor: he.actor, item: he, mode: { index: 0, ranged: true }, thrown: false, hit: true, target: {}, point: { x: 500, y: 500 }, scatter: null });
+    await flush();
+    expect(asked).toHaveLength(1);
+    expect(chat).toHaveLength(1);
+  });
+
   it("has an early SAPLE shell's blast follow the hit and burst inside, and rolls for a dud as it is fired", async () => {
     on.explosiveProjectiles = true;
     const cannon = hotchkiss([load({ projectile: "saple" })]);
     const shown = row(cannon);
     expect(shown).toMatchObject({ damage: "5dx2", armorDivisor: 1 });
     expect(shown.followUp).toMatchObject({ followUp: true, blastPlacement: "internal", damage: "2d" });
-    fire(HOOKS.afterShots, { actor: cannon.actor, item: cannon, modeIndex: 0 });
+    // 1d comes up 5, above TL6-2: the follow-up blast is left unrolled for this attack.
+    dice = [5];
+    const attack = fire(HOOKS.attackModifiers, { actor: cannon.actor, item: cannon, ranged: true, rollType: "attack", mode: { index: 0, ranged: true }, modifiers: [], refusal: null, dropLines: { followUp: false, linked: false } });
+    expect(attack.dropLines).toEqual({ followUp: true, linked: false });
+    fire(HOOKS.afterShots, { actor: cannon.actor, item: cannon, modeIndex: 0, kind: "single" });
     await flush();
-    // 1d came up 5, above TL6-2.
-    expect(chat.join(" ")).toContain("GCC.HT.Ammunition.SapleDud");
+    expect(chat.join(" ")).toContain('GCC.HT.Ammunition.SapleDud {"roll":5,"need":4}');
+  });
+
+  it("keeps an early SAPLE shell's follow-up when 1d comes up TL-2 or less", async () => {
+    on.explosiveProjectiles = true;
+    const cannon = hotchkiss([load({ projectile: "saple" })]);
+    dice = [4];
+    const attack = fire(HOOKS.attackModifiers, { actor: cannon.actor, item: cannon, ranged: true, rollType: "attack", mode: { index: 0, ranged: true }, modifiers: [], refusal: null, dropLines: { followUp: false, linked: false } });
+    expect(attack.dropLines.followUp).toBe(false);
+    fire(HOOKS.afterShots, { actor: cannon.actor, item: cannon, modeIndex: 0, kind: "single" });
+    await flush();
+    expect(chat.join(" ")).toContain("GCC.HT.Ammunition.SapleBursts");
+  });
+
+  it("leaves rounds a module spent alone: no SAPLE card, no cloud", async () => {
+    on.explosiveProjectiles = true;
+    on.cargoProjectiles = true;
+    const cannon = hotchkiss([load({ projectile: "saple" })]);
+    dice = [5];
+    fire(HOOKS.attackModifiers, { actor: cannon.actor, item: cannon, ranged: true, rollType: "attack", mode: { index: 0, ranged: true }, modifiers: [], refusal: null, dropLines: { followUp: false, linked: false } });
+    fire(HOOKS.afterShots, { actor: cannon.actor, item: cannon, modeIndex: 0, kind: "module", reason: "Fire mission" });
+    const smoke = m79([load({ projectile: "smoke" })]);
+    fire(HOOKS.afterShots, { actor: smoke.actor, item: smoke, modeIndex: 0, kind: "module", reason: "Fire mission" });
+    await flush();
+    expect(chat).toEqual([]);
+    expect(areas).toEqual([]);
   });
 
   it("divides a thermobaric blast by twice the distance", () => {
@@ -423,6 +479,33 @@ describe("the projectile options and upgrades in play (pp. 167, 174-175)", () =>
     await flush();
     expect(pending).toHaveLength(1);
     expect(pending[0]).toMatchObject({ value: 1, tags: ["attack"], skill: "Guns (Light Machine Gun)", expires: 1002 });
+  });
+
+  it("gives no tracer bonus and no card for rounds a module spent", async () => {
+    on.projectileUpgrades = true;
+    const mg = gun("M60, 7.62x51mm", { skill: "Guns (Light Machine Gun)", damageFormula: "7d", rateOfFire: 10 }, [load({ projectileUpgrades: ["tracer"] })]);
+    mg.actor.isOwner = true;
+    fire(HOOKS.afterShots, { actor: mg.actor, item: mg, modeIndex: 0, kind: "module", fired: 10, reason: "Fire mission" });
+    await flush();
+    expect(pending).toHaveLength(0);
+    expect(chat).toEqual([]);
+  });
+
+  it("burns a tracer out at 1/2D: past it the blow isn't incendiary (p. 175)", () => {
+    on.projectileUpgrades = true;
+    const m16 = gun("M16A2, 5.56x45mm", { skill: "Guns (Rifle)", damageFormula: "5d" }, [load({ projectileUpgrades: ["tracer"] })]);
+    fire(HOOKS.attackModifiers, { actor: m16.actor, item: m16, ranged: true, mode: { index: 0, ranged: true }, rangeYards: 600, dataset: { halfDamageRange: "500", maxRange: "3500" }, modifiers: [], refusal: null });
+    const blow = (distanceYards: number | null, extra: Record<string, unknown> = {}) =>
+      fire(HOOKS.damageModifiers, { actor: m16.actor, item: m16, mode: { index: 0, ranged: true }, formula: "5d", modifiers: [], distanceYards, incendiary: true, line: null, ...extra }).incendiary;
+    expect(blow(499)).toBe(true);
+    expect(blow(500)).toBe(false);
+    expect(blow(null)).toBe(true);
+    // A follow-up line is its own.
+    expect(blow(600, { line: "followUp" })).toBe(true);
+    // An incendiary tracer round burns all the way.
+    const api = gun("M16A2 API-T", { skill: "Guns (Rifle)", damageFormula: "5d" }, [load({ projectileUpgrades: ["tracer", "incendiary"] })]);
+    fire(HOOKS.attackModifiers, { actor: api.actor, item: api, ranged: true, mode: { index: 0, ranged: true }, dataset: { halfDamageRange: "500" }, modifiers: [], refusal: null });
+    expect(fire(HOOKS.damageModifiers, { actor: api.actor, item: api, mode: { index: 0, ranged: true }, formula: "5d", modifiers: [], distanceYards: 900, incendiary: true, line: null }).incendiary).toBe(true);
   });
 
   it("takes an unused tracer bonus off at the end of the shooter's next turn, or with the combat", async () => {

@@ -22,12 +22,15 @@
  *     weapon's full RoF or more (p. 86) -- the shooter's next attack with the
  *     gun is at +1, not cumulative; and the tracers give the firer away. The
  *     bonus goes at the end of the shooter's next turn, or with the combat.
+ *     A tracer burns out at 1/2D: a blow at or past it isn't incendiary
+ *     (`incendiary` on `gworld.damageModifiers`, API 1.152.0) unless something
+ *     else about the round is.
  */
 
 import { stepPiercing } from "../../../shared/loads/dice.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { HT_POISONS, type HtPoison } from "../drugs/rules.js";
-import type { ProjectileGun, ProjectileLoad } from "./projectiles.js";
+import { isExplosiveProjectile, type ProjectileGun, type ProjectileLoad } from "./projectiles.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.HT.Ammunition.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.HT.Ammunition.${key}`, data);
@@ -102,6 +105,24 @@ export function longBurst(shots: { kind: string; fired: number }, rateOfFire: nu
   if (shots.kind === "suppression") return true;
   if (shots.kind !== "rapidFire" && shots.kind !== "spraying") return false;
   return shots.fired >= Math.max(2, Math.floor(Number(rateOfFire) || 0));
+}
+
+/**
+ * Whether a round's flame is its tracer's alone (p. 175): no incendiary
+ * upgrade, no explosive or white phosphorus filler (incendiary on their own,
+ * pp. 169, 172), and a gun mode that isn't incendiary of itself.
+ */
+export function flameOnlyFromTracer(fired: ProjectileLoad, mode: { incendiary?: boolean } | null | undefined): boolean {
+  if (!fired.projectileUpgrades.includes("tracer") || fired.projectileUpgrades.includes("incendiary")) return false;
+  if (isExplosiveProjectile(fired.projectile) || fired.projectile === "whitePhosphorus") return false;
+  return mode?.incendiary !== true;
+}
+
+/** Whether a tracer has burnt out by this distance: at or past its 1/2D (p. 175); never where either isn't known. */
+export function tracerBurnsOut(distanceYards: unknown, halfDamage: number): boolean {
+  if (distanceYards === null || distanceYards === undefined || distanceYards === "") return false;
+  const at = Number(distanceYards);
+  return Number.isFinite(at) && halfDamage > 0 && at >= halfDamage;
 }
 
 // ── in play ──
@@ -212,6 +233,28 @@ export function readyRounds(api: GWorldApi, on: RoundSwitches, firedOf: (item: a
     if (range > 0 && Number.isFinite(at) && at > range) context.refusal = F("SelfDestructRefusal", { range, at });
   });
 
+  // A tracer burns out at 1/2D: past it, the blow isn't incendiary (p. 175), where nothing
+  // else about the round is (an incendiary upgrade, an explosive filler, the gun's own mode).
+  // The 1/2D is the row's, as the attack saw it, by item and mode.
+  const tracerReach = new Map<string, number>();
+  const rowKey = (item: any, index: unknown) => `${String(item?.uuid ?? "")}#${Number(index) || 0}`;
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    if (!on.projectileUpgrades() || !context?.item || !context.ranged) return;
+    const round = firedIn(context.item, { index: context.mode?.index, ranged: true });
+    if (!round?.fired.projectileUpgrades.includes("tracer")) return;
+    const half = Number(context.dataset?.halfDamageRange) || Number(context.dataset?.maxRange) || 0;
+    if (half > 0) tracerReach.set(rowKey(context.item, context.mode?.index), half);
+  });
+  Hooks.on(api.combat.hooks.damageModifiers, (context: any) => {
+    const item = context?.item;
+    if (!on.projectileUpgrades() || !item || context.mode?.ranged !== true || context.line || context.incendiary !== true) return;
+    const round = firedIn(item, context.mode);
+    const mode = item.system?.rangedModes?.[Number(context.mode.index) || 0];
+    if (!round || !flameOnlyFromTracer(round.fired, mode)) return;
+    const reach = tracerReach.get(rowKey(item, context.mode.index));
+    if (tracerBurnsOut(context.distanceYards, reach ?? 0)) context.incendiary = false;
+  });
+
   // Tracers: +1 on the turn after a long burst, not cumulative; and the firer is seen (p. 175).
   // The bonus held for each shooter, on the client that gave it: its id, and the combat turn it was given in.
   const tracerHeld = new Map<any, { id: string; combat: string; round: number; turn: number }>();
@@ -224,7 +267,8 @@ export function readyRounds(api: GWorldApi, on: RoundSwitches, firedOf: (item: a
   Hooks.on(api.combat.hooks.afterShots, (context: any) => {
     const item = context?.item;
     const actor = context?.actor;
-    if (!on.projectileUpgrades() || !item || !actor?.isOwner) return;
+    // Rounds a module's own procedure spent (API 1.155.0) are no burst anyone watched.
+    if (!on.projectileUpgrades() || !item || !actor?.isOwner || context.kind === "module") return;
     const round = firedIn(item, { index: context.modeIndex, ranged: true });
     if (!round?.fired.projectileUpgrades.includes("tracer")) return;
     const mode = item.system?.rangedModes?.[Number(context.modeIndex) || 0] ?? {};

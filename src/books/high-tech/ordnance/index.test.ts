@@ -24,6 +24,7 @@ const HOOKS = {
   afterDamage: "gworld.afterDamage",
   afterShots: "gworld.afterShots",
   afterSuccessRoll: "gworld.afterSuccessRoll",
+  landed: "gworld.landed",
   successRollModifiers: "gworld.successRollModifiers",
   afflictionEffect: "gworld.afflictionEffect",
   weaponAttacks: "gworld.weaponAttacks",
@@ -368,6 +369,42 @@ describe("hand grenades (pp. 190-192)", () => {
     combat.round = 5;
     await Promise.all(fire(HOOKS.turnStart, combat, { actor: soldier }));
     expect(damage[0]).toMatchObject({ item: stick, formula: "5d", explosive: true, blastPlacement: "contact" });
+  });
+
+  it("sets an impact fuse off where it lands: on the target, or where the scatter puts it (API 1.154.0)", async () => {
+    const rpg = item("RPG-43");
+    const soldier = actorWith("Soldier", [rpg]);
+    const landed = (patch: Record<string, unknown>) => fire(HOOKS.landed, { actor: soldier, item: rpg, mode: { index: 0, ranged: true }, thrown: true, hit: false, target: null, point: null, scatter: null, ...patch });
+    await api.combat.setWeaponState(rpg, MODULE_ID, { htPrimed: true, htArmed: true });
+    attack(soldier, rpg);
+    fire(HOOKS.afterSuccessRoll, { actor: soldier, tags: ["attack"], outcome: { success: true } });
+    await flush();
+    const before = chat.length;
+    landed({ hit: true, target: { name: "Tank" }, point: { x: 1, y: 1 } });
+    await flush();
+    expect(chat.at(-1)).toContain('GCC.HT.Ordnance.ImpactHit {"target":"Tank"}');
+    landed({});
+    await flush();
+    expect(chat.at(-1)).toContain("GCC.HT.Ordnance.ImpactMissed");
+    landed({ thrown: null, scatter: { yards: 4, direction: 3 }, point: { x: 2, y: 2 } });
+    await flush();
+    expect(chat.at(-1)).toContain('GCC.HT.Ordnance.ImpactScattered {"yards":4,"direction":3}');
+    expect(chat.length).toBe(before + 3);
+    // Dropped on a critical failure: the drop's card says where it goes off, and the landing adds nothing.
+    await api.combat.setWeaponState(rpg, MODULE_ID, { htPrimed: true, htArmed: true });
+    attack(soldier, rpg);
+    fire(HOOKS.afterSuccessRoll, { actor: soldier, tags: ["attack"], outcome: { success: false, criticalFailure: true } });
+    await flush();
+    expect(chat.at(-1)).toContain("GCC.HT.Ordnance.ImpactDropped");
+    const dropped = chat.length;
+    landed({});
+    await flush();
+    expect(chat.length).toBe(dropped);
+    // A timed fuse's grenade says nothing on landing.
+    const m67 = item("M67");
+    fire(HOOKS.landed, { actor: soldier, item: m67, mode: { index: 0, ranged: true }, thrown: true, hit: true, target: null, point: { x: 1, y: 1 }, scatter: null });
+    await flush();
+    expect(chat.length).toBe(dropped);
   });
 
   it("puts a -5 on the RPG-43 without its throw", async () => {

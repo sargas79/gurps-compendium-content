@@ -118,6 +118,7 @@ import {
   type Illumination,
   type Liquid,
 } from "./explosive.js";
+import { readyAirburst } from "./airburst.js";
 import { readyCargo, type CargoLoad } from "./cargo.js";
 import { bulletPoisonChoices, readyRounds } from "./rounds.js";
 import { LIMITED_FACTORS, PRINTED_KEYS, firesPrinted, limitedFactor, printedCps, printedRound, printedRoundsFor, printedRow, type PrintedFamily, type PrintedRound } from "./printed.js";
@@ -1111,6 +1112,24 @@ function blastOf(after: LoadRow, load: FiredLoad, gun: ProjectileGun, on: Ammuni
   return { ...row, notes };
 }
 
+/**
+ * The fragment dice of a mode firing an airburst HE round (p. 175), as
+ * `blastOf` makes its row: the explosive rounds' switch, the airburst
+ * upgrade, a mode whose own round (or explosive projectile) throws
+ * fragments; null for any other mode.
+ */
+export function airburstFragmentsOf(item: any, modeIndex: number, on: AmmunitionSwitches): string | null {
+  if (!on.explosive?.() || !isFirearmItem(item)) return null;
+  const gun = projectileGun(item, modeIndex);
+  const fired = firedProjectile(loadIn(item, modeIndex).load, gun, on);
+  if (fired.printed || !fired.projectileUpgrades.includes("airburst") || !gun.explosive) return null;
+  if (fired.projectile && !isExplosiveProjectile(fired.projectile)) return null;
+  const mode = rangedModes(item)[modeIndex] ?? {};
+  const blast = mode.explosive ? mode : mode.linked?.explosive ? mode.linked : null;
+  const dice = String(blast?.fragmentation ?? "").trim();
+  return dice || null;
+}
+
 /** The cargo a mode fires, as the switches let it: its round, its choices, and the gun's TL; null for none. */
 function cargoLoadIn(item: any, modeIndex: number, on: AmmunitionSwitches): CargoLoad | null {
   if (!isFirearmItem(item)) return null;
@@ -1155,6 +1174,8 @@ export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
     return { fired: firedProjectile(load, gun, on), gun, poison: load.poisonFiller };
   });
   readyCargo(api, { explosive: () => on.explosive?.() === true, cargo: () => on.cargo?.() === true, gas: () => on.gas?.() === true }, (item, modeIndex) => cargoLoadIn(item, modeIndex, on));
+  // An airburst HE round's cone of fragments, from where it burst along the line of fire (p. 175).
+  readyAirburst(api, (item, modeIndex) => airburstFragmentsOf(item, modeIndex, on));
   // What the printed rounds do beyond their figures: the flame jet's pace, rock salt's pain, the net (pp. 103, 143).
   readyPrinted(api, (item, modeIndex) => (isFirearmItem(item) ? firedPrinted(loadIn(item, modeIndex).load, projectileGun(item, modeIndex), on) : null));
   api.sheets.registerSheetSection({
@@ -1286,7 +1307,8 @@ export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
   // A misloaded round that fired and jammed: the gun is out of action once the shot is spent (p. 178).
   Hooks.on(api.combat.hooks.afterShots, (context: any) => {
     const item = context?.item;
-    if (!item?.isOwner || item.getFlag?.(MODULE_ID, JAM_FLAG) === undefined || item.getFlag?.(MODULE_ID, JAM_FLAG) === null) return;
+    // The jam follows the attack that misloaded, never rounds a module's procedure spent (API 1.155.0).
+    if (context.kind === "module" || !item?.isOwner || item.getFlag?.(MODULE_ID, JAM_FLAG) === undefined || item.getFlag?.(MODULE_ID, JAM_FLAG) === null) return;
     const modeIndex = Number(item.getFlag(MODULE_ID, JAM_FLAG)) || 0;
     void (async () => {
       await item.unsetFlag(MODULE_ID, JAM_FLAG);

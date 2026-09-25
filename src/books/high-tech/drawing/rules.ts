@@ -54,6 +54,10 @@ export interface Holster {
   retain: number;
   /** The largest gun it takes, as Bulk; null for any. */
   maxBulk: number | null;
+  /** Its modifier to Holdout to hide the gun in it. */
+  holdout: number;
+  /** It keeps the elements off the gun, which isn't "exposed" (Campaigns p. 485): a military holster's flap, a scabbard. */
+  weatherproof: boolean;
 }
 
 /**
@@ -63,16 +67,16 @@ export interface Holster {
  * sling's +1 is its own, beside its place's +0.
  */
 export const HOLSTERS: Readonly<Record<HolsterKind, Holster>> = {
-  belt: { specialty: "pistol", carry: "hip", fastDraw: 0, retain: 0, maxBulk: null },
-  military: { specialty: "pistol", carry: "hip", fastDraw: -2, retain: 0, maxBulk: null },
-  shoulder: { specialty: "pistol", carry: "shoulderHolster", fastDraw: 0, retain: 0, maxBulk: null },
-  sleeve: { specialty: "pistol", carry: null, fastDraw: 0, retain: 0, maxBulk: -1 },
-  fastDrawRig: { specialty: "pistol", carry: "hip", fastDraw: 2, retain: 0, maxBulk: null },
-  undercover: { specialty: "pistol", carry: null, fastDraw: -1, retain: 0, maxBulk: null },
-  retention: { specialty: "pistol", carry: "hip", fastDraw: 0, retain: 2, maxBulk: null },
-  rifleSling: { specialty: "longarm", carry: "shoulder", fastDraw: 0, retain: 0, maxBulk: null },
-  patrolSling: { specialty: "longarm", carry: "patrolSling", fastDraw: 1, retain: 0, maxBulk: null },
-  scabbard: { specialty: "longarm", carry: null, fastDraw: 0, retain: 0, maxBulk: null },
+  belt: { specialty: "pistol", carry: "hip", fastDraw: 0, retain: 0, maxBulk: null, holdout: 0, weatherproof: false },
+  military: { specialty: "pistol", carry: "hip", fastDraw: -2, retain: 0, maxBulk: null, holdout: 0, weatherproof: true },
+  shoulder: { specialty: "pistol", carry: "shoulderHolster", fastDraw: 0, retain: 0, maxBulk: null, holdout: 0, weatherproof: false },
+  sleeve: { specialty: "pistol", carry: null, fastDraw: 0, retain: 0, maxBulk: -1, holdout: -2, weatherproof: false },
+  fastDrawRig: { specialty: "pistol", carry: "hip", fastDraw: 2, retain: 0, maxBulk: null, holdout: 0, weatherproof: false },
+  undercover: { specialty: "pistol", carry: null, fastDraw: -1, retain: 0, maxBulk: null, holdout: 1, weatherproof: false },
+  retention: { specialty: "pistol", carry: "hip", fastDraw: 0, retain: 2, maxBulk: null, holdout: 0, weatherproof: false },
+  rifleSling: { specialty: "longarm", carry: "shoulder", fastDraw: 0, retain: 0, maxBulk: null, holdout: 0, weatherproof: false },
+  patrolSling: { specialty: "longarm", carry: "patrolSling", fastDraw: 1, retain: 0, maxBulk: null, holdout: 0, weatherproof: false },
+  scabbard: { specialty: "longarm", carry: null, fastDraw: 0, retain: 0, maxBulk: null, holdout: 0, weatherproof: true },
 };
 
 const HOLSTER_NAMES: Readonly<Record<string, HolsterKind>> = {
@@ -92,6 +96,25 @@ const HOLSTER_NAMES: Readonly<Record<string, HolsterKind>> = {
 export function holsterKindOf(name: string): HolsterKind | null {
   const plain = String(name ?? "").toLowerCase().replace(/\s*\(.*$/, "").trim();
   return HOLSTER_NAMES[plain] ?? null;
+}
+
+/**
+ * What a holster does to Holdout for the gun in it (p. 154): an undercover
+ * holster +1, a sleeve holster -2; none for the rest.
+ */
+export function holsterHoldout(kind: HolsterKind | null): number {
+  return kind ? HOLSTERS[kind].holdout : 0;
+}
+
+/**
+ * Whether a holster keeps the elements off the gun in it, so it isn't
+ * "exposed" for Slime, Sand, and Equipment Failure (p. 154; Campaigns p. 485):
+ * a military holster with its flap closed, and a scabbard, which protects a
+ * long arm the same way. A flap tucked behind the belt gives no protection.
+ */
+export function keepsOutWeather(kind: HolsterKind | null, options: { flapTucked?: boolean } = {}): boolean {
+  if (!kind || !HOLSTERS[kind].weatherproof) return false;
+  return !(kind === "military" && options.flapTucked);
 }
 
 /** Whether a record is a lanyard (p. 154). */

@@ -358,6 +358,16 @@ describe("backblast (High-Tech p. 147)", () => {
     expect(damage).toEqual([]);
   });
 
+  it("leaves rounds a module's procedure spent alone (API 1.155.0)", async () => {
+    on = { backblast: true };
+    ready();
+    const law = m72();
+    fire(HOOKS.afterShots, { actor: shooter, item: law, modeIndex: 0, shots: 1, fired: 1, extra: 0, wasted: 0, kind: "module", reason: "Fire mission" });
+    await flush();
+    expect(damage).toEqual([]);
+    expect(chat).toEqual([]);
+  });
+
   it("names who stands in the cone behind the firer, and rolls full and half damage", async () => {
     on = { backblast: true };
     ready();

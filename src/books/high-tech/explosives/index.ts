@@ -21,7 +21,8 @@
  *   - **Demolition charges (demolitionCharges):** the book's REF table as
  *     explosives the system's Demolition tool and `hazards.detonate` offer; a
  *     row action on an explosive record that sets it off (its pounds, packed
- *     against a door or wall or set nearby, a shaped charge dividing the
+ *     against a door or wall or set nearby, tamped against it for twice its
+ *     effect on the structure (`structureMultiplier`), a shaped charge dividing the
  *     structure's DR by 10, a flat charge whose blast can't get through it
  *     doing a tenth of its most, cutting, against a hundredth of the DR);
  *     and one that works out the charge a job takes
@@ -102,6 +103,7 @@ import {
   shockDetonates,
   shockNumber,
   skimOutcome,
+  structureMultiplier,
   thermiteDrDestroyed,
   thermiteDrOnVictim,
   thermiteOnObject,
@@ -272,7 +274,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
   let pending: { label: string; factor: number } | null = null;
 
   /** Sets off a record's charge: the system's detonation, with this book's settings. */
-  const setOff = async (actor: any, item: any, options: { pounds: number; placement: "contact" | "nearby"; distance: number; structure: any; shaped: boolean; flat?: boolean; enclosure: Enclosure; label?: string }) => {
+  const setOff = async (actor: any, item: any, options: { pounds: number; placement: "contact" | "nearby"; distance: number; structure: any; shaped: boolean; flat?: boolean; tamped?: boolean; enclosure: Enclosure; label?: string }) => {
     const charge = chargeOf(item);
     if (!charge || !(options.pounds > 0)) return null;
     const name = String(item.name ?? "");
@@ -296,8 +298,13 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     const flat = options.flat && !options.shaped && options.structure && options.placement === "contact" && on.demolition()
       ? flatBlow(options.pounds, charge.row.ref, options.structure.dr)
       : null;
+    // A charge tamped against the structure shatters it twice as well (p. 182; `structureMultiplier`, API 1.155.0).
+    const multiplier = !flat && options.structure && on.demolition()
+      ? structureMultiplier({ tamped: options.tamped === true, placement: options.placement, shaped: options.shaped })
+      : 1;
     const bits = [
       ...(enclosure !== 1 ? [F("EnclosedTag", { times: enclosure })] : []),
+      ...(multiplier !== 1 ? [L("TampedTag")] : []),
       ...(weak !== 1 ? [L("WeakTag")] : []),
       ...(options.shaped && options.structure ? [L("ShapedTag")] : []),
       ...(flat ? [L("Flat.Tag")] : []),
@@ -315,6 +322,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
       const call = (api as any).hazards.detonate({
         ...(id ? { explosive: id } : { ref: charge.row.ref }),
         weightLbs: options.pounds, placement: options.placement, distanceYards: options.distance, structure: structure ?? null, actor, label,
+        ...(multiplier !== 1 ? { structureMultiplier: multiplier } : {}),
       });
       pending = null;
       result = await call;
@@ -456,6 +464,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
           row(L("CustomHp"), number("hp", 0, "1")),
           row(L("DamageTaken"), number("taken", 0, "1")),
           checkbox("shaped", L("Shaped")),
+          checkbox("tamped", L("TampedCharge")),
           checkbox("flat", L("Flat.Label")),
           ...(on.sideEffects() ? [row(L("Enclosure"), select("enclosure", ENCLOSURES.map((e) => ({ value: e, label: L(`Enclosures.${e || "none"}`) }))))] : []),
           `<p class="ihint" style="margin:0">${esc(L("DetonateHint"))}</p>`,
@@ -468,6 +477,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
           structure: structureFrom(value),
           shaped: value("shaped") === "on",
           flat: value("flat") === "on",
+          tamped: value("tamped") === "on",
           enclosure: ((ENCLOSURES as readonly string[]).includes(value("enclosure")) ? value("enclosure") : "") as Enclosure,
         });
       })();

@@ -347,6 +347,17 @@ describe("gun techniques (pp. 250-252)", () => {
     expect(attack(colt(), actor, { calledShot: { hitLocation: "skull", addonLocation: null, chink: false } }).modifiers).toEqual([]);
   });
 
+  it("takes a gun TA's bought levels on a shot aimed at a foe's weapon (Campaigns p. 400)", () => {
+    on.gunTechniques = true;
+    const ta = technique("TA (Rifle/Weapon)", 9, { points: 3 });
+    const actor = shooter({ items: [ta] });
+    const strike = { itemId: "w1", name: "Foe's pistol", penalty: -4 };
+    expect(attack(mosin(), actor, { weaponStrike: strike }).modifiers).toEqual([{ label: "TA (Rifle/Weapon)", value: 2 }]);
+    // Not on a shot at a location, nor with another gun skill.
+    expect(attack(mosin(), actor, { calledShot: { hitLocation: "hand", addonLocation: null, chink: false } }).modifiers).toEqual([]);
+    expect(attack(colt(), actor, { weaponStrike: strike }).modifiers).toEqual([]);
+  });
+
   it("works a gun TA's level out as a technique kind", () => {
     on.gunTechniques = true;
     const kind = kinds.get("ht-targeted-attack");

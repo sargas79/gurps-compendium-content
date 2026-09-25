@@ -309,6 +309,35 @@ describe("fanning and thumbing", () => {
     expect(refunds).toHaveLength(2);
   });
 
+  it("thumbs two revolvers at once, a Dual-Weapon Attack, but won't fan or two-hand one (pp. 83-84)", () => {
+    on.fanning = true;
+    on.fastFiring = true;
+    const dual = (item: any, chosen: Record<string, unknown>, hand: "primary" | "off") => {
+      const optionsChosen = Object.fromEntries(Object.entries(chosen).map(([k, v]) => [`${MODULE_ID}.${k}`, v]));
+      return fire(HOOKS.attackModifiers, { actor: shooter(), item, mode: { index: 0, ranged: true }, rollType: "attack", ranged: true, modifiers: [], options: optionsChosen, refusal: null, dualWeapon: { hand, sameTarget: true } });
+    };
+    expect(dual(peacemaker(), { "ht-thumbing": true }, "primary").refusal).toBeNull();
+    expect(dual(peacemaker(), { "ht-thumbing": true }, "off").refusal).toBeNull();
+    expect(dual(peacemaker(), { "ht-fanning": "2" }, "primary").refusal).toBe("GCC.HT.RateOfFire.FanningNotDual");
+    expect(dual(peacemaker(), { "ht-fast-firing": "2" }, "off").refusal).toBe("GCC.HT.RateOfFire.TwoHandedNotDual");
+    // Fast-firing a semi-automatic is one-handed: either hand may.
+    expect(dual(colt1911(), { "ht-fast-firing": "4" }, "off").refusal).toBeNull();
+    // Without a Dual-Weapon Attack, fanning is as it was.
+    expect(attack(peacemaker(), { "ht-fanning": "2" }).refusal).toBeNull();
+  });
+
+  it("gives back nothing for rounds a module spent after a failed thumbing", () => {
+    on.fanning = true;
+    const actor = shooter();
+    const thumbed = peacemaker();
+    attack(thumbed, { "ht-thumbing": true }, [], actor);
+    fire(HOOKS.afterSuccessRoll, { actor, tags: ["attack"], outcome: { success: false, criticalFailure: false, margin: 1 } });
+    fire(HOOKS.afterShots, { actor, item: thumbed, modeIndex: 0, shots: 1, fired: 1, kind: "module", reason: "x" });
+    expect(refunds).toEqual([]);
+    fire(HOOKS.afterShots, { actor, item: thumbed, modeIndex: 0, shots: 2, fired: 2, kind: "single" });
+    expect(refunds).toEqual([{ item: thumbed.id, modeIndex: 0, shots: 2 }]);
+  });
+
   it("refuses an ordinary shot from a revolver with its trigger tied back", () => {
     on.fanning = true;
     const tied = gun("Colt M1873 SAA", { rateOfFire: 1, shots: "6(5i)" }, { triggerTie: "tied" });

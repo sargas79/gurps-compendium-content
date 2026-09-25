@@ -152,7 +152,8 @@ export function readyBackblast(api: GWorldApi): void {
     const item = context?.item;
     const actor = context?.actor;
     const found = backblastOf(item);
-    if (!found || !actor) return;
+    // An attack from the sheet; rounds a module's own procedure spent (API 1.155.0) are its to settle.
+    if (!found || !actor || context.kind === "module") return;
     const { table, blast } = found;
     const fired = pending.get(item.uuid) ?? { indoors: "" as Indoors, aim: aimPoint() };
     pending.delete(item.uuid);

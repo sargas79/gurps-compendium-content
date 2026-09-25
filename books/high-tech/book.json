@@ -5342,10 +5342,11 @@
           "affliction": true,
           "afflictionAttribute": "HT",
           "afflictionModifier": -5,
-          "label": "Linked"
+          "label": "Linked",
+          "radius": 10
         }
       },
-      "reason": "Bulk -1, and the linked HT-5 stun the table prints under the blast, which the file leaves out (p. 192)"
+      "reason": "Bulk -1, and the linked HT-5 stun the table prints under the blast over its 10-yard radius (note 7), which the file leaves out (p. 192)"
     },
     {
       "pack": "equipment",
