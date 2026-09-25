@@ -136,6 +136,14 @@ describe("High-Tech's vehicles and personal conveyances (pp. 230-244)", () => {
     expect(named(vehicles, "Rolls-Royce Phantom II").system.cost).toBe(105000);
     // p. 231: a kayak's draft; p. 232: a glider's stall speed.
     expect(vehicle("Folding Kayak")).toMatchObject({ locomotion: "water", draft: 2, range: 0 });
+    // p. 231 note 1: every kayak can take a removable sail, Move 2/4 -- a second Move on the water.
+    for (const kayak of ["Traditional Kayak", "Folding Kayak", "Expedition Kayak", "Sport Kayak"]) {
+      expect(vehicle(kayak)).toMatchObject({ secondLocomotion: "water", secondAcceleration: 2, secondTopSpeed: 4 });
+    }
+    // p. 230: the electric bike's L/2 hours and the PTP's rechargeable 2×L/2 hours.
+    const power = (name: string) => named(vehicles, name).system.extensions?.["gurps-compendium-content"]?.power;
+    expect(power("Electric Bike")).toEqual({ draw: { cell: "L", cells: 1, endurance: "2 hours", raw: "L/2 hours" } });
+    expect(power("Personal Transport Platform")).toMatchObject({ draw: { cell: "L", cells: 2, endurance: "2 hours" }, rechargeable: true });
     expect(vehicle("Glider")).toMatchObject({ locomotion: "air", stall: 7, fragility: "c" });
   });
 
