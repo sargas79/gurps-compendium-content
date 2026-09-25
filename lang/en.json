@@ -11454,6 +11454,16 @@
         "Yards": "Listener's distance (yards)",
         "Other": "Background noise, terrain, distraction, clothing",
         "Roll": "{name}: Hearing, {sound}"
+      },
+      "Screens": {
+        "Title": "Screen",
+        "Label": "Size",
+        "Hint": "The record is a freestanding set of up to 32 inches. A wall-mounted set up to 64 inches averages 5 times the cost and weight; a larger one 20 times (HT:EE p. 34).",
+        "Size": {
+          "standard": "Up to 32\" (as the record)",
+          "wall": "Wall-mounted, up to 64\" (x5)",
+          "large": "Larger than 64\" (x20)"
+        }
       }
     },
     "Backblast": {
