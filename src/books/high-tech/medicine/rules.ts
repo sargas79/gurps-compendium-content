@@ -161,7 +161,21 @@ export const ANESTHESIA = Object.freeze({ failed: -2, hours: 4, cooperativeMinut
  * infection, with no skill roll (p. 225). The cleaning counts for the wound's
  * next infection roll, if it comes within a day.
  */
-export const ANTISEPTIC = Object.freeze({ bonus: 2, hours: 24 });
+export const ANTISEPTIC = Object.freeze({ bonus: 2, hours: 24, uses: 10 });
+
+/** The uses a container of antiseptic holds: the "(N uses)" its name gives, else the book's 10 (p. 225). */
+export function antisepticUses(name: string): number {
+  const stated = /\((\d+)\s*uses?\)/i.exec(String(name ?? ""))?.[1];
+  return Math.max(1, Number(stated) || ANTISEPTIC.uses);
+}
+
+/**
+ * What a surgical kit's used-up supplies cost to replace after each
+ * operation: 10% of the kit's price at TL5, 20% at TL6-8 (p. 223).
+ */
+export function resupplyShare(tl: number): number {
+  return (Number(tl) || 0) <= 5 ? 0.1 : 0.2;
+}
 
 /** What antiseptic adds against the wound's dirt (its `woundDirt` line): up to +2, never past the dirt's own penalty. */
 export function antisepticLine(dirt: number): number {

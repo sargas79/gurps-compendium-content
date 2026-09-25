@@ -23,13 +23,16 @@
  *     First Aid on a bleeding patient, a bandage used; starting an IV from a
  *     bag of fluid, which counts as a quart of water (dextrose also as a meal).
  *   - **Medical facilities (medicalFacilities):** an imaging instrument's
- *     button rolls Electronics Operation (Medical), then Diagnosis (the early
- *     X-ray giving both 1d rads); portable surgery's +2 to First Aid; a
+ *     button rolls Electronics Operation (Medical), then Diagnosis with its
+ *     +TL/2 (the early X-ray giving both 1d rads) -- carried, it is no
+ *     Diagnosis tool; portable surgery's +2 to First Aid; a
  *     surgical kit's own TL modifier in place of the Basic Set table's on an
- *     operation, and a suturing kit improvised (-5) for one; putting a patient
+ *     operation, its resupply's price, and a suturing kit improvised (-5) for
+ *     one; putting a patient
  *     under with a chloroform mask or an anaesthesia machine (+2), -2 to
  *     Surgery if it failed; antiseptic cleaning a wound, taking up to 2 of
- *     the dirt's penalty off the infection roll (its `woundDirt` line); and
+ *     the dirt's penalty off the infection roll (its `woundDirt` line), a use
+ *     of the container's ten each time; and
  *     a TL6-8 healer with no medical supplies or first aid kit giving First
  *     Aid, and a physician's rounds, as at TL5 (`gworld.firstAid`'s and
  *     `gworld.physicianRounds`' `techLevel`).
@@ -46,6 +49,8 @@ import {
   ANTISEPTIC,
   MEDICAL_SUPPLIES,
   antisepticLine,
+  antisepticUses,
+  resupplyShare,
   withoutSuppliesTl,
   DIAGNOSIS_DEFAULT,
   ELECTRONICS_DEFAULT,
@@ -97,6 +102,8 @@ export interface MedicalData {
   meal: boolean;
   /** A kit that carries its own IV and a unit of fluid: the crash kit (p. 221). */
   fluids: boolean;
+  /** Uses spent from the container in hand: antiseptic's (p. 225). */
+  usesSpent: number;
 }
 
 /** Registers the fields this module keeps on medical gear. */
@@ -109,6 +116,7 @@ export function initMedicine(): void {
       depleted: new f.BooleanField({ initial: false }),
       meal: new f.BooleanField({ initial: false }),
       fluids: new f.BooleanField({ initial: false }),
+      usesSpent: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
     }),
   });
 }
@@ -122,6 +130,7 @@ export function medicalData(item: any): MedicalData {
     depleted: d.depleted === true,
     meal: d.meal === true,
     fluids: d.fluids === true,
+    usesSpent: Math.max(0, Math.floor(Number(d.usesSpent) || 0)),
   };
 }
 
@@ -351,7 +360,7 @@ export function hasIvFluids(actor: any): boolean {
   return crashKit || (gearOf(actor, "ivKit").length > 0 && gearOf(actor, "ivFluid").length > 0);
 }
 
-const SKILLS = ["first aid", "physician", "surgery"];
+const SKILLS = ["first aid", "physician", "surgery", "diagnosis"];
 
 /**
  * The medical gear's lines on a treating skill, or null where these rules
@@ -365,11 +374,13 @@ export function medicalToolLines(api: GWorldApi, context: any, on: MedicineSwitc
   const key = api.rules.toolSkillKey(name);
   if (!actor || !SKILLS.includes(key)) return null;
   const firstAid = key === "first aid";
+  // An imaging instrument's bonus is for the Diagnosis roll a successful scan allows (p. 222), not for every one.
+  const scanOnly = (t: any) => key === "diagnosis" && on.facilities() && medicalData(t).kind === "imaging";
   const tools = toolsFor(api, actor, name);
   const reasons: string[] = [];
   const recompute = tools.some((t) => {
     const data = medicalData(t);
-    return on.emergency() && ((data.kind === "firstAidKit" && data.depleted) || (firstAid && data.kind === "hemostatic"));
+    return scanOnly(t) || (on.emergency() && ((data.kind === "firstAidKit" && data.depleted) || (firstAid && data.kind === "hemostatic")));
   }) || (firstAid && on.facilities() && gearOf(actor, "portableSurgery").length > 0);
 
   const lines = context.lines as Array<{ key: string; value: number }>;
@@ -379,8 +390,9 @@ export function medicalToolLines(api: GWorldApi, context: any, on: MedicineSwitc
     const personal = Number(actor.system?.tl) || 0;
     // Why each carried tool is worth what it is here, said only of the one that wins.
     const why = new Map<string, string>();
+    if (tools.some(scanOnly)) reasons.push(L("ImagingReason"));
     const carried = tools
-      .filter((t) => !(firstAid && on.emergency() && medicalData(t).kind === "hemostatic"))
+      .filter((t) => !(firstAid && on.emergency() && medicalData(t).kind === "hemostatic") && !scanOnly(t))
       .map((t) => {
         const data = medicalData(t);
         const depleted = on.emergency() && data.kind === "firstAidKit" && data.depleted;
@@ -457,7 +469,20 @@ async function scan(api: GWorldApi, item: any, actor: any): Promise<void> {
   if (!worked) return;
   if (!worked.success) return void say(patient, nameOf(item), [F("ScanFailed", { name: nameOf(item) })]);
   const diagnosis = skillOrDefault(api, actor, "Diagnosis", DIAGNOSIS_DEFAULT);
-  await api.roll.success({ actor, base: diagnosis, skill: "Diagnosis", label: F("DiagnoseLabel", { patient: patient.name, name: nameOf(item) }), tags: ["diagnosis"], item } as any);
+  const line = imagingLine(api, item, actor);
+  await api.roll.success({ actor, base: diagnosis, skill: "Diagnosis", label: F("DiagnoseLabel", { patient: patient.name, name: nameOf(item) }), modifiers: line ? [line] : [], tags: ["diagnosis"], item } as any);
+}
+
+/**
+ * The instrument's +TL/2 (quality) on the Diagnosis roll its scan allows
+ * (p. 222), less the equipment line the skill already has from other gear:
+ * a quality bonus stands in for another, it doesn't add to it.
+ */
+export function imagingLine(api: GWorldApi, item: any, actor: any): { label: string; value: number } | null {
+  const quality = api.rules.toolModifier(String(item?.system?.equipmentQuality ?? "best") as never, item?.system?.equipmentModifier, { tl: tlOf(item) });
+  const skill = [...(actor?.items ?? [])].find((i: any) => i?.type === "skill" && api.rules.toolSkillKey(String(i.name ?? "")) === "diagnosis");
+  const value = quality - (Number(skill?.system?.derived?.toolBonus) || 0);
+  return value > 0 ? { label: F("ImagingLine", { name: nameOf(item) }), value } : null;
 }
 
 /** Putting the targeted patient under: a Physician roll, +2 with a machine (pp. 224-225). */
@@ -499,12 +524,25 @@ export function surgeryKitLine(api: GWorldApi, context: any): { label: string; v
   return value ? { label: F("SurgicalKitLine", { name: nameOf(tool), tl }), value } : null;
 }
 
-/** Cleaning the targeted patient's wound: no roll, and -2 off the infection roll (p. 225). */
-async function cleanWound(item: any, actor: any): Promise<void> {
+/**
+ * Cleaning the targeted patient's wound: no roll, and -2 off the infection
+ * roll (p. 225). A use comes out of the container; the last of its ten takes
+ * the container off the count (`items.changeQuantity`).
+ */
+async function cleanWound(api: GWorldApi, item: any, actor: any): Promise<void> {
   const patient = targetedActor() ?? actor;
   if (!hasSome(item)) return void ui.notifications?.warn(F("NoneLeft", { name: nameOf(item) }));
+  const per = antisepticUses(nameOf(item));
+  const spent = medicalData(item).usesSpent + 1;
+  const path = `system.extensions.${MODULE_ID}.${FIELD}.usesSpent`;
+  if (spent < per) await item.update({ [path]: spent });
+  else {
+    await item.update({ [path]: 0 });
+    if (Number.isFinite(Number(item?.system?.quantity))) await api.items.changeQuantity(item, -1, { reason: nameOf(item) });
+  }
   await patient.setFlag?.(MODULE_ID, ANTISEPTIC_FLAG, worldNow());
-  await say(patient, nameOf(item), [F("Cleaned", { name: patient.name, bonus: ANTISEPTIC.bonus })]);
+  const left = spent < per ? per - spent : 0;
+  await say(patient, nameOf(item), [F("Cleaned", { name: patient.name, bonus: ANTISEPTIC.bonus }), F("UsesLeft", { left, per })]);
 }
 
 /**
@@ -549,10 +587,20 @@ function itemLines(item: any, on: MedicineSwitches): string[] {
     switch (data.kind) {
       case "imaging": lines.push(L("ImagingItem")); if (data.value > 0) lines.push(F("XrayItem", { dice: data.value * XRAY_RADS_DICE })); break;
       case "portableSurgery": lines.push(F("PortableSurgeryItem", { bonus: PORTABLE_SURGERY_FIRST_AID })); break;
-      case "surgicalKit": lines.push(L("SurgicalKitItem")); break;
+      case "surgicalKit": {
+        lines.push(L("SurgicalKitItem"));
+        const share = resupplyShare(tl);
+        const cost = Math.round((Number(item.system?.cost) || 0) * share * 100) / 100;
+        if (cost > 0) lines.push(F("ResupplyItem", { cost, percent: Math.round(share * 100) }));
+        break;
+      }
       case "suturingKit": lines.push(F("SuturingItem", { penalty: SUTURING_IMPROVISED })); break;
       case "anesthesia": lines.push(F(data.value ? "AnesthesiaMachineItem" : "AnesthesiaItem", { bonus: data.value, penalty: ANESTHESIA.failed, hours: ANESTHESIA.hours })); break;
-      case "antiseptic": lines.push(F("AntisepticItem", { bonus: ANTISEPTIC.bonus })); break;
+      case "antiseptic": {
+        const per = antisepticUses(nameOf(item));
+        lines.push(F("AntisepticItem", { bonus: ANTISEPTIC.bonus }), F("UsesLeft", { left: Math.max(0, per - data.usesSpent), per }));
+        break;
+      }
       default:
     }
   }
@@ -656,7 +704,7 @@ export function readyMedicine(api: GWorldApi, on: MedicineSwitches): void {
   action("ht-start-iv", "IvAction", "fa-solid fa-droplet", (item) => on.emergency() && kindIs("ivFluid")(item), (item, actor) => startIv(api, item, actor));
   action("ht-scan", "ScanAction", "fa-solid fa-x-ray", (item) => on.facilities() && kindIs("imaging")(item), (item, actor) => scan(api, item, actor));
   action("ht-anesthetize", "AnesthesiaAction", "fa-solid fa-mask-ventilator", (item) => on.facilities() && kindIs("anesthesia")(item), (item, actor) => anesthetize(api, item, actor));
-  action("ht-antiseptic", "AntisepticAction", "fa-solid fa-pump-medical", (item) => on.facilities() && kindIs("antiseptic")(item), (item, actor) => cleanWound(item, actor));
+  action("ht-antiseptic", "AntisepticAction", "fa-solid fa-pump-medical", (item) => on.facilities() && kindIs("antiseptic")(item), (item, actor) => cleanWound(api, item, actor));
 
   api.sheets.registerGmTool({
     module: MODULE_ID,
