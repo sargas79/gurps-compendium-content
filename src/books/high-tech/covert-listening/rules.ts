@@ -165,11 +165,16 @@ export const isResonantCavity = (name: unknown): boolean => nameKey(name) === "r
 export const COVERT_TASKS = ["emissionsBuild", "emissionsRead", "acousticKeylog", "rfidCapture", "boosterBag", "improvisedWhiteNoise"] as const;
 export type CovertTask = (typeof COVERT_TASKS)[number];
 
-/** The skill each job is rolled against, or null for the keylogging sample, which is timed rather than rolled (HT:EE pp. 44-45). */
-export const TASK_SKILL: Readonly<Record<CovertTask, string | null>> = Object.freeze({
+/**
+ * The skill each job is rolled against (HT:EE pp. 44-45). Analysing the
+ * keystrokes a hidden microphone or accelerometer picked up, once the sample
+ * is in, is using a bug: Electronics Operation (Surveillance), the roll the
+ * supplement gives for all its bugs and taps (HT:EE p. 44).
+ */
+export const TASK_SKILL: Readonly<Record<CovertTask, string>> = Object.freeze({
   emissionsBuild: EW,
   emissionsRead: EW,
-  acousticKeylog: null,
+  acousticKeylog: SURVEILLANCE,
   rfidCapture: SECURITY,
   boosterBag: "Scrounging",
   improvisedWhiteNoise: MEDIA,

@@ -95,6 +95,11 @@ export interface Jammer {
    * feeds the gear a false picture where the operator wins (HT:EE p. 50).
    */
   spoofs?: boolean;
+  /**
+   * Lines on the operator's Electronics Operation (EW) from the jammer
+   * itself: a device adapted to jam that wasn't built for it (HT:EE p. 49).
+   */
+  operatorLines?: ReadonlyArray<{ label: string; value: number }>;
 }
 
 /** Gear a jammer hinders, as its book's table reads its record. */
@@ -125,6 +130,12 @@ export interface JammerTable extends BookTable {
   operatorModifiers?(actor: any): Array<{ label: string; value: number }>;
   /** The lines on a user's roll through a jammer of a variety from how the gear is built, such as a spread-spectrum radio's. */
   gearModifiers?(item: any, variety: JammerVariety): Array<{ label: string; value: number }>;
+  /**
+   * Whether the gear's frequency moves, as a frequency-hopping radio's does:
+   * a selective jammer then needs the Quick Contest even where its operator
+   * knows the frequency, which must be "known and fixed" (HT:EE p. 49).
+   */
+  frequencyMoves?(item: any): boolean;
 }
 
 export const JAMMER_TABLES = new BookTables<JammerTable>();
@@ -137,7 +148,11 @@ const F = (ns: string, key: string, data: Record<string, unknown>) => game.i18n.
 export const JAMMER_ON = "jammerOn";
 /** The variety its operator picked, for a jammer that may be run either way. */
 export const JAMMER_VARIETY = "jammerVariety";
-/** Whether a selective jammer's operator knows the frequency, and it holds still. */
+/**
+ * Whose frequencies a selective jammer's operator knows (HT:EE p. 49):
+ * everyone's (true), or those of the characters whose uuids it lists, the
+ * ones targeted when the jammer was switched on.
+ */
 export const FREQUENCY_KNOWN = "jammerFrequencyKnown";
 
 /** A record's jammer figures and table, where its book's rule is on. */
@@ -157,6 +172,13 @@ export function jammableOf(item: any): { table: JammerTable; gear: Jammable } | 
 const flagOf = (item: any, key: string): unknown => item?.getFlag?.(MODULE_ID, key) ?? item?.flags?.[MODULE_ID]?.[key];
 
 export const isSwitchedOn = (item: any): boolean => Boolean(flagOf(item, JAMMER_ON));
+
+/** Whether a selective jammer's operator knows this user's frequency. */
+export function knowsFrequency(item: any, user: any): boolean {
+  const known = flagOf(item, FREQUENCY_KNOWN);
+  if (known === true) return true;
+  return Array.isArray(known) && known.includes(String(user?.uuid ?? ""));
+}
 
 /** The variety a jammer runs as: its own, the one its operator picked (broad-spectrum where none was), or none. */
 export function varietyOf(item: any, jammer: Jammer): JammerVariety | null {
@@ -228,6 +250,9 @@ async function gmCard(title: string, lines: string[]): Promise<void> {
 /** The operator's Electronics Operation (EW) for a jammer, or its own fixed skill. */
 const operatorBase = (api: GWorldApi, jammer: Jammer, table: JammerTable, holder: any) => jammer.skill ?? table.operatorSkill(api, holder);
 
+/** The lines on a jammer operator's roll: from what he carries, and from the jammer itself. */
+const operatorLines = (jammer: Jammer, table: JammerTable, holder: any) => [...(table.operatorModifiers?.(holder) ?? []), ...(jammer.operatorLines ?? [])];
+
 /** A character's Hearing score, as the system worked it out. */
 function hearingOf(api: GWorldApi, actor: any): number {
   const derived: any = api.actors.derived(actor);
@@ -261,7 +286,9 @@ async function toggleJammer(api: GWorldApi, item: any, actor: any, table: Jammer
       );
       if (!picked) return;
       await item.setFlag(MODULE_ID, JAMMER_VARIETY, picked.variety);
-      await item.setFlag(MODULE_ID, FREQUENCY_KNOWN, picked.known);
+      // Known frequencies: those of the characters targeted now, or everyone's where none is.
+      const targeted = [...((game as any).user?.targets ?? [])].map((t: any) => String(t?.actor?.uuid ?? "")).filter(Boolean);
+      await item.setFlag(MODULE_ID, FREQUENCY_KNOWN, picked.known && targeted.length ? targeted : picked.known);
     }
     const variety = varietyOf(item, jammer)!;
     if (variety === "broad") {
@@ -270,7 +297,7 @@ async function toggleJammer(api: GWorldApi, item: any, actor: any, table: Jammer
         base: operatorBase(api, jammer, table, actor),
         skill: EW,
         label: F(ns, "JamLabel", { name }),
-        modifiers: table.operatorModifiers?.(actor) ?? [],
+        modifiers: operatorLines(jammer, table, actor),
         tags: ["jamming"],
         item,
       } as any);
@@ -289,19 +316,21 @@ async function toggleJammer(api: GWorldApi, item: any, actor: any, table: Jammer
 /**
  * Whether a selective jammer catches the gear's frequency (HT:EE p. 49): an
  * unopposed roll of the operator's Electronics Operation (EW) where he knows
- * it and it holds still, else a Quick Contest against the user's own. Beyond
- * its range it is -1 per 10% further, as a radio's stretched range is, and it
- * reaches no further than double. Null where a roll wasn't made.
+ * this user's frequency and it holds still (a frequency-hopping radio's
+ * doesn't), else a Quick Contest against the user's own. Beyond its range it
+ * is -1 per 10% further, as a radio's stretched range is, and it reaches no
+ * further than double. Null where a roll wasn't made.
  */
-async function catchesFrequency(api: GWorldApi, near: JammerInReach, actor: any, name: string): Promise<boolean | null> {
+async function catchesFrequency(api: GWorldApi, near: JammerInReach, actor: any, gear: any): Promise<boolean | null> {
   const { table, jammer, holder, item } = near;
   const ns = table.i18n;
+  const name = String(gear?.name ?? "");
   const stretch = rangeExtensionModifier(near.yards, jammer.range);
   if (stretch === null) return false;
-  const modifiers = [...(table.operatorModifiers?.(holder) ?? []), ...(stretch ? [{ label: L(ns, "StretchLine"), value: stretch }] : [])];
+  const modifiers = [...operatorLines(jammer, table, holder), ...(stretch ? [{ label: L(ns, "StretchLine"), value: stretch }] : [])];
   const base = operatorBase(api, jammer, table, holder);
   const label = F(ns, "CatchLabel", { jammer: item.name ?? "", name });
-  if (flagOf(item, FREQUENCY_KNOWN)) {
+  if (knowsFrequency(item, actor) && !table.frequencyMoves?.(gear)) {
     const result: any = await api.roll.success({ actor: holder, base, skill: EW, label, modifiers, tags: ["jamming"], item } as any);
     return result ? Boolean(result.success) : null;
   }
@@ -376,7 +405,7 @@ export async function useNearJammers(api: GWorldApi, item: any, actor: any, acto
       const result: any = await api.roll.quickContest({
         label: F(ns, "SpoofLabel", { name, jammer: jammerName }),
         first: { actor, base, note: gear.skill },
-        second: { actor: near.holder, base: operatorBase(api, near.jammer, near.table, near.holder), modifiers: near.table.operatorModifiers?.(near.holder) ?? [], note: EW },
+        second: { actor: near.holder, base: operatorBase(api, near.jammer, near.table, near.holder), modifiers: operatorLines(near.jammer, near.table, near.holder), note: EW },
         tags: ["jamming", "spoofing"],
         secret: true,
       } as any);
@@ -389,7 +418,7 @@ export async function useNearJammers(api: GWorldApi, item: any, actor: any, acto
     const penalties = near.table.varieties;
     if (variety && penalties) {
       if (variety === "selective") {
-        const caught = await catchesFrequency(api, near, actor, name);
+        const caught = await catchesFrequency(api, near, actor, item);
         if (caught === null) return null;
         if (!caught) continue;
       }
@@ -415,7 +444,7 @@ export async function useNearJammers(api: GWorldApi, item: any, actor: any, acto
         second: {
           actor: operated ? near.holder : null,
           base: operatorBase(api, near.jammer, near.table, near.holder),
-          ...(operated && near.table.operatorModifiers ? { modifiers: near.table.operatorModifiers(near.holder) } : {}),
+          ...(operated && (near.table.operatorModifiers || near.jammer.operatorLines) ? { modifiers: operatorLines(near.jammer, near.table, near.holder) } : {}),
           note: operated ? EW : jammerName,
         },
         tags: ["jamming"],

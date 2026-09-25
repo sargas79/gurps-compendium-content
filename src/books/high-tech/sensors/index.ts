@@ -289,6 +289,19 @@ function designed(item: any, data: SensorData = sensorData(item)): DesignKey[] {
 }
 
 /**
+ * A spark-gap transmitter, where `radioDesign` is on (HT:EE pp. 28-29): a set
+ * built spark-gap that isn't receive-only, with its own range after its
+ * build; null for anything else.
+ */
+export function sparkGapTransmitter(item: any): { range: number } | null {
+  const data = sensorData(item);
+  const input = designOf(item, data);
+  const radio = input ? radioOf(item) : null;
+  if (!input || !radio || !isSparkGap(input) || data.commMode === "receiver") return null;
+  return { range: radio.range * designFactors(input).range };
+}
+
+/**
  * An antenna of its own a character carries for their radios: gear that
  * isn't a comm and is set as a dipole, as the trench radio kit's wire is
  * (HT:EE pp. 28-29).

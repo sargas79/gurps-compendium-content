@@ -248,7 +248,17 @@ export interface JammerFigures {
 }
 
 /** What a radio jammer hinders: radio gear, and what rides the cell network. */
-const RADIO_GEAR = Object.freeze(["radio", "cellPhone"]);
+export const RADIO_GEAR = Object.freeze(["radio", "cellPhone"]);
+
+/**
+ * A Tesla coil or a spark-gap transmitter adapted to jam (HT:EE p. 49): -2
+ * to the operator's Electronics Operation (EW), after 4 hours in a workshop,
+ * or with a tool kit and a Scrounging roll. Both make broadband noise -- a
+ * spark-gap set is wideband by necessity and tunes imprecisely at best
+ * (HT:EE pp. 28-29) -- so neither can put all its output on one frequency:
+ * they jam broad-spectrum.
+ */
+export const ADAPTED_JAMMER = Object.freeze({ modifier: -2, hours: 4 });
 
 /**
  * Following a call through a cell-phone jammer: a Hearing roll at -2 to make

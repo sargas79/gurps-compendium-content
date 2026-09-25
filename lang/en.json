@@ -9608,7 +9608,8 @@
           "PinheadLabel": "Guiding {name}",
           "PinheadIn": "The mike is in place.",
           "PinheadStuck": "The mike gets stuck or makes a noise.",
-          "PinheadBroken": "The mike breaks, or the target notices it."
+          "PinheadBroken": "The mike breaks, or the target notices it.",
+          "LaserRange": "Range {range} yards (p. 208)."
         },
         "Bug": {
           "Undetectable": "Bug detectors can't find it; only a physical search does (pp. 208-209).",
@@ -9670,13 +9671,23 @@
           "Spoofer": "Radius {range}: a radar within it is used in a Quick Contest of its Sensors against the operator's EW; lost, it shows a false location and size (High-Tech: Electricity and Electronics p. 50).",
           "RadarHindered": "Radar: a switched-on radar jammer or spoofer in reach hinders it (High-Tech: Electricity and Electronics pp. 49-50).",
           "Hopping": "Frequency hopping ({name})",
-          "DirectSequence": "Direct sequence ({name})"
+          "DirectSequence": "Direct sequence ({name})",
+          "AdaptAction": "Adapt to jam",
+          "AdaptTitle": "Adapting {name} to jam",
+          "AdaptWhere": "Where",
+          "Workshop": "In a workshop",
+          "ToolKit": "With a tool kit (Scrounging roll)",
+          "AdaptRange": "Reach in yards (the book prints none for a Tesla coil)",
+          "AdaptNoRange": "Give the Tesla coil a reach in yards.",
+          "AdaptFailed": "The Scrounging roll fails: the parts aren't found, and it isn't adapted.",
+          "Adapted": "Adapted to jam after {hours} hours: it runs as a broad-spectrum jammer, at {modifier} to its operator's Electronics Operation (EW) (HT:EE p. 49).",
+          "AdaptedLine": "Adapted to jam",
+          "AdaptedSheet": "Adapted to jam: a broad-spectrum jammer out to {range}, {modifier} to its operator's Electronics Operation (EW), and a plain roll out to {shadow} times that (HT:EE p. 49).",
+          "Adaptable": "Can be adapted to jam: {hours} hours in a workshop, or with a tool kit and a Scrounging roll; it then jams broad-spectrum at {modifier} to Electronics Operation (EW) (HT:EE p. 49)."
         },
         "Covert": {
           "SpreadRow": "Spread-spectrum bug ({modifier})",
           "SpreadLine": "Spread spectrum",
-          "IsolatorRow": "An isolator guards it ({modifier})",
-          "IsolatorLine": "Isolator",
           "WhiteNoiseRow": "White noise generator running ({modifier})",
           "WhiteNoiseLine": "White noise"
         }
@@ -10581,7 +10592,7 @@
       },
       "Covert": {
         "Title": "Covert listening",
-        "Detector": "Against a bug using spread spectrum (ECCM), {spread}; against one an isolator guards, {isolator} (HT:EE p. 44).",
+        "Detector": "Against a bug using spread spectrum (ECCM), {spread}; an isolator doesn't hide a bug from it, only from a nonlinear junction detector (HT:EE p. 44).",
         "WhiteNoise": "Masks talk: {modifier} to eavesdropping through audio bugs and contact, laser or resonant cavity microphones (HT:EE p. 44).",
         "WhiteNoiseNearby": "People working nearby count as Attentive (p. B163); anyone with a quirk sensitive to it suffers Moderate Pain (p. B428) (HT:EE p. 44).",
         "LaserTl7": "Listening: {curtains} through heavy curtains or triple glazing, -1 to -{noise} for noise such as running water, {whiteNoise} under white noise; bug detectors can't sense it (HT:EE p. 44).",
@@ -10629,7 +10640,7 @@
         "Task": {
           "emissionsBuild": "Build a computer-emissions interceptor",
           "emissionsRead": "Read a computer's emissions",
-          "acousticKeylog": "Acoustic keylogging: the typing sample",
+          "acousticKeylog": "Acoustic keylogging: the typing sample and its analysis",
           "rfidCapture": "Capture an RFID chip",
           "boosterBag": "Make a booster bag",
           "improvisedWhiteNoise": "Improvise white noise from an FM receiver"

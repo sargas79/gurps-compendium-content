@@ -98,7 +98,7 @@ async function load(): Promise<void> {
   // High-Tech's radio options, which the spread-spectrum bonus reads (HT:EE p. 46).
   const sensors = await import("../sensors/index.js");
   const sensorEngine = await import("../../../shared/sensors/index.js");
-  sensorEngine.SENSOR_TABLES.register(sensors.highTechSensors({ radios: key("radios"), activeSensors: key("activeSensors"), visualSensors: key("visualSensors"), passiveSensors: key("passiveSensors"), spreadSpectrum: key("spreadSpectrum") }));
+  sensorEngine.SENSOR_TABLES.register(sensors.highTechSensors({ radios: key("radios"), activeSensors: key("activeSensors"), visualSensors: key("visualSensors"), passiveSensors: key("passiveSensors"), spreadSpectrum: key("spreadSpectrum"), radioDesign: key("radioDesign") }));
   book.initSurveillance({ jamming: key("jamming"), jammerKinds: key("jammerKinds"), radarJamming: key("radarJamming"), spreadSpectrum: key("spreadSpectrum") });
   const api = fakeApi();
   book.readySurveillance(api as never, {
@@ -577,6 +577,61 @@ describe("broad-spectrum and selective jammers (HT:EE p. 49)", () => {
     const { radio, user } = scene("Area Jammer (TL7)", 100, {}, [analyzer]);
     await shared.useNearJammers(fakeApi() as never, radio, user);
     expect(contests[0].second).toMatchObject({ base: 15, modifiers: [] });
+  });
+
+  it("knows only the frequencies of the characters targeted when it went on, and never a hopping radio's (HT:EE p. 49)", async () => {
+    on.add(key("jammerKinds"));
+    const { jammer, holder, radio, user } = scene("Area Jammer (TL7)", 100, { jammerOn: false });
+    const other = character("Bystander", [gear("Small Radio (TL7)")], { skills: { [COMM]: 12 } }, 100);
+    targets = [user];
+    dialogAnswer = { variety: "selective", known: true };
+    await actions.get("jammer-switch").run(jammer, holder);
+    expect(jammer.flags[MODULE_ID].jammerFrequencyKnown).toEqual(["Actor.Radioman"]);
+    await shared.useNearJammers(fakeApi() as never, radio, user);
+    expect(contests).toEqual([]);
+    expect(successes[0]).toMatchObject({ actor: holder, skill: EW });
+    successes = [];
+    await shared.useNearJammers(fakeApi() as never, other.items[0], other);
+    expect(contests).toHaveLength(1);
+    // A frequency-hopping radio's frequency isn't fixed: the contest even where it is known.
+    contests = [];
+    radio.system.extensions = { [MODULE_ID]: { sensor: { eccm: true } } };
+    await shared.useNearJammers(fakeApi() as never, radio, user);
+    expect(contests).toHaveLength(1);
+  });
+
+  it("adapts a spark-gap transmitter or a Tesla coil to jam broad-spectrum at -2 (HT:EE p. 49)", async () => {
+    on.add(key("jammerKinds"));
+    on.add(key("radioDesign"));
+    const spark = gear("Trench Radio Transmitter", { tl: "6", extensions: { [MODULE_ID]: { sensor: { commMode: "transmitter", sparkGap: true, wideband: true } } } });
+    const coil = gear("Small Tesla Coil", { tl: "8" });
+    const holder = character("Sparks", [spark, coil], { skills: { [EW]: 14, Scrounging: 12 } });
+    expect(actions.get("ht-adapt-jammer").visible(spark)).toBe(true);
+    expect(actions.get("ht-adapt-jammer").visible(gear("Small Radio (TL7)"))).toBe(false);
+    expect(shared.jammerOf(spark)).toBeNull();
+    // With a tool kit: a Scrounging roll, which can fail.
+    dialogAnswer = { where: "kit", range: 0 };
+    successResult = { success: false };
+    await actions.get("ht-adapt-jammer").run(spark, holder);
+    expect(successes[0]).toMatchObject({ actor: holder, base: 12, skill: "Scrounging" });
+    expect(spark.flags[MODULE_ID].eeAdaptedJammer).toBeUndefined();
+    successResult = { success: true };
+    await actions.get("ht-adapt-jammer").run(spark, holder);
+    const adapted = shared.jammerOf(spark)!.jammer;
+    expect(adapted).toMatchObject({ range: 50 * 1760, skill: null, variety: "broad" });
+    expect(adapted.operatorLines).toEqual([{ label: "GCC.HT.Surveillance.Jammer.AdaptedLine", value: -2 }]);
+    expect(actions.get("ht-adapt-jammer").visible(spark)).toBe(false);
+    // In a workshop no roll; a Tesla coil takes the reach it is given.
+    successes = [];
+    dialogAnswer = { where: "workshop", range: 200 };
+    await actions.get("ht-adapt-jammer").run(coil, holder);
+    expect(successes).toEqual([]);
+    expect(shared.jammerOf(coil)!.jammer.range).toBe(200);
+    // Switched on, the operator's roll takes the -2.
+    await actions.get("jammer-switch").run(coil, holder);
+    expect(successes[0]).toMatchObject({ base: 14, skill: EW, modifiers: [{ value: -2 }] });
+    on.delete(key("jammerKinds"));
+    expect(shared.jammerOf(coil)).toBeNull();
   });
 
   it("puts the varieties and the analyzer on the sheet", () => {
