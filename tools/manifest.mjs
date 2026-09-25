@@ -125,10 +125,6 @@ async function main() {
       ],
     },
     esmodules: [SCRIPT],
-    // The module's own socket, over which a player's client asks the GM's to
-    // write what only the GM may: an area a round leaves, a dose on a token
-    // the player doesn't own (src/shared/relay.ts).
-    socket: true,
     // The module's own item types, named `gurps-compendium-content.<type>` in
     // the world: Ritual Path Magic's rituals.
     documentTypes: { Item: { ritual: {} } },

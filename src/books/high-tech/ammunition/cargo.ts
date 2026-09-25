@@ -14,15 +14,11 @@
  *     minute; a flare's light, which lifts the darkness penalty on an attack
  *     at somebody standing under it (the keyed `darkness` line). A scent
  *     marker's hit marks its victim for an hour: -4 to reactions to him, +4 to
- *     Smell rolls to find him within four yards. A player's round is placed
- *     and dosed by the active GM's client, through the module's socket
- *     (`shared/relay.ts`), since only the GM may write the scene and the
- *     tokens the player doesn't own.
+ *     Smell rolls to find him within four yards.
  */
 
-import { areaCentre, placeArea, type AreaLine } from "../../../shared/areas.js";
+import { placeArea, type AreaLine } from "../../../shared/areas.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { registerRelay, relay, senderOwns } from "../../../shared/relay.js";
 import { smokeAreaLines, smokeFormSeconds } from "../../../shared/smoke/rules.js";
 import { wearsIrritantMask } from "../breathing/index.js";
 import {
@@ -185,17 +181,6 @@ async function exposeToPoison(api: GWorldApi, victims: any[], filler: string): P
   return lines;
 }
 
-/** What the firer's client asks the GM's to do with a cargo round that landed (the module's relay). */
-interface CargoRelease {
-  actorUuid: string;
-  load: CargoLoad;
-  radius: number;
-  seconds: number;
-  center: { x: number; y: number } | null;
-}
-
-const RELEASE = "ht-cargo";
-
 /**
  * A tear-gas cloud released where the actor's attack landed -- a thrown M7
  * grenade's (p. 192) -- rolled for everyone in it as a tear-gas round's is
@@ -212,34 +197,19 @@ export async function releaseTearGas(api: GWorldApi, actor: any, title: string, 
   ];
 }
 
-/**
- * Leaves a fired cargo round's cloud or light where it lands, and doses those
- * in a gas (pp. 171-172). The firer's client asks the radius and time and
- * finds where it landed; placing the area and dosing the tokens in it are the
- * GM's to write, so the active GM's client does them (`relay`).
- */
-async function releaseCargo(actor: any, load: CargoLoad): Promise<void> {
+/** Leaves a fired cargo round's cloud or light where it lands, and doses those in a gas (pp. 171-172). */
+async function releaseCargo(api: GWorldApi, actor: any, load: CargoLoad): Promise<void> {
+  const title = L(`Projectile.${load.projectile}`);
   const fixed = load.projectile === "whitePhosphorus" ? WP_SMOKE_SECONDS : null;
   const asked = await askArea(load, fixed);
   if (!asked) return;
-  const release: CargoRelease = { actorUuid: String(actor?.uuid ?? ""), load, radius: asked.radius, seconds: asked.seconds, center: areaCentre(actor) };
-  if ((await relay(RELEASE, release)) === "none") ui.notifications?.warn(L("AreaNoGm"));
-}
-
-/** The GM's side of a cargo round: the area placed, those in a gas dosed, the card. */
-async function placeCargo(api: GWorldApi, release: CargoRelease, userId: string): Promise<void> {
-  const actor: any = release.actorUuid ? fromUuidSync(release.actorUuid) : null;
-  // Only for somebody who may fire for that character.
-  if (userId !== game.user?.id && !senderOwns(actor, userId)) return;
-  const load = release.load;
-  const title = L(`Projectile.${load.projectile}`);
-  const lines = areaLines(load, release.radius);
-  const id = await placeArea(api, { key: areaKey(load), label: title, actor, radiusYards: release.radius, seconds: release.seconds, lines, bare: true, center: release.center });
+  const lines = areaLines(load, asked.radius);
+  const id = await placeArea(api, { key: areaKey(load), label: title, actor, radiusYards: asked.radius, seconds: asked.seconds, lines, bare: true });
   if (!id) return void ui.notifications?.warn(L("AreaNoPlace"));
-  const said = [F(load.projectile === "illumination" ? "LightPlaced" : "CloudPlaced", { radius: release.radius, seconds: release.seconds })];
-  if (load.projectile !== "illumination") said.push(F("CloudForms", { seconds: smokeFormSeconds(release.radius) }));
+  const said = [F(load.projectile === "illumination" ? "LightPlaced" : "CloudPlaced", { radius: asked.radius, seconds: asked.seconds })];
+  if (load.projectile !== "illumination") said.push(F("CloudForms", { seconds: smokeFormSeconds(asked.radius) }));
   if (load.projectile === "smoke" && HT_SMOKE_TABLE[load.smoke].blocks.includes("lasers")) said.push(L("PrismLasers"));
-  if (load.projectile === "tearGas") said.push(...(await exposeToGas(api, actorsIn(api, id), gasesOf(load.vomiting), release.seconds)));
+  if (load.projectile === "tearGas") said.push(...(await exposeToGas(api, actorsIn(api, id), gasesOf(load.vomiting), asked.seconds)));
   if (load.projectile === "poisonGas") said.push(...(await exposeToPoison(api, actorsIn(api, id), load.poisonFiller)));
   await say(actor, title, said);
 }
@@ -270,9 +240,6 @@ const scented = (actor: any): boolean => Number(actor?.getFlag?.(MODULE_ID, SCEN
 
 export function readyCargo(api: GWorldApi, on: CargoSwitches, loadOf: (item: any, modeIndex: number) => CargoLoad | null): void {
   const gasOn = () => on.cargo() || on.gas?.() === true;
-  // A player's round lands through the GM's client, which may write the scene and the victims.
-  registerRelay(RELEASE, (release: CargoRelease, userId: string) => (on.cargo() ? placeCargo(api, release, userId) : undefined));
-
   // Tear gas's two rolls and the vomiting agent's, as poisons the system doses (p. 171).
   for (const gas of GASES) {
     api.data.registerPoison({ module: MODULE_ID, key: gas, label: `GCC.HT.Ammunition.Gas.${gas}`, poison: GAS_POISONS[gas] as any, available: gasOn });
@@ -292,7 +259,7 @@ export function readyCargo(api: GWorldApi, on: CargoSwitches, loadOf: (item: any
         await say(context.actor, String(item.name ?? ""), [F(bursts ? "SapleBursts" : "SapleDud", { roll: roll.total, need: load.tl - 2 })], [roll]);
       })();
     }
-    if (on.cargo() && AREA_CARGO.includes(load.projectile)) void releaseCargo(context.actor, load);
+    if (on.cargo() && AREA_CARGO.includes(load.projectile)) void releaseCargo(api, context.actor, load);
   });
 
   // A gas's failed roll: coughing, blindness or retching, for the cloud's time and the margin's minutes (p. 171).

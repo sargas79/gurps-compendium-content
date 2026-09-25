@@ -145,6 +145,8 @@ export interface AmmunitionSwitches {
   cargo?: () => boolean;
   /** Hollow-points failing to expand, the GM's option (p. 167). */
   expansion?: () => boolean;
+  /** High-Tech's own poisons (p. 227), for a poison bullet's load. */
+  poisons?: () => boolean;
   /** Tear gas's rolls for something other than a round: the grenades' switch (p. 192). */
   gas?: () => boolean;
 }
@@ -994,13 +996,14 @@ export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
   gasFillers = () => ((api.rules as any).POISON_EXAMPLES ?? [])
     .filter((p: any) => (p.delivery ?? []).some((d: string) => d === "respiratory" || d === "contact"))
     .map((p: any) => String(p.name));
-  poisonChoices = (chosen) => bulletPoisonChoices(api, chosen);
+  poisonChoices = (chosen) => bulletPoisonChoices(api, chosen, on.poisons?.() === true);
   // What the projectiles and their upgrades do as they are fired and as they hit (pp. 167, 174-175).
   readyRounds(api, {
     projectiles: () => on.projectiles?.() === true,
     multiple: () => on.multiple?.() === true,
     projectileUpgrades: () => on.projectileUpgrades?.() === true,
     expansion: () => on.expansion?.() === true,
+    poisons: () => on.poisons?.() === true,
   }, (item, modeIndex) => {
     if (!isFirearmItem(item)) return null;
     const load = loadIn(item, modeIndex).load;

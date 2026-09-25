@@ -9,7 +9,6 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
-import { receive } from "../../../shared/relay.js";
 import { readyAmmunition, type AmmunitionSwitches } from "./index.js";
 
 type Listener = (...args: any[]) => void;
@@ -25,6 +24,7 @@ const HOOKS = {
   reactionModifiers: "gworld.reactionModifiers",
   detectionModifiers: "gworld.detectionModifiers",
   injury: "gworld.injury",
+  turnEnd: "gworld.turnEnd",
 };
 
 let hooks: Map<string, Listener[]>;
@@ -85,6 +85,7 @@ const switches: AmmunitionSwitches = {
   explosive: () => on.explosiveProjectiles === true,
   cargo: () => on.cargoProjectiles === true,
   expansion: () => on.hollowPointExpansion === true,
+  poisons: () => on.highTechPoisons === true,
 };
 
 const load = (patch: Record<string, unknown>) => ({ mode: 0, calibre: "", upgrades: [], source: "", matched: false, batchMalfunction: 0, discount: 0, projectile: "", material: "", shotMm: 0, shotCount: 0, projectileUpgrades: [], poisonCost: 0, ...patch });
@@ -289,41 +290,6 @@ describe("cargo rounds (pp. 143, 171-172)", () => {
   });
 });
 
-describe("a player's round through the GM's client (the module's relay)", () => {
-  it("has the GM's client place a player's cloud and dose those in it, at the point the player's client found", async () => {
-    on.cargoProjectiles = true;
-    const gm = { id: "gm", isGM: true };
-    const player = { id: "u1", isGM: false };
-    const sent: any[] = [];
-    const usersSeenBy = (self: "gm" | "u1") => Object.assign([gm, player], { activeGM: { ...gm, isSelf: self === "gm" }, get: (id: string) => (id === "u1" ? player : id === "gm" ? gm : undefined) });
-    (game as any).user = { ...player, targets: new Set() };
-    (game as any).users = usersSeenBy("u1");
-    (game as any).socket = { emit: (channel: string, message: any) => sent.push({ channel, message }) };
-    inArea = [{ actor: { id: "v1", name: "Rioter", isOwner: false, derived: {} } }];
-    const gas = m79([load({ projectile: "tearGas", radius: 4, seconds: 30 })]);
-    gas.actor.uuid = "Actor.a0";
-    gas.actor.testUserPermission = (user: any) => user.id === "u1";
-    items.set("Actor.a0", gas.actor);
-    fire(HOOKS.afterShots, { actor: gas.actor, item: gas, modeIndex: 0 });
-    await flush();
-    // The player's client asks; it writes nothing itself.
-    expect(areas).toHaveLength(0);
-    expect(sent[0]).toMatchObject({ channel: `module.${MODULE_ID}`, message: { key: "ht-cargo", payload: { radius: 4, seconds: 30, center: { x: 500, y: 500 } } } });
-    // The GM's client takes the request up.
-    (game as any).user = { ...gm, targets: new Set() };
-    (game as any).users = usersSeenBy("gm");
-    expect(await receive(sent[0].message, "u1")).toBe(true);
-    await flush();
-    expect(areas[0]).toMatchObject({ radius: 4, center: { x: 500, y: 500 } });
-    expect(doses.map((d) => d.actor)).toEqual(["Rioter", "Rioter"]);
-    // Nothing for a user who can't fire for that character.
-    areas = [];
-    await receive(sent[0].message, "someone-else");
-    await flush();
-    expect(areas).toHaveLength(0);
-  });
-});
-
 describe("the projectile options and upgrades in play (pp. 167, 174-175)", () => {
   const glock = (loads: any[]) => gun("Glock 17, 9x19mm", { skill: "Guns (Pistol)", damageFormula: "2d+2", damageType: "pi" }, loads);
 
@@ -351,8 +317,13 @@ describe("the projectile options and upgrades in play (pp. 167, 174-175)", () =>
     fire(HOOKS.afterDamage, { actor: victim, item: bullet, mode: { index: 0, ranged: true }, result: { penetrating: 3, touchEffectsReach: true } });
     await flush();
     expect(doses[0]).toMatchObject({ actor: "Target", name: "Cyanide", source: `${MODULE_ID}.poisonBullet` });
-    // High-Tech's own ricin, by its key.
+    // High-Tech's own ricin, by its key: only while High-Tech's poisons are in play.
     const ricin = glock([load({ projectile: "poison", poisonFiller: "ht:ricin" })]);
+    fire(HOOKS.afterDamage, { actor: victim, item: ricin, mode: { index: 0, ranged: true }, result: { penetrating: 3 } });
+    await flush();
+    expect(doses).toHaveLength(1);
+    expect(chat.join(" ")).toContain("NoBulletPoison");
+    on.highTechPoisons = true;
     fire(HOOKS.afterDamage, { actor: victim, item: ricin, mode: { index: 0, ranged: true }, result: { penetrating: 3 } });
     await flush();
     expect(doses[1]).toMatchObject({ source: `${MODULE_ID}.ricin`, dice: 3 });
@@ -396,6 +367,37 @@ describe("the projectile options and upgrades in play (pp. 167, 174-175)", () =>
     await flush();
     expect(pending).toHaveLength(1);
     expect(pending[0]).toMatchObject({ value: 1, tags: ["attack"], skill: "Guns (Light Machine Gun)", expires: 1002 });
+  });
+
+  it("takes an unused tracer bonus off at the end of the shooter's next turn, or with the combat", async () => {
+    on.projectileUpgrades = true;
+    const mg = gun("M60, 7.62x51mm", { skill: "Guns (Light Machine Gun)", damageFormula: "7d", rateOfFire: 10 }, [load({ projectileUpgrades: ["tracer"] })]);
+    mg.actor.isOwner = true;
+    const combat: any = { id: "c1", round: 1, turn: 0 };
+    (game as any).combat = combat;
+    fire(HOOKS.afterShots, { actor: mg.actor, item: mg, modeIndex: 0, kind: "rapidFire", fired: 10 });
+    await flush();
+    expect(pending).toHaveLength(1);
+    // The turn it was fired in ends: the combat has moved to the next turn. It stays.
+    combat.turn = 1;
+    for (const listener of hooks.get(HOOKS.turnEnd) ?? []) listener(combat, { actor: mg.actor });
+    await flush();
+    expect(pending).toHaveLength(1);
+    // The shooter's next turn ends unused: it goes.
+    combat.round = 2;
+    combat.turn = 1;
+    for (const listener of hooks.get(HOOKS.turnEnd) ?? []) listener(combat, { actor: mg.actor });
+    await flush();
+    expect(pending).toHaveLength(0);
+    // Or it goes with the combat.
+    combat.round = 3;
+    combat.turn = 0;
+    fire(HOOKS.afterShots, { actor: mg.actor, item: mg, modeIndex: 0, kind: "rapidFire", fired: 10 });
+    await flush();
+    expect(pending).toHaveLength(1);
+    for (const listener of hooks.get("deleteCombat") ?? []) listener(combat);
+    await flush();
+    expect(pending).toHaveLength(0);
   });
 
   it("drops a beehive shell's 1/2D", () => {

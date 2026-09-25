@@ -10,8 +10,8 @@
  *     hits as a solid bullet, with its own damage type and no (0.5).
  *   - **Poison bullets** (p. 167): a hit that gets through DR delivers one
  *     dose of the poison the load names, as a follow-up: a Basic Set poison
- *     carried by blood, contact or a follow-up, or High-Tech's curare, ricin
- *     or botulin.
+ *     carried by blood, contact or a follow-up, or -- while High-Tech's
+ *     poisons are in play -- its curare, ricin or botulin.
  *   - **Airburst** (pp. 174-175): Attacking an Area at +4 with a TL7+
  *     proximity fuse, +3 with a TL5-6 time fuse, or only +1 at a flying
  *     target; an attack option on a mode firing airburst rounds or a shell
@@ -20,7 +20,8 @@
  *     shot at a target beyond it is refused.
  *   - **Tracers** (p. 175): on the turn after a long burst -- one of the
  *     weapon's full RoF or more (p. 86) -- the shooter's next attack with the
- *     gun is at +1, not cumulative; and the tracers give the firer away.
+ *     gun is at +1, not cumulative; and the tracers give the firer away. The
+ *     bonus goes at the end of the shooter's next turn, or with the combat.
  */
 
 import { stepPiercing } from "../../../shared/loads/dice.js";
@@ -52,6 +53,8 @@ export interface RoundSwitches {
   projectileUpgrades: () => boolean;
   /** Hollow-points failing to expand (p. 167). */
   expansion: () => boolean;
+  /** High-Tech's own poisons (p. 227), which a poison bullet may carry only while they are in play. */
+  poisons: () => boolean;
 }
 
 // ── the rules ──
@@ -115,24 +118,24 @@ async function say(actor: any, title: string, lines: string[]): Promise<void> {
 
 const d6 = (): number => Math.floor(CONFIG.Dice.randomUniform() * 6) + 1;
 
-/** The poison a poison bullet carries, as `actors.dosePoison` takes it, or null for none chosen. */
-function poisonFor(api: GWorldApi, name: string): any | null {
+/** The poison a poison bullet carries, as `actors.dosePoison` takes it, or null for none chosen or none in play. */
+function poisonFor(api: GWorldApi, name: string, htPoisons: boolean): any | null {
   if (name.startsWith("ht:")) {
     const key = name.slice(3) as HtPoison;
-    if (!HT_BULLET_POISONS.includes(key)) return null;
+    if (!htPoisons || !HT_BULLET_POISONS.includes(key)) return null;
     return { ...HT_POISONS[key], name: game.i18n.localize(`GCC.HT.Drugs.Poison.${key}`), source: `${MODULE_ID}.${key}` };
   }
   const poison: any = name ? ((api.rules as any).poisonNamed?.(name) ?? null) : null;
   return poison ? { ...poison, source: `${MODULE_ID}.poisonBullet` } : null;
 }
 
-/** The choices a poison bullet's load offers: none, the Basic Set's, High-Tech's. */
-export function bulletPoisonChoices(api: GWorldApi, chosen: string): Array<{ value: string; label: string; selected: boolean }> {
+/** The choices a poison bullet's load offers: none, the Basic Set's, and High-Tech's while its poisons are in play. */
+export function bulletPoisonChoices(api: GWorldApi, chosen: string, htPoisons: boolean): Array<{ value: string; label: string; selected: boolean }> {
   const basic = bulletPoisons(((api.rules as any).POISON_EXAMPLES ?? []) as any[]);
   return [
     { value: "", label: L("NoPoison"), selected: !chosen },
     ...basic.map((n) => ({ value: n, label: n, selected: n === chosen })),
-    ...HT_BULLET_POISONS.map((k) => ({ value: `ht:${k}`, label: game.i18n.localize(`GCC.HT.Drugs.Poison.${k}`), selected: `ht:${k}` === chosen })),
+    ...HT_BULLET_POISONS.filter((k) => htPoisons || `ht:${k}` === chosen).map((k) => ({ value: `ht:${k}`, label: game.i18n.localize(`GCC.HT.Drugs.Poison.${k}`), selected: `ht:${k}` === chosen })),
   ];
 }
 
@@ -169,7 +172,7 @@ export function readyRounds(api: GWorldApi, on: RoundSwitches, firedOf: (item: a
     if (!(Number(context.result.penetrating) > 0) || context.result.touchEffectsReach === false) return;
     const round = firedIn(context.item, context.mode);
     if (round?.fired.projectile !== "poison") return;
-    const poison = poisonFor(api, round.poison);
+    const poison = poisonFor(api, round.poison, on.poisons());
     void (async () => {
       if (!poison) return say(victim, L("Projectile.poison"), [L("NoBulletPoison")]);
       const dose: any = await api.actors.dosePoison(victim, poison);
@@ -210,6 +213,14 @@ export function readyRounds(api: GWorldApi, on: RoundSwitches, firedOf: (item: a
   });
 
   // Tracers: +1 on the turn after a long burst, not cumulative; and the firer is seen (p. 175).
+  // The bonus held for each shooter, on the client that gave it: its id, and the combat turn it was given in.
+  const tracerHeld = new Map<any, { id: string; combat: string; round: number; turn: number }>();
+  const dropTracer = async (actor: any): Promise<void> => {
+    const held = tracerHeld.get(actor);
+    if (!held) return;
+    tracerHeld.delete(actor);
+    await api.actors.removePendingModifier(actor, held.id);
+  };
   Hooks.on(api.combat.hooks.afterShots, (context: any) => {
     const item = context?.item;
     const actor = context?.actor;
@@ -228,9 +239,39 @@ export function readyRounds(api: GWorldApi, on: RoundSwitches, firedOf: (item: a
         }
         const skill = String(mode.skill ?? "");
         const id = await api.actors.addPendingModifier(actor, { label, value: 1, tags: ["attack"], ...(skill ? { skill } : {}), expires: nextTurnEnds() } as any);
-        if (id) lines.push(L("TracerNext"));
+        if (id) {
+          const combat = (game as any).combat;
+          tracerHeld.set(actor, { id: String(id), combat: String(combat?.id ?? ""), round: Number(combat?.round) || 0, turn: Number(combat?.turn) || 0 });
+          lines.push(L("TracerNext"));
+        }
       }
       await say(actor, String(item.name ?? ""), lines);
     })();
   });
+
+  // Unused, it goes at the end of the shooter's next turn -- not the turn it was fired in -- or with the combat.
+  Hooks.on(api.combat.hooks.turnEnd, (combat: any, combatant: any) => {
+    const actor = combatant?.actor;
+    const held = actor ? tracerHeld.get(actor) : undefined;
+    if (!held) return;
+    // turnEnd fires as the turn moves on, the combat's round and turn already the next one's: the
+    // end of the turn it was fired in is kept, any later one of the shooter's takes it off.
+    const sameTurn = held.round === (Number(combat?.round) || 0) && held.turn === (Number(combat?.turn) || 0);
+    if (held.combat === String(combat?.id ?? "") && (sameTurn || isTurnJustAfter(held, combat))) return;
+    void dropTracer(actor);
+  });
+  Hooks.on("deleteCombat", () => {
+    for (const actor of [...tracerHeld.keys()]) void dropTracer(actor);
+  });
+}
+
+/**
+ * Whether the combat has moved on only by the one turn the bonus was given
+ * in: the end of the turn the shooter fired in, which isn't yet the next turn.
+ */
+function isTurnJustAfter(held: { round: number; turn: number }, combat: any): boolean {
+  const round = Number(combat?.round) || 0;
+  const turn = Number(combat?.turn) || 0;
+  if (round === held.round) return turn === held.turn + 1;
+  return round === held.round + 1 && turn === 0;
 }
