@@ -276,12 +276,12 @@ describe("hand grenades (pp. 190-192)", () => {
     expect(chat.at(-1)).toContain("GCC.HT.Ordnance.Dropped");
     expect(chat.at(-1)).toContain("GCC.HT.Ordnance.DroppedNoTime");
     // Its fuse runs out on the ground: it goes off beside the thrower by itself.
-    expect(weaponState.get(m67)).toMatchObject({ htArmed: false, htDropped: true, htLit: { round: 1 } });
+    expect(weaponState.get(m67)).toMatchObject({ htArmed: false, htLit: null, htDroppedLit: { round: 1 } });
     combat.round = 5;
     await Promise.all(fire(HOOKS.turnStart, combat, { actor: soldier }));
     expect(chat.at(-1)).toContain("GCC.HT.Ordnance.AtFeet");
     expect(damage[0]).toMatchObject({ item: m67, explosive: true, blastPlacement: "" });
-    expect(weaponState.get(m67)).toMatchObject({ htDropped: false, htLit: null });
+    expect(weaponState.get(m67)).toMatchObject({ htDroppedLit: null });
   });
 
   it("drops a pin grenade's fuse running from the throw, and lets it be picked up and thrown again", async () => {
@@ -293,18 +293,67 @@ describe("hand grenades (pp. 190-192)", () => {
     fire(HOOKS.afterSuccessRoll, { actor: soldier, tags: ["attack"], outcome: { success: false, criticalFailure: true } });
     await flush();
     expect(chat.at(-1)).toContain("GCC.HT.Ordnance.DroppedPickUp");
-    expect(weaponState.get(m67)).toMatchObject({ htDropped: true, htLit: { round: 2 } });
+    expect(weaponState.get(m67)).toMatchObject({ htLit: null, htDroppedLit: { round: 2 } });
     expect(actions.get("ht-grenade-pick-up").visible(m67)).toBe(true);
     combat.round = 3;
     actions.get("ht-grenade-pick-up").run(m67, soldier);
     await flush();
     expect(chat.at(-1)).toContain('"least":3');
-    expect(weaponState.get(m67)).toMatchObject({ htArmed: true, htDropped: false });
+    expect(weaponState.get(m67)).toMatchObject({ htArmed: true, htLit: { round: 2 }, htDroppedLit: null });
     expect(actions.get("ht-grenade-pick-up").visible(m67)).toBe(false);
     // Held again, it goes off in the hand if nobody throws it.
     combat.round = 6;
     await Promise.all(fire(HOOKS.turnStart, combat, { actor: soldier }));
     expect(damage[0]).toMatchObject({ blastPlacement: "contact" });
+  });
+
+  it("leaves a dropped grenade at the thrower's feet while another from the stack is armed, cooked and thrown", async () => {
+    const m67 = item("M67");
+    const soldier = actorWith("Soldier", [m67]);
+    combat = { id: "c1", started: true, round: 1, combatants: [{ actor: soldier }] };
+    await api.combat.setWeaponState(m67, MODULE_ID, { htPrimed: true, htArmed: true, htLit: null });
+    attack(soldier, m67);
+    fire(HOOKS.afterSuccessRoll, { actor: soldier, tags: ["attack"], outcome: { success: false, criticalFailure: true } });
+    await flush();
+    expect(weaponState.get(m67)).toMatchObject({ htArmed: false, htDroppedLit: { round: 1 } });
+
+    // Another from the stack: armed, cooked off, and thrown -- the dropped one stays where it lies.
+    actions.get("ht-grenade-arm").run(m67, soldier);
+    await flush();
+    combat.round = 2;
+    actions.get("ht-grenade-cook").run(m67, soldier);
+    await flush();
+    expect(weaponState.get(m67)).toMatchObject({ htArmed: true, htLit: { round: 2 }, htDroppedLit: { round: 1 } });
+    // Holding one armed, the dropped one can't be picked up as well.
+    actions.get("ht-grenade-pick-up").run(m67, soldier);
+    await flush();
+    expect(weaponState.get(m67)).toMatchObject({ htLit: { round: 2 }, htDroppedLit: { round: 1 } });
+    combat.round = 3;
+    attack(soldier, m67);
+    fire(HOOKS.afterSuccessRoll, { actor: soldier, tags: ["attack"], outcome: { success: true } });
+    await flush();
+    expect(weaponState.get(m67)).toMatchObject({ htArmed: false, htLit: null, htDroppedLit: { round: 1 } });
+
+    // Its own fuse runs out: it alone goes off, beside him.
+    combat.round = 5;
+    await Promise.all(fire(HOOKS.turnStart, combat, { actor: soldier }));
+    expect(damage).toHaveLength(1);
+    expect(damage[0]).toMatchObject({ blastPlacement: "" });
+    expect(weaponState.get(m67).htDroppedLit).toBeNull();
+  });
+
+  it("sets off a dropped grenade and a cooked one in hand each on its own fuse", async () => {
+    const m67 = item("M67");
+    const soldier = actorWith("Soldier", [m67]);
+    combat = { id: "c1", started: true, round: 6, combatants: [{ actor: soldier }] };
+    await api.combat.setWeaponState(m67, MODULE_ID, { htPrimed: true, htArmed: true, htLit: { combat: "c1", round: 3, time: 0 }, htDroppedLit: { combat: "c1", round: 1, time: 0 } });
+    // The dropped one (5 seconds on a 4-5 fuse) goes; the one in hand (3 seconds) not yet.
+    await Promise.all(fire(HOOKS.turnStart, combat, { actor: soldier }));
+    expect(damage.map((d) => d.blastPlacement)).toEqual([""]);
+    expect(weaponState.get(m67)).toMatchObject({ htArmed: true, htLit: { round: 3 }, htDroppedLit: null });
+    combat.round = 7;
+    await Promise.all(fire(HOOKS.turnStart, combat, { actor: soldier }));
+    expect(damage.map((d) => d.blastPlacement)).toEqual(["", "contact"]);
   });
 
   it("sets a stick grenade's fuse burning as the cord is pulled, and sets it off in the hand", async () => {

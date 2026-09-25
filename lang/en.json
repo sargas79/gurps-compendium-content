@@ -8451,6 +8451,7 @@
         "AtFeet": "The {grenade} {name} dropped goes off at his feet.",
         "AtFeetLabel": "{name}, dropped",
         "PickUp": "Pick it up",
+        "HandFull": "An armed {name} is already in hand: throw it, or put its pin back, before picking up the dropped one.",
         "PickedUp": "{name} picks the grenade up again, armed: {least}-{most} seconds left on its fuse.",
         "BoobyTrap": "Booby trap",
         "BoobyTrapRoll": "Rigging the {name} as a booby trap",
