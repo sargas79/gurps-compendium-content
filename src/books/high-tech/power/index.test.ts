@@ -7,7 +7,7 @@ import { readFileSync } from "node:fs";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { setRuleReader } from "../../../shared/book-tables.js";
-import { CELL_TABLES, cellTableOf, enduranceLeft, powerPriceChange, recharge, tableForInverter } from "../../../shared/power/index.js";
+import { CELL_TABLES, cellTableOf, enduranceLeft, powerGearContext, powerPriceChange, recharge, tableForInverter } from "../../../shared/power/index.js";
 import { cellOf, powerData } from "../../../shared/power/data.js";
 import { cellCost, replacementSeconds, swappedEndurance } from "../../../shared/power/rules.js";
 import { MODULE_ID } from "../../../shared/module.js";
@@ -153,6 +153,26 @@ describe("adapters and inverters (p. 14)", () => {
     only(UT_RULE);
     expect(tableForInverter(gear("ultra-tech", {}, "9"))).toBeNull();
     expect(powerData(gear("ultra-tech", { draw: { cell: "B", cells: 1, endurance: "1 hr." }, adapter: true }, "9")).adapter).toBe(false);
+  });
+});
+
+describe("the Gear tab's cells", () => {
+  it("heads each book's gadgets in that book's words: batteries for High-Tech, power cells for Ultra-Tech", () => {
+    only(BATTERIES_RULE, UT_RULE);
+    vi.stubGlobal("game", { i18n: { localize: (k: string) => k, format: (k: string) => k } });
+    const named = (name: string, g: any) => ({ ...g, id: name, name });
+    const actor = {
+      system: {},
+      items: [
+        named("Scanner", gear("ultra-tech", { draw: { cell: "B", cells: 1, endurance: "10 hrs." } }, "9")),
+        named("Radio", gear("high-tech", { draw: { cell: "S", cells: 2, endurance: "5 hrs." } })),
+        named("Lamp", gear("high-tech", { draw: { cell: "M", cells: 1, endurance: "8 hrs." } })),
+      ],
+    };
+    const context: any = powerGearContext(actor);
+    expect(context.groups.map((g: any) => [g.ns, g.rows.map((r: any) => r.name)])).toEqual([["GCC.UT", ["Scanner"]], ["GCC.HT", ["Radio", "Lamp"]]]);
+    expect(context.groups[1].rows[0].supply).toContain("GCC.HT.Power");
+    vi.unstubAllGlobals();
   });
 });
 

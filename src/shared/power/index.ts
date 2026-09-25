@@ -371,8 +371,12 @@ export async function recharge(item: any, hours: number): Promise<number> {
   return back;
 }
 
-/** The Gear tab section's data: every carried gadget that runs on cells. */
-function gearContext(actor: any): Record<string, unknown> {
+/**
+ * The Gear tab section's data: every carried gadget that runs on cells, in a
+ * card for each book whose table they take, headed in that book's words
+ * ("Batteries", "Power cells"), in the order the gadgets are listed.
+ */
+export function powerGearContext(actor: any): Record<string, unknown> {
   const gear = poweredGear(actor);
   const rows = gear.map(({ item, table }) => {
     const ns = table.i18n;
@@ -413,10 +417,16 @@ function gearContext(actor: any): Record<string, unknown> {
       hoursUsed: Math.round(data.hoursUsed * 10) / 10,
       weapon,
       cosmic: data.cosmic,
+      ns,
     };
   });
-  // The headings are the first listed gadget's book's.
-  return { ns: gear[0]?.table.i18n ?? CELL_TABLES.all[0]?.i18n ?? "", rows };
+  const groups: Array<{ ns: string; rows: typeof rows }> = [];
+  for (const row of rows) {
+    const group = groups.find((g) => g.ns === row.ns);
+    if (group) group.rows.push(row);
+    else groups.push({ ns: row.ns, rows: [row] });
+  }
+  return { groups };
 }
 
 function gearListeners(element: HTMLElement, actor: any): void {
@@ -495,7 +505,7 @@ export function readyPower(api: GWorldApi): void {
     position: "start",
     template: `modules/${MODULE_ID}/templates/power-gear.hbs`,
     visible: (actor) => poweredGear(actor).length > 0,
-    context: (actor) => gearContext(actor),
+    context: (actor) => powerGearContext(actor),
     listeners: (element, actor) => gearListeners(element, actor),
   });
 }
