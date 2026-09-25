@@ -352,7 +352,7 @@ async function switchLight(api: GWorldApi, item: any, actor: any): Promise<void>
   // What has burned so far is kept when it goes out, and counted from now when it is lit (pp. 51-52).
   const burned = !lit && burn && state.litAt !== null ? state.burned + Math.max(0, now - state.litAt) : state.burned;
   await setState(item, { lit, ...(burn ? { litAt: lit ? now : null, burned } : {}) });
-  if (!lit) await pickUp(api, item);
+  if (!lit) await pickUp(api, item, actor);
   const kind = data.light.kind;
   const how = !lit ? "PutOut"
     : kind === "electric" || kind === "tactical" ? "SwitchedOnReady"
@@ -383,7 +383,7 @@ async function refuel(api: GWorldApi, item: any, actor: any): Promise<void> {
     await api.items.changeQuantity(item, -1, { reason: L(`Refuel.${burn.fuel}`) });
   }
   await setState(item, { lit: false, litAt: null, burned: 0 });
-  await pickUp(api, item);
+  await pickUp(api, item, actor);
   await say(actor, name, [F(`Refuelled.${burn.fuel}`, { name, time: durationText(burn.seconds) })]);
 }
 
@@ -448,7 +448,8 @@ async function setDown(api: GWorldApi, item: any, actor: any): Promise<void> {
 /**
  * Places a beam light set down as a cone from its bearer's token. An infrared
  * one is marked in its id (`IR_BEAM`), and `lightOver` counts it only for eyes
- * that see infrared.
+ * that see infrared. Its bearer is the source, so a player's beam is placed
+ * by the GM's client (API 1.150.0).
  */
 async function placeBeam(api: GWorldApi, item: any, actor: any, yards: number, seconds: number | null, infrared = false): Promise<string | null> {
   const scene = stage()?.scene;
@@ -461,14 +462,14 @@ async function placeBeam(api: GWorldApi, item: any, actor: any, yards: number, s
   // Foundry's token rotation is 0 facing down (south); an area's direction is 0 facing east.
   const cone = toward ? { toward, length: yards, width: beamWidth(yards) } : { direction: ((Number.isFinite(direction) ? direction : 0) + 90) % 360, length: yards, width: beamWidth(yards) };
   const now = worldNow();
-  return api.areas.add(scene, {
+  return api.areas.add(scene.id ?? scene, {
     id: `${MODULE_ID}-${LIGHT_AREA}-${item.id}${infrared ? IR_BEAM : "-"}${foundry.utils.randomID(8)}`,
     label: String(item.name ?? ""),
     center: from,
     cone,
     lines: [],
     expires: seconds === null ? null : now + seconds,
-  } as any);
+  } as any, actor ? { source: actor } : undefined);
 }
 
 /**
@@ -495,13 +496,17 @@ async function burnSecond(api: GWorldApi, data: FireData, actor: any): Promise<v
   await api.roll.damage({ actor, label: F("FireSecond", { name: data.name }), formula: data.formula, damageType: "burn" as never, armorDivisor: data.divisor, source: "lanternFire" } as any);
 }
 
-/** Takes a light's areas off the map. */
-async function pickUp(api: GWorldApi, item: any): Promise<void> {
+/**
+ * Takes a light's areas off the map, with its bearer as the source: a player,
+ * who can't write the scene, has the GM's client take them off (API 1.150.0).
+ */
+async function pickUp(api: GWorldApi, item: any, actor: any): Promise<void> {
   const scene = stage()?.scene;
   if (scene) {
     const prefix = `${MODULE_ID}-${LIGHT_AREA}-${item.id}-`;
+    const source = actor ? { source: actor } : undefined;
     for (const area of (api.areas.list(scene) as any[]) ?? []) {
-      if (String(area?.id ?? "").startsWith(prefix)) await api.areas.remove(scene, area.id);
+      if (String(area?.id ?? "").startsWith(prefix)) await api.areas.remove(scene.id ?? scene, area.id, source);
     }
   }
   if (expeditionState(item).placed) await setState(item, { placed: false });
@@ -824,7 +829,7 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
     visible: (item) => on.lights() && expeditionState(item).placed,
     run: (item, actor) => {
       void (async () => {
-        await pickUp(api, item);
+        await pickUp(api, item, actor);
         await say(actor, String(item.name ?? ""), [F("PickedUp", { name: item.name })]);
       })();
     },

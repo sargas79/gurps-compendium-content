@@ -13,8 +13,8 @@
  *     their own fill it; a worn wicking undergarment's +1 on the heat roll; DR 1 for
  *     fur winter or arctic clothes, through `gworld.armorDr`; an outfit's
  *     weight by TL, as a price modifier; and body armour's 2 FP, not 1, on a
- *     hot day's battle (`gworld.fatigueCost`: the system's `hotDay` part set
- *     to 2, API 1.147.0), which a worn ghillie suit costs too, as an
+ *     hot day's battle, and 2 an hour on a hot march (`gworld.fatigueCost`:
+ *     the system's `hotDay` part, API 1.147.0), which a worn ghillie suit costs too, as an
  *     overcoat, under the camouflage switch (p. 77).
  *   - **Frostbite (frostbite):** where the cold costs FP, a damage card for
  *     each exposed hit location, a point of injury per FP it came to after
@@ -400,16 +400,18 @@ export function readyClothing(api: GWorldApi, on: ClothingSwitches): void {
       return;
     }
 
-    // Body armour on a hot day's battle: the Basic Set's 2 FP, not 1, for
-    // anyone in plate or an overcoat (p. 65; Campaigns p. 426). A ghillie suit
-    // is hot and heavy: an overcoat for this (p. 77). Once, whatever else is worn.
-    if (context.reason !== "battle") return;
+    // Body armour on a hot day: the Basic Set's 2 FP, not 1, for anyone in
+    // plate or an overcoat (p. 65; Campaigns p. 426) -- for a battle, and for
+    // each hour of a march, which costs a battle's fatigue an hour. A ghillie
+    // suit is hot and heavy: an overcoat for this (p. 77). Once, whatever else is worn.
     const armour = on.clothing() ? bodyArmour(actor) : null;
     const ghillie = !armour && on.ghillie?.() ? wornGhillie(actor) : null;
     const garment = armour ?? ghillie;
     if (!garment) return;
-    context.parts[at].fp = HOT_BATTLE_ARMOUR_FP;
-    context.sources.push(F(armour ? "HotBattleLine" : "HotGhillieLine", { name: garment.name, fp: HOT_BATTLE_ARMOUR_FP }));
+    const hours = context.reason === "hiking" ? Math.max(0, Math.floor(Number(details.hours) || 0)) : 1;
+    const fp = HOT_BATTLE_ARMOUR_FP * hours;
+    context.parts[at].fp = fp;
+    context.sources.push(F(armour ? "HotBattleLine" : "HotGhillieLine", { name: garment.name, fp }));
   });
 
   // Frostbite: a point to each exposed location per FP the cold took, once

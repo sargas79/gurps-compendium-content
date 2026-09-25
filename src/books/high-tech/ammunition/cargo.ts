@@ -144,27 +144,26 @@ function actorsIn(api: GWorldApi, id: string): any[] {
   return tokens.map((t) => t?.actor).filter(Boolean);
 }
 
-/** The seconds of cloud each actor was left in when last dosed from one, for how long the effect lasts. */
-const cloudLeft = new Map<string, number>();
-
 /**
- * The seconds left of the tear-gas cloud an actor stands in, read off the
- * map: for a dose the GM's client runs for a player's cloud (API 1.149.0),
- * where `cloudLeft` was kept on the player's.
+ * A gas dose's `source`: the gas's key, and the seconds of cloud its victim
+ * was left in, which the effect lasts on top of the margin's minutes (p. 171).
+ * The system keeps a dose's `source` and hands it to `gworld.poisonCycle`,
+ * but no other field of the module's; so the seconds ride in it, and the cycle
+ * reads them wherever it runs -- on the GM's client for a player's cloud
+ * (API 1.149.0), or on the sheet's Poison button, with none.
  */
-function cloudSecondsAround(api: GWorldApi, actor: any): number {
-  const scene = (globalThis as any).canvas?.scene;
-  const token = actor?.getActiveTokens?.()?.[0];
-  if (!scene || !token) return 0;
-  const now = worldNow();
-  const prefix = `${MODULE_ID}-${areaKey({ projectile: "tearGas" } as CargoLoad)}-`;
-  let left = 0;
-  for (const area of api.areas.list(scene) as any[]) {
-    if (!String(area?.id ?? "").startsWith(prefix) || typeof area.expires !== "number" || area.expires <= now) continue;
-    const inside: any[] = (api.areas as any).standsIn?.(scene, area) ?? [];
-    if (inside.some((t) => t?.id === token.id || t?.id === token.document?.id)) left = Math.max(left, area.expires - now);
-  }
-  return left;
+export function gasSource(gas: Gas, seconds: number): string {
+  const whole = Math.max(0, Math.floor(Number(seconds) || 0));
+  return `${MODULE_ID}.${gas}${whole > 0 ? `@${whole}` : ""}`;
+}
+
+/** The gas and the cloud's seconds a dose's `source` names, or null for another source. */
+export function gasOfSource(source: unknown): { gas: Gas; seconds: number } | null {
+  const text = String(source ?? "");
+  if (!text.startsWith(`${MODULE_ID}.`)) return null;
+  const [key, seconds] = text.slice(MODULE_ID.length + 1).split("@");
+  if (!(GASES as readonly string[]).includes(key!)) return null;
+  return { gas: key as Gas, seconds: Math.max(0, Math.floor(Number(seconds) || 0)) };
 }
 
 /** Whether a body keeps a gas out (Campaigns pp. 82, 429). */
@@ -186,8 +185,7 @@ async function exposeToGas(api: GWorldApi, source: any, victims: any[], gases: G
         lines.push(F("GasKeptOut", { name: actor.name, gas: L(`Gas.${gas}`) }));
         continue;
       }
-      cloudLeft.set(String(actor.id), seconds);
-      const dose: any = await api.actors.dosePoison(actor, { ...GAS_POISONS[gas], name: L(`Gas.${gas}`), source: `${MODULE_ID}.${gas}` } as any, { source });
+      const dose: any = await api.actors.dosePoison(actor, { ...GAS_POISONS[gas], name: L(`Gas.${gas}`), source: gasSource(gas, seconds) } as any, { source });
       if (dose) await api.actors.advancePoison(actor, dose.id, { source });
       else lines.push(F("GasNoDose", { name: actor.name }));
     }
@@ -293,14 +291,13 @@ export function readyCargo(api: GWorldApi, on: CargoSwitches, loadOf: (item: any
 
   // A gas's failed roll: coughing, blindness or retching, for the cloud's time and the margin's minutes (p. 171).
   Hooks.on(api.combat.hooks.poisonCycle, (context: any) => {
-    const source = String(context?.source ?? "");
-    if (!gasOn() || !source.startsWith(`${MODULE_ID}.`) || context.resisted !== false) return;
-    const gas = source.slice(MODULE_ID.length + 1) as Gas;
-    if (!(GASES as readonly string[]).includes(gas)) return;
+    const dosed = gasOfSource(context?.source);
+    if (!gasOn() || !dosed || context.resisted !== false) return;
+    const { gas } = dosed;
     // A player's cloud dosing a token they don't own runs here on the GM's client (API 1.149.0).
     const actor = context.actor;
     if (!actor?.isOwner) return;
-    const effect = gasEffect(gas, Number(context.margin) || 0, cloudLeft.get(String(actor.id)) ?? cloudSecondsAround(api, actor));
+    const effect = gasEffect(gas, Number(context.margin) || 0, dosed.seconds);
     if (effect.condition === "blinded") {
       void api.actors.applyCondition(actor, {
         module: MODULE_ID, key: "htTearGasBlinded", label: L("Blinded"),

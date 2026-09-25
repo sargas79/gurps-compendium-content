@@ -25,6 +25,7 @@ let conditions: any[];
 let posted: any[];
 let updated: any[];
 let areas: any[];
+let areaCalls: any[];
 let chat: string[];
 let on: Record<string, boolean>;
 let successResult: any;
@@ -44,8 +45,8 @@ function fakeApi() {
     hazards: { fall: async (actor: any, o: any) => { falls.push({ actor: actor.name, ...o }); return 0; } },
     areas: {
       list: () => areas,
-      add: (_scene: any, area: any) => { areas.push(area); return area.id; },
-      remove: async (_scene: any, id: string) => { areas = areas.filter((a) => a.id !== id); },
+      add: (scene: any, area: any, options?: any) => { areas.push(area); areaCalls.push(['add', scene, options?.source?.name]); return area.id; },
+      remove: async (scene: any, id: string, options?: any) => { areas = areas.filter((a) => a.id !== id); areaCalls.push(['remove', scene, options?.source?.name]); },
       standsIn: (_scene: any, area: any) => area.inside ?? [],
       registerLitFor: (r: any) => `${r.module}.${r.key}`,
     },
@@ -148,6 +149,7 @@ beforeEach(() => {
   posted = [];
   updated = [];
   areas = [];
+  areaCalls = [];
   chat = [];
   damages = [];
   changed = [];
@@ -233,6 +235,7 @@ describe("light sources (High-Tech pp. 51-52)", () => {
     expect(darknessAttack(shooter, target).modifiers[0].value).toBe(-3);
     // A lantern set down lights where it lies, not round whoever it belongs to.
     areas = [];
+  areaCalls = [];
     const placed = gear("Kerosene Lantern", { light: { kind: "kerosene", radius: 5, beam: 0 } }, {}, { lit: true, placed: true });
     tokens = [tokenAt("s", 0, shooter), tokenAt("b", 48, person("Owner", [placed])), target];
     expect(lightOver(fakeApi() as never, shooter, target)).toBeNull();
@@ -256,6 +259,8 @@ describe("light sources (High-Tech pp. 51-52)", () => {
     await flush();
     expect(areas).toEqual([]);
     expect(lantern.flags[MODULE_ID].expedition.placed).toBe(false);
+    // Placed and taken off with the bearer as the source, so a player's go through the GM (API 1.150.0).
+    expect(areaCalls.map(([call, , source]) => [call, source])).toEqual([["add", "Bearer"], ["remove", "Bearer"]]);
   });
 
   it("lights with an IR filter only for eyes that see infrared: on the attack, set down, and in the price", async () => {
@@ -322,6 +327,7 @@ describe("light sources (High-Tech pp. 51-52)", () => {
     actions.get("ht-light-set-down").run(torch, bearer);
     await flush();
     expect(areas[0]).toMatchObject({ center: { x: 0, y: 0 }, cone: { toward: { x: 8, y: 0 }, length: 10, width: 2 } });
+    expect(areaCalls.at(-1)).toEqual(["add", expect.anything(), "Bearer"]);
     expect(torch.flags[MODULE_ID].expedition.placed).toBe(true);
     // A target standing in the placed cone is lit.
     areas[0].inside = [{ id: "t" }];

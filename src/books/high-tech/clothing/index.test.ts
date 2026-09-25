@@ -216,6 +216,17 @@ describe("clothing against the weather (High-Tech pp. 63-65)", () => {
     expect(battle(person([wear("Ordinary Clothes")])).fp).toBe(2);
   });
 
+  it("makes a hot march 2 FP an hour for the heat, not 1, in body armour: a march costs a battle's fatigue an hour (Campaigns p. 426)", () => {
+    const flak = { type: "armor", name: "Flak Jacket", system: { equipped: true, locations: ["torso"] } };
+    // 4 hours: 8 for the march, and the heat 8 rather than 4.
+    const march = fatigue(person([flak]), "hiking");
+    expect(march.fp).toBe(16);
+    expect(march.parts).toEqual([expect.objectContaining({ key: "hiking", fp: 8 }), expect.objectContaining({ key: "hotDay", fp: 8 })]);
+    expect(march.sources).toEqual([expect.stringContaining('"fp":8')]);
+    expect(fatigue(person([flak]), "hiking", { hot: false }).fp).toBe(8);
+    expect(fatigue(person([wear("Ordinary Clothes")]), "hiking").fp).toBe(12);
+  });
+
   it("leaves heated clothing to its own switch", () => {
     expect(clothingOf(person([wear("Heated Clothing")])).clothing).toBeNull();
   });
@@ -430,5 +441,11 @@ describe("a ghillie suit as an overcoat (High-Tech p. 77)", () => {
     expect(both.sources).toHaveLength(1);
     on = { clothingAndWeather: true };
     expect(battle(person([ghillie()])).fp).toBe(2);
+  });
+
+  it("costs a hot march in a ghillie suit 2 FP an hour for the heat", () => {
+    on = { camouflageGear: true };
+    ready();
+    expect(fatigue(person([ghillie()]), "hiking", { hours: 3 }).fp).toBe(6 + 6);
   });
 });

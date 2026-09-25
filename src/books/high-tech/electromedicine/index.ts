@@ -192,14 +192,17 @@ export async function cauterize(api: GWorldApi, item: any, actor: any): Promise<
   const result: any = await api.roll.success({ actor, base: level, skill: CAUTERY.skill, label: title, tags: ["cautery"], item, opponent: patient } as any);
   if (!result || "refused" in result) return;
   const lines: string[] = [];
+  // A patient the healer's user doesn't own is changed through the GM's client (API 1.149.0).
+  // The card says only what was done: the pain where the condition went on, the bleeding
+  // stopped where this user owns the patient or a GM is there to stop it (`stopBleeding`
+  // resolves to nothing either way, and with no GM the system tells the user).
   if (!answer.anaesthetic) {
-    // A patient the healer's user doesn't own is changed through the GM's client (API 1.149.0).
-    await api.actors.applyCondition(patient, { key: CAUTERY.pain } as any, { source: actor });
-    lines.push(F("CauteryPain", { name: patient.name }));
+    const pain = await api.actors.applyCondition(patient, { key: CAUTERY.pain } as any, { source: actor });
+    if (pain) lines.push(F("CauteryPain", { name: patient.name }));
   }
   if (result.success) {
     await api.actors.stopBleeding(patient, { source: actor });
-    lines.push(F("Cauterized", { name: patient.name }));
+    if (patient.isOwner || (game as any).users?.activeGM) lines.push(F("Cauterized", { name: patient.name }));
   } else lines.push(F("NotCauterized", { name: patient.name }));
   if (kindOf(item) === "cauteryPen") {
     await api.items.changeQuantity(item, -1, { reason: L("PenUsed") });

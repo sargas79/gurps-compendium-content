@@ -237,20 +237,21 @@ describe("cargo rounds (pp. 143, 171-172)", () => {
     await flush();
     // The dialog asked: 8 yards for 25 seconds.
     expect(areas[0]).toMatchObject({ radius: 8, lines: [{ value: -10 }] });
+    // The cloud's 25 seconds ride in the dose's source, which the system hands to the cycle.
     expect(doses.map((d) => `${d.actor}:${d.source}`)).toEqual([
-      `Rioter:${MODULE_ID}.tearGasCoughing`, `Rioter:${MODULE_ID}.tearGasBlinding`, `Masked:${MODULE_ID}.tearGasBlinding`,
+      `Rioter:${MODULE_ID}.tearGasCoughing@25`, `Rioter:${MODULE_ID}.tearGasBlinding@25`, `Masked:${MODULE_ID}.tearGasBlinding@25`,
     ]);
     expect(doses[0]).toMatchObject({ resistanceModifier: -2, delivery: ["respiratory"] });
-    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGasCoughing`, resisted: false, margin: 3 });
-    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGasBlinding`, resisted: false, margin: 1 });
+    fire(HOOKS.poisonCycle, { actor: victim, source: doses[0].source, resisted: false, margin: 3 });
+    fire(HOOKS.poisonCycle, { actor: victim, source: doses[1].source, resisted: false, margin: 1 });
     expect(conditions[0]).toMatchObject({ actor: "Rioter", key: "coughing", duration: { seconds: 25 + 180 } });
     expect(conditions[1]).toMatchObject({ key: "htTearGasBlinded", module: MODULE_ID, duration: { seconds: 85 } });
     expect(conditions[1].effects.modifiers[0]).toMatchObject({ value: -10 });
     // A resisted roll does nothing.
-    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGasCoughing`, resisted: true, margin: 0 });
+    fire(HOOKS.poisonCycle, { actor: victim, source: doses[0].source, resisted: true, margin: 0 });
     expect(conditions).toHaveLength(2);
     // A failure's margin handed over signed reads by its size (#539).
-    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGasCoughing`, resisted: false, margin: -3 });
+    fire(HOOKS.poisonCycle, { actor: victim, source: doses[0].source, resisted: false, margin: -3 });
     expect(conditions[2]).toMatchObject({ key: "coughing", duration: { seconds: 25 + 180 } });
   });
 
@@ -281,15 +282,19 @@ describe("cargo rounds (pp. 143, 171-172)", () => {
     expect(doses[0]).toMatchObject({ actor: "Soldier", by: "Shooter" });
   });
 
-  it("times a player's cloud on the GM's client off the map, where it wasn't dosed there (API 1.149.0)", () => {
+  it("times a cloud's effect by the seconds its dose carries, on whichever client the cycle runs (API 1.149.0)", () => {
     on.cargoProjectiles = true;
-    const token = { id: "tok9" };
-    const victim = { id: "v9", name: "Bystander", isOwner: true, derived: {}, getActiveTokens: () => [token] };
-    areas = [{ id: `${MODULE_ID}-ht-cloud-tearGas-x`, expires: 1040 }, { id: `${MODULE_ID}-ht-cloud-smoke-y`, expires: 2000 }];
-    inArea = [token];
-    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGasCoughing`, resisted: false, margin: 1 });
-    // 40 seconds of cloud left, and the margin's minute.
+    // Nothing kept on this client, no map read: only the dose's source.
+    const victim = { id: "v9", name: "Bystander", isOwner: true, derived: {} };
+    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGasCoughing@40`, resisted: false, margin: 1 });
     expect(conditions[0]).toMatchObject({ actor: "Bystander", key: "coughing", duration: { seconds: 40 + 60 } });
+    // A dose from the sheet's Poison button carries no cloud: the margin's minutes alone.
+    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.vomitingAgent`, resisted: false, margin: 1 });
+    expect(conditions[1]).toMatchObject({ key: "retching", duration: { seconds: 300 } });
+    // Another module's source, or an unknown gas, is left alone.
+    fire(HOOKS.poisonCycle, { actor: victim, source: "other.tearGasCoughing@40", resisted: false, margin: 1 });
+    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.mustard@40`, resisted: false, margin: 1 });
+    expect(conditions).toHaveLength(2);
   });
 
   it("bursts white phosphorus into burning fragments that linger, and leaves its minute of smoke", async () => {
