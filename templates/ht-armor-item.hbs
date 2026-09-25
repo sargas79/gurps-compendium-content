@@ -15,6 +15,11 @@
       <label class="icheck" data-tooltip="{{localize 'GCC.HT.Armor.TopsUpHint'}}"><input type="checkbox" data-gcc-ht-armor="htArmor.topsUp" {{#if topsUp.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Armor.TopsUp"}}</label>
     </div>
   {{/if}}
+  {{#if back}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Armor.BackHint'}}"><input type="checkbox" data-gcc-ht-armor="htArmor.back" {{#if back.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Armor.Back"}}</label>
+    </div>
+  {{/if}}
   {{#if concealment}}
     <div class="ifields">
       <label data-tooltip="{{localize 'GCC.HT.Armor.DesignHint'}}">{{localize "GCC.HT.Armor.Design"}}

@@ -5,6 +5,7 @@ import {
   blanketOf,
   breakInPain,
   breakInRoll,
+  coverMeets,
   eyeglassesOnHeadHit,
   footwearStealth,
   gearGrant,
@@ -118,5 +119,19 @@ describe("portable cover (High-Tech p. 72)", () => {
   it("divides a dose by the radiation blanket's PF", () => {
     expect(shieldedRads(300, 3)).toBe(100);
     expect(shieldedRads(300, 1)).toBe(300);
+  });
+});
+
+describe("gear's own states (High-Tech pp. 70-72)", () => {
+  it("tints plain goggles, and leaves spent electronic ear protection as the plain kind", () => {
+    expect(gearGrant("Goggles", 6, { tinted: true })).toMatchObject({ nictitatingMembrane: 1, protectedVision: true });
+    expect(gearGrant("Tactical Goggles", 8, { tinted: true })?.protectedVision).toBeUndefined();
+    expect(gearGrant("Electronic Earplugs", 8, { unpowered: true })).toEqual({ protectedHearing: true, hardOfHearing: true });
+    expect(gearGrant("Electronic Earplugs", 8)).toEqual({ protectedHearing: true });
+    expect(gearGrant("Earmuffs", 6, { unpowered: true })).toEqual({ protectedHearing: true, hardOfHearing: true });
+  });
+
+  it("puts a blanket held up as cover between its people and a blow from the front", () => {
+    expect([null, "front", "side", "back"].map((arc) => coverMeets(arc))).toEqual([true, true, false, false]);
   });
 });

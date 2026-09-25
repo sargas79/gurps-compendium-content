@@ -19,8 +19,8 @@
  *     side's night-vision or infravision gear in place of the Gear tab's
  *     observer; scent masking on the wearer's Tracking roll and on a tracker's
  *     roll to follow them; the options' price; an item sheet section; and row
- *     buttons to turn a reversible piece inside out, customise a piece, and
- *     hide gear under a net.
+ *     buttons to turn a reversible piece inside out, customise a piece (or a
+ *     team's pieces on one roll), and hide gear under a net.
  */
 
 import { isRuleOn } from "../book-tables.js";
@@ -297,18 +297,62 @@ async function hideGear(api: GWorldApi, piece: Piece, actor: any): Promise<void>
   } as any);
 }
 
-/** Customises a piece (High-Tech p. 77): a Camouflage roll whose margin is added to its bonus, up to the most it may reach. */
+/** The piece a character would customise alongside a team: the carried one with most still to gain. */
+function customisableOf(actor: any): Piece | null {
+  let best: { piece: Piece; room: number } | null = null;
+  for (const item of actor?.items ?? []) {
+    if (!carried(item)) continue;
+    const piece = camouflageOf(item);
+    const limits = piece?.table.figures.customise?.(item, piece.data);
+    if (!piece || !limits) continue;
+    const room = Math.max(0, limits.most - limits.base) - piece.data.custom;
+    if (!best || room > best.room) best = { piece, room };
+  }
+  return best?.piece ?? null;
+}
+
+/**
+ * Customises a piece (High-Tech p. 77): a Camouflage roll whose margin is
+ * added to its bonus, up to the most it may reach. With other characters
+ * targeted who carry a piece to customise, they work as a team, and whoever
+ * of them has the best Camouflage rolls once for everyone. A piece the user
+ * can't write to is named on the card with what it came to, for its owner.
+ */
 async function customise(api: GWorldApi, piece: Piece, actor: any): Promise<void> {
   const limits = piece.table.figures.customise?.(piece.item, piece.data);
   if (!actor || !limits) return;
   const ns = piece.table.i18n;
-  const outcome: any = await api.roll.success({ actor, base: bareCamouflage(api, actor), skill: "Camouflage", label: F(ns, "CustomiseLabel", { name: piece.item.name }), tags: ["camouflageCustomise"], item: piece.item } as any);
+  const team: Array<{ actor: any; piece: Piece }> = [{ actor, piece }];
+  for (const target of (game as any).user?.targets ?? []) {
+    const other = target?.actor;
+    if (!other || team.some((m) => m.actor === other || (m.actor?.uuid && m.actor.uuid === other.uuid))) continue;
+    const theirs = customisableOf(other);
+    if (theirs) team.push({ actor: other, piece: theirs });
+  }
+  const roller = team.reduce((best, m) => (bareCamouflage(api, m.actor) > bareCamouflage(api, best.actor) ? m : best), team[0]!);
+  const outcome: any = await api.roll.success({
+    actor: roller.actor,
+    base: bareCamouflage(api, roller.actor),
+    skill: "Camouflage",
+    label: F(ns, team.length > 1 ? "CustomiseTeamLabel" : "CustomiseLabel", { name: team.length > 1 ? team.length : piece.item.name }),
+    tags: ["camouflageCustomise"],
+    item: roller.piece.item,
+  } as any);
   if (!outcome) return;
   if (!outcome.success) return void card(actor, String(piece.item.name), [L(ns, "CustomiseFailed")]);
-  // Another go never undoes the last: the suit keeps the better of the two.
-  const custom = Math.min(Math.max(0, limits.most - limits.base), Math.max(piece.data.custom, Math.trunc(Number(outcome.margin) || 0)));
-  await storeCamouflage(piece.item, "custom", custom);
-  await card(actor, String(piece.item.name), [F(ns, "Customised", { value: limits.base + custom, most: limits.most })]);
+  const margin = Math.trunc(Number(outcome.margin) || 0);
+  const lines: string[] = [];
+  for (const member of team) {
+    const own = member.piece.table.figures.customise?.(member.piece.item, member.piece.data);
+    if (!own) continue;
+    // Another go never undoes the last: the suit keeps the better of the two.
+    const custom = Math.min(Math.max(0, own.most - own.base), Math.max(member.piece.data.custom, margin));
+    const data = { value: own.base + custom, most: own.most, name: member.actor?.name ?? "", item: member.piece.item.name };
+    if (member.piece.item.isOwner === false) { lines.push(F(member.piece.table.i18n, "CustomisedNotOwned", data)); continue; }
+    await storeCamouflage(member.piece.item, "custom", custom);
+    lines.push(F(member.piece.table.i18n, team.length > 1 ? "CustomisedFor" : "Customised", data));
+  }
+  await card(actor, String(piece.item.name), lines);
 }
 
 /** Turns a reversible piece inside out (High-Tech p. 77). */

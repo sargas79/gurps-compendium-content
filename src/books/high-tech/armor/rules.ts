@@ -44,6 +44,47 @@ export function frontDrAt(front: { dr: number; locations: readonly string[] }, l
   return Math.floor(front.dr);
 }
 
+/**
+ * Where a piece that armours one side only is worn: the front, as the
+ * system's "F" has it, or the back, as a trauma plate may be (p. 67: a plate
+ * protects the torso from the front or the back, and two cover both).
+ */
+export type WornSide = "front" | "back";
+
+/**
+ * Whether a one-sided piece meets a blow from this arc. A front piece meets a
+ * blow from the front, and one whose arc nobody knows (the system's reading
+ * of "F"); a back piece only a blow from behind. A blow from the side meets
+ * neither. Read only where the table plays front-only armour (the system's
+ * frontArmor switch); without it every piece meets a blow from anywhere.
+ */
+export function sideMeets(side: WornSide, arc: string | null | undefined): boolean {
+  if (side === "back") return arc === "back";
+  return !arc || arc === "front";
+}
+
+/**
+ * A piece's DR against one kind of damage at one location, as the system
+ * reads a worn piece (Characters pp. 47, 282): a place it armours differently
+ * gives that figure, a split DR the second figure against the damage types it
+ * names, and ablative DR what is left of it.
+ */
+export function pieceDrAt(system: {
+  dr?: unknown;
+  drSplit?: unknown;
+  drSplitAppliesTo?: unknown;
+  drByLocation?: unknown;
+  drLost?: unknown;
+}, damageType: string, location: string): number {
+  const whole = (v: unknown) => Math.max(0, Math.floor(Number(v) || 0));
+  const places = Array.isArray(system.drByLocation) ? system.drByLocation : [];
+  const place = places.find((p: any) => Array.isArray(p?.locations) && p.locations.includes(location));
+  const split = system.drSplit === null || system.drSplit === undefined ? null : whole(system.drSplit);
+  const splitTypes = Array.isArray(system.drSplitAppliesTo) ? system.drSplitAppliesTo : [];
+  const dr = place ? whole(place.dr) : split !== null && splitTypes.includes(damageType) ? split : whole(system.dr);
+  return Math.max(0, dr - whole(system.drLost));
+}
+
 // ── concealing armour (pp. 64, 66) ──────────────────────────────────────────
 
 /** The most a design made to be concealed takes off the penalty (p. 66). */
