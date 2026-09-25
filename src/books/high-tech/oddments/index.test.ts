@@ -85,9 +85,11 @@ function gear(name: string, more: Record<string, any> = {}, flags: Record<string
 }
 const boots = (name: string, flags: Record<string, unknown> = {}) => gear(name, { type: "armor", system: { locations: ["foot"] } }, flags);
 
-const person = (items: any[]) => {
+const person = (items: any[], more: Record<string, unknown> = {}) => {
   const byId = new Map(items.map((i) => [i.id, i]));
-  return { name: "Wearer", uuid: "Actor.wearer", isOwner: true, items: Object.assign([...items], { get: (id: string) => byId.get(id) }) };
+  const actor = { name: "Wearer", uuid: "Actor.wearer", isOwner: true, items: Object.assign([...items], { get: (id: string) => byId.get(id) }), ...more };
+  for (const item of items) item.actor = actor;
+  return actor;
 };
 
 function fire(hook: string, context: any): any {
@@ -129,6 +131,7 @@ beforeEach(() => {
     applications: { api: { DialogV2: { prompt: async () => prompt } } },
   });
   vi.stubGlobal("ChatMessage", { implementation: { create: async (m: any) => { chat.push(m.content); }, getSpeaker: () => ({}) } });
+  vi.stubGlobal("fromUuidSync", (uuid: string) => [...((globalThis as any).game.actors ?? [])].find((a: any) => a.uuid === uuid) ?? null);
 });
 
 afterEach(() => {
@@ -311,15 +314,15 @@ describe("portable cover (High-Tech p. 72)", () => {
 
   it("holds a blanket up as cover for its bearer and the targeted characters, from the front", async () => {
     const blanket = gear("Explosives Blanket", { system: { equipped: false } });
-    const bearer = { ...person([blanket]), name: "Bearer", uuid: "Actor.bearer" };
-    const officer = { ...person([]), name: "Officer", uuid: "Actor.officer" };
-    const bystander = { ...person([]), name: "Bystander", uuid: "Actor.bystander" };
+    const bearer = person([blanket], { name: "Bearer", uuid: "Actor.bearer" });
+    const officer = person([], { name: "Officer", uuid: "Actor.officer" });
+    const bystander = person([], { name: "Bystander", uuid: "Actor.bystander" });
     (globalThis as any).game.actors = [bearer, officer, bystander];
     (globalThis as any).game.user = { targets: new Set([{ actor: officer }, { actor: bearer }]) };
     expect(row("ht-blanket-lower").visible(blanket)).toBe(false);
     row("ht-blanket-cover").run(blanket, bearer);
     await flush();
-    expect(blanket.flags[MODULE_ID].htCover).toEqual(["Actor.bearer", "Actor.officer"]);
+    expect(blanket.flags[MODULE_ID].htCover).toEqual({ bearer: "Actor.bearer", behind: ["Actor.bearer", "Actor.officer"] });
     expect(chat[0]).toContain("Officer");
     expect(row("ht-blanket-cover").visible(blanket)).toBe(false);
 
@@ -338,8 +341,8 @@ describe("portable cover (High-Tech p. 72)", () => {
 
   it("gives PF 3 to everyone exposed while a radiation blanket is laid over the source, once", async () => {
     const blanket = gear("Radiation Blanket", { system: { tl: "8", equipped: false } });
-    const tech = { ...person([blanket]), uuid: "Actor.tech" };
-    const bystander = { ...person([]), uuid: "Actor.bystander" };
+    const tech = person([blanket], { uuid: "Actor.tech" });
+    const bystander = person([], { uuid: "Actor.bystander" });
     (globalThis as any).game.actors = [tech, bystander];
     const dose = (actor: any) => fire("gworld.radiationDose", { actor, rads: 300, protectionFactor: 1, sources: [] });
     expect(dose(bystander).rads).toBe(300);
@@ -406,5 +409,42 @@ describe("protective oddments' own states (High-Tech pp. 70-71)", () => {
     await flush();
     expect(goggles.system.equipped).toBe(false);
     expect(chat[1]).toContain("Doffed");
+  });
+});
+
+describe("a blanket in use, copied (High-Tech p. 72)", () => {
+  beforeEach(() => { on = { portableCover: true }; ready(); });
+
+  it("arrives lowered and lifted: the flags are cleared before the copy is made", () => {
+    const updates: any[] = [];
+    const copy = { name: "Radiation Blanket", flags: { [MODULE_ID]: { htCover: { bearer: "Actor.a", behind: ["Actor.a"] }, htLaidOver: { bearer: "Actor.a" } } }, updateSource: (u: any) => updates.push(u) };
+    fire("preCreateItem", copy);
+    expect(updates).toEqual([{ [`flags.${MODULE_ID}.htCover`]: null, [`flags.${MODULE_ID}.htLaidOver`]: null }]);
+    const plain = { name: "Radiation Blanket", flags: { [MODULE_ID]: {} }, updateSource: (u: any) => updates.push(u) };
+    fire("preCreateItem", plain);
+    expect(updates).toHaveLength(1);
+  });
+
+  it("counts for nothing on an actor its flag doesn't name", async () => {
+    const copy = gear("Radiation Blanket", { system: { tl: "8", equipped: false } }, { htLaidOver: { bearer: "Actor.original" }, htCover: { bearer: "Actor.original", behind: ["Actor.other"] } });
+    const holder = person([copy], { uuid: "Actor.holder" });
+    const other = person([], { uuid: "Actor.other" });
+    (globalThis as any).game.actors = [holder, other];
+    fire("updateItem", copy);
+    expect(fire("gworld.radiationDose", { actor: other, rads: 300, protectionFactor: 1, sources: [] }).rads).toBe(300);
+    expect(fire(HOOKS.armorDr, { actor: other, hitLocation: "torso", arc: "front", lines: [] }).lines).toEqual([]);
+    expect(row("ht-blanket-lift").visible(copy)).toBe(false);
+    expect(row("ht-blanket-lay").visible(copy)).toBe(true);
+  });
+
+  it("finds a bearer noted by updateItem through fromUuidSync", () => {
+    const blanket = gear("Radiation Blanket", { system: { tl: "8", equipped: false } }, { htLaidOver: { bearer: "Actor.token" } });
+    const tokenActor = person([blanket], { uuid: "Actor.token" });
+    const exposed = person([], { uuid: "Actor.exposed" });
+    // An unlinked token's actor: not among the world's actors, found by its uuid.
+    (globalThis as any).game.actors = [exposed];
+    vi.stubGlobal("fromUuidSync", (uuid: string) => (uuid === "Actor.token" ? tokenActor : null));
+    fire("updateItem", blanket);
+    expect(fire("gworld.radiationDose", { actor: exposed, rads: 300, protectionFactor: 1, sources: [] }).rads).toBe(100);
   });
 });

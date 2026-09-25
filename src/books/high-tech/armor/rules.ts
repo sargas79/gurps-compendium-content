@@ -55,7 +55,8 @@ export type WornSide = "front" | "back";
  * Whether a one-sided piece meets a blow from this arc. A front piece meets a
  * blow from the front, and one whose arc nobody knows (the system's reading
  * of "F"); a back piece only a blow from behind. A blow from the side meets
- * neither.
+ * neither. Read only where the table plays front-only armour (the system's
+ * frontArmor switch); without it every piece meets a blow from anywhere.
  */
 export function sideMeets(side: WornSide, arc: string | null | undefined): boolean {
   if (side === "back") return arc === "back";

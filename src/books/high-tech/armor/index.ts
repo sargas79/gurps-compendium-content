@@ -74,6 +74,8 @@ export interface ArmorSwitches {
   partial: () => boolean;
   conceal: () => boolean;
   materials: () => boolean;
+  /** Whether one-sided pieces are read by side: partial coverage with the system's frontArmor switch on (set when ready). */
+  sided?: () => boolean;
 }
 
 /** What this module keeps on a piece. */
@@ -285,7 +287,7 @@ function itemLines(item: any, on: ArmorSwitches): string[] {
     if (data.frontDr && data.frontLocations.length) lines.push(F("FrontItem", { dr: data.frontDr, locations: data.frontLocations.map((l) => game.i18n.localize(`GCC.HT.Armor.Location.${l}`)).join(", ") }));
     if (data.toeDr) lines.push(F("ToeItem", { dr: data.toeDr, n: TOE_BOX_SIXTHS }));
     if (data.topsUp && canTurnUpTops(item.name)) lines.push(F("TopsUpItem", { n: TOPS_UP.sixths }));
-    if (sideOf(item) === "back") lines.push(L("BackItem"));
+    if (on.sided?.() && sideOf(item) === "back") lines.push(L("BackItem"));
   }
   if (on.conceal()) {
     if (isArmor(item)) {
@@ -314,7 +316,7 @@ function itemContext(item: any, on: ArmorSwitches): Record<string, unknown> {
       ? [0, 1, 2, 3, 4, 5].map((n) => ({ value: n, label: n ? F("CoverageSixths", { n }) : L("CoverageWhole"), selected: data.coverage === n }))
       : null,
     topsUp: armor && on.partial() && canTurnUpTops(item?.name) ? { checked: data.topsUp } : null,
-    back: armor && on.partial() && sideOf(item) !== null ? { checked: data.back } : null,
+    back: armor && on.sided?.() && sideOf(item) !== null ? { checked: data.back } : null,
     concealment: armor && on.conceal()
       ? Array.from({ length: DESIGN_MAX + 1 }, (_, n) => ({ value: n, label: n ? `+${n}` : L("DesignNone"), selected: data.concealment === n }))
       : null,
@@ -341,7 +343,9 @@ function itemListeners(element: HTMLElement, item: any): void {
 
 // ── ready ────────────────────────────────────────────────────────────────────
 
-export function readyHighTechArmor(api: GWorldApi, on: ArmorSwitches): void {
+export function readyHighTechArmor(api: GWorldApi, switches: ArmorSwitches): void {
+  // A piece's side counts only where the table plays front-only armour (the system's frontArmor switch).
+  const on: ArmorSwitches = { ...switches, sided: () => switches.partial() && api.registry.isRuleOn("frontArmor") };
   const anyOn = () => on.partial() || on.conceal() || on.materials();
 
   // A piece or shield remade in steel, smart foam or titanium (p. 65).
@@ -454,7 +458,7 @@ export function readyHighTechArmor(api: GWorldApi, on: ArmorSwitches): void {
     }
     // A one-sided piece worn at the back meets a blow from behind, which the
     // system's "F" turns away (p. 67); the loop below reads it as any other.
-    if (on.partial() && context.arc === "back") {
+    if (on.sided!() && context.arc === "back") {
       for (const item of actor.items ?? []) {
         if (!isWorn(item) || sideOf(item) !== "back" || !covers(item, location) || context.lines.some((l: any) => l.itemId === item.id)) continue;
         context.lines.push({
@@ -478,7 +482,7 @@ export function readyHighTechArmor(api: GWorldApi, on: ArmorSwitches): void {
       const data = htArmorData(item);
       // Worn at the back, it doesn't meet a blow from the front or the side, or
       // one from nowhere in particular (the sheet's figures among them).
-      if (on.partial() && sideOf(item) === "back" && !sideMeets("back", context.arc)) {
+      if (on.sided!() && sideOf(item) === "back" && !sideMeets("back", context.arc)) {
         line.applies = false;
         note(line, L("BackRefused"));
         continue;
@@ -550,7 +554,7 @@ export function readyHighTechArmor(api: GWorldApi, on: ArmorSwitches): void {
       // A plate at the front alone isn't struck from behind (Characters p. 282),
       // and one worn at the back only from behind (p. 67).
       const side = sideOf(item);
-      if (side === "back" && on.partial() ? arc !== "back" : side !== null && arc && arc !== "front") continue;
+      if (side === "back" && on.sided!() ? arc !== "back" : side !== null && arc && arc !== "front" && api.registry.isRuleOn("frontArmor")) continue;
       const already = plateLost(item);
       const lost = plateLoss(basic, Math.max(0, Math.floor(Number(item.system?.dr) || 0) - already));
       if (lost <= 0) continue;

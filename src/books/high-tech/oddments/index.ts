@@ -125,22 +125,66 @@ function grantOf(item: any): GearGrant | null {
 
 const inCombat = (actor: any): boolean => Boolean((game as any).combat?.started) && Boolean((game as any).combat?.combatants?.some?.((c: any) => c?.actor?.id === actor?.id));
 
-/** Every actor a blanket's bearer might be: the world's, and the scene's unlinked tokens. */
-function everyActor(): any[] {
-  const found = new Set<any>();
-  for (const actor of (game as any).actors ?? []) found.add(actor);
-  for (const token of (globalThis as any).canvas?.tokens?.placeables ?? []) if (token?.actor) found.add(token.actor);
-  return [...found];
+/** A blanket's use, as its flag keeps it: who bears it, and for cover who is behind it. */
+interface BlanketUse {
+  bearer: string;
+  behind?: string[];
+}
+
+/**
+ * A blanket's cover or laid-over flag, where it is this blanket's own: the
+ * bearer it names is the actor carrying it. A copy made elsewhere names
+ * someone else, and counts for nothing.
+ */
+function useOf(item: any, key: typeof COVER_FLAG | typeof LAID_FLAG): BlanketUse | null {
+  const use = item?.flags?.[MODULE_ID]?.[key];
+  if (!use || typeof use !== "object" || typeof use.bearer !== "string" || !blanketOf(item?.name)) return null;
+  return use.bearer === String(item?.actor?.uuid ?? "") ? use : null;
+}
+
+/** The actors known to bear a blanket in use, by uuid, resolved with `fromUuidSync` when read. */
+const bearers = new Set<string>();
+let seeded = false;
+
+/** Notes a blanket's bearer, where the blanket is in use. */
+function noteBearer(item: any): void {
+  const use = useOf(item, COVER_FLAG) ?? useOf(item, LAID_FLAG);
+  if (use) bearers.add(use.bearer);
+}
+
+/**
+ * The actors bearing a blanket in use. The first read notes the world's
+ * actors and the scenes' unlinked tokens whose own items carry the flags;
+ * after that, `updateItem` notes each new one.
+ */
+function blanketBearers(): any[] {
+  if (!seeded) {
+    seeded = true;
+    for (const actor of (game as any).actors ?? []) for (const item of actor?.items ?? []) noteBearer(item);
+    for (const scene of (game as any).scenes ?? []) {
+      for (const token of scene?.tokens ?? []) {
+        if (token?.actorLink) continue;
+        const flagged = [...(token?.delta?.items ?? [])].some((i: any) => i?.flags?.[MODULE_ID]?.[COVER_FLAG] || i?.flags?.[MODULE_ID]?.[LAID_FLAG]);
+        if (flagged && token.actor) for (const item of token.actor.items ?? []) noteBearer(item);
+      }
+    }
+  }
+  const found: any[] = [];
+  for (const uuid of bearers) {
+    const actor = (globalThis as any).fromUuidSync?.(uuid);
+    if (actor) found.push(actor);
+    else bearers.delete(uuid);
+  }
+  return found;
 }
 
 /** The blanket held up as cover for this character, and who holds it, or null (p. 72). */
 function coverFor(actor: any): { item: any; bearer: any } | null {
   const uuid = String(actor?.uuid ?? "");
   if (!uuid) return null;
-  for (const bearer of everyActor()) {
+  for (const bearer of blanketBearers()) {
     for (const item of bearer?.items ?? []) {
-      const behind = item?.flags?.[MODULE_ID]?.[COVER_FLAG];
-      if (item.system?.carried !== false && blanketOf(item.name) && Array.isArray(behind) && behind.includes(uuid)) return { item, bearer };
+      if (item.system?.carried !== false && useOf(item, COVER_FLAG)?.behind?.includes(uuid)) return { item, bearer };
     }
   }
   return null;
@@ -148,8 +192,8 @@ function coverFor(actor: any): { item: any; bearer: any } | null {
 
 /** A radiation blanket laid over the source, anywhere in the world, or null (p. 72). */
 function laidBlanket(): any {
-  for (const bearer of everyActor()) {
-    const item = [...(bearer?.items ?? [])].find((i: any) => flag(i, LAID_FLAG) && (blanketOf(i.name)?.protectionFactor ?? 1) > 1);
+  for (const bearer of blanketBearers()) {
+    const item = [...(bearer?.items ?? [])].find((i: any) => useOf(i, LAID_FLAG) && (blanketOf(i.name)?.protectionFactor ?? 1) > 1);
     if (item) return item;
   }
   return null;
@@ -270,7 +314,8 @@ async function holdUp(item: any, actor: any): Promise<void> {
   if (!item?.isOwner || !blanket) return;
   const behind = [actor, ...[...((game as any).user?.targets ?? [])].map((t: any) => t?.actor)]
     .filter((a: any, i: number, all: any[]) => a?.uuid && all.findIndex((b: any) => b?.uuid === a.uuid) === i);
-  await item.setFlag(MODULE_ID, COVER_FLAG, behind.map((a: any) => String(a.uuid)));
+  await item.setFlag(MODULE_ID, COVER_FLAG, { bearer: String(item.actor?.uuid ?? actor?.uuid ?? ""), behind: behind.map((a: any) => String(a.uuid)) });
+  noteBearer(item);
   await say(actor, String(item.name ?? ""), [F("CoverHeld", { names: behind.map((a: any) => a.name).join(", "), dr: blanket.dr })]);
 }
 
@@ -301,9 +346,9 @@ function itemLines(item: any, on: OddmentSwitches): string[] {
   if (on.cover()) {
     const blanket = blanketOf(item?.name);
     if (blanket) lines.push(F(blanket.protectionFactor > 1 ? "RadiationBlanketItem" : "BlanketItem", { dr: blanket.dr, pf: blanket.protectionFactor }));
-    const behind = item?.flags?.[MODULE_ID]?.[COVER_FLAG];
-    if (blanket && Array.isArray(behind) && behind.length) lines.push(F("CoverItem", { n: behind.length }));
-    if (blanket && flag(item, LAID_FLAG)) lines.push(F("LaidItem", { pf: blanket.protectionFactor }));
+    const behind = useOf(item, COVER_FLAG)?.behind ?? [];
+    if (blanket && behind.length) lines.push(F("CoverItem", { n: behind.length }));
+    if (blanket && useOf(item, LAID_FLAG)) lines.push(F("LaidItem", { pf: blanket.protectionFactor }));
   }
   return lines;
 }
@@ -480,6 +525,15 @@ export function readyOddments(api: GWorldApi, on: OddmentSwitches, dice: Oddment
     },
   });
 
+  // A blanket copied from one in use arrives lowered and lifted: the flags are the original's.
+  Hooks.on("preCreateItem", (item: any) => {
+    const flags = item?.flags?.[MODULE_ID];
+    if (!flags?.[COVER_FLAG] && !flags?.[LAID_FLAG]) return;
+    item.updateSource({ [`flags.${MODULE_ID}.${COVER_FLAG}`]: null, [`flags.${MODULE_ID}.${LAID_FLAG}`]: null });
+  });
+  // A blanket put to use on any client, an unlinked token's among them, is noted by its bearer.
+  Hooks.on("updateItem", (item: any) => noteBearer(item));
+
   // A blanket held up as cover for several people (p. 72; Characters p. 407).
   api.sheets.registerRowAction({
     module: MODULE_ID,
@@ -487,7 +541,7 @@ export function readyOddments(api: GWorldApi, on: OddmentSwitches, dice: Oddment
     itemTypes: ["equipment"],
     label: L("CoverTitle"),
     icon: "fa-solid fa-people-group",
-    visible: (item) => on.cover() && blanketOf(item?.name) !== null && !(item?.flags?.[MODULE_ID]?.[COVER_FLAG]?.length > 0),
+    visible: (item) => on.cover() && blanketOf(item?.name) !== null && !useOf(item, COVER_FLAG),
     run: (item, actor) => { void holdUp(item, actor); },
   });
 
@@ -497,7 +551,7 @@ export function readyOddments(api: GWorldApi, on: OddmentSwitches, dice: Oddment
     itemTypes: ["equipment"],
     label: L("LowerTitle"),
     icon: "fa-solid fa-person-arrow-down-to-line",
-    visible: (item) => on.cover() && blanketOf(item?.name) !== null && item?.flags?.[MODULE_ID]?.[COVER_FLAG]?.length > 0,
+    visible: (item) => on.cover() && useOf(item, COVER_FLAG) !== null,
     run: (item, actor) => {
       if (!item?.isOwner) return;
       void (async () => {
@@ -533,11 +587,12 @@ export function readyOddments(api: GWorldApi, on: OddmentSwitches, dice: Oddment
     itemTypes: ["equipment"],
     label: L("LayTitle"),
     icon: "fa-solid fa-radiation",
-    visible: (item) => on.cover() && (blanketOf(item?.name)?.protectionFactor ?? 1) > 1 && !flag(item, LAID_FLAG),
+    visible: (item) => on.cover() && (blanketOf(item?.name)?.protectionFactor ?? 1) > 1 && !useOf(item, LAID_FLAG),
     run: (item, actor) => {
       if (!item?.isOwner) return;
       void (async () => {
-        await item.setFlag(MODULE_ID, LAID_FLAG, true);
+        await item.setFlag(MODULE_ID, LAID_FLAG, { bearer: String(item.actor?.uuid ?? actor?.uuid ?? "") });
+        noteBearer(item);
         await say(actor, String(item.name ?? ""), [F("Laid", { name: item.name, pf: blanketOf(item.name)!.protectionFactor })]);
       })();
     },
@@ -549,7 +604,7 @@ export function readyOddments(api: GWorldApi, on: OddmentSwitches, dice: Oddment
     itemTypes: ["equipment"],
     label: L("LiftTitle"),
     icon: "fa-solid fa-arrow-up-from-bracket",
-    visible: (item) => on.cover() && blanketOf(item?.name) !== null && flag(item, LAID_FLAG),
+    visible: (item) => on.cover() && useOf(item, LAID_FLAG) !== null,
     run: (item, actor) => {
       if (!item?.isOwner) return;
       void (async () => {

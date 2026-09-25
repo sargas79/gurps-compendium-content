@@ -42,6 +42,7 @@ function fakeApi() {
       attribute: (actor: any, name: string) => actor.attributes?.[name] ?? 10,
     },
     rules: { speedRangeModifier: (yards: number) => (yards <= 2 ? 0 : -2) },
+    registry: { isRuleOn: (k: string) => on[k] === true },
     roll: { quickContest: async (o: any) => { contests.push(o); return { outcome: "first" }; } },
   };
 }
@@ -283,6 +284,7 @@ describe("partial coverage (High-Tech p. 69)", () => {
   });
 
   it("turns a one-sided piece worn at the back to meet blows from behind (p. 67)", () => {
+    on = { partialCoverage: true, frontArmor: true };
     const front = piece("Trauma Plate", { dr: 25, locations: ["torso", "vitals"], frontOnly: true });
     const back = piece("Trauma Plate (back)", { dr: 25, locations: ["torso", "vitals"], frontOnly: true }, { back: true });
     const cop = person("Cop", [front, back]);
@@ -305,6 +307,23 @@ describe("partial coverage (High-Tech p. 69)", () => {
     const lines = [line(vest)];
     fire(HOOKS.armorDr, { actor: person("Guard", [vest]), hitLocation: "torso", damageType: "pi", arc: "front", lines });
     expect(lines[0]!.applies).toBe(true);
+  });
+});
+
+describe("a plate worn at the back, without front-only armour (the system's frontArmor off)", () => {
+  it("leaves the lines as the system sent them, and wears the plate from any side", async () => {
+    on = { partialCoverage: true, armorMaterials: true };
+    ready();
+    const back = piece("Trauma Plate", { dr: 25, locations: ["torso"], frontOnly: true }, { back: true, semiAblative: true });
+    const cop = person("Cop", [back]);
+    for (const arc of ["front", "back", null]) {
+      const lines = [line(back)];
+      fire(HOOKS.armorDr, { actor: cop, hitLocation: "torso", damageType: "pi", arc, lines });
+      expect(lines).toEqual([expect.objectContaining({ applies: true, dr: 25 })]);
+    }
+    fire(HOOKS.afterDamage, { actor: cop, damage: { arc: "front" }, result: { hitLocation: "torso", basicDamage: 20, refusedPieces: [] } });
+    await flush();
+    expect(back.getFlag(MODULE_ID, "htPlateLost")).toBe(2);
   });
 });
 
@@ -395,6 +414,7 @@ describe("materials (High-Tech pp. 65, 67)", () => {
   });
 
   it("wears a semi-ablative plate down a point per 10 basic damage, until it is replaced", async () => {
+    on = { armorMaterials: true, frontArmor: true };
     const plate = piece("Trauma Plate", { dr: 25, locations: ["torso", "vitals"], frontOnly: true }, { semiAblative: true });
     const cop = person("Cop", [plate]);
     fire(HOOKS.afterDamage, { actor: cop, damage: { arc: "front" }, result: { hitLocation: "torso", basicDamage: 23, refusedPieces: [] } });
@@ -414,7 +434,7 @@ describe("materials (High-Tech pp. 65, 67)", () => {
   });
 
   it("wears a plate worn at the back only from behind, with partial coverage on", async () => {
-    on = { armorMaterials: true, partialCoverage: true };
+    on = { armorMaterials: true, partialCoverage: true, frontArmor: true };
     const plate = piece("Trauma Plate", { dr: 25, locations: ["torso", "vitals"], frontOnly: true }, { semiAblative: true, back: true });
     const cop = person("Cop", [plate]);
     fire(HOOKS.afterDamage, { actor: cop, damage: { arc: "front" }, result: { hitLocation: "torso", basicDamage: 30, refusedPieces: [] } });
