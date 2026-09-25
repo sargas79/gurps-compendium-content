@@ -17,7 +17,11 @@
  *     melee mode on every handgun; suppressors refused on revolvers, as
  *     `suppressorWorks` says for the accessory rules.
  *   - **Mechanical machine guns (mechanicalMachineGuns):** -5 unfamiliarity,
- *     -1 more to fix a malfunction when unfamiliar, and -8 off the mount.
+ *     -1 more to fix a malfunction when unfamiliar, and -8 off the mount. A
+ *     Gatling's Broadwell drum, fitted from the gun's sheet: its rounds fed
+ *     a cell at a time, a fired-out cell refusing the shot until the drum is
+ *     turned from the gun's row. A canister row from the same feed for a gun
+ *     whose record gives the round (the Hotchkiss 1-pdr).
  *   - **Backblast (backblast):** the dice the book prints for each launcher
  *     and missile, the cone behind the firer at full and half damage (the
  *     tokens standing in it found through the system's cone areas), and
@@ -33,17 +37,21 @@ import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { isRevolver } from "../rate-of-fire/index.js";
 import {
   AXE_MACE_DEFAULT,
+  BROADWELL,
   EMPTY_CHAMBER,
   MECHANICAL_MG,
   SAFETY_SETTINGS,
   airBand,
   airShotsLeft,
+  cellRoundsLeft,
+  firesCanister,
   heldSeconds,
   pistolWhip,
   stunAfterSeconds,
   suppressorWorks,
   unsafeRevolver,
   type AirBand,
+  type CanisterRound,
   type SafetySetting,
 } from "./rules.js";
 
@@ -87,6 +95,20 @@ export function weaponFamilyFields(f: any): Record<string, unknown> {
     mechanicalMg: new f.BooleanField({ initial: false }),
     backblast: new f.StringField({ required: true, nullable: false, blank: true, initial: "" }),
     backblastType: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: ["", ...BACKBLAST_KINDS] }),
+    // A Broadwell drum the gun takes: its cells and the rounds in each, and whether it is fitted (p. 127).
+    drumCells: whole(100),
+    drumCellRounds: whole(100),
+    drumFitted: new f.BooleanField({ initial: false }),
+    // A canister round the gun fires from the same feed (pp. 127-128).
+    canister: new f.SchemaField({
+      damage: new f.StringField({ required: true, nullable: false, blank: true, initial: "" }),
+      accuracy: whole(20),
+      halfDamageRange: whole(100000),
+      maxRange: whole(100000),
+      projectiles: whole(1000),
+      // 0 for the gun's own.
+      rateOfFire: whole(100),
+    }),
   };
 }
 
@@ -109,6 +131,10 @@ export interface FamilyData {
   /** The backblast's dice, and its kind (p. 147). */
   backblast: string;
   backblastType: BackblastKind | "";
+  drumCells: number;
+  drumCellRounds: number;
+  drumFitted: boolean;
+  canister: CanisterRound;
 }
 
 export function familyData(item: any): FamilyData {
@@ -126,7 +152,29 @@ export function familyData(item: any): FamilyData {
     mechanicalMg: d.mechanicalMg === true,
     backblast: String(d.backblast ?? "").trim(),
     backblastType: BACKBLAST_KINDS.includes(d.backblastType) ? d.backblastType : "",
+    drumCells: count(d.drumCells),
+    drumCellRounds: count(d.drumCellRounds),
+    drumFitted: d.drumFitted === true,
+    canister: {
+      damage: String(d.canister?.damage ?? "").trim(),
+      accuracy: count(d.canister?.accuracy),
+      halfDamageRange: count(d.canister?.halfDamageRange),
+      maxRange: count(d.canister?.maxRange),
+      projectiles: count(d.canister?.projectiles),
+      rateOfFire: count(d.canister?.rateOfFire),
+    },
   };
+}
+
+/** Whether a gun has a Broadwell drum fitted (p. 127). */
+export function drumFitted(item: any): boolean {
+  const data = familyData(item);
+  return data.drumFitted && data.drumCells > 0 && data.drumCellRounds > 0;
+}
+
+/** The rounds fired from the drum's cell at the feed since it was turned. */
+export function firedFromCell(api: GWorldApi, item: any): number {
+  return Math.max(0, Math.floor(Number((api.combat.getWeaponState(item, MODULE_ID) as any)?.drumCellFired) || 0));
 }
 
 const rangedModes = (item: any): any[] => item?.system?.rangedModes ?? [];
@@ -199,6 +247,13 @@ function itemContext(item: any, on: FamilySwitches): Record<string, unknown> {
     lines.push(F(data.brainer ? "BrainerLine" : "WhipLine", { modifier: whip.modifier >= 0 ? `+${whip.modifier}` : String(whip.modifier) }));
   }
   if (on.mechanical() && data.mechanicalMg) lines.push(F("MechanicalLine", { unfamiliar: MECHANICAL_MG.unfamiliar, clearing: MECHANICAL_MG.clearing, offMount: MECHANICAL_MG.offMount }));
+  if (on.mechanical() && data.drumCells > 0 && data.drumCellRounds > 0) {
+    context.drum = { fitted: data.drumFitted };
+    lines.push(F("DrumLine", { rounds: data.drumCells * data.drumCellRounds, cells: data.drumCells, cell: data.drumCellRounds, rotate: BROADWELL.rotateReadies, assisted: BROADWELL.rotateAssisted, fit: BROADWELL.fitSeconds }));
+  }
+  if (on.mechanical() && firesCanister(data.canister)) {
+    lines.push(F("CanisterLine", { damage: data.canister.damage, projectiles: data.canister.projectiles, acc: data.canister.accuracy, half: data.canister.halfDamageRange, max: data.canister.maxRange }));
+  }
   if (on.backblast()) {
     const blast = highTechBackblast(item);
     if (blast) lines.push(F(blast.kind === "cr" ? "BackblastCrLine" : "BackblastLine", { damage: blast.damage, full: blast.fullYards, half: blast.halfYards }));
@@ -246,7 +301,7 @@ export function readyWeaponFamilies(api: GWorldApi, on: FamilySwitches): void {
     visible: (item) => {
       if (item?.type !== "equipment" || rangedModes(item).length === 0) return false;
       const context = itemContext(item, on);
-      return (context.lines as string[]).length > 0 || Boolean(context.air) || Boolean(context.revolver);
+      return (context.lines as string[]).length > 0 || Boolean(context.air) || Boolean(context.revolver) || Boolean(context.drum);
     },
     context: (item) => itemContext(item, on),
     listeners: (element, item) => itemListeners(element, item),
@@ -398,4 +453,88 @@ export function readyWeaponFamilies(api: GWorldApi, on: FamilySwitches): void {
     const unfamiliar = (use?.tags ?? []).includes("unfamiliar") || (use?.lines ?? []).some((l: any) => l?.key === "unfamiliar");
     if (unfamiliar) context.modifiers.push({ label: L("MechanicalClearing"), value: MECHANICAL_MG.clearing });
   });
+
+  // ── the Broadwell drum (p. 127) ──
+  // Fitted, the gun holds the drum's rounds, and a new drum goes in in 10 seconds.
+  Hooks.on(api.combat.hooks.shotsEntry, (context: any) => {
+    const item = context?.item;
+    const entry = context?.entry;
+    if (!on.mechanical() || !entry || !drumFitted(item)) return;
+    const data = familyData(item);
+    entry.capacity = data.drumCells * data.drumCellRounds;
+    entry.chambered = false;
+    entry.reloadSeconds = BROADWELL.fitSeconds;
+    entry.fastDrawSeconds = 0;
+  });
+
+  // A cell fired out: the drum must be turned before the gun fires again, and a burst takes no more than the cell holds.
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    const item = context?.item;
+    if (!on.mechanical() || context?.mode?.ranged !== true || context.refusal || !drumFitted(item)) return;
+    const left = cellRoundsLeft(familyData(item).drumCellRounds, firedFromCell(api, item));
+    const shots = Math.max(1, Math.floor(Number(context.shots) || 1) + Math.max(0, Math.floor(Number(context.extraShots) || 0)));
+    if (left <= 0) context.refusal = F("DrumTurn", { readies: BROADWELL.rotateReadies, assisted: BROADWELL.rotateAssisted });
+    else if (shots > left) context.refusal = F("DrumCellShort", { left });
+  });
+
+  Hooks.on(api.combat.hooks.afterShots, (context: any) => {
+    const item = context?.item;
+    if (!on.mechanical() || !item?.isOwner || !drumFitted(item)) return;
+    const fired = Math.max(0, Math.floor(Number(context.shots) || 0));
+    if (fired) void api.combat.setWeaponState(item, MODULE_ID, { drumCellFired: firedFromCell(api, item) + fired });
+  });
+
+  // A fresh drum starts at a full cell.
+  Hooks.on("updateItem", (item: any, changes: any) => {
+    if (!on.mechanical() || !item?.isOwner || !drumFitted(item)) return;
+    const modes = foundry.utils.getProperty(changes, "system.rangedModes");
+    if (!Array.isArray(modes)) return;
+    const full = familyData(item).drumCells * familyData(item).drumCellRounds;
+    if (modes.some((m: any) => Number(m?.loaded) >= full) && firedFromCell(api, item) > 0) void api.combat.setWeaponState(item, MODULE_ID, { drumCellFired: 0 });
+  });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-turn-drum",
+    itemTypes: ["equipment"],
+    label: L("DrumTurnAction"),
+    icon: "fa-solid fa-dharmachakra",
+    visible: (item) => on.mechanical() && drumFitted(item),
+    run: (item, actor) => {
+      void api.combat.setWeaponState(item, MODULE_ID, { drumCellFired: 0 })
+        .then(() => say(actor, String(item?.name ?? ""), [F("DrumTurned", { readies: BROADWELL.rotateReadies, assisted: BROADWELL.rotateAssisted, cell: familyData(item).drumCellRounds })]));
+    },
+  });
+
+  // ── canister (pp. 127-128) ──
+  // The same round from the same feed, fired as canister: its own row, spending the gun's rounds (API 1.101.0).
+  api.combat.registerDerivedAttackMode({
+    module: MODULE_ID,
+    key: "ht-canister",
+    label: L("CanisterMode"),
+    kind: "ranged",
+    applies: (item: any) => on.mechanical() && firesCanister(familyData(item).canister),
+    mode: (item: any, _actor: unknown, helpers: any) => {
+      const base = ((helpers.rows?.(item)?.ranged ?? []) as any[]).find((r) => !r.derivedMode);
+      if (!base) return null;
+      const round = familyData(item).canister;
+      const rest: Record<string, any> = { ...base };
+      for (const key of ["itemId", "modeIndex", "name", "mode", "followUp", "followUpAlso", "linked"]) delete rest[key];
+      return {
+        ...rest,
+        mode: L("CanisterMode"),
+        damage: round.damage,
+        armorDivisor: 1,
+        accuracy: round.accuracy,
+        halfDamageRange: round.halfDamageRange,
+        maxRange: round.maxRange,
+        projectiles: round.projectiles,
+        ...(round.rateOfFire ? { rateOfFire: round.rateOfFire } : {}),
+        recoil: 1,
+        damageRollable: api.rules.parseDiceAdds(round.damage) !== null,
+        spendsFrom: Math.max(0, Math.floor(Number(base.modeIndex) || 0)),
+        notes: [...(rest.notes ?? []), { label: L("CanisterMode"), hint: L("CanisterHint") }],
+      };
+    },
+  } as any);
 }

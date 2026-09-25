@@ -20,12 +20,19 @@ let options: any[];
 let tools: any[];
 let flag: any;
 let on: boolean;
+let rowActions: any[];
+let weaponState: Map<string, Record<string, unknown>>;
 
 function fakeApi() {
   return {
     rules: { weaponClassOf: () => "firearm" },
-    combat: { hooks: HOOKS, registerAttackOption: (o: any) => options.push(o) },
-    sheets: { registerGmTool: (t: any) => tools.push(t) },
+    combat: {
+      hooks: HOOKS,
+      registerAttackOption: (o: any) => options.push(o),
+      getWeaponState: (item: any) => weaponState.get(item.id) ?? {},
+      setWeaponState: async (item: any, _m: string, patch: Record<string, unknown>) => { weaponState.set(item.id, { ...(weaponState.get(item.id) ?? {}), ...patch }); },
+    },
+    sheets: { registerGmTool: (t: any) => tools.push(t), registerRowAction: (a: any) => rowActions.push(a) },
   };
 }
 
@@ -57,12 +64,15 @@ beforeEach(() => {
   tools = [];
   flag = {};
   on = true;
+  rowActions = [];
+  weaponState = new Map();
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     scenes: { viewed: { getFlag: (module: string, key: string) => (module === MODULE_ID && key === ENVIRONMENT_FLAG ? flag : undefined) } },
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
   });
   vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s } });
+  vi.stubGlobal("ui", { notifications: { info: vi.fn(), warn: vi.fn() } });
   readyEnvironments(fakeApi() as never, () => on);
 });
 
@@ -149,9 +159,38 @@ describe("shots into water and steeply up", () => {
     expect(attack(gun(), { [`${MODULE_ID}.ht-into-water`]: 10 }, 3).refusal).toContain("OutOfRange");
   });
 
-  it("refuses a steep shot past 80% of Max", () => {
-    expect(attack(gun(), { [`${MODULE_ID}.ht-steep-angle`]: true }, 2400).refusal).toBeNull();
-    expect(attack(gun(), { [`${MODULE_ID}.ht-steep-angle`]: true }, 2500).refusal).toContain("OutOfRange");
+  it("puts a gun aimed steeply up at 80% of its 1/2D and Max on its row, and refuses a shot past that", async () => {
+    const item = gun();
+    const steep = rowActions.find((a) => a.key === "ht-steep-angle");
+    expect(steep.visible(item)).toBe(true);
+    steep.run(item);
+    await Promise.resolve();
+    expect(rowFor(item)).toMatchObject({ halfDamageRange: 128, maxRange: 1440 });
+    // The row the attack reads is already the steep shot's.
+    const shot = (yards: number) => {
+      const actor = { system: { derived: { ranged: [{ itemId: item.id, modeIndex: 0, halfDamageRange: 128, maxRange: 1440 }] } } };
+      const context = { actor, item, ranged: true, mode: { index: 0, ranged: true }, rangeYards: yards, options: {}, modifiers: [] as any[], refusal: null as string | null };
+      for (const listener of hooks.get(HOOKS.attackModifiers) ?? []) listener(context);
+      return context.refusal;
+    };
+    expect(shot(1400)).toBeNull();
+    expect(shot(1500)).toContain("OutOfRange");
+    steep.run(item);
+    await Promise.resolve();
+    expect(rowFor(item)).toMatchObject({ halfDamageRange: 160, maxRange: 1800 });
+  });
+
+  it("refuses hollow-points underwater, and notes caseless rounds failing in time", () => {
+    hooks = new Map();
+    readyEnvironments(fakeApi() as never, () => on, { rounds: (item) => ({ hollowPoint: item.name === "hp gun", caseless: item.name === "caseless gun" }) });
+    flag = { underwater: true };
+    const hp = { ...gun(), name: "hp gun" };
+    expect(rowFor(hp).notes.map((n: any) => n.label)).toContain("GCC.HT.Environment.HollowPointNote");
+    expect(rowFor({ ...gun(), name: "caseless gun" }).notes.map((n: any) => n.label)).toContain("GCC.HT.Environment.CaselessNote");
+    expect(attack(hp, {}, 1).refusal).toBe("GCC.HT.Environment.HollowPointRefusal");
+    expect(attack(gun(), {}, 1).refusal).toBeNull();
+    flag = {};
+    expect(attack(hp, {}, 1).refusal).toBeNull();
   });
 
   it("gives the GM a tool for the scene while the switch is on", () => {

@@ -15,6 +15,11 @@
       </div>
     {{/if}}
   {{/if}}
+  {{#if drum}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Families.DrumFittedHint'}}"><input type="checkbox" data-gcc-ht-family="drumFitted" {{#if drum.fitted}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Families.DrumFitted"}}</label>
+    </div>
+  {{/if}}
   {{#if air}}
     <p class="ihint">{{air.line}}
       {{#if air.canRecharge}}<button type="button" class="ibtn tiny" data-gcc-ht-recharge {{#unless editable}}disabled{{/unless}} data-tooltip="{{localize 'GCC.HT.Families.RechargeHint'}}">{{localize "GCC.HT.Families.Recharge"}}</button>{{/if}}

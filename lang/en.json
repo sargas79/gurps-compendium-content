@@ -4829,7 +4829,7 @@
         },
         "firearmQuality": {
           "Name": "Firearm quality",
-          "Hint": "Accurate and reliable work as separate grades on a gun: fine accurate +1 Acc (base Acc 2+) for 75% of its price, very fine +2 Acc (base Acc 4+) for 375%; fine reliable a step of Malf. for 25%, very fine two steps for 125%, none for a full-automatic weapon. A gun taken past Malf. 17 stays at 17 and rolls a malfunction again. These replace the Basic Set's fine and very fine grade on a gun (High-Tech p. 79)."
+          "Hint": "Accurate and reliable work as separate grades on a gun: fine accurate +1 Acc (base Acc 2+) for 75% of its price, very fine +2 Acc (base Acc 4+) for 375%; fine reliable a step of Malf. for 25%, very fine two steps for 125%, none for a full-automatic weapon. A gun taken past Malf. 17 stays at 17 and rolls a malfunction again. These replace the Basic Set's fine and very fine grade on a gun, and Monster Hunters' reading of it while that book's gear switch is on too (High-Tech p. 79)."
         },
         "gunCare": {
           "Name": "Gun care",
@@ -4837,11 +4837,11 @@
         },
         "immediateAction": {
           "Name": "Immediate Action",
-          "Hint": "Clearing a stoppage takes -4 on the Armoury or IQ-based weapon skill roll, bought off by the Immediate Action technique for the weapon skill, plus the gun's TL and familiarity penalties. It takes two Ready maneuvers for a magazine-fed self-loader, four for a belt-fed gun (three with an assistant gunner) and three otherwise; Armorer's Gift and Weapon Bond help (High-Tech pp. 81, 249-251)."
+          "Hint": "Clearing a stoppage takes -4 on the Armoury or IQ-based weapon skill roll, bought off by the Immediate Action technique for the weapon skill, plus the gun's TL and familiarity penalties. It takes two Ready maneuvers for a magazine-fed self-loader, four for a belt-fed gun (three with an assistant gunner) and three otherwise; Armorer's Gift and Weapon Bond help. A multi-barrel gun's misfire needs none: the shooter fires another barrel. The technique defaults to Armoury (Small Arms)-4 for a Guns specialty and Armoury (Heavy Weapons)-4 for a Gunner one (High-Tech pp. 81, 249-251)."
         },
         "gunDrawing": {
           "Name": "Drawing guns",
-          "Hint": "Fast-Draw one gun per hand each turn, the off hand at -4; a failure ends the turn's drawing and a critical failure drops the gun, or both. The odd positions apply, with where the gun is carried: a pistol +0 in the belt or at the hip, -1 at the small of the back or in a shoulder holster, -2 in an ankle holster or boot, -3 in a pocket or concealed; a long arm +0 on a patrol sling, -2 slung over the shoulder, -4 on the back. Holsters and slings by name: a military holster -2 (none with its flap tucked away), an undercover holster -1, a Fast-Draw rig +2, a patrol sling +1; a pistol takes a Ready in or out of its holster, a slung long arm two (three from the back), and a successful Fast-Draw saves one. A sleeve holster fails or breaks on its own terms, a retention holster gives +2 to Retain Weapon, a lanyard lets you recover a dropped gun with a DX roll, and Quick-Sheathe stows a gun as fast as Fast-Draw draws it (High-Tech pp. 81-82, 153-154, 249)."
+          "Hint": "Fast-Draw one gun per hand each turn, the off hand at -4; a failure ends the turn's drawing and a critical failure drops the gun, or both. The odd positions apply, with where the gun is carried: a pistol +0 in the belt or at the hip, -1 at the small of the back or in a shoulder holster, -2 in an ankle holster or boot, -3 in a pocket or concealed; a long arm +0 on a patrol sling, -2 slung over the shoulder, -4 on the back. Holsters and slings by name: a military holster -2 (none with its flap tucked away), an undercover holster -1, a Fast-Draw rig +2, a patrol sling +1; a pistol takes a Ready in or out of its holster, a slung long arm two (three from the back), and a successful Fast-Draw saves one. A sleeve holster fails or breaks on its own terms, a retention holster gives +2 to Retain Weapon, a lanyard lets you recover a dropped gun with a DX roll, and Quick-Sheathe stows a gun as fast as Fast-Draw draws it. An undercover holster at the ankle takes a gun of Bulk -1 or 0 only. A long arm on a rifle sling is braced for +1 on an aimed shot after a Ready maneuver per -1 Bulk; leaving the brace takes a Ready (High-Tech pp. 81-82, 153-154, 249)."
         },
         "gunfightStandoff": {
           "Name": "Who draws first (guns)",
@@ -4877,11 +4877,11 @@
         },
         "gunTechniques": {
           "Name": "Gun techniques",
-          "Hint": "Close-Quarters Battle on a Move and Attack at no more than Per yards (its level in place of the skill, the Bulk penalty still taken, never above the skill). Targeted Attacks with guns, named \"TA (Pistol/Skull)\": the skill at the target's penalty, half of it bought off, the levels taken on a shot aimed there. Instant Arsenal Disarm from its technique's row: a grab at -4, then a Quick Contest against DX or Retain Weapon to take the targeted foe's gun apart Mounted Shooting improved keeps the rough ride from a moving mount or vehicle from taking a handheld weapon's skill below the technique's level (High-Tech pp. 250-252)."
+          "Hint": "Close-Quarters Battle on a Move and Attack at no more than Per yards (its level in place of the skill, the Bulk penalty still taken, never above the skill). Targeted Attacks with guns, named \"TA (Pistol/Skull)\": the skill at the target's penalty, half of it bought off, the levels taken on a shot aimed there. Instant Arsenal Disarm from its technique's row: a grab at -4, then a Quick Contest against DX or Retain Weapon to take the targeted foe's gun apart. Mounted Shooting improved keeps the rough ride from a moving mount or vehicle from taking a handheld weapon's skill below the technique's level. Weapon Bond, \"Weapon Bond (Colt Python)\", gives +1 on every shot with the gun it names (High-Tech pp. 250-252)."
         },
         "firearmLoading": {
           "Name": "Reloading guns",
-          "Hint": "How a gun loads is a field on it, worked out from its Shots column where that is reliable: loose powder down the muzzle, a black-powder breechloader, a breechloader with or without an ejector, a gate, break-open or swing-out revolver, a tube or box magazine filled round by round or by charger clip, a detachable magazine, a drum or a belt. The Reload button takes the book's time for it and what Fast-Draw (Ammo) saves: a swing-out revolver 3 seconds and 2 a round (1 a round with Fast-Draw), timed for the rounds it is asked to load, a detachable magazine 3 (2), a belt 5 (3). It offers the aids that help: a powder flask or paper cartridges (which halve the time), a greased patch, a speedloader the character carries, clamped magazines, an assistant gunner. A character who knows Double-Loading rolls it at its own level in place of Fast-Draw (Ammo). Loading in the saddle needs a roll against the lower of the weapon skill and Riding (-3 for loose powder, -1 for cartridges), and loose powder on a moving vehicle the weapon skill at -2. A muzzle-loading long arm loaded other than standing takes 1.5 times as long (High-Tech pp. 86-88, 251)."
+          "Hint": "How a gun loads is a field on it, worked out from its Shots column where that is reliable: loose powder down the muzzle, a black-powder breechloader, a breechloader with or without an ejector, a gate, break-open or swing-out revolver, a tube or box magazine filled round by round or by charger clip, a detachable magazine, a drum or a belt. The Reload button takes the book's time for it and what Fast-Draw (Ammo) saves: a swing-out revolver 3 seconds and 2 a round (1 a round with Fast-Draw), timed for the rounds it is asked to load, a detachable magazine 3 (2), a belt 5 (3). It offers the aids that help: a powder flask or paper cartridges (which halve the time), either with a greased patch, a speedloader the character carries, clamped magazines, an assistant gunner, a spare for a magazine normally charged in place. A gate revolver without an ejector rod takes longer over each case, and a removable cylinder is swapped for a preloaded spare from the gun's row (pp. 93-95, 112). A character who knows Double-Loading rolls it at its own level in place of Fast-Draw (Ammo). Loading in the saddle needs a roll against the lower of the weapon skill and Riding (-3 for loose powder, -1 for cartridges), and loose powder on a moving vehicle the weapon skill at -2. A muzzle-loading long arm loaded other than standing takes 1.5 times as long (High-Tech pp. 86-88, 251)."
         },
         "carefulLoading": {
           "Name": "Careful loading",
@@ -4893,11 +4893,11 @@
         },
         "gunslingerExpanded": {
           "Name": "Expanded Gunslinger (cinematic)",
-          "Hint": "The optional additions to Gunslinger: Bulk ignored on Move and Attack and in close combat (no Acc bonus there), which makes Close-Quarters Battle redundant, and the default penalties of Fanning, Fast-Firing, Quick-Shot, Thumbing and Two-Handed Thumbing halved (High-Tech p. 249)."
+          "Hint": "The optional additions to Gunslinger: Bulk ignored on Move and Attack and in close combat (no Acc bonus there), which makes Close-Quarters Battle redundant; the default penalties of Fanning, Fast-Firing, Quick-Shot, Thumbing and Two-Handed Thumbing halved; and the penalty for leaping or acrobatic movement on foot, which the GM enters in the attack dialog, ignored (High-Tech p. 249)."
         },
         "shootingEnvironments": {
           "Name": "Special shooting situations",
-          "Hint": "A scene the GM marks underwater: a TL6-8 gun's ranges divided by 1,000 (by 25 for a gun built to fire underwater, such as the H&K P11 and the APS), Malf. 1 less, 2 less for an automatic. A scene in space: an automatic TL6-8 gun malfunctions on 14 (not revolvers or manual repeaters). Shots into water at -4, with the water's depth counted a thousand times over against the gun's ranges; shots at 50-90 degrees into the air at 80% of the range (High-Tech pp. 85, 92, 117)."
+          "Hint": "A scene the GM marks underwater: a TL6-8 gun's ranges divided by 1,000 (by 25 for a gun built to fire underwater, such as the H&K P11 and the APS), Malf. 1 less, 2 less for an automatic. A scene in space: an automatic TL6-8 gun malfunctions on 14 (not revolvers or manual repeaters). Underwater, hollow-points can't be fired and caseless rounds are noted as failing in time. Shots into water at -4, with the water's depth counted a thousand times over against the gun's ranges; a gun toggled to fire 50-90 degrees into the air has its 1/2D and Max at 80% (High-Tech pp. 85, 92, 99, 117)."
         },
         "sustainedFire": {
           "Name": "Sustained fire",
@@ -4933,7 +4933,7 @@
         },
         "mechanicalMachineGuns": {
           "Name": "Mechanical machine guns",
-          "Hint": "A hand-cranked or lever-worked machine gun is at -5 for unfamiliarity rather than -2, at a further -1 to fix a malfunction for one who hasn't used the model, and at -8 fired off its mount (High-Tech p. 127)."
+          "Hint": "A hand-cranked or lever-worked machine gun is at -5 for unfamiliarity rather than -2, at a further -1 to fix a malfunction for one who hasn't used the model, and at -8 fired off its mount. A Gatling with its Broadwell drum fitted holds the drum's rounds, fires them a cell at a time and turns the drum from its row; a gun that fires canister, as the Hotchkiss 1-pdr, gets a canister row from the same feed (High-Tech pp. 127-128)."
         },
         "backblast": {
           "Name": "Backblast",
@@ -4941,15 +4941,15 @@
         },
         "indirectFire": {
           "Name": "Indirect fire and forward observers",
-          "Hint": "A gun's row runs a fire mission: observed fire, where the forward observer's Navigation roll (+1 compass, +3 GPS, -10 without a map) and Forward Observer roll (-3 per 500 yards after magnification and a rangefinder, Vision modifiers, a fire-control computer) set the first shot's -10, each correction after a shot is another roll and 2d+5 seconds, and the gun attacks without Acc; or predicted fire on an area off a map. The card gives the time of flight and the scatter of a miss, squared for a target the gunner can't see (High-Tech pp. 139-141)."
+          "Hint": "A gun's row runs a fire mission: observed fire, where the forward observer's Navigation roll (+1 compass, +3 GPS, -10 without a map) and Forward Observer roll (-3 per 500 yards after magnification and a rangefinder, Vision modifiers, a fire-control computer) set the first shot's -10, each correction after a shot is another roll and 2d+5 seconds, and the gun attacks without Acc; or predicted fire on an area off a map. The observer's magnification and rangefinder are read off the binoculars, scopes and computer sights he carries, and his Vision modifiers off the map (darkness at the target, its SM); a smart round on his laser designator is his DX-based Forward Observer roll in place of the gunner's. The card gives the time of flight and the scatter of a miss, squared for a target the gunner can't see (High-Tech pp. 139-141)."
         },
         "gunMagazines": {
           "Name": "Gun magazines",
-          "Hint": "Extended, high-density and drum magazines worked out on the gun: capacity, weight and cost from the calibre's weight per shot, -1 Bulk past 1.5 (extended) or 3 (drum) times the normal capacity, and -1 Malf. for a drum or where the GM marks one unreliable; no high-density magazine in a pistol's grip (High-Tech p. 155)."
+          "Hint": "Extended, high-density and drum magazines worked out on the gun: capacity, weight and cost from the calibre's weight per shot, -1 Bulk past 1.5 (extended) or 3 (drum) times the normal capacity, and -1 Malf. for a drum or where the GM marks one unreliable; no high-density magazine in a pistol's grip unless the gun was designed for one there (High-Tech p. 155)."
         },
         "gunSights": {
           "Name": "Sights and aiming aids",
-          "Hint": "Scopes, night, thermal and computer sights, reflex sights, targeting lasers and tactical lights fitted to a gun: the best magnifying sight is the gun's scope on its rows (a fixed-power one gives its bonus only after as many seconds of Aim), and the combined bonus of all a gun's sights can't exceed its base Acc; a scope over 4x is -1 Bulk unaimed. Darkness penalties lose a point to a TL7+ scope on an aimed shot (two with an illuminated reticle), a point to improved-visibility sights, three to a reflex sight; a tactical light switched on for the shot leaves no worse than -3 within its beam. A targeting laser reaches as far as its colour does in daylight or low light, an infrared dot only for a shooter with Night Vision, Infravision or Hyperspectral Vision, and a reflex sight gives nothing while the laser is on. Looking through a night, thermal or computer sight gives its vision but leaves the shooter colorblind with tunnel vision. A targeting laser's colour prices it (High-Tech pp. 155-157)."
+          "Hint": "Scopes, night, thermal and computer sights, reflex sights, targeting lasers and tactical lights fitted to a gun: the best magnifying sight is the gun's scope on its rows (a fixed-power one gives its bonus only after as many seconds of Aim), and the combined bonus of all a gun's sights can't exceed its base Acc; a scope over 4x is -1 Bulk unaimed. Darkness penalties lose a point to a TL7+ scope on an aimed shot (two with an illuminated reticle), a point to improved-visibility sights, three to a reflex sight; a tactical light switched on for the shot leaves no worse than -3 within its beam. A targeting laser reaches as far as its colour does in daylight or low light, an infrared dot only for a shooter with Night Vision, Infravision or Hyperspectral Vision, and a reflex sight gives nothing while the laser is on. Looking through a night, thermal or computer sight gives its vision but leaves the shooter colorblind with tunnel vision; an add-on night sight works only in front of a scope or collimating sight on the same gun. Gear made for a sidearm fits only a pistol, and gear for a shoulder arm no pistol. A targeting laser's colour prices it (High-Tech pp. 155-157)."
         },
         "suppressors": {
           "Name": "Sound suppressors",
@@ -4961,7 +4961,7 @@
         },
         "stocksAndMounts": {
           "Name": "Stocks, bipods and mounts",
-          "Hint": "A pistol stock (Guns (Rifle), +1 Acc, -1 Bulk, ST x0.8); a folding stock folded from the gun's row (Bulk a step better, -1 Acc, +1 Recoil, ST x1.2); a bipod opened from the row, bracing a prone shooter at two-thirds the ST; shooting sticks bracing a sitting one. A gun whose record keeps \"Folded Stock\" or \"w/ Bipod\" modes fires the one its state picks (High-Tech p. 160)."
+          "Hint": "A pistol stock (Guns (Rifle), +1 Acc, -1 Bulk, ST x0.8); a folding stock folded from the gun's row (Bulk a step better, -1 Acc, +1 Recoil, ST x1.2); a bipod opened from the row, bracing a prone shooter at two-thirds the ST, or one who isn't prone where the GM lets it rest on a wall or sandbags (an attack option); shooting sticks bracing a sitting one. A gun whose record keeps \"Folded Stock\" or \"w/ Bipod\" modes fires the one its state picks (High-Tech p. 160)."
         },
         "zenMarksmanship": {
           "Name": "Zen Marksmanship (cinematic)",
@@ -5849,7 +5849,8 @@
         "RollLabel": "Immediate Action: {roll}",
         "AssistantGunner": "An assistant gunner ({ready} Ready maneuvers)",
         "ArmorersGift": "Armorer's Gift (+{bonus})",
-        "WeaponBond": "Weapon Bond (+{bonus})"
+        "WeaponBond": "Weapon Bond (+{bonus})",
+        "OtherBarrel": "A misfire in one barrel: pull the trigger for another; no Immediate Action is needed."
       },
       "Drawing": {
         "Title": "Drawing guns",
@@ -5909,7 +5910,17 @@
         "StowedFree": "{gun} is stowed, as a free action.",
         "StowedAfter": "{gun}: stowing takes {readies} Ready maneuver(s).",
         "RetrieveLabel": "Retrieve {gun} by its lanyard",
-        "TooBulky": "{holster} takes a gun of Bulk -1 or less",
+        "TooBulky": "{holster} takes a gun of Bulk -1 or 0 only",
+        "Brace": {
+          "Action": "Brace on the sling",
+          "Title": "Sling brace ({gun})",
+          "NeedsReady": "Bracing on the sling takes Ready maneuvers",
+          "OnePerTurn": "One Ready a turn goes to the sling",
+          "Progress": "{spent} of {needed} Ready maneuvers spent bracing on the sling.",
+          "Done": "Braced on the sling: +{bonus} on an aimed shot while the position is held.",
+          "Left": "Out of the sling brace; the hands are free.",
+          "Line": "Braced ({holster})"
+        },
         "FlapTucked": "Flap tucked away",
         "FlapTuckedHint": "No -2 to Fast-Draw, but no protection from the elements either",
         "HammerLoop": "Hammer loop",
@@ -5930,9 +5941,9 @@
           "shoulder": "Worn under the off-hand arm: the shoulder holster's -1 is its place's.",
           "sleeve": "Delivers a gun of Bulk -1 or less on a Fast-Draw roll; a failure needs the free hand and a Ready, a critical failure breaks it.",
           "fastDrawRig": "A Ready in or out, and fast.",
-          "undercover": "Worn inside the waistband or at the ankle.",
+          "undercover": "Worn inside the waistband or at the ankle; at the ankle, only a gun of Bulk -1 or 0.",
           "retention": "+2 to Retain Weapon while the gun is in it.",
-          "rifleSling": "Unslinging or slinging takes two Ready maneuvers, three from the back.",
+          "rifleSling": "Unslinging or slinging takes two Ready maneuvers, three from the back. Braces the gun for an aimed shot: a Ready maneuver per -1 Bulk, from the gun's row.",
           "patrolSling": "Raising the gun takes one Ready.",
           "scabbard": "Keeps the elements off a long arm."
         },
@@ -6090,7 +6101,11 @@
         },
         "RapidSecond": "The second attack of the Ranged Rapid Strike: tick the option again.",
         "GunslingerBulk": "{label} (Gunslinger: ignored)",
+        "Acrobatic": "Leaping or acrobatic movement (GM's penalty)",
+        "AcrobaticLine": "Leaping or acrobatic movement",
+        "AcrobaticIgnored": "Leaping or acrobatic movement (Gunslinger: ignored)",
         "CloseQuartersLine": "Close-Quarters Battle",
+        "WeaponBondLine": "Weapon Bond ({item})",
         "TargetedAttack": "Targeted Attack (guns)",
         "TaName": "Name it \"TA (Specialty/Target)\", such as \"TA (Pistol/Skull)\" or \"TA (Rifle/Vitals Chinks)\".",
         "TaNoSkill": "No level in {skill}.",
@@ -6177,17 +6192,25 @@
         "DoneSpace": "The scene is in space.",
         "DoneStandard": "The scene is in air.",
         "UnderwaterNote": "Underwater: range /{factor}, Malf. -{malf}",
-        "UnderwaterHint": "Only cased ammunition with sealed primers is reliable; caseless ammo fails in time; hollow-points do nothing (High-Tech p. 85).",
+        "UnderwaterHint": "Only cased ammunition with sealed primers is reliable; caseless ammo fails in time; hollow-points can't be fired (High-Tech p. 85).",
+    "HollowPointNote": "Hollow-points: can't be fired underwater",
+    "HollowPointHint": "They expand before they leave the barrel, damaging the gun or leaving no effective range. Load other rounds (High-Tech p. 85).",
+    "HollowPointRefusal": "Hollow-points can't be fired underwater: they expand in the barrel (High-Tech p. 85).",
+    "CaselessNote": "Caseless: fails in time underwater",
+    "CaselessHint": "Caseless rounds may work for a while after immersion but eventually fail; the GM says when (High-Tech p. 85).",
+    "SteepNote": "Steeply up: 1/2D and Max at 80%",
+    "SteepOn": "{gun} is aimed steeply up (50-90 degrees): its 1/2D and Max are at 80%.",
+    "SteepOff": "{gun} is aimed level again.",
         "SpaceNote": "In space: Malf. {malf}",
         "SpaceHint": "Vacuum and temperature extremes: an automatic TL6-8 gun malfunctions on 14 (High-Tech p. 85).",
         "IntoWater": "Into water (feet deep)",
         "IntoWaterLine": "Into water",
         "IntoWaterNote": "{feet} feet of water count as {yards} yards more.",
         "SteepAngle": "Steeply up (50-90 degrees)",
-        "SteepAngleNote": "Range at 80% (High-Tech p. 85).",
+        "SteepAngleNote": "Fired 50-90 degrees into the air: 1/2D and Max at 80%. Toggle it off from the gun's row to shoot level (High-Tech p. 85).",
         "OutOfRange": "Out of range: the shot counts {yards} yards against a Max of {max}.",
         "UnderwaterRangeNote": "Underwater: range /{factor}",
-        "UnderwaterBuiltHint": "Built to fire underwater: distance counts x25, not x1,000 (High-Tech pp. 85, 92, 117).",
+        "UnderwaterBuiltHint": "Built to fire underwater: distance counts x{factor}, not x1,000 (High-Tech pp. 85, 92, 99, 117).",
         "IntoWaterHalf": "Past its 1/2D of {half} yards: half damage."
       },
       "Aftermath": {
@@ -6273,10 +6296,22 @@
           "flask": "Self-measuring powder flask (-{seconds} s; not with paper cartridges)",
           "greasedPatch": "Greased patch (-{seconds} s)",
           "paperCartridges": "Paper cartridges (half the time; not with the flask)",
+          "flaskAndPatch": "Flask and greased patch (-{seconds} s)",
+          "cartridgesAndPatch": "Paper cartridges and greased patch (-{seconds} s, then half the time)",
           "speedloader": "Speedloader ({seconds} s, {fastDraw} with Fast-Draw)",
           "clamped": "Clamped magazines ({seconds} s; not with Fast-Draw)",
-          "assistant": "Assistant gunner ({seconds} s; not with Fast-Draw)"
+          "assistant": "Assistant gunner ({seconds} s; not with Fast-Draw)",
+          "spareMagazine": "A spare magazine, swapped in ({seconds} s)",
+          "spareMagazineWhole": "A spare magazine, swapped in ({seconds} s for the whole load; not with Fast-Draw)"
         },
+        "CaseSeconds": "Seconds a case (gate)",
+        "CaseSecondsTooltip": "Seconds to clear each spent case through the loading gate: 0 for an ejector rod's one second; at least 2 without a rod, 3 for the Colt's Sheriff's model (High-Tech pp. 87, 95).",
+        "CylinderSwap": "Cylinder swap (s)",
+        "CylinderSwapTooltip": "A removable cylinder: the seconds to take it out and put a preloaded spare in, 0 for none -- 15 for the Colt M1851 Navy, 10 for the Remington New Model Army. The gun's row then offers the swap (High-Tech pp. 93-94).",
+        "SpareMagazine": "Detachable magazine, with a spare",
+        "SpareMagazineHint": "A magazine normally charged in place that can come out, as the SMLE's: with a spare, the Reload offers swapping it in three Ready maneuvers (High-Tech p. 112).",
+        "SwapCylinder": "Swap cylinder",
+        "CylinderSwapped": "A preloaded spare cylinder swapped in: {seconds} seconds of Ready maneuvers, {rounds} rounds ready. The cylinder taken out is loaded as usual for a caplock.",
         "DoubleLoadingLine": "The reload rolls {name} at {level} in place of Fast-Draw (Ammo): a success saves Fast-Draw's seconds and a second or two a pair more (High-Tech p. 251).",
         "MountedRoll": "Loading in the saddle: the lower of {skill} and Riding, {modifier}",
         "VehicleRoll": "Loading on a moving vehicle: {skill} {modifier}"
@@ -6322,6 +6357,16 @@
         "MechanicalLine": "Mechanical machine gun: unfamiliarity {unfamiliar} rather than -2, {clearing} more to fix a malfunction for one unfamiliar with it, {offMount} fired off its mount (High-Tech p. 127).",
         "MechanicalUnfamiliar": "{label} (mechanical machine gun)",
         "MechanicalClearing": "Unfamiliar mechanical machine gun",
+        "DrumLine": "Takes a Broadwell drum: {rounds} rounds in {cells} cells of {cell}. Turning to the next cell takes {rotate} Ready maneuvers ({assisted} with an assistant); a new drum goes in in {fit} seconds.",
+        "DrumFitted": "Broadwell drum fitted",
+        "DrumFittedHint": "Fed from its Broadwell drum rather than its hopper: the drum's rounds, a cell at a time (High-Tech p. 127).",
+        "DrumTurn": "The drum's cell is fired out: turn the drum from the gun's row first ({readies} Ready maneuvers, {assisted} with an assistant).",
+        "DrumCellShort": "Only {left} rounds are left in the drum's cell: fire no more than that, or turn the drum.",
+        "DrumTurnAction": "Turn the drum",
+        "DrumTurned": "The drum turned to a fresh cell of {cell} rounds: {readies} Ready maneuvers, {assisted} with an assistant.",
+        "CanisterLine": "Fires canister from the same feed: {damage} x{projectiles}, Acc {acc}, Range {half}/{max}, Rcl 1.",
+        "CanisterMode": "Canister",
+        "CanisterHint": "Canister from the gun's own feed, spending its rounds (High-Tech pp. 127-128).",
         "OffMount": "Off its mount ({penalty})",
         "OffMountLine": "Mechanical machine gun off its mount",
         "BackblastLine": "Backblast: {damage} burning, full damage to {full} yards and half to {half} yards behind, in a 60-degree cone (High-Tech p. 147).",
@@ -6380,6 +6425,12 @@
         "Rangefinder": "Rangefinder's reach (yards, 0 for none)",
         "FireControl": "Fire-control computer bonus",
         "Vision": "Other Vision modifiers",
+        "VisionHint": "Filled in from the map: the darkness at the target for the observer's eyes, and the target's Size Modifier. Add what else the GM rules.",
+        "OpticsFound": "Magnification from the observer's {item} (x{magnification}).",
+        "OpticsAsk": "No binoculars or scope on the sheet: enter what the observer looks through.",
+        "Designated": "Smart round on the observer's laser designator",
+        "DesignatedHint": "The observer guides the round with a laser designator: his DX-based Forward Observer roll, with his Vision modifiers, replaces the gunner's (High-Tech p. 139).",
+        "DesignateRoll": "Laser designation by {fo}: {weapon}",
         "Start": "Start the mission",
         "NoMode": "This weapon has no mode that fires indirectly.",
         "NoGun": "The gun or its attack row is gone.",
@@ -6493,6 +6544,29 @@
         "MagazineNoCalibre": "The gun's name gives no calibre from the ammunition tables, so the magazine can't be weighed or priced.",
         "MagazineHint": "A {rounds}-round magazine (High-Tech p. 155).",
         "HighDensityGrip": "A high-density magazine can't go in a pistol's grip (High-Tech p. 155).",
+        "Build": "Design and build",
+        "BuildHint": "Design it (Engineer (Small Arms), or Research at TL7-8), then build it (Armoury (Small Arms), or Machinist-5) at the grade's modifier. Add the GM's: up to +2 for blueprints or a working sample, the tools' quality, +1 to +5 for extra time (High-Tech p. 159).",
+        "BuildTitle": "Making {name}",
+        "BuildModifier": "Blueprints, tools, time (GM)",
+        "DesignRoll": "Designing {name}",
+        "BuildRoll": "Building {name} ({skill})",
+        "BuildNoSkill": "Nobody here can make that roll: {skills}.",
+        "DesignFailed": "The design doesn't work out: start again.",
+        "Built": "It works.",
+        "BuiltPoor": "Knocked together from tape and plastic bottles: no roll needed from someone who knows guns.",
+        "BuildFailed": "Botched: the first shot through it rolls the Firearm Malfunction Table.",
+        "BuildDamaged": "Critical failure: the first shot through it rolls the Firearm Malfunction Table, and the gun is damaged (the GM says how).",
+        "BuildFailedLine": "Botched build: the first shot through it rolls the Firearm Malfunction Table.",
+        "BotchedShot": "The first shot through the botched suppressor: the Malfunction Table rolls {roll}, {kind} for the {gun}.",
+        "InGrip": "In the grip by design",
+        "InGripHint": "A high-density magazine can go in the grip where it is part of the gun's original design (High-Tech p. 155).",
+        "AddOnNeedsSight": "Works only in front of a scope or collimating sight fitted to the same gun: fit one, or it gives nothing.",
+        "BipodRest": "Bipod rested on a wall or sandbags (GM)",
+        "BipodRestNote": "The open bipod set on something stable: braced though not prone, as the GM allows (High-Tech p. 160).",
+        "Fits": {
+          "sidearm": "This is made for a sidearm: it fits only a pistol.",
+          "shoulder": "This is made for a shoulder arm: it doesn't fit a pistol."
+        },
         "ReportLabel": "Report",
         "ReportTooltip": "How loud the gun is, by the Hearing Distance Table (High-Tech p. 158).",
         "ReportAuto": "Worked out ({report})",

@@ -96,7 +96,7 @@
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { initDrawing, readyDrawing } from "./drawing/index.js";
-import { ammunitionGunFields, ammunitionHearing, firesMinieBalls, firesPaperCartridges, initAmmunition, projectileUnderwaterFactor, readyAmmunition } from "./ammunition/index.js";
+import { ammunitionGunFields, ammunitionHearing, firesMinieBalls, firesPaperCartridges, initAmmunition, projectileUnderwaterFactor, readyAmmunition, underwaterRounds } from "./ammunition/index.js";
 import { accessoryGunFields, initAccessories, readyAccessories } from "./accessories/index.js";
 import { readyAftermath } from "./aftermath/index.js";
 import { readyBlackMarket } from "./black-market/index.js";
@@ -111,7 +111,7 @@ import { readyElectricity } from "./electricity/index.js";
 import { rateOfFireFields, readyRateOfFire } from "./rate-of-fire/index.js";
 import { gunslingerDefault, inPistoleroStance, readyShooting } from "./shooting/index.js";
 import { registerHighTechRecordData } from "./records.js";
-import { readyReloading, reloadingFields } from "./reloading/index.js";
+import { isMultiBarrelled, readyReloading, reloadingFields } from "./reloading/index.js";
 import { readySustainedFire, sustainedFireFields } from "./sustained-fire/index.js";
 import { initTools, readyTools } from "./tools/index.js";
 import { readyWeaponFamilies, weaponFamilyFields } from "./weapon-families/index.js";
@@ -453,9 +453,9 @@ function ready(api: GWorldApi): void {
   readyDevices(api, { cuttingEdge: rule("cuttingEdgeGear"), breakable: rule("breakableComponents"), kits: rule("kitBuilding"), combined: rule("combinedDevices") });
   readyHighTechEquipment(api, { combination: rule("combinationGadgets"), bonuses: rule("equipmentBonuses"), familiarity: rule("tlFamiliarity") });
   readyBlackMarket(api, rule("blackMarket"));
-  readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction"), sustainedFire: rule("sustainedFire") });
+  readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction"), sustainedFire: rule("sustainedFire"), multiBarrel: (item, modeIndex) => isMultiBarrelled(api, item, modeIndex) });
   readyDrawing(api, { drawing: rule("gunDrawing"), standoff: rule("gunfightStandoff") });
-  const accessories = { magazines: rule("gunMagazines"), sights: rule("gunSights"), suppressors: rule("suppressors"), cinematic: rule("cinematicSilencers"), stocks: rule("stocksAndMounts") };
+  const accessories = { magazines: rule("gunMagazines"), sights: rule("gunSights"), suppressors: rule("suppressors"), cinematic: rule("cinematicSilencers"), stocks: rule("stocksAndMounts"), gunCare: rule("gunCare") };
   const ammunition = {
     upgrades: rule("ammunitionUpgrades"), handloading: rule("handloading"), misloading: rule("misloading"),
     projectiles: rule("projectileOptions"), exotic: rule("exoticBullets"), multiple: rule("multipleProjectileLoads"), projectileUpgrades: rule("projectileUpgrades"),
@@ -471,7 +471,10 @@ function ready(api: GWorldApi): void {
   // Before the shooting options, whose Pistolero stance starts from the Bulk the accessories leave.
   readyAccessories(api, accessories, { hearing: (item) => ammunitionHearing(item, ammunition) });
   readyShooting(api, shooting, accessories);
-  readyEnvironments(api, rule("shootingEnvironments"), { underwaterFactor: (item, modeIndex) => projectileUnderwaterFactor(item, modeIndex, ammunition) });
+  readyEnvironments(api, rule("shootingEnvironments"), {
+    underwaterFactor: (item, modeIndex) => projectileUnderwaterFactor(item, modeIndex, ammunition),
+    rounds: (item, modeIndex) => underwaterRounds(item, modeIndex, ammunition),
+  });
   readySustainedFire(api, { sustained: rule("sustainedFire") }, rule("gunCare"));
   readyAftermath(api, rule("firefightAftermath"));
   readyReloading(api, {

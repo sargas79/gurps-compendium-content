@@ -106,10 +106,32 @@ export function holsterModifier(kind: HolsterKind | null, options: { flapTucked?
   return HOLSTERS[kind].fastDraw;
 }
 
-/** Whether a gun of this Bulk fits the holster; a sleeve holster takes Bulk -1 at most. */
-export function holsterFits(kind: HolsterKind, bulk: number): boolean {
+/** The largest gun an undercover holster takes at the ankle: Bulk -1 (p. 154). */
+export const ANKLE_UNDERCOVER_MAX_BULK = -1;
+
+/**
+ * Whether a gun of this Bulk fits the holster (p. 154): a sleeve holster
+ * takes Bulk -1 at most, and so does an undercover holster worn at the
+ * ankle; one worn inside the waistband takes the bulkier guns.
+ */
+export function holsterFits(kind: HolsterKind, bulk: number, carry: Carry | null = null): boolean {
+  const b = Number(bulk) || 0;
+  if (kind === "undercover" && carry === "ankle" && b < ANKLE_UNDERCOVER_MAX_BULK) return false;
   const max = HOLSTERS[kind].maxBulk;
-  return max === null || (Number(bulk) || 0) >= max;
+  return max === null || b >= max;
+}
+
+// ── Bracing on a rifle sling (p. 154) ──
+
+/** A sling brace's bonus to an aimed shot, the Basic Set's for a braced weapon. */
+export const SLING_BRACE_BONUS = 1;
+
+/**
+ * The Ready maneuvers bracing a long arm on its sling takes (p. 154): one per
+ * -1 Bulk, and at least one. Leaving the brace takes one more.
+ */
+export function slingBraceReadies(bulk: number): number {
+  return Math.max(1, -Math.min(0, Math.floor(Number(bulk) || 0)));
 }
 
 /**

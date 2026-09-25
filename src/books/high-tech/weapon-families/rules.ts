@@ -97,3 +97,32 @@ export const MECHANICAL_MG = Object.freeze({
   /** Firing it off its mount. */
   offMount: -8,
 });
+
+/**
+ * A Broadwell drum on a Gatling (p. 127): a ring of vertical cells feeding
+ * the gun one at a time. Once a cell is fired out the gunner turns the drum
+ * to the next, two Ready maneuvers (one with an assistant); a new drum takes
+ * 10 seconds to fit.
+ */
+export const BROADWELL = Object.freeze({ rotateReadies: 2, rotateAssisted: 1, fitSeconds: 10 });
+
+/** The rounds left in the drum's cell at the feed. */
+export function cellRoundsLeft(cellRounds: number, firedFromCell: number): number {
+  return Math.max(0, Math.floor(Number(cellRounds) || 0) - Math.max(0, Math.floor(Number(firedFromCell) || 0)));
+}
+
+/** A round fired as canister: its own damage, Acc, ranges and projectiles (pp. 127-128). */
+export interface CanisterRound {
+  damage: string;
+  accuracy: number;
+  halfDamageRange: number;
+  maxRange: number;
+  projectiles: number;
+  /** 0 for the gun's own. */
+  rateOfFire: number;
+}
+
+/** Whether a gun's record gives it a canister round. */
+export function firesCanister(canister: CanisterRound): boolean {
+  return canister.damage !== "" && canister.projectiles > 0;
+}

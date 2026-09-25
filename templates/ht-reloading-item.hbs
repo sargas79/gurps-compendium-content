@@ -17,6 +17,25 @@
       </label>
     {{/if}}
   </div>
+  {{#if gate}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Reloading.CaseSecondsTooltip'}}">{{localize "GCC.HT.Reloading.CaseSeconds"}}
+        <input type="number" min="0" max="10" step="1" data-gcc-ht-reloading="caseSeconds" value="{{caseSeconds}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+  {{/if}}
+  {{#if revolver}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Reloading.CylinderSwapTooltip'}}">{{localize "GCC.HT.Reloading.CylinderSwap"}}
+        <input type="number" min="0" max="120" step="1" data-gcc-ht-reloading="cylinderSwapSeconds" value="{{cylinderSwapSeconds}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+  {{/if}}
+  {{#if chargedInPlace}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Reloading.SpareMagazineHint'}}"><input type="checkbox" data-gcc-ht-reloading="spareMagazine" {{#if spareMagazine}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Reloading.SpareMagazine"}}</label>
+    </div>
+  {{/if}}
   {{#if careful}}
     <div class="ichecks">
       <label class="icheck" data-tooltip="{{localize 'GCC.HT.Reloading.CarefulHint'}}"><input type="checkbox" data-gcc-ht-reloading="loadCarefully" {{#if loadCarefully}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Reloading.LoadCarefully"}}</label>

@@ -16,11 +16,18 @@
  *   - **Immediate Action:** clearing a stoppage at -4 (bought off by the
  *     technique), with the gun's TL and familiarity lines, in the Ready
  *     maneuvers its feed takes, with Armorer's Gift, Weapon Bond and an
- *     assistant gunner offered as aids.
+ *     assistant gunner offered as aids; the technique's Armoury default by
+ *     its weapon skill; and a multi-barrel gun's misfire put right by firing
+ *     another barrel, as a revolver's is.
+ *
+ * While accuracy work is on, the gun's quality is claimed from any other
+ * book's reading of the Basic Set grade (`shared/firearm-grade.ts`), so a gun
+ * never gets Monster Hunters' Acc and this book's both.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { registerFirearmGradeClaim } from "../../../shared/firearm-grade.js";
 import {
   ARMORERS_GIFT_BONUS,
   ASSISTANT_GUNNER_READIES,
@@ -35,6 +42,7 @@ import {
   accurateBonus,
   allowedQuality,
   feedOf,
+  immediateActionArmoury,
   immediateActionModifier,
   isFullAuto,
   malfunctionAfter,
@@ -63,6 +71,8 @@ export interface FirearmSwitches {
   immediateAction: () => boolean;
   /** Sustained fire, whose warped barrels keep their Acc lost in the same field (pp. 85-86). */
   sustainedFire?: () => boolean;
+  /** Whether a gun's mode has more than one barrel, so a misfire is put right by firing another (p. 81). */
+  multiBarrel?: (item: any, modeIndex: number) => boolean;
 }
 
 /** What this module keeps on a gun. */
@@ -271,6 +281,17 @@ function traitsNamed(actor: any, name: RegExp): string[] {
 }
 
 /**
+ * Whether the character has Weapon Bond with this weapon (p. 250): the
+ * perk names the weapon, "Weapon Bond (Colt Python)", by the item's name or
+ * a part of it.
+ */
+export function weaponBonded(actor: any, item: any): boolean {
+  const name = String(item?.name ?? "").trim().toLowerCase();
+  if (!name) return false;
+  return traitsNamed(actor, /^weapon bond\b/i).some((s) => s && (name.includes(s.toLowerCase()) || s.toLowerCase().includes(name)));
+}
+
+/**
  * The level of the character's technique of this name for this skill,
  * relative to the skill, or null where they don't know it (pp. 250-252). The
  * technique names the skill as its prerequisite or in its name, "Fanning
@@ -304,6 +325,9 @@ function threeDice(): number[] {
 }
 
 export function readyFirearms(api: GWorldApi, on: FirearmSwitches): void {
+  // Accuracy work takes the place of any book's reading of the Basic Set grade on a gun (p. 79).
+  registerFirearmGradeClaim("high-tech", (item) => on.quality() && isFirearm(api, item));
+
   // Quality work reprices the gun from its cost (p. 79), in place of the Basic Set grade's multiple.
   api.data.registerPriceModifier({
     module: MODULE_ID,
@@ -382,6 +406,12 @@ export function readyFirearms(api: GWorldApi, on: FirearmSwitches): void {
       const kind = modernMalfunction(String(context.kind), Number(context.techLevel) || 0, Boolean(context.revolver));
       if (kind !== context.kind) context.kind = kind;
     }
+    // A multi-barrel gun's misfire: no Immediate Action, the shooter fires another barrel (p. 81), as a revolver's clears itself.
+    if (on.immediateAction() && context.kind === "misfire" && !context.revolver && Number.isInteger(context.modeIndex) && on.multiBarrel?.(item, context.modeIndex)) {
+      context.clears = true;
+      context.jams = false;
+      context.repair = L("OtherBarrel");
+    }
   });
 
   // Clearing a stoppage by Immediate Action (p. 81).
@@ -405,10 +435,19 @@ export function readyFirearms(api: GWorldApi, on: FirearmSwitches): void {
     if (traitsNamed(actor, /^armou?rer'?s gift\b/i).some((s) => specialtyCovers(s, skill))) {
       context.aids.push({ id: `${MODULE_ID}.armorers-gift`, label: F("ArmorersGift", { bonus: ARMORERS_GIFT_BONUS }), modifier: ARMORERS_GIFT_BONUS, checked: true });
     }
-    const name = String(item.name ?? "").toLowerCase();
-    if (traitsNamed(actor, /^weapon bond\b/i).some((s) => s && (name.includes(s.toLowerCase()) || s.toLowerCase().includes(name)))) {
+    // The Immediate Action roll is IQ-based and no attack, so the bond's +1 on the gun's attacks doesn't reach it.
+    if (weaponBonded(actor, item)) {
       context.aids.push({ id: `${MODULE_ID}.weapon-bond`, label: F("WeaponBond", { bonus: WEAPON_BOND_BONUS }), modifier: WEAPON_BOND_BONUS, checked: true });
     }
+  });
+
+  // The technique's Armoury default: Small Arms for a Guns version, Heavy Weapons for a Gunner one (p. 251).
+  Hooks.on(api.combat.hooks.techniqueDefaults, (context: any) => {
+    if (!on.immediateAction() || !/^immediate action\b/i.test(String(context?.item?.name ?? "")) || !Array.isArray(context.defaults)) return;
+    const wanted = immediateActionArmoury(String(context.item.system?.prerequisite ?? ""));
+    if (!wanted) return;
+    context.defaults = context.defaults.filter((d: any) => !/^armou?ry\b/i.test(String(d?.skill ?? "")) || d.from !== "skill");
+    context.defaults.push({ from: "skill", skill: wanted, modifier: IMMEDIATE_ACTION_PENALTY });
   });
 
   // Abuse (p. 80): a precision gun rolls HT rather than HT+4. A rugged one's HT is the object's, below.

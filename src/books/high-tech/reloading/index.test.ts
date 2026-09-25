@@ -9,7 +9,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
-import { carefullyLoaded, foulingShots, readyReloading } from "./index.js";
+import { carefullyLoaded, foulingShots, readyReloading, swapCylinder } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -32,7 +32,8 @@ function fakeApi() {
     rules: { ...rules, weaponClassOf: () => "firearm" },
     registry: { isRuleOn: () => false },
     combat: { hooks: HOOKS },
-    sheets: { registerSheetSection: (s: any) => sections.push(s) },
+    sheets: { registerSheetSection: (s: any) => sections.push(s), registerRowAction: () => undefined },
+    items: { load: async (item: any, modeIndex: number, shots: number) => { item.system.rangedModes[modeIndex].loaded = shots; return shots; } },
     actors: {
       skillLevel: (_a: any, skill: string) => (skill === "Fast-Draw (Ammo)" ? fastDrawAmmo : skills[skill] ?? null),
       // The system's reading, which finds an unlinked vehicle token's crew as well as a world vehicle's (API 1.141.0).
@@ -248,8 +249,35 @@ describe("loose powder and ball (High-Tech p. 86)", () => {
     const kentucky = gun({ name: "Kentucky Rifle, .45 Flintlock", skill: "Guns (Rifle)", shots: "1(60)", rof: 1, tl: "5" });
     expect([reload(kentucky), reload(kentucky, [], true)]).toEqual([60, 50]);
     expect([reload(kentucky, ["greasedPatch"]), reload(kentucky, ["greasedPatch"], true)]).toEqual([42, 35]);
-    expect([reload(kentucky, ["greasedPatch", "flask"]), reload(kentucky, ["greasedPatch", "flask"], true)]).toEqual([37, 30]);
+    expect([reload(kentucky, ["flaskAndPatch"]), reload(kentucky, ["flaskAndPatch"], true)]).toEqual([37, 30]);
     expect(reload(kentucky, ["paperCartridges"])).toBe(30);
+    expect([reload(kentucky, ["cartridgesAndPatch"]), reload(kentucky, ["cartridgesAndPatch"], true)]).toEqual([21, 18]);
+    // One at a time: the patch never counts twice.
+    const ticked = rules.usableAids(entryOf(kentucky).aids.map((a: any) => ({ ...a, checked: true })));
+    expect(ticked).toHaveLength(1);
+  });
+
+  it("offers a spare magazine for a magazine charged in place, and times a gate revolver without an ejector rod", () => {
+    ready();
+    const smle = (firearm: Record<string, unknown> = {}) => gun({ name: "SMLE Mk III, .303", skill: "Guns (Rifle)", shots: "10(5)", rof: 1, tl: "6", firearm });
+    expect(entryOf(smle()).aids.some((a: any) => a.id.endsWith("spareMagazine"))).toBe(false);
+    expect([reload(smle({ spareMagazine: true }), ["spareMagazine"]), reload(smle({ spareMagazine: true }), ["spareMagazine"], true)]).toEqual([3, 2]);
+    // An internal magazine still loads round by round; the spare replaces the time only when ticked.
+    const model70 = gun({ name: "Winchester Model 70, .30-06", skill: "Guns (Rifle)", shots: "5(3i)", rof: 1, tl: "7", loaded: 0, firearm: { loadingType: "internal", spareMagazine: true } });
+    expect(entryOf(model70).perRoundSeconds).toBe(2);
+    expect(reload(model70)).toBe(11);
+    expect(reload(model70, [], true)).toBe(6);
+    expect(reload(model70, ["spareMagazine"])).toBe(3);
+    const sheriff = gun({ name: "Colt M1873 SAA, .45 Long Colt", shots: "6(5i)", rof: 1, tl: "5", firearm: { loadingType: "gate", caseSeconds: 3 } });
+    expect(reload(sheriff)).toBe(32);
+  });
+
+  it("swaps a preloaded spare cylinder into a revolver whose cylinder comes out", async () => {
+    ready();
+    const navy = gun({ name: "Colt M1851 Navy, .36 Caplock", shots: "6(10i)", rof: 1, tl: "5", loaded: 0, firearm: { cylinderSwapSeconds: 15 } });
+    expect(await swapCylinder(fakeApi() as never, navy, navy.actor)).toBe(6);
+    expect(navy.system.rangedModes[0].loaded).toBe(6);
+    expect(await swapCylinder(fakeApi() as never, gun({ shots: "6(10i)" }), null)).toBeNull();
   });
 
   it("ticks the flask for a character who carries one", () => {
