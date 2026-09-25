@@ -275,6 +275,12 @@ export const JAMMERS: Readonly<Record<string, JammerFigures>> = Object.freeze({
 });
 export const jammerByName = (name: unknown) => JAMMERS[nameKey(name)] ?? null;
 
+/** The cell-phone jammer, by its record's name. */
+export const isCellPhoneJammer = (name: unknown): boolean => nameKey(name) === "cell-phone jammer";
+
+/** A cell-phone jammer with double the radius has 4 times the cost and weight (HT:EE p. 50). */
+export const DOUBLE_RADIUS = Object.freeze({ range: 2, cost: 4, weight: 4 });
+
 // ── the supplement's jammers (HT:EE pp. 49-50) ──
 
 /**

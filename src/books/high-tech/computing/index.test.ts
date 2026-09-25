@@ -187,6 +187,24 @@ describe("computerEras (HT:EE pp. 36-37)", () => {
     expect(repair).toMatchObject({ base: 7, modifiers: [{ value: -1 }] });
     expect(tube.system.extensions[MODULE_ID].htComputer.burntOut).toBe(false);
   });
+
+  it("refuses a roll with a computer whose tube has burned out, or a program on it, until it is repaired", () => {
+    const tube = record("Minicomputer", { tl: "7", cost: 100_000 }, { options: { vacuumTube: true } }, { burntOut: true });
+    const app = record("Payroll", { tl: "7" }, { complexity: 1, program: true, runsOn: "Minicomputer" });
+    const actor = character([tube, app]);
+    const roll = (item: any) => fire("gworld.successRollModifiers", { actor, item, skill: "Computer Operation/TL7", modifiers: [], refusal: null });
+    // The eras' switch alone holds the rule.
+    expect(roll(tube).refusal).toBeNull();
+    on = new Set([key("computerEras")]);
+    expect(roll(tube).refusal).toContain("BurntOutRefusal");
+    expect(roll(app).refusal).toContain("BurntOutRefusal");
+    // A transistor machine has no tubes to burn out, whatever its flag says.
+    const transistor = record("Minicomputer", { tl: "7" }, { options: { transistor: true } }, { burntOut: true });
+    character([transistor]);
+    expect(roll(transistor).refusal).toBeNull();
+    tube.system.extensions[MODULE_ID].htComputer.burntOut = false;
+    expect(roll(tube).refusal).toBeNull();
+  });
 });
 
 describe("computerInterfaces (HT:EE pp. 39-41)", () => {

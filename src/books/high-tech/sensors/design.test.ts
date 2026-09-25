@@ -9,8 +9,11 @@ import {
   designFactors,
   designOffered,
   isSparkGap,
+  isSuperheterodyne,
+  oscillationPenalty,
   qualityBonus,
   regenerativeAdjustment,
+  superheterodyneByDefault,
   type DesignInput,
 } from "./design.js";
 
@@ -106,5 +109,31 @@ describe("radio design (HT:EE pp. 28-30, 32, 34)", () => {
     expect(regenerativeAdjustment({ success: true })).toBe("adjusted");
     expect(regenerativeAdjustment({ success: false })).toBe("missed");
     expect(regenerativeAdjustment({ success: false, criticalFailure: true })).toBe("oscillating");
+  });
+
+  it("jams receivers near an oscillating set at -4 within 440 yards, 1 less a doubling (HT:EE p. 29)", () => {
+    expect(oscillationPenalty(0)).toBe(-4);
+    expect(oscillationPenalty(440)).toBe(-4);
+    expect(oscillationPenalty(441)).toBe(-3);
+    expect(oscillationPenalty(880)).toBe(-3);
+    expect(oscillationPenalty(1760)).toBe(-2);
+    expect(oscillationPenalty(3520)).toBe(-1);
+    expect(oscillationPenalty(3521)).toBe(0);
+  });
+
+  it("makes every audio or video receiver a superheterodyne from TL7 (HT:EE p. 29)", () => {
+    // At TL6 only by the option.
+    expect(isSuperheterodyne(set({ codePrinted: false }))).toBe(false);
+    expect(isSuperheterodyne(set({ codePrinted: false }, { superheterodyne: true }))).toBe(true);
+    expect(superheterodyneByDefault(set({ codePrinted: false }, { superheterodyne: true }))).toBe(false);
+    // High-Tech's TL7 sets carry audio; the supplement's code sets need the audio option, or video.
+    expect(isSuperheterodyne(set({ tl: 7, codePrinted: false }))).toBe(true);
+    expect(superheterodyneByDefault(set({ tl: 7, codePrinted: false }))).toBe(true);
+    expect(isSuperheterodyne(set({ tl: 7, codePrinted: false, codeOnly: true }))).toBe(false);
+    expect(isSuperheterodyne(set({ tl: 7 }))).toBe(false);
+    expect(isSuperheterodyne(set({ tl: 7 }, { audio: true }))).toBe(true);
+    expect(isSuperheterodyne(set({ tl: 7 }, { video: true }))).toBe(true);
+    // A send-only set receives nothing.
+    expect(isSuperheterodyne(set({ tl: 8, codePrinted: false, commMode: "transmitter" }))).toBe(false);
   });
 });

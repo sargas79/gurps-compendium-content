@@ -552,6 +552,54 @@ describe("radioDesign: how a radio is built (HT:EE pp. 28-30, 32, 34)", () => {
       expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-3]);
     });
 
+    it("tunes any audio set from TL7 as a superheterodyne, standard by then (HT:EE p. 29)", async () => {
+      on = new Set([HT.radios, EE.radioDesign, EE.radioTuning]);
+      const tl7 = gear("Small Radio (TL7)", {}, { tl: "7" });
+      expect(section().context(tl7).lines.join(" ")).toContain("GCC.HT.Sensor.SuperhetStandard");
+      await link([tl7], [gear("Small Radio (TL7)", {}, { tl: "7" })], 1, { conditions: -3 }, { derived: { per: 12, senses: [{ sense: "hearing", score: 14 }] } });
+      expect(successes[0]).toMatchObject({ skill: "Hearing", base: 14, tags: ["radioTuning", "hearing"] });
+      // The supplement's code set, with no audio, keeps the Electronics Operation roll.
+      successes = [];
+      const code = eeRadio("Small Radio (TL7)", "7");
+      expect(section().context(code).lines.join(" ")).not.toContain("GCC.HT.Sensor.SuperhetStandard");
+      await link([code], [gear("Small Radio (TL7)", {}, { tl: "7" })], 1, { conditions: -3 });
+      expect(successes[0]).toMatchObject({ skill: "Electronics Operation (Communications)", tags: ["radioTuning"] });
+      // With the design rules off, the TL7 set is tuned as before.
+      on = new Set([HT.radios, EE.radioTuning]);
+      successes = [];
+      await link([gear("Small Radio (TL7)", {}, { tl: "7" })], [gear("Small Radio (TL7)", {}, { tl: "7" })], 1, { conditions: -3 });
+      expect(successes[0]).toMatchObject({ skill: "Electronics Operation (Communications)" });
+    });
+
+    it("keeps an oscillating regenerative set jamming the receivers near it until it is adjusted again (HT:EE p. 29)", async () => {
+      const flagged = (item: any) => Object.assign(item, {
+        isOwner: true,
+        flags: { ...item.flags },
+        getFlag(scope: string, k: string) { return this.flags[scope]?.[k]; },
+        async setFlag(scope: string, k: string, v: unknown) { (this.flags[scope] ??= {})[k] = v; },
+        async unsetFlag(scope: string, k: string) { delete this.flags[scope]?.[k]; },
+      });
+      const regen = flagged(gear("Medium Radio (TL6)", { regenerative: true }, { tl: "6" }));
+      successResult = { success: false, criticalFailure: true, margin: -8 };
+      await link([regen], [gear("Medium Radio (TL6)", {}, { tl: "6" })], 1);
+      expect(regen.flags[MODULE_ID].eeOscillating).toBe(true);
+      expect(section().context(regen).lines.join(" ")).toContain("GCC.HT.Sensor.OscillatingNow");
+      // Another set the same character carries hears through its interference: -4 at no distance.
+      successResult = { success: true, margin: 3 };
+      successes = [];
+      const other = gear("Medium Radio (TL6)", {}, { tl: "6" });
+      await link([other, regen], [gear("Medium Radio (TL6)", {}, { tl: "6" })], 1);
+      expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-4]);
+      expect(chat.at(-1)).toContain("GCC.HT.Sensor.OscillationLine");
+      // Adjusted again, it stops.
+      successes = [];
+      await link([regen], [gear("Medium Radio (TL6)", {}, { tl: "6" })], 1);
+      expect(regen.flags[MODULE_ID].eeOscillating).toBeUndefined();
+      successes = [];
+      await link([gear("Medium Radio (TL6)", {}, { tl: "6" }), regen], [gear("Medium Radio (TL6)", {}, { tl: "6" })], 1);
+      expect(successes).toEqual([]);
+    });
+
     it("gives a rotary spark gap's quality to sending on it, and says its ultra-high-speed audio is distorted", async () => {
       const rotary = transmitter({ commMode: "transmitter", sparkGap: true, wideband: true, rotarySparkGap: true });
       dialogAnswer = { task: "send", cipher: false };
@@ -623,6 +671,24 @@ describe("active sensors (pp. 45-47)", () => {
     const keys = [...dialogs[0]!.matchAll(/GCC\.[\w.]+/g)].map((m) => m[0]);
     expect(keys).toContain("GCC.HT.Sensor.MediumLabel");
     expect(keys.filter((k) => typeof text(k) !== "string")).toEqual([]);
+  });
+
+  it("sweeps with the supplement's GPR's high-frequency antenna at 10 yards, its low one at 50 (HT:EE p. 35)", async () => {
+    controlled = [character("Surveyor", [gear("Ground-Penetrating Radar", {}, { tl: "7" })], { skills: { "Electronics Operation (Scientific)": 13 } })];
+    dialogAnswer = { index: 0, yards: 30, arc: false, noise: 0, imaging: false, medium: "soil", counter: "", highFrequency: false };
+    await tools.get("sensor-sweep").open();
+    expect(dialogs[0]).toContain("GCC.HT.Sensor.GprAntenna");
+    expect(successes[0].modifiers).toEqual([]);
+    dialogAnswer = { ...dialogAnswer, highFrequency: true };
+    await tools.get("sensor-sweep").open();
+    // 30 yards on 10: past two doublings' worth, -4.
+    expect(successes[1].modifiers.map((m: any) => m.value)).toEqual([-4]);
+    expect(chat.at(-1)).toContain("GCC.HT.Sensor.GprHighLine");
+    // High-Tech's own GPRs have one antenna.
+    dialogs = [];
+    controlled = [character("Surveyor", [gear("Portable GPR")])];
+    await tools.get("sensor-sweep").open();
+    expect(dialogs[0]).not.toContain("GCC.HT.Sensor.GprAntenna");
   });
 
   it("ignores the size and dwelling asked of the sweep while the supplement's switch is off", async () => {

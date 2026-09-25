@@ -19,7 +19,8 @@
  *     reach) or selective (a roll or contest to catch each user's frequency,
  *     then a heavier penalty); a jammer that blocks voice gear may let a
  *     listener follow the call by ear; and a spoofer feeds the gear a false
- *     picture in a Quick Contest.
+ *     picture in a Quick Contest, rolled in secret, which only the GMs are
+ *     told the gear lost.
  */
 
 import { BookTables, isRuleOn, type BookTable } from "../book-tables.js";
@@ -216,6 +217,14 @@ export function jammersReaching(actor: any, gear: Jammable, actors: any[] = acto
   return found.sort((a, b) => a.yards - b.yards);
 }
 
+/** Posts a card the GMs alone see. */
+async function gmCard(title: string, lines: string[]): Promise<void> {
+  await ChatMessage.implementation.create({
+    whisper: ChatMessage.implementation.getWhisperRecipients("GM"),
+    content: `<div class="gworld gworld-chat"><div class="gc-head"><span class="gc-label">${esc(title)}</span></div>${lines.map((l) => `<div class="gc-result">${esc(l)}</div>`).join("")}</div>`,
+  });
+}
+
 /** The operator's Electronics Operation (EW) for a jammer, or its own fixed skill. */
 const operatorBase = (api: GWorldApi, jammer: Jammer, table: JammerTable, holder: any) => jammer.skill ?? table.operatorSkill(api, holder);
 
@@ -353,17 +362,20 @@ export async function useNearJammers(api: GWorldApi, item: any, actor: any, acto
       if (!result.success) return jammed(near);
       continue;
     }
-    // A spoofer's Quick Contest against the gear's own skill (HT:EE p. 50).
+    // A spoofer's Quick Contest against the gear's own skill (HT:EE p. 50), rolled in secret: the user
+    // mustn't learn from the card that the picture is false, so the GMs alone are told.
     if (near.jammer.spoofs) {
       const result: any = await api.roll.quickContest({
         label: F(ns, "SpoofLabel", { name, jammer: jammerName }),
         first: { actor, base, note: gear.skill },
         second: { actor: near.holder, base: operatorBase(api, near.jammer, near.table, near.holder), modifiers: near.table.operatorModifiers?.(near.holder) ?? [], note: EW },
         tags: ["jamming", "spoofing"],
+        secret: true,
       } as any);
       if (!result) return null;
       if (!wonContest(result.outcome)) {
-        await card(actor, title, [F(ns, "Spoofed", { jammer: jammerName })]);
+        await card(actor, title, [L(ns, "GetsThrough")]);
+        await gmCard(title, [F(ns, "Spoofed", { jammer: jammerName })]);
         return "spoofed";
       }
       continue;

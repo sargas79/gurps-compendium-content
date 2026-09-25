@@ -9480,11 +9480,27 @@
     "description": "<p>Digital signals allow transmission rates in megabits/second over phone lines or television cable. Treat as cutting edge (p. 8) until 2004.</p>"
   },
   {
-    "_id": "5b5eea5bad913cc8",
-    "name": "Ethernet Adapter",
+    "_id": "9bd0eecf0f847ae1",
+    "name": "Ethernet Adapter (Coaxial Cable)",
     "pages": "HT:EE41",
     "status": "reviewed",
-    "notes": "",
+    "notes": "the entry names three media, each with its own years",
+    "description": "<p>A device that can be connected to a computer's bus, or in later versions to a USB port. It enables Ethernet communication via coaxial cable ([1973] 1982), copper twisted pair connectors ([1983] 1986), or fiber-optic cable ([1978] 1993). After 1990, Ethernet capability was built into most computers.</p>"
+  },
+  {
+    "_id": "aee6b80b3954a165",
+    "name": "Ethernet Adapter (Twisted Pair)",
+    "pages": "HT:EE41",
+    "status": "reviewed",
+    "notes": "the entry names three media, each with its own years",
+    "description": "<p>A device that can be connected to a computer's bus, or in later versions to a USB port. It enables Ethernet communication via coaxial cable ([1973] 1982), copper twisted pair connectors ([1983] 1986), or fiber-optic cable ([1978] 1993). After 1990, Ethernet capability was built into most computers.</p>"
+  },
+  {
+    "_id": "25efa571b1692ac2",
+    "name": "Ethernet Adapter (Fiber-Optic Cable)",
+    "pages": "HT:EE41",
+    "status": "reviewed",
+    "notes": "the entry names three media, each with its own years",
     "description": "<p>A device that can be connected to a computer's bus, or in later versions to a USB port. It enables Ethernet communication via coaxial cable ([1973] 1982), copper twisted pair connectors ([1983] 1986), or fiber-optic cable ([1978] 1993). After 1990, Ethernet capability was built into most computers.</p>"
   },
   {
@@ -10597,6 +10613,14 @@
     "pages": "HT:EE21",
     "status": "reviewed",
     "notes": "",
+    "description": "<p>A small (often pocket-sized) device containing a diode laser whose beam shows up on a distant surface as a point of light. Used as a pointer or a cat toy - or an improvised weapon to dazzle a foe by targeting the face (Ranged Weapons Table, p. 51). After 2000, green laser pointers are available that have greater effective range.</p>"
+  },
+  {
+    "_id": "b4901251637aba9d",
+    "name": "Green Laser Pointer",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "the Laser Pointer entry, which gives the green pointers' year; the price is the entry's, the range the Ranged Weapons Table's note [3]",
     "description": "<p>A small (often pocket-sized) device containing a diode laser whose beam shows up on a distant surface as a point of light. Used as a pointer or a cat toy - or an improvised weapon to dazzle a foe by targeting the face (Ranged Weapons Table, p. 51). After 2000, green laser pointers are available that have greater effective range.</p>"
   },
   {

@@ -8,7 +8,8 @@
  *     and design options, which the engine prices and works out as fields on
  *     the computer (HT:EE p. 37; the variant in `highTechComputers`); and a
  *     vacuum-tube computer's daily HT roll against a burned-out tube, with the
- *     minor repair that mends it (p. 37, after Campaigns p. 484).
+ *     minor repair that mends it (p. 37, after Campaigns p. 484); until then
+ *     the system refuses any roll made with the computer or a program on it.
  *   - **computerInterfaces:** the interface a High-Tech computer is worked
  *     through, set on its sheet: a familiarity of its own (-2 until learned,
  *     under the system's familiarity rule), driven only by a computer of the
@@ -116,6 +117,11 @@ export function computerBehind(item: any): any | null {
   if (!table || !isProgram(item, table)) return null;
   const host = item.actor?.items?.get?.(computerData(item).runsOn) ?? null;
   return host && isHighTechComputer(host) ? host : null;
+}
+
+/** Whether a vacuum-tube computer is down with a burned-out tube, where the eras' switch is on (HT:EE p. 37). */
+export function isBurntOut(computer: any, on: Pick<ComputingSwitches, "eras">): boolean {
+  return on.eras() && computerSetup(computer).burntOut === true && builtWith(computer, "vacuumTube");
 }
 
 /** Whether the character carries a stylus. */
@@ -326,9 +332,15 @@ function sectionListeners(api: GWorldApi, element: HTMLElement, item: any): void
 export function readyComputing(api: GWorldApi, on: ComputingSwitches): void {
   // After High-Tech's own computer lines (information/), which a high-level language may lift.
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
-    if (!context?.item || !(on.interfaces() || on.languages())) return;
+    if (!context?.item || !(on.eras() || on.interfaces() || on.languages())) return;
     const computer = computerBehind(context.item);
     if (!computer) return;
+    // A burned-out tube stops the machine until the minor repair (HT:EE p. 37; Campaigns p. 484).
+    if (isBurntOut(computer, on)) {
+      if (!context.refusal) context.refusal = F("BurntOutRefusal", { name: computer.name });
+      return;
+    }
+    if (!(on.interfaces() || on.languages())) return;
     const skill = String(context.skill ?? "");
     if (on.interfaces()) context.modifiers.push(...interfaceRollLines(api, context.actor, computer, skill));
     if (on.languages() && isProgramming(skill)) {
