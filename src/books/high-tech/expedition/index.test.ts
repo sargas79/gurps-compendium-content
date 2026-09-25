@@ -20,6 +20,7 @@ let cards: Map<string, any>;
 let options: Map<string, any>;
 let prices: any[];
 let successes: any[];
+let falls: any[];
 let conditions: any[];
 let posted: any[];
 let updated: any[];
@@ -35,11 +36,13 @@ let tokens: any[];
 function fakeApi() {
   return {
     registry: { isRuleOn: () => false },
+    hazards: { fall: async (actor: any, o: any) => { falls.push({ actor: actor.name, ...o }); return 0; } },
     areas: {
       list: () => areas,
       add: (_scene: any, area: any) => { areas.push(area); return area.id; },
       remove: async (_scene: any, id: string) => { areas = areas.filter((a) => a.id !== id); },
       standsIn: (_scene: any, area: any) => area.inside ?? [],
+      registerLitFor: (r: any) => `${r.module}.${r.key}`,
     },
     data: {
       hooks: { skillBonuses: "gworld.skillBonuses", moveModifiers: "gworld.moveModifiers" },
@@ -134,6 +137,7 @@ beforeEach(() => {
   options = new Map();
   prices = [];
   successes = [];
+  falls = [];
   conditions = [];
   posted = [];
   updated = [];
@@ -237,12 +241,43 @@ describe("light sources (High-Tech pp. 51-52)", () => {
     dialogAnswer = { dropped: false };
     actions.get("ht-light-set-down").run(lantern, bearer);
     await flush();
-    expect(areas[0]).toMatchObject({ label: "Kerosene Lantern", radius: 5, lines: [] });
+    expect(areas[0]).toMatchObject({ label: "Kerosene Lantern", radius: 5, lines: [], light: { radius: 5 } });
+    expect(areas[0].light.litFor).toBeUndefined();
     expect(lantern.flags[MODULE_ID].expedition.placed).toBe(true);
     actions.get("ht-light-pick-up").run(lantern, bearer);
     await flush();
     expect(areas).toEqual([]);
     expect(lantern.flags[MODULE_ID].expedition.placed).toBe(false);
+  });
+
+  it("lights with an IR filter only for eyes that see infrared: on the attack, set down, and in the price", async () => {
+    const flashlight = gear("Flashlight", { light: { kind: "electric", radius: 0, beam: 10, infrared: true } }, {}, { lit: true });
+    const shooter = person("Shooter", [flashlight]);
+    tokens = [tokenAt("s", 0, shooter)];
+    expect(darknessAttack(shooter, tokenAt("t", 9, person("Near"))).modifiers[0].value).toBe(-7);
+    // Night-vision goggles worn: the system's derived eyes.
+    shooter.derived = { vision: { nightVision: 3 } };
+    expect(darknessAttack(shooter, tokenAt("t", 9, person("Near"))).modifiers[0].value).toBe(-3);
+    // A chemlight set down in its IR version: the system's light, only for those who see infrared.
+    const chemlight = gear("Chemlight", { light: { kind: "chemical", radius: 2, beam: 0, infrared: true } }, {}, { lit: true });
+    const bearer = person("Bearer", [chemlight]);
+    tokenAt("b", 0, bearer);
+    actions.get("ht-light-set-down").run(chemlight, bearer);
+    await flush();
+    expect(areas[0].light).toEqual({ radius: 2, litFor: `${MODULE_ID}.ht-infrared` });
+    areas[0].inside = [{ id: "t" }];
+    const target = tokenAt("t", 1, person("Target"));
+    expect(lightOver(fakeApi() as never, person("Unaided"), target)).toBeNull();
+    expect(lightOver(fakeApi() as never, shooter, target)).toBe("Chemlight");
+    // The filter costs $25 on a flashlight; the chemlight's IR version and the smart flashlight's mode cost nothing more.
+    const price = prices.find((p) => p.key === "ht-ir-filter");
+    expect(price.apply(flashlight, { cost: 20, weight: 1 })).toMatchObject({ cost: 45, weight: 1 });
+    expect(price.apply(chemlight, { cost: 2, weight: 0.1 })).toBeNull();
+    expect(price.apply(gear("Smart Flashlight", { light: { kind: "electric", radius: 0, beam: 50, infrared: true } }), { cost: 300, weight: 0.5 })).toBeNull();
+    // A lantern can't be infrared; an infrared tactical light blinds nobody.
+    expect(price.apply(gear("Kerosene Lantern", { light: { kind: "kerosene", radius: 5, beam: 0, infrared: true } }), { cost: 20, weight: 2 })).toBeNull();
+    expect(actions.get("ht-light-eyes").visible(gear("Small Tactical Light (TL8)", { light: { kind: "tactical", radius: 0, beam: 50, infrared: true } }))).toBe(false);
+    expect(actions.get("ht-light-eyes").visible(gear("Small Tactical Light (TL8)", { light: { kind: "tactical", radius: 0, beam: 50 } }))).toBe(true);
   });
 
   it("breaks a dropped lantern on a roll over 6, the glass one starting a fire", async () => {
@@ -374,13 +409,19 @@ describe("climbing gear (High-Tech pp. 55-56)", () => {
     expect(option.apply({ actor: climber }, false)).toBeNull();
   });
 
-  it("works out a roped fall, and throws a grapnel at DX-3 or Throwing", async () => {
+  it("rolls a roped fall at twice the distance past the fastener, and throws a grapnel at DX-3 or Throwing", async () => {
     const harness = gear("Harness", { climbing: "harness" });
     const climber = person("Climber", [harness], { skills: { Throwing: 13 } });
     dialogAnswer = { yards: 4 };
     actions.get("ht-climb-fall").run(harness, climber);
     await flush();
     expect(chat.at(-1)).toContain('"yards":8');
+    expect(falls).toEqual([{ actor: "Climber", yards: 8 }]);
+    dialogAnswer = { yards: 0 };
+    actions.get("ht-climb-fall").run(harness, climber);
+    await flush();
+    expect(falls).toHaveLength(1);
+    dialogAnswer = { yards: 4 };
     const hook = gear("Grappling Hook", { climbing: "grapnel" }, { tl: "5" });
     actions.get("ht-grapnel").run(hook, climber);
     await flush();

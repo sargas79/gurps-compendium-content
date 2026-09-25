@@ -12,7 +12,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
 import { setRuleReader } from "../../../shared/book-tables.js";
-import { COMPUTER_TABLES, computerOf, readyComputers } from "../../../shared/computers/index.js";
+import { COMPUTER_TABLES, computerOf, readyComputers, syncComplexity } from "../../../shared/computers/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { ultraTechComputers } from "../../ultra-tech/computers/index.js";
 import { highTechComputers, readyInformation } from "../information/index.js";
@@ -149,6 +149,24 @@ describe("computerEras (HT:EE pp. 36-37)", () => {
     expect(complexityOf(mini)).toBe(1);
   });
 
+  it("writes a computer's Complexity to the system's own field, and leaves anything else alone", async () => {
+    on = new Set([key("computerEras")]);
+    const pc = record("Workstation", { tl: "8", cost: 10_000, weight: 40, complexity: 0 }, { options: { compact: true, slow: true, earlyVlsi: true } });
+    pc.isOwner = true;
+    expect(await syncComplexity(pc)).toBe(true);
+    expect(pc.system.complexity).toBe(2);
+    expect(await syncComplexity(pc)).toBe(false);
+    // Not one of a switched-on book's computers: untouched.
+    on = new Set();
+    pc.system.extensions[MODULE_ID].computer.options = {};
+    expect(await syncComplexity(pc)).toBe(false);
+    expect(pc.system.complexity).toBe(2);
+    const pen = LIGHT_PEN();
+    pen.isOwner = true;
+    on = new Set([key("computerEras")]);
+    expect(await syncComplexity(pen)).toBe(false);
+  });
+
   it("gives High-Tech's own records the supplement's figures, and leaves them High-Tech's with the switch off", () => {
     const mainframe = () => record("Mainframe Computer", { tl: "6", cost: 1_000_000 }, { options: { transistor: true } });
     on = new Set([key("computerSystems")]);
@@ -186,6 +204,31 @@ describe("computerEras (HT:EE pp. 36-37)", () => {
     const repair: any = calls.find((c) => c[0] === "roll" && (c[1] as any).skill === "Electronics Repair (Computers)")![1];
     expect(repair).toMatchObject({ base: 7, modifiers: [{ value: -1 }] });
     expect(tube.system.extensions[MODULE_ID].htComputer.burntOut).toBe(false);
+  });
+
+  it("refuses a roll with a computer whose tube has burned out, or a program on it, until it is repaired", () => {
+    const tube = record("Minicomputer", { tl: "7", cost: 100_000 }, { options: { vacuumTube: true } }, { burntOut: true });
+    const app = record("Payroll", { tl: "7" }, { complexity: 1, program: true, runsOn: "Minicomputer" });
+    const actor = character([tube, app]);
+    const roll = (item: any) => fire("gworld.successRollModifiers", { actor, item, skill: "Computer Operation/TL7", modifiers: [], refusal: null });
+    // The eras' switch alone holds the rule.
+    expect(roll(tube).refusal).toBeNull();
+    on = new Set([key("computerEras")]);
+    expect(roll(tube).refusal).toContain("BurntOutRefusal");
+    expect(roll(app).refusal).toContain("BurntOutRefusal");
+    // A Research program picked as the skill's tool isn't refused: its bonus is taken back, with a line that says why.
+    const research = record("Research Database", { tl: "7" }, { complexity: 1, program: true, runsOn: "Minicomputer" });
+    actor.items.push(research, { id: "skill", name: "Research/TL7", type: "skill", system: { derived: { toolItemId: research.id, toolBonus: 2 } } });
+    research.actor = actor;
+    const study = fire("gworld.successRollModifiers", { actor, item: research, skill: "Research/TL7", modifiers: [], refusal: null });
+    expect(study.refusal).toBeNull();
+    expect(study.modifiers).toEqual([{ key: "ht.burntOut", label: expect.stringContaining("BurntOutProgram"), value: -2 }]);
+    // A transistor machine has no tubes to burn out, whatever its flag says.
+    const transistor = record("Minicomputer", { tl: "7" }, { options: { transistor: true } }, { burntOut: true });
+    character([transistor]);
+    expect(roll(transistor).refusal).toBeNull();
+    tube.system.extensions[MODULE_ID].htComputer.burntOut = false;
+    expect(roll(tube).refusal).toBeNull();
   });
 });
 

@@ -102,6 +102,8 @@ import {
   supplementJammerByName,
   sweepMinutes,
   isContactMike,
+  isCellPhoneJammer,
+  DOUBLE_RADIUS,
   type Screener,
   type ScreeningSearch,
   type SecurityTask,
@@ -109,6 +111,7 @@ import {
   type SweepKind,
 } from "./rules.js";
 import { ISOLATOR, SPREAD_SPECTRUM, WHITE_NOISE, guardsOf } from "../covert-listening/rules.js";
+import { deviceData, storeDevice } from "../devices/index.js";
 
 const NS = "GCC.HT";
 const L = (key: string) => game.i18n.localize(`${NS}.Surveillance.${key}`);
@@ -162,12 +165,18 @@ export function jammerFor(item: any, switches: JammingSwitches): Jammer | null {
   const own = jammerByName(name);
   if (own) {
     if (own.skill === null && !own.blocks && isRuleOn(switches.jammerKinds)) return { ...own, variety: "choose" };
-    return isRuleOn(switches.jamming) ? own : null;
+    if (!isRuleOn(switches.jamming)) return null;
+    return { ...own, range: ownJammerRange(item, own.range) };
   }
   const supplement = supplementJammerByName(name, itemTl(item));
   if (!supplement || !isRuleOn(switches[supplement.rule])) return null;
   const { range, skill, hinders, variety, spoofs } = supplement;
   return { range, skill, ...(hinders ? { hinders } : {}), ...(variety ? { variety } : {}), ...(spoofs ? { spoofs } : {}) };
+}
+
+/** A High-Tech jammer's range: a cell-phone jammer built with double the radius reaches twice as far (HT:EE p. 50). */
+export function ownJammerRange(item: any, range: number): number {
+  return isCellPhoneJammer(nameOf(item)) && deviceData(item).doubleRadius ? range * DOUBLE_RADIUS.range : range;
 }
 
 /**
@@ -277,8 +286,9 @@ export function surveillanceLines(item: any, on: { screening: boolean; surveilla
   }
   if (on.jamming) {
     const jammer = jammerByName(name);
-    if (jammer?.blocks) lines.push(F("Jammer.Blocks", { range: jammer.range, hearing: CELL_PHONE_HEARING, shadow: JAMMER_SHADOW }));
+    if (jammer?.blocks) lines.push(F("Jammer.Blocks", { range: ownJammerRange(item, jammer.range), hearing: CELL_PHONE_HEARING, shadow: JAMMER_SHADOW }));
     else if (jammer) lines.push(F(jammer.skill === null ? "Jammer.Operated" : "Jammer.Unmanned", { range: jammer.range, skill: jammer.skill ?? 0, shadow: JAMMER_SHADOW }));
+    if (isCellPhoneJammer(name) && deviceData(item).doubleRadius) lines.push(F("Jammer.DoubleRadius", DOUBLE_RADIUS));
     if (jammableByName(name, tl)) lines.push(F("Jammer.Hindered", { shadow: JAMMER_SHADOW }));
     if (isWhiteNoise(name)) lines.push(L("Jammer.WhiteNoise"));
   }
@@ -594,7 +604,32 @@ export function readySurveillance(api: GWorldApi, on: SurveillanceSwitches): voi
     sheet: "item",
     template: `modules/${MODULE_ID}/templates/ht-surveillance-item.hbs`,
     visible: (item) => surveillanceLines(item, state()).length > 0,
-    context: (item) => ({ lines: surveillanceLines(item, state()) }),
+    context: (item) => ({
+      lines: surveillanceLines(item, state()),
+      editable: Boolean(item?.isOwner ?? true),
+      // The cell-phone jammer's double radius, built in (HT:EE p. 50).
+      cellJammer: on.jamming() && isGear(item) && isCellPhoneJammer(nameOf(item)),
+      doubleRadius: deviceData(item).doubleRadius,
+      doubleRadiusHint: F("Jammer.DoubleRadiusHint", DOUBLE_RADIUS),
+    }),
+    listeners: (element, item) => {
+      element.querySelectorAll<HTMLInputElement>("[data-ht-surveillance]").forEach((input) => {
+        input.addEventListener("change", async () => {
+          await storeDevice(item, { [String(input.dataset.htSurveillance)]: input.checked });
+        });
+      });
+    },
+  });
+
+  // A cell-phone jammer with double the radius: 4 times the cost and weight (HT:EE p. 50).
+  api.data.registerPriceModifier({
+    module: MODULE_ID,
+    key: "ht-cell-jammer-radius",
+    types: ["equipment"],
+    apply: (item, price) => {
+      if (!on.jamming() || !isGear(item) || !isCellPhoneJammer(nameOf(item)) || !deviceData(item).doubleRadius) return null;
+      return { cost: price.cost * DOUBLE_RADIUS.cost, weight: price.weight * DOUBLE_RADIUS.weight, label: L("Jammer.DoubleRadiusLabel") };
+    },
   });
 
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ht-security-system", label: L("Security.Title"), icon: "fa-solid fa-shield-halved", visible: on.screening, open: () => securitySystem(api) });

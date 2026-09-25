@@ -20,7 +20,8 @@
  *     the laser pointer are Vision-based: DR does nothing, Protected Vision
  *     gives +5 and a Nictitating Membrane +1 a level (the shared engine's
  *     reading), and obscuring conditions +1 a point of the Vision penalty they
- *     cause, an attack option. A failure blinds -- the system's imposed
+ *     cause, an attack option; a laser pointer, red or green, is aimed at -1
+ *     (the table's skill penalty). A failure blinds -- the system's imposed
  *     Blindness (API 1.120.0), fighting at -10 as someone not used to it --
  *     for minutes equal to the margin, but only where the darkness at the
  *     victim is -2 or worse (notes [1]-[3]). The acoustic hailing device's
@@ -62,7 +63,9 @@ import {
   isElectricStunner,
   isEyeLaser,
   isHailingDevice,
+  isLaserPointer,
   isNnemp,
+  LASER_POINTER_SKILL,
   nnempModifier,
   nnempRepairPenalty,
   obscurementBonus,
@@ -165,6 +168,13 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
       return bonus ? { notes: [F("ObscuredNote", { bonus })] } : null;
     },
   } as any);
+
+  // A laser pointer's -1 to Beam Weapons (Pistol), the Ranged Weapons Table's skill penalty (HT:EE p. 51).
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    const item = context?.item;
+    if (!on.directed() || !Array.isArray(context?.modifiers) || context.mode?.ranged === false) return;
+    if (isEyeLaserItem(item) && isLaserPointer(nameOf(item))) context.modifiers.push({ label: F("PointerSkill", { name: nameOf(item) }), value: LASER_POINTER_SKILL });
+  });
 
   // What the attack was set to: the prod put to the face, the dazzle through fog.
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {

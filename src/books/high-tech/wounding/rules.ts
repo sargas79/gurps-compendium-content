@@ -6,19 +6,24 @@
 
 import type { SevereWound } from "../../../shared/bleeding/rules.js";
 
-/** The damage types p. 162 means by "impaling, piercing, or tight-beam burning" (tight beams: see `rollsForVitals`). */
+/** The damage types p. 162 means by "impaling, piercing, or tight-beam burning", less the tight beam. */
 const PENETRATING = ["imp", "pi-", "pi", "pi+", "pi++"];
+
+/** Whether a blow is impaling, piercing or tight-beam burning (p. 162): a burn counts only as a tight beam. */
+function penetrates(damageType: string, tightBeam: boolean | undefined): boolean {
+  return PENETRATING.includes(damageType) || (damageType === "burn" && tightBeam === true);
+}
 
 // ── body hits (p. 162) ──
 
 /**
- * Whether a blow rolls 1d for the vitals: an impaling or piercing hit on the
- * torso. A torso hit that is a module's own location (a vein, say) is aimed at
- * something else, and so isn't rolled for. Tight-beam burning also rolls, but
- * the blow doesn't say whether a burn is a tight beam, so a burn never does.
+ * Whether a blow rolls 1d for the vitals: an impaling, piercing or tight-beam
+ * burning hit on the torso (`tightBeam`, as the blow carries it). A torso hit
+ * that is a module's own location (a vein, say) is aimed at something else,
+ * and so isn't rolled for.
  */
-export function rollsForVitals(options: { hitLocation: string; addonLocation?: string | null; damageType: string }): boolean {
-  return options.hitLocation === "torso" && !options.addonLocation && PENETRATING.includes(options.damageType);
+export function rollsForVitals(options: { hitLocation: string; addonLocation?: string | null; damageType: string; tightBeam?: boolean }): boolean {
+  return options.hitLocation === "torso" && !options.addonLocation && penetrates(options.damageType, options.tightBeam);
 }
 
 /** A 1 on the 1d strikes the vitals (p. B399's effects); 2-6 is the torso, capped. */
@@ -32,8 +37,8 @@ export function strikesVitals(roll: number): boolean {
  * p. 420) is in play, twice that where it isn't. What goes past it is lost,
  * but with Bleeding it still counts toward the bleeding roll's penalty.
  */
-export function bodyHitCap(options: { hitLocation: string; addonLocation?: string | null; damageType: string; hp: number; bleeding: boolean }): number | null {
-  if (options.addonLocation || !PENETRATING.includes(options.damageType)) return null;
+export function bodyHitCap(options: { hitLocation: string; addonLocation?: string | null; damageType: string; tightBeam?: boolean; hp: number; bleeding: boolean }): number | null {
+  if (options.addonLocation || !penetrates(options.damageType, options.tightBeam)) return null;
   if (options.hitLocation !== "torso" && options.hitLocation !== "groin") return null;
   const hp = Math.max(1, Math.floor(Number(options.hp) || 0));
   return options.bleeding ? hp : 2 * hp;
@@ -64,16 +69,16 @@ export function leastCrippling(threshold: number): number {
 /**
  * What a crippling blow did to a limb or extremity, from its whole injury
  * before the cap: at least twice the least injury that cripples it cripples it
- * permanently, and severs it -- except that an impaling or piercing blow must
+ * permanently, and severs it -- except that an impaling, piercing or tight-beam burning blow must
  * do twice that again to sever it, bullets passing through rather than
  * blowing a limb off. Null for an ordinary crippling, whose duration the HT
  * roll decides (p. B422).
  */
-export function limbOutcome(options: { injury: number; threshold: number; damageType: string }): "permanent" | "severed" | null {
+export function limbOutcome(options: { injury: number; threshold: number; damageType: string; tightBeam?: boolean }): "permanent" | "severed" | null {
   const least = leastCrippling(options.threshold);
   const injury = Math.max(0, Number(options.injury) || 0);
   if (injury < 2 * least) return null;
-  if (!PENETRATING.includes(options.damageType)) return "severed";
+  if (!penetrates(options.damageType, options.tightBeam)) return "severed";
   return injury >= 4 * least ? "severed" : "permanent";
 }
 

@@ -123,9 +123,14 @@ export function readingLine(machine: Machine, subject: any): { label: string; va
   return { label: F(table.i18n, "ReadingLine", { name: item.name }), value };
 }
 
-/** The machines that might hold a reading of the subject: the questioner's own first, then everyone's. */
+/**
+ * The machines that might hold a reading of the subject: the questioner's own
+ * first, then everyone's -- the world's actors and the unlinked tokens' own on
+ * the scene, whose actors `game.actors` doesn't hold.
+ */
 function machines(actor: any): Machine[] {
-  const actors = [actor, ...[...((game as any).actors ?? [])].filter((a: any) => a !== actor)];
+  const unlinked = [...((globalThis as any).canvas?.scene?.tokens ?? [])].filter((t: any) => !t?.actorLink && t?.actor).map((t: any) => t.actor);
+  const actors = [actor, ...[...((game as any).actors ?? []), ...unlinked].filter((a: any) => a !== actor)];
   const found: Machine[] = [];
   for (const owner of actors) {
     for (const item of owner?.items ?? []) {

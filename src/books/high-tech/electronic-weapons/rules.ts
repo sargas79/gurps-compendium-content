@@ -57,8 +57,17 @@ export function prodPain(margin: number, faceOrGroin: boolean): { key: "moderate
 
 // ── directed-energy weapons (HT:EE pp. 50-51) ──
 
-/** The supplement's lasers at the eyes: the dazzler and p. 21's laser pointer (HT:EE p. 51, notes [1]-[3]). */
-export const isEyeLaser = (name: unknown): boolean => /^(dazzler|laser pointer)\b/i.test(nameOf(name));
+/** The supplement's lasers at the eyes: the dazzler and p. 21's laser pointer, red or green (HT:EE p. 51, notes [1]-[3]). */
+export const isEyeLaser = (name: unknown): boolean => /^(dazzler|(green )?laser pointer)\b/i.test(nameOf(name));
+
+/** A laser pointer, red or green (HT:EE p. 21). */
+export const isLaserPointer = (name: unknown): boolean => /^(green )?laser pointer\b/i.test(nameOf(name));
+
+/**
+ * A laser pointer is used at -1 to Beam Weapons (Pistol) (HT:EE p. 51): the
+ * Ranged Weapons Table's skill penalty, which a ranged mode has no field for.
+ */
+export const LASER_POINTER_SKILL = -1;
 export const isHailingDevice = (name: unknown): boolean => /^acoustic hailing device\b/i.test(nameOf(name));
 export const isActiveDenial = (name: unknown): boolean => /^active denial system\b/i.test(nameOf(name));
 

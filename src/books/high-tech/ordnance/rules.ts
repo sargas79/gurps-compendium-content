@@ -27,6 +27,10 @@ export interface GrenadeFacts {
   readies: number;
   /** Seconds of smoke over a radius in yards, left where it lands. */
   cloud?: { radius: number; seconds: number };
+  /** The cloud is tear gas, not smoke (the M7, p. 192). */
+  tearGas?: boolean;
+  /** A canister that burns bare flesh touching it: the burn's dice (the AN-M8, p. 192). */
+  hotCanister?: string;
   /** A flashbang: a Vision- and Hearing-Based affliction, stun recovered at HT-5 (note [7]). */
   flashbang?: boolean;
   /** Thermite: seconds it burns (p. 192). */
@@ -56,7 +60,9 @@ export const GRENADES: Readonly<Record<string, GrenadeFacts>> = Object.freeze({
   "AMC MK II": pin([4, 5]),
   "AMC MK III": pin([4, 5]),
   "Eihandgranate 39": { fuse: [4, 5], igniter: "string", readies: 1 },
-  "AN-M8": pin([1, 2], { cloud: { radius: 7, seconds: 80 } }),
+  "AN-M8": pin([1, 2], { cloud: { radius: 7, seconds: 80 }, hotCanister: "1d-2" }),
+  // The AN-M8's tear-gas sibling: a 7-yard cloud for 25 seconds (p. 192).
+  M7: pin([1, 2], { cloud: { radius: 7, seconds: 25 }, tearGas: true, hotCanister: "1d-2" }),
   M18: pin([1, 2], { cloud: { radius: 7, seconds: 70 } }),
   M83: pin([1, 2], { cloud: { radius: 7, seconds: 50 } }),
   "AN-M14": pin([1, 2], { thermiteSeconds: 40 }),
@@ -197,13 +203,34 @@ export const mineFacts = (name: string): MineFacts | null => MINES[String(name ?
 export const MINE_TASKS = {
   place: [{ skill: "Explosives (Demolition)", modifier: 4 }, { skill: "Soldier", modifier: 0 }, { skill: "Traps", modifier: 2 }],
   improvised: [{ skill: "Explosives (Demolition)", modifier: -2 }],
-  probe: [{ skill: "Explosives (EOD)", modifier: 0 }, { skill: "Soldier", modifier: -5 }],
-  disarm: [{ skill: "Explosives (EOD)", modifier: 0 }],
+  probe: [{ skill: "Explosives (Explosive Ordnance Disposal)", modifier: 0 }, { skill: "Soldier", modifier: -5 }],
+  disarm: [{ skill: "Explosives (Explosive Ordnance Disposal)", modifier: 0 }],
 } as const;
 export type MineTask = keyof typeof MINE_TASKS;
 
 /** A bounding mine's burst is five feet up: whoever is flat on the ground at once takes none of its fragments (p. 189). */
 export const avoidsBoundingFragments = (posture: unknown): boolean => ["lying", "prone", "crawling"].includes(String(posture ?? ""));
+
+/** A directional mine's cone: everyone out to its Max in a 60-degree cone (p. 189). */
+export const DIRECTIONAL_CONE_DEGREES = 60;
+
+/** A cone's width at `length` yards from its apex, for its angle in degrees. */
+export function coneWidth(length: number, degrees: number = DIRECTIONAL_CONE_DEGREES): number {
+  return 2 * Math.max(0, Number(length) || 0) * Math.tan(((Number(degrees) || 0) / 2) * (Math.PI / 180));
+}
+
+/**
+ * The bearing from a point to the middle of others, in whole degrees
+ * clockwise from east (the scene's +x, y down), 0-359, as Foundry measures a
+ * template: which way a mine faces to take them in. Null for none.
+ */
+export function bearingToward(from: { x: number; y: number }, points: ReadonlyArray<{ x: number; y: number }>): number | null {
+  if (!points.length) return null;
+  const x = points.reduce((sum, p) => sum + p.x, 0) / points.length - from.x;
+  const y = points.reduce((sum, p) => sum + p.y, 0) / points.length - from.y;
+  if (!x && !y) return null;
+  return (Math.round((Math.atan2(y, x) * 180) / Math.PI) + 360) % 360;
+}
 
 /** One target of a directional mine's shotload, as resolved. */
 export interface VolleyTarget {

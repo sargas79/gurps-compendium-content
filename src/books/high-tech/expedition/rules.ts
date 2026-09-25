@@ -20,7 +20,26 @@ export interface Light {
   kind: LightKind;
   radius: number;
   beam: number;
+  /** Infrared only: a filter snapped on, an IR mode or an IR chemlight (p. 52), seen only by eyes that see infrared. */
+  infrared?: boolean;
 }
+
+/** A flashlight's snap-on IR filter (p. 52). */
+export const IR_FILTER_COST = 25;
+
+/**
+ * What an infrared light costs over the record's price (p. 52): $25 for the
+ * filter on an electric or tactical light; nothing for a chemlight (the IR
+ * one costs the same) or a light with an IR mode of its own (the smart
+ * flashlight).
+ */
+export function infraredCost(light: Light | null, builtInMode: boolean): number {
+  if (!light?.infrared || builtInMode) return 0;
+  return light.kind === "electric" || light.kind === "tactical" ? IR_FILTER_COST : 0;
+}
+
+/** The lights that can give out infrared: electric and tactical lights with a filter, and chemlights (p. 52). */
+export const canBeInfrared = (kind: LightKind): boolean => kind === "electric" || kind === "tactical" || kind === "chemical";
 
 /**
  * The darkness a light leaves where it reaches, at worst (Campaigns p. 394,

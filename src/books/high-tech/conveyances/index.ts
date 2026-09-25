@@ -8,7 +8,9 @@
  * rides:
  *   - **Move (`gworld.moveModifiers`):** a bicycle's rider moves at the better
  *     of his relative Bicycling level and his Move, times the bike's Enhanced
- *     Move, rounded down; a skateboarder at his Move times the board's.
+ *     Move, rounded down; a skateboarder at his Move times the board's. The
+ *     relative skill is halved as the system halves Move for a rider
+ *     reeling or very tired, so a long ride below 1/3 FP slows him.
  *     Road-Bound Enhanced Move is lost off the road, and downhill Move is
  *     doubled, tripled or quadrupled by the slope, both set in the Gear tab's
  *     "Riding" box. The powered wheelchairs move at Move 3.
@@ -161,7 +163,14 @@ export function conveyanceMove(api: GWorldApi, actor: any, item: any, move: numb
   const data = conveyanceData(item);
   if (data.kind !== "bicycle" && data.kind !== "skateboard") return null;
   const relative = data.kind === "bicycle" ? relativeSkill(api, actor, CONVEYANCE_SKILL.bicycle as string, data.skillModifier) : null;
-  return ridingMove({ move, relative, enhancedMove: data.enhancedMove, roadBound: data.roadBound, offRoad: offRoad(actor), slope: slopeOf(actor) });
+  // Reeling and very tired halve Move, the system's already (Campaigns pp. 419, 426): relative skill too.
+  const hp = actor?.system?.hp ?? {};
+  const fp = actor?.system?.fp ?? {};
+  const halvings = [
+    Number.isFinite(Number(hp.value)) && api.rules.isReeling(Number(hp.value), Number(hp.max) || 0),
+    Number.isFinite(Number(fp.value)) && api.rules.isVeryTired(Number(fp.value), Number(fp.max) || 0),
+  ].filter(Boolean).length;
+  return ridingMove({ move, relative, enhancedMove: data.enhancedMove, roadBound: data.roadBound, offRoad: offRoad(actor), slope: slopeOf(actor), halvings });
 }
 
 async function say(actor: any, title: string, lines: string[]): Promise<void> {

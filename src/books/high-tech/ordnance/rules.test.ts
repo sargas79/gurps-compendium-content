@@ -32,6 +32,8 @@ import {
   readyRifleGrenadeSeconds,
   rifleGrenadeBulk,
   yieldKilotons,
+  bearingToward,
+  coneWidth,
 } from "./rules.js";
 
 const records = (file: string): any[] => JSON.parse(readFileSync(new URL(`../../../../books/high-tech/packs-src/equipment/${file}`, import.meta.url), "utf8"));
@@ -198,5 +200,20 @@ describe("nuclear weapons (pp. 195-196)", () => {
     expect(falloutRads(0, 2)).toBe(200);
     expect(falloutRads(47, 2)).toBe(110);
     expect(falloutRads(335, 2)).toBe(11);
+  });
+});
+
+describe("a directional mine's cone (p. 189)", () => {
+  it("is 60 degrees: about 312 yards wide at the Claymore's 270", () => {
+    expect(coneWidth(270)).toBeCloseTo(311.77, 1);
+    expect(coneWidth(0)).toBe(0);
+  });
+
+  it("faces the middle of the targets, clockwise from east", () => {
+    expect(bearingToward({ x: 0, y: 0 }, [{ x: 10, y: 0 }])).toBe(0);
+    expect(bearingToward({ x: 0, y: 0 }, [{ x: 0, y: 10 }])).toBe(90);
+    expect(bearingToward({ x: 0, y: 0 }, [{ x: 0, y: -10 }])).toBe(270);
+    expect(bearingToward({ x: 0, y: 0 }, [{ x: 10, y: 10 }, { x: 10, y: -10 }])).toBe(0);
+    expect(bearingToward({ x: 0, y: 0 }, [])).toBeNull();
   });
 });

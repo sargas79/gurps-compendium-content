@@ -20,6 +20,7 @@ const HOOKS = { successRollModifiers: "gworld.successRollModifiers", firstAid: "
 let hooks: Map<string, Listener[]>;
 let actions: Map<string, any>;
 let tools: Map<string, any>;
+let sections: any[];
 let successes: any[];
 let resuscitations: any[];
 let injuries: any[];
@@ -41,11 +42,12 @@ function fire(hook: string, ...args: any[]): any {
 function fakeApi() {
   return {
     rules,
+    items: { changeQuantity: async (i: any, delta: number, o: any = {}) => { const from = Number(i.system.quantity) || 0; i.system.quantity = Math.max(0, from + delta); return { from, to: i.system.quantity, reason: o.reason ?? "" }; } },
     registry: { isRuleOn: (key: string) => systemRules.has(key) },
     data: { hooks: { skillBonuses: "gworld.skillBonuses" } },
     combat: { hooks: HOOKS },
     sheets: {
-      registerSheetSection: () => undefined,
+      registerSheetSection: (x: any) => sections.push(x),
       registerRowAction: (a: any) => actions.set(a.key, a),
       registerGmTool: (t: any) => tools.set(t.key, t),
     },
@@ -134,6 +136,7 @@ beforeEach(() => {
   hooks = new Map();
   actions = new Map();
   tools = new Map();
+  sections = [];
   successes = [];
   resuscitations = [];
   injuries = [];
@@ -451,5 +454,41 @@ describe("medical facilities (High-Tech pp. 222-225)", () => {
     await run("ht-scan", gear("Portable Ultrasound", { kind: "imaging" }), operator);
     expect(rads).toEqual([]);
     expect(successes).toHaveLength(3);
+  });
+
+  it("gives an imaging instrument's +TL/2 only on the Diagnosis roll its scan allows, over the skill's own gear (p. 222)", async () => {
+    const ultrasound = gear("Portable Ultrasound", { kind: "imaging" }, { equipmentQuality: "best", forSkills: ["Diagnosis/TL"] });
+    const analyzer = gear("Portable Clinical Analyzer", null, { equipmentQuality: "fine", forSkills: ["Diagnosis/TL"] });
+    // Carried, it is no Diagnosis tool: the analyzer's +2 stands, or nothing at all.
+    const withBoth = person("Doctor", [ultrasound, analyzer]);
+    const line = toolLine(skillLines(withBoth, "Diagnosis/TL8", [{ key: "tools", value: 4 }]));
+    expect(line).toMatchObject({ value: 2, reason: expect.stringContaining("ImagingReason") });
+    expect(toolLine(skillLines(person("Doctor", [ultrasound]), "Diagnosis/TL8", [{ key: "tools", value: 4 }])).value).toBe(0);
+    // Its scan: +4 at TL8, less the +2 the skill already has.
+    const operator = person("Operator", [ultrasound, { type: "skill", name: "Diagnosis/TL8", system: { derived: { toolBonus: 2 } } }], { skills: { Diagnosis: 13 } });
+    targets = [person("Patient")];
+    await run("ht-scan", ultrasound, operator);
+    expect(successes[1].modifiers).toEqual([{ label: expect.stringContaining("ImagingLine"), value: 2 }]);
+    // Other skills keep the system's line.
+    expect(toolLine(skillLines(withBoth, "Physician/TL8", [{ key: "tools", value: 4 }])).value).toBe(4);
+  });
+
+  it("counts antiseptic's ten uses, the last taking the container off the count (p. 225)", async () => {
+    targets = [person("Patient")];
+    const bottle = gear("Antiseptic (10 uses)", { kind: "antiseptic" }, { quantity: 2 });
+    for (let i = 0; i < 9; i += 1) await run("ht-antiseptic", bottle, person("Medic"));
+    expect(bottle.system.extensions[MODULE_ID].medical.usesSpent).toBe(9);
+    expect(bottle.system.quantity).toBe(2);
+    expect(chat.at(-1)).toContain('"left":1');
+    await run("ht-antiseptic", bottle, person("Medic"));
+    expect(bottle.system.extensions[MODULE_ID].medical.usesSpent).toBe(0);
+    expect(bottle.system.quantity).toBe(1);
+  });
+
+  it("prices a surgical kit's resupply after each operation: 10% at TL5, 20% at TL6-8 (p. 223)", () => {
+    const section = sections.find((x) => x.key === "ht-medicine-item");
+    const lines = (item: any) => section.context(item).lines as string[];
+    expect(lines(gear("Surgical Kit (TL5)", { kind: "surgicalKit" }, { tl: "5", cost: 300 }))).toContainEqual(expect.stringMatching(/ResupplyItem.*"cost":30,"percent":10/));
+    expect(lines(gear("Surgical Kit (TL8)", { kind: "surgicalKit" }, { tl: "8", cost: 300 }))).toContainEqual(expect.stringMatching(/ResupplyItem.*"cost":60,"percent":20/));
   });
 });

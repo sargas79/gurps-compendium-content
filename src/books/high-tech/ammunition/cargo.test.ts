@@ -29,6 +29,7 @@ let hooks: Map<string, Listener[]>;
 let on: Record<string, boolean>;
 let areas: any[];
 let inArea: any[];
+let litFor: Map<string, (observer: any) => boolean>;
 let doses: any[];
 let conditions: any[];
 let chat: string[];
@@ -47,6 +48,7 @@ function fakeApi() {
       add: async (_scene: any, area: any) => { areas.push(area); return area.id; },
       list: () => areas,
       standsIn: () => inArea,
+      registerLitFor: (r: any) => { litFor.set(`${r.module}.${r.key}`, r.test); return `${r.module}.${r.key}`; },
     },
     actors: {
       skillLevel: () => null,
@@ -122,6 +124,7 @@ beforeEach(() => {
   on = {};
   areas = [];
   inArea = [];
+  litFor = new Map();
   doses = [];
   conditions = [];
   chat = [];
@@ -257,7 +260,8 @@ describe("cargo rounds (pp. 143, 171-172)", () => {
     const flare = m79([load({ projectile: "illumination", radius: 185, seconds: 40 })]);
     fire(HOOKS.afterShots, { actor: flare.actor, item: flare, modeIndex: 0 });
     await flush();
-    expect(areas[0]).toMatchObject({ radius: 185, lines: [] });
+    expect(areas[0]).toMatchObject({ radius: 185, lines: [], light: { radius: 185, darknessCap: 3 } });
+    expect(areas[0].light.litFor).toBeUndefined();
     expect(areas[0].id).toContain(`${MODULE_ID}-ht-illumination-parachute-`);
     const target = { id: "t1" };
     inArea = [target];
@@ -266,6 +270,21 @@ describe("cargo rounds (pp. 143, 171-172)", () => {
     // Out of its light, the dark stays.
     inArea = [];
     expect(fire(HOOKS.attackModifiers, { actor: { items: [] }, targetTokens: [target], modifiers: [{ key: "darkness", label: "Darkness", value: -7 }] }).modifiers[0].value).toBe(-7);
+  });
+
+  it("lights an infrared flare's radius only for eyes that see infrared, and a signal flare's to -5", async () => {
+    on.cargoProjectiles = true;
+    const ir = m79([load({ projectile: "illumination", illumination: "infrared", radius: 100, seconds: 30 })]);
+    fire(HOOKS.afterShots, { actor: ir.actor, item: ir, modeIndex: 0 });
+    await flush();
+    expect(areas[0].light).toEqual({ radius: 100, darknessCap: 3, litFor: `${MODULE_ID}.ht-infrared` });
+    const test = litFor.get(`${MODULE_ID}.ht-infrared`)!;
+    expect(test({ items: [{ type: "trait", name: "Night Vision 5" }] })).toBe(true);
+    expect(test({ items: [] })).toBe(false);
+    const signal = m79([load({ projectile: "illumination", illumination: "signal", radius: 50, seconds: 30 })]);
+    fire(HOOKS.afterShots, { actor: signal.actor, item: signal, modeIndex: 0 });
+    await flush();
+    expect(areas[1].light).toEqual({ radius: 50, darknessCap: 5 });
   });
 
   it("registers tear gas's and the vomiting agent's rolls as poisons, offered while the switch is on", () => {

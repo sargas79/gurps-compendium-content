@@ -142,6 +142,8 @@ export interface AmmunitionSwitches {
   explosive?: () => boolean;
   /** Ejecting- and bursting-cargo projectiles (pp. 171-172). */
   cargo?: () => boolean;
+  /** Tear gas's rolls for something other than a round: the grenades' switch (p. 192). */
+  gas?: () => boolean;
 }
 
 /** Whether any of the projectile switches is on. */
@@ -1003,7 +1005,7 @@ export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
   gasFillers = () => ((api.rules as any).POISON_EXAMPLES ?? [])
     .filter((p: any) => (p.delivery ?? []).some((d: string) => d === "respiratory" || d === "contact"))
     .map((p: any) => String(p.name));
-  readyCargo(api, { explosive: () => on.explosive?.() === true, cargo: () => on.cargo?.() === true }, (item, modeIndex) => cargoLoadIn(item, modeIndex, on));
+  readyCargo(api, { explosive: () => on.explosive?.() === true, cargo: () => on.cargo?.() === true, gas: () => on.gas?.() === true }, (item, modeIndex) => cargoLoadIn(item, modeIndex, on));
   api.sheets.registerSheetSection({
     module: MODULE_ID,
     key: "ht-ammunition-item",

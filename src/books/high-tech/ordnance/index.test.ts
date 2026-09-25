@@ -11,6 +11,7 @@ import { readFileSync } from "node:fs";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
+import { inCone } from "../../../../system/src/rules/modifier-areas.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { readyExplosives } from "../explosives/index.js";
 import { ordnanceExtras, readyOrdnance } from "./index.js";
@@ -51,11 +52,14 @@ let conditions: Map<string, any[]>;
 let weaponState: Map<any, any>;
 let dialog: Record<string, string> | null;
 let targets: any[];
+let cones: any[];
 let irradiated: any[];
 let malfunctions: Map<any, any>;
 let postures: Array<[string, string]>;
 let worldTime: number;
 let combat: any;
+let dosed: any[];
+let placed: any[];
 
 const fire = (name: string, ...args: any[]) => (hooks.get(name) ?? []).map((fn) => fn(...args));
 const flush = async () => { for (let i = 0; i < 30; i += 1) await Promise.resolve(); };
@@ -94,7 +98,16 @@ function fakeApi() {
     registry: { isRuleOn: (key: string) => key === "explosions" || on[key] === true },
     data: { registerExplosive: (r: any) => `${r.module}.${r.key}`, registerPoison: () => null },
     hazards: { detonate: async () => null, irradiate: async (o: any) => { irradiated.push(o); } },
-    areas: { add: () => "area", list: () => [] },
+    areas: {
+      add: (_scene: any, area: any) => { placed.push(area); return "area"; },
+      list: () => [],
+      // The system's own cone test, on the targets as the scene's tokens; any other area holds them all.
+      standsIn: (_scene: any, area: any) => {
+        if (!area?.cone) return targets;
+        cones.push(area);
+        return targets.filter((t) => t.center && inCone(t.center, area.center, area.cone)).map((t) => t.document);
+      },
+    },
     items: {
       objectStats: () => ({ ht: 10, dr: 0 }),
       malfunction: (i: any) => malfunctions.get(i) ?? null,
@@ -124,6 +137,8 @@ function fakeApi() {
         return id;
       },
       removeCondition: async () => undefined,
+      dosePoison: async (actor: any, poison: any) => { dosed.push({ actor: actor.name, ...poison }); return { id: `d${dosed.length}` }; },
+      advancePoison: async () => null,
       applyInjury: async () => null,
       setPosture: async (actor: any, posture: string) => { postures.push([actor.name, posture]); actor.system.posture = posture; },
     },
@@ -153,11 +168,14 @@ beforeEach(() => {
   weaponState = new Map();
   dialog = null;
   targets = [];
+  cones = [];
   irradiated = [];
   malfunctions = new Map();
   postures = [];
   worldTime = 0;
   combat = null;
+  dosed = [];
+  placed = [];
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
@@ -304,6 +322,29 @@ describe("hand grenades (pp. 190-192)", () => {
     expect(recovery.modifiers).toEqual([{ label: "GCC.HT.Ordnance.FlashbangRecovery", value: -5 }]);
   });
 
+  it("fills the M7's 7 yards with tear gas for 25 seconds, rolled for everyone in it, and the AN-M8's smoke (p. 192)", async () => {
+    vi.stubGlobal("canvas", { scene: { id: "s" }, templates: { placeables: [] } });
+    const victim = actorWith("Victim");
+    targets = [{ actor: victim, center: { x: 100, y: 100 } }];
+    const m7 = item("M7");
+    fire(HOOKS.afterShots, { actor: actorWith("Thrower", [m7]), item: m7, modeIndex: 0 });
+    await flush();
+    expect(placed[0]).toMatchObject({ radius: 7, center: { x: 100, y: 100 } });
+    // Tear gas's two HT-2 rolls, dosed as a tear-gas round's are (p. 171).
+    expect(dosed.map((d) => d.source)).toEqual([`${MODULE_ID}.tearGasCoughing`, `${MODULE_ID}.tearGasBlinding`]);
+    expect(dosed.every((d) => d.actor === "Victim")).toBe(true);
+    expect(chat.at(-1)).toContain("HotCanister");
+    // The smoke grenade: a smoke cloud and the hot canister, nobody dosed.
+    dosed = [];
+    const smoke = item("AN-M8");
+    fire(HOOKS.afterShots, { actor: actorWith("Thrower", [smoke]), item: smoke, modeIndex: 0 });
+    await flush();
+    expect(placed[1]).toMatchObject({ radius: 7 });
+    expect(dosed).toEqual([]);
+    expect(chat.at(-1)).toContain("CloudPlaced");
+    expect(chat.at(-1)).toContain("HotCanister");
+  });
+
   it("burns the AN-M14 as thermite for 40 seconds, without the incendiaries' switch", async () => {
     const thermite = item("AN-M14");
     const victim = actorWith("Victim");
@@ -326,6 +367,40 @@ describe("hand grenades (pp. 190-192)", () => {
     expect(chat.at(-1)).toContain('"seconds":10');
     expect(chat.at(-1)).toContain("GCC.HT.Ordnance.Engine.destroyed");
   });
+
+  it("aims a Molotov at the engine grating at -3, and sets the engine burning on a hit (p. 191)", async () => {
+    const molotov = { id: "m", name: "Molotov Cocktail", type: "equipment", system: { rangedModes: [{ thrown: true }] } };
+    const option = options.find((o) => o.key === "ht-molotov-grating");
+    expect(option.available({ item: molotov })).toBe(true);
+    expect(option.available({ item: item("M67") })).toBe(false);
+    expect(option.apply({}, true)).toEqual({ modifiers: [{ label: "GCC.HT.Ordnance.Engine.Option", value: -3 }] });
+    const rioter = actorWith("Rioter", [molotov]);
+    const truck = { name: "Truck", system: { vehicle: { ht: 10 } } };
+    const throwIt = (success: boolean, chosen = true) => {
+      attack(rioter, molotov, { options: chosen ? { [`${MODULE_ID}.ht-molotov-grating`]: true } : {}, targetTokens: [{ actor: truck }] });
+      fire(HOOKS.afterSuccessRoll, { actor: rioter, item: molotov, tags: ["attack"], outcome: { success } });
+    };
+    // A miss, or a throw not aimed at the grating: no fire in the engine.
+    throwIt(false);
+    throwIt(true, false);
+    await flush();
+    expect(chat).toEqual([]);
+    // A throw whose roll is refused after the modifiers (no roll follows) leaves nothing behind: the punch that follows sets no engine alight.
+    attack(rioter, molotov, { options: { [`${MODULE_ID}.ht-molotov-grating`]: true }, targetTokens: [{ actor: truck }] });
+    attack(rioter, null, { mode: { index: 0, ranged: false } });
+    fire(HOOKS.afterSuccessRoll, { actor: rioter, item: null, tags: ["attack"], outcome: { success: true } });
+    // Nor does another weapon's roll pick up a throw's entry.
+    attack(rioter, molotov, { options: { [`${MODULE_ID}.ht-molotov-grating`]: true }, targetTokens: [{ actor: truck }] });
+    fire(HOOKS.afterSuccessRoll, { actor: rioter, item: item("M67"), tags: ["attack"], outcome: { success: true } });
+    fire(HOOKS.afterSuccessRoll, { actor: rioter, item: molotov, tags: ["attack"], outcome: { success: true } });
+    await flush();
+    expect(chat).toEqual([]);
+    // A hit: the truck's own HT 10, no dialog. 2d = 2: ten seconds, four checks; 11 and 12 fail.
+    dice = [1, 1, 4, 4, 3, 5, 5, 1, 6, 5, 6, 6];
+    throwIt(true);
+    await flush();
+    expect(chat.at(-1)).toContain("GCC.HT.Ordnance.Engine.destroyed");
+  });
 });
 
 describe("land mines (p. 189)", () => {
@@ -333,7 +408,7 @@ describe("land mines (p. 189)", () => {
 
   it("rolls the best of the skills to place one, and sets the TMi35 off on a failed disarm", async () => {
     const mine = item("TMi35");
-    const sapper = actorWith("Sapper", [mine], { skills: { Soldier: 12, "Explosives (EOD)": 12 } });
+    const sapper = actorWith("Sapper", [mine], { skills: { Soldier: 12, "Explosives (Explosive Ordnance Disposal)": 12 } });
     dialog = { task: "place", antiLifting: "", tamper: "0" };
     actions.get("ht-mine-task").run(mine, sapper);
     await flush();
@@ -401,6 +476,33 @@ describe("land mines (p. 189)", () => {
     expect(damage.slice(before)).toHaveLength(3);
     expect(damage.at(-1)).toMatchObject({ formula: "2d", damageType: "pi-", armorDivisor: 0.5, halfDamage: false });
     expect(message.data.rows[0].rolled).toBe(true);
+  });
+
+  it("attacks only those in a Claymore's 60-degree cone, facing the targets to start with", async () => {
+    const claymore = item("M18A1 Claymore");
+    const placer = actorWith("Placer", [claymore], { getActiveTokens: () => [{ center: { x: 0, y: 0 } }] });
+    vi.stubGlobal("canvas", { scene: { grid: { size: 100, distance: 1 } } });
+    const token = (name: string, x: number, y: number) => ({ name, center: { x, y }, document: { id: name }, actor: actorWith(name) });
+    // East of the mine: 10 yards ahead, 5 yards ahead and 1 to the side, and 5 yards off at right angles.
+    targets = [token("Ahead", 1000, 0), token("Near", 500, 100), token("Aside", 0, 500)];
+    dialog = { d0: "10", d1: "5", d2: "5", facing: "0" };
+    dice = [3, 3, 4, 2, 3, 3, 3, 3, 3];
+    actions.get("ht-mine-set-off").run(claymore, placer);
+    await flush();
+    const cone = cones.at(-1);
+    expect(cone.center).toEqual({ x: 0, y: 0 });
+    expect(cone.cone).toMatchObject({ direction: 0, length: 27000, base: 100 });
+    expect(cone.cone.width).toBeCloseTo(31177, 0);
+    const card = posted.find((p) => p.key === `${MODULE_ID}.ht-directional-mine`);
+    expect(card.data.rows.map((r: any) => r.name)).toEqual(["Near", "Ahead", "Aside"]);
+    expect(card.data.rows[2]).toMatchObject({ hits: 0, line: "GCC.HT.Ordnance.Mine.Missed.cone", index: 2 });
+    // Turned to face south, the one at right angles is the only one in it.
+    posted = [];
+    dialog = { d0: "10", d1: "5", d2: "5", facing: "90" };
+    actions.get("ht-mine-set-off").run(claymore, placer);
+    await flush();
+    const turned = posted.find((p) => p.key === `${MODULE_ID}.ht-directional-mine`);
+    expect(turned.data.rows.filter((r: any) => r.line !== "GCC.HT.Ordnance.Mine.Missed.cone").map((r: any) => r.name)).toEqual(["Aside"]);
   });
 });
 

@@ -43,6 +43,7 @@ let worldTime: number;
 function fakeApi() {
   return {
     rules,
+    items: { changeQuantity: async (i: any, delta: number, o: any = {}) => { const from = Number(i.system.quantity) || 0; i.system.quantity = Math.max(0, from + delta); return { from, to: i.system.quantity, reason: o.reason ?? "" }; } },
     registry: { isRuleOn: (key: string) => key === "equipmentModifiers" },
     data: {
       hooks: { skillBonuses: "gworld.skillBonuses", moveModifiers: "gworld.moveModifiers" },
@@ -310,6 +311,8 @@ describe("maritime gear (High-Tech pp. 59-60)", () => {
     expect(roll(swimmer, ["skill"], { kind: "skill", skill: "Swimming" })).toEqual([{ label: expect.any(String), value: 6 }]);
     expect(roll(swimmer, ["contest", "quickContest"], { kind: "contest", skill: "Swimming" })).toEqual([{ label: expect.any(String), value: -3 }]);
     expect(roll(swimmer, ["skill"], { kind: "skill", skill: "Climbing" })).toEqual([]);
+    // The system's Swimming rolls while drowning (Campaigns p. 436; API 1.103.0) take it too.
+    expect(roll(swimmer, ["skill", "swimming", "drowning"], { kind: "skill", skill: "Swimming" })).toEqual([{ label: expect.stringContaining("JacketLine"), value: 6 }]);
     jacket.system.equipped = false;
     expect(roll(swimmer, ["skill"], { kind: "skill", skill: "Swimming" })).toEqual([]);
   });

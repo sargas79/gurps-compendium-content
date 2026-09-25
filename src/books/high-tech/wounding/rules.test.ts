@@ -20,6 +20,9 @@ describe("body hits", () => {
     expect(rollsForVitals({ hitLocation: "torso", damageType: "imp" })).toBe(true);
     expect(rollsForVitals({ hitLocation: "torso", damageType: "cr" })).toBe(false);
     expect(rollsForVitals({ hitLocation: "torso", damageType: "burn" })).toBe(false);
+    // A tight-beam burn (a laser) rolls; a flamethrower's burn doesn't.
+    expect(rollsForVitals({ hitLocation: "torso", damageType: "burn", tightBeam: true })).toBe(true);
+    expect(rollsForVitals({ hitLocation: "torso", damageType: "cut", tightBeam: true })).toBe(false);
     // No roll for the groin, nor for a module's location on the torso.
     expect(rollsForVitals({ hitLocation: "groin", damageType: "pi" })).toBe(false);
     expect(rollsForVitals({ hitLocation: "torso", addonLocation: "x.vein", damageType: "pi" })).toBe(false);
@@ -33,6 +36,8 @@ describe("body hits", () => {
     expect(bodyHitCap({ ...bodyguard, hitLocation: "groin", bleeding: true })).toBe(11);
     expect(bodyHitCap({ ...bodyguard, hitLocation: "arm", bleeding: true })).toBeNull();
     expect(bodyHitCap({ ...bodyguard, damageType: "cut", hitLocation: "torso", bleeding: true })).toBeNull();
+    expect(bodyHitCap({ ...bodyguard, damageType: "burn", hitLocation: "torso", bleeding: true })).toBeNull();
+    expect(bodyHitCap({ ...bodyguard, damageType: "burn", tightBeam: true, hitLocation: "torso", bleeding: true })).toBe(11);
   });
 
   it("counts El Chacal's whole 23 points toward the bleeding roll: -4, not the -2 of 11 HP lost", () => {
@@ -55,6 +60,8 @@ describe("limb hits", () => {
     expect(limbOutcome({ injury: 24, threshold: arm, damageType: "imp" })).toBe("severed");
     // Any other blow dismembers at twice (p. B421).
     expect(limbOutcome({ injury: 12, threshold: arm, damageType: "cr" })).toBe("severed");
+    expect(limbOutcome({ injury: 12, threshold: arm, damageType: "burn" })).toBe("severed");
+    expect(limbOutcome({ injury: 12, threshold: arm, damageType: "burn", tightBeam: true })).toBe("permanent");
     const hand = system.cripplingThreshold("hand", 10)!;
     expect(leastCrippling(hand)).toBe(4);
     expect(limbOutcome({ injury: 8, threshold: hand, damageType: "pi" })).toBe("permanent");

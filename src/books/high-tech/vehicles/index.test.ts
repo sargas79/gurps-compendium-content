@@ -192,6 +192,29 @@ describe("protection, with only High-Tech's switch on", () => {
     expect(chat).toEqual([]);
   });
 
+  it("tells an occupant hit what the cockpit armour gives the pilot from the face the shot came by (pp. 237-238, 242)", async () => {
+    const mustang = vehicleActor("NAA P-51D Mustang IV", { dr: 5 });
+    call("gworld.afterVehicleHit", { vehicle: mustang, location: "body", arc: "rear", penetrating: 12, injury: 12, occupantHit: { dice: 2 } });
+    await vi.waitFor(() => expect(chat.join("")).toContain("Occupant.armour"));
+    expect(chat.join("")).toContain('"dr":35');
+    chat = [];
+    // Nothing printed for its sides.
+    call("gworld.afterVehicleHit", { vehicle: mustang, location: "body", arc: "side", penetrating: 12, injury: 12, occupantHit: { dice: 2 } });
+    await vi.waitFor(() => expect(chat.join("")).toContain("Occupant.noArmour"));
+    chat = [];
+    // The PBR's coxswain all round, and the gun shield on its rear pintle.
+    const pbr = vehicleActor("Uniflite PBR MK 2", { dr: 3 });
+    call("gworld.afterVehicleHit", { vehicle: pbr, location: "body", arc: null, penetrating: 10, injury: 10, occupantHit: { dice: 2 } });
+    await vi.waitFor(() => expect(chat.join("")).toContain("Occupant.gunShield"));
+    expect(chat.join("")).toContain('"dr":20');
+    chat = [];
+    // No occupant hit, or a vehicle with no cockpit armour: no card.
+    call("gworld.afterVehicleHit", { vehicle: mustang, location: "body", arc: "front", penetrating: 12, injury: 12, occupantHit: null });
+    call("gworld.afterVehicleHit", { vehicle: vehicleActor("Willys MB", { dr: 4 }), location: "body", arc: "front", penetrating: 12, injury: 12, occupantHit: { dice: 2 } });
+    await Promise.resolve();
+    expect(chat).toEqual([]);
+  });
+
   it("runs on flat run-flat tyres at -1 Handling and top speed less 20%, on the figures the rules read (p. 229)", async () => {
     const aml = vehicleActor("Panhard AML60-7", { dr: 35, locations: "T4W", range: 375, roadBound: false });
     const stats = (vehicle: any) => call("gworld.vehicleStats", { vehicle, handling: 1, stability: 4, acceleration: 3, topSpeed: 28, move: { locomotion: "wheels", acceleration: 3, topSpeed: 28 }, lines: [] });

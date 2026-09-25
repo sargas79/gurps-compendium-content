@@ -45,6 +45,7 @@ import {
   ALARM_TASKS,
   DIGITAL_STETHOSCOPE,
   ELECTRICIAN,
+  EOD_SKILL,
   KEYCARD_LOG_COST,
   KEY_SWITCH_SKILLS,
   LOCK_TASKS,
@@ -66,6 +67,7 @@ import {
   keycardOf,
   magneticSize,
   securityFenceCost,
+  stethoscopeBonus,
   supplementScreener,
   type AlarmTask,
   type LockTask,
@@ -191,6 +193,8 @@ interface TaskAnswer {
   professional: boolean;
   /** Hearing the mechanism helps, for the digital stethoscope's +3. */
   hearing: boolean;
+  /** Noise imposes a penalty: the stethoscope cancels -1 of it. */
+  noisy?: boolean;
   grade: LockQuality;
   /** The magnetic lock's ST. */
   st: number;
@@ -236,6 +240,7 @@ export async function electricSecurity(api: GWorldApi, on: ElectricSecuritySwitc
       : "")
     + (on.electricLocks()
       ? row(F("Hearing", { bonus: DIGITAL_STETHOSCOPE.hearing }), box("hearing", true))
+        + row(L("EodNoisy"), box("noisy"))
         + row(L("LockSt"), `<input type="number" name="st" value="${targetedMagneticSt()}" min="1" step="1" style="width:70px" />`)
       : ""),
     (form): TaskAnswer => {
@@ -249,6 +254,7 @@ export async function electricSecurity(api: GWorldApi, on: ElectricSecuritySwitc
         ownBatteries: check("ownBatteries"),
         professional: check("professional"),
         hearing: check("hearing"),
+        noisy: check("noisy"),
         grade: (value("grade") || "basic") as LockQuality,
         st: Math.max(1, Number(value("st")) || 24),
       };
@@ -263,8 +269,11 @@ export async function runElectricTask(api: GWorldApi, actor: any, answer: TaskAn
   const title = L(`Task.${answer.task}`);
   const roll = (skill: string, modifiers: Array<{ label: string; value: number }> = [], extra: Record<string, unknown> = {}) =>
     api.roll.success({ actor, base: skillBase(api, actor, skill), skill, label: F("RollLabel", { task: title, skill }), modifiers, tags: ["securitySystem"], ...extra } as any) as Promise<any>;
-  // The digital stethoscope: +3 to defeat a security device where hearing its mechanism helps (HT:EE p. 42).
-  const byEar = on.electricLocks() && answer.hearing && carries(actor, isDigitalStethoscope) ? [{ label: L("StethoscopeLine"), value: DIGITAL_STETHOSCOPE.hearing }] : [];
+  // The digital stethoscope: +3 to defeat a security device where hearing its mechanism helps,
+  // and -1 of a noise penalty cancelled (HT:EE p. 42).
+  const byEar = on.electricLocks() && answer.hearing && carries(actor, isDigitalStethoscope)
+    ? [{ label: L("StethoscopeLine"), value: stethoscopeBonus(DIGITAL_STETHOSCOPE.hearing, answer.noisy === true) }]
+    : [];
   switch (answer.task) {
     case "spot":
       // The same roll as High-Tech's (p. 205): Vision-5, Observation, Per-based Traps, or the contest with Camouflage (HT:EE p. 43).
@@ -321,6 +330,22 @@ export async function runElectricTask(api: GWorldApi, actor: any, answer: TaskAn
   }
 }
 
+/**
+ * Listening to a mechanical bomb with the digital stethoscope (HT:EE p. 42):
+ * +1 to the next Explosives (EOD) roll to find or defuse it, and 1 more where
+ * noise imposes a penalty, held on the character until that roll
+ * (`actors.addPendingModifier`).
+ */
+export async function listenToBomb(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const answer = await ask(L("EodTitle"), `<p class="ihint">${esc(L("EodHint"))}</p>` + row(L("EodNoisy"), `<input type="checkbox" name="noisy">`),
+    (form) => ({ noisy: form.querySelector<HTMLInputElement>('[name="noisy"]')?.checked === true }));
+  if (!answer) return;
+  const value = stethoscopeBonus(DIGITAL_STETHOSCOPE.eod, answer.noisy);
+  await api.actors.addPendingModifier(actor, { label: F("EodLine", { name: nameOf(item) }), value, skill: EOD_SKILL } as any);
+  await card(actor, nameOf(item), [F("EodHeld", { name: actor.name, bonus: signed(value), skill: EOD_SKILL })]);
+}
+
 /** Registers the sheet section, the price, the screening button, the GM tool and the fence hooks. */
 export function readyElectricSecurity(api: GWorldApi, on: ElectricSecuritySwitches): void {
   api.sheets.registerSheetSection({
@@ -363,6 +388,16 @@ export function readyElectricSecurity(api: GWorldApi, on: ElectricSecuritySwitch
     icon: "fa-solid fa-magnifying-glass",
     visible: (item) => on.alarms() && isGear(item) && ours(item) && supplementScreener(nameOf(item)) !== null,
     run: (item, actor) => { void screen(api, item, actor, supplementScreener(nameOf(item))); },
+  });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-ee-stethoscope-eod",
+    itemTypes: ["equipment"],
+    label: L("EodTitle"),
+    icon: "fa-solid fa-stethoscope",
+    visible: (item) => on.electricLocks() && isGear(item) && ours(item) && isDigitalStethoscope(nameOf(item)),
+    run: (item, actor) => { void listenToBomb(api, item, actor); },
   });
 
   registerFenceHooks(api, on.fences);

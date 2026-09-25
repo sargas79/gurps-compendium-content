@@ -16,10 +16,14 @@
  *     in the hand.
  *   - **Booby traps and improvised grenades** (pp. 190-191): the rolls to rig
  *     one and to make one.
- *   - **A Molotov cocktail through an engine grating** (p. 191): the vehicle's
- *     HT rolls while the fire burns, and what they cost its engine.
+ *   - **A Molotov cocktail through an engine grating** (p. 191): an attack
+ *     option aims it there, a vital area at -3; a hit runs the vehicle's HT
+ *     rolls while the fire burns, and what they cost its engine (the row
+ *     action runs them for a hit the table settled otherwise).
  *   - **Smoke, white phosphorus, thermite and flashbangs** (pp. 192-193): the
- *     cloud a smoke or WP grenade leaves; WP's fragments burn and go on
+ *     cloud a smoke or WP grenade leaves, and the M7's tear gas, rolled for
+ *     everyone in it as a tear-gas round's is; the canister's burn to bare
+ *     flesh on the card; WP's fragments burn and go on
  *     burning; the AN-M14 burns as thermite (through the incendiaries'
  *     engine); a flashbang is resisted at +5 for each of Protected Hearing and
  *     Protected Vision, and its stun recovered at HT-5.
@@ -29,6 +33,7 @@ import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
 import { placeArea } from "../../../shared/areas.js";
 import { smokeAreaLines } from "../../../shared/smoke/rules.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { releaseTearGas } from "../ammunition/cargo.js";
 import { HT_SMOKE_TABLE } from "../ammunition/explosive.js";
 import { eyeBonus, hearingBonus } from "../explosives/rules.js";
 import {
@@ -49,6 +54,8 @@ import {
 import { F, L, ask, checkbox, clockNow, d6, formulaOf, hint, isActiveGm, mainMode, number, roll3d, row, say, secondsSince, skillRoll, targetedTokens, type ClockStamp } from "./common.js";
 
 const RPG43_OPTION = "ht-rpg43-technique";
+const MOLOTOV_OPTION = "ht-molotov-grating";
+const isMolotov = (item: any): boolean => /\bmolotov\b/i.test(String(item?.name ?? ""));
 const FLASHBANG_FLAG = "htFlashbangStun";
 
 /** What a grenade stack keeps: primed, armed, and when its fuse started. */
@@ -285,33 +292,77 @@ export function readyGrenades(api: GWorldApi, on: () => boolean): void {
   } as any);
 
   // ── a Molotov cocktail through an engine grating (p. 191) ──
+  /** The fire in a vehicle's engine: its HT rolled at once and every 3 seconds until it burns out. */
+  const engineFireCard = async (actor: any, target: any, ht: number) => {
+    let burn = 0;
+    for (let i = 0; i < MOLOTOV_ENGINE.burnDice; i += 1) burn += d6();
+    const seconds = burn * MOLOTOV_ENGINE.burnTimes;
+    const result = engineFire(ht, seconds, Array.from({ length: engineChecks(seconds) }, roll3d));
+    const vehicle = String(target?.name ?? L("Engine.TheVehicle"));
+    await say(actor, L("Engine.Title"), [
+      F("Engine.Burns", { vehicle, seconds }),
+      ...result.checks.map((c) => F(c.success ? "Engine.CheckMade" : "Engine.CheckFailed", { second: c.second, roll: c.roll, ht })),
+      F(`Engine.${result.fate}`, { vehicle }),
+    ]);
+  };
+  const vehicleHtOf = (target: any): number | null => {
+    const ht = Number(target?.system?.vehicle?.ht);
+    return Number.isFinite(ht) && ht > 0 ? ht : null;
+  };
+
+  // Aimed at the grating: a vital area, -3 to hit (p. B554); a hit sets the engine burning.
+  api.combat.registerAttackOption({
+    module: MODULE_ID,
+    key: MOLOTOV_OPTION,
+    label: L("Engine.Option"),
+    available: (context: any) => on() && isMolotov(context?.item),
+    apply: () => ({ modifiers: [{ label: L("Engine.Option"), value: MOLOTOV_ENGINE.toHit }] }),
+  } as any);
+  // The throw at the grating, kept from the attack's modifiers to its roll. Every attack
+  // clears what an earlier one left, so a refused throw is never picked up by the next.
+  // The fire starts on the attack roll's success: the API tells nothing after a vehicle's
+  // defense, so a Molotov the vehicle dodges still burns (the GM ignores the card).
+  const molotovs = new Map<string, any>();
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    const key = String(context?.actor?.uuid ?? "");
+    molotovs.delete(key);
+    if (!on() || !isMolotov(context?.item) || context.options?.[`${MODULE_ID}.${MOLOTOV_OPTION}`] !== true || context.refusal) return;
+    molotovs.set(key, context.targetTokens?.[0]?.actor ?? context.targets?.[0] ?? null);
+  });
+  Hooks.on(api.combat.hooks.afterSuccessRoll, (context: any) => {
+    const key = String(context?.actor?.uuid ?? "");
+    if (!(context?.tags ?? []).includes("attack") || !molotovs.has(key)) return;
+    if (context.item && !isMolotov(context.item)) return void molotovs.delete(key);
+    const target = molotovs.get(key);
+    molotovs.delete(key);
+    if (!on() || !context.outcome?.success || !context.actor?.isOwner) return;
+    void (async () => {
+      let ht = vehicleHtOf(target);
+      if (ht === null) {
+        const value = await ask(L("Engine.Title"), [row(L("Engine.Ht"), number("ht", 10, "1")), hint(L("Engine.HitHint"))].join(""), L("Engine.Action"));
+        if (!value) return;
+        ht = Math.max(1, Math.floor(Number(value("ht")) || 10));
+      }
+      await engineFireCard(context.actor, target, ht);
+    })();
+  });
+
   api.sheets.registerRowAction({
     module: MODULE_ID,
     key: "ht-molotov-engine",
     itemTypes: ["equipment"],
     label: L("Engine.Action"),
     icon: "fa-solid fa-car-burst",
-    visible: (item: any) => on() && /\bmolotov\b/i.test(String(item?.name ?? "")),
-    run: (item: any, actor: any) => {
+    visible: (item: any) => on() && isMolotov(item),
+    run: (_item: any, actor: any) => {
       void (async () => {
         const target = targetedTokens()[0]?.actor ?? null;
-        const vehicleHt = Number(target?.system?.vehicle?.ht);
         const value = await ask(L("Engine.Title"), [
-          row(L("Engine.Ht"), number("ht", Number.isFinite(vehicleHt) && vehicleHt > 0 ? vehicleHt : 10, "1")),
+          row(L("Engine.Ht"), number("ht", vehicleHtOf(target) ?? 10, "1")),
           hint(F("Engine.Hint", { penalty: MOLOTOV_ENGINE.toHit })),
         ].join(""), L("Engine.Action"));
         if (!value) return;
-        const ht = Math.max(1, Math.floor(Number(value("ht")) || 10));
-        let burn = 0;
-        for (let i = 0; i < MOLOTOV_ENGINE.burnDice; i += 1) burn += d6();
-        const seconds = burn * MOLOTOV_ENGINE.burnTimes;
-        const result = engineFire(ht, seconds, Array.from({ length: engineChecks(seconds) }, roll3d));
-        const vehicle = String(target?.name ?? L("Engine.TheVehicle"));
-        await say(actor, L("Engine.Title"), [
-          F("Engine.Burns", { vehicle, seconds }),
-          ...result.checks.map((c) => F(c.success ? "Engine.CheckMade" : "Engine.CheckFailed", { second: c.second, roll: c.roll, ht })),
-          F(`Engine.${result.fate}`, { vehicle }),
-        ]);
+        await engineFireCard(actor, target, Math.max(1, Math.floor(Number(value("ht")) || 10)));
       })();
     },
   } as any);
@@ -322,10 +373,19 @@ export function readyGrenades(api: GWorldApi, on: () => boolean): void {
     const item = context?.item;
     const facts = on() ? grenadeOf(item) : null;
     if (!facts?.cloud || !item?.isOwner) return;
+    const name = String(item.name ?? "");
+    const hot = facts.hotCanister ? [F("HotCanister", { dice: facts.hotCanister })] : [];
+    if (facts.tearGas) {
+      void (async () => {
+        const lines = await releaseTearGas(api, context.actor, name, facts.cloud!.radius, facts.cloud!.seconds);
+        await say(context.actor, name, lines ? [...lines, ...hot] : [L("CloudNoPlace")]);
+      })();
+      return;
+    }
     const lines = smokeAreaLines(HT_SMOKE_TABLE[facts.whitePhosphorus ? "hot" : "screening"], { vision: (value) => F("CloudVision", { value }), sensors: L("CloudSensors") });
     void (async () => {
-      const id = await placeArea(api, { key: "ht-grenade-smoke", label: String(item.name ?? ""), actor: context.actor, radiusYards: facts.cloud!.radius, seconds: facts.cloud!.seconds, lines });
-      await say(context.actor, String(item.name ?? ""), [id ? F("CloudPlaced", { radius: facts.cloud!.radius, seconds: facts.cloud!.seconds }) : L("CloudNoPlace")]);
+      const id = await placeArea(api, { key: "ht-grenade-smoke", label: name, actor: context.actor, radiusYards: facts.cloud!.radius, seconds: facts.cloud!.seconds, lines });
+      await say(context.actor, name, id ? [F("CloudPlaced", { radius: facts.cloud!.radius, seconds: facts.cloud!.seconds }), ...hot] : [L("CloudNoPlace")]);
     })();
   });
 

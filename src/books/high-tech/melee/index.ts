@@ -30,7 +30,9 @@
  *     prod: the seconds held in contact as an attack option, a victim who
  *     fails stunned with no recovery roll for those seconds and (20 - HT)
  *     more (`holdRecovery`, GWorld API 1.89.0), then recovering at HT-3; the
- *     victim's armour on the roll to resist, metallic armour held to DR 1.
+ *     victim's armour on the roll to resist, metallic armour held to DR 1;
+ *     the cattle prod's 1d-3 burn only on a location no worn armour
+ *     protects (`gworld.armorDr`).
  *   - **High-tech bows (highTechBows):** a bow or crossbow built compound
  *     (double cost, two ST more for damage and range), bow sights (+$100,
  *     +1 Acc to a skilled user, -1 to one unfamiliar with them) and string
@@ -657,6 +659,16 @@ export function readyHighTechMelee(api: GWorldApi, on: MeleeSwitches): void {
       effects: { modifiers: [{ label: F("ShockLine", { weapon: nameOf(item) }), value: CONTACT_STUN.recovery, rolls: ["stunRecovery"] }] },
     });
     void say(context.actor, nameOf(item), [F("Stunned", { name: String(context.actor?.name ?? ""), held, seconds, recovery: CONTACT_STUN.recovery })]);
+  });
+
+  // The cattle prod burns skin: its 1d-3 burn reaches only an unprotected
+  // location (p. 199), so worn armour with any DR there stops all of it.
+  Hooks.on(api.combat.hooks.armorDr, (context: any) => {
+    const item = context?.item;
+    if (!on.stun() || context?.damageType !== "burn" || !stunsOnContact(item) || !/^cattle prod\b/i.test(nameOf(item)) || !Array.isArray(context.lines)) return;
+    const worn = context.lines.find((l: any) => l && l.applies !== false && l.source !== "natural" && (Number(l.dr) || 0) > 0);
+    if (!worn) return;
+    context.lines.push({ label: F("ProdProtected", { armour: String(worn.label ?? "") }), dr: Math.max(1, Math.ceil(Number(context.basicDamage) || 0)), applies: true, forceField: false, flexible: false, hardened: 0, source: MODULE_ID });
   });
 
   // Recovered: the shock's penalty goes with the stun.

@@ -196,10 +196,29 @@ export function hoursText(hours: number): { value: number; unit: "hr" | "day" | 
   return { value: Math.round(hours * 10) / 10, unit: "hr" };
 }
 
-/** An endurance counted in uses, as Ultra-Tech's stasis gear's "C/10 uses" (p. 194): the number of uses, or null. */
+/** What an endurance may be counted in besides time: uses, and High-Tech's tests, readings and quarts. */
+export const COUNTED_UNITS = ["uses", "tests", "readings", "quarts"] as const;
+export type CountedUnit = (typeof COUNTED_UNITS)[number];
+
+const COUNTED = /^\s*([\d,]+)\s*(uses?|tests?|readings?|quarts?)\.?\s*$/i;
+
+/**
+ * An endurance counted in uses, as Ultra-Tech's stasis gear's "C/10 uses"
+ * (p. 194), or in what a gadget does with each: High-Tech's clinical
+ * analyzer's "300 tests" (p. 223), a thermometer's "1,000 readings" (p. 222),
+ * a water purifier's "200 quarts" (p. 59). The number, or null.
+ */
 export function enduranceUses(text: string | null | undefined): number | null {
-  const m = /^\s*([\d,]+)\s*uses?\.?\s*$/i.exec(String(text ?? ""));
+  const m = COUNTED.exec(String(text ?? ""));
   if (!m) return null;
   const uses = Number(m[1]!.replace(/,/g, ""));
   return Number.isFinite(uses) && uses > 0 ? uses : null;
+}
+
+/** What a counted endurance counts ("uses", "tests", "readings", "quarts"), or null for one that isn't counted. */
+export function enduranceUnit(text: string | null | undefined): CountedUnit | null {
+  const m = COUNTED.exec(String(text ?? ""));
+  if (!m) return null;
+  const word = m[2]!.toLowerCase();
+  return COUNTED_UNITS.find((unit) => unit.startsWith(word.replace(/s$/, ""))) ?? null;
 }

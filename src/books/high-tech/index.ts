@@ -459,7 +459,7 @@ function ready(api: GWorldApi): void {
   const ammunition = {
     upgrades: rule("ammunitionUpgrades"), handloading: rule("handloading"), misloading: rule("misloading"),
     projectiles: rule("projectileOptions"), exotic: rule("exoticBullets"), multiple: rule("multipleProjectileLoads"), projectileUpgrades: rule("projectileUpgrades"),
-    explosive: rule("explosiveProjectiles"), cargo: rule("cargoProjectiles"),
+    explosive: rule("explosiveProjectiles"), cargo: rule("cargoProjectiles"), gas: rule("grenadeHandling"),
   };
   // The loads first: what the gun fires is its own row before the setting (underwater, sights, bursts) changes it.
   readyAmmunition(api, ammunition);
