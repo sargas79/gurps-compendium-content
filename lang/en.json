@@ -10958,7 +10958,9 @@
         "RepairLine": "Unhardened electronics after an NNEMP",
         "Repaired": "It works again.",
         "NotRepaired": "It still doesn't work.",
-        "UseRepair": "Shut down by an NNEMP: use the repair row action."
+        "UseRepair": "Shut down by an NNEMP: use the repair row action.",
+        "SetUpRoll": "Setting up {name}'s charge",
+        "NotSetUp": "{name}'s charge isn't set up right: it doesn't go off (HT:EE p. 50)."
       },
       "Electricity": {
         "Tool": "Electrical hazards",
