@@ -56,7 +56,7 @@ beforeEach(() => {
   const api: any = {
     combat: { hooks: { equipmentFailure: "f", reactionModifiers: "r" } },
     data: { registerPriceModifier: (m: any) => { gadgetPrice = (item) => m.apply(item, { cost: item.system.cost, weight: item.system.weight }); } },
-    sheets: { registerSheetSection: () => undefined },
+    sheets: { registerSheetSection: () => undefined, registerRowAction: () => undefined },
   };
   // Registers the sizing adjuster on the cell engine, once for the file.
   readyGadgets(api);

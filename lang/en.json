@@ -1919,7 +1919,7 @@
       "Rules": {
         "gadgetOptions": {
           "Name": "Gadget options and statistics",
-          "Hint": "Disguised, styling, rugged, cheap and expensive as options on an item that reprice it from the table's figures, and the hit points, HT and DR the book assumes for a gadget that states none. A rugged gadget is HT 12 with twice the DR, a fifth heavier and twice the price."
+          "Hint": "Disguised, styling, rugged, cheap and expensive as options on an item that reprice it from the table's figures, and the hit points, HT and DR the book assumes for a gadget that states none. A rugged gadget is HT 12 with twice the DR, a fifth heavier and twice the price. Gear worth maintaining has a maintenance-check button, each check missed or failed a point of HT off its equipment failure rolls until a major repair puts it back (Campaigns pp. 484-485)."
         },
         "adjustingForSm": {
           "Name": "Adjusting for SM",
@@ -2150,7 +2150,23 @@
         "Antique": "Obsolete at TL{campaign}: carried as LC{lc} rather than LC{was}.",
         "Maintained": "Worth maintenance checks at TL{campaign}: it costs more than ${threshold}.",
         "Simple": "Too simple to maintain at TL{campaign}: under ${threshold}, assume it works indefinitely.",
-        "Rugged": "Rugged"
+        "Rugged": "Rugged",
+        "MaintenanceAction": "Maintenance check",
+        "MaintenanceHint": "A maintenance check against a technical skill; a check missed or failed costs the gadget a point of HT on all its HT rolls, until a major repair puts it back (Campaigns p. 485; Ultra-Tech p. 14).",
+        "MaintenanceSkill": "Skill",
+        "MaintenanceMissed": "The check was missed",
+        "MaintenanceLabel": "{skill}: maintenance of {name}",
+        "MaintenanceKept": "Maintained: it keeps its HT.",
+        "MaintenanceFailed": "The check failed: -1 HT, {missed} point(s) lost to maintenance in all.",
+        "MaintenanceSkipped": "The check was missed: -1 HT, {missed} point(s) lost to maintenance in all.",
+        "MissedChecks": "{missed} point(s) of HT lost to missed or failed maintenance checks.",
+        "MissedChecksLine": "Missed maintenance (-{missed} HT)",
+        "RestoreAction": "Repair lost HT",
+        "RestoreHint": "Each point of HT lost to maintenance comes back as a major repair: the repair skill at an extra -2, with parts costing 1d x 10% of the price (Campaigns pp. 484-485).",
+        "RestoreLabel": "{skill}: major repair of {name}",
+        "MajorRepair": "Major repair",
+        "RestoreFailed": "The repair fails; the parts cost ${parts}.",
+        "Restored": "A point of HT is back ({missed} still lost); the parts cost ${parts}."
       },
       "Power": {
         "Title": "Power",
@@ -4802,7 +4818,7 @@
       "Rules": {
         "equipmentOptions": {
           "Name": "Equipment options and statistics",
-          "Hint": "Gear takes options that reprice it: disguised (x2 mass-produced, x5 custom), styling in three tiers (+1 reaction from collectors and buyers for x2, +2 for x5, +3 for x10, while the piece is marked as shown), rugged (+2 HT, twice the DR, x2 cost, x1.2 weight), cheap (x1/2 cost, and either x1.5 weight or fragile at -2 HT and half the DR) and expensive (x2 cost, x2/3 weight); cheap and expensive leave the batteries out of the weight. Rugged, cheap and expensive aren't offered on clothing, weapons or armour. The item sheet shows HP, HT and DR as assumed (HT 10, rugged +2, good quality +1 and fine +2 on top), and whether gear under a thousandth of the campaign TL's average starting wealth may skip maintenance (High-Tech pp. 9-11)."
+          "Hint": "Gear takes options that reprice it: disguised (x2 mass-produced, x5 custom), styling in three tiers (+1 reaction from collectors and buyers for x2, +2 for x5, +3 for x10, while the piece is marked as shown), rugged (+2 HT, twice the DR, x2 cost, x1.2 weight), cheap (x1/2 cost, and either x1.5 weight or fragile at -2 HT and half the DR) and expensive (x2 cost, x2/3 weight); cheap and expensive leave the batteries out of the weight. Rugged, cheap and expensive aren't offered on clothing, weapons or armour. The item sheet shows HP, HT and DR as assumed (HT 10, rugged +2, good quality +1 and fine +2 on top), and whether gear under a thousandth of the campaign TL's average starting wealth may skip maintenance; gear worth maintaining has a maintenance-check button, each check missed or failed a point of HT off its equipment failure rolls until a major repair puts it back (High-Tech pp. 9-11; Campaigns pp. 484-485)."
         },
         "combinationGadgets": {
           "Name": "Combination gadgets",
@@ -5691,7 +5707,23 @@
         "Rugged": "Rugged",
         "Quality": "Quality ({quality})",
         "StylingLine": "Styling: {name}",
-        "BuiltIn": "Built {options} as listed: the list price already pays for it, and it isn't added again (tactical lights, High-Tech p. 52)."
+        "BuiltIn": "Built {options} as listed: the list price already pays for it, and it isn't added again (tactical lights, High-Tech p. 52).",
+        "MaintenanceAction": "Maintenance check",
+        "MaintenanceHint": "A maintenance check against a technical skill; a check missed or failed costs the gadget a point of HT on all its HT rolls, until a major repair puts it back (Campaigns p. 485; High-Tech p. 9).",
+        "MaintenanceSkill": "Skill",
+        "MaintenanceMissed": "The check was missed",
+        "MaintenanceLabel": "{skill}: maintenance of {name}",
+        "MaintenanceKept": "Maintained: it keeps its HT.",
+        "MaintenanceFailed": "The check failed: -1 HT, {missed} point(s) lost to maintenance in all.",
+        "MaintenanceSkipped": "The check was missed: -1 HT, {missed} point(s) lost to maintenance in all.",
+        "MissedChecks": "{missed} point(s) of HT lost to missed or failed maintenance checks.",
+        "MissedChecksLine": "Missed maintenance (-{missed} HT)",
+        "RestoreAction": "Repair lost HT",
+        "RestoreHint": "Each point of HT lost to maintenance comes back as a major repair: the repair skill at an extra -2, with parts costing 1d x 10% of the price (Campaigns pp. 484-485).",
+        "RestoreLabel": "{skill}: major repair of {name}",
+        "MajorRepair": "Major repair",
+        "RestoreFailed": "The repair fails; the parts cost ${parts}.",
+        "Restored": "A point of HT is back ({missed} still lost); the parts cost ${parts}."
       },
       "Equipment": {
         "ItemTitle": "High-Tech equipment",
