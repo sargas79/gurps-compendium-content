@@ -784,3 +784,10 @@ describe("High-Tech's tools in play (pp. 24-31)", () => {
     expect(sys("Pocket Torch Refill").cost).toBe(1);
   });
 });
+
+describe("the supplement's special-purpose devices", () => {
+  it("makes its GPS navigation gear, +3 to Navigation under High-Tech's rule (HT:EE p. 39)", () => {
+    const gps = named(read(join(PACKS, "equipment", "high-tech-ee-computation-warfare-by-hand.json")), "GPS");
+    expect(gps.system.extensions["gurps-compendium-content"].expedition).toEqual({ navigation: "gps" });
+  });
+});

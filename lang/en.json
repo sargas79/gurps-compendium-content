@@ -5058,7 +5058,7 @@
         },
         "computerInterfaces": {
           "Name": "Computer interfaces (Electricity and Electronics)",
-          "Hint": "The interface a High-Tech computer is worked through: text, graphic, touch screen, VR, voice or brain-computer. Each is a familiarity, -2 until learned under the familiarity rule, and needs a computer of Complexity 1, 2, 2, 3, 4 or 6 to drive it. A touch screen's modifier to Computer Operation by size and multitouch, a carried stylus's +1, voice control's -2 (and -2 more until trained to its user), a touch screen from before 1988 at -2, and a brain-computer interface's -2 go on rolls made with the computer or a program on it. A light pen calls for an HT roll every 10 minutes: 1 FP on a failure, and 1 HP too on a critical failure (High-Tech: Electricity and Electronics pp. 39-41)."
+          "Hint": "The interface a High-Tech computer is worked through: text, graphic, touch screen, VR, voice or brain-computer. Each is a familiarity, -2 until learned under the familiarity rule, and needs a computer of Complexity 1, 2, 2, 3, 4 or 6 to drive it. A touch screen's modifier to Computer Operation by size and multitouch, a carried stylus's +1, voice control's -2 (and -2 more until trained to its user), a touch screen from before 1988 at -2, and a brain-computer interface's -2 go on rolls made with the computer or a program on it. A light pen calls for an HT roll every 10 minutes: 1 FP on a failure, and 1 HP too on a critical failure (High-Tech: Electricity and Electronics pp. 39-41). The tasks' own figures go on too: a text interface's -1 to navigate by the arrow keys and a VR headset offsetting up to -2 of a Computer Operation roll's penalties, each ticked on the computer's \"Work it\" row for the task it fits, typing on a touch screen -1 without a keyboard, and wired gloves (ticked on a VR computer) -2 to DX-based skills (Electricity and Electronics pp. 40-41)."
         },
         "programmingLanguages": {
           "Name": "Programming languages (Electricity and Electronics)",
@@ -5150,7 +5150,7 @@
         },
         "radioTuning": {
           "Name": "Radio tuning and interference",
-          "Hint": "The tuning roll to pick up a faint signal or one through interference, from the supplement Electricity and Electronics: Electronics Operation (Communications) at -1 per 10% past the standard range, -1 to -10 for interference (-10 blocks the signal) or up to +4 for a strong, clear one, the listener's Hearing modifiers, or +1 in their place with a galvanometer, and +4 for a software-defined radio (the radio peripheral, 35 miles). A clear signal in range needs no roll. A coil-tuned set drifts, so the listener rolls again every 10 minutes; a TL6 set is taken to be coil-tuned. In the radio range tool and as a row button on a radio (Electricity and Electronics pp. 27, 29-30)."
+          "Hint": "The tuning roll to pick up a faint signal or one through interference, from the supplement Electricity and Electronics: Electronics Operation (Communications) at -1 per 10% past the standard range, -1 to -10 for interference (-10 blocks the signal) or up to +4 for a strong, clear one, the listener's Hearing modifiers, or +1 in their place with a galvanometer, and +4 for a software-defined radio (the radio peripheral, 35 miles). A clear signal in range needs no roll. A coil-tuned set drifts, so the listener rolls again every 10 minutes; a TL6 set is taken to be coil-tuned. In the radio range tool and as a row button on a radio (Electricity and Electronics pp. 27, 29-30). A digital TV tuner adapted on a Computer Operation roll (its row button) is a radio peripheral that only receives, with no +4 (Electricity and Electronics p. 30)."
         },
         "radioAntennas": {
           "Name": "Radio antennas",
@@ -5162,11 +5162,11 @@
         },
         "radioDesign": {
           "Name": "Radio design",
-          "Hint": "Needs Radios and telegraphy. How a radio is built, from the supplement Electricity and Electronics, as options that reprice the radio: at TL6 a spark-gap set (code only, receive-only or send-only), its coherer, crystal or diode detector (x0.1 range; the crystal's spot is a roll, +2 or -2), its rotary spark gap (+1 quality, x5; ultra-high-speed +2, x20, with distorted audio) and its wideband transmitter (x1.25 weight, cells last a fifth as long); send-only (x0.9); quartz tuning (no drift, cutting edge at TL6); the grid-leak (range /5), regenerative (a roll to adjust; on a critical failure it oscillates and jams receivers within 440 yards) and superheterodyne (a Hearing roll to tune) receivers; audio (x2 on the supplement's code sets), FM (TL7, cutting edge at TL7), video (TL7) and digital video (TL8), x4 cost and x2 weight; a flatscreen television wall-mounted up to 64\" at x5 cost and weight, or larger at x20. The trench radio's transmitter and receiver are read as radios, and its wire as a dipole for its owner's radios (Electricity and Electronics pp. 28-30, 32, 34)."
+          "Hint": "Needs Radios and telegraphy. How a radio is built, from the supplement Electricity and Electronics, as options that reprice the radio: at TL6 a spark-gap set (code only, receive-only or send-only), its coherer, crystal or diode detector (x0.1 range; the crystal's spot is a roll, +2 or -2), its rotary spark gap (+1 quality, x5; ultra-high-speed +2, x20, with distorted audio) and its wideband transmitter (x1.25 weight, cells last a fifth as long); send-only (x0.9); quartz tuning (no drift, cutting edge at TL6); the grid-leak (range /5), regenerative (a roll to adjust; on a critical failure it oscillates and jams receivers within 440 yards) and superheterodyne (a Hearing roll to tune) receivers; audio (x2 on the supplement's code sets), FM (TL7, cutting edge at TL7), video (TL7) and digital video (TL8), x4 cost and x2 weight; a flatscreen television wall-mounted up to 64\" at x5 cost and weight, or larger at x20. The trench radio's transmitter and receiver are read as radios, and its wire as a dipole for its owner's radios (Electricity and Electronics pp. 28-30, 32, 34). A crystal set keeps no cells, a diode set one M cell for 14 hours; a rotary spark gap's quality goes on sending and faking a fist with its set; in the comm tool, speech to a coherer set doesn't come through, live video needs a set that sends it and one that receives it, and an FM set ignores static but is blocked by a signal as strong as the one it wants (Electricity and Electronics pp. 28, 32, 34)."
         },
         "rangefindingEmissions": {
           "Name": "Active rangefinding (Electricity and Electronics)",
-          "Hint": "With the active sensors: the sensor sweep's penalty past range in half steps (-1 at 1.5 times, -2 at twice, -3 at three times ...), the target's size at half its SM (rounded down), and dwelling 4 times as long to reach twice as far before the penalty, or 15 times as long for four times, which gives the target +2 or +4 to detect the emissions. A GM tool for detecting the targeted character's sonar or radar: nothing to roll within twice its range (1.5 times the halved range with LPI) and its arc, then -1 per further 20% of its range, out to -10. The supplement's ground-penetrating radar: a successful Electronics Operation (Scientific) sweep gives +2 to a skill it serves. A laser measuring tool carried gives +1 to Cartography and Engineer (High-Tech: Electricity and Electronics p. 35)."
+          "Hint": "With the active sensors: the sensor sweep's penalty past range in half steps (-1 at 1.5 times, -2 at twice, -3 at three times ...), the target's size at half its SM (rounded down), and dwelling 4 times as long to reach twice as far before the penalty, or 15 times as long for four times, which gives the target +2 or +4 to detect the emissions. A GM tool for detecting the targeted character's sonar or radar: nothing to roll within twice its range (1.5 times the halved range with LPI) and its arc, then -1 per further 20% of its range, out to -10. The supplement's ground-penetrating radar: a successful Electronics Operation (Scientific) sweep gives +2 to a skill it serves. A laser measuring tool carried gives +1 to Cartography and Engineer (High-Tech: Electricity and Electronics p. 35). A GPR's and thru-wall radar's radio waves, and a laser measuring tool's lidar, can be detected too."
         },
         "illumination": {
           "Name": "Illumination (Electricity and Electronics)",
@@ -5318,7 +5318,7 @@
         },
         "covertListening": {
           "Name": "Bugs, taps and countersurveillance (Electricity and Electronics)",
-          "Hint": "The supplement's covert listening. With surveillance gear on, a bug detector's sweep is -5 against a spread-spectrum (ECCM) bug (an isolator hides a bug only from a nonlinear junction detector), and a contact mike's roll -4 under white noise, which no longer defeats a laser mike outright. Row buttons: listen with a laser mike (-2 through heavy curtains or triple glazing, -1 to -4 for noise at TL7, -4 under white noise), trace a planted signal with a lock-in amplifier (+6, +10 at TL8), sweep with a nonlinear junction detector (a failure by 4 or more takes a stray object for a bug) and wire a keylogger into a typewriter. A GM tool builds and reads a computer-emissions interceptor (-1 per 100 yards past 300), times acoustic keylogging's typing sample and rolls its analysis on Electronics Operation (Surveillance), captures an RFID chip (-2, -1 per yard), makes a booster bag and improvises white noise from an FM receiver (High-Tech: Electricity and Electronics pp. 44-45)."
+          "Hint": "The supplement's covert listening. With surveillance gear on, a bug detector's sweep is -5 against a spread-spectrum (ECCM) bug (an isolator hides a bug only from a nonlinear junction detector), and a contact mike's roll -4 under white noise, which no longer defeats a laser mike outright. Row buttons: listen with a laser mike (-2 through heavy curtains or triple glazing, -1 to -4 for noise at TL7, -4 under white noise), trace a planted signal with a lock-in amplifier (+6, +10 at TL8), sweep with a nonlinear junction detector (a failure by 4 or more takes a stray object for a bug) and wire a keylogger into a typewriter. A GM tool builds and reads a computer-emissions interceptor (-1 per 100 yards past 300), times acoustic keylogging's typing sample and rolls its analysis on Electronics Operation (Surveillance), captures an RFID chip (-2, -1 per yard), makes a booster bag and improvises white noise from an FM receiver (High-Tech: Electricity and Electronics pp. 44-45). With surveillance gear off, a bug detector's row sweeps the supplement's way: Electronics Operation (Security), -5 against spread spectrum, a minute per 100 square feet, and nothing found of a device that only records."
         },
         "stunLethalFences": {
           "Name": "Electric fences (Electricity and Electronics)",
@@ -5342,11 +5342,11 @@
         },
         "battlefieldSensors": {
           "Name": "Battlefield sensors (Electricity and Electronics)",
-          "Hint": "The supplement's electronic battlefield. A device ticked as military gear is built rugged, HT 12 and DR 8 as an object, save what its record states. A row button watches through a surveillance camera: Observation at -4 (TL7) or -2 (TL8), in a Quick Contest with the targeted character's Stealth, Shadowing or Camouflage; pan/tilt/zoom, ticked on its sheet for $300 more, makes it -2 or no penalty, but an intruder who makes a Vision roll spots the camera. A row button listens with the seismic ground sensor: Electronics Operation (Surveillance) with the source's Size Modifier and speed as bonuses and the range as a penalty, off the Size and Speed/Range Table. A row button dumps chaff: until the dumper's next turn, -2 per package to a ranged attack at the craft made with a radar lock or by a missile homing by radar, and to an Electronics Operation (Sensors) roll against it (High-Tech: Electricity and Electronics pp. 45, 49)."
+          "Hint": "The supplement's electronic battlefield. A device ticked as military gear is built rugged, HT 12 and DR 8 as an object, save what its record states. A row button watches through a surveillance camera: Observation at -4 (TL7) or -2 (TL8), in a Quick Contest with the targeted character's Stealth, Shadowing or Camouflage; pan/tilt/zoom, ticked on its sheet for $300 more, makes it -2 or no penalty, but an intruder who makes a Vision roll spots the camera. A row button listens with the seismic ground sensor: Electronics Operation (Surveillance) with the source's Size Modifier and speed as bonuses and the range as a penalty, off the Size and Speed/Range Table. A row button dumps chaff: until the dumper's next turn, -2 per package to a ranged attack at the craft made with a radar lock or by a missile homing by radar, and to an Electronics Operation (Sensors) roll against it (High-Tech: Electricity and Electronics pp. 45, 49). A GM tool rolls the general surveillance tasks: spotting an intrusion (Observation, or Electronics Operation (Security) on an electronic readout, contested by a hiding intruder), keeping watch (Observation or Electronics Operation (Surveillance)), interpreting data (Intelligence Analysis), and countersurveillance, a Quick Contest of Electronics Operation (EW) against the observer (Electricity and Electronics p. 45)."
         },
         "reconDrones": {
           "Name": "Reconnaissance drones (Electricity and Electronics)",
-          "Hint": "A vehicle record's drone figures, on its sheet and set on the two UAVs: the autopilot's skill and Dodge, the remote control's bonus, the controller's range and the ceiling. The remote operator, named as the drone's controller outside its crew, makes its control roll, which takes the remote control's bonus while he is within the controller's range, and is refused past it or while the drone is above its ceiling; the figures show as a hint on the vehicle's Hnd/SR once it is on the road; a row button, or a GM tool for a drone on the map, rolls the autopilot's Piloting or its Dodge against obstacles, and the tool checks the controller's range to the targeted operator and the ceiling against the token's elevation, and offers the targeted operator the controls (High-Tech: Electricity and Electronics p. 46)."
+          "Hint": "A vehicle record's drone figures, on its sheet and set on the two UAVs: the autopilot's skill and Dodge, the remote control's bonus, the controller's range and the ceiling. The remote operator, named as the drone's controller outside its crew, makes its control roll, which takes the remote control's bonus while he is within the controller's range, and is refused past it or while the drone is above its ceiling; the figures show as a hint on the vehicle's Hnd/SR once it is on the road; a row button, or a GM tool for a drone on the map, rolls the autopilot's Piloting or its Dodge against obstacles, and the tool checks the controller's range to the targeted operator and the ceiling against the token's elevation, and offers the targeted operator the controls (High-Tech: Electricity and Electronics p. 46). A spread-spectrum control link (the T-Hawk's) is -4 to detect with signals intelligence, with the spread-spectrum rules on (Electricity and Electronics pp. 46-47)."
         },
         "electricStunners": {
           "Name": "Electric stunners",
@@ -5354,11 +5354,11 @@
         },
         "directedEnergyWeapons": {
           "Name": "Directed-energy weapons",
-          "Hint": "From the supplement Electricity and Electronics. The dazzler and the laser pointer blind for minutes equal to the margin, but only where the darkness at the victim is -2 or worse; DR does nothing, Protected Vision gives +5, a Nictitating Membrane +1 a level, and obscuring conditions +1 a point of their Vision penalty (an attack option). The acoustic hailing device's Moderate Pain lasts while the sound does; after a minute of it, a row action gives tinnitus (Hard of Hearing) for a minute a point of failure and an HT roll that keeps it 1d months, or for good on a critical failure. Protected Hearing gives +5 and prevents permanent loss; Deafness is immune. The Active Denial System's Agony lasts while in the beam, though the victim can move away, and a second after leaving it (Electricity and Electronics pp. 50-51)."
+          "Hint": "From the supplement Electricity and Electronics. The dazzler and the laser pointer blind for minutes equal to the margin, but only where the darkness at the victim is -2 or worse; DR does nothing, Protected Vision gives +5, a Nictitating Membrane +1 a level, and obscuring conditions +1 a point of their Vision penalty (an attack option). The acoustic hailing device's Moderate Pain lasts while the sound does; after a minute of it by the world's clock (or at once from a row action), tinnitus (Hard of Hearing) for a minute a point of failure and an HT roll that keeps it 1d months, or for good on a critical failure. Protected Hearing gives +5 and prevents permanent loss; Deafness is immune. The Active Denial System's Agony lasts while in the beam, though the victim can move away, and a second after leaving it: a token moved out of the 5-yard area where the beam came down, or a row action (Electricity and Electronics pp. 50-51)."
         },
         "nonNuclearEmp": {
           "Name": "Non-nuclear EMP",
-          "Hint": "From the supplement Electricity and Electronics. A row action sets off an NNEMP at the targeted characters within 220 yards, once its charge is set up on Explosives (Demolition): each device the GM picks rolls HT as an object, +3 if Hardened or purely electrical. A failure shuts it down until repaired, a row action with Electronics Repair at -6 for plain electronics. The device is spent (Electricity and Electronics p. 50)."
+          "Hint": "From the supplement Electricity and Electronics. A row action sets off an NNEMP at the targeted characters within 220 yards, once its charge is set up on Explosives (Demolition): each device the GM picks rolls HT as an object, +3 if Hardened or purely electrical. A failure shuts it down until repaired, a row action with Electronics Repair at -6 for plain electronics (at IQ-5 for someone who knows no specialty). The device is spent (Electricity and Electronics p. 50)."
         },
         "jammerKinds": {
           "Name": "Broad-spectrum and selective jammers",
@@ -5426,11 +5426,11 @@
         },
         "audioFidelity": {
           "Name": "Audio fidelity",
-          "Hint": "From the supplement Electricity and Electronics. A row action listens through a chain of the character's audio gear: Hearing to tell sounds apart, or Connoisseur (Music), at the weakest link's sound quality (a carbon microphone -5, a TL6 guitar amplifier -2, or a figure the GM sets), after an Electronics Operation roll to aim a parabolic microphone (then +2 for high sounds, +1 for speech) or a shotgun microphone (+3 to aim). The later microphones give +1 to Electronics Operation (Media); a carbon microphone has HT 12; the cheaper microphone costs a fifth; a better loudspeaker weighs twice as much a step. Headphones playing leave the wearer Hard of Hearing, -2 turned down, earbuds half that; the tactical headset gives Protected Hearing; the supplement's basic hydrophone rolls Electronics Operation (Sonar), +2 at TL7 and +4 at TL8, and fixes nothing (Electricity and Electronics pp. 30-31)."
+          "Hint": "From the supplement Electricity and Electronics. A row action listens through a chain of the character's audio gear: Hearing to tell sounds apart, or Connoisseur (Music), at the weakest link's sound quality (a carbon microphone -5, a TL6 guitar amplifier -2, or a figure the GM sets), after an Electronics Operation roll to aim a parabolic microphone (then +2 for high sounds, +1 for speech) or a shotgun microphone (+3 to aim). The later microphones give +1 to Electronics Operation (Media); a carbon microphone has HT 12; the cheaper microphone costs a fifth; a better loudspeaker weighs twice as much a step. Headphones playing leave the wearer Hard of Hearing, -2 turned down, earbuds half that; the tactical headset gives Protected Hearing; the supplement's basic hydrophone rolls Electronics Operation (Sonar), +2 at TL7 and +4 at TL8, and fixes nothing (Electricity and Electronics pp. 30-31). Recorders and players are links too: a narrow cassette no better than basic, and a recorder's row records through a chain, so what it plays back keeps its weakest link (Electricity and Electronics p. 33)."
         },
         "soundAmplification": {
           "Name": "Sound amplification",
-          "Hint": "From the supplement Electricity and Electronics. A row action addresses the targeted listeners through a public address system (16 yards), guitar amplifier (16 yards at TL6, 32 after), bullhorn (16 yards in front, 8 to the side, 4 behind; -2 to follow the words) or acoustic hailing device (256 yards in a 60-degree cone): each rolls Hearing at his distance against that base range (Campaigns p. 358). A bullhorn in hand gives +1 to Intimidation within 2 yards, a hailing device within 32. A public address system's extra speakers cost $20 and 3 lbs. each and share its battery. A worn hearing aid takes Hard of Hearing out of play as a Mitigator; an early aid's poor sound, set as its sound quality, is on its wearer's Hearing rolls (Electricity and Electronics p. 32)."
+          "Hint": "From the supplement Electricity and Electronics. A row action addresses the targeted listeners through a public address system (16 yards), guitar amplifier (16 yards at TL6, 32 after), bullhorn (16 yards in front, 8 to the side, 4 behind; -2 to follow the words) or acoustic hailing device (256 yards in a 60-degree cone): each rolls Hearing at his distance against that base range (Campaigns p. 358). A bullhorn in hand gives +1 to Intimidation within 2 yards, a hailing device within 32. A public address system's extra speakers cost $20 and 3 lbs. each and share its battery. A worn hearing aid takes Hard of Hearing out of play as a Mitigator; an early aid's poor sound, set as its sound quality, is on its wearer's Hearing rolls (Electricity and Electronics p. 32). Each listener's arc comes from the speaker's facing on the map, where both have tokens, as does the reach of the +1 to Intimidation; a guitar amplifier's row plays through it, the TL6 amplifier set up on Electronics Operation (Media) and -2 to play with distortion."
         },
         "electricAppliances": {
           "Name": "Electric appliances",
@@ -5438,7 +5438,7 @@
         },
         "powerTools": {
           "Name": "Power tools",
-          "Hint": "From the supplement Electricity and Electronics. The supplement's power drills (1d+2(2) pi++ against wood and plaster; an early model -2), circular saws (sw+3(2) cut, the compact saw sw+1(2), (5) with a diamond blade against concrete and brick), arc welder (3d(2) burn), hot plate (1d-3 burn) and soldering irons (1 point burn) get a Work row with Forced Entry, the damage for each second of work, as High-Tech's forced-entry tools do; wire cutters' 2d(2) cut, each use (Electricity and Electronics pp. 14, 21, 24; High-Tech pp. 25-30)."
+          "Hint": "From the supplement Electricity and Electronics. The supplement's power drills (1d+2(2) pi++ against wood and plaster; an early model -2), circular saws (sw+3(2) cut, the compact saw sw+1(2), (5) with a diamond blade against concrete and brick), arc welder (3d(2) burn), hot plate (1d-3 burn) and soldering irons (1 point burn) get a Work row with Forced Entry, the damage for each second of work, as High-Tech's forced-entry tools do; wire cutters' 2d(2) cut, each use (Electricity and Electronics pp. 14, 21, 24; High-Tech pp. 25-30). A circular saw's blow that cripples an arm or leg amputates it, for good (Electricity and Electronics p. 51)."
         },
         "electromedicine": {
           "Name": "Electromedicine",
@@ -5501,6 +5501,9 @@
         "Diamond": "Diamond blade",
         "DiamondHint": "An abrasive diamond blade for hard materials such as concrete or brick: (5) in place of (2) (HT:EE p. 24).",
         "DiamondNote": "Diamond blade",
+        "AmputatedLabel": "Amputated by {name}",
+        "Amputated": "{name}'s {location} is crippled by the saw, and amputated: it is lost for good.",
+        "Limb": {"arm": "arm", "leg": "leg"},
         "EarlyNote": "Early model {penalty}",
         "WorkMode": "Work",
         "WorkHint": "Roll the damage for each second the tool is worked against the thing, and apply it to the thing's DR and HP (HT:EE pp. 14, 21, 24; High-Tech pp. 25-30).",
@@ -8361,6 +8364,11 @@
         "TuningDrift": "Tuning: a roll to pick up a faint signal or one through interference; a coil-tuned set drifts, calling for another every {minutes} minutes.",
         "PeripheralRange": "A computer as a software-defined radio: range {range}.",
         "EnhancedTuningLine": "Enhanced tuning: +{bonus} to the tuning roll.",
+        "AdaptedTunerLine": "An adapted TV tuner: it only receives, and gives no bonus to tune in (Electricity and Electronics p. 30).",
+        "AdaptTunerTitle": "Adapt as a radio peripheral",
+        "AdaptTunerLabel": "Adapting {name} as a radio peripheral",
+        "TunerAdapted": "{name} works as a radio peripheral: it receives out to {range}, with no bonus to tune in.",
+        "TunerNotAdapted": "{name} isn't working as a radio yet; try again.",
         "DipoleBearing": "{name}: the other set lies",
         "Bearing": {
           "broadside": "Broadside to the dipole",
@@ -8452,8 +8460,8 @@
         "UltraRotaryLine": "Ultra-high-speed rotary spark gap: +{bonus} (quality) to send; its audio is distorted, {penalty} to understand speech and to Connoisseur (Music).",
         "Design": {
           "coherer": "Coherer: detects code only.",
-          "crystalDetector": "Crystal detector: unamplified, needs no power; a roll to find a sensitive spot, +2 to receive or -2.",
-          "diodeDetector": "Diode detector: unamplified, no roll; power only heats the filament.",
+          "crystalDetector": "Crystal detector: unamplified, needs no power (it keeps no cells); a roll to find a sensitive spot, +2 to receive or -2.",
+          "diodeDetector": "Diode detector: unamplified, no roll; power only heats the filament, M/14 hours on a set printed with M cells.",
           "wideband": "Wideband: its cells last a fifth as long, and neighbouring frequencies must be widely spaced.",
           "quartzTuning": "Quartz-crystal tuning: no drift.",
           "gridLeak": "Grid-leak receiver: range divided by 5.",
@@ -8469,6 +8477,14 @@
         "GroundAerialLine": "Laid as a ground aerial: {penalty} to Electronics Operation (Communications), hidden with a Camouflage roll.",
         "SendOnly": "{name} is send-only.",
         "DistortedAudio": "{name}'s audio is distorted: {penalty} to understand speech, and to Connoisseur (Music).",
+        "SendsSpeech": "Speech is sent, not code",
+        "SendsVideo": "Live video is sent",
+        "CohererCodeOnly": "{name}'s coherer detects code alone: the speech doesn't come through.",
+        "NoVideoSent": "{name} can't send video: it isn't built for video, or only receives.",
+        "NoVideoReceived": "{name} can't receive video: it isn't built for video, or only sends.",
+        "FmInterference": "The interference is",
+        "Fm": {"static": "Static (no trouble to FM)", "weaker": "A weaker signal on the frequency", "stronger": "An equal or stronger signal on the frequency"},
+        "FmBlocked": "{name} is FM: a signal as strong or stronger on its frequency blocks reception outright.",
         "CrystalLabel": "Finding a sensitive spot on {name}'s crystal",
         "CrystalFound": "{name}: a sensitive spot, {value} to receive.",
         "CrystalMissed": "{name}: a poor spot, {value} to receive.",
@@ -10772,14 +10788,21 @@
         "SingleTouch": "single-touch",
         "VoiceTrained": "Trained to its user's voice",
         "VoiceTrainedHint": "Until 8 hours of training, rolls to work it by spoken command are at -2 more (High-Tech: Electricity and Electronics p. 40).",
+        "WiredGloves": "Wired gloves",
+        "WiredGlovesHint": "Prototype wired gloves worn with the VR headset: -2 to skills of manual dexterity worked through it (Electricity and Electronics p. 41).",
+        "Work": "Work it",
+        "WorkTitle": "Computer Operation on {name}",
+        "WorkNavigating": "Navigating the display (arrow keys alone: -1)",
+        "WorkVr": "A task the VR headset helps with (offsets up to -2)",
+        "WorkHint": "Tick what the task is: the text interface's arrow keys and the headset's offset count only where they apply (Electricity and Electronics pp. 40-41).",
         "Familiar": "Familiar",
         "FamiliarHint": "Whether the character's familiarities list this interface. Unfamiliar, it is -2 to skill for the first 8 hours of use (High-Tech: Electricity and Electronics p. 39).",
         "TooLow": "{name} needs Complexity {needs}; this computer is Complexity {complexity} and can't drive it.",
         "Note": {
-          "text": "Navigating a display with the arrow keys alone is -1, which extra time can make up (High-Tech: Electricity and Electronics p. 40).",
+          "text": "Navigating the display by the arrow keys alone is -1 on Computer Operation, which extra time can make up: tick it on the \"Work it\" row (High-Tech: Electricity and Electronics p. 40).",
           "graphic": "A light pen held to the screen calls for an HT roll every 10 minutes (its row button) (High-Tech: Electricity and Electronics p. 40).",
-          "touch": "Typing on the touch screen is -1 unless a keyboard is added (High-Tech: Electricity and Electronics p. 40).",
-          "vr": "A VR headset offsets up to -2 of penalties on tasks it helps with; prototype wired gloves are -2 to skills of manual dexterity (High-Tech: Electricity and Electronics p. 41).",
+          "touch": "Typing on the touch screen is -1, unless the typist carries a keyboard to use with it (High-Tech: Electricity and Electronics p. 40).",
+          "vr": "The VR headset offsets up to -2 of the penalties on a Computer Operation task it helps with (tick it on the \"Work it\" row); wired gloves, ticked here, are -2 to DX-based skills worked through it (High-Tech: Electricity and Electronics p. 41).",
           "voice": "Voice control is -2 to Computer Operation and other skills for navigating a screen (High-Tech: Electricity and Electronics p. 40).",
           "bci": "A noninvasive interface's weak signals are -2 to skill, which extra time can make up (High-Tech: Electricity and Electronics p. 41)."
         },
@@ -10790,7 +10813,11 @@
           "voice": "Voice control",
           "voiceUntrained": "Voice control not yet trained",
           "bci": "Brain-computer interface",
-          "earlyTouch": "Early touch screen"
+          "earlyTouch": "Early touch screen",
+          "arrowKeys": "Arrow keys alone",
+          "touchTyping": "Typing on the touch screen",
+          "vr": "VR headset",
+          "wiredGloves": "Wired gloves"
         },
         "LanguageLabel": "Programmed in",
         "LanguageHint": "What programs for the computer are written in, for Computer Programming rolls made with it or a program on it (High-Tech: Electricity and Electronics p. 38).",
@@ -11114,6 +11141,14 @@
         "Area": "Area (square feet)",
         "Time": "{area} square feet take about {minutes} min.",
         "LockInTitle": "Trace a planted signal",
+        "DetectorTitle": "Sweep for bugs",
+        "DetectorLabel": "Sweeping with {name}",
+        "SpreadRow": "A bug using spread spectrum ({modifier})",
+        "SpreadLine": "Spread spectrum",
+        "RecordsOnlyRow": "The device only records, and transmits nothing",
+        "RecorderUnseen": "A device that records rather than transmits can't be found with a bug detector.",
+        "DetectorFound": "The detector picks up a transmitting bug or tap.",
+        "DetectorMissed": "The detector picks up nothing.",
         "LockInLabel": "Tracing with {name}",
         "LeakFound": "The signal is traced: the leak is found.",
         "LeakMissed": "No trace of the signal.",
@@ -11199,6 +11234,17 @@
         "RemoteLine": "Remote control: {bonus} to the operator's Piloting rolls.",
         "RangeLine": "Controller range: {miles} miles.",
         "CeilingLine": "Ceiling: {feet} feet.",
+        "Spread": "Spread-spectrum link",
+        "SpreadHint": "The drone and its controller talk by spread-spectrum radio: -4 to detect the link (Electricity and Electronics pp. 46-47).",
+        "SpreadLine": "Spread-spectrum control link: {detect} to detect it.",
+        "SurveyTitle": "Surveillance",
+        "WatchPick": "Select the character who watches, or works against the watchers.",
+        "ObserverPick": "Target the observer whose surveillance is disrupted.",
+        "TaskLabel": "Task",
+        "Task": {"intrusion": "Spot an intrusion or approach", "watch": "Keep watch on a known place", "interpret": "Interpret new data (Intelligence Analysis)", "counter": "Disrupt the observer's gear (Electronics Operation (EW))"},
+        "ReadoutLabel": "The system shows",
+        "Readout": {"visual": "Pictures (Observation)", "electronic": "An electronic readout (Electronics Operation (Security))"},
+        "Hiding": "The targeted intruder is hiding",
         "RemoteModifier": "Remote control",
         "AutopilotTitle": "Autopilot",
         "AutopilotRoll": "Roll",
@@ -11311,6 +11357,8 @@
         "EarbudsLine": "While playing, -2 to the wearer's other Hearing rolls; -1 turned down.",
         "SpeakerLine": "Twice the weight for each step of quality above basic.",
         "HeadsetLine": "Protected Hearing while worn.",
+        "CassetteLine": "A narrow cassette: no better than basic quality, whatever its grade.",
+        "RecordingLine": "Holds a recording at {value}, the weakest link of what it was recorded through ({from}).",
         "HydrophoneLine": "Electronics Operation (Sonar) {bonus} to hear under water; detects moving objects by size, speed and range, but fixes no target.",
         "Range": "Base Hearing range {yards} yards.",
         "ArcRange": "Base Hearing range {front} yards in front, {side} to the side, {rear} behind.",
@@ -11374,7 +11422,22 @@
         "InexpensivePrice": "Inexpensive (x0.2)",
         "SpeakerWeight": "Quality (weight)",
         "SpeakersPrice": "{count} extra speakers",
-        "HydrophoneTitle": "Listen (hydrophone)"
+        "HydrophoneTitle": "Listen (hydrophone)",
+        "RecordAction": "Record",
+        "RecordTitle": "Recording on {name}",
+        "RecordHint": "Tick each link the sound passes through to the recorder: what it plays back is no better than the weakest of them.",
+        "Recorded": "{name} holds the recording at {value}, the weakest of {count} links.",
+        "PlayAction": "Play through",
+        "PlayTitle": "Playing through {name}",
+        "InstrumentSkill": "Instrument",
+        "NoInstrument": "The character knows no Musical Instrument skill.",
+        "DistortionPenalty": "With distortion ({value})",
+        "DistortionFree": "With distortion (no extra penalty)",
+        "DistortionPlay": "Distortion through {name}",
+        "SetUpFirst": "Set it up first (Electronics Operation (Media))",
+        "SetUpRoll": "Setting up {name}",
+        "NotSetUp": "{name} isn't set up right: no sound comes out yet.",
+        "OutsideConeOf": "{name} stands outside the cone: the device isn't heard at its range."
       },
       "ElectronicWeapons": {
         "Skill": {
@@ -11398,7 +11461,7 @@
         "NotDarkAdapted": "{name}'s eyes are used to the light: the dazzle does nothing.",
         "AlreadyBlind": "{name} is blind already.",
         "Deaf": "{name} is deaf and immune to the sound.",
-        "HailedLine": "{name} is in Moderate Pain while the sound lasts; after a minute of it, use the device's row action for tinnitus.",
+        "HailedLine": "{name} is in Moderate Pain while the sound lasts; after a minute of it by the world's clock, tinnitus and its HT roll follow (or at once from the device's row action).",
         "HailMinute": "A minute of the sound: tinnitus",
         "HailStop": "The sound stops",
         "HailStopped": "The sound stops: the pain goes for {names}.",
@@ -11409,7 +11472,7 @@
         "TinnitusMonths": "{name} has tinnitus for {months} months.",
         "TinnitusPermanent": "{name}'s hearing loss is permanent.",
         "DenialCondition": "Active Denial: in the beam, free to flee",
-        "DenialLine": "{name} is in Agony while in the beam, and can still move away.",
+        "DenialLine": "{name} is in Agony while in the beam, and can still move away: out of the 5 yards where it came down, the Agony ends a second later.",
         "DenialLeave": "Victims leave the beam",
         "DenialLeft": "Out of the beam: {names}, in Agony for {seconds} second more.",
         "NoDenied": "Target the characters leaving the beam.",

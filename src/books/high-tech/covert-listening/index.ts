@@ -6,7 +6,11 @@
  *   - **High-Tech's own gear:** the bug detector's sweep takes -5 for a bug
  *     using spread spectrum (an isolator hides a bug only from the junction
  *     detector), and the contact mike's roll -4 under white noise (both High-Tech's buttons,
- *     under `surveillanceGear`, with this switch adding the lines). A row
+ *     under `surveillanceGear`, with this switch adding the lines). With
+ *     High-Tech's surveillance gear off, the bug detector's own row sweeps
+ *     the supplement's way: an Electronics Operation (Security) roll, -5
+ *     against spread spectrum, a minute per 100 square feet, and nothing
+ *     found of a device that only records. A row
  *     button listens with the laser mike: in range, -2 through heavy curtains
  *     or triple glazing, -1 to -4 for noise at TL7, -4 under white noise. The
  *     white noise generator's sheet says what it does to eavesdroppers and to
@@ -134,6 +138,37 @@ export async function listenWithLaser(api: GWorldApi, item: any, actor: any): Pr
   await api.roll.success({ actor, base: skillBase(api, actor, SURVEILLANCE), skill: SURVEILLANCE, label, modifiers, tags: ["hearing", "surveillance"], item } as any);
 }
 
+/**
+ * Sweeping a room with a bug detector the supplement's way (HT:EE p. 44),
+ * where High-Tech's surveillance gear is off: Electronics Operation
+ * (Security) to detect any bug or tap that includes a transmitter, -5 where
+ * it uses spread spectrum (ticked to start with where the targeted hider
+ * carries such a bug), a minute per 100 square feet. A device that records
+ * rather than transmits can't be found this way. (With High-Tech's switch
+ * on, its Quick Contest with the hider runs instead, the -5 in it.)
+ */
+export async function detectorSweep(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const target = picked().target;
+  const guarded = target ? guardsOf(target).spreadSpectrum : false;
+  const answer = await ask(L("DetectorTitle"),
+    row(L("Area"), numberInput("area", 100, 10))
+    + row(F("SpreadRow", { modifier: SPREAD_SPECTRUM }), checkbox("spread", guarded))
+    + row(L("RecordsOnlyRow"), checkbox("recordsOnly")),
+    (form) => ({ area: number(form, "area"), spread: check(form, "spread"), recordsOnly: check(form, "recordsOnly") }));
+  if (!answer) return;
+  const label = F("DetectorLabel", { name: item.name });
+  const time = F("Time", { minutes: sweepMinutes(answer.area), area: answer.area });
+  if (answer.recordsOnly) return void (await card(actor, label, [L("RecorderUnseen"), time]));
+  const result: any = await api.roll.success({
+    actor, base: skillBase(api, actor, SECURITY), skill: SECURITY, label, item, tags: ["surveillance", "bugSweep"],
+    modifiers: answer.spread ? [{ label: L("SpreadLine"), value: SPREAD_SPECTRUM }] : [],
+    ...(target ? { subject: target } : {}),
+  } as any);
+  if (!result || "refused" in result) return;
+  await card(actor, label, [L(result.success ? "DetectorFound" : "DetectorMissed"), time]);
+}
+
 /** Tracing a planted signal with a lock-in amplifier: Electronics Operation (Security) +6, +10 at TL8, a minute per 100 square feet (HT:EE p. 44). */
 export async function traceSignal(api: GWorldApi, item: any, actor: any): Promise<void> {
   if (!actor) return;
@@ -237,8 +272,12 @@ export async function runCovertJob(api: GWorldApi, actor: any, answer: { task: C
   }
 }
 
-/** Registers the section, the buttons and the GM tool. */
-export function readyCovertListening(api: GWorldApi, on: () => boolean): void {
+/**
+ * Registers the section, the buttons and the GM tool. `surveillance` is
+ * High-Tech's surveillance gear switch: while it is on, its own bug sweep
+ * runs, and the supplement's is not offered beside it.
+ */
+export function readyCovertListening(api: GWorldApi, on: () => boolean, surveillance: () => boolean = () => false): void {
   api.sheets.registerSheetSection({
     module: MODULE_ID,
     key: "ht-covert-item",
@@ -254,6 +293,7 @@ export function readyCovertListening(api: GWorldApi, on: () => boolean): void {
     { key: "ht-lock-in", label: L("LockInTitle"), icon: "fa-solid fa-wave-square", visible: named(isLockInAmplifier), run: (item: any, actor: any) => traceSignal(api, item, actor) },
     { key: "ht-junction-sweep", label: L("JunctionTitle"), icon: "fa-solid fa-bug", visible: named(isJunctionDetector), run: (item: any, actor: any) => junctionSweep(api, item, actor) },
     { key: "ht-keylogger-wire", label: L("WireTitle"), icon: "fa-solid fa-keyboard", visible: named(isKeylogger), run: (item: any, actor: any) => wireKeylogger(api, item, actor) },
+    { key: "ht-detector-sweep", label: L("DetectorTitle"), icon: "fa-solid fa-bug", visible: (item: any) => named((name) => /^bug detector$/i.test(name))(item) && !surveillance(), run: (item: any, actor: any) => detectorSweep(api, item, actor) },
   ];
   for (const action of actions) api.sheets.registerRowAction({ module: MODULE_ID, itemTypes: ["equipment"], ...action });
 }

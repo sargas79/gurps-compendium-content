@@ -103,10 +103,27 @@ export function driftsByDefault(tl: number): boolean {
   return tl <= 6;
 }
 
+/** A computer as a software-defined radio: its range, whether it tunes with the +4, and whether it can't transmit. */
+export interface RadioPeripheral {
+  range: number;
+  enhanced: boolean;
+  receiveOnly: boolean;
+}
+
 /** The radio peripheral: a computer as a software-defined radio, 35 miles, with enhanced tuning (HT:EE p. 30). */
-export const RADIO_PERIPHERALS: Readonly<Record<string, { range: number }>> = Object.freeze({
-  "Radio Peripheral": { range: 35 * MILE },
+export const RADIO_PERIPHERALS: Readonly<Record<string, RadioPeripheral>> = Object.freeze({
+  "Radio Peripheral": { range: 35 * MILE, enhanced: true, receiveOnly: false },
 });
+
+/**
+ * The digital TV tuner, adapted with downloaded software and a Computer
+ * Operation roll into a general-purpose radio peripheral (HT:EE p. 30): a
+ * radio peripheral's 35 miles, but less sensitive, so no bonus to
+ * Electronics Operation (Communications) -- no enhanced tuning -- and never
+ * a transmitter.
+ */
+export const TV_TUNER = "Digital TV Tuner";
+export const ADAPTED_TUNER: Readonly<RadioPeripheral> = Object.freeze({ range: 35 * MILE, enhanced: false, receiveOnly: true });
 
 /** What goes into a tuning roll. */
 export interface TuningInput {

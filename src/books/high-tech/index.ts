@@ -517,7 +517,7 @@ function ready(api: GWorldApi): void {
   readySigint(api, { sigint: rule("signalsIntelligence"), cipher: rule("cipherMachines") });
   readyHighTechArmor(api, { partial: rule("partialCoverage"), conceal: rule("concealedArmor"), materials: rule("armorMaterials") });
   readySurveillance(api, { screening: rule("securityScreening"), surveillance: rule("surveillanceGear"), jamming: rule("jamming"), jammerKinds: rule("jammerKinds"), radarJamming: rule("radarJamming"), covert: rule("covertListening") });
-  readyCovertListening(api, rule("covertListening"));
+  readyCovertListening(api, rule("covertListening"), rule("surveillanceGear"));
   readyElectricSecurity(api, electric);
   // After the devices' object figures, which military gear's HT and DR override.
   readyBattlefield(api, { sensors: rule("battlefieldSensors"), drones: rule("reconDrones"), seekers: rule("homingSeekers") });

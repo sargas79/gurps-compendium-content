@@ -19,14 +19,24 @@
  *       (Surveillance) with the source's Size Modifier and speed as bonuses
  *       and the range as a penalty, off the Size and Speed/Range Table
  *       (`rules.speedRangeModifier`, as High-Tech's hydrophone reads it).
+ *     - *Surveillance in general*: a GM tool rolls the supplement's
+ *       surveillance tasks for the selected character (HT:EE p. 45) --
+ *       spotting an intrusion (Observation, or Electronics Operation
+ *       (Security) on an electronic readout, a Quick Contest against the
+ *       targeted intruder's best hiding skill where he hides), keeping watch
+ *       on a known place (Observation or Electronics Operation
+ *       (Surveillance)), reading new data (Intelligence Analysis), and active
+ *       countersurveillance, a Quick Contest of Electronics Operation (EW)
+ *       against the targeted observer's skill.
  *     - *Chaff*: a row button dumps packages, and until the dumper's next
  *       turn each gives -2 to a ranged attack at the craft made with a radar
  *       lock or by a missile homing by radar (HT:EE p. 49), and to an
  *       Electronics Operation (Sensors) roll against it.
  *   - **Reconnaissance drones (reconDrones):** a vehicle record's drone
  *     data -- the autopilot's skill and Dodge, the remote control's bonus,
- *     the controller's range and the ceiling -- edited on its sheet and set
- *     on the two UAVs (HT:EE p. 46). The remote operator, the drone's
+ *     the controller's range, the ceiling and a spread-spectrum control link
+ *     (the T-Hawk's, -4 to detect with signals intelligence, `../sigint/`)
+ *     -- edited on its sheet and set on the two UAVs (HT:EE pp. 46-47). The remote operator, the drone's
  *     `controller` outside its crew (API 1.154.0), makes its control roll,
  *     tagged `remoteControl`: it takes the remote control's bonus while he is
  *     within the controller's range, and is refused past it (API 1.144.0), and
@@ -44,6 +54,7 @@ import { ask, card, esc, lockTargetOf, lockedSensor, picked, row, skillBase, yar
 import { crewOf, isVehicle, vehicleAboard } from "../../../shared/vehicles/index.js";
 import { deviceData, storeDevice, takesDeviceStatistics } from "../devices/index.js";
 import { ACTIVE_SENSORS } from "../sensors/rules.js";
+import { supplementOn } from "../sensors/index.js";
 import { SENSORS } from "../surveillance/rules.js";
 import { chosenSeeker } from "../guidance/index.js";
 import { homes, seekerOf } from "../guidance/rules.js";
@@ -51,6 +62,12 @@ import {
   CHAFF_PER_PACKAGE,
   HIDING_SKILLS,
   MILITARY,
+  OBSERVER_SKILLS,
+  SURVEILLANCE_TASKS,
+  skillDefault,
+  surveillanceSkills,
+  type Readout,
+  type SurveillanceTask,
   OBSERVATION,
   PTZ_COST,
   SURVEILLANCE,
@@ -104,9 +121,23 @@ export function initBattlefield(): void {
     remoteBonus: whole(),
     controlRangeMiles: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
     ceilingFeet: whole(),
+    spreadSpectrum: new f.BooleanField({ initial: false }),
   });
   addExtensionFields("Item", ITEM_EXTENSION_TYPES, { [DRONE]: drone() });
   addExtensionFields("Actor", ["vehicle"], { [DRONE]: drone() });
+}
+
+/** A drone's spread-spectrum control link: frequency hopping, -4 to detect (HT:EE pp. 46-47). */
+export const DRONE_SPREAD_DETECT = -4;
+
+/**
+ * The spread spectrum of a drone's control link, where the vehicle actor or
+ * item is one of High-Tech's drones built with it (HT:EE p. 46): frequency
+ * hopping, for the SIGINT rules that detect it, which count it only while
+ * the spread-spectrum switch is on.
+ */
+export function droneSpread(doc: any): { hopping: boolean } {
+  return { hopping: Boolean(doc) && isHighTechDrone(doc) && droneData(doc).spreadSpectrum };
 }
 
 /** The drone data on a vehicle item or actor. */
@@ -161,6 +192,7 @@ export function droneLines(doc: any): string[] {
   if (data.remoteBonus > 0) lines.push(F("RemoteLine", { bonus: signed(data.remoteBonus) }));
   if (data.controlRangeMiles > 0) lines.push(F("RangeLine", { miles: data.controlRangeMiles }));
   if (data.ceilingFeet > 0) lines.push(F("CeilingLine", { feet: data.ceilingFeet.toLocaleString("en-US") }));
+  if (data.spreadSpectrum && supplementOn("spread")) lines.push(F("SpreadLine", { detect: DRONE_SPREAD_DETECT }));
   return lines;
 }
 
@@ -180,6 +212,7 @@ function droneListeners(element: HTMLElement, item: any): void {
   element.querySelectorAll<HTMLInputElement>("[data-ht-drone]").forEach((input) => {
     input.addEventListener("change", async () => {
       const field = String(input.dataset.htDrone);
+      if (input.type === "checkbox") return void (await item.update({ [`system.extensions.${MODULE_ID}.${DRONE}.${field}`]: input.checked }));
       const value = Math.max(0, Number(input.value) || 0);
       await item.update({ [`system.extensions.${MODULE_ID}.${DRONE}.${field}`]: field === "controlRangeMiles" ? value : Math.floor(value) });
     });
@@ -224,6 +257,55 @@ export async function watchCamera(api: GWorldApi, item: any, actor: any): Promis
     await api.roll.success({ actor, base, skill: OBSERVATION, label, modifiers, tags: ["detection", "vision", "surveillance"], item } as any);
   }
   if (ptz) await card(actor, label, [L("PtzSpotted")]);
+}
+
+// ── surveillance in general (HT:EE p. 45) ──────────────────────────────────
+
+/** A character's level with a skill, or its default. */
+function levelOf(api: GWorldApi, actor: any, skill: string): number {
+  const own = api.actors.skillLevel(actor, skill);
+  if (typeof own === "number") return own;
+  const fallback = skillDefault(skill);
+  return (Number(api.actors.attribute(actor, fallback.attribute)) || 10) + fallback.modifier;
+}
+
+/** The best of several skills for a character. */
+function bestLevel(api: GWorldApi, actor: any, skills: readonly string[]): { skill: string; level: number } {
+  return skills.map((skill) => ({ skill, level: levelOf(api, actor, skill) })).sort((a, b) => b.level - a.level)[0]!;
+}
+
+/**
+ * The supplement's surveillance tasks (HT:EE p. 45), for the selected
+ * character against the targeted one: see `SURVEILLANCE_TASKS`.
+ */
+export async function surveillanceWatch(api: GWorldApi): Promise<void> {
+  const { selected, target } = picked();
+  if (!selected) return void ui.notifications?.warn(L("WatchPick"));
+  const answer = await ask(L("SurveyTitle"),
+    row(L("TaskLabel"), `<select name="task">${SURVEILLANCE_TASKS.map((t) => `<option value="${t}">${esc(L(`Task.${t}`))}</option>`).join("")}</select>`)
+    + row(L("ReadoutLabel"), `<select name="readout"><option value="visual">${esc(L("Readout.visual"))}</option><option value="electronic">${esc(L("Readout.electronic"))}</option></select>`)
+    + row(L("Hiding"), `<input type="checkbox" name="hiding" ${target ? "checked" : ""} />`),
+    (form) => ({
+      task: ((SURVEILLANCE_TASKS as readonly string[]).includes(String(form.querySelector<HTMLSelectElement>("[name=task]")?.value)) ? form.querySelector<HTMLSelectElement>("[name=task]")!.value : "intrusion") as SurveillanceTask,
+      readout: (form.querySelector<HTMLSelectElement>("[name=readout]")?.value === "electronic" ? "electronic" : "visual") as Readout,
+      hiding: Boolean(form.querySelector<HTMLInputElement>("[name=hiding]")?.checked),
+    }));
+  if (!answer) return;
+  const label = L(`Task.${answer.task}`);
+  const own = bestLevel(api, selected, surveillanceSkills(answer.task, answer.readout));
+  const tags = ["surveillance", ...(answer.task === "intrusion" || answer.task === "watch" ? ["detection"] : [])];
+  if (answer.task === "counter") {
+    if (!target) return void ui.notifications?.warn(L("ObserverPick"));
+    const observer = bestLevel(api, target, OBSERVER_SKILLS);
+    await api.roll.quickContest({ label, first: { actor: selected, base: own.level, note: own.skill }, second: { actor: target, base: observer.level, note: observer.skill }, tags: [...tags, "countersurveillance"] } as any);
+    return;
+  }
+  if (answer.task === "intrusion" && answer.hiding && target) {
+    const hider = hidingLevel(api, target);
+    await api.roll.quickContest({ label, first: { actor: selected, base: own.level, note: own.skill }, second: { actor: target, base: hider.level, note: hider.skill }, tags } as any);
+    return;
+  }
+  await api.roll.success({ actor: selected, base: own.level, skill: own.skill, label, tags, ...(target ? { subject: target } : {}) } as any);
 }
 
 // ── the seismic ground sensor (HT:EE p. 45) ─────────────────────────────────
@@ -505,5 +587,6 @@ export function readyBattlefield(api: GWorldApi, on: BattlefieldSwitches): void 
   ];
   for (const action of actions) api.sheets.registerRowAction({ module: MODULE_ID, itemTypes: ["equipment"], ...action });
 
+  api.sheets.registerGmTool({ module: MODULE_ID, key: "ht-surveillance-watch", label: L("SurveyTitle"), icon: "fa-solid fa-binoculars", visible: on.sensors, open: () => surveillanceWatch(api) });
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ht-recon-drone", label: L("DroneTool"), icon: "fa-solid fa-helicopter", visible: on.drones, open: () => droneTool(api) });
 }

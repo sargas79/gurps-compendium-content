@@ -27,8 +27,9 @@ import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ask, card, carried, esc, itemTl, picked, row, sensorData, skillBase, yardsBetween } from "../../../shared/sensors/index.js";
 import { rangeExtensionModifier } from "../../../shared/sensors/rules.js";
 import { CONDITIONS, INTERFERENCE, tuningRoll } from "../sensors/reception.js";
-import { ewLevel, findsDirection, hearingModifier, peripheralOf, radioOf, spreadOf, tracingOscilloscope } from "../sensors/index.js";
+import { ewLevel, findsDirection, hearingModifier, peripheralOf, radioOf, spreadOf, supplementOn, tracingOscilloscope } from "../sensors/index.js";
 import { radioPairRange } from "../sensors/rules.js";
+import { droneSpread } from "../battlefield/index.js";
 import {
   BEACON,
   COMM,
@@ -56,6 +57,7 @@ import {
   spreadDetectModifier,
   spreadDetectionRange,
   type SearchAntenna,
+  type Spread,
   type Transmission,
 } from "./rules.js";
 
@@ -103,6 +105,17 @@ const isSigintGear = (item: any) => Boolean(radioOf(item)) && (sensorData(item).
 function antennaOfItem(item: any): SearchAntenna {
   const options = sensorData(item).options;
   return options.directionalAntenna ? "directional" : options.dipoleAntenna ? "dipole" : "whip";
+}
+
+/**
+ * A drone with a spread-spectrum control link, where the spread-spectrum
+ * rules are on: the targeted drone itself, or one its operator carries
+ * (HT:EE pp. 46-47).
+ */
+function linkedDrone(target: any): any {
+  if (!target || !supplementOn("spread")) return null;
+  if (droneSpread(target).hopping) return target;
+  return [...(target.items ?? [])].find((i: any) => carried(i) && droneSpread(i).hopping) ?? null;
 }
 
 /** The targeted character's transmitting radio, if any. */
@@ -181,18 +194,20 @@ async function detectSender(api: GWorldApi, item: any, actor: any): Promise<void
   if (answer.avoiding && !target) return void ui.notifications?.warn(L("SenderPick"));
   const label = F("DetectLabel", { name: item.name });
   const lines: string[] = [];
-  const spread = theirs ? spreadOf(theirs) : {};
+  // With no radio of its own, the target may be a drone, or carry one, whose control link is spread spectrum (HT:EE p. 46).
+  const link = theirs ? null : linkedDrone(target);
+  const spread: Spread = theirs ? spreadOf(theirs) : link ? droneSpread(link) : {};
   // Direct sequence can't be detected past 1.5 times the radio's range (HT:EE p. 47).
   if (theirFigures && spread.direct && answer.yards > spreadDetectionRange(theirFigures.range, spread)) return void card(actor, label, [F("DirectSequenceOut", { name: theirs.name })]);
   // The tuning roll's modifiers apply (HT:EE pp. 29, 47).
   const stretch = answer.range > 0 ? rangeExtensionModifier(answer.yards, answer.range) : 0;
-  const tuning = tuningRoll({ rangeModifier: stretch, conditions: answer.conditions, hearing: hearingModifier(api, actor), galvanometer: false, enhanced: Boolean(peripheralOf(item)) });
+  const tuning = tuningRoll({ rangeModifier: stretch, conditions: answer.conditions, hearing: hearingModifier(api, actor), galvanometer: false, enhanced: peripheralOf(item)?.enhanced === true });
   if (!tuning) return void card(actor, label, [L(answer.conditions <= INTERFERENCE.worst ? "Blocked" : "OutOfRange")]);
   const modifiers: Line[] = tuning.lines.map((l) => ({ label: L(`Tuning.${l.key}`), value: l.value }));
   const gear = gearLine(item);
   if (gear) modifiers.push(gear);
   const hop = spreadDetectModifier(spread);
-  if (hop) modifiers.push({ label: F("HoppingLine", { name: theirs.name }), value: hop });
+  if (hop) modifiers.push({ label: F("HoppingLine", { name: (theirs ?? link)?.name ?? "" }), value: hop });
   const searches = SEARCHES[answer.antenna];
   const tl = itemTl(item);
   if (answer.frequency === "channels") {

@@ -188,8 +188,12 @@ export interface PowerData extends Required<CellKind> {
   storage: StorageData;
 }
 
-/** A rule that scales a gadget's cells and endurance, such as a compact computer's (Ultra-Tech p. 23). */
-export type PowerAdjuster = (item: any) => { cells?: number; endurance?: number } | null;
+/**
+ * A rule that scales a gadget's cells and endurance, such as a compact
+ * computer's (Ultra-Tech p. 23), or says the gadget as built runs on no power
+ * at all (`unpowered`), as a crystal radio set does (HT:EE p. 28).
+ */
+export type PowerAdjuster = (item: any) => { cells?: number; endurance?: number; unpowered?: boolean } | null;
 const adjusters: PowerAdjuster[] = [];
 
 /** Registers a rule that scales a gadget's cells and endurance. */
@@ -198,16 +202,18 @@ export function registerPowerAdjuster(adjuster: PowerAdjuster): void {
 }
 
 /** The product of every registered rule's factors for an item. */
-function adjustment(item: any): { cells: number; endurance: number } {
+function adjustment(item: any): { cells: number; endurance: number; unpowered: boolean } {
   let cells = 1;
   let endurance = 1;
+  let unpowered = false;
   for (const adjuster of adjusters) {
     const factors = adjuster(item);
     if (!factors) continue;
     if (Number.isFinite(factors.cells)) cells *= Number(factors.cells);
     if (Number.isFinite(factors.endurance)) endurance *= Number(factors.endurance);
+    if (factors.unpowered === true) unpowered = true;
   }
-  return { cells, endurance };
+  return { cells, endurance, unpowered };
 }
 
 /** A cell count scaled, never below one cell where there were any. */
@@ -268,9 +274,10 @@ export function powerData(item: any): PowerData {
   const draw = d.draw ?? {};
   const figures = CELL_TABLES.figuresFor(item, (t) => isRuleOn(t.rule))?.figures ?? null;
   const isSize = (value: unknown): value is string => figures !== null && isCellSizeOf(figures, value);
-  const drawCell = isSize(draw.cell) ? draw.cell : null;
   const factor = adjustment(item);
-  const cell = isSize(d.cell) ? d.cell : null;
+  // A gadget a rule says runs on nothing keeps no cells to change or count down.
+  const drawCell = !factor.unpowered && isSize(draw.cell) ? draw.cell : null;
+  const cell = !factor.unpowered && isSize(d.cell) ? d.cell : null;
   const cells = scaled(Math.max(0, Math.floor(Number(d.cells) || 0)), factor.cells);
   const drawCells = scaled(Math.max(0, Math.floor(Number(draw.cells) || 0)), factor.cells);
   // Cells swapped in for the table's, where the book allows it: the endurance goes with their weight.
@@ -285,17 +292,17 @@ export function powerData(item: any): PowerData {
   const grades = Array.isArray(d.grades) ? d.grades.map((g: unknown) => String(g ?? "").trim()).filter(Boolean) : [];
   const external = externalOn(item);
   const endurance = String(draw.endurance ?? "");
-  const builtIn = external && Boolean(d.rechargeable) && !cell && !drawCell && (enduranceHours(endurance) !== null || enduranceUsesOf(endurance) !== null);
+  const builtIn = !factor.unpowered && external && Boolean(d.rechargeable) && !cell && !drawCell && (enduranceHours(endurance) !== null || enduranceUsesOf(endurance) !== null);
   const pluggable = Boolean(figures?.adapters && (d.adapter || d.inverter)) || gradesPlug(item, grades);
   const s = d.storage ?? {};
   return {
     cell,
     cells,
     backpack: Boolean(d.backpack),
-    packWeight: Math.max(0, Number(d.packWeight) || 0),
+    packWeight: factor.unpowered ? 0 : Math.max(0, Number(d.packWeight) || 0),
     emptyWeight: Math.max(0, Number(d.emptyWeight) || 0),
     raw: String(d.raw ?? ""),
-    draw: drawCell || String(draw.endurance ?? "").trim()
+    draw: !factor.unpowered && (drawCell || String(draw.endurance ?? "").trim())
       ? { cell: drawCell, cells: drawCells, endurance: String(draw.endurance ?? ""), raw: String(draw.raw ?? "") }
       : null,
     flexible: Boolean(d.flexible),

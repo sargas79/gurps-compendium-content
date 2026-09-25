@@ -265,6 +265,58 @@ export function oscillationPenalty(yards: number): number {
   return Math.min(0, OSCILLATION.penalty + doublings);
 }
 
+// ── What a receiver runs on (HT:EE p. 28) ──
+
+/** A diode detector's power only heats its filament: one M cell for 14 hours (HT:EE p. 28). */
+export const DIODE_FILAMENT = Object.freeze({ cell: "M", hours: 14 });
+
+/**
+ * What a spark-gap receiver's detector runs on (HT:EE p. 28): a crystal set
+ * needs no power at all; a diode set's power only heats the filament, M/14
+ * hours, which a set printed on M cells takes as one cell for 14 hours in
+ * place of its own draw. Null where neither detector is built in, the set
+ * isn't receive-only (the detectors are receivers' alone, and a transmitter
+ * keeps its own power), or the set's printed cells aren't M (its draw then
+ * stands, and the sheet says).
+ */
+export function detectorPower(active: readonly DesignKey[], draw: { cell: string | null; cells: number; hours: number | null } | null, commMode: CommMode): { unpowered: true } | { cells: number; endurance: number } | null {
+  if (commMode !== "receiver") return null;
+  if (active.includes("crystalDetector")) return { unpowered: true };
+  if (!active.includes("diodeDetector") || !draw || draw.cell !== DIODE_FILAMENT.cell || !(draw.hours && draw.hours > 0)) return null;
+  const cells = Math.max(1, Math.floor(draw.cells) || 1);
+  return { cells: 1 / cells, endurance: DIODE_FILAMENT.hours / draw.hours };
+}
+
+// ── What the set carries, end to end (HT:EE pp. 28, 32, 34) ──
+
+/** Whether a set receives only code: a coherer, which detects code alone (HT:EE p. 28). */
+export const detectsCodeOnly = (active: readonly DesignKey[]): boolean => active.includes("coherer");
+
+/**
+ * An FM listener under interference (HT:EE p. 32): static doesn't trouble it,
+ * so interference that is static counts for nothing; another signal on its
+ * frequency as strong as the one it wants, or stronger, prevents reception
+ * outright. A weaker one is interference as for any set.
+ */
+export type FmInterference = "static" | "weaker" | "stronger";
+export function fmConditions(conditions: number, interference: FmInterference): number | null {
+  if (interference === "stronger") return null;
+  if (interference === "static" && conditions < 0) return 0;
+  return conditions;
+}
+
+/**
+ * Whether live video goes from one set to another (HT:EE p. 34): the sender
+ * must carry video and not be receive-only, the listener carry video and not
+ * be send-only. A video set normally sends or receives, not both; a set
+ * built both ways is the GM's to allow, as the book's "normally" leaves it.
+ */
+export function videoLink(sender: { video: boolean; commMode: CommMode }, listener: { video: boolean; commMode: CommMode }): "sender" | "listener" | null {
+  if (!sender.video || sender.commMode === "receiver") return "sender";
+  if (!listener.video || listener.commMode === "transmitter") return "listener";
+  return null;
+}
+
 /** An ultra-high-speed rotary spark gap's audio is distorted: -5 to understand speech, and to Connoisseur (Music) (HT:EE pp. 28, 32). */
 export const DISTORTED_AUDIO = -5;
 /** An improvised ground aerial: -2 to Electronics Operation (Communications), but a Camouflage roll hides it (HT:EE p. 29). */

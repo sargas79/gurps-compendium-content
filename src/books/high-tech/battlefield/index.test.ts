@@ -79,7 +79,7 @@ function gear(name: string, extensions: Record<string, any> = {}, system: Record
   return item;
 }
 
-const PHANTOM = { autopilot: 14, autopilotDodge: 9, remoteBonus: 1, controlRangeMiles: 4, ceilingFeet: 1640 };
+const PHANTOM = { autopilot: 14, autopilotDodge: 9, remoteBonus: 1, controlRangeMiles: 4, ceilingFeet: 1640, spreadSpectrum: false };
 const drone = (data: Record<string, any> = PHANTOM) =>
   gear("Phantom 4 Pro", { drone: data }, { category: "vehicle", vehicle: { skill: "Piloting (Helicopter)", handling: 2, stability: 3 } });
 
@@ -126,6 +126,8 @@ beforeEach(async () => {
   vi.resetModules();
   const tables = await import("../../../shared/book-tables.js");
   tables.setRuleReader((k) => on.has(k));
+  const sensors = await import("../sensors/index.js");
+  sensors.highTechSensors({ radios: key("radios"), activeSensors: key("activeSensors"), visualSensors: key("visualSensors"), passiveSensors: key("passiveSensors"), spreadSpectrum: key("spreadSpectrum") } as never);
   battlefield = await import("./index.js");
   battlefield.readyBattlefield(fakeApi() as never, { sensors: () => on.has(key("battlefieldSensors")), drones: () => on.has(key("reconDrones")), seekers: () => on.has(key("homingSeekers")) });
 });
@@ -185,6 +187,47 @@ describe("military gear (HT:EE p. 45)", () => {
     expect(context.military).toBe(true);
     expect(context.lines.join(" | ")).toContain('MilitaryLine {"ht":12,"dr":8}');
     expect(context.lines.join(" | ")).toContain("SeismicLine");
+  });
+});
+
+describe("surveillance in general (HT:EE p. 45)", () => {
+  const watcher = () => character("Guard", [], { skills: { Observation: 12, "Electronics Operation (Security)": 14, "Electronics Operation (Surveillance)": 13, "Intelligence Analysis": 11 } });
+
+  it("offers its GM tool with the battlefield sensors switch", () => {
+    expect(tools.get("ht-surveillance-watch").visible()).toBe(false);
+    on.add(key("battlefieldSensors"));
+    expect(tools.get("ht-surveillance-watch").visible()).toBe(true);
+  });
+
+  it("spots an intrusion on Observation or an electronic readout's Security, contested by a hiding intruder", async () => {
+    on.add(key("battlefieldSensors"));
+    selected = [watcher()];
+    dialogAnswer = { task: "intrusion", readout: "electronic", hiding: false };
+    await tools.get("ht-surveillance-watch").open();
+    expect(successes[0]).toMatchObject({ base: 14, skill: "Electronics Operation (Security)", tags: ["surveillance", "detection"] });
+    targets = [character("Sneak", [], { skills: { Stealth: 11, Camouflage: 13 } })];
+    dialogAnswer = { task: "intrusion", readout: "visual", hiding: true };
+    await tools.get("ht-surveillance-watch").open();
+    expect(contests[0]).toMatchObject({ first: { base: 12, note: "Observation" }, second: { base: 13, note: "Camouflage" } });
+  });
+
+  it("keeps watch on the better of Observation and Surveillance, interprets on Intelligence Analysis, and contests countersurveillance with EW", async () => {
+    on.add(key("battlefieldSensors"));
+    selected = [watcher()];
+    dialogAnswer = { task: "watch", readout: "visual", hiding: false };
+    await tools.get("ht-surveillance-watch").open();
+    expect(successes[0]).toMatchObject({ base: 13, skill: "Electronics Operation (Surveillance)" });
+    dialogAnswer = { task: "interpret", readout: "visual", hiding: false };
+    await tools.get("ht-surveillance-watch").open();
+    expect(successes[1]).toMatchObject({ base: 11, skill: "Intelligence Analysis", tags: ["surveillance"] });
+    // Countersurveillance: the selected operator's EW (IQ-5 by default) against the targeted observer's best.
+    selected = [character("Spook", [], { attributes: { IQ: 14 } })];
+    dialogAnswer = { task: "counter", readout: "visual", hiding: false };
+    await tools.get("ht-surveillance-watch").open();
+    expect(ui.notifications!.warn).toHaveBeenCalledWith("GCC.HT.Battlefield.ObserverPick");
+    targets = [watcher()];
+    await tools.get("ht-surveillance-watch").open();
+    expect(contests[0]).toMatchObject({ first: { base: 9, note: "Electronics Operation (EW)" }, second: { base: 14, note: "Electronics Operation (Security)" }, tags: ["surveillance", "countersurveillance"] });
   });
 });
 
@@ -303,6 +346,11 @@ describe("reconnaissance drones (HT:EE p. 46)", () => {
     expect(stats.handling).toBe(2);
     expect(stats.lines).toHaveLength(4);
     expect(fire("gworld.vehicleStats", { vehicle: gear("Truck", {}, { category: "vehicle", vehicle: {} }), lines: [] }).lines).toEqual([]);
+    // The T-Hawk's spread-spectrum link (HT:EE p. 46).
+    const hawk = drone({ ...PHANTOM, spreadSpectrum: true });
+    expect(sections.get("ht-drone-item").context(hawk).lines.join(" | ")).not.toContain("SpreadLine");
+    on.add(key("spreadSpectrum"));
+    expect(sections.get("ht-drone-item").context(hawk).lines.join(" | ")).toContain('SpreadLine {"detect":-4}');
   });
 
   it("gives the operator the remote control's bonus within the controller's range", () => {

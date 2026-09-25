@@ -20,7 +20,9 @@
  *     faint signal or one through interference -- the range past standard,
  *     interference or good conditions, the listener's Hearing modifiers or a
  *     galvanometer, a software-defined radio's +4 -- in the comm tool and as
- *     a row button, and a coil-tuned set's drift; the radio peripheral.
+ *     a row button, and a coil-tuned set's drift; the radio peripheral, and
+ *     a digital TV tuner adapted as one on a Computer Operation roll (a row
+ *     button), which only receives and tunes with no bonus (HT:EE p. 30).
  *   - **radioAntennas** (HT:EE p. 28): the dipole and the directional
  *     antenna beside High-Tech's long antenna (the monopole), priced, and in
  *     the comm tool the dipole's bearing and the aiming roll.
@@ -33,7 +35,13 @@
  *     send-only, quartz tuning, the grid-leak, regenerative and
  *     superheterodyne receivers, audio, FM, video and digital video --
  *     priced, the receivers' range and rolls in the comm tool and the
- *     tuning roll, and the trench radio kit's sets and wire.
+ *     tuning roll, and the trench radio kit's sets and wire; a crystal set
+ *     keeps no cells, a diode set runs on one M cell for 14 hours; a rotary
+ *     spark gap's quality goes on sending and faking a fist with its set; in
+ *     the comm tool, speech
+ *     sent to a coherer set, live video between sets that can't send or
+ *     receive it, and an FM set's interference -- static it ignores, a
+ *     signal as strong as the one it wants blocks it.
  *   - **activeSensors:** sonar, radar, GPR and thru-wall radar by TL, their
  *     modes priced, and a sweep at -2 per doubling past range, within the
  *     sensor's arc, with sonar's noise, a GPR's medium, and the Quick Contest
@@ -42,9 +50,11 @@
  *   - **rangefindingEmissions:** the supplement's refinements (HT:EE p. 35):
  *     the sweep's penalty in half steps, the target's size at half its SM,
  *     and dwelling 4 or 15 times as long to reach 2 or 4 times as far, which
- *     helps the target detect the emissions; a GM tool for detecting a
- *     sonar's or radar's emissions, past twice its range at -1 per 20% of it
- *     to -10; and the supplement's ground-penetrating radar's +2 to a skill.
+ *     helps the target detect the emissions; a GM tool for detecting an
+ *     active rangefinder's emissions -- a sonar's or radar's, a GPR's or
+ *     thru-wall radar's radio waves, the laser measuring tool's lidar -- past
+ *     twice its range at -1 per 20% of it to -10; and the supplement's
+ *     ground-penetrating radar's +2 to a skill.
  *   - **visualSensors:** optics as Telescopic Vision, night-vision optics and
  *     thermographs as Night Vision and Infravision with the Colorblindness,
  *     No Depth Perception and No Peripheral Vision they impose while in use;
@@ -101,8 +111,10 @@ import {
   CONDITIONS,
   DRIFT_MINUTES,
   INTERFERENCE,
+  ADAPTED_TUNER,
   RADIO_PERIPHERALS,
   SKIP_CONDITIONS,
+  TV_TUNER,
   aimsItself,
   antennaFactor,
   driftsByDefault,
@@ -113,6 +125,7 @@ import {
   tuningRoll,
   type AntennaKey,
   type AntennaSetting,
+  type RadioPeripheral,
   type SkipCondition,
 } from "./reception.js";
 import {
@@ -186,8 +199,14 @@ import {
   OSCILLATION,
   PRINTED_RADIOS,
   REGENERATIVE_MISS,
+  carriesVideo,
   crystalSpot,
   cuttingEdgeDesign,
+  detectorPower,
+  detectsCodeOnly,
+  fmConditions,
+  videoLink,
+  type FmInterference,
   designActive,
   designFactors,
   designOffered,
@@ -204,6 +223,7 @@ import {
 import { cuttingEdgeFactor } from "../devices/rules.js";
 import { deviceData } from "../devices/index.js";
 import { registerPowerAdjuster } from "../../../shared/power/data.js";
+import { enduranceHours } from "../../../shared/power/rules.js";
 import {
   DIRECT_SEQUENCE,
   FREQUENCY_HOPPING,
@@ -249,8 +269,27 @@ export interface SensorSwitches {
 let rangefindingKey: string | null = null;
 const rangefindingOn = () => rangefindingKey !== null && isRuleOn(rangefindingKey);
 
-/** A sensor whose emissions a detector can pick up: sonar and radar (High-Tech p. 45; HT:EE p. 35). */
-const emits = (figures: ActiveFigures | undefined) => figures?.kind === "sonar" || figures?.kind === "radar";
+/**
+ * A sensor whose emissions a detector can pick up: sonar and radar (High-Tech
+ * p. 45); with the supplement's rangefinding, every active rangefinder that
+ * sends out energy (HT:EE p. 35) -- a ground-penetrating or thru-wall radar's
+ * radio waves too.
+ */
+const emits = (figures: ActiveFigures | undefined) => figures?.kind === "sonar" || figures?.kind === "radar" || (rangefindingOn() && (figures?.kind === "gpr" || figures?.kind === "thruWall"));
+
+/**
+ * What a carried item emits for a detector (HT:EE p. 35): an emitting active
+ * sensor's kind and range, or with the supplement's rangefinding the laser
+ * measuring tool's lidar out to its 100 yards (laser beams being one of the
+ * energies active rangefinding sends out). Celldar is passive, and emits
+ * nothing.
+ */
+function emitterOf(item: any): { kind: string; range: number; lpi: boolean } | null {
+  const figures = activeFigures(item);
+  if (figures && emits(figures)) return { kind: figures.kind, range: figures.range(itemTl(item)), lpi: sensorData(item).options.lpi === true };
+  if (rangefindingOn() && isLaserMeasure(nameOf(item))) return { kind: "lidar", range: LASER_MEASURE.yards, lpi: false };
+  return null;
+}
 
 /** The supplement's radio switches, as full keys, once the table is built. */
 const SUPPLEMENT = { tuning: "", antennas: "", shortwave: "", design: "", spread: "", sigint: "", cipher: "" };
@@ -314,8 +353,16 @@ function carriedAntenna(actor: any): any {
 /** Gear that is a dipole antenna and nothing else: the trench radio kit's wire (HT:EE p. 29). */
 const isAntenna = (item: any) => sensorData(item).options.dipoleAntenna === true && !radioOf(item) && !peripheralOf(item) && !OTHER_COMMS[nameOf(item)];
 
-/** The radio peripheral a record is: a computer as a software-defined radio (HT:EE p. 30). */
-export const peripheralOf = (item: any) => RADIO_PERIPHERALS[nameOf(item)] ?? null;
+/** The item flag a digital TV tuner carries once adapted as a radio peripheral (HT:EE p. 30). */
+export const ADAPTED_FLAG = "eeAdaptedTuner";
+const isAdaptedTuner = (item: any): boolean => nameOf(item) === TV_TUNER && Boolean(item?.getFlag?.(MODULE_ID, ADAPTED_FLAG) ?? item?.flags?.[MODULE_ID]?.[ADAPTED_FLAG]);
+
+/**
+ * The radio peripheral a record is: a computer as a software-defined radio,
+ * or where the tuning rules are on a digital TV tuner adapted as one, which
+ * only receives and tunes with no bonus (HT:EE p. 30).
+ */
+export const peripheralOf = (item: any): RadioPeripheral | null => RADIO_PERIPHERALS[nameOf(item)] ?? (supplementOn("tuning") && isAdaptedTuner(item) ? ADAPTED_TUNER : null);
 
 /**
  * A radio's spread spectrum, where the switch is on (HT:EE pp. 46-47): the
@@ -414,9 +461,11 @@ function commLines(item: any, data: SensorData, lines: string[], options: string
     supplementLines(item, data, lines, options);
     return true;
   }
-  if (peripheralOf(item)) {
+  const peripheral = peripheralOf(item);
+  if (peripheral) {
     lines.push(F("PeripheralRange", { range: distance(comm.range) }));
-    if (supplementOn("tuning")) lines.push(F("EnhancedTuningLine", { bonus: 4 }));
+    if (supplementOn("tuning") && peripheral.enhanced) lines.push(F("EnhancedTuningLine", { bonus: 4 }));
+    if (peripheral.receiveOnly) lines.push(L("AdaptedTunerLine"));
     return false;
   }
   lines.push(F(comm.family === "laser" ? "LaserRange" : "DivecomRange", { range: distance(comm.range) }));
@@ -792,12 +841,45 @@ async function pairRange({ a, b }: CommPair, context?: CommContext): Promise<{ r
   if (!Number.isFinite(range)) lines.push(L("UplinkReach"));
   // A shortwave transmitter needs a large antenna to skip (HT:EE p. 30).
   if (radio && isShortwave(a.item, da) && isShortwave(b.item, db) && !canSkip(a.item, b.item)) lines.push(F("NoLargeAntenna", { name: b.item.name }));
-  for (const [item, data] of [[a.item, da], [b.item, db]] as const) if (data.commMode === "receiver") lines.push(F("ReceiveOnly", { name: item.name }));
+  for (const [item, data] of [[a.item, da], [b.item, db]] as const) if (data.commMode === "receiver" || peripheralOf(item)?.receiveOnly) lines.push(F("ReceiveOnly", { name: item.name }));
   if (radio) for (const [item, data] of [[a.item, da], [b.item, db]] as const) if (designOf(item, data)?.commMode === "transmitter") lines.push(F("SendOnly", { name: item.name }));
   // An ultra-high-speed rotary spark gap's audio is badly distorted (HT:EE pp. 28, 32).
   if (radio && designed(b.item, db).includes("ultraRotarySparkGap")) lines.push(F("DistortedAudio", { name: b.item.name, penalty: DISTORTED_AUDIO }));
+  // What goes between the sets: a coherer detects code alone (HT:EE p. 28); live video wants a set that sends it and one that receives it (HT:EE p. 34).
+  const blocked = radio && context ? contentBlocked(a.item, b.item, context.answers) : null;
+  if (blocked) {
+    lines.push(blocked);
+    range = 0;
+  }
   return { range, lines };
 }
+
+/** Whether a set carries video as built, where the design rules are on (HT:EE p. 34). */
+const videoSet = (item: any) => carriesVideo(designed(item));
+
+/**
+ * What the comm tool was told is sent, against what the two sets can carry
+ * (HT:EE pp. 28, 34): speech to a coherer set, which detects only code; live
+ * video from a set that can't send it or to one that can't receive it. The
+ * line saying so, or null where it gets through.
+ */
+function contentBlocked(listener: any, sender: any, answers: Record<string, unknown>): string | null {
+  if (answers.speech === true && detectsCodeOnly(designed(listener))) return F("CohererCodeOnly", { name: listener.name });
+  if (answers.video !== true) return null;
+  const end = (item: any) => ({ video: videoSet(item), commMode: (designOf(item)?.commMode ?? sensorData(item).commMode) as CommMode });
+  const failing = videoLink(end(sender), end(listener));
+  return failing ? F(failing === "sender" ? "NoVideoSent" : "NoVideoReceived", { name: (failing === "sender" ? sender : listener).name }) : null;
+}
+
+/** Whether a set is built for FM, where the design rules are on (HT:EE p. 32). */
+const fmSet = (item: any) => designed(item).includes("fm");
+
+/** The row asking what an FM listener's interference is (HT:EE p. 32). */
+const fmRow = () => row(L("FmInterference"), `<select name="fm">${(["static", "weaker", "stronger"] as const).map((k) => `<option value="${k}">${esc(L(`Fm.${k}`))}</option>`).join("")}</select>`);
+const readFm = (form: HTMLElement): FmInterference => {
+  const value = form.querySelector<HTMLSelectElement>("[name=fm]")?.value;
+  return value === "weaker" || value === "stronger" ? value : "static";
+};
 
 /** What a set's receiver took on being set up, for the roll to hear through it, by the comm tool's answers. */
 const SET_UP = new WeakMap<object, Array<{ key: string; value: number }>>();
@@ -907,6 +989,13 @@ function commFields({ a, b }: CommPair): { html: string; read(form: HTMLElement)
   }
   const shortwave = isShortwave(a.item) && isShortwave(b.item);
   if (shortwave) for (const c of SKIP_CONDITIONS) html += row(L(`Skip.${c}`), `<input type="checkbox" name="skip-${c}" />`);
+  // What is sent, where a set can't carry all of it (HT:EE pp. 28, 32, 34).
+  const coherer = detectsCodeOnly(designed(a.item));
+  const video = videoSet(a.item) || videoSet(b.item);
+  const fm = tuning && fmSet(a.item);
+  if (coherer) html += row(L("SendsSpeech"), `<input type="checkbox" name="speech" />`);
+  if (video) html += row(L("SendsVideo"), `<input type="checkbox" name="video" checked />`);
+  if (fm) html += fmRow();
   if (!html) return null;
   return {
     html,
@@ -921,6 +1010,9 @@ function commFields({ a, b }: CommPair): { html: string; read(form: HTMLElement)
       };
       if (tuning) Object.assign(answers, { conditions: Number(value("conditions")?.value) || 0, galvanometer: checked("galvanometer"), drift: checked("drift") });
       if (shortwave) answers.skip = Object.fromEntries(SKIP_CONDITIONS.map((c) => [c, checked(`skip-${c}`)]));
+      if (coherer) answers.speech = checked("speech");
+      if (video) answers.video = checked("video");
+      if (fm) answers.fm = readFm(form);
       return answers;
     },
   };
@@ -941,6 +1033,8 @@ interface Listening {
   skip: Partial<Record<SkipCondition, boolean>> | null;
   /** What setting up the listener's set gave to receive: a crystal's spot, a ground aerial (HT:EE pp. 28-29). */
   design?: Array<{ key: string; value: number }>;
+  /** What an FM set's interference is, where the listener's set is FM (HT:EE p. 32). */
+  fm?: FmInterference;
 }
 
 /**
@@ -957,6 +1051,10 @@ function listen(input: Listening): CommReception | null {
   const skip = skipped && Number.isFinite(input.range) && skipApplies(input.yards, input.range, stretch, skipped) ? skipped : undefined;
   const setUp = input.design ?? [];
   if (!tuning && !skip && !setUp.length) return null;
+  // An FM set shrugs off static, and hears nothing under an equal or stronger signal on its frequency (HT:EE p. 32).
+  const fm = tuning && input.fm && fmSet(input.item) ? fmConditions(input.conditions, input.fm) : input.conditions;
+  if (fm === null) return { lines: [F("FmBlocked", { name: input.item.name })], roll: null };
+  if (fm !== input.conditions) input = { ...input, conditions: fm };
   // A superheterodyne -- every audio set from TL7 -- is tuned with a simple Hearing roll, whose score already holds the Hearing modifiers (HT:EE p. 29).
   const design = designOf(input.item);
   const superhet = tuning && design !== null && isSuperheterodyne(design);
@@ -967,7 +1065,7 @@ function listen(input: Listening): CommReception | null {
     conditions: tuning ? input.conditions : 0,
     hearing: tuning && !superhet ? hearingModifier(input.api, input.actor) : 0,
     galvanometer: tuning && !superhet && input.galvanometer,
-    enhanced: tuning && Boolean(peripheralOf(input.item)),
+    enhanced: tuning && peripheralOf(input.item)?.enhanced === true,
     ...(skip ? { skip } : {}),
     ...(setUp.length ? { extra: setUp } : {}),
   });
@@ -1010,6 +1108,7 @@ function reception({ a, b }: CommPair, context: CommContext & { range: number; s
     galvanometer: context.answers.galvanometer === true,
     drift: context.answers.drift === true,
     skip: canSkip(a.item, b.item) ? ((context.answers.skip as Partial<Record<SkipCondition, boolean>> | undefined) ?? {}) : null,
+    ...(context.answers.fm ? { fm: context.answers.fm as FmInterference } : {}),
   });
 }
 
@@ -1123,10 +1222,10 @@ const readDwell = (form: HTMLElement): Dwell | "" => {
 async function detectEmissions(api: GWorldApi): Promise<void> {
   const { selected, target } = picked();
   if (!selected || !target) return void ui.notifications?.warn(L("EmissionsPick"));
-  const found = [...(target.items ?? [])].filter((item: any) => carried(item) && emits(activeFigures(item)));
+  const found = [...(target.items ?? [])].filter((item: any) => carried(item) && emitterOf(item));
   if (!found.length) return void ui.notifications?.warn(L("NoEmitter"));
   const measured = yardsBetween(selected, target);
-  const first = detectorSkill(activeFigures(found[0])!.kind);
+  const first = detectorSkill(emitterOf(found[0])!.kind);
   const answer = await ask(L("EmissionsTitle"),
     row(L("Sensor"), `<select name="sensor">${found.map((item: any, i) => `<option value="${i}">${esc(item.name)}</option>`).join("")}</select>`)
     + row(L("Distance"), `<input type="number" name="yards" value="${Math.round(measured ?? 1000)}" min="0" step="any" style="width:90px" />`)
@@ -1142,9 +1241,8 @@ async function detectEmissions(api: GWorldApi): Promise<void> {
     }));
   if (!answer) return;
   const item = found[answer.index] ?? found[0];
-  const figures = activeFigures(item)!;
-  const range = figures.range(itemTl(item));
-  const lpi = sensorData(item).options.lpi === true;
+  const figures = emitterOf(item)!;
+  const { range, lpi } = figures;
   const title = F("EmissionsLabel", { sensor: item.name, name: target.name });
   // Only a detector within the sensor's arc (High-Tech p. 45).
   if (answer.arc) return void card(selected, title, [F("EmitterArcMiss", { arc: SENSOR_ARC })]);
@@ -1209,11 +1307,22 @@ export function initHighTechSensors(switches: SensorSwitches): void {
   registerPowerAdjuster((item) => {
     const input = designOf(item);
     if (!input) return null;
+    // What a crystal or diode receiver runs on (HT:EE p. 28): nothing, or the diode's filament alone.
+    const detector = detectorPower(designActive(input), printedDraw(item), input.commMode);
+    if (detector && "unpowered" in detector) return { unpowered: true };
+    if (detector) return detector;
     const printed = PRINTED_RADIOS[nameOf(item)];
     const base = printed ? designFactors({ ...input, commMode: printed.commMode, options: printedOptions(printed.options) }).endurance : 1;
     const factor = designFactors(input).endurance / base;
     return factor === 1 ? null : { endurance: factor };
   });
+}
+
+/** The cells and endurance a record prints, as the design rules read them for a receiver's detector. */
+function printedDraw(item: any): { cell: string | null; cells: number; hours: number | null } | null {
+  const draw = item?.system?.extensions?.[MODULE_ID]?.power?.draw;
+  if (!draw) return null;
+  return { cell: draw.cell ? String(draw.cell) : null, cells: Number(draw.cells) || 0, hours: enduranceHours(String(draw.endurance ?? "")) };
 }
 
 // ── What the book prints alone ──
@@ -1282,7 +1391,8 @@ async function telegraphy(api: GWorldApi, item: any, actor: any): Promise<void> 
   const slow = answer.cipher && answer.task === "send" && supplementOn("cipher") ? encipheredTimeBonus(answer.times) : 0;
   if (slow) modifiers.push({ label: F("CipherTimeLine", { times: answer.times }), value: slow });
   // A rotary spark gap's steadier output: a quality bonus to send on it (HT:EE p. 28).
-  const quality = answer.task === "send" || answer.task === "fake" ? qualityBonus(designed(item)) : 0;
+  // A rotary spark gap's quality, on what is sent with the set (HT:EE p. 28).
+  const quality = answer.task === "send" || answer.task === "fake" ? rotaryQuality(item) : 0;
   const sender = quality ? [...modifiers, { label: F("QualityLine", { name: item.name }), value: quality }] : modifiers;
   const label = F("TelegraphyRoll", { task: L(`Telegraphy.${answer.task}`), name: item.name });
   const contested = answer.task === "fake" || (answer.task === "tap" && tapIsContested(itemTl(item)));
@@ -1443,8 +1553,10 @@ async function tuneIn(api: GWorldApi, item: any, actor: any): Promise<void> {
     + row(L("Conditions"), `<select name="conditions">${CONDITIONS.map((c) => `<option value="${c}" ${c === 0 ? "selected" : ""}>${esc(c === 0 ? L("ConditionsNone") : c === INTERFERENCE.worst ? F("ConditionsBlocked", { value: c }) : (c > 0 ? `+${c}` : String(c)))}</option>`).join("")}</select>`)
     + row(L("Galvanometer"), `<input type="checkbox" name="galvanometer" ${carriesGalvanometer(actor) ? "checked" : ""} />`)
     + row(F("Drift", { minutes: DRIFT_MINUTES }), `<input type="checkbox" name="drift" ${drifts(item) ? "checked" : ""} />`)
-    + (shortwave ? SKIP_CONDITIONS.map((c) => row(L(`Skip.${c}`), `<input type="checkbox" name="skip-${c}" />`)).join("") : ""),
+    + (shortwave ? SKIP_CONDITIONS.map((c) => row(L(`Skip.${c}`), `<input type="checkbox" name="skip-${c}" />`)).join("") : "")
+    + (fmSet(item) ? fmRow() : ""),
     (form) => ({
+      fm: readFm(form),
       yards: Number(form.querySelector<HTMLInputElement>("[name=yards]")?.value) || 0,
       range: Number(form.querySelector<HTMLInputElement>("[name=range]")?.value) || 0,
       conditions: Number(form.querySelector<HTMLSelectElement>("[name=conditions]")?.value) || 0,
@@ -1461,7 +1573,7 @@ async function tuneIn(api: GWorldApi, item: any, actor: any): Promise<void> {
   // A shortwave set skips to a shortwave transmitter with a large antenna; with no one targeted, the GM vouches for the far end.
   if (theirs && shortwave && !canSkip(item, theirs)) lines.push(F("NoLargeAntenna", { name: theirs.name }));
   const skip = shortwave && (!theirs || canSkip(item, theirs)) ? answer.skip : null;
-  const heard = listen({ api, actor, item, yards: answer.yards, range: (answer.range || Infinity) * setUp.rangeFactor, conditions: answer.conditions, galvanometer: answer.galvanometer, drift: answer.drift, skip, design: setUp.modifiers });
+  const heard = listen({ api, actor, item, yards: answer.yards, range: (answer.range || Infinity) * setUp.rangeFactor, conditions: answer.conditions, galvanometer: answer.galvanometer, drift: answer.drift, skip, design: setUp.modifiers, ...(fmSet(item) && answer.fm ? { fm: answer.fm } : {}) });
   if (!heard) return void (lines.length ? card(actor, F("TuningLabel", { name: item.name }), lines) : undefined);
   const title = F("TuningLabel", { name: item.name });
   if (heard.roll) await api.roll.success({ actor, base: heard.roll.base ?? skillBase(api, actor, COMM), skill: heard.roll.skill, label: heard.roll.label, modifiers: heard.roll.modifiers, tags: heard.roll.tags, ...(target ? { subject: target } : {}) } as any);
@@ -1584,6 +1696,28 @@ async function readRadiation(api: GWorldApi, item: any, actor: any): Promise<voi
   await card(actor, F("GeigerRoll", { name: item.name }), [L(result.success ? "GeigerClue" : "GeigerNothing")]);
 }
 
+/** A rotary spark gap's quality on a roll made with its own set (HT:EE p. 28): sending, or faking a fist, on it. */
+function rotaryQuality(item: any): number {
+  return qualityBonus(designed(item));
+}
+
+/**
+ * Adapting a digital TV tuner into a general-purpose radio peripheral (HT:EE
+ * p. 30): downloaded software and a Computer Operation roll. On a success it
+ * is a radio peripheral that only receives, with no bonus to tune.
+ */
+async function adaptTuner(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const skill = "Computer Operation";
+  // Computer Operation defaults to IQ-4 (Characters p. 184).
+  const base = api.actors.skillLevel(actor, skill) ?? (Number(api.actors.attribute(actor, "IQ")) || 10) - 4;
+  const title = F("AdaptTunerLabel", { name: item.name });
+  const result: any = await api.roll.success({ actor, base, skill, label: title, item, tags: ["adaptTuner"] } as any);
+  if (!result || "refused" in result) return;
+  if (result.success && item?.isOwner) await item.setFlag(MODULE_ID, ADAPTED_FLAG, true);
+  await card(actor, title, [F(result.success ? "TunerAdapted" : "TunerNotAdapted", { name: item.name, range: distance(ADAPTED_TUNER.range) })]);
+}
+
 /** Registers the engine's parts, once whichever books ask, and what this book prints alone. */
 export function readyHighTechSensors(api: GWorldApi, on: { radios: () => boolean; active: () => boolean; visual: () => boolean; passive: () => boolean; tuning?: () => boolean; design?: () => boolean }): void {
   readySensors(api);
@@ -1594,6 +1728,7 @@ export function readyHighTechSensors(api: GWorldApi, on: { radios: () => boolean
     { key: "ht-direction-finder", label: L("DirectionFinderTitle"), icon: "fa-solid fa-compass", visible: (item) => on.radios() && findsDirection(item), run: (item, actor) => directionFinder(api, item, actor) },
     { key: "ht-intercept", label: L("InterceptTitle"), icon: "fa-solid fa-ear-listen", visible: (item) => radioWith(item, "intercept"), run: (item, actor) => intercept(api, item, actor) },
     { key: "ht-radio-tuning", label: L("TuneButton"), icon: "fa-solid fa-radio", visible: (item) => Boolean(on.tuning?.()) && Boolean(radioOf(item) || peripheralOf(item)), run: (item, actor) => tuneIn(api, item, actor) },
+    { key: "ht-adapt-tuner", label: L("AdaptTunerTitle"), icon: "fa-solid fa-satellite-dish", visible: (item) => Boolean(on.tuning?.()) && nameOf(item) === TV_TUNER && !isAdaptedTuner(item), run: (item, actor) => adaptTuner(api, item, actor) },
     { key: "ht-lens-shine", label: L("LensShineTitle"), icon: "fa-solid fa-sun", visible: (item) => on.visual() && Boolean(opticOf(item)) && !opticOf(item)!.mounted, run: (item, actor) => lensShine(api, item, actor) },
     { key: "ht-hydrophone", label: L("HydrophoneTitle"), icon: "fa-solid fa-water", visible: (item) => on.passive() && hydrophoneBonus(nameOf(item), itemTl(item)) !== null, run: (item, actor) => hydrophone(api, item, actor) },
     { key: "ht-sound-detection", label: L("SoundTitle"), icon: "fa-solid fa-volume-high", visible: (item) => on.passive() && isSoundDetector(nameOf(item)), run: (item, actor) => soundDetection(api, item, actor) },

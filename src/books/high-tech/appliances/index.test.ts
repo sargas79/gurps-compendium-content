@@ -31,6 +31,7 @@ let successes: any[];
 let failures: any[];
 let damages: any[];
 let chat: string[];
+let crippled: any[];
 let on: { appliances: boolean; powerTools: boolean };
 let familiar: boolean | null;
 let dialogAnswer: any;
@@ -46,7 +47,7 @@ function fakeApi() {
       registerPriceModifier: (m: any) => prices.set(m.key, m),
     },
     combat: {
-      hooks: { successRollModifiers: "gworld.successRollModifiers" },
+      hooks: { successRollModifiers: "gworld.successRollModifiers", afterDamage: "gworld.afterDamage" },
       registerDerivedAttackMode: (m: any) => derived.set(m.key, m),
     },
     sheets: {
@@ -58,6 +59,7 @@ function fakeApi() {
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? 10,
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
       isFamiliar: () => familiar,
+      cripple: async (actor: any, location: string, options: any) => { crippled.push([actor.name, location, options]); return { id: "c1", location }; },
     },
     items: { equipmentFailure: async (o: any) => { failures.push(o); return { outcome: "success" }; } },
     roll: { success: async (o: any) => { successes.push(o); return { success: true }; }, damage: async (o: any) => { damages.push(o); return {}; } },
@@ -103,6 +105,7 @@ beforeEach(() => {
   failures = [];
   damages = [];
   chat = [];
+  crippled = [];
   on = { appliances: false, powerTools: false };
   familiar = true;
   dialogAnswer = null;
@@ -302,6 +305,35 @@ describe("power tools (HT:EE pp. 14, 21, 24)", () => {
 
   it("cuts with wire cutters, 2d(2) each use (HT:EE p. 14)", () => {
     expect(mode(record("Wire Cutters", { weight: 0 }))).toMatchObject({ damage: "2d", damageType: "cut", armorDivisor: 2, notes: [{ label: "GCC.HT.Tools.PerUse" }] });
+  });
+});
+
+describe("a circular saw's amputation (HT:EE p. 51, note [5])", () => {
+  const blow = (item: any, location: string, crippledPart = true, mode: any = { index: 0, ranged: false }) =>
+    fire("gworld.afterDamage", { actor: Object.assign(person([]), { name: "Victim", isOwner: true }), item, mode, result: { crippled: crippledPart, hitLocation: location } });
+
+  it("takes off an arm or leg a saw's blow cripples, for good", async () => {
+    on.powerTools = true;
+    const saw = record("Circular Saw", { reference: "High-Tech: Electricity and Electronics p. 24" });
+    blow(saw, "arm");
+    await flush();
+    expect(crippled).toEqual([["Victim", "arm", { duration: "permanent", label: expect.stringContaining("AmputatedLabel") }]]);
+    expect(chat.at(-1)).toContain("Amputated");
+    blow(record("Compact Circular Saw"), "leg");
+    await flush();
+    expect(crippled[1]).toMatchObject(["Victim", "leg", { duration: "permanent" }]);
+  });
+
+  it("leaves a hand or foot, an uncrippled limb, other tools and the switch off alone", async () => {
+    on.powerTools = true;
+    const saw = record("Circular Saw");
+    blow(saw, "hand");
+    blow(saw, "arm", false);
+    blow(record("Power Drill"), "arm");
+    on.powerTools = false;
+    blow(saw, "arm");
+    await flush();
+    expect(crippled).toEqual([]);
   });
 });
 

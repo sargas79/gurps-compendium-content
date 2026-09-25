@@ -106,7 +106,12 @@ export const DAYS_PER_MONTH = 30;
  * The Active Denial System (HT:EE p. 51, note [5]): Agony while the victim
  * stays in the beam's area and for a second after, though he can still flee.
  */
-export const ACTIVE_DENIAL = Object.freeze({ afterSeconds: 1 });
+export const ACTIVE_DENIAL = Object.freeze({ afterSeconds: 1, radiusYards: 5 });
+
+/** Whether a hailing device's victim has heard a minute of its sound, by world time (HT:EE p. 51, note [4]). */
+export function heardAMinute(since: number, now: number): boolean {
+  return Number.isFinite(since) && now - since >= HAILING.exposureSeconds;
+}
 
 // ── non-nuclear EMP (HT:EE p. 50) ──
 

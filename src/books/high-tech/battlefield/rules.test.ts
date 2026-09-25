@@ -73,7 +73,8 @@ describe("chaff (HT:EE p. 45)", () => {
 
 describe("reconnaissance drones (HT:EE p. 46)", () => {
   it("reads a drone's data with nothing missing", () => {
-    expect(droneOf(undefined)).toEqual({ autopilot: 0, autopilotDodge: 0, remoteBonus: 0, controlRangeMiles: 0, ceilingFeet: 0 });
+    expect(droneOf(undefined)).toEqual({ autopilot: 0, autopilotDodge: 0, remoteBonus: 0, controlRangeMiles: 0, ceilingFeet: 0, spreadSpectrum: false });
+    expect(droneOf({ spreadSpectrum: true }).spreadSpectrum).toBe(true);
     expect(isDrone(droneOf(undefined))).toBe(false);
     expect(isDrone(droneOf({ controlRangeMiles: 4 }))).toBe(true);
   });

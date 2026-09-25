@@ -121,6 +121,9 @@
             "complexity": "",
             "prototypeYear": 1978,
             "marketYear": 1989
+          },
+          "expedition": {
+            "navigation": "gps"
           }
         }
       }
@@ -1109,7 +1112,8 @@
             "autopilotDodge": 9,
             "remoteBonus": 1,
             "controlRangeMiles": 4,
-            "ceilingFeet": 1640
+            "ceilingFeet": 1640,
+            "spreadSpectrum": false
           }
         }
       }
@@ -1184,7 +1188,8 @@
             "autopilotDodge": 8,
             "remoteBonus": 2,
             "controlRangeMiles": 7,
-            "ceilingFeet": 10500
+            "ceilingFeet": 10500,
+            "spreadSpectrum": true
           }
         }
       }

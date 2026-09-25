@@ -77,10 +77,28 @@ describe("digital interfaces (HT:EE pp. 39-41)", () => {
   const operation = { computerOperation: true, stylus: false };
 
   it("makes each interface a familiarity, at -2 until learned", () => {
-    expect(values(interfaceLines(setup({ interface: "text" }), 3, operation, () => false))).toEqual([["unfamiliar", -2]]);
-    expect(interfaceLines(setup({ interface: "text" }), 3, operation, (n) => n === INTERFACE_FAMILIARITY.text)).toEqual([]);
+    const other = { computerOperation: false, stylus: false };
+    expect(values(interfaceLines(setup({ interface: "text" }), 3, other, () => false))).toEqual([["unfamiliar", -2]]);
+    expect(interfaceLines(setup({ interface: "text" }), 3, other, (n) => n === INTERFACE_FAMILIARITY.text)).toEqual([]);
     // Without the familiarity rule, no line.
-    expect(interfaceLines(setup({ interface: "text" }), 3, operation, null)).toEqual([]);
+    expect(interfaceLines(setup({ interface: "text" }), 3, other, null)).toEqual([]);
+  });
+
+  it("puts the tasks' own figures on (HT:EE pp. 40-41)", () => {
+    // A text interface navigated by the arrow keys alone: -1 on Computer Operation.
+    expect(values(interfaceLines(setup({ interface: "text" }), 3, { ...operation, navigating: true }, null))).toEqual([["arrowKeys", -1]]);
+    expect(values(interfaceLines(setup({ interface: "text" }), 3, operation, null))).toEqual([]);
+    // Typing on a touch screen: -1 without a keyboard.
+    const typing = { computerOperation: false, stylus: false, typing: true };
+    expect(values(interfaceLines(setup({}), 3, typing, null))).toEqual([["touchTyping", -1]]);
+    expect(values(interfaceLines(setup({}), 3, { ...typing, keyboard: true }, null))).toEqual([]);
+    // The VR headset: up to 2 of the roll's penalties offset.
+    expect(values(interfaceLines(setup({ interface: "vr" }), 3, { ...operation, penalties: -5, vrTask: true }, null))).toEqual([["vr", 2]]);
+    expect(values(interfaceLines(setup({ interface: "vr" }), 3, { ...operation, penalties: -5 }, null))).toEqual([]);
+    expect(values(interfaceLines(setup({ interface: "vr" }), 3, { ...operation, penalties: 0 }, null))).toEqual([]);
+    // Wired gloves: -2 to a skill of manual dexterity.
+    expect(values(interfaceLines(setup({ interface: "vr", wiredGloves: true }), 3, { computerOperation: false, stylus: false, dexterity: true }, null))).toEqual([["wiredGloves", -2]]);
+    expect(values(interfaceLines(setup({ interface: "vr", wiredGloves: true }), 3, { computerOperation: false, stylus: false }, null))).toEqual([]);
   });
 
   it("drives only an interface the computer's Complexity reaches", () => {

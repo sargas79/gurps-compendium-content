@@ -215,6 +215,8 @@ export interface PowerTool {
   diamond?: Pick<Work, "divisor" | "against">;
   /** Early models' clumsier arrangements: -2 to skill. */
   earlyPenalty?: number;
+  /** As a weapon, crippling damage to a limb amputates it (HT:EE p. 51, note [5]). */
+  amputates?: boolean;
 }
 
 const perSecond = (damage: string, type: string, divisor = 1, against = ""): Work => ({ damage, type, divisor, every: 1, multiplier: 1, against, stRoll: null, carbideBonus: 0 });
@@ -223,8 +225,9 @@ export const POWER_TOOLS: readonly PowerTool[] = Object.freeze([
   // Wood, plaster and the like; the compact drill is the same drill on batteries (HT:EE p. 24).
   { pattern: /^(?:compact )?power drill$/i, work: perSecond("1d+2", "pi++", 2, "wood"), earlyPenalty: -2 },
   // Each second of cutting, as the compact saw's entry has it; a diamond blade for concrete or brick (HT:EE p. 24).
-  { pattern: /^circular saw$/i, work: perSecond("sw+3", "cut", 2, "wood"), diamond: { divisor: 5, against: "concreteRock" } },
-  { pattern: /^compact circular saw$/i, work: perSecond("sw+1", "cut", 2, "wood"), diamond: { divisor: 5, against: "concreteRock" } },
+  // As weapons, the saws take off a limb they cripple (HT:EE p. 51, note [5]).
+  { pattern: /^circular saw$/i, work: perSecond("sw+3", "cut", 2, "wood"), diamond: { divisor: 5, against: "concreteRock" }, amputates: true },
+  { pattern: /^compact circular saw$/i, work: perSecond("sw+1", "cut", 2, "wood"), diamond: { divisor: 5, against: "concreteRock" }, amputates: true },
   // Welds or cuts metal (HT:EE p. 21).
   { pattern: /^arc welder$/i, work: perSecond("3d", "burn", 2) },
   { pattern: /^hot plate$/i, work: perSecond("1d-3", "burn") },
@@ -265,6 +268,18 @@ export function applianceHazardOf(name: unknown): ApplianceHazard | null {
 
 /** Whether the hazard applies to this appliance: an early-only one on an early model. */
 export const hazardApplies = (hazard: ApplianceHazard | null, early: boolean): hazard is ApplianceHazard => hazard !== null && (!hazard.earlyOnly || early);
+
+/**
+ * The limbs a weapon that amputates takes off when it cripples them: an arm
+ * or a leg (HT:EE p. 51, note [5] -- a limb, not a hand or foot, which the
+ * Basic Set calls extremities, Campaigns p. 421).
+ */
+export const AMPUTATED_LOCATIONS: ReadonlySet<string> = new Set(["arm", "leg"]);
+
+/** Whether a blow that crippled this location with this tool amputates it. */
+export function amputatesAt(name: unknown, location: unknown): boolean {
+  return powerToolOf(name)?.amputates === true && AMPUTATED_LOCATIONS.has(String(location ?? ""));
+}
 
 /** The work the tool does with its blade: the diamond blade's divisor and material where one is fitted. */
 export function powerToolWork(tool: PowerTool, diamond: boolean): Work {
