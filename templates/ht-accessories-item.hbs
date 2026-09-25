@@ -28,6 +28,9 @@
         </label>
       {{/if}}
     </div>
+    {{#if buildable}}
+      <p class="ihint"><button type="button" class="ibtn tiny" data-gcc-ht-build {{#unless editable}}disabled{{/unless}} data-tooltip="{{localize 'GCC.HT.Accessories.BuildHint'}}">{{localize "GCC.HT.Accessories.Build"}}</button></p>
+    {{/if}}
     {{#if nightVisionChoice}}
       <div class="ichecks">
         <label class="icheck"><input type="checkbox" data-gcc-ht-accessory="nightVision" {{#if data.nightVision}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Accessories.NightVisionChoice"}}</label>
@@ -60,6 +63,7 @@
     {{#if magazine.chosen}}
       <div class="ichecks">
         <label class="icheck" data-tooltip="{{localize 'GCC.HT.Accessories.UnreliableHint'}}"><input type="checkbox" data-gcc-ht-gun="magazineUnreliable" {{#if magazine.unreliable}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Accessories.Unreliable"}}</label>
+        {{#if magazine.grip}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Accessories.InGripHint'}}"><input type="checkbox" data-gcc-ht-gun="magazineInGrip" {{#if magazine.inGrip}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Accessories.InGrip"}}</label>{{/if}}
       </div>
     {{/if}}
   {{/if}}

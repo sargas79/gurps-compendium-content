@@ -26,7 +26,26 @@ import {
   suppressorHearing,
   suppressorSeconds,
   unaimedScopeBulk,
+  accessoryFits,
+  suppressorBuildRolls,
 } from "./rules.js";
+
+describe("what fits and what is built (High-Tech pp. 156-159)", () => {
+  it("puts a sidearm's laser only on a pistol and a shoulder arm's on anything else, and a tactical light on any gun", () => {
+    expect(accessoryFits("sidearm", "Guns (Pistol)")).toBe(true);
+    expect(accessoryFits("sidearm", "Guns (Rifle)")).toBe(false);
+    expect(accessoryFits("shoulder", "Guns (Pistol)")).toBe(false);
+    expect(accessoryFits("shoulder", "Guns (Submachine Gun)")).toBe(true);
+    expect(catalogueFigures("Large Tactical Light")?.fits).toBeUndefined();
+    expect(accessoryFits(undefined, "Guns (Pistol)")).toBe(true);
+  });
+
+  it("designs a suppressor with Engineer, or Research at TL7+, and builds it at the grade's modifier", () => {
+    expect(suppressorBuildRolls("poor", 7)).toEqual({ designSkills: [], buildModifier: null });
+    expect(suppressorBuildRolls("average", 6)).toEqual({ designSkills: ["Engineer (Small Arms)"], buildModifier: 4 });
+    expect(suppressorBuildRolls("fine", 8)).toEqual({ designSkills: ["Engineer (Small Arms)", "Research"], buildModifier: -2 });
+  });
+});
 
 describe("the catalogue (pp. 155-160)", () => {
   it("knows the captured records by name", () => {

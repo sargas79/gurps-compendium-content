@@ -47,6 +47,11 @@ export function intoWaterDistance(rangeYards: number, depthFeet: number): number
 /** Firing at 50°-90° into the air cuts the range to 80% (p. 85). */
 export const STEEP_ANGLE_RANGE = 0.8;
 
+/** A range, 1/2D or Max, of a gun fired steeply up: 80% of it, in whole yards (p. 85). */
+export function steepRange(yards: number): number {
+  return Math.round(Math.max(0, Number(yards) || 0) * STEEP_ANGLE_RANGE);
+}
+
 /** How a shot's distance stands against the row's ranges: in reach, past 1/2D, or out of range. */
 export function reach(distance: number, row: { halfDamageRange: number; maxRange: number }, rangeFactor = 1): "full" | "half" | "out" {
   const max = Math.max(0, row.maxRange) * rangeFactor;

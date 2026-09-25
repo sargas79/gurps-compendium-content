@@ -1,6 +1,7 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
+import { clearFirearmGradeClaims, registerFirearmGradeClaim } from "../../../shared/firearm-grade.js";
 import { adjustWeaponRows, concealmentOf, gearPrice } from "./effects.js";
 
 const globals = globalThis as Record<string, unknown>;
@@ -60,6 +61,29 @@ describe("attack rows under the book's gear rules", () => {
     const row = entry("ranged", { skill: "Guns (Rifle)", damageType: "pi", projectiles: 1 }, { skillLevel: 12, damage: "7d", accuracy: 5, halfDamageRange: 700, maxRange: 3500 }, { damage: "7d", damageType: "pi", accuracy: 5, halfDamageRange: 700, maxRange: 3500 });
     adjustWeaponRows(api(), { item: rifle, actor: { items: [] }, rows: [row], ...helpers }, (key) => ({ label: key, hint: "" }), "(follow-up)");
     expect(row.row).toMatchObject({ damage: "7d-7", accuracy: 6, followUp: { damage: "1d-2", damageType: "burn", explosive: false, label: "(follow-up)" } });
+  });
+
+  it("leaves a fine gun's Acc to another book whose rule claims its quality, keeping a load's Acc", () => {
+    const rifle = (loads: unknown[] = []) => ({
+      type: "equipment", name: "Rifle",
+      system: { quality: "fine", weaponClass: "firearm", rangedModes: [{ skill: "Guns (Rifle)", damageType: "pi" }], ...gear({ loads }) },
+    });
+    // The Basic Set's fine grade already in the row: Acc 5 +1.
+    const rowFor = () => entry("ranged", { skill: "Guns (Rifle)", damageType: "pi", projectiles: 1 }, { skillLevel: 12, damage: "7d", accuracy: 6, halfDamageRange: 700, maxRange: 3500 }, { damage: "7d", damageType: "pi", accuracy: 5, halfDamageRange: 700, maxRange: 3500 });
+    const adjust = (item: any) => {
+      const row = rowFor();
+      adjustWeaponRows(api(true), { item, actor: { items: [] }, rows: [row], ...helpers }, (key) => ({ label: key, hint: "" }), "(follow-up)");
+      return (row.row as Record<string, unknown>).accuracy;
+    };
+    expect(adjust(rifle())).toBe(6);
+    registerFirearmGradeClaim("high-tech", (item) => item?.name === "Rifle");
+    try {
+      // The row is left as the other book's rule leaves it, with or without a match-grade load's +1.
+      expect(adjust(rifle())).toBe(6);
+      expect(adjust(rifle([{ mode: 0, powder: "matchGrade" }]))).toBe(7);
+    } finally {
+      clearFirearmGradeClaims();
+    }
   });
 });
 

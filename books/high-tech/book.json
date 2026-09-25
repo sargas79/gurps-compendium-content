@@ -6634,6 +6634,92 @@
         "system.boots": true
       },
       "reason": "boots add +1 to a kick (Characters p. 271), which the system reads from system.boots since API 1.110.0; shoes, sneakers and cleats aren't boots (p. 68)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^AI AW, 7\\.62x51mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.precision": true
+      },
+      "reason": "a purpose-built sniper rifle, which rolls HT rather than HT+4 against abuse (pp. 80, 118) (#364)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Izhmash AK-47, 7\\.62x39mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.rugged": "rugged"
+      },
+      "reason": "the book's example of a famously rugged gun: ruggedized at no extra cost, DR 8, HT 12 (p. 80) (#364)"
+    },
+    {
+      "pack": "skills",
+      "pattern": "^Immediate Action$",
+      "set": {
+        "system.alternateDefaults": [
+          {
+            "from": "skill",
+            "skill": "Armoury (Small Arms)",
+            "modifier": -4
+          }
+        ]
+      },
+      "reason": "the file's alternate default is a GCA placeholder, Armoury (%Gun SkillsAliasList%); Guns versions default to Armoury (Small Arms)-4, and the Immediate Action switch gives a Gunner version Armoury (Heavy Weapons)-4 (p. 251) (#364)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^MBA Gyrojet Mk I, 13x36mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.underwaterFactor": 100
+      },
+      "reason": "fires underwater at Range 10 (p. 99): its 1,000 yards counted a hundred times over (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Colt M1851 Navy, \\.36 Caplock$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.cylinderSwapSeconds": 15
+      },
+      "reason": "a removable cylinder: 15 seconds to detach it and put a preloaded spare in (p. 93) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Remington New Model Army, \\.44 Caplock$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.cylinderSwapSeconds": 10
+      },
+      "reason": "a removable cylinder: 10 seconds to detach it and put a preloaded spare in (p. 94) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^SMLE Mk III, \\.303$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.spareMagazine": true
+      },
+      "reason": "its magazine detaches, though it is normally charged in place: with a spare, a reload is three Ready maneuvers (p. 112) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Gatling M1874, \\.45-70$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.drumCells": 20,
+        "system.extensions.gurps-compendium-content.firearm.drumCellRounds": 20
+      },
+      "reason": "takes the 400-round Broadwell drum, 20 cells of 20 (p. 127) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Hotchkiss 1-pdr, 37x94mmR$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.canister": {
+          "damage": "1d+1",
+          "accuracy": 3,
+          "halfDamageRange": 60,
+          "maxRange": 1200,
+          "projectiles": 75,
+          "rateOfFire": 1
+        }
+      },
+      "reason": "fires canister: Dmg 1d+1 pi++, Acc 3, Range 60/1,200, RoF 1x75, Rcl 1 (p. 128) (#370)"
     }
   ]
 }

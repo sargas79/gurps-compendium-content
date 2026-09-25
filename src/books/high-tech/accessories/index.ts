@@ -47,6 +47,14 @@
  *     modes (43 of them, as the GCA file prints them) keeps them: the state
  *     picks the mode, and a shot from the other one is refused.
  *
+ * Gear made for a sidearm fits only a pistol, and for a shoulder arm no
+ * pistol; an add-on night sight works only in front of a scope or
+ * collimating sight on the same gun; a high-density magazine goes in a grip
+ * only where the gun was designed for one; an open bipod braces a shooter
+ * who isn't prone where the GM lets it rest on something (an attack
+ * option); and a home-built suppressor is designed and built from its sheet,
+ * a botched one rolling the Malfunction Table on its first shot.
+ *
  * The Bulk the accessories leave -- magazine, suppressor, sights, stocks --
  * is the rows' own `bulk`, so the Combat tab shows it and the system takes
  * it on a Move and Attack, in close combat and when driving.
@@ -58,10 +66,13 @@ import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { calibreRowOf } from "../ammunition/calibres.js";
 import { shineTacticalLight, shinesInfrared } from "../expedition/index.js";
 import { isFirearm } from "../firearms/index.js";
+import { modernMalfunction } from "../firearms/rules.js";
 import { familyData, gunTakesSuppressor } from "../weapon-families/index.js";
 import {
+  ADD_ON_HOSTS,
   BIPOD,
   FOLDED_STOCK,
+  accessoryFits,
   HEARD_AT,
   HOME_BUILT,
   LASER_COLOUR,
@@ -72,8 +83,10 @@ import {
   PISTOL_STOCK,
   REPORTS,
   SEALED_BREECH,
+  SUPPRESSOR_BUILD,
   SUPPRESSOR_GRADES,
   UNFAMILIAR_LISTENER,
+  suppressorBuildRolls,
   catalogueFigures,
   cinematicHearing,
   foldedBulk,
@@ -113,6 +126,8 @@ const FIELD = "gunAccessory";
 const GUN_FIELD = "firearm";
 /** The attack option that switches a fitted tactical light on for the shot (p. 156). */
 const LIGHT_OPTION = "ht-tactical-light";
+/** The attack option that sets an open bipod on something stable for a shooter who isn't prone (p. 160). */
+const BIPOD_REST_OPTION = "ht-bipod-rest";
 
 export interface AccessorySwitches {
   magazines: () => boolean;
@@ -120,6 +135,8 @@ export interface AccessorySwitches {
   suppressors: () => boolean;
   cinematic: () => boolean;
   stocks: () => boolean;
+  /** Gun care, whose TL6-8 swap of misfires and stoppages a botched suppressor's malfunction takes too (p. 81). */
+  gunCare?: () => boolean;
 }
 
 /** Which switch each kind of accessory is under. */
@@ -157,6 +174,8 @@ export interface AccessoryData {
   nightVision: boolean;
   /** A scope with an illuminated reticle (p. 155). */
   illuminated: boolean;
+  /** A home-built suppressor whose build roll failed: the first shot through it rolls the Malfunction Table (p. 159). */
+  buildFailed: boolean;
 }
 
 /** What this module keeps on a gun for its magazine and its report, beside the other rules' fields. */
@@ -167,6 +186,7 @@ export function accessoryGunFields(f: any): Record<string, unknown> {
     magazineMaterial: new f.StringField({ required: true, nullable: false, blank: false, initial: "alloy", choices: [...MAGAZINE_MATERIALS] }),
     magazineRounds: whole(1000),
     magazineUnreliable: new f.BooleanField({ initial: false }),
+    magazineInGrip: new f.BooleanField({ initial: false }),
     report: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: ["", ...REPORTS] }),
     sealedBreech: new f.BooleanField({ initial: false }),
   };
@@ -185,6 +205,7 @@ export function initAccessories(): void {
       fired: whole(100000),
       nightVision: new f.BooleanField({ initial: false }),
       illuminated: new f.BooleanField({ initial: false }),
+      buildFailed: new f.BooleanField({ initial: false }),
     }),
   });
 }
@@ -201,6 +222,7 @@ export function accessoryData(item: any): AccessoryData {
     fired: count(d.fired),
     nightVision: d.nightVision === true,
     illuminated: d.illuminated === true,
+    buildFailed: d.buildFailed === true,
   };
 }
 
@@ -209,6 +231,8 @@ interface GunData {
   magazineMaterial: MagazineMaterial;
   magazineRounds: number;
   magazineUnreliable: boolean;
+  /** A high-density magazine in the grip, where the gun's own design has one (p. 155). */
+  magazineInGrip: boolean;
   report: Report | "";
   sealedBreech: boolean;
 }
@@ -220,12 +244,15 @@ function gunData(item: any): GunData {
     magazineMaterial: MAGAZINE_MATERIALS.includes(d.magazineMaterial) ? d.magazineMaterial : "alloy",
     magazineRounds: Math.max(0, Math.floor(Number(d.magazineRounds) || 0)),
     magazineUnreliable: d.magazineUnreliable === true,
+    magazineInGrip: d.magazineInGrip === true,
     report: REPORTS.includes(d.report) ? d.report : "",
     sealedBreech: d.sealedBreech === true,
   };
 }
 
 const rangedModes = (item: any): any[] => item?.system?.rangedModes ?? [];
+/** The weapon skill a gun's first mode is fired with. */
+const gunSkill = (gun: any): string => String(rangedModes(gun)[0]?.skill ?? "");
 const tlOf = (item: any): number => Number(/\d+/.exec(String(item?.system?.tl ?? ""))?.[0]) || 0;
 const isPistolSkill = (skill: string) => /^guns(?: sport)? \(pistol\)/i.test(String(skill ?? "").trim());
 
@@ -239,7 +266,7 @@ function calibreOf(item: any) {
 
 /** Whether an accessory's rule is on. */
 function kindOn(on: AccessorySwitches, figures: AccessoryFigures): boolean {
-  return on[SWITCH_OF[figures.kind]]();
+  return on[SWITCH_OF[figures.kind]]?.() === true;
 }
 
 interface Fitted {
@@ -259,11 +286,17 @@ export function fittedTo(gun: any, on: AccessorySwitches, kinds?: readonly Acces
     if (kinds && !kinds.includes(known.figures.kind)) continue;
     const data = accessoryData(item);
     if (data.gun !== gun.id) continue;
-    // A suppressor on a gun it doesn't work on does nothing (p. 159).
+    // A suppressor on a gun it doesn't work on does nothing (p. 159), nor a sidearm's or shoulder arm's gear on the other.
     if (known.figures.kind === "suppressor" && !gunTakesSuppressor(gun)) continue;
+    if (!accessoryFits(known.figures.fits, gunSkill(gun))) continue;
     out.push({ item, figures: known.figures, data });
   }
   return out;
+}
+
+/** Whether the gun has a scope or collimating sight fitted for an add-on night sight to work in front of (p. 156). */
+function addOnHasSight(fitted: readonly Fitted[]): boolean {
+  return fitted.some((f) => ADD_ON_HOSTS.includes(f.figures.kind));
 }
 
 // ── the gun's state: stock, bipod, sight ──
@@ -309,7 +342,8 @@ export function gunMagazine(item: any): GunMagazine | null {
   if (!normal) return null;
   const rounds = data.magazineRounds || normal;
   const wps = calibreOf(item)?.wps ?? 0;
-  const refused = data.magazine === "highDensity" && !highDensityFits(String(mode.skill ?? "")) ? L("HighDensityGrip") : null;
+  // Not in a grip, unless the gun was designed for one there (p. 155).
+  const refused = data.magazine === "highDensity" && !highDensityFits(String(mode.skill ?? "")) && !data.magazineInGrip ? L("HighDensityGrip") : null;
   return { kind: data.magazine, rounds, normal, wps, figures: magazineFigures({ kind: data.magazine, material: data.magazineMaterial, rounds, normal, wps, unreliable: data.magazineUnreliable }), refused };
 }
 
@@ -550,7 +584,7 @@ async function say(actor: any, title: string, lines: string[]): Promise<void> {
 /** The guns an accessory can be fitted to: the character's firearms, less the revolvers a suppressor won't fit. */
 function gunsFor(api: GWorldApi, accessory: any, figures: AccessoryFigures): any[] {
   const actor = accessory?.actor ?? accessory?.parent;
-  return [...(actor?.items ?? [])].filter((i: any) => i.id !== accessory.id && isFirearm(api, i) && (figures.kind !== "suppressor" || gunTakesSuppressor(i)));
+  return [...(actor?.items ?? [])].filter((i: any) => i.id !== accessory.id && isFirearm(api, i) && (figures.kind !== "suppressor" || gunTakesSuppressor(i)) && accessoryFits(figures.fits, gunSkill(i)));
 }
 
 function accessoryContext(api: GWorldApi, item: any, figures: AccessoryFigures, on: AccessorySwitches): Record<string, unknown> {
@@ -580,6 +614,8 @@ function accessoryContext(api: GWorldApi, item: any, figures: AccessoryFigures, 
     case "computerSight": {
       const vision = figures.kind === "computerSight" && data.nightVision ? F("NightVision", { level: 7 }) : figures.infravision ? L("Infravision") : F("NightVision", { level: figures.nightVision ?? 0 });
       lines.push(F(figures.addOn ? "AddOnLine" : "SightLine", { vision }));
+      const host = figures.addOn && data.gun ? (item.actor?.items?.get?.(data.gun) ?? null) : null;
+      if (host && !addOnHasSight(fittedTo(host, on))) lines.push(L("AddOnNeedsSight"));
       if (figures.accuracy) lines.push(F("SightAccuracy", { bonus: figures.accuracy }));
       if (figures.kind === "computerSight") lines.push(F("ComputerLine", { program: figures.program ?? 0, rangefinder: figures.rangefinder ?? 0, yards: (figures.yards ?? 0).toLocaleString(), magnification: figures.magnification ?? 0 }));
       break;
@@ -602,6 +638,7 @@ function accessoryContext(api: GWorldApi, item: any, figures: AccessoryFigures, 
         lines.push(F("GradeLine", { hours: grade.hours, roll: grade.roll === null ? L("GradeNoRoll") : F("GradeRoll", { modifier: grade.roll >= 0 ? `+${grade.roll}` : String(grade.roll) }) }));
       }
       if (lifetime) lines.push(F("LifetimeLine", { fired: data.fired, lifetime }));
+      if (data.buildFailed) lines.push(L("BuildFailedLine"));
       if (fitted && !gunTakesSuppressor(fitted)) lines.push(L("SuppressorRevolver"));
       break;
     }
@@ -628,6 +665,7 @@ function accessoryContext(api: GWorldApi, item: any, figures: AccessoryFigures, 
     grades: figures.kind === "suppressor" ? ["", ...SUPPRESSOR_GRADES].map((g) => ({ value: g, label: L(`Grade.${g || "commercial"}`), selected: g === data.grade })) : null,
     nightVisionChoice: figures.kind === "computerSight",
     illuminatedChoice: figures.kind === "scope",
+    buildable: figures.kind === "suppressor" && Boolean(data.grade) && Boolean(item.actor ?? item.parent),
     lines,
     switchOn: kindOn(on, figures),
   };
@@ -647,6 +685,8 @@ function gunContext(api: GWorldApi, item: any, on: AccessorySwitches): Record<st
       rounds: data.magazineRounds || normal,
       unreliable: data.magazineUnreliable,
       chosen: Boolean(data.magazine),
+      grip: data.magazine === "highDensity" && !highDensityFits(String(mode.skill ?? "")),
+      inGrip: data.magazineInGrip,
     };
     if (magazine) {
       if (magazine.refused) lines.push(magazine.refused);
@@ -673,7 +713,104 @@ function gunContext(api: GWorldApi, item: any, on: AccessorySwitches): Record<st
   return context;
 }
 
-function listeners(element: HTMLElement, item: any): void {
+/** The best of these skills the character knows, as `{ name, level }`, or null. */
+function bestSkill(api: GWorldApi, actor: any, names: readonly string[], fallback?: { name: string; modifier: number }): { name: string; level: number } | null {
+  const known = names.map((name) => ({ name, level: api.actors.skillLevel(actor, name) })).filter((s): s is { name: string; level: number } => typeof s.level === "number");
+  if (fallback) {
+    const level = api.actors.skillLevel(actor, fallback.name);
+    if (typeof level === "number") known.push({ name: `${fallback.name} ${fallback.modifier}`, level: level + fallback.modifier });
+  }
+  return known.sort((a, b) => b.level - a.level)[0] ?? null;
+}
+
+/**
+ * Makes a home-built suppressor (p. 159): the design roll, then the build
+ * roll at the grade's modifier and the GM's (blueprints, tools, extra time).
+ * A failed build marks the suppressor, so its first shot rolls the
+ * Malfunction Table; a critical failure damages the gun, as the GM says.
+ * Returns what came of it, or null where nothing was rolled.
+ */
+export async function buildSuppressor(api: GWorldApi, item: any, actor: any, modifier = 0): Promise<"built" | "designFailed" | "failed" | "damaged" | null> {
+  const grade = accessoryData(item).grade;
+  if (!grade || !actor) return null;
+  const title = F("BuildTitle", { name: String(item.name ?? "") });
+  const rolls = suppressorBuildRolls(grade, tlOf(item));
+  const path = `system.extensions.${MODULE_ID}.${FIELD}.buildFailed`;
+  // A poor one: no roll for anyone who knows guns, an IQ roll for anyone else.
+  if (rolls.buildModifier === null) {
+    const handy = [...(actor.items ?? [])].some((i: any) => i?.type === "skill" && /^(guns|armou?ry)\b/i.test(String(i.name ?? "")));
+    if (!handy) {
+      const iq = Number(api.actors.attribute(actor, "IQ" as never)) || 10;
+      const outcome: any = await api.roll.success({ actor, base: iq, kind: "attribute", label: title, modifiers: modifier ? [{ label: L("BuildModifier"), value: modifier }] : [], tags: ["suppressorBuild"] } as any);
+      if (!outcome) return null;
+      await item.update({ [path]: !outcome.success });
+      await say(actor, title, [L(outcome.success ? "Built" : outcome.criticalFailure ? "BuildDamaged" : "BuildFailed")]);
+      return outcome.success ? "built" : outcome.criticalFailure ? "damaged" : "failed";
+    }
+    await item.update({ [path]: false });
+    await say(actor, title, [L("BuiltPoor")]);
+    return "built";
+  }
+  const designer = bestSkill(api, actor, rolls.designSkills);
+  if (!designer) {
+    ui.notifications?.warn(F("BuildNoSkill", { skills: rolls.designSkills.join(", ") }));
+    return null;
+  }
+  const design: any = await api.roll.success({ actor, base: designer.level, skill: designer.name, label: F("DesignRoll", { name: String(item.name ?? "") }), tags: ["suppressorBuild"] } as any);
+  if (!design) return null;
+  if (!design.success) {
+    await say(actor, title, [L("DesignFailed")]);
+    return "designFailed";
+  }
+  const builder = bestSkill(api, actor, [SUPPRESSOR_BUILD.skill], { name: SUPPRESSOR_BUILD.fallback, modifier: SUPPRESSOR_BUILD.fallbackModifier });
+  if (!builder) {
+    ui.notifications?.warn(F("BuildNoSkill", { skills: `${SUPPRESSOR_BUILD.skill}, ${SUPPRESSOR_BUILD.fallback}` }));
+    return null;
+  }
+  const lines = [
+    ...(rolls.buildModifier ? [{ label: L(`Grade.${grade}`), value: rolls.buildModifier }] : []),
+    ...(modifier ? [{ label: L("BuildModifier"), value: modifier }] : []),
+  ];
+  const build: any = await api.roll.success({ actor, base: builder.level, skill: builder.name.startsWith(SUPPRESSOR_BUILD.skill) ? builder.name : "", label: F("BuildRoll", { name: String(item.name ?? ""), skill: builder.name }), modifiers: lines, tags: ["suppressorBuild"] } as any);
+  if (!build) return null;
+  await item.update({ [path]: !build.success });
+  const result = build.success ? "built" : build.criticalFailure ? "damaged" : "failed";
+  await say(actor, title, [L(result === "built" ? "Built" : result === "damaged" ? "BuildDamaged" : "BuildFailed")]);
+  return result;
+}
+
+/**
+ * The first shot through a botched suppressor: the Firearm Malfunction Table
+ * (Campaigns p. 407), read as the system reads it -- an explosion is a
+ * mechanical problem where the gun's TL can't explode -- and, with gun care
+ * on, misfires and stoppages swapped at TL6-8 as this book's malfunction
+ * listener swaps them (p. 81). The mode fired is put out of action.
+ */
+export async function botchedFirstShot(api: GWorldApi, gun: any, actor: any, suppressor: any, modeIndex = 0, gunCare: () => boolean = () => false): Promise<string> {
+  const roll = new Roll("3d6");
+  await roll.evaluate();
+  const tl = tlOf(gun);
+  let kind = String(api.rules.malfunctionFor(Number(roll.total) || 10));
+  if (kind === "explosion" && !api.rules.mayExplode(tl)) kind = "mechanical";
+  // A suppressor is never on an ordinary revolver (p. 159), so the swap applies as for any other gun.
+  if (gunCare()) kind = modernMalfunction(kind, tl, false);
+  if (gun?.isOwner) await api.items.setMalfunction(gun, { kind, modeIndex } as any);
+  await say(actor, String(suppressor.name ?? ""), [F("BotchedShot", { roll: roll.total, kind: game.i18n.localize(`GWORLD.Malfunction.${kind}`), gun: String(gun?.name ?? "") })]);
+  return kind;
+}
+
+function listeners(api: GWorldApi, element: HTMLElement, item: any): void {
+  element.querySelector("[data-gcc-ht-build]")?.addEventListener("click", async () => {
+    const actor = item.actor ?? item.parent;
+    const modifier = await foundry.applications.api.DialogV2.prompt({
+      window: { title: F("BuildTitle", { name: String(item.name ?? "") }) },
+      content: `<div class="gworld"><p class="ihint">${esc(L("BuildHint"))}</p><label style="display:flex;justify-content:space-between;gap:8px;align-items:center"><span>${esc(L("BuildModifier"))}</span><input type="number" name="modifier" value="0" step="1" style="width:80px"></label></div>`,
+      ok: { label: L("Build"), callback: (_e: Event, button: HTMLElement) => Number(button.closest<HTMLElement>(".application")?.querySelector<HTMLInputElement>('[name="modifier"]')?.value ?? 0) },
+      rejectClose: false,
+    });
+    if (modifier === null || modifier === undefined) return;
+    await buildSuppressor(api, item, actor, Math.trunc(Number(modifier) || 0));
+  });
   element.querySelectorAll<HTMLInputElement | HTMLSelectElement>("[data-gcc-ht-accessory]").forEach((input) => {
     input.addEventListener("change", async () => {
       const key = String(input.dataset.gccHtAccessory);
@@ -686,6 +823,11 @@ function listeners(element: HTMLElement, item: any): void {
         // A suppressor never goes on an ordinary revolver (p. 159).
         if (figures?.kind === "suppressor" && gun && !gunTakesSuppressor(gun)) {
           ui.notifications?.warn(L("SuppressorRevolver"));
+          (input as HTMLSelectElement).value = "";
+          return;
+        }
+        if (figures && gun && !accessoryFits(figures.fits, gunSkill(gun))) {
+          ui.notifications?.warn(L(`Fits.${figures.fits}`));
           (input as HTMLSelectElement).value = "";
           return;
         }
@@ -789,7 +931,7 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
       const known = accessoryOf(item);
       return known ? accessoryContext(api, item, known.figures, on) : gunContext(api, item, on);
     },
-    listeners: (element, item) => listeners(element, item),
+    listeners: (element, item) => listeners(api, element, item),
   });
 
   // The magazine's capacity, for the modes fed from the standard one (p. 155).
@@ -931,14 +1073,18 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
         context.refusal = setups.foldPairs && setup.folded !== state.stockFolded ? L(state.stockFolded ? "RefuseUnfolded" : "RefuseFolded") : L(state.bipodDeployed ? "RefuseNoBipod" : "RefuseBipod");
         return;
       }
-      if (!context.refusal && setups.bipodPairs && setup.bipod === true && !prone(actor)) {
+      // A bipod set on something stable -- a wall, sandbags, a window ledge -- as the GM allows a shooter who isn't prone (p. 160).
+      const rested = context.options?.[`${MODULE_ID}.${BIPOD_REST_OPTION}`] === true && state.bipodDeployed;
+      if (!context.refusal && setups.bipodPairs && setup.bipod === true && !prone(actor) && !rested) {
         context.refusal = L("RefuseNotProne");
         return;
       }
       // A bipod or shooting sticks brace an aimed shot: open under a prone shooter, or under a sitting one (p. 160).
       const braced = lineOf("braced");
       if (aimed && !braced) {
-        const bipod = !setups.bipodPairs && state.bipodDeployed && prone(actor) && fittedTo(item, on, ["bipod"]).length > 0 && mode.mount !== "bipod";
+        const bipod = (!setups.bipodPairs && state.bipodDeployed && (prone(actor) || rested) && fittedTo(item, on, ["bipod"]).length > 0 && mode.mount !== "bipod")
+          // A "w/ Bipod" mode rested on a wall: the system braces a bipod only under a prone shooter.
+          || (setups.bipodPairs && setup.bipod === true && rested && !prone(actor));
         const sticks = String(actor?.system?.posture ?? "") === "sitting" && fittedTo(item, on, ["shootingSticks"]).length > 0;
         if (bipod || sticks) modifiers.push({ label: L(bipod ? "BipodBraced" : "SticksBraced"), value: api.rules.BRACED_BONUS ?? 1, key: "braced" });
       }
@@ -987,6 +1133,16 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
     if (over > 0) modifiers.push({ label: F("SightCap", { accuracy: base }), value: -over });
   });
 
+  // An open bipod set on something stable for a shooter who isn't prone, as the GM allows (p. 160).
+  api.combat.registerAttackOption({
+    module: MODULE_ID,
+    key: BIPOD_REST_OPTION,
+    label: L("BipodRest"),
+    attack: "ranged",
+    available: (context: any) => on.stocks() && firearm(context?.item) && hasBipod(context.item, on) && gunState(api, context.item).bipodDeployed && !prone(context.actor),
+    apply: () => ({ notes: [L("BipodRestNote")] }),
+  } as any);
+
   // A fitted tactical light switched on for the shot (p. 156): a free declaration here, its Ready to switch on the GM's.
   api.combat.registerAttackOption({
     module: MODULE_ID,
@@ -1021,8 +1177,11 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
     const actor = context?.actor;
     for (const gun of actor?.items ?? []) {
       if (gun?.type !== "equipment" || !gunState(api, gun).sightInUse) continue;
-      for (const { item: sight, figures, data } of fittedTo(gun, on)) {
+      const fitted = fittedTo(gun, on);
+      for (const { item: sight, figures, data } of fitted) {
         if (!figures.imposesTunnelVision) continue;
+        // An add-on night sight works in front of a scope or collimating sight, and only there (p. 156).
+        if (figures.addOn && !addOnHasSight(fitted)) continue;
         const label = String(sight.name);
         const nightVision = figures.kind === "computerSight" && data.nightVision ? 7 : figures.nightVision ?? 0;
         if (nightVision && !(figures.kind === "computerSight" && !data.nightVision)) {
@@ -1046,6 +1205,11 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
     if (!on.suppressors() || !item) return;
     const fitted = fittedTo(item, on, ["suppressor"])[0];
     if (!fitted?.item?.isOwner) return;
+    // A botched home build: the first shot through it rolls the Firearm Malfunction Table (p. 159).
+    if (fitted.data.buildFailed) {
+      void fitted.item.update({ [`system.extensions.${MODULE_ID}.${FIELD}.buildFailed`]: false });
+      void botchedFirstShot(api, item, context.actor, fitted.item, Math.max(0, Math.floor(Number(context.modeIndex) || 0)), on.gunCare);
+    }
     const lifetime = lifetimeOf(fitted.figures, fitted.data);
     if (!lifetime || fitted.data.fired >= lifetime) return;
     const fired = Math.min(lifetime, fitted.data.fired + Math.max(0, Math.floor(Number(context.fired ?? context.shots) || 0)));

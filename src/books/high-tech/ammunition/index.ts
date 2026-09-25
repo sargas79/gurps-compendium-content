@@ -416,6 +416,23 @@ export function projectileUnderwaterFactor(item: any, modeIndex: number, on: Amm
   return firedProjectile(loadIn(item, modeIndex).load, projectileGun(item, modeIndex), on).projectile === "underwaterDart" ? 25 : 0;
 }
 
+/**
+ * What a mode's rounds are, for firing underwater (p. 85): hollow-points --
+ * the Basic Set's round, or this book's projectile with its switch on -- and
+ * caseless rounds, by the calibre the gun fires.
+ */
+export function underwaterRounds(item: any, modeIndex: number, on: AmmunitionSwitches): { hollowPoint: boolean; caseless: boolean } {
+  if (!isFirearmItem(item)) return { hollowPoint: false, caseless: false };
+  const mode = rangedModes(item)[modeIndex] ?? {};
+  const { load, box } = loadIn(item, modeIndex);
+  const fired = on.projectiles?.() ? firedProjectile(load, projectileGun(item, modeIndex), on).projectile : "";
+  const calibre = box ? boxCalibre(box, load) ?? gunCalibre(item) : gunCalibre(item);
+  return {
+    hollowPoint: String(mode.ammunition ?? "") === "hp" || fired === "hollowPoint",
+    caseless: Boolean(calibre?.notes.includes("caseless")),
+  };
+}
+
 /** Whether a mode fires Minié balls, which load a muzzle-loading rifle as a musket (pp. 86, 109). */
 export function firesMinieBalls(item: any, modeIndex: number, on: AmmunitionSwitches): boolean {
   if (!on.projectiles?.() || !isFirearmItem(item)) return false;

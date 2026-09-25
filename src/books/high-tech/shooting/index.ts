@@ -19,7 +19,8 @@
  *     shared Targeted Attack engine with this book's table; Instant Arsenal
  *     Disarm from its technique's row; Mounted Shooting, which keeps the
  *     keyed `movingPlatform` line (Campaigns p. 548) from taking a handheld
- *     weapon's skill below the technique's level.
+ *     weapon's skill below the technique's level; and Weapon Bond's +1 on
+ *     every shot with the gun the perk names (p. 250).
  *   - **Zen Marksmanship** (cinematic): Zen Archery for guns, one zen skill
  *     (`combat.registerZenSkill`) per specialty, offered while its switch is
  *     on.
@@ -30,7 +31,8 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { accessoryBulk, fittedScopeBonus, type AccessorySwitches } from "../accessories/index.js";
-import { isFirearm, techniqueRelative } from "../firearms/index.js";
+import { WEAPON_BOND_BONUS } from "../firearms/rules.js";
+import { isFirearm, techniqueRelative, weaponBonded } from "../firearms/index.js";
 import {
   GUNSLINGER_HALVES,
   INSTANT_ARSENAL_GRAB_PENALTY,
@@ -68,6 +70,10 @@ const RAPID = "ht-ranged-rapid-strike";
 const RAPID_STATE = "ht-ranged-rapid-strike-state";
 const TA_KIND = "ht-targeted-attack";
 const PRECISION_KEY = "precisionAiming";
+const WEAPON_BOND_KEY = `${MODULE_ID}.weaponBond`;
+const ACROBATIC = "ht-acrobatic-movement";
+/** The line's key, for any rule that eases or ignores the penalty. */
+export const ACROBATIC_KEY = `${MODULE_ID}.acrobaticMovement`;
 const DISASSEMBLED = `${MODULE_ID}.disassembled`;
 const option = (key: string) => `${MODULE_ID}.${key}`;
 
@@ -267,6 +273,24 @@ export function readyShooting(api: GWorldApi, on: ShootingSwitches, fitted?: Acc
     }
   });
 
+  // ── Shooting while leaping or on the move acrobatically (p. 249) ──
+
+  // The book sets no figure for the penalty: the GM gives it, and the expanded Gunslinger shoots at full skill.
+  api.combat.registerAttackOption({
+    module: MODULE_ID,
+    key: ACROBATIC,
+    label: L("Acrobatic"),
+    attack: "ranged",
+    input: { type: "number", max: 0 },
+    available: (context) => on.gunslinger() && isFirearm(api, context.item),
+    apply: (context, value) => {
+      const penalty = Math.min(0, Math.floor(Number(value) || 0));
+      if (!penalty) return null;
+      const ignored = traitNamed(context.actor, /^gunslinger\b/i);
+      return { modifiers: [{ label: ignored ? L("AcrobaticIgnored") : L("AcrobaticLine"), value: ignored ? 0 : penalty, key: ACROBATIC_KEY }] };
+    },
+  });
+
   // ── Ranged Rapid Strike (p. 85) ──
 
   api.combat.registerAttackOption({
@@ -349,6 +373,11 @@ export function readyShooting(api: GWorldApi, on: ShootingSwitches, fitted?: Acc
     }
 
     if (on.gunTechniques()) {
+      // Weapon Bond: +1 to skill with the bonded gun, whatever the technique the shot is made with (p. 250).
+      if (weaponBonded(actor, item) && !lines.some((l) => l?.key === WEAPON_BOND_KEY)) {
+        lines.push({ label: F("WeaponBondLine", { item: String(item.name ?? "") }), value: WEAPON_BOND_BONUS, key: WEAPON_BOND_KEY });
+      }
+
       // Close-Quarters Battle: Move and Attack at no more than Per yards (pp. 250-251), redundant with the expanded Gunslinger.
       const moving = String(context.movement?.maneuver ?? actor.system?.maneuver ?? "") === "moveAndAttack";
       if (moving && bulk?.situation === "moveAndAttack" && !(gunslinger && !bulk.value)

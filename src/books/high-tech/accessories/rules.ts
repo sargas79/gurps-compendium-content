@@ -25,9 +25,9 @@ const CATALOGUE: ReadonlyArray<{ name: RegExp; figures: AccessoryFigures }> = [
   { name: /^improved night sight\b/i, figures: { kind: "nightSight", nightVision: 5, accuracy: 2, fixed: true, bulk: -1, imposesTunnelVision: true } },
   { name: /^advanced night sight, add-on\b/i, figures: { kind: "nightSight", nightVision: 7, addOn: true, imposesTunnelVision: true } },
   { name: /^advanced night sight\b/i, figures: { kind: "nightSight", nightVision: 7, accuracy: 2, fixed: true, imposesTunnelVision: true } },
-  // Tactical lights (pp. 52, 156): a small one on any firearm, a large one on a shoulder arm.
+  // Tactical lights (pp. 52, 156): small ones are usual for pistols and large ones for shoulder arms -- usual, not a rule.
   { name: /^small tactical light\b/i, figures: { kind: "tacticalLight", yards: 25 } },
-  { name: /^large tactical light\b/i, figures: { kind: "tacticalLight", yards: 100, fits: "shoulder" } },
+  { name: /^large tactical light\b/i, figures: { kind: "tacticalLight", yards: 100 } },
   // Targeting lasers (p. 157).
   { name: /^primitive targeting laser\b/i, figures: { kind: "targetingLaser", yards: 200, bulk: -1 } },
   { name: /^(integral )?targeting laser \(sidearm\)/i, figures: { kind: "targetingLaser", yards: 150, fits: "sidearm" } },
@@ -52,6 +52,20 @@ const CATALOGUE: ReadonlyArray<{ name: RegExp; figures: AccessoryFigures }> = [
   { name: /^bipod\b/i, figures: { kind: "bipod" } },
   { name: /^shooting sticks\b/i, figures: { kind: "shootingSticks" } },
 ];
+
+/** What an add-on night sight is installed in front of: a scope or a collimating or reflex sight (p. 156). */
+export const ADD_ON_HOSTS: readonly AccessoryFigures["kind"][] = ["scope", "reflexSight"];
+
+/**
+ * Whether gear made for a sidearm or a shoulder arm goes on a gun fired
+ * with this skill (p. 157): a sidearm is a pistol, and a shoulder arm
+ * anything else. Gear that says neither goes on any gun.
+ */
+export function accessoryFits(fits: AccessoryFigures["fits"], skill: string): boolean {
+  if (!fits) return true;
+  const pistol = /^guns(?: sport)? \(pistol\)/i.test(String(skill ?? "").trim());
+  return fits === "sidearm" ? pistol : !pistol;
+}
 
 /** What a record of this name is as an accessory, or null. */
 export function catalogueFigures(name: string): AccessoryFigures | null {
@@ -308,6 +322,27 @@ export const HOME_BUILT = Object.freeze({
   good: { hours: 8, roll: 0, lifetime: "", hearing: -3, accuracy: 0, malfunction: 0, bulk: 0, weight: 0, price: 1 / 3 },
   fine: { hours: 16, roll: -2, lifetime: "", hearing: 0, accuracy: 0, malfunction: 0, bulk: 0, weight: 0, price: 1 / 2 },
 } satisfies Record<SuppressorGrade, { hours: number; roll: number | null; lifetime: string; hearing: number; accuracy: number; malfunction: number; bulk: number; weight: number; price: number }>);
+
+/**
+ * Making a suppressor at home (p. 159). It is designed with Engineer (Small
+ * Arms), or at TL7-8 with Research, and built with Armoury (Small Arms),
+ * which defaults to Machinist-5, at the grade's modifier. A poor one needs
+ * no roll from anyone with Guns or Armoury, and an IQ roll from anyone else.
+ * A failed build makes the first shot through it a roll on the Firearm
+ * Malfunction Table; a critical failure damages the gun.
+ */
+export const SUPPRESSOR_DESIGN = Object.freeze({ skill: "Engineer (Small Arms)", research: "Research", researchTl: 7 });
+export const SUPPRESSOR_BUILD = Object.freeze({ skill: "Armoury (Small Arms)", fallback: "Machinist", fallbackModifier: -5 });
+
+/** The rolls a home-built suppressor of this grade takes to make, at this TL. */
+export function suppressorBuildRolls(grade: SuppressorGrade, tl: number): { designSkills: string[]; buildModifier: number | null } {
+  const roll = HOME_BUILT[grade].roll;
+  if (roll === null) return { designSkills: [], buildModifier: null };
+  return {
+    designSkills: tl >= SUPPRESSOR_DESIGN.researchTl ? [SUPPRESSOR_DESIGN.skill, SUPPRESSOR_DESIGN.research] : [SUPPRESSOR_DESIGN.skill],
+    buildModifier: roll,
+  };
+}
 
 /** Attaching or removing a detachable suppressor: 5 seconds threaded, 3 for a TL8 quick-detach model (p. 159). */
 export function suppressorSeconds(tl: number): number {

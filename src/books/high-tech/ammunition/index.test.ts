@@ -10,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as rules from "../../../../system/src/rules/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { readyReloading } from "../reloading/index.js";
-import { ammunitionHearing, firesMinieBalls, firesPaperCartridges, gunCalibre, loadBatch, readyAmmunition, type AmmunitionSwitches } from "./index.js";
+import { ammunitionHearing, firesMinieBalls, firesPaperCartridges, gunCalibre, loadBatch, readyAmmunition, underwaterRounds, type AmmunitionSwitches } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -33,7 +33,7 @@ function fakeApi() {
     rules: { ...rules, weaponClassOf: () => "firearm" },
     registry: { isRuleOn: () => false },
     combat: { hooks: HOOKS },
-    sheets: { registerSheetSection: () => undefined },
+    sheets: { registerSheetSection: () => undefined, registerRowAction: () => undefined },
     data: { registerPriceModifier: (m: any) => prices.push(m), registerPoison: () => undefined },
     items: { setMalfunction: async (item: any, malfunction: any) => { malfunctions.push({ item: item.name, ...malfunction }); } },
     actors: { skillLevel: () => null, attribute: () => 10, vehicleAboard: () => null },
@@ -328,6 +328,17 @@ describe("projectiles (pp. 166-175)", () => {
     const entry = fire(HOOKS.shotsEntry, { actor: enfield.actor, item: enfield, modeIndex: 0, mode, entry: { ...rules.parseShots(mode.shots) } }).entry;
     expect(entry.reloadSeconds).toBe(40);
     expect(entry.aids.some((a: any) => a.id.endsWith("greasedPatch"))).toBe(false);
+  });
+});
+
+describe("rounds underwater (High-Tech p. 85)", () => {
+  it("knows hollow-points, the Basic Set's or the book's, and a caseless calibre", () => {
+    expect(underwaterRounds(gun({ ammunition: "hp" }), 0, switches)).toEqual({ hollowPoint: true, caseless: false });
+    const loaded = gun({ loads: [load({ projectile: "hollowPoint" })] });
+    expect(underwaterRounds(loaded, 0, switches).hollowPoint).toBe(false);
+    on.projectileOptions = true;
+    expect(underwaterRounds(loaded, 0, switches).hollowPoint).toBe(true);
+    expect(underwaterRounds(gun({ name: "H&K G11, 4.73x33mm", rof: 9, shots: "45+1(5)" }), 0, switches)).toEqual({ hollowPoint: false, caseless: true });
   });
 });
 
