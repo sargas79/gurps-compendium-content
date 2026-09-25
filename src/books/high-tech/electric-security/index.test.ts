@@ -23,6 +23,7 @@ let successes: any[];
 let contests: any[];
 let conditions: any[];
 let shocks: any[];
+let pending: any[];
 let outcomes: any[];
 let chat: any[];
 let on: Set<string>;
@@ -54,6 +55,7 @@ function fakeApi() {
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
       derived: () => ({}),
       applyCondition: async (actor: any, c: any) => { conditions.push({ actor: actor.name, ...c }); return "c1"; },
+      addPendingModifier: async (actor: any, request: any) => { pending.push({ actor: actor.name, ...request }); return "p1"; },
     },
     roll: {
       success: async (o: any) => { successes.push(o); return successResults.shift() ?? { success: true, margin: 0 }; },
@@ -127,6 +129,7 @@ beforeEach(async () => {
   contests = [];
   conditions = [];
   shocks = [];
+  pending = [];
   outcomes = [];
   chat = [];
   on = new Set();
@@ -354,6 +357,30 @@ describe("screening and alarms, with only their switch on", () => {
     on.add(key("electricLocks"));
     await electric.runElectricTask(fakeApi() as never, person("Burglar", [gear("Digital Stethoscope")]), taskAnswer("disable"), switches);
     expect(successes[0].modifiers).toEqual([{ label: "GCC.HT.ElectricSecurity.StethoscopeLine", value: 3 }]);
+    // Where noise imposes a penalty, it cancels -1 of it (HT:EE p. 42).
+    await electric.runElectricTask(fakeApi() as never, person("Burglar", [gear("Digital Stethoscope")]), taskAnswer("disable", { noisy: true }), switches);
+    expect(successes[1].modifiers).toEqual([{ label: "GCC.HT.ElectricSecurity.StethoscopeLine", value: 4 }]);
+  });
+
+  it("holds the digital stethoscope's +1 for the next Explosives (EOD) roll against a mechanical bomb (HT:EE p. 42)", async () => {
+    const stethoscope = gear("Digital Stethoscope");
+    const tech = person("Tech", [stethoscope]);
+    expect(actions.get("ht-ee-stethoscope-eod").visible(stethoscope)).toBe(false);
+    on.add(key("electricLocks"));
+    expect(actions.get("ht-ee-stethoscope-eod").visible(stethoscope)).toBe(true);
+    expect(actions.get("ht-ee-stethoscope-eod").visible(gear("Stethoscope"))).toBe(false);
+    dialogAnswer = { noisy: false };
+    await electric.listenToBomb(fakeApi() as never, stethoscope, tech);
+    expect(pending[0]).toMatchObject({ actor: "Tech", value: 1, skill: "Explosives (EOD)" });
+    expect(chat[0].content).toContain('"bonus":"+1"');
+    dialogAnswer = { noisy: true };
+    await electric.listenToBomb(fakeApi() as never, stethoscope, tech);
+    expect(pending[1]).toMatchObject({ value: 2 });
+  });
+
+  it("cancels -1 of a noise penalty when the digital stethoscope cracks a safe", () => {
+    const { modifiers } = security.pickModifiers(fakeApi() as never, person("Cracker"), "picks", { name: "Safe", kind: "safe", quality: "good", tl: 8 }, { stethoscope: false, endoscope: false, timeFactor: 1, digitalStethoscope: true, noisy: true });
+    expect(modifiers).toContainEqual({ label: "GCC.HT.Security.Pick.DigitalStethoscope", value: 2 });
   });
 
   it("cuts an alarm's power only where it can", async () => {

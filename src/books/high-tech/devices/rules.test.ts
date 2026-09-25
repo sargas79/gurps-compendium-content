@@ -18,7 +18,14 @@ import {
   kitGrade,
   kitPrice,
   partOutcome,
+  USED_OLD,
+  USED_RECENT,
   partsBroken,
+  partsFailing,
+  partsStopping,
+  rollsOnTheDevice,
+  usedPercent,
+  usedPrice,
   unavailableWhileNew,
   yearOf,
 } from "./rules.js";
@@ -103,6 +110,39 @@ describe("breakable parts (HT:EE p. 8)", () => {
   it("succeeds on 3-4 and fails on 17-18 whatever the HT", () => {
     expect(partsBroken("breaking", 2, [4, 17], 3)).toBe(1);
     expect(partsBroken("breaking", 2, [4, 17], 18)).toBe(1);
+  });
+
+  it("leaves the parts below 0 HP rolling HT in use, and stops each that fails (Campaigns p. 484)", () => {
+    // Five tubes at 0 HP all fail on; three of five at -1 HP break and two go on failing.
+    expect(partsFailing("failing", 5, 0, 0)).toBe(5);
+    expect(partsFailing("breaking", 5, 3, 0)).toBe(2);
+    expect(partsFailing("destroyed", 5, 5, 2)).toBe(0);
+    // A light knock leaves them as they were.
+    expect(partsFailing("damaged", 5, 0, 2)).toBe(2);
+    expect(partsFailing("sound", 1, 0, 4)).toBe(1);
+    expect(partsStopping([9, 12, 17], 3, 10)).toBe(2);
+    expect(partsStopping([9, 12], 1, 10)).toBe(0);
+  });
+
+  it("refuses nothing rolled on the device itself: repairs and HT", () => {
+    expect(rollsOnTheDevice("Electronics Repair (Comm)")).toBe(true);
+    expect(rollsOnTheDevice("Electrician")).toBe(true);
+    expect(rollsOnTheDevice("HT")).toBe(true);
+    expect(rollsOnTheDevice("Electronics Operation (Comm)")).toBe(false);
+    expect(rollsOnTheDevice("Photography")).toBe(false);
+  });
+});
+
+describe("used devices (HT:EE p. 8)", () => {
+  it("prices a used device at a percentage of new, 1 to 100, 0 for new", () => {
+    expect(USED_RECENT).toEqual({ min: 50, max: 80 });
+    expect(USED_OLD).toBe(10);
+    expect(usedPrice(200, 60)).toBe(120);
+    expect(usedPrice(9.99, 10)).toBe(1);
+    expect(usedPrice(200, 0)).toBe(200);
+    expect(usedPercent(140)).toBe(100);
+    expect(usedPercent(-5)).toBe(0);
+    expect(usedPercent("55.7")).toBe(55);
   });
 });
 

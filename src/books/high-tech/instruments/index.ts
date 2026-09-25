@@ -29,8 +29,11 @@
  *     Discriminatory Hearing tells one, a signal traced at +2 on AM and FM),
  *     a transducer connected to a display (+2; a critical failure risks the
  *     transducer), a Van de Graaff generator's shock (+2 to resist from the
- *     classroom model, -6 per doubling of its sphere), an analog computer
- *     set up or built as a copy of an invention, and a waveform plotted by
+ *     classroom model, -6 per doubling of its sphere), an oscilloscope
+ *     comparing two signals on Electronics Operation (Scientific), a shock
+ *     from a Geiger-Müller tube's high-voltage supply (5d lethal; p. 12), an
+ *     analog computer set up or built as a copy of an invention (Engineer
+ *     (Analog Computers), or Mechanic (Analog Computers)-6), and a waveform plotted by
  *     hand from Physics' or Mathematics (Applied)'s row at -2. Studying
  *     Hiking with an electronic pedometer carried takes 10% less time
  *     (p. 13), through the Study tool's `gworld.studyModifiers`.
@@ -62,7 +65,9 @@ import {
   COIL_LINE,
   COMBINED,
   COMMUNICATIONS,
+  COMPARE_SKILL,
   CONNECT_BONUS,
+  GEIGER_SUPPLY,
   HAND_PLOT,
   LINES,
   LINE_DAMAGE,
@@ -76,6 +81,7 @@ import {
   SCIENTIFIC,
   SIGNALS,
   SKILL_DEFAULTS,
+  SKILL_FROM_SKILL,
   SOURCES,
   SOURCE_MODIFIER,
   SPARK_GAP,
@@ -89,6 +95,7 @@ import {
   instrumentOf,
   isAccelerometer,
   isDisplay,
+  isGeigerTube,
   isMicrophone,
   magneticPenalty,
   noisePenalty,
@@ -166,6 +173,15 @@ function levelFor(api: GWorldApi, actor: any, choice: SkillChoice): Rolled | nul
     const level = api.actors.skillLevel(actor, choice.skill);
     if (typeof level === "number") return { skill: choice.skill, level, modifier: choice.modifier, defaulted: false };
   }
+  // A skill defaulting to another the character knows, the best of them.
+  let fromSkill: Rolled | null = null;
+  for (const from of SKILL_FROM_SKILL[choice.skill] ?? []) {
+    const level = api.actors.skillLevel(actor, from.skill);
+    if (typeof level === "number" && (!fromSkill || level + from.modifier > fromSkill.level)) {
+      fromSkill = { skill: choice.skill, level: level + from.modifier, modifier: choice.modifier, defaulted: true };
+    }
+  }
+  if (fromSkill) return fromSkill;
   const fallback = SKILL_DEFAULTS[choice.skill];
   if (fallback === undefined) return null;
   const iq = Number(api.actors.attribute(actor, "IQ" as never)) || 10;
@@ -351,6 +367,7 @@ export async function useInstrument(api: GWorldApi, item: any, actor: any, on: I
       }
     }
     if (inst.interpret && outcome.success) await interpret(api, actor, inst.interpret, title);
+    if (isGeigerTube(item.name)) lines.push(F("GeigerSupply", { damage: GEIGER_SUPPLY.damage }));
   }
   await say(actor, title, lines);
 }
@@ -369,6 +386,32 @@ async function readTelegraph(api: GWorldApi, item: any, actor: any): Promise<voi
   const used = levelFor(api, actor, { skill: COMMUNICATIONS, modifier: TELEGRAPH_BONUS });
   if (!used) return;
   await roll(api, actor, used, F("TelegraphLabel", { name: nameOf(item) }), [], ["telegraph"], item);
+}
+
+/**
+ * An oscilloscope comparing two signals (HT:EE p. 11): Electronics Operation
+ * (Scientific), with time spent. The GM says whether they match -- two voices
+ * from the same person, say -- on a success.
+ */
+async function compareSignals(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const used = levelFor(api, actor, { skill: COMPARE_SKILL, modifier: 0 });
+  if (!used) return;
+  const answer = await ask(F("CompareTitle", { name: nameOf(item) }), `<p class="ihint">${esc(L("CompareHint"))}</p>` + timeSelect(), (form) => ({ time: timeLine(form) }));
+  if (!answer) return;
+  const outcome: any = await roll(api, actor, used, F("CompareLabel", { name: nameOf(item) }), answer.time, ["compare"], item);
+  if (!outcome || "refused" in outcome) return;
+  await say(actor, nameOf(item), [L(outcome.success ? "Compared" : "NotCompared")]);
+}
+
+/**
+ * A shock from the Geiger-Müller tube's high-voltage supply (HT:EE p. 12):
+ * 5d lethal electrical damage to the targeted character, or the one holding
+ * the tube, through the system's shock.
+ */
+async function supplyShock(api: GWorldApi, actor: any): Promise<void> {
+  const victim = [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter(Boolean)[0] ?? actor;
+  if (!victim) return;
+  await api.hazards.shock({ actor: victim, kind: "lethal", modifier: 0, continuous: true, formula: GEIGER_SUPPLY.damage, metalArmor: false, source: "geigerSupply" } as any);
 }
 
 /** The spectrum analyzer's uses (HT:EE p. 11). */
@@ -471,9 +514,10 @@ async function buildAnalog(api: GWorldApi, item: any, actor: any): Promise<void>
     + row(L("Labour"), checkbox("labour", false)),
     (form) => ({ grade: value(form, "grade") === "complex" ? "complex" as const : "average" as const, labour: checked(form, "labour") }));
   if (!answer) return;
-  const engineer = api.actors.skillLevel(actor, ANALOG_ENGINEER);
-  if (typeof engineer !== "number") return void ui.notifications?.warn(F("NoSkill", { skills: ANALOG_ENGINEER }));
-  const outcome: any = await roll(api, actor, { skill: ANALOG_ENGINEER, level: engineer, modifier: 0, defaulted: false }, F("BuildLabel", { name: title }), [], ["analogComputer", "invention"], item);
+  // Engineer (Analog Computers), or Mechanic (Analog Computers) at -6 for one who hasn't learned it.
+  const engineer = levelFor(api, actor, { skill: ANALOG_ENGINEER, modifier: 0 });
+  if (!engineer) return void ui.notifications?.warn(F("NoSkill", { skills: `${ANALOG_ENGINEER}, ${ANALOG_MECHANIC}` }));
+  const outcome: any = await roll(api, actor, engineer, F("BuildLabel", { name: title }), [], ["analogComputer", "invention"], item);
   if (!outcome) return;
   const time = api.rules.gradeRow(answer.grade).prototypeTime;
   const retail = Number(item.system?.listCost ?? item.system?.cost) || 0;
@@ -549,6 +593,24 @@ export function readyInstruments(api: GWorldApi, on: InstrumentSwitches): void {
     icon: "fa-solid fa-tower-broadcast",
     visible: (item) => on.instruments() && kindIs(item, (inst) => inst.telegraph === true),
     run: (item, actor) => readTelegraph(api, item, actor),
+  });
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-instrument-compare",
+    itemTypes: ["equipment"],
+    label: L("CompareButton"),
+    icon: "fa-solid fa-code-compare",
+    visible: (item) => on.instruments() && kindIs(item, (inst) => inst.kind === "oscilloscope"),
+    run: (item, actor) => compareSignals(api, item, actor),
+  });
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-geiger-supply",
+    itemTypes: ["equipment"],
+    label: L("SupplyShock"),
+    icon: "fa-solid fa-bolt",
+    visible: (item) => on.instruments() && ourBook(item) && isGeigerTube(item?.name),
+    run: (_item, actor) => supplyShock(api, actor),
   });
   api.sheets.registerRowAction({
     module: MODULE_ID,

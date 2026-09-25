@@ -1,9 +1,10 @@
 /**
  * The Electricity and Electronics supplement's conventions for its devices
  * (HT:EE pp. 8-9, 15), as pure functions: what a newly released device costs,
- * what a prototype is under the Basic Set's invention rules, a device's HP,
- * HT and DR where its record states none, what a drop does to its fragile
- * parts, and what building one from a kit costs and takes.
+ * and a used one, what a prototype is under the Basic Set's invention rules,
+ * a device's HP, HT and DR where its record states none, what a drop does to
+ * its fragile parts and what the parts left below 0 HP do in use, and what
+ * building one from a kit costs and takes.
  *
  * The Basic Set's own rules (the invention table, falling and collision
  * damage, an object's hit points and state) are the system's, handed in by
@@ -170,6 +171,59 @@ export function partsBroken(state: PartState, count: number, htRolls: readonly n
   if (state === "destroyed") return parts;
   if (state !== "breaking") return 0;
   return htRolls.slice(0, parts).filter((roll) => !succeeds(roll, ht)).length;
+}
+
+/**
+ * How many parts are left below 0 HP but working after a drop, each to roll
+ * HT for every second the device is used (Campaigns p. 484): every whole part
+ * at 0 HP or less, and the survivors of the HT rolls at -1xHP, who are no
+ * better off. A drop that leaves the parts sound or merely damaged keeps the
+ * count as it was; one that destroys them leaves none.
+ */
+export function partsFailing(state: PartState, whole: number, broken: number, before: number): number {
+  const left = Math.max(0, Math.floor(whole) - Math.max(0, Math.floor(broken)));
+  if (state === "failing" || state === "breaking") return left;
+  if (state === "destroyed") return 0;
+  return Math.min(left, Math.max(0, Math.floor(before) || 0));
+}
+
+/**
+ * How many of the failing parts stop working in a second of use: each whose
+ * HT roll (3d, one per part) fails. A part that stops is out until replaced,
+ * as a broken one is.
+ */
+export function partsStopping(htRolls: readonly number[], failing: number, ht: number): number {
+  return htRolls.slice(0, Math.max(0, Math.floor(failing) || 0)).filter((roll) => !succeeds(roll, ht)).length;
+}
+
+/**
+ * Skills rolled on a device rather than with it -- the repairs -- and HT
+ * itself: a device's broken parts don't refuse those.
+ */
+export function rollsOnTheDevice(skill: unknown): boolean {
+  return /^(?:ht|electronics repair|electrician|mechanic|machinist|armoury|armory)\b/i.test(String(skill ?? "").trim());
+}
+
+// ── used devices (HT:EE p. 8) ───────────────────────────────────────────────
+
+/**
+ * What a used device sells for, as a percentage of the new price: 50% to 80%
+ * for a recent model, down to 10% or less for an old one that still works
+ * (HT:EE p. 8). The GM picks the figure; these are the book's bounds.
+ */
+export const USED_RECENT = Object.freeze({ min: 50, max: 80 });
+export const USED_OLD = 10;
+
+/** A used price's percentage as the record keeps it: a whole number from 1 to 100, 0 for new. */
+export function usedPercent(value: unknown): number {
+  const n = Math.floor(Number(value) || 0);
+  return n > 0 ? Math.min(100, n) : 0;
+}
+
+/** A device's price bought used at `percent` of new, to the cent; the price itself when new. */
+export function usedPrice(cost: number, percent: number): number {
+  const p = usedPercent(percent);
+  return p ? Math.round(Math.max(0, cost) * p) / 100 : cost;
 }
 
 /** A 3d roll against a target: 3-4 always succeed, 17-18 always fail (Campaigns p. 348), and the rest at or under it. */

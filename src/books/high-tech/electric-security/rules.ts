@@ -127,6 +127,18 @@ export const KEY_SWITCH_SKILLS = [SECURITY_REPAIR, "Mechanic", "Lockpicking"] as
 export const DIGITAL_STETHOSCOPE = Object.freeze({ safe: 1, hearing: 3, eod: 1, noise: 1 });
 export const isDigitalStethoscope = (name: unknown): boolean => nameKey(name) === "digital stethoscope";
 
+/**
+ * What the digital stethoscope adds to one of its tasks: its bonus, and 1
+ * more where noise imposes a penalty, the -1 of it the stethoscope cancels
+ * (HT:EE p. 42).
+ */
+export function stethoscopeBonus(bonus: number, noisy: boolean): number {
+  return bonus + (noisy ? DIGITAL_STETHOSCOPE.noise : 0);
+}
+
+/** The skill the stethoscope helps against a mechanical bomb. */
+export const EOD_SKILL = "Explosives (EOD)";
+
 // ── screening (HT:EE p. 43) ──
 
 /** The keycard technologies (HT:EE p. 43). An RFID reader costs twice as much, which its record's price already says. */

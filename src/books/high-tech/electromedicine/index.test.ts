@@ -25,6 +25,9 @@ let chat: string[];
 let on: boolean;
 let targets: any[];
 let worldTime: number;
+let stopped: any[];
+let quantities: any[];
+let dialogAnswer: any;
 
 function fakeApi() {
   return {
@@ -37,6 +40,7 @@ function fakeApi() {
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? 10,
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
       applyInjury: async (actor: any, o: any) => { injuries.push({ actor, ...o }); return {}; },
+      stopBleeding: async (actor: any) => { stopped.push(actor.name); },
       conditions: (actor: any) => actor.entries,
       // As the system does: a system condition's entry, and its token status.
       applyCondition: async (actor: any, o: any) => {
@@ -53,6 +57,7 @@ function fakeApi() {
       },
     },
     roll: { success: async (o: any) => { successes.push(o); return successResults.shift() ?? { success: true }; } },
+    items: { changeQuantity: async (item: any, delta: number) => { quantities.push({ item: item.name, delta }); return {}; } },
   };
 }
 
@@ -106,13 +111,16 @@ beforeEach(() => {
   on = false;
   targets = [];
   worldTime = 1000;
+  stopped = [];
+  quantities = [];
+  dialogAnswer = { anaesthetic: true };
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
     get user() { return { targets: new Set(targets.map((actor) => ({ actor }))) }; },
     get time() { return { worldTime }; },
   });
-  vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s } });
+  vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => dialogAnswer } } } });
   vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), create: async (m: any) => { chat.push(m.content); } } });
   vi.stubGlobal("Roll", class { total = 3; async evaluate() { return this; } });
   vi.stubGlobal("ui", { notifications: { warn: vi.fn() } });
@@ -129,7 +137,9 @@ describe("the records (HT:EE pp. 13-14, 21)", () => {
     expect(electromedicineOf("Heating Pad")).toBe("heatingPad");
     expect(electromedicineOf("Electroconvulsive Therapy Device")).toBe("ect");
     expect(electromedicineOf("Laser Scalpel")).toBe("laserScalpel");
-    expect(electromedicineOf("Electrocautery")).toBeNull();
+    expect(electromedicineOf("Electrocautery")).toBe("cautery");
+    expect(electromedicineOf("Cautery Pen")).toBe("cauteryPen");
+    expect(electromedicineOf("Autoclave")).toBeNull();
   });
 
   it("offers nothing with the switch off", () => {
@@ -230,5 +240,55 @@ describe("the laser scalpel (HT:EE p. 14)", () => {
     expect(roll(surgeon, "Surgery", ["surgery"])).toEqual([{ label: "Laser Scalpel", value: 2 }]);
     expect(roll(surgeon, "First Aid", ["firstAid"])).toEqual([]);
     expect(roll(person("Surgeon"), "Surgery", ["surgery"])).toEqual([]);
+  });
+
+  it("helps only the specialty of Surgery it is designed for, where the GM names one", () => {
+    on = true;
+    const surgeon = person("Surgeon", [record("Laser Scalpel", { specialty: "Ophthalmic" })]);
+    const roll = (skill: string) => fire("gworld.successRollModifiers", { actor: surgeon, skill, tags: ["surgery"], modifiers: [] }).modifiers;
+    expect(roll("Surgery (Ophthalmic)")).toEqual([{ label: "Laser Scalpel", value: 2 }]);
+    expect(roll("Surgery (Neurosurgery)")).toEqual([]);
+    // The Basic Set's Surgery has no specialties: any design helps it.
+    expect(roll("Surgery")).toEqual([{ label: "Laser Scalpel", value: 2 }]);
+    expect(sections.get("ee-electromedicine-item").context(surgeon.items[0])).toMatchObject({ specialty: { value: "Ophthalmic" } });
+  });
+});
+
+describe("electrocautery and the cautery pen (HT:EE pp. 13-14)", () => {
+  it("stops the patient's bleeding on the healer's Surgery, under a local anaesthetic", async () => {
+    on = true;
+    const cautery = record("Electrocautery");
+    const doctor = person("Doctor", [cautery], { skills: { Surgery: 13 } });
+    const patient = person("Patient");
+    targets = [patient];
+    expect(actions.get("ee-cautery").visible(cautery)).toBe(true);
+    await run("ee-cautery", cautery, doctor);
+    expect(successes[0]).toMatchObject({ actor: doctor, base: 13, skill: "Surgery", tags: ["cautery"], opponent: patient });
+    expect(stopped).toEqual(["Patient"]);
+    expect(conditions).toEqual([]);
+    expect(quantities).toEqual([]);
+  });
+
+  it("puts the patient in Severe Pain without an anaesthetic, stops nothing on a failure, and uses the pen up", async () => {
+    on = true;
+    const pen = record("Cautery Pen");
+    const medic = person("Medic", [pen], { skills: { Physician: 14 } });
+    dialogAnswer = { anaesthetic: false };
+    successResults = [{ success: false }];
+    expect(actions.get("ee-cautery-pen").visible(pen)).toBe(true);
+    await run("ee-cautery-pen", pen, medic);
+    // Physician-5 for one without Surgery.
+    expect(successes[0]).toMatchObject({ base: 9, skill: "Surgery" });
+    expect(conditions).toEqual([expect.objectContaining({ apply: "severePain" })]);
+    expect(stopped).toEqual([]);
+    expect(quantities).toEqual([{ item: "Cautery Pen", delta: -1 }]);
+    expect(chat[0]).toContain("NotCauterized");
+  });
+
+  it("wants some Surgery skill or default", async () => {
+    on = true;
+    const cautery = record("Electrocautery");
+    await run("ee-cautery", cautery, person("Layman", [cautery]));
+    expect(successes).toEqual([]);
   });
 });
