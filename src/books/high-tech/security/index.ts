@@ -35,7 +35,7 @@ import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { SECURITY_TABLES, crossBarrier, figureLines, type SecurityTable } from "../../../shared/security/index.js";
 import { timeSpentModifier } from "../../../shared/time-spent.js";
 import { touchFence } from "../electric-security/fences.js";
-import { DIGITAL_STETHOSCOPE, supplementLock, type FenceTouch, type SupplementLock } from "../electric-security/rules.js";
+import { DIGITAL_STETHOSCOPE, stethoscopeBonus, supplementLock, type FenceTouch, type SupplementLock } from "../electric-security/rules.js";
 import {
   BARRIERS,
   CALTROP_DAMAGE,
@@ -224,7 +224,7 @@ export interface LockTarget {
 }
 
 /** A pick's modifiers, each with its label: quality, the gun, the lock's TL, aids, time. */
-export function pickModifiers(api: GWorldApi, actor: any, tool: PickTool, lock: LockTarget, aids: { stethoscope: boolean; endoscope: boolean; timeFactor: number; digitalStethoscope?: boolean }): { modifiers: Array<{ label: string; value: number }>; impossible: string | null } {
+export function pickModifiers(api: GWorldApi, actor: any, tool: PickTool, lock: LockTarget, aids: { stethoscope: boolean; endoscope: boolean; timeFactor: number; digitalStethoscope?: boolean; noisy?: boolean }): { modifiers: Array<{ label: string; value: number }>; impossible: string | null } {
   const modifiers: Array<{ label: string; value: number }> = [];
   const quality = lockQualityModifier(lock.quality);
   if (quality) modifiers.push({ label: F("Pick.Quality", { quality: L(`Quality.${lock.quality}`) }), value: quality });
@@ -244,8 +244,8 @@ export function pickModifiers(api: GWorldApi, actor: any, tool: PickTool, lock: 
   }
   if (aids.stethoscope && lock.kind !== "electronic" && lock.kind !== "verifier") modifiers.push({ label: L("Pick.Stethoscope"), value: STETHOSCOPE_BONUS });
   if (aids.endoscope) modifiers.push({ label: L("Pick.Endoscope"), value: ENDOSCOPE_BONUS });
-  // The supplement's digital stethoscope: +1 to crack a safe (HT:EE pp. 14, 42).
-  if (aids.digitalStethoscope && lock.kind === "safe") modifiers.push({ label: L("Pick.DigitalStethoscope"), value: DIGITAL_STETHOSCOPE.safe });
+  // The supplement's digital stethoscope: +1 to crack a safe, and -1 of a noise penalty cancelled (HT:EE pp. 14, 42).
+  if (aids.digitalStethoscope && lock.kind === "safe") modifiers.push({ label: L("Pick.DigitalStethoscope"), value: stethoscopeBonus(DIGITAL_STETHOSCOPE.safe, aids.noisy === true) });
   const base = pickSeconds(lock.kind, tool === "gun");
   const time = timeSpentModifier(base * aids.timeFactor, base);
   if (time) modifiers.push({ label: L("Pick.TimeSpent"), value: time });
@@ -279,7 +279,8 @@ async function pickLock(api: GWorldApi, item: any, actor: any, on: SecuritySwitc
     + row(L("Pick.Tl"), number("tl", personal))
     + row(L("Pick.Time"), select("time", TIME_FACTORS.map((t): [string, string] => [String(t), L(`Time.${String(t).replace(".", "_")}`)])))
     + (hasStethoscope ? row(L("Pick.Quiet"), checkbox("stethoscope")) : "")
-    + (hasEndoscope ? row(L("Pick.UseEndoscope"), checkbox("endoscope", true)) : ""),
+    + (hasEndoscope ? row(L("Pick.UseEndoscope"), checkbox("endoscope", true)) : "")
+    + (hasDigital ? row(L("Pick.Noisy"), checkbox("noisy")) : ""),
     (form) => ({
       lock: field(form, "lock")?.value ?? "",
       kind: (field(form, "kind")?.value ?? kinds[0]) as LockKind,
@@ -288,6 +289,7 @@ async function pickLock(api: GWorldApi, item: any, actor: any, on: SecuritySwitc
       time: Number(field(form, "time")?.value) || 1,
       stethoscope: Boolean(field(form, "stethoscope")?.checked),
       endoscope: Boolean(field(form, "endoscope")?.checked),
+      noisy: Boolean(field(form, "noisy")?.checked),
     }));
   if (!answer) return;
   const chosen = answer.lock === "" ? null : targeted[Number(answer.lock)] ?? null;
@@ -295,7 +297,7 @@ async function pickLock(api: GWorldApi, item: any, actor: any, on: SecuritySwitc
     ? { name: String(chosen.lock.name), kind: lockRecord(chosen.lock)!.kind, quality: lockQuality(chosen.lock), tl: api.rules.parseTechLevel(chosen.lock.system?.tl) ?? answer.tl, skill: lockRecord(chosen.lock)!.skill }
     : { name: L(`Kind.${answer.kind}`), kind: answer.kind, quality: answer.quality, tl: answer.tl };
   const skill = pickSkill(lock.kind, lock.skill);
-  const { modifiers, impossible } = pickModifiers(api, actor, tool, lock, { stethoscope: answer.stethoscope, endoscope: answer.endoscope, timeFactor: answer.time, digitalStethoscope: hasDigital });
+  const { modifiers, impossible } = pickModifiers(api, actor, tool, lock, { stethoscope: answer.stethoscope, endoscope: answer.endoscope, timeFactor: answer.time, digitalStethoscope: hasDigital, noisy: answer.noisy });
   if (impossible) return void ui.notifications?.warn(impossible);
   const base = api.actors.skillLevel(actor, skill) ?? (api.actors.attribute(actor, "IQ") ?? 10) - 5;
   const result: any = await api.roll.success({ actor, base, kind: "skill", skill, item, label: F("Pick.Label", { lock: lock.name }), modifiers, tags: ["lockpicking"] } as any);

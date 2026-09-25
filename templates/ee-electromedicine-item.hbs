@@ -6,5 +6,10 @@
       <label class="icheck" data-tooltip="{{localize 'GCC.HT.Electromedicine.EarlyHint'}}"><input type="checkbox" data-ee-electromedicine="earlyModel" {{#if early.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Electromedicine.Early"}}</label>
     </div>
   {{/if}}
+  {{#if specialty}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Electromedicine.SpecialtyHint'}}">{{localize "GCC.HT.Electromedicine.Specialty"}} <input type="text" data-ee-electromedicine="specialty" value="{{specialty.value}}" {{#unless editable}}disabled{{/unless}} /></label>
+    </div>
+  {{/if}}
   {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
 </div>

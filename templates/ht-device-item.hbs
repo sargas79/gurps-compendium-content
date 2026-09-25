@@ -7,6 +7,10 @@
     </div>
     {{#if cuttingEdgeLine}}<p class="ihint">{{cuttingEdgeLine}}</p>{{/if}}
     <div class="ifields">
+      <label data-tooltip="{{usedHint}}">{{localize "GCC.HT.Devices.Used"}} <input type="number" data-ht-device="used" value="{{data.used}}" min="0" max="100" step="1" {{#unless editable}}disabled{{/unless}} /></label>
+    </div>
+    {{#if usedLine}}<p class="ihint">{{usedLine}}</p>{{/if}}
+    <div class="ifields">
       <label data-tooltip="{{localize 'GCC.HT.Devices.ComplexityHint'}}">{{localize "GCC.HT.Devices.ComplexityLabel"}}
         <select data-ht-device="complexity" {{#unless editable}}disabled{{/unless}}>
           {{#each complexities as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
@@ -28,7 +32,9 @@
       <label>{{localize "GCC.HT.Devices.PartsHp"}} <input type="number" data-ht-device="parts.hp" value="{{data.parts.hp}}" min="1" step="1" {{#unless editable}}disabled{{/unless}} /></label>
       <label>{{localize "GCC.HT.Devices.PartsHt"}} <input type="number" data-ht-device="parts.ht" value="{{data.parts.ht}}" min="1" step="1" {{#unless editable}}disabled{{/unless}} /></label>
     </div>
-    {{#if broken}}<p class="ihint">{{broken}} {{#if editable}}<button type="button" data-ht-device-replace>{{localize "GCC.HT.Devices.ReplaceParts"}}</button>{{/if}}</p>{{/if}}
+    {{#if failing}}<p class="ihint">{{failing}}</p>{{/if}}
+    {{#if broken}}<p class="ihint">{{broken}}</p>{{/if}}
+    {{#if (or broken failing)}}{{#if editable}}<p class="ihint"><button type="button" data-ht-device-replace>{{localize "GCC.HT.Devices.ReplaceParts"}}</button></p>{{/if}}{{/if}}
   {{/if}}
   {{#if combined}}
     <div class="ichecks">

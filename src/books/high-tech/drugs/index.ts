@@ -13,12 +13,16 @@
  *     off pain's penalty on the rolls it reaches, antibiotics' +TL/2 against
  *     an illness (through `actors.treatIllness`) or a wound's infection,
  *     castor oil, activated charcoal, chelating agents and antitoxins as a
- *     treatment of a dose
- *     (`actors.treatPoison`), truth serum's FP and its -2 to Will and
- *     self-control, DMSO mixed into a blood or digestive poison to make it a
- *     contact agent, and a day's psychiatric drug as a Mitigator, its
- *     disadvantages out of play (`gworld.traitsInPlay`) -- a multi-dose
- *     bottle counting its doses before one comes off the count.
+ *     treatment of a dose (`actors.treatPoison`; castor oil and charcoal
+ *     only for a dose that could be a digestive poison), truth serum's FP and
+ *     its -2 to Will and self-control, DMSO mixed into a blood or digestive
+ *     poison to make it a contact agent, and a day's psychiatric drug as a
+ *     Mitigator, its disadvantages out of play (`gworld.traitsInPlay`) until
+ *     world time passes the day -- a multi-dose bottle counting its doses
+ *     before one comes off the count (`items.changeQuantity`). Morphine or
+ *     truth serum given to a patient already under one of them is another
+ *     dose of a depressant: -2 per doubling to resist, and an overdose on a
+ *     critical failure (Campaigns p. 441).
  *   - **High-Tech poisons (highTechPoisons):** curare, ricin, strychnine,
  *     botulin and irradiated thallium as poisons the system doses and cycles
  *     (in the sheet's dose dialog too), their damage "regardless of the roll"
@@ -33,7 +37,18 @@
 import { bookOf } from "../../../shared/book-tables.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { poisonDose, poisonKeyOf, protectedByDelivery, registerPoisonTable, type PoisonTable } from "../../../shared/drugs/index.js";
+import {
+  doseDelivery,
+  doublingPenalty,
+  overdosePoison,
+  overdoseSeconds,
+  overdoses,
+  poisonDose,
+  poisonKeyOf,
+  protectedByDelivery,
+  registerPoisonTable,
+  type PoisonTable,
+} from "../../../shared/drugs/index.js";
 import {
   CASTOR_OIL_BONUS,
   CHARCOAL_BONUS,
@@ -166,9 +181,10 @@ function patientsOf(actor: any): any[] {
 
 /**
  * Takes one dose off a record: a bottle of several counts its doses and comes
- * off the count at the last. False where there is none left.
+ * off the count at the last (`items.changeQuantity`). False where there is
+ * none left.
  */
-async function useDose(item: any): Promise<boolean> {
+async function useDose(api: GWorldApi, item: any): Promise<boolean> {
   const quantity = Number(item?.system?.quantity);
   if (Number.isFinite(quantity) && quantity <= 0) return false;
   const per = dosesPerRecord(String(item?.name ?? ""), drugData(item).kind);
@@ -178,7 +194,8 @@ async function useDose(item: any): Promise<boolean> {
     await item.update({ [path]: used });
     return true;
   }
-  await item.update({ [path]: 0, ...(Number.isFinite(quantity) ? { "system.quantity": quantity - 1 } : {}) });
+  if (drugData(item).dosesUsed) await item.update({ [path]: 0 });
+  if (Number.isFinite(quantity)) await api.items.changeQuantity(item, -1, { reason: String(item?.name ?? "") });
   return true;
 }
 
@@ -330,7 +347,7 @@ async function administer(api: GWorldApi, item: any): Promise<void> {
   const delivery = data.dmso ? withDmso(HT_POISONS[data.kind].delivery) : [...HT_POISONS[data.kind].delivery];
   const name = data.dmso ? F("WithDmso", { name: item.name }) : String(item.name ?? "");
   for (const victim of victims) {
-    if (!(await useDose(item))) return void ui.notifications?.warn(F("NoneLeft", { name: item.name }));
+    if (!(await useDose(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name: item.name }));
     const effects = api.actors.derived(victim)?.traitEffects ?? {};
     const why = protectedByDelivery(delivery, { sealed: effects.sealed === true, doesntBreathe: effects.doesntBreathe === true, filterLungs: effects.filterLungs === true, metabolicImmunity: false });
     if (why) {
@@ -344,15 +361,58 @@ async function administer(api: GWorldApi, item: any): Promise<void> {
 
 // ── the drugs (pp. 226-227) ──
 
-/** Picks one of a patient's doses (or illnesses), or a wound for antibiotics. */
-async function pickDose(api: GWorldApi, item: any, patient: any, illness: boolean, extra: Array<{ value: string; label: string }> = []): Promise<Record<string, string> | null> {
-  const doses = (api.actors.activePoisons(patient) ?? []).filter((d: any) => (d.illness === true) === illness);
+/**
+ * Picks one of a patient's doses (or illnesses), or a wound for antibiotics;
+ * `digestive` offers only the doses that could be a digestive poison.
+ */
+async function pickDose(api: GWorldApi, item: any, patient: any, illness: boolean, extra: Array<{ value: string; label: string }> = [], digestive = false): Promise<Record<string, string> | null> {
+  const doses = (api.actors.activePoisons(patient) ?? [])
+    .filter((d: any) => (d.illness === true) === illness)
+    .filter((d: any) => !digestive || takesForDigestive(api, d));
   const options = [...doses.map((d: any) => ({ value: String(d.id), label: String(d.name) })), ...extra];
   if (!options.length) {
-    ui.notifications?.warn(F(illness ? "NoIllness" : "NoPoison", { name: patient.name }));
+    ui.notifications?.warn(F(illness ? "NoIllness" : digestive ? "NoDigestivePoison" : "NoPoison", { name: patient.name }));
     return null;
   }
   return choose(String(item.name ?? ""), F("TreatHint", { name: patient.name }), select(L("Dose"), "id", options));
+}
+
+/**
+ * Whether castor oil or activated charcoal can reach a dose: a digestive
+ * poison (p. 226). A dose whose delivery can't be known -- the GM's own, or
+ * another module's -- is left to the GM.
+ */
+function takesForDigestive(api: GWorldApi, dose: any): boolean {
+  const delivery = doseDelivery(api, dose);
+  return delivery === null || delivery.includes("digestive");
+}
+
+/** The depressants of this book's a patient is already under, with their resistance rolls. */
+function depressantsIn(api: GWorldApi, patient: any): number[] {
+  const rolls: number[] = [];
+  if (hasCondition(api, patient, MORPHINE)) rolls.push(PAINKILLER.resistanceModifier);
+  if (hasCondition(api, patient, TRUTH_SERUM_KEY)) rolls.push(TRUTH_SERUM.resistanceModifier);
+  return rolls;
+}
+
+/**
+ * A depressant's dose given to a patient already under one: another dose,
+ * -2 per doubling on the roll to resist, and an overdose on its critical
+ * failure (Campaigns p. 441) -- unconscious for the margin's hours, and the
+ * drug as a poison at the hardest roll of those taken.
+ */
+function doseCount(api: GWorldApi, patient: any, own: number): { doses: number; hardest: number; line: { label: string; value: number } | null } {
+  const already = depressantsIn(api, patient);
+  const doses = 1 + already.length;
+  const penalty = doublingPenalty(doses);
+  return { doses, hardest: Math.min(own, ...already), line: penalty ? { label: F("DoubledDoseLine", { doses }), value: penalty } : null };
+}
+
+async function overdose(api: GWorldApi, patient: any, name: string, margin: number, hardest: number): Promise<string> {
+  const seconds = overdoseSeconds(margin);
+  await api.actors.applyCondition(patient, { key: "unconscious", duration: { seconds } } as any);
+  await api.actors.dosePoison(patient, { ...overdosePoison(hardest), name: F("OverdoseName", { name }) } as any);
+  return F("Overdose", { name: String(patient.name ?? ""), hours: seconds / 3600, roll: `HT${hardest}` });
 }
 
 async function giveDrug(api: GWorldApi, item: any, actor: any): Promise<void> {
@@ -367,23 +427,27 @@ async function giveDrug(api: GWorldApi, item: any, actor: any): Promise<void> {
   switch (kind) {
     case "ammonia": {
       // Smelling salts: a HT roll to come round at once (p. 226).
-      if (!(await useDose(item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
+      if (!(await useDose(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
       const outcome = await resist(api, patient, F("AmmoniaLabel", { name: who }), [], ["ammoniaInhalant"]);
       if (outcome.success) await api.actors.undoKnockdown(patient, { posture: String(patient.system?.posture ?? "lying") });
       return say(patient, name, [F(outcome.success ? "AmmoniaWakes" : "AmmoniaFails", { name: who })]);
     }
     case "morphine": {
       // Painkillers (Campaigns p. 441): HT-4 to resist; failure brings the relief, for the margin's hours.
-      if (!(await useDose(item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
-      const outcome = await resist(api, patient, F("MorphineLabel", { name: who }), [{ label: L("PainkillerLine"), value: PAINKILLER.resistanceModifier }], ["drug", "painkiller"]);
+      if (!(await useDose(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
+      const count = doseCount(api, patient, PAINKILLER.resistanceModifier);
+      const modifiers = [{ label: L("PainkillerLine"), value: PAINKILLER.resistanceModifier }, ...(count.line ? [count.line] : [])];
+      const outcome = await resist(api, patient, F("MorphineLabel", { name: who }), modifiers, ["drug", "painkiller"]);
       if (outcome.success) return say(patient, name, [F("MorphineResisted", { name: who })]);
       const seconds = painkillerSeconds(outcome.margin);
       await api.actors.applyCondition(patient, { module: MODULE_ID, key: MORPHINE, label: name, duration: { seconds } } as any);
       await api.actors.applyCondition(patient, { key: "euphoria", duration: { seconds } } as any);
-      return say(patient, name, [F("MorphineWorks", { name: who, hours: seconds / 3600 })]);
+      const lines = [F("MorphineWorks", { name: who, hours: seconds / 3600 })];
+      if (overdoses(count.doses, outcome)) lines.push(await overdose(api, patient, name, outcome.margin, count.hardest));
+      return say(patient, name, lines);
     }
     case "analgesics": {
-      if (!(await useDose(item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
+      if (!(await useDose(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
       await api.actors.applyCondition(patient, { module: MODULE_ID, key: ANALGESIC, label: name } as any);
       return say(patient, name, [F("AnalgesicTaken", { name: who })]);
     }
@@ -394,7 +458,7 @@ async function giveDrug(api: GWorldApi, item: any, actor: any): Promise<void> {
       const wound = { value: "wound", label: L("Wound") };
       const answer = await pickDose(api, item, patient, true, [wound]);
       if (!answer) return;
-      if (!(await useDose(item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
+      if (!(await useDose(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
       if (answer.id === "wound") {
         await api.actors.applyCondition(patient, { module: MODULE_ID, key: WOUND_ANTIBIOTICS, label: name, effects: { modifiers: [{ label: name, value: bonus, rolls: ["infection"] }] }, duration: { seconds: 86400 } } as any);
         return say(patient, name, [F("WoundTreated", { name: who, bonus })]);
@@ -406,7 +470,7 @@ async function giveDrug(api: GWorldApi, item: any, actor: any): Promise<void> {
     case "charcoal":
     case "chelating":
     case "antitoxin": {
-      const answer = await pickDose(api, item, patient, false);
+      const answer = await pickDose(api, item, patient, false, [], kind === "castorOil" || kind === "charcoal");
       if (!answer) return;
       let bonus = kind === "castorOil" ? CASTOR_OIL_BONUS : kind === "charcoal" ? CHARCOAL_BONUS : halfTl(tl);
       if (kind === "antitoxin") {
@@ -414,7 +478,7 @@ async function giveDrug(api: GWorldApi, item: any, actor: any): Promise<void> {
         if (!pick) return;
         bonus = Number(pick.bonus) || 1;
       }
-      if (!(await useDose(item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
+      if (!(await useDose(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
       const dose = (api.actors.activePoisons(patient) ?? []).find((d: any) => d.id === answer.id);
       const poison = poisonKeyOf(POISON_TABLE, dose?.source);
       // Botulin's antitoxin stops it outright before paralysis sets in (p. 227).
@@ -430,12 +494,14 @@ async function giveDrug(api: GWorldApi, item: any, actor: any): Promise<void> {
     }
     case "truthSerum": {
       // 1d FP after 30 seconds, and HT-1 against -2 to Will and self-control for (20 - HT)/2 minutes (p. 227).
-      if (!(await useDose(item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
+      if (!(await useDose(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
       const roll = new Roll(TRUTH_SERUM.fatigue.replace(/d$/, "d6"));
       await roll.evaluate();
       // A drug's FP, not exertion: through the fatigue chart, unhalved (Campaigns p. 426).
       if ((roll.total ?? 0) > 0) await api.actors.spendFatigue(patient, roll.total ?? 0, { exertion: false, details: { rule: "truthSerum" } });
-      const outcome = await resist(api, patient, F("TruthSerumLabel", { name: who }), [{ label: name, value: TRUTH_SERUM.resistanceModifier }], ["drug", "truthSerum"]);
+      const count = doseCount(api, patient, TRUTH_SERUM.resistanceModifier);
+      const modifiers = [{ label: name, value: TRUTH_SERUM.resistanceModifier }, ...(count.line ? [count.line] : [])];
+      const outcome = await resist(api, patient, F("TruthSerumLabel", { name: who }), modifiers, ["drug", "truthSerum"]);
       const lines = [F("TruthSerumFp", { name: who, fp: roll.total ?? 0 })];
       if (!outcome.success) {
         const seconds = truthSerumSeconds(htOf(api, patient));
@@ -446,22 +512,23 @@ async function giveDrug(api: GWorldApi, item: any, actor: any): Promise<void> {
         } as any);
         lines.push(F("TruthSerumWorks", { name: who, penalty: TRUTH_SERUM.penalty, minutes: seconds / 60 }));
       } else lines.push(F("TruthSerumResisted", { name: who }));
+      if (overdoses(count.doses, outcome)) lines.push(await overdose(api, patient, name, outcome.margin, count.hardest));
       return say(patient, name, lines);
     }
     case "psychiatric": {
-      if (!(await useDose(item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
+      if (!(await useDose(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
       const list = mitigatedList(data.mitigates);
       await patient.setFlag(MODULE_ID, PSYCHIATRIC_FLAG, { until: worldNow() + PSYCHIATRIC_DOSE_SECONDS, name, mitigates: list });
       return say(patient, name, [F("PsychiatricTaken", { name: who, list: list.join(", ") })]);
     }
     case "dmso":
-      return mixDmso(item, actor);
+      return mixDmso(api, item, actor);
     default:
   }
 }
 
 /** Mixes a dose of DMSO into one of the character's blood or digestive poisons (p. 227). */
-async function mixDmso(item: any, actor: any): Promise<void> {
+async function mixDmso(api: GWorldApi, item: any, actor: any): Promise<void> {
   const poisons = [...(actor?.items ?? [])].filter((i: any) => {
     const kind = drugData(i).kind;
     return isPoison(kind) && !drugData(i).dmso && withDmso(HT_POISONS[kind].delivery).includes("contact") && !HT_POISONS[kind].delivery.includes("contact");
@@ -470,9 +537,22 @@ async function mixDmso(item: any, actor: any): Promise<void> {
   const answer = await choose(String(item.name ?? ""), L("DmsoHint"), select(L("Agent"), "id", poisons.map((p: any) => ({ value: String(p.id), label: String(p.name) }))));
   const target = answer ? poisons.find((p: any) => p.id === answer.id) : null;
   if (!target) return;
-  if (!(await useDose(item))) return void ui.notifications?.warn(F("NoneLeft", { name: item.name }));
+  if (!(await useDose(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name: item.name }));
   await target.update({ [`system.extensions.${MODULE_ID}.${FIELD}.dmso`]: true });
   await say(actor, String(item.name ?? ""), [F("DmsoMixed", { agent: target.name })]);
+}
+
+/**
+ * Ends a psychiatric drug's day once world time has passed it: the flag goes,
+ * so the sheet puts the disadvantages back in play at once rather than the
+ * next time the actor is prepared. True where it ended one.
+ */
+export async function checkPsychiatricExpired(actor: any): Promise<boolean> {
+  const stored = actor?.getFlag?.(MODULE_ID, PSYCHIATRIC_FLAG);
+  if (!stored || !actor?.isOwner || Number(stored.until) > worldNow()) return false;
+  await actor.unsetFlag(MODULE_ID, PSYCHIATRIC_FLAG);
+  await say(actor, String(stored.name ?? ""), [F("PsychiatricWornOff", { name: String(actor.name ?? ""), list: (Array.isArray(stored.mitigates) ? stored.mitigates : []).join(", ") })]);
+  return true;
 }
 
 /** The psychiatric drug holding a character's disadvantages at bay today, or null. */
@@ -601,11 +681,15 @@ export function readyDrugs(api: GWorldApi, on: DrugSwitches): void {
   api.combat.registerHitLocation({ module: MODULE_ID, key: NERVES_KEY, label: L("LungsAndSpine"), parent: "torso", penalty: 0, available: () => false } as any);
   // It heals with world time, or when the GM takes it off the sheet: the GM's client lifts the paralysis.
   const isActiveGm = () => (game as any).user?.isGM === true && (game as any).users?.activeGM?.id === (game as any).user?.id;
+  // A psychiatric drug's day runs out with world time too (p. 227).
   Hooks.on("updateWorldTime", () => {
-    if (!on.poisons() || !isActiveGm()) return;
+    if (!(on.poisons() || on.hygiene()) || !isActiveGm()) return;
     // World actors, and the unlinked tokens' own on every scene.
     const unlinked = [...((game as any).scenes ?? [])].flatMap((scene: any) => [...(scene.tokens ?? [])].filter((t: any) => !t.actorLink && t.actor).map((t: any) => t.actor));
-    for (const actor of [...((game as any).actors ?? []), ...unlinked]) if (actor.getFlag?.(MODULE_ID, BOTULIN_FLAG)) void checkBotulinHealed(api, actor);
+    for (const actor of [...((game as any).actors ?? []), ...unlinked]) {
+      if (on.poisons() && actor.getFlag?.(MODULE_ID, BOTULIN_FLAG)) void checkBotulinHealed(api, actor);
+      if (on.hygiene() && actor.getFlag?.(MODULE_ID, PSYCHIATRIC_FLAG)) void checkPsychiatricExpired(actor);
+    }
   });
   Hooks.on("updateActor", (actor: any, changes: any) => {
     if (!on.poisons() || !isActiveGm() || changes?.flags?.gworld?.crippled === undefined) return;

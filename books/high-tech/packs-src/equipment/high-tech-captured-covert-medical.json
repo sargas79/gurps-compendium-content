@@ -5690,7 +5690,20 @@
       "listCost": 40000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "",
+              "cells": 0,
+              "endurance": "8 hours",
+              "raw": "8 hours between recharges"
+            },
+            "rechargeable": true
+          }
+        }
+      }
     }
   },
   {
@@ -5717,7 +5730,20 @@
       "listCost": 40000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "",
+              "cells": 0,
+              "endurance": "30 hours",
+              "raw": "30 hours between recharges"
+            },
+            "rechargeable": true
+          }
+        }
+      }
     }
   },
   {

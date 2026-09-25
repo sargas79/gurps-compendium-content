@@ -5007,7 +5007,7 @@
         },
         "batteryChemistry": {
           "Name": "Battery chemistry (Electricity and Electronics)",
-          "Hint": "A battery's chemistry is a field on it: carbon-zinc and wet cells last a quarter as long, lead-acid and NiCad a third, NiMH as long, lithium-ion 10% longer, each at its own price and weight, and the rechargeable ones are recharged at their own price in place of High-Tech's five times. High-Tech's batteries are alkaline to M and lead-acid at L and VL, so no chemistry set keeps the printed figures. A lithium-ion battery can run away (3d burning, a large-area injury from M up) and, confined, is an explosive of REF 0.25; the car-battery recharger's high setting explodes the battery on a critical failure; a voltaic pile rolls HT 10 every half hour (High-Tech: Electricity and Electronics pp. 16-18)."
+          "Hint": "A battery's chemistry is a field on it: carbon-zinc and wet cells last a quarter as long, lead-acid and NiCad a third, NiMH as long, lithium-ion 10% longer, each at its own price and weight, and the rechargeable ones are recharged at their own price in place of High-Tech's five times. High-Tech's batteries are alkaline to M and lead-acid at L and VL, so no chemistry set keeps the printed figures. A Daniell cell gives -1 to Electrician and Electronics Operation with what it powers; a gravity cell's row action rolls its daily upkeep (Electronics Operation (Communications) at TL5-7, or Chemistry; a failure spends its power) or sets up a new cell. A lithium-ion battery can run away (3d burning, a large-area injury from M up) and, confined, is an explosive of REF 0.25; the car-battery recharger's high setting explodes the battery on a critical failure; a voltaic pile rolls HT 10 every half hour (High-Tech: Electricity and Electronics pp. 16-18)."
         },
         "energyStorage": {
           "Name": "Energy storage and generators (Electricity and Electronics)",
@@ -5043,7 +5043,7 @@
         },
         "labInstruments": {
           "Name": "Laboratory instruments",
-          "Hint": "Each instrument's own modifiers, from the supplement Electricity and Electronics, in its row's dialog: a moving-magnet or mirror galvanometer's magnetic disturbance (-1 to -10); electrical noise, which a lock-in amplifier disregards (-6 at TL7, -9 at TL8); an early vacuum-tube voltmeter's -2; a signal tracer's -5 on FM and the listener's Hearing; a complex scientific device's -1 to -5, doubled against a science; a dedicated device at +2; a transducer only with a display carried; the TL6 photodetector's darkness penalty; the TL6 metal detector's -2 and the field skill that reads its find; a heart monitor worn briefly (-2, or -4 under half an hour); a Tesla coil's burn on a critical failure and its spark to an unshielded power line on an 18. Rows of their own: a mirror galvanometer on a telegraph line (+4), the spectrum analyzer (+2 to Mechanic with an accelerometer or Linguistics with a microphone, a sound signature as Discriminatory Hearing, tracing at +2 on AM and FM), connecting a transducer to a display (+2; a critical failure risks the transducer), a Van de Graaff generator's shock (+2 to resist, -6 per doubling of the sphere), setting up or building an analog computer as a copy of an invention, and a waveform plotted by hand at -2 from Physics or Mathematics (Applied) (Electricity and Electronics pp. 10-13)."
+          "Hint": "Each instrument's own modifiers, from the supplement Electricity and Electronics, in its row's dialog: a moving-magnet or mirror galvanometer's magnetic disturbance (-1 to -10); electrical noise, which a lock-in amplifier disregards (-6 at TL7, -9 at TL8); an early vacuum-tube voltmeter's -2; a signal tracer's -5 on FM and the listener's Hearing; a complex scientific device's -1 to -5, doubled against a science; a dedicated device at +2; a transducer only with a display carried; the TL6 photodetector's darkness penalty; the TL6 metal detector's -2 and the field skill that reads its find; a heart monitor worn briefly (-2, or -4 under half an hour); a Tesla coil's burn on a critical failure and its spark to an unshielded power line on an 18. Rows of their own: a mirror galvanometer on a telegraph line (+4), an oscilloscope comparing two signals (Electronics Operation (Scientific)), the spectrum analyzer (+2 to Mechanic with an accelerometer or Linguistics with a microphone, a sound signature as Discriminatory Hearing, tracing at +2 on AM and FM), connecting a transducer to a display (+2; a critical failure risks the transducer), a shock from a Geiger-Müller tube's high-voltage supply (5d lethal), a Van de Graaff generator's shock (+2 to resist, -6 per doubling of the sphere), setting up or building an analog computer as a copy of an invention (Engineer (Analog Computers), or Mechanic (Analog Computers)-6), and a waveform plotted by hand at -2 from Physics or Mathematics (Applied) (Electricity and Electronics pp. 10-13)."
         },
         "combinedDevices": {
           "Name": "Combined devices",
@@ -5051,7 +5051,7 @@
         },
         "electricalHazards": {
           "Name": "Electrical hazards (Electricity and Electronics)",
-          "Hint": "A GM tool puts its targets in contact with a source and runs the system's shock a second at a time. The kind of current sets the HT roll's step: DC -1 per 2 points of injury, AC -5 per 2, radio frequency none, lightning -1 per 5. A source doing 1 point can be jerked away from with a DX roll; more than 1 point holds the victim until the current is cut, the stun or unconsciousness held with it. A shock rolled under 1d can do no burn and still call for the HT roll through the torso, a roll under 0 a bonus. Lethal current lights materials by its rolled damage; a nonlethal spark lights Super-Flammable ones on 3d against 12 less its modifier. Arc flash does 3d burn; lightning is a 6d shock, a large bolt times 1d-2. On any shock, a nonlethal one at -5 or worse stops the heart on a failure by 10, and a lethal one doing more than 1 point holds on (High-Tech: Electricity and Electronics p. 9)."
+          "Hint": "A GM tool puts its targets in contact with a source and runs the system's shock a second at a time. The kind of current sets the HT roll's step: DC -1 per 2 full points of injury, AC -5 per 2 full points, radio frequency none, lightning -1 per 5. A source doing 1 point can be jerked away from with a DX roll; more than 1 point holds the victim until the current is cut, the stun or unconsciousness held with it. A shock rolled under 1d can do no burn and still call for the HT roll through the torso, a roll under 0 a bonus. Lethal current lights materials by its rolled damage; a nonlethal spark lights Super-Flammable ones on 3d against 12 less its modifier. Arc flash does 3d burn; lightning is a 6d shock, a large bolt times 1d-2. On any shock, a nonlethal one at -5 or worse stops the heart on a failure by 10, and a lethal one doing more than 1 point holds on (High-Tech: Electricity and Electronics p. 9)."
         },
         "shockProtection": {
           "Name": "Shock protection (Electricity and Electronics)",
@@ -5143,7 +5143,7 @@
         },
         "illumination": {
           "Name": "Illumination (Electricity and Electronics)",
-          "Hint": "A lamp's lux is its rated wattage times its geometry (x1.5 exposed, x3 recessed, x6 conical beam, x30 close-range beam), read against the Illumination Levels table: -5 at 0.05 lux up to no penalty from 100. It falls a step at 2 yards, two at 3-5, three at 6-10 and 3 more for each tenfold distance; a beam gives its lux out to its range and never leaves worse than -9. The supplement's lamps on the map (a light the GM marks with a tool, or a token's own light where its character carries one) leave that darkness; the least darkness wins and no lamp darkens a spot. A GM tool reads the light at the selected tokens: reading needs 500 lux and surgery 50,000, else -2. A row action aims a beam on DX at the darkness where it is aimed; a miss lands yards equal to the margin to the left or right (High-Tech: Electricity and Electronics pp. 20-22)."
+          "Hint": "A lamp's lux is its rated wattage times its geometry (x1.5 exposed, x3 recessed, x6 conical beam, x30 close-range beam), read against the Illumination Levels table: -5 at 0.05 lux up to no penalty from 100. It falls a step at 2 yards, two at 3-5, three at 6-10 and 3 more for each tenfold distance; a beam gives its lux out to its range and never leaves worse than -9. The supplement's lamps on the map (a light the GM marks with a tool, or a token's own light where its character carries one) leave that darkness; the least darkness wins and no lamp darkens a spot. Reading and sewing need 500 lux and surgery 50,000, else -2: Sewing and Surgery rolls take it from the light at the roller's token, and a GM tool reads the light at the selected tokens. A row action aims a beam on DX at the darkness where it is aimed; a miss lands yards equal to the margin to the left or right (High-Tech: Electricity and Electronics pp. 20-22)."
         },
         "lightDazzle": {
           "Name": "Glare (Electricity and Electronics)",
@@ -5299,7 +5299,7 @@
         },
         "electricLocks": {
           "Name": "Electric locks (Electricity and Electronics)",
-          "Hint": "The key switch, electric deadbolt, keypad combination lock, smart lock and the five magnetic locks take High-Tech's lock grades. A GM tool bypasses a key switch (Electronics Repair (Security), Mechanic or Lockpicking), cuts a magnetic lock's power with Electrician, or forces it in a Quick Contest of ST against the lock's (ST 12 to 32 by size). The digital stethoscope gives +1 to crack a safe and +3 to disable a security device by ear (High-Tech: Electricity and Electronics pp. 14, 42)."
+          "Hint": "The key switch, electric deadbolt, keypad combination lock, smart lock and the five magnetic locks take High-Tech's lock grades. A GM tool bypasses a key switch (Electronics Repair (Security), Mechanic or Lockpicking), cuts a magnetic lock's power with Electrician, or forces it in a Quick Contest of ST against the lock's (ST 12 to 32 by size). The digital stethoscope gives +1 to crack a safe and +3 to disable a security device by ear, and its row action holds +1 for the next Explosives (EOD) roll against a mechanical bomb; each is 1 more where noise imposes a penalty, the -1 it cancels (High-Tech: Electricity and Electronics pp. 14, 42)."
         },
         "alarmSystems": {
           "Name": "Screening and alarms (Electricity and Electronics)",
@@ -5386,12 +5386,12 @@
           "Hint": "In a tank, the crew hear each other at -4 while the motor runs unless it has headsets, and hear outside at -10 (-3 with the motor off); buttoned up, Vision is at -2 and nothing within five yards is seen. A fight in a tank costs 1 FP more every 10 minutes, and the tool charges the ride's 1 FP an hour (none with your head outside). Driving (Tracked) already defaults to other Driving at -4, and another tank is only unfamiliar (High-Tech pp. 234-235)."
         },
         "cuttingEdgeGear": {
-          "Name": "Cutting-edge gear and prototypes",
-          "Hint": "A device marked cutting edge (newly released, or a new high-end version) is priced one quality grade up: x5 at basic quality, x20 at good, and fine isn't sold while it's new. A prototype's complexity, the year it was first built (in brackets) and the year it came on the market show on the item sheet, with what inventing it takes under the Basic Set's rules (Campaigns pp. 473-474), a grade easier for a carrier of a later TL (High-Tech: Electricity and Electronics p. 8)."
+          "Name": "Cutting-edge, used and prototype gear",
+          "Hint": "A device marked cutting edge (newly released, or a new high-end version) is priced one quality grade up: x5 at basic quality, x20 at good, and fine isn't sold while it's new. A device bought used costs the percentage of the new price the GM sets on its sheet: 50-80% for a recent model, 10% or less for an old one that still works. A prototype's complexity, the year it was first built (in brackets) and the year it came on the market show on the item sheet, with what inventing it takes under the Basic Set's rules (Campaigns pp. 473-474), a grade easier for a carrier of a later TL (High-Tech: Electricity and Electronics p. 8)."
         },
         "breakableComponents": {
           "Name": "Breakable parts and device statistics",
-          "Hint": "A High-Tech device that isn't a weapon has HP from its weight as an Unliving object (1 at negligible weight), HT 10 and DR 2, or DR 0 if fragile, unless its record states them. A device with fragile parts (tubes, bulbs) gets a row action for a drop or a throw: the collision damage at its speed is rolled once, each part takes all of it with no DR, parts at -1xHP roll HT or break, and the device takes what gets past its DR (High-Tech: Electricity and Electronics pp. 8-9)."
+          "Hint": "A High-Tech device that isn't a weapon has HP from its weight as an Unliving object (1 at negligible weight), HT 10 and DR 2, or DR 0 if fragile, unless its record states them. A device with fragile parts (tubes, bulbs) gets a row action for a drop or a throw: the collision damage at its speed is rolled once, each part takes all of it with no DR, parts at -1xHP roll HT or break, and the device takes what gets past its DR. A broken part stops the device, so rolls made with it are refused until the parts are replaced; parts left at 0 HP or less roll HT for each second of use (after each roll made with it, or from a row action) and stop working on a failure (High-Tech: Electricity and Electronics pp. 8-9; Campaigns p. 484)."
         },
         "kitBuilding": {
           "Name": "Building from kits",
@@ -5407,15 +5407,15 @@
         },
         "electricAppliances": {
           "Name": "Electric appliances",
-          "Hint": "From the supplement Electricity and Electronics. A heater in use (equipped) adds to HT against the cold, +1 for the incandescent bulb heater and +2 for the resistance wire heater; a fan in use adds to HT against ordinary heat, +2 for the large fan and +1 for a small one (the Weather roll). Kitchen gear in use is the equipment on Cooking and Housekeeping: a microwave oven -2 and -1, an induction cooker +1 to both (-2 more until the cook is familiar with it), a hot plate improvised. A GM tool rolls Forensics to put shredded documents back together, -5 after a cross-cut shredder; a shopvac's row action marks the scene cleaned, -2 to Forensics rolls there after. An electromagnet's ST is 8 times its interior diameter in inches with an iron core, 100 times for a superconducting air core; it holds up to 10 times the Basic Lift for that ST and pulls from as far as its coil is long. Remote control costs 10% more; an emergency stop's row action shuts the machine down with an HT roll against equipment failure (Electricity and Electronics pp. 21-25; Campaigns p. 485)."
+          "Hint": "From the supplement Electricity and Electronics. A heater in use (equipped) adds to HT against the cold, +1 for the incandescent bulb heater and +2 for the resistance wire heater; a fan in use adds to HT against ordinary heat, +2 for the large fan and +1 for a small one (the Weather roll). Kitchen gear in use is the equipment on Cooking and Housekeeping: a microwave oven -2 and -1, an induction cooker +1 to both (-2 more until the cook is familiar with it), a hot plate improvised. A row action rolls the burns an appliance does at a touch: an early resistance wire heater's 1d-3 a second, the induction furnace's molten metal 3d at first contact. A GM tool rolls Forensics to put shredded documents back together, -5 after a cross-cut shredder; a shopvac's row action marks the scene cleaned, -2 to Forensics rolls there after. An electromagnet's ST is 8 times its interior diameter in inches with an iron core, 100 times for a superconducting air core; it holds up to 10 times the Basic Lift for that ST and pulls from as far as its coil is long. Remote control costs 10% more; an emergency stop's row action shuts the machine down with an HT roll against equipment failure (Electricity and Electronics pp. 21-25; Campaigns p. 485)."
         },
         "powerTools": {
           "Name": "Power tools",
-          "Hint": "From the supplement Electricity and Electronics. The supplement's power drills (1d+2(2) pi++ against wood and plaster; an early model -2), circular saws (sw+3(2) cut, the compact saw sw+1(2), (5) with a diamond blade against concrete and brick), arc welder (3d(2) burn), hot plate (1d-3 burn) and soldering irons (1 point burn) get a Work row with Forced Entry, the damage for each second of work, as High-Tech's forced-entry tools do (Electricity and Electronics pp. 14, 21, 24; High-Tech pp. 25-30)."
+          "Hint": "From the supplement Electricity and Electronics. The supplement's power drills (1d+2(2) pi++ against wood and plaster; an early model -2), circular saws (sw+3(2) cut, the compact saw sw+1(2), (5) with a diamond blade against concrete and brick), arc welder (3d(2) burn), hot plate (1d-3 burn) and soldering irons (1 point burn) get a Work row with Forced Entry, the damage for each second of work, as High-Tech's forced-entry tools do; wire cutters' 2d(2) cut, each use (Electricity and Electronics pp. 14, 21, 24; High-Tech pp. 25-30)."
         },
         "electromedicine": {
           "Name": "Electromedicine",
-          "Hint": "From the supplement Electricity and Electronics. After half an hour, the diathermy apparatus (the healer's Physician roll; -2 on an early machine, whose critical failure burns the patient 1d-3) or a heating pad (the patient's HT roll) eases the patient's pain one step. Electroconvulsive therapy gives the patient a Seizure; the healer's Physician roll for the course takes Chronic Depression or Manic-Depressive out of play for a year, as a Mitigator; the patient rolls HT-2 or loses the memory of the 1d days before. A laser scalpel carried gives +2 to Surgery on an operation (Electricity and Electronics pp. 13-14, 21; Campaigns pp. 428-429)."
+          "Hint": "From the supplement Electricity and Electronics. After half an hour, the diathermy apparatus (the healer's Physician roll; -2 on an early machine, whose critical failure burns the patient 1d-3) or a heating pad (the patient's HT roll) eases the patient's pain one step. Electroconvulsive therapy gives the patient a Seizure; the healer's Physician roll for the course takes Chronic Depression or Manic-Depressive out of play for a year, as a Mitigator; the patient rolls HT-2 or loses the memory of the 1d days before. A laser scalpel carried gives +2 to Surgery on an operation, only for the specialty it is designed for where the GM names one. The electrocautery and the cautery pen stop superficial bleeding on a Surgery roll, with Severe Pain unless the patient has a local anaesthetic; the pen is used up (Electricity and Electronics pp. 13-14, 21; Campaigns pp. 420, 428-429)."
         },
         "skillSubstitutes": {
           "Name": "The supplement's skill defaults and substitutes",
@@ -5448,6 +5448,8 @@
         "SuperconductingLine": "A superconducting magnet needs TL{tl} superconductors, kept cold in liquid nitrogen.",
         "RemoteLine": "Built for remote control: 10% more (HT:EE p. 25).",
         "EmergencyStopLine": "An emergency stop, made to be seen ({per} to Per); its row action shuts the machine down (HT:EE p. 25).",
+        "HazardLine": "Touching it does {damage} burning at first contact; its row action rolls it (HT:EE p. 21).",
+        "HazardLinePerSecond": "An early model's inadequate screening: {damage} burning for each second of contact; its row action rolls it (HT:EE p. 21).",
         "WorkLine": "Work: {damage}{divisor} {type} {pace} (HT:EE p. 24).",
         "EarlyLine": "An early model: {penalty} to skill.",
         "CoreLabel": "Magnet core",
@@ -5468,6 +5470,7 @@
         "StopHint": "A kill switch: shutting the machine down with it calls for an HT roll against equipment failure (HT:EE p. 25).",
         "Early": "Early model",
         "EarlyHint": "An early drill without the trigger switch and pistol grip: -2 to skill (HT:EE p. 24).",
+        "EarlyHeaterHint": "An early heater with inadequate screening: it burns 1d-3 a second at a touch (HT:EE p. 21).",
         "Diamond": "Diamond blade",
         "DiamondHint": "An abrasive diamond blade for hard materials such as concrete or brick: (5) in place of (2) (HT:EE p. 24).",
         "DiamondNote": "Diamond blade",
@@ -5476,6 +5479,9 @@
         "WorkHint": "Roll the damage for each second the tool is worked against the thing, and apply it to the thing's DR and HP (HT:EE pp. 14, 21, 24; High-Tech pp. 25-30).",
         "EmergencyStop": "Emergency stop",
         "EmergencyStopRoll": "{name}: emergency stop",
+        "HazardAction": "Roll what it does",
+        "HazardLabel": "{name}",
+        "HazardPerSecond": "{name}, for a second",
         "CleanAction": "Clean up the scene",
         "CleanTitle": "{name}: the scene cleaned",
         "CleanAsk": "{name} cleans up {scene} with a shopvac; the GM marks the scene.",
@@ -5501,12 +5507,27 @@
         "PadItem": "Its row action treats the targeted patient (or the user) for {minutes} minutes: an HT roll eases lasting pain one step (HT:EE p. 21).",
         "EctItem": "Its row action treats the targeted patient: a Seizure, the healer's Physician roll for the course (success mitigates Chronic Depression or Manic-Depressive for a year) and the patient's HT{modifier} against losing some days' memory (HT:EE p. 14).",
         "ScalpelItem": "Carried: +{bonus} to Surgery on an operation (HT:EE p. 14).",
+        "Specialty": "Designed for (Surgery specialty)",
+        "SpecialtyHint": "Each specialty of Surgery needs its own design: named here, the scalpel helps only that specialty's rolls; blank, any Surgery (HT:EE p. 14).",
+        "ScalpelSpecialty": "Designed for Surgery ({specialty}): no help to another specialty.",
+        "CauteryItem": "Its row action cauterizes the targeted patient (or the user): a Surgery roll stops superficial bleeding or burns off a small growth; without a local anaesthetic the heat causes Severe Pain (HT:EE pp. 13-14).",
+        "PenItem": "Thrown away after use: each use takes one off the stack.",
         "DiathermyAction": "Diathermy",
         "PadAction": "Heating pad",
         "EctAction": "Electroconvulsive therapy",
+        "CauteryAction": "Cauterize",
+        "CauteryHint": "A Surgery roll stops superficial bleeding (Campaigns p. 420) or destroys a small growth such as a wart; the heat causes Severe Pain unless the patient has had a local anaesthetic (HT:EE pp. 13-14).",
+        "Anaesthetic": "Under a local anaesthetic",
         "DiathermyTitle": "{name} on {patient} ({minutes} minutes)",
         "PadTitle": "{name} on {patient} ({minutes} minutes)",
         "EctTitle": "{name} on {patient}",
+        "CauteryTitle": "{name} on {patient}",
+        "Cauterized": "{name}'s superficial bleeding is stopped (or the growth burned off).",
+        "NotCauterized": "The cautery doesn't take: {name} still bleeds.",
+        "CauteryPain": "Without an anaesthetic the heat puts {name} in Severe Pain; the GM takes it off when the treatment ends.",
+        "PenUsed": "The cautery pen is used up.",
+        "NoSurgery": "Cauterizing needs Surgery, or a skill it defaults to (Physician, Veterinary, Physiology or First Aid).",
+        "NotYourPatient": "You can't change {name}: ask the GM to cauterize them (nothing was rolled).",
         "Burned": "Diathermy burn",
         "Burn": "{name} is burned for {amount} ({dice}).",
         "NotEased": "{name}'s pain is no better.",
@@ -5579,7 +5600,9 @@
           "incident": "An incident: pills passed too quickly, or some thrown up.",
           "burst": "A packet bursts!",
           "dosed": "The contents are dosed as an overdose: 1 point of toxic damage every 15 minutes for 24 cycles, HT-4 to resist.",
-          "tells": "Cramps and sweating can tip off observers."
+          "tells": "Cramps and sweating can tip off observers.",
+          "cramps": "The pills' pressure brings cramps: moderate pain while they're carried. The GM removes it once they pass, or makes it worse.",
+          "out": "Overdose, as heroin (a depressant): unconscious for {hours} hours (Campaigns p. 441). If the packet held cocaine, the GM uses a stimulant's overdose instead: a HT roll, a heart attack on a critical failure (Campaigns p. 440)."
         },
         "BurstPoison": "Burst mule pill",
         "SpotTitle": "Spot a mule",
@@ -8150,6 +8173,8 @@
         "ImproviseFailed": "The {name} is a dud ({minutes} minutes spent).",
         "Engine": {
           "Action": "Engine fire",
+          "Option": "Through the engine grating (vital area)",
+          "HitHint": "The Molotov went through the engine grating: the vehicle rolls HT at once and every 3 seconds until the fire burns out.",
           "Title": "Molotov through the engine grating",
           "Ht": "Vehicle's HT",
           "Hint": "A hit through an unprotected engine grating is a vital-area hit, at {penalty} to hit. The vehicle rolls HT at once and every 3 seconds until the fire burns out.",
@@ -8165,6 +8190,7 @@
         "CloudSensors": "Smoke (sensors)",
         "CloudPlaced": "Smoke fills a {radius}-yard radius for {seconds} seconds.",
         "CloudNoPlace": "No scene or spot to put the cloud on: place a template or target a token.",
+        "HotCanister": "The canister burns hot enough to do {dice} burn to bare flesh touching it, and sets dry vegetation and paper alight (Campaigns p. 433).",
         "FlashbangHearing": "Protected Hearing",
         "FlashbangVision": "Protected Vision",
         "FlashbangRecovery": "Flashbang stun",
@@ -8459,6 +8485,7 @@
         },
         "TaskMet": "{task} ({lux} lux): enough",
         "TaskShort": "{task} ({lux} lux): {penalty} to tasks that need it",
+        "DimTask": "Too dim for {task} ({lux} lux)",
         "AimAction": "Aim the beam",
         "AimTarget": "Target the one token the beam is aimed at.",
         "AimRoll": "Aiming {name} (DX)",
@@ -8691,6 +8718,7 @@
         "HoldLabel": "Held in contact (seconds)",
         "HoldNote": "Held in contact for {seconds} s.",
         "StunDr": "Armour against the shock",
+        "ProdProtected": "The prod's burn needs bare skin: {armour} covers it",
         "ShockLabel": "{weapon}: recovery at {penalty}",
         "ShockLine": "{weapon}'s shock",
         "Stunned": "{name} is stunned: {held} s in contact, {seconds} s in all before the first roll to recover at HT{recovery}.",
@@ -8879,6 +8907,7 @@
           "Time": "Time taken",
           "Quiet": "Stethoscope, very quiet place",
           "UseEndoscope": "Endoscope inside the mechanism",
+          "Noisy": "Noise imposes a penalty (the digital stethoscope cancels -1)",
           "Quality": "{quality} lock",
           "Gun": "Lockpick gun",
           "Older": "TL{lock} lock, TL{skill} burglar",
@@ -9048,6 +9077,10 @@
         "AnesthesiaItem": "A Physician roll puts the patient under; if it fails, Surgery is at {penalty}. Good for {hours} hours here.",
         "AnesthesiaMachineItem": "A Physician roll at +{bonus} puts the patient under; if it fails, Surgery is at {penalty}. A tank lasts {hours} hours.",
         "AntisepticItem": "Cleaning a wound takes no roll and removes up to -{bonus} of the dirt's penalty on the roll against infection.",
+        "UsesLeft": "{left} of {per} uses left in this container.",
+        "ResupplyItem": "Its needles, blades, sutures and sponges cost ${cost} to replace after each operation ({percent}% of its price; High-Tech p. 223).",
+        "ImagingLine": "{name}'s scan",
+        "ImagingReason": "an imaging instrument helps only the Diagnosis roll its scan allows",
         "DefibrillateAction": "Defibrillate",
         "AedAction": "Use the AED",
         "Minutes": "Minutes since the fibrillation began",
@@ -9507,6 +9540,7 @@
         "PickVictims": "Target the characters to poison first.",
         "NoneLeft": "{name}: none left.",
         "NoPoison": "{name} has no poison in them to treat.",
+        "NoDigestivePoison": "{name} has no digestive poison in them for this to work on.",
         "NoIllness": "{name} has no illness to treat.",
         "TreatHint": "What the dose treats in {name}.",
         "Dose": "Treat",
@@ -9547,6 +9581,10 @@
         "TruthSerumResisted": "{name} keeps a clear head.",
         "PsychiatricTaken": "{name} takes the day's dose: {list} out of play for a day.",
         "PsychiatricMitigates": "Mitigated by today's {item}",
+        "PsychiatricWornOff": "{name}'s day's dose has worn off: {list} back in play.",
+        "DoubledDoseLine": "{doses} doses of depressants",
+        "OverdoseName": "Overdose ({name})",
+        "Overdose": "Overdose! {name} is unconscious for {hours} hours, and the drug works as a poison at {roll}: 1 point of toxic damage every 15 minutes for 24 cycles (Campaigns p. 441).",
         "NoAgentForDmso": "Carry a blood or digestive poison to mix the DMSO into.",
         "DmsoHint": "One dose of DMSO lets one dose of a blood or digestive agent work through the skin.",
         "DmsoMixed": "{agent} is now a contact agent.",
@@ -9677,8 +9715,24 @@
           "spaced": "Spaced armour ({where}): DR x1.5 against HEAT and HEDP; no HESH spall.",
           "skirt": "Armour skirts: DR {dr} on the {part} sides, as spaced armour.",
           "riveted": "Riveted armour: {damage}+ stopped may send rivets flying inside.",
+          "crewArmour": "Cockpit armour around the {post} against an occupant hit: {faces}.",
+          "gunShield": "A DR {dr} gun shield on the {mount}, for its gunner alone.",
           "tank": "Tank crew: -4 to hear each other with the motor running, -10 to hear outside; -2 Vision buttoned up.",
           "tankIntercom": "Tank crew with headsets: -10 to hear outside with the motor running; -2 Vision buttoned up."
+        },
+        "Face": "DR {dr} from the {face}",
+        "Post": {
+          "pilot": "pilot",
+          "coxswain": "coxswain"
+        },
+        "Mount": {
+          "rearPintle": "rear pintle mount"
+        },
+        "Occupant": {
+          "Title": "Occupant hit",
+          "armour": "If the {post} is the one hit, his cockpit armour gives DR {dr} from the {face} against the {dice}d cutting.",
+          "noArmour": "The {post}'s cockpit armour gives nothing from the {face}.",
+          "gunShield": "A gunner at the {mount} is behind a DR {dr} gun shield, if the shot came from where the gun points."
         },
         "Spall": {
           "Title": "Flying rivets",
@@ -9953,6 +10007,8 @@
         "ChemistryOption": "{chemistry} (TL{tl})",
         "Chemistry": {
           "wetCell": "Wet cell",
+          "daniellCell": "Wet cell (Daniell)",
+          "gravityCell": "Wet cell (gravity)",
           "carbonZinc": "Carbon-zinc",
           "alkaline": "Alkaline",
           "leadAcid": "Lead-acid",
@@ -9967,6 +10023,9 @@
         "MediumNote": "High-Tech's M battery weighs 2 lbs. against the supplement's 1.5; it is scaled as if it were alkaline.",
         "LithiumIonHint": "Shorted, or failing HT after crushing or while overcharged, it runs away: 3d burning, a large-area injury from M up, and it may start a fire.",
         "WetCellHint": "Stationary; the price and weight aren't printed, so they stay the size's.",
+        "DaniellHint": "A porous barrier weakens the current: {penalty} to Electrician or Electronics Operation with what it powers (HT:EE p. 17).",
+        "DaniellLine": "Daniell cell's weak current",
+        "GravityHint": "A stronger current, but the solution must be watched: its row action rolls the day's upkeep, or sets up a new cell (HT:EE p. 17).",
         "SupercapacitorLine": "Gives the output of one {size} battery for {minutes} minute, at twenty times the price.",
         "SupercapacitorLargest": "Gives ten times the output of one {size} battery for {minutes} minute, at twenty times the price.",
         "MaterialLabel": "Material",
@@ -10040,6 +10099,20 @@
           "Runs": "The pile keeps its current for another {minutes} minutes.",
           "Blocked": "Hydrogen bubbles cover the copper: the current stops."
         },
+        "Gravity": {
+          "Title": "Gravity cell",
+          "Hint": "Each day, Electronics Operation (Communications) at TL5-7, or Chemistry, keeps the cell's power; setting up a new cell is Electronics Repair (Communications) at TL5-7, or Chemistry (HT:EE p. 17).",
+          "Task": "Task",
+          "tend": "Tend it for the day",
+          "setUp": "Set up a new cell (power after {hours} hour)",
+          "tendLabel": "{name}: the day's upkeep",
+          "setUpLabel": "{name}: a new cell",
+          "Tended": "The solution is kept right: the cell keeps its power for the day.",
+          "Lost": "The solution goes wrong: the cell loses its power, and what it runs is out of charge.",
+          "LostUntracked": "The solution goes wrong: the cell loses its power.",
+          "SetUp": "The new cell is set up: it gives power in {hours} hour.",
+          "NotSetUp": "The new cell isn't set up right; try again."
+        },
         "Discharge": {
           "Title": "Discharge",
           "Hint": "Into the targeted character, or whoever holds it: a nonlethal shock.",
@@ -10052,6 +10125,10 @@
         "CuttingEdgeHint": "Newly released, or a new high-end version: priced one quality grade up (HT:EE p. 8).",
         "CuttingEdgePrice": "Cutting edge: at {quality} quality it costs x{factor} its listed price.",
         "FineUnavailable": "Cutting edge: fine quality isn't normally available while the device is new.",
+        "Used": "Used (% of new)",
+        "UsedHint": "Bought used, at this percentage of the new price: {min}-{max}% for a recent model, down to {old}% or less for an old one that still works; 0 for new (HT:EE p. 8).",
+        "UsedLine": "Bought used at {percent}% of the new price (HT:EE p. 8).",
+        "UsedPrice": "Used ({percent}% of new)",
         "ComplexityLabel": "Prototype complexity",
         "ComplexityHint": "The invention grade a prototype is rated at (HT:EE p. 8; Campaigns p. 473).",
         "PrototypeYear": "First built",
@@ -10088,6 +10165,15 @@
         "PartsHp": "HP each",
         "PartsHt": "HT each",
         "Broken": "{broken} of {count} {label} broken: the device won't work until they're replaced.",
+        "Failing": "{failing} {label} work below 0 HP: each rolls HT {ht} for every second the device is used, and stops working on a failure.",
+        "BrokenRefusal": "{name} won't work: {broken} {label} are broken and must be replaced first (HT:EE p. 8).",
+        "Run": {
+          "Title": "Use it (parts' HT rolls)",
+          "Card": "{name} in use",
+          "Rolls": "The {label} below 0 HP ({count}) roll HT {ht} for the second of use: {rolls}.",
+          "Stopped": "{stopped} {label} stop working: the device won't work until they're replaced.",
+          "Kept": "They keep working, for this second."
+        },
         "ReplaceParts": "Replaced",
         "KitLabel": "A kit",
         "KitHint": "Bought as a kit to build: a quarter of the price (HT:EE p. 15).",
@@ -10112,6 +10198,7 @@
             "destroyed": "The {label} ({count}) are at {hp} HP: all {broken} are destroyed."
           },
           "Replace": "{broken} {label} are broken: the device won't work until they're replaced.",
+          "Survivors": "The {failing} {label} left are below 0 HP: each rolls HT {ht} for every second the device is used, or stops working.",
           "Injured": "The device takes {injury} injury past its DR {dr} ({state}); mark it on the item.",
           "Recorded": "The device takes {injury} injury past its DR {dr}: the damage card that follows records it on the item.",
           "DamageLabel": "{name} is damaged in the fall",
@@ -10551,7 +10638,7 @@
         "CantLetGo": "Can't let go of the source: more than 1 point of injury (High-Tech: Electricity and Electronics p. 9).",
         "HeldCondition": "Can't let go of the source",
         "Step": {
-          "ac": "Alternating current: -5 to HT per 2 points of injury (High-Tech: Electricity and Electronics p. 9).",
+          "ac": "Alternating current: -5 to HT for each full 2 points of injury (High-Tech: Electricity and Electronics p. 9).",
           "rf": "Radio-frequency current: no penalty to HT for the injury (High-Tech: Electricity and Electronics p. 9).",
           "lightning": "Lightning: -1 to HT per 5 points of injury (High-Tech: Electricity and Electronics p. 9)."
         },
@@ -10710,6 +10797,15 @@
         "InterpretNone": "What it finds is read with {skills}.",
         "Telegraph": "Read a telegraph line",
         "TelegraphLabel": "{name}: a telegraph line",
+        "CompareButton": "Compare two signals",
+        "CompareTitle": "{name}: compare two signals",
+        "CompareHint": "Electronics Operation (Scientific) analyses two signals side by side: whether two voices are the same person's, say (HT:EE p. 11).",
+        "CompareLabel": "{name}: comparing two signals",
+        "Compared": "The traces are compared: the GM says whether the two signals match.",
+        "NotCompared": "The comparison proves nothing either way.",
+        "SupplyShock": "Shock from its high-voltage supply",
+        "GeigerSupply": "The tube runs on a high-voltage supply that can do {damage} lethal electrical damage; building one is a Simple invention on household power (HT:EE p. 12).",
+        "NotYourVictim": "You can't change {name}: ask the GM to run the shock (nothing was done).",
         "AnalyzeButton": "Analyze a signal",
         "AnalyzeTitle": "Analyze a signal: {name}",
         "AnalyzeLabel": "{name}: {use}",
@@ -10804,6 +10900,11 @@
         "LockSt": "Magnetic lock's ST",
         "RollLabel": "{task}: {skill}",
         "StethoscopeLine": "Digital stethoscope, by ear",
+        "EodTitle": "Listen to a mechanical bomb",
+        "EodHint": "The digital stethoscope gives +1 to the next Explosives (EOD) roll to find or defuse a mechanical bomb, and cancels -1 of a noise penalty to it (HT:EE p. 42).",
+        "EodNoisy": "Noise imposes a penalty (the stethoscope cancels -1)",
+        "EodLine": "{name} on a mechanical bomb",
+        "EodHeld": "{name} listens to the bomb: {bonus} is held for the next {skill} roll.",
         "Disabled": "{name} disables the alarm.",
         "AlarmSounds": "{name} sets off the alarm!",
         "Alarm": {

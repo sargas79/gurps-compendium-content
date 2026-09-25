@@ -7,7 +7,8 @@
 import { describe, expect, it } from "vitest";
 
 import { MODULE_ID } from "../module.js";
-import { poisonDose, poisonKeyOf, poisonNumbers, protectedByDelivery, registerPoisonTable, type PoisonTable } from "./index.js";
+import * as rules from "../../../system/src/rules/index.js";
+import { doseDelivery, doublingPenalty, overdosePoison, overdoseSeconds, overdoses, poisonDose, poisonKeyOf, poisonNumbers, protectedByDelivery, registerPoisonTable, type PoisonTable } from "./index.js";
 
 const table: PoisonTable<"venom" | "gas"> = {
   book: "some-book",
@@ -48,5 +49,23 @@ describe("the shared poison engine", () => {
     expect(protectedByDelivery(["respiratory"], { ...open, filterLungs: true })).toBe("breath");
     expect(protectedByDelivery(["digestive"], { ...open, sealed: true })).toBeNull();
     expect(protectedByDelivery(["digestive"], { ...open, metabolicImmunity: true })).toBe("metabolic");
+  });
+
+  it("knows a dose's delivery by a registered table's source or a Basic Set example's name, else not at all", () => {
+    registerPoisonTable({ data: { registerPoison: () => undefined } } as never, table);
+    const api = { rules } as never;
+    expect(doseDelivery(api, { source: `${MODULE_ID}.gas`, name: "Gas" })).toEqual(["respiratory"]);
+    expect(doseDelivery(api, { name: "Arsenic" })).toEqual(["digestive"]);
+    expect(doseDelivery(api, { name: "Something the GM made" })).toBeNull();
+  });
+
+  it("takes -2 per doubling of a dose, and overdoses only on a critical failure for two doses or more (Campaigns p. 441)", () => {
+    expect([1, 2, 3, 4, 8].map(doublingPenalty)).toEqual([0, -2, -2, -4, -6]);
+    expect(overdoses(2, { criticalFailure: true })).toBe(true);
+    expect(overdoses(1, { criticalFailure: true })).toBe(false);
+    expect(overdoses(2, { criticalFailure: false })).toBe(false);
+    expect(overdoseSeconds(3)).toBe(3 * 3600);
+    expect(overdoseSeconds(0)).toBe(3600);
+    expect(overdosePoison(-4)).toMatchObject({ resistanceModifier: -4, damage: "toxic", dice: 0, adds: 1, intervalSeconds: 900, cycles: 24 });
   });
 });

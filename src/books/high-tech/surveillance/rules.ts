@@ -9,7 +9,7 @@ export const SECURITY = "Electronics Operation (Security)";
 export const SURVEILLANCE = "Electronics Operation (Surveillance)";
 export const COMMUNICATIONS = "Electronics Operation (Communications)";
 export const EW = "Electronics Operation (EW)";
-export const EOD = "Explosives (EOD)";
+export const EOD = "Explosives (Explosive Ordnance Disposal)";
 
 const nameKey = (name: unknown) => String(name ?? "").trim().toLowerCase();
 

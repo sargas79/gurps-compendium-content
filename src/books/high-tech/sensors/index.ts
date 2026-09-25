@@ -1054,7 +1054,7 @@ async function sweep({ api, selected, target, sensors, measured }: SweepContext)
 }
 
 /** The skills the book names a ground-penetrating radar's survey serving (HT:EE p. 35), offered for the one it helps. */
-const SURVEY_SKILLS = ["Archaeology", "Prospecting", "Engineer", "Explosives (EOD)"] as const;
+const SURVEY_SKILLS = ["Archaeology", "Prospecting", "Engineer", "Explosives (Explosive Ordnance Disposal)"] as const;
 
 /** The dialog row naming the skill a survey helps: blank leaves the bonus to the GM. */
 function surveyRow(): string {
