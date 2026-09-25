@@ -112,11 +112,18 @@ export interface RidingMove {
  * relative skill (bicycles only, `relative` null otherwise) and Move, times
  * the Enhanced Move multiplier (1 + its level), rounded down, then times the
  * downhill multiplier. Road-Bound Enhanced Move counts only on a road.
+ *
+ * `move` is the system's, already halved (rounding up) for each of reeling
+ * and very tired (Campaigns pp. 419, 426); `halvings` counts them, and
+ * relative skill is halved as often, so a rider below 1/3 FP on a long ride
+ * slows as a runner does (p. 230; Campaigns p. 354).
  */
-export function ridingMove(input: { move: number; relative: number | null; enhancedMove: number; roadBound: boolean; offRoad: boolean; slope: number }): RidingMove {
+export function ridingMove(input: { move: number; relative: number | null; enhancedMove: number; roadBound: boolean; offRoad: boolean; slope: number; halvings?: number }): RidingMove {
   const move = Math.max(0, Math.floor(input.move));
-  const fromSkill = input.relative !== null && input.relative > move;
-  const base = fromSkill ? Math.floor(input.relative as number) : move;
+  let relative = input.relative === null ? null : Math.floor(input.relative);
+  for (let i = 0; relative !== null && i < Math.max(0, Math.floor(input.halvings ?? 0)); i += 1) relative = Math.ceil(relative / 2);
+  const fromSkill = relative !== null && relative > move;
+  const base = fromSkill ? (relative as number) : move;
   const enhanced = input.roadBound && input.offRoad ? 1 : 1 + Math.max(0, input.enhancedMove);
   const level = Math.floor(base * enhanced + 1e-9);
   const downhill = downhillMultiplier(input.slope);
