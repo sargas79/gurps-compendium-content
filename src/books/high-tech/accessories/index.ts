@@ -56,6 +56,7 @@ import { ACCESSORY_TABLES, accessoryOf, minStPenaltyAfter, minStPenaltyAt, multi
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { calibreRowOf } from "../ammunition/calibres.js";
+import { shineTacticalLight } from "../expedition/index.js";
 import { isFirearm } from "../firearms/index.js";
 import { familyData, gunTakesSuppressor } from "../weapon-families/index.js";
 import {
@@ -998,6 +999,19 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
       return light ? { notes: [F("TacticalLightNote", { name: light.item.name, yards: light.figures.yards ?? 0 })] } : null;
     },
   } as any);
+  // Its dazzle: whoever looks into it rolls HT-4 or is blinded (p. 52), from the gun's row.
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-tactical-light-eyes",
+    itemTypes: ["equipment"],
+    label: L("TacticalLightEyes"),
+    icon: "fa-solid fa-eye-slash",
+    visible: (item) => on.sights() && firearm(item) && fittedTo(item, on, ["tacticalLight"]).length > 0,
+    run: (item, actor) => {
+      const light = fittedTo(item, on, ["tacticalLight"])[0];
+      if (light) void shineTacticalLight(api, String(light.item.name ?? ""), light.figures.yards ?? 0, actor);
+    },
+  });
 
   // Looking through a night, thermal or computer sight: its vision, and colorblind with tunnel vision (pp. 156-157).
   Hooks.on("gworld.traitEffects", (context: any) => {

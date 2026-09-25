@@ -9,8 +9,8 @@
  *     the cold roll (or -5 with none), from the "Camping out" box on the
  *     Inventory tab; fire starters' +5 to +10 on a DX-based Survival roll;
  *     foraging from a fishing kit's, trap's or snare's row -- Fishing, or the
- *     best land Survival with the trap's own quality, five an hour-long
- *     rolls a day; a spring trap's blow and the Quick Contest of ST to break free; a
+ *     best land Survival with the trap's own quality, up to five a day, an
+ *     hour each; a spring trap's blow and the Quick Contest of ST to break free; a
  *     survival kit carried for another environment as the Survival roll's
  *     equipment line (`gworld.skillBonuses`); a water filter's +(TL-2), or a
  *     charcoal-filtered canteen's +2, on the HT roll against a digestive

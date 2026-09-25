@@ -489,6 +489,22 @@ describe("darkness and lasers (pp. 155-157)", () => {
     expect(valueOf(attack(pistol, [darkness(-2)], { ...lit, rangeYards: 20 }).modifiers, "Darkness")).toBe(-2);
   });
 
+  it("offers the fitted tactical light's dazzle from the gun's row (p. 52)", async () => {
+    on = { gunSights: true };
+    ready();
+    const actor = character();
+    const pistol = gun(actor);
+    const eyes = actions.find((a) => a.key === "ht-tactical-light-eyes");
+    expect(eyes.visible(pistol)).toBe(false);
+    accessory(actor, "Small Tactical Light (TL8)", pistol);
+    expect(eyes.visible(pistol)).toBe(true);
+    // No target: nothing posted, a warning.
+    const warn = vi.fn();
+    vi.stubGlobal("ui", { notifications: { warn } });
+    await eyes.run(pistol, actor);
+    expect(warn).toHaveBeenCalled();
+  });
+
   it("gives a targeting laser its reach by colour, in daylight or low light, and an infrared dot only to eyes that see it", () => {
     on = { gunSights: true };
     ready();

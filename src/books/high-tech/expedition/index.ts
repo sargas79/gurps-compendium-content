@@ -8,14 +8,23 @@
  * is kept in this module's flags on the item.
  *
  *   - **Light sources (lightSources):** a row action lights a light or puts
- *     it out, and another sets a lit lantern or candle down as an area on the
- *     map (dropped, a fuel lantern rolls HT 6 on hard ground and breaks, the
- *     glass one starting a fire). An attack on a target a light reaches -- one
+ *     it out, and another sets a lit light down as an area on the map -- a
+ *     lantern or candle round it, a beam as a cone toward the one target or
+ *     along its bearer's facing (dropped, a fuel lantern rolls HT 6 on hard
+ *     ground and breaks, a lit glass one starting a 1-yard fire for 10d
+ *     seconds, whose card rolls each second's 1d-1 burning at a fifth of DR).
+ *     Lanterns, the carbide lamp and candles burn their fill down, as does a
+ *     snapped chemlight, which can't be put out; a row action refills them
+ *     (a new candle or stick off the count), a survival flashlight is wound
+ *     for its minutes, and a TL8 flashlight's batteries last ten times as
+ *     long. An attack on a target a light reaches -- one
  *     set down round it, one carried within its radius, or the attacker's own
  *     beam out to its length -- takes its darkness down to that of a lit spot
  *     (Campaigns p. 394's -3; the keyed `darkness` line). A tactical light
  *     shone in the eyes asks each target for HT-4 against 10 seconds'
- *     blindness per point of failure.
+ *     blindness per point of failure; one fitted to a gun does the same from
+ *     the gun's row (`shineTacticalLight`), and the gadget table counts
+ *     tactical lights as rugged and expensive already.
  *   - **Navigation gear (navigationGear):** the best bonus of a compass,
  *     chronometer, navigating or surveying instruments or a GPS receiver as a
  *     line on Navigation and Mathematics (Surveying), and the map line on
@@ -26,26 +35,47 @@
  *     goes on Fast-Draw from pouches and on a row action's DX roll to reach
  *     gear) and fits a pack (a good or fine one's quality on Hiking; a badly
  *     fitted one's moderate pain after a day's hiking); TL8 packs weigh half
- *     and backpacks cost double; the hourly march.
+ *     and backpacks cost double; the hourly march; getting something out of
+ *     a pack (1d or 2d seconds); and a canteen not full sloshing away LBE's
+ *     Stealth benefit.
  *   - **Climbing gear (climbingGear):** the fall to twice the distance past
  *     the last fastener, shooting while rappelling (-4, -2 with Sure-Footed),
  *     throwing a grapnel and who hears it land (a padded one, +1 lb., at
  *     -2), snowshoes' -1 Move, and crampons' +2 to a kick
  *     (beside the system's +1 for boots, which they are worn over); an
  *     ascender, descender or suction cups cancelling the climb's own penalty
- *     on the Climb roll (its `climbKind` line).
+ *     on the Climb roll (its `climbKind` line); a climb on ice from the
+ *     crampons' row at +1; the personal lifting device's rides and
+ *     cartridges; and the rope loads, the hand drill and the avalanche
+ *     transceiver on their sheets.
  */
 
 import { placeArea } from "../../../shared/areas.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { registerPowerAdjuster } from "../../../shared/power/data.js";
 import { hearSound, type Sound } from "../hearing.js";
 import {
+  AVALANCHE_RANGE,
   BLINDED_PENALTY,
   CARRY_KINDS,
   CLIMBING_KINDS,
+  CRAMPON_ICE,
   CRAMPON_KICK,
+  FLAP_READY,
+  HAND_DRILL_MINUTES,
+  LANTERN_FIRE,
+  LIFTING_DEVICE,
+  WINDING_SECONDS,
+  beamWidth,
+  burnLeft,
+  burnOf,
   cancelsClimb,
+  liftingClimb,
+  retrieveDice,
+  ropeLoad,
+  sloshes,
+  tl8BatteryFactor,
   lbeStealth,
   FITS,
   GLASS_LANTERN_FIRE_YARDS,
@@ -90,6 +120,8 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 
 const FIELD = "expedition";
 const LIGHT_AREA = "ht-light";
+const FIRE_AREA = "ht-lantern-fire";
+const FIRE_CARD = "ht-lantern-fire";
 const EYES_CARD = "ht-light-eyes";
 const RAPPEL_OPTION = "ht-rappelling";
 const BLINDED = "htLightBlinded";
@@ -120,6 +152,14 @@ export interface ExpeditionState {
   placed: boolean;
   fit: Fit;
   noSignal: boolean;
+  /** The world time a light with a burning time was lit, or null while it is out. */
+  litAt: number | null;
+  /** The seconds of its fill already burned before it was last lit. */
+  burned: number;
+  /** A canteen not filled to the brim, which sloshes (p. 53). */
+  notFull: boolean;
+  /** Yards of ascent a lifting device's cartridge has used (p. 56). */
+  climbed: number;
 }
 
 /** Registers the fields this module keeps on expedition gear. */
@@ -164,8 +204,25 @@ export function expeditionState(item: any): ExpeditionState {
     placed: s.placed === true,
     fit: FITS.includes(s.fit) ? s.fit : "",
     noSignal: s.noSignal === true,
+    litAt: typeof s.litAt === "number" && Number.isFinite(s.litAt) ? s.litAt : null,
+    burned: Math.max(0, Number(s.burned) || 0),
+    notFull: s.notFull === true,
+    climbed: Math.max(0, Number(s.climbed) || 0),
   };
 }
+
+const worldNow = (): number => Number((game as any).time?.worldTime) || 0;
+
+/** The burning time a light has left, in seconds, or null for one the book gives none (p. 51-52). */
+export function lightLeft(item: any): number | null {
+  const burn = burnOf(String(item?.name ?? ""), tlOf(item));
+  if (!burn) return null;
+  const state = expeditionState(item);
+  return burnLeft(burn, state.burned, state.lit ? state.litAt : null, worldNow());
+}
+
+/** Whether a lit light has burned through its fuel (p. 51-52). */
+const spent = (item: any): boolean => lightLeft(item) === 0;
 
 async function setState(item: any, patch: Partial<ExpeditionState>): Promise<void> {
   await item.update(Object.fromEntries(Object.entries(patch).map(([k, v]) => [`flags.${MODULE_ID}.${FIELD}.${k}`, v])));
@@ -212,11 +269,11 @@ function yardsBetween(a: any, b: any): number | null {
 
 // ── light sources (pp. 51-52) ──
 
-/** The lit lights a character carries: not one they have set down, which lights where it lies. */
+/** The lit lights a character carries: not one they have set down, which lights where it lies, nor one burned out. */
 function litLights(actor: any): Array<{ item: any; light: Light }> {
   return gearOf(actor)
     .map((item) => ({ item, light: expeditionData(item).light, state: expeditionState(item) }))
-    .filter((l): l is { item: any; light: Light; state: ExpeditionState } => l.light !== null && l.state.lit && !l.state.broken && !l.state.placed);
+    .filter((l): l is { item: any; light: Light; state: ExpeditionState } => l.light !== null && l.state.lit && !l.state.broken && !l.state.placed && !spent(l.item));
 }
 
 /**
@@ -228,8 +285,11 @@ function litLights(actor: any): Array<{ item: any; light: Light }> {
 export function lightOver(api: GWorldApi, attacker: any, target: any): string | null {
   const scene = stage()?.scene;
   if (scene) {
+    const now = worldNow();
     for (const area of (api.areas.list(scene) as any[]) ?? []) {
       if (!String(area?.id ?? "").startsWith(`${MODULE_ID}-${LIGHT_AREA}-`)) continue;
+      // A light set down goes out when its fuel does.
+      if (typeof area.expires === "number" && now >= area.expires) continue;
       const inside: any[] = (api.areas as any).standsIn?.(scene, area) ?? [];
       if (inside.some((t) => t?.id === target?.id)) return String(area.label ?? "");
     }
@@ -251,15 +311,56 @@ export function lightOver(api: GWorldApi, attacker: any, target: any): string | 
 async function switchLight(api: GWorldApi, item: any, actor: any): Promise<void> {
   const data = expeditionData(item);
   if (!data.light) return;
-  const lit = !expeditionState(item).lit;
-  await setState(item, { lit });
+  const name = String(item.name ?? "");
+  const state = expeditionState(item);
+  const burn = burnOf(name, tlOf(item));
+  const now = worldNow();
+  const lit = !state.lit;
+  // A chemlight, once snapped, glows until it is spent (p. 52).
+  if (!lit && burn?.fuel === "snap" && !spent(item)) return void ui.notifications?.warn(F("CantPutOut", { name }));
+  // Wound or shaken, a survival flashlight gives its minutes afresh (p. 52).
+  if (lit && burn?.fuel === "wind") {
+    await setState(item, { lit: true, litAt: now, burned: 0 });
+    await say(actor, name, [F("Wound", { name, seconds: WINDING_SECONDS, minutes: burn.seconds / 60 })]);
+    return;
+  }
+  if (lit && burn && spent(item)) return void ui.notifications?.warn(F(`OutOfFuel.${burn.fuel}`, { name }));
+  // What has burned so far is kept when it goes out, and counted from now when it is lit (pp. 51-52).
+  const burned = !lit && burn && state.litAt !== null ? state.burned + Math.max(0, now - state.litAt) : state.burned;
+  await setState(item, { lit, ...(burn ? { litAt: lit ? now : null, burned } : {}) });
   if (!lit) await pickUp(api, item);
   const kind = data.light.kind;
   const how = !lit ? "PutOut"
     : kind === "electric" || kind === "tactical" ? "SwitchedOnReady"
       : kind === "chemical" ? "SnappedOn"
         : breaksWhenDropped(kind) ? "LitLantern" : "LitFlame";
-  await say(actor, String(item.name ?? ""), [F(how, { name: String(item.name ?? ""), min: RELIGHT_SECONDS.min, max: RELIGHT_SECONDS.max })]);
+  const lines = [F(how, { name, min: RELIGHT_SECONDS.min, max: RELIGHT_SECONDS.max })];
+  if (lit && burn) lines.push(F("BurnsFor", { time: durationText(lightLeft(item) ?? 0) }));
+  await say(actor, name, lines);
+}
+
+/** A span of seconds as the sheet says it: hours and minutes, or minutes. */
+function durationText(seconds: number): string {
+  const minutes = Math.ceil(Math.max(0, seconds) / 60);
+  return minutes >= 60 ? F("HoursMinutes", { hours: Math.floor(minutes / 60), minutes: minutes % 60 }) : F("MinutesOnly", { minutes });
+}
+
+/**
+ * A new fill for a light that burns out (pp. 51-52): a pint of oil or a
+ * charge of carbide put in, or another candle or chemlight off the count.
+ */
+async function refuel(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const name = String(item.name ?? "");
+  const burn = burnOf(name, tlOf(item));
+  if (!burn || burn.fuel === "wind") return;
+  if (burn.fuel === "ounce" || burn.fuel === "snap") {
+    const quantity = Number(item.system?.quantity);
+    if (Number.isFinite(quantity) && quantity <= 1) return void ui.notifications?.warn(F("NoneLeft", { name }));
+    await api.items.changeQuantity(item, -1, { reason: L(`Refuel.${burn.fuel}`) });
+  }
+  await setState(item, { lit: false, litAt: null, burned: 0 });
+  await pickUp(api, item);
+  await say(actor, name, [F(`Refuelled.${burn.fuel}`, { name, time: durationText(burn.seconds) })]);
 }
 
 /** Sets a lit light down (or drops it) where its bearer stands, or where their template lies. */
@@ -286,20 +387,82 @@ async function setDown(api: GWorldApi, item: any, actor: any): Promise<void> {
     const roll = new Roll("3d6");
     await roll.evaluate();
     if (!lanternSurvives(Number(roll.total))) {
+      const wasLit = expeditionState(item).lit;
       await setState(item, { lit: false, broken: true, placed: false });
       const lines = [F("LanternBreaks", { name, roll: roll.total })];
-      if (data.light.kind === "glassLantern") lines.push(F("GlassFire", { yards: GLASS_LANTERN_FIRE_YARDS }));
       if (data.light.kind === "kerosene") lines.push(L("KeroseneDouses"));
       await say(actor, name, lines, [roll]);
+      // The glass one spills its burning oil (p. 51; Molotov cocktail, p. 191).
+      if (data.light.kind === "glassLantern" && wasLit) await lanternFire(api, item, actor);
       return;
     }
     await say(actor, name, [F("LanternSurvives", { name, roll: roll.total })], [roll]);
   }
-  if (!expeditionState(item).lit || !(data.light.radius > 0)) return;
-  const id = await placeArea(api, { key: `${LIGHT_AREA}-${item.id}`, label: name, actor, radiusYards: data.light.radius, lines: [], seconds: null, bare: true });
-  if (!id) return void ui.notifications?.warn(L("NoPlace"));
-  await setState(item, { placed: true });
-  await say(actor, name, [F("SetDownLine", { name, yards: data.light.radius })]);
+  const state = expeditionState(item);
+  if (!state.lit) return;
+  // A light with fuel to burn goes out where it lies when the fuel does.
+  const left = lightLeft(item);
+  const seconds = left === null ? null : left;
+  if (data.light.radius > 0) {
+    const id = await placeArea(api, { key: `${LIGHT_AREA}-${item.id}`, label: name, actor, radiusYards: data.light.radius, lines: [], seconds, bare: true });
+    if (!id) return void ui.notifications?.warn(L("NoPlace"));
+    await setState(item, { placed: true });
+    await say(actor, name, [F("SetDownLine", { name, yards: data.light.radius })]);
+    return;
+  }
+  // A beam set down shines where it points: toward the one token targeted, or the way its bearer's token faces.
+  if (data.light.beam > 0) {
+    const id = await placeBeam(api, item, actor, data.light.beam, seconds);
+    if (!id) return void ui.notifications?.warn(L("NoPlaceBeam"));
+    await setState(item, { placed: true });
+    await say(actor, name, [F("SetDownBeam", { name, yards: data.light.beam, width: beamWidth(data.light.beam) })]);
+  }
+}
+
+/** Places a beam light set down as a cone from its bearer's token. */
+async function placeBeam(api: GWorldApi, item: any, actor: any, yards: number, seconds: number | null): Promise<string | null> {
+  const scene = stage()?.scene;
+  const own = actor?.getActiveTokens?.()?.[0];
+  const from = centreOf(own);
+  if (!scene || !from) return null;
+  const targets = [...((game as any).user?.targets ?? [])];
+  const toward = targets.length === 1 ? centreOf(targets[0]) : null;
+  const direction = Number(own?.document?.rotation ?? own?.rotation);
+  // Foundry's token rotation is 0 facing down (south); an area's direction is 0 facing east.
+  const cone = toward ? { toward, length: yards, width: beamWidth(yards) } : { direction: ((Number.isFinite(direction) ? direction : 0) + 90) % 360, length: yards, width: beamWidth(yards) };
+  const now = worldNow();
+  return api.areas.add(scene, {
+    id: `${MODULE_ID}-${LIGHT_AREA}-${item.id}-${foundry.utils.randomID(8)}`,
+    label: String(item.name ?? ""),
+    center: from,
+    cone,
+    lines: [],
+    expires: seconds === null ? null : now + seconds,
+  } as any);
+}
+
+/**
+ * A lit glass lantern broken on hard ground starts a 1-yard fire (p. 51): as
+ * a Molotov cocktail on the ground (p. 191; Campaigns p. 411), 1d-1 burning
+ * a second, DR at a fifth, for 10d seconds. The area marks it on the map,
+ * and the card rolls each second's damage for the GM to apply.
+ */
+async function lanternFire(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const roll = new Roll(`${LANTERN_FIRE.burnsForDice}d6`);
+  await roll.evaluate();
+  const seconds = Number(roll.total) || 0;
+  const name = String(item.name ?? "");
+  await placeArea(api, { key: `${FIRE_AREA}-${item.id}`, label: F("FireArea", { name }), actor, radiusYards: GLASS_LANTERN_FIRE_YARDS, lines: [], seconds, bare: true });
+  const formula = api.rules.formatDiceAdds({ dice: LANTERN_FIRE.dice, adds: LANTERN_FIRE.adds });
+  await api.chat.post(`${MODULE_ID}.${FIRE_CARD}`, { name, seconds, yards: GLASS_LANTERN_FIRE_YARDS, formula, divisor: LANTERN_FIRE.armorDivisor, until: worldNow() + seconds } satisfies FireData, { actor } as any);
+}
+
+type FireData = { name: string; seconds: number; yards: number; formula: string; divisor: number; until: number };
+
+/** A second of the lantern's fire: the damage roll, burning at a fifth of DR, for the GM to apply to whoever stands in it. */
+async function burnSecond(api: GWorldApi, data: FireData, actor: any): Promise<void> {
+  if (worldNow() >= data.until) return void ui.notifications?.info(F("FireOut", { name: data.name }));
+  await api.roll.damage({ actor, label: F("FireSecond", { name: data.name }), formula: data.formula, damageType: "burn" as never, armorDivisor: data.divisor, source: "lanternFire" } as any);
 }
 
 /** Takes a light's areas off the map. */
@@ -320,15 +483,26 @@ type EyesData = { victimUuid: string; victim: string; light: string; result: str
 async function shineInEyes(api: GWorldApi, item: any, actor: any): Promise<void> {
   const light = expeditionData(item).light;
   if (!light) return;
+  await shineTacticalLight(api, String(item.name ?? ""), light.beam, actor);
+}
+
+/**
+ * Asks each targeted token within a tactical light's beam for its HT-4
+ * against blindness (p. 52): the light carried by hand, or one fitted to a
+ * gun (p. 156, whose row calls this). The card's buttons work wherever it
+ * came from.
+ */
+export async function shineTacticalLight(api: GWorldApi, name: string, beamYards: number, actor: any): Promise<void> {
   const targets = [...((game as any).user?.targets ?? [])];
   if (!targets.length) return void ui.notifications?.warn(L("EyesTarget"));
   const own = actor?.getActiveTokens?.()?.[0];
+  const light: Light = { kind: "tactical", radius: 0, beam: beamYards };
   for (const token of targets) {
     const yards = own ? yardsBetween(own, token) : null;
     if (yards !== null && !reaches(light, yards, true)) continue;
     const victim = token?.actor;
     if (!victim) continue;
-    const data: EyesData = { victimUuid: String(victim.uuid ?? ""), victim: String(victim.name ?? ""), light: String(item.name ?? ""), result: "" };
+    const data: EyesData = { victimUuid: String(victim.uuid ?? ""), victim: String(victim.name ?? ""), light: name, result: "" };
     await api.chat.post(`${MODULE_ID}.${EYES_CARD}`, data, { actor: victim } as any);
   }
 }
@@ -426,6 +600,43 @@ async function reachGear(api: GWorldApi, item: any, actor: any): Promise<void> {
   } as any);
 }
 
+// ── climbing gear (pp. 55-56) ──
+
+/**
+ * A ride on the personal lifting device (p. 56): 3 yards a second up or down
+ * the rope, a cartridge's 200 yards of ascent, and nothing over 300 lbs.
+ */
+async function ride(item: any, actor: any): Promise<void> {
+  const answer: any = await foundry.applications.api.DialogV2.prompt({
+    window: { title: String(item.name ?? "") },
+    content: `<div class="gworld"><div class="ifields">
+      <label>${esc(L("LiftYards"))} <input type="number" name="yards" value="20" min="0" step="1" style="width:70px"></label>
+      <label>${esc(L("LiftLoad"))} <input type="number" name="load" value="200" min="0" step="5" style="width:70px"></label>
+      </div><div class="ichecks"><label class="icheck"><input type="checkbox" name="down"> ${esc(L("LiftDown"))}</label></div></div>`,
+    ok: {
+      label: L("LiftAction"),
+      callback: (_event: Event, button: HTMLElement) => {
+        const form = button.closest<HTMLElement>(".application");
+        return {
+          yards: Math.max(0, Number(form?.querySelector<HTMLInputElement>('[name="yards"]')?.value) || 0),
+          load: Math.max(0, Number(form?.querySelector<HTMLInputElement>('[name="load"]')?.value) || 0),
+          down: form?.querySelector<HTMLInputElement>('[name="down"]')?.checked === true,
+        };
+      },
+    },
+    rejectClose: false,
+  });
+  if (!answer) return;
+  const name = String(item.name ?? "");
+  const climb = liftingClimb(answer.yards, answer.load);
+  if (!climb.lifts) return void (await say(actor, name, [F("LiftTooHeavy", { load: answer.load, lbs: LIFTING_DEVICE.lbs })]));
+  const state = expeditionState(item);
+  const left = Math.max(0, LIFTING_DEVICE.cartridgeYards - state.climbed);
+  if (!answer.down && answer.yards > left) return void (await say(actor, name, [F("LiftNoFuel", { yards: answer.yards, left })]));
+  if (!answer.down) await setState(item, { climbed: state.climbed + answer.yards });
+  await say(actor, name, [F(answer.down ? "LiftedDown" : "LiftedUp", { name: actor?.name ?? "", yards: answer.yards, seconds: climb.seconds, left: answer.down ? left : left - answer.yards })]);
+}
+
 // ── the item sheet ──
 
 function itemContext(api: GWorldApi, item: any, on: ExpeditionSwitches): Record<string, unknown> {
@@ -440,6 +651,33 @@ function itemContext(api: GWorldApi, item: any, on: ExpeditionSwitches): Record<
     if (breaksWhenDropped(data.light.kind)) lines.push(L(`KindLine.${data.light.kind}`));
     if (data.light.kind === "electric" || data.light.kind === "tactical") lines.push(L("ReadyLine"));
     if (data.light.kind === "tactical") lines.push(F("TacticalLine", { ht: TACTICAL_BLINDING_HT }));
+    // How long it burns on its fuel, and what is left (pp. 51-52).
+    const burn = burnOf(String(item.name ?? ""), tlOf(item));
+    if (burn) {
+      lines.push(F(`Burn.${burn.fuel}`, { time: durationText(burn.seconds), winding: WINDING_SECONDS }));
+      const left = lightLeft(item);
+      if (burn.fuel !== "wind" && left !== null && left < burn.seconds) lines.push(left > 0 ? F("BurnLeft", { time: durationText(left) }) : L(`OutOfFuelLine.${burn.fuel}`));
+    }
+    const battery = tl8BatteryFactor(String(item.name ?? ""), tlOf(item));
+    if (battery) lines.push(F("Tl8Battery", { factor: battery }));
+  }
+  if (on.lights() && /^tritium illuminator$/i.test(String(item.name ?? "").trim())) lines.push(L("TritiumLine"));
+  if (on.loadBearing()) {
+    // Canteens slosh when not full, undoing LBE's Stealth benefit (p. 53).
+    if (sloshes(String(item.name ?? ""))) {
+      lines.push(L("SloshLine"));
+      context.canteen = { notFull: state.notFull };
+    }
+    if (data.carry === "backpack" || data.carry === "bag") lines.push(F("RetrieveLine", { dice: retrieveDice(data.carry) }));
+    if (data.carry === "lbe") lines.push(F("FlapLine", { readies: FLAP_READY }));
+  }
+  if (on.climbing()) {
+    const name = String(item.name ?? "").trim();
+    const load = ropeLoad(name);
+    if (load !== null) lines.push(F("RopeLine", { lbs: load }));
+    if (/^hand drill$/i.test(name)) lines.push(F("DrillLine", { minutes: HAND_DRILL_MINUTES }));
+    if (/^personal lifting device$/i.test(name)) lines.push(F("LiftLine", { speed: LIFTING_DEVICE.yardsPerSecond, yards: LIFTING_DEVICE.cartridgeYards, lbs: LIFTING_DEVICE.lbs, left: Math.max(0, LIFTING_DEVICE.cartridgeYards - state.climbed) }));
+    if (/^avalanche transceiver$/i.test(name)) lines.push(F("AvalancheLine", { least: AVALANCHE_RANGE.least, most: AVALANCHE_RANGE.most }));
   }
   if (on.navigation() && data.navigation) {
     lines.push(L(`NavLine.${data.navigation}`));
@@ -460,6 +698,7 @@ function itemContext(api: GWorldApi, item: any, on: ExpeditionSwitches): Record<
       context.grapnel = { padded: data.padded };
     }
     if (data.climbing === "snowshoes") lines.push(L(snowshoeMove(tlOf(item)) ? "SnowshoeMove" : "SnowshoeFast"));
+    if (data.climbing === "crampons") lines.push(F("CramponIce", { bonus: CRAMPON_ICE }));
   }
   context.lines = lines;
   return context;
@@ -475,6 +714,9 @@ function itemListeners(element: HTMLElement, item: any): void {
   });
   element.querySelector<HTMLInputElement>("[data-gcc-ht-gps]")?.addEventListener("change", async (event) => {
     await setState(item, { noSignal: (event.currentTarget as HTMLInputElement).checked });
+  });
+  element.querySelector<HTMLInputElement>("[data-gcc-ht-canteen]")?.addEventListener("change", async (event) => {
+    await setState(item, { notFull: (event.currentTarget as HTMLInputElement).checked });
   });
 }
 
@@ -509,9 +751,29 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
     visible: (item) => {
       const light = lightOf(item);
       const state = expeditionState(item);
-      return on.lights() && light !== null && !state.broken && !state.placed && (state.lit ? light.radius > 0 : breaksWhenDropped(light.kind));
+      return on.lights() && light !== null && !state.broken && !state.placed && (state.lit ? light.radius > 0 || light.beam > 0 : breaksWhenDropped(light.kind));
     },
     run: (item, actor) => { void setDown(api, item, actor); },
+  });
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-light-refuel",
+    itemTypes: ["equipment"],
+    label: L("RefuelAction"),
+    icon: "fa-solid fa-gas-pump",
+    visible: (item) => {
+      if (!on.lights() || !lightOf(item) || expeditionState(item).broken) return false;
+      const burn = burnOf(String(item.name ?? ""), tlOf(item));
+      const left = lightLeft(item);
+      return burn !== null && burn.fuel !== "wind" && left !== null && left < burn.seconds;
+    },
+    run: (item, actor) => { void refuel(api, item, actor); },
+  });
+  // A flashlight's batteries last ten times as long at TL8 (p. 52).
+  registerPowerAdjuster((item) => {
+    if (!on.lights() || !lightOf(item)) return null;
+    const factor = tl8BatteryFactor(String(item?.name ?? ""), tlOf(item));
+    return factor ? { endurance: factor } : null;
   });
   api.sheets.registerRowAction({
     module: MODULE_ID,
@@ -540,10 +802,19 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
     module: MODULE_ID,
     key: EYES_CARD,
     template: `modules/${MODULE_ID}/templates/ht-expedition-card.hbs`,
+    // Posted only under a switch that shines a light: by hand here, or fitted to a gun (the accessories').
     actions: {
-      resist: async ({ message, data }: any) => { if (on.lights()) await resistLight(api, message, data as EyesData); },
-      surprisePartial: { permission: "gm", run: async ({ message, data }: any) => { if (on.lights()) await surpriseWithLight(api, message, data as EyesData, false); } },
-      surpriseTotal: { permission: "gm", run: async ({ message, data }: any) => { if (on.lights()) await surpriseWithLight(api, message, data as EyesData, true); } },
+      resist: async ({ message, data }: any) => { await resistLight(api, message, data as EyesData); },
+      surprisePartial: { permission: "gm", run: async ({ message, data }: any) => { await surpriseWithLight(api, message, data as EyesData, false); } },
+      surpriseTotal: { permission: "gm", run: async ({ message, data }: any) => { await surpriseWithLight(api, message, data as EyesData, true); } },
+    },
+  } as any);
+  api.chat.registerChatCard({
+    module: MODULE_ID,
+    key: FIRE_CARD,
+    template: `modules/${MODULE_ID}/templates/ht-lantern-fire-card.hbs`,
+    actions: {
+      burn: { permission: "gm", run: async ({ data, actor }: any) => { if (on.lights()) await burnSecond(api, data as FireData, actor); } },
     },
   } as any);
 
@@ -596,6 +867,23 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
     visible: (item) => on.loadBearing() && expeditionData(item).carry === "lbe" && expeditionState(item).fit !== "",
     run: (item, actor) => { void reachGear(api, item, actor); },
   });
+  // Getting something out of a pack: a long action of 1d or 2d seconds, no Fast-Draw (p. 54).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-pack-retrieve",
+    itemTypes: ["equipment"],
+    label: L("RetrieveAction"),
+    icon: "fa-solid fa-box-open",
+    visible: (item) => on.loadBearing() && ["backpack", "bag"].includes(expeditionData(item).carry),
+    run: (item, actor) => {
+      void (async () => {
+        const dice = retrieveDice(expeditionData(item).carry);
+        const roll = new Roll(`${dice}d6`);
+        await roll.evaluate();
+        await say(actor, String(item.name ?? ""), [F("Retrieved", { name: actor?.name ?? "", item: item.name, seconds: roll.total })], [roll]);
+      })();
+    },
+  });
   api.sheets.registerRowAction({
     module: MODULE_ID,
     key: "ht-pack-pain",
@@ -630,6 +918,9 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
     if (!on.loadBearing() || !Array.isArray(context?.modifiers) || !/^stealth\b/i.test(String(context.skill ?? ""))) return;
     const line = context.modifiers.find((m: any) => m?.key === "encumbrance");
     if (!line || !(Number(line.value) < 0)) return;
+    // A canteen not full to the brim sloshes: no Stealth benefit from the LBE (p. 53).
+    const slosher = gearOf(context.actor).find((i) => sloshes(String(i.name ?? "")) && expeditionState(i).notFull);
+    if (slosher) return;
     const best = gearOf(context.actor)
       .filter((i) => expeditionData(i).carry === "lbe")
       .map((i) => ({ name: String(i.name ?? ""), bonus: lbeStealth(String(i.system?.equipmentQuality ?? "basic"), tlOf(i)) }))
@@ -739,6 +1030,55 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
     icon: "fa-solid fa-ear-listen",
     visible: (item) => on.climbing() && expeditionData(item).climbing === "grapnel",
     run: (item, actor) => void hearSound(api, actor, grapnelSound(item)),
+  });
+
+  // Crampons on ice: +1 to Climbing (p. 56). The system's Climb roll knows
+  // no ice, so the climb on ice is rolled from the crampons' row.
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-crampons-ice",
+    itemTypes: ["equipment"],
+    label: L("IceClimbAction"),
+    icon: "fa-solid fa-icicles",
+    visible: (item) => on.climbing() && expeditionData(item).climbing === "crampons",
+    run: (item, actor) => {
+      void (async () => {
+        const known = api.actors.skillLevel(actor, "Climbing");
+        const base = typeof known === "number" ? known : (Number(api.actors.attribute(actor, "DX")) || 10) - 5;
+        const worn = item.system?.equipped === true;
+        await api.roll.success({
+          actor, base, label: L("IceClimbRoll"), skill: "Climbing", kind: "skill",
+          modifiers: worn ? [{ label: F("CramponLine", { name: item.name }), value: CRAMPON_ICE }] : [],
+          tags: ["climbing", "climb-ice", "DX"],
+        } as any);
+      })();
+    },
+  });
+
+  // The personal lifting device: 3 yards a second, 200 yards up a cartridge, 300 lbs. (p. 56).
+  const isLifter = (item: any) => /^personal lifting device$/i.test(String(item?.name ?? "").trim());
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-lifting-device",
+    itemTypes: ["equipment"],
+    label: L("LiftAction"),
+    icon: "fa-solid fa-elevator",
+    visible: (item) => on.climbing() && isLifter(item),
+    run: (item, actor) => { void ride(item, actor); },
+  });
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-lifting-cartridge",
+    itemTypes: ["equipment"],
+    label: L("CartridgeAction"),
+    icon: "fa-solid fa-rotate-left",
+    visible: (item) => on.climbing() && isLifter(item) && expeditionState(item).climbed > 0,
+    run: (item, actor) => {
+      void (async () => {
+        await setState(item, { climbed: 0 });
+        await say(actor, String(item.name ?? ""), [F("CartridgeFitted", { yards: LIFTING_DEVICE.cartridgeYards })]);
+      })();
+    },
   });
 
   // Snowshoes' bulk: -1 Move while worn, but for TL8 ones (p. 56).

@@ -2,8 +2,16 @@ import { describe, expect, it } from "vitest";
 
 import {
   anchoredFall,
+  beamWidth,
   blindedSeconds,
   breaksWhenDropped,
+  burnLeft,
+  burnOf,
+  liftingClimb,
+  retrieveDice,
+  ropeLoad,
+  sloshes,
+  tl8BatteryFactor,
   drawsFromLbe,
   fittingRoll,
   grapnelLoad,
@@ -151,5 +159,43 @@ describe("climbing gear (High-Tech pp. 55-56)", () => {
   it("costs snowshoes 1 Move, but not TL8 ones", () => {
     expect(snowshoeMove(5)).toBe(-1);
     expect(snowshoeMove(8)).toBe(0);
+  });
+
+  it("reads rope loads, the lifting device's climbs and the avalanche beacon (pp. 55-56)", () => {
+    expect(ropeLoad("Rope, 1/2\", Hemp (10 yards)")).toBe(300);
+    expect(ropeLoad("Rope, 1/2\", Synthetic (10 yards)")).toBe(4000);
+    expect(ropeLoad("Cord, Synthetic (100 yards)")).toBe(55);
+    expect(ropeLoad("Detonating Cord (per pound)")).toBeNull();
+    expect(liftingClimb(100, 250)).toEqual({ seconds: 34, lifts: true });
+    expect(liftingClimb(10, 301).lifts).toBe(false);
+  });
+});
+
+describe("burning times and the rest of the expedition gear (pp. 51-54)", () => {
+  it("knows each light's fill, and what is left of it", () => {
+    expect(burnOf("Kerosene Lantern", 6)).toEqual({ seconds: 12 * 3600, fuel: "pint" });
+    expect(burnOf("Wax Candles (per ounce)", 1)).toEqual({ seconds: 8 * 3600, fuel: "ounce" });
+    expect(burnOf("Survival Flashlight", 6)).toEqual({ seconds: 180, fuel: "wind" });
+    expect(burnOf("Survival Flashlight", 8)).toEqual({ seconds: 360, fuel: "wind" });
+    expect(burnOf("Flashlight", 6)).toBeNull();
+    const pint = burnOf("Glass Lantern", 5)!;
+    expect(burnLeft(pint, 3600, 100, 100 + 3600)).toBe(8 * 3600);
+    expect(burnLeft(pint, 3600, null, 99999)).toBe(9 * 3600);
+    expect(burnLeft(pint, 0, 0, 11 * 3600)).toBe(0);
+  });
+
+  it("gives TL8 flashlights ten times the batteries, and beams a cone no narrower than 2 yards", () => {
+    expect(tl8BatteryFactor("Mini-Flashlight", 8)).toBe(10);
+    expect(tl8BatteryFactor("Mini-Flashlight", 7)).toBeNull();
+    expect(tl8BatteryFactor("Floodlight", 8)).toBeNull();
+    expect(beamWidth(5)).toBe(2);
+    expect(beamWidth(100)).toBe(20);
+  });
+
+  it("slows a pack's retrieval, and tells the canteens that slosh", () => {
+    expect(retrieveDice("backpack")).toBe(2);
+    expect(retrieveDice("bag")).toBe(1);
+    expect(sloshes("Canteen")).toBe(true);
+    expect(sloshes("Water Pack")).toBe(false);
   });
 });

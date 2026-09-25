@@ -5661,7 +5661,8 @@
         "Simple": "Simple enough at TL{campaign} to skip maintenance: under ${threshold}.",
         "Rugged": "Rugged",
         "Quality": "Quality ({quality})",
-        "StylingLine": "Styling: {name}"
+        "StylingLine": "Styling: {name}",
+        "BuiltIn": "Built {options} as listed: the list price already pays for it, and it isn't added again (tactical lights, High-Tech p. 52)."
       },
       "Equipment": {
         "ItemTitle": "High-Tech equipment",
@@ -6535,10 +6536,11 @@
         "IlluminatedHint": "Lit by battery or tritium: up to 2 off darkness penalties on an aimed shot, in place of the scope's 1 (High-Tech p. 155).",
         "TacticalLight": "Tactical light on",
         "TacticalLightLine": "Tactical light: switched on for a shot within its {yards}-yard beam, darkness is no worse than {floor}.",
-        "TacticalLightNote": "{name}: darkness no worse than -3 out to {yards} yards; the target may be dazzled (HT-4) at the GM's call.",
+        "TacticalLightNote": "{name}: darkness no worse than -3 out to {yards} yards. Someone looking into it rolls HT-4 or is blinded: the gun's row shines it in the eyes of the targets.",
         "DarknessLine": "{label} (sights and light)",
         "LaserHit": "{name} (dot out to {yards} yd)",
-        "HearSubsonic": "Subsonic ammunition"
+        "HearSubsonic": "Subsonic ammunition",
+        "TacticalLightEyes": "Shine the light in their eyes"
       },
       "Ammunition": {
         "Title": "Ammunition (High-Tech)",
@@ -8436,7 +8438,79 @@
         "PaddedPrice": "Padded grapnel",
         "PaddedLine": "Padded grapnel",
         "GrapnelHeardAction": "Who hears it land",
-        "GrapnelHeardNote": "Only where it lands on stone, concrete or the like (High-Tech p. 55)."
+        "GrapnelHeardNote": "Only where it lands on stone, concrete or the like (High-Tech p. 55).",
+        "SetDownBeam": "{name} is set down, its beam lighting a cone {yards} yards long and {width} yards wide at the end.",
+        "NoPlaceBeam": "Nowhere to set it down: the bearer has no token on the viewed scene.",
+        "FireArea": "Fire ({name})",
+        "FireTitle": "A broken lantern's fire",
+        "FireCard": "{name}'s oil burns {yards} yard round it for {seconds} seconds: {formula} burning a second to whoever stands in it, DR at a fifth of its value (armour divisor {divisor}).",
+        "FireBurn": "Roll a second's burning ({formula})",
+        "FireSecond": "{name}'s fire",
+        "FireOut": "{name}'s fire has burned out.",
+        "CantPutOut": "{name} can't be put out: it glows until it is spent.",
+        "Wound": "{name} is wound for {seconds} seconds: light for {minutes} minutes.",
+        "OutOfFuel": {
+          "pint": "{name} is out of oil: fill it from its row first.",
+          "carbide": "{name} is out of carbide: recharge it from its row first.",
+          "ounce": "{name} has burned down: light another from its row first.",
+          "snap": "{name} is spent: snap another from its row first."
+        },
+        "OutOfFuelLine": {
+          "pint": "Out of oil.",
+          "carbide": "Out of carbide.",
+          "ounce": "Burned down.",
+          "snap": "Spent."
+        },
+        "BurnsFor": "Light for {time} more.",
+        "BurnLeft": "Burning time left: {time}.",
+        "HoursMinutes": "{hours} h {minutes} min",
+        "MinutesOnly": "{minutes} min",
+        "Burn": {
+          "pint": "Burns {time} on a pint of oil.",
+          "carbide": "Burns {time} on a quarter pound of carbide ($0.30 a charge).",
+          "ounce": "Burns {time} an ounce.",
+          "snap": "Glows {time} once snapped, and can't be put out.",
+          "wind": "Gives {time} of light for {winding} seconds' winding or shaking."
+        },
+        "RefuelAction": "Refill",
+        "Refuel": {
+          "ounce": "A new candle",
+          "snap": "A new chemlight"
+        },
+        "Refuelled": {
+          "pint": "{name} is filled with a pint of oil: {time} of light.",
+          "carbide": "{name} is recharged with carbide: {time} of light.",
+          "ounce": "A new ounce of {name}: {time} of light.",
+          "snap": "A new {name}: {time} of light once snapped."
+        },
+        "NoneLeft": "No {name} left.",
+        "Tl8Battery": "Made at TL8: its batteries last {factor} times as long.",
+        "TritiumLine": "Self-powered for 10 years: enough to read a map or find a keyhole by. It can be shuttered but never switched off.",
+        "SloshLine": "Sloshes when not full to the brim: no Stealth benefit from load-bearing equipment while it does.",
+        "NotFull": "Not full",
+        "NotFullHint": "A canteen not filled to the brim sloshes loudly, which undoes quality LBE's Stealth benefit (High-Tech p. 53).",
+        "RetrieveLine": "Getting something out of it is a long action of {dice}d seconds, with no Fast-Draw.",
+        "RetrieveAction": "Get something out",
+        "Retrieved": "{name} gets something out of the {item}: {seconds} seconds.",
+        "FlapLine": "Opening a pouch's secured flap takes {readies} more Ready maneuver.",
+        "RopeLine": "Working load: {lbs} lbs. Past it, or with sudden jerks or constant strain, it wears and may fail.",
+        "DrillLine": "One hand holds the bit, the other hammers: {minutes} minutes for a 3\" bolt hole in normal rock.",
+        "LiftLine": "Climbs or descends a rope at {speed} yards a second, up to {lbs} lbs.; a fuel cartridge lifts {yards} yards ({left} yards left).",
+        "AvalancheLine": "A personal rescue beacon found at {least}-{most} yards under snow.",
+        "CramponIce": "+{bonus} to Climbing on ice: the row's button rolls the climb.",
+        "IceClimbAction": "Climb on ice",
+        "IceClimbRoll": "Climbing on ice",
+        "CramponLine": "{name} on ice",
+        "LiftAction": "Ride the rope",
+        "LiftYards": "Yards",
+        "LiftLoad": "Load (lbs.)",
+        "LiftDown": "Going down",
+        "LiftTooHeavy": "{load} lbs. is more than the {lbs} lbs. it lifts.",
+        "LiftNoFuel": "The cartridge has {left} yards of ascent left, not {yards}.",
+        "LiftedUp": "{name} rides {yards} yards up in {seconds} seconds ({left} yards left on the cartridge).",
+        "LiftedDown": "{name} rides {yards} yards down in {seconds} seconds.",
+        "CartridgeAction": "New cartridge",
+        "CartridgeFitted": "A new fuel cartridge: {yards} yards of ascent."
       },
       "Lighting": {
         "Title": "Lamp",

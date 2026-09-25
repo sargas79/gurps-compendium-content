@@ -28,6 +28,7 @@ import { gadgetItem } from "../../../shared/gadgets/data.js";
 import { loadedCellWeight, powerData } from "../../../shared/power/data.js";
 import { enduranceLeft } from "../../../shared/power/index.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { expeditionData } from "../expedition/index.js";
 import { HIGH_TECH_GADGETS, bondedName, combineGadgets, equipmentBonusLines, familiarityOffset, sharedBatteryEndurance, type CombinationPart } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.HT.Equipment.${key}`);
@@ -45,7 +46,11 @@ export interface EquipmentSwitches {
 
 /** High-Tech's gadget table, behind the book's own three switches (full keys). */
 export function highTechGadgets(switches: GadgetTable["switches"]): GadgetTable {
-  return { book: "high-tech", tls: { min: 0, max: 8 }, figures: HIGH_TECH_GADGETS, switches, i18n: "GCC.HT" };
+  return {
+    book: "high-tech", tls: { min: 0, max: 8 }, figures: HIGH_TECH_GADGETS, switches, i18n: "GCC.HT",
+    // Tactical lights are rugged and expensive to begin with: not added again (p. 52).
+    builtIn: (item) => (expeditionData(item).light?.kind === "tactical" ? { rugged: true, grade: "expensive" } : null),
+  };
 }
 
 /** Registers the table, the gadget fields and the intrinsic bonus, before the world's data is read. */
