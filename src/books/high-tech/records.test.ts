@@ -76,6 +76,9 @@ describe("High-Tech's hand-kept weapons", () => {
   it("gives the extracted weapons the modes the file couldn't carry", () => {
     expect(named(extracted, "AN-M8").system.rangedModes[0]).toMatchObject({ damageSpecial: true, radius: 7, thrown: true });
     expect(named(extracted, "AN-M14").system.rangedModes[0]).toMatchObject({ damageSpecial: true, damageType: "burn" });
+    // p. 192 note 7: the stun grenade's affliction covers a 10-yard radius; the M34's fragments are (0.2).
+    expect(named(extracted, "Schermuly Stun").system.rangedModes[0]).toMatchObject({ affliction: true, afflictionModifier: -5, areaAttack: true, radius: 10 });
+    expect(named(extracted, "M34 WP").system.rangedModes[0]).toMatchObject({ fragmentation: "1d", fragmentationDivisor: 0.2 });
     expect(named(extracted, "Dan-Inject JM Standard, 11mm").system.rangedModes[0].linked).toMatchObject({ followUp: true, label: "drug effect" });
     expect(named(extracted, "Elgin Cutlass Pistol, .54 Caplock").system.meleeModes[0]).toMatchObject({ skill: "Knife", skillModifier: -1 });
     expect(named(extracted, "Condor AM-402, 12G 2.75''").system.meleeModes[0]).toMatchObject({ skill: "Shortsword", damageBase: "sw" });

@@ -5314,6 +5314,15 @@
     },
     {
       "pack": "equipment",
+      "pattern": "^Schermuly Stun$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.radius": 10
+      },
+      "reason": "a Vision- and Hearing-Based affliction over a 10-yard radius (p. 192 note 7), as the Basic Set's stun grenade (Characters p. 277) (#510)"
+    },
+    {
+      "pack": "equipment",
       "pattern": "^M452 Stingball$",
       "set": {
         "system.rangedModes.0.bulk": -1,
