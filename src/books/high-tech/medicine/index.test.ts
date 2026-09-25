@@ -448,6 +448,8 @@ describe("medical facilities (High-Tech pp. 222-225)", () => {
     const xray = gear("X-Ray Machine", { kind: "imaging", value: 1 }, { tl: "6" });
     await run("ht-scan", xray, operator);
     expect(rads.map((r) => [r.actor.name, r.rads])).toEqual([["Patient", 4], ["Operator", 4]]);
+    // The patient's dose comes from the operator, for a patient the user doesn't own (API 1.155.0).
+    expect(rads.map((r) => r.sourceActor?.name ?? null)).toEqual(["Operator", null]);
     expect(successes.map((s) => s.skill)).toEqual(["Electronics Operation (Medical)", "Diagnosis"]);
     expect(successes[1]).toMatchObject({ base: 13, item: xray });
     // An ultrasound irradiates nobody; a failed operation, no diagnosis.
@@ -467,13 +469,13 @@ describe("medical facilities (High-Tech pp. 222-225)", () => {
     expect(actions.get("ht-xray-maximum").visible(gear("Compact X-Ray Machine", { kind: "imaging" }))).toBe(false);
     dialogAnswer = 6;
     await run("ht-xray-maximum", portable, operator);
-    expect(rads).toEqual([{ actor: victim, rads: 100, protectionFactor: 1, modifier: 0 }]);
-    // A victim this user can't change is the GM's to dose.
+    expect(rads).toEqual([{ actor: victim, rads: 100, protectionFactor: 1, modifier: 0, sourceActor: operator }]);
+    // A victim this user doesn't own is dosed through the GM's client, from the operator (API 1.155.0).
     const other = person("Other", [], { isOwner: false });
     targets = [other];
     await run("ht-xray-maximum", portable, operator);
-    expect(rads).toHaveLength(1);
-    expect(chat.at(-1)).toContain("XrayMaximumGm");
+    expect(rads[1]).toEqual({ actor: other, rads: 100, protectionFactor: 1, modifier: 0, sourceActor: operator });
+    expect(chat.at(-1)).toContain("XrayMaximumDone");
   });
 
   it("grades a specialized theater +TL/2 for Surgery in its specialty, basic otherwise (p. 224)", async () => {

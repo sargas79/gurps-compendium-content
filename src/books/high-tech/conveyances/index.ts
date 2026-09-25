@@ -460,7 +460,8 @@ export function readyConveyances(api: GWorldApi, on: () => boolean): void {
         if (!on() || !landing || landing.rolled) return;
         // The system's falling procedure: a random location, armour as flexible, the card (Campaigns pp. 430-431).
         if (landing.yards) await api.hazards.fall(actor, { yards: landing.yards });
-        else await api.roll.damage({ actor, label: landing.label, formula: landing.formula, damageType: "cr" as never, source: "fall" });
+        // A roll a listener refused (API 1.154.0: null) leaves the button to press again.
+        else if ((await api.roll.damage({ actor, label: landing.label, formula: landing.formula, damageType: "cr" as never, source: "fall" })) === null) return;
         await api.chat.update(message, { ...data, landing: { ...landing, rolled: true } });
       },
     },

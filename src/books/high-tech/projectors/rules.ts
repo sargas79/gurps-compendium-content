@@ -143,7 +143,40 @@ export function sprayEffectSeconds(agent: SprayAgent, margin: number): number | 
   return Math.max(1, marginOfFailure(margin)) * 60;
 }
 
-// ── laser dazzlers (p. 181) ─────────────────────────────────────────────────
+/**
+ * What a squirt gun may be loaded with (p. 180): water, holy or not, paint,
+ * malodorous fluid, alcohol or distilled garlic. Each is handled as Liquids in
+ * the Face (Campaigns p. 405).
+ */
+export const SQUIRT_LOADS = ["water", "holyWater", "paint", "malodorous", "alcohol", "garlic"] as const;
+export type SquirtLoad = (typeof SQUIRT_LOADS)[number];
+
+export function squirtLoad(value: unknown): SquirtLoad {
+  return (SQUIRT_LOADS as readonly string[]).includes(String(value)) ? (value as SquirtLoad) : "water";
+}
+
+/** Water "is merely distracting": the flinch's penalties are halved, to -1 (p. 180). */
+export const waterOnly = (load: SquirtLoad): boolean => load === "water" || load === "holyWater";
+
+/** A flinch's penalty for the load: halved for water (p. 180), rounded toward none. */
+export function squirtPenalty(load: SquirtLoad, value: number): number {
+  return waterOnly(load) ? Math.trunc(value / 2) : value;
+}
+
+/**
+ * Paint blinds a victim wearing goggles (eyes) or a visor (face) until it is
+ * wiped off, which takes three Ready maneuvers, or the gear comes off
+ * (p. 180): on any hit that wasn't stopped.
+ */
+export function paintBlinds(load: SquirtLoad, landed: { hit: boolean; defended: boolean }, eyewear: boolean): boolean {
+  return load === "paint" && eyewear && landed.hit && !landed.defended;
+}
+/** Wiping the paint off: three Ready maneuvers (p. 180). */
+export const PAINT_WIPE_READIES = 3;
+/** Worn goggles or a visor, by name, that paint can cover; the dialog asks the rest. */
+export const EYEWEAR = /\b(goggles?|visor|face ?shield)\b/i;
+
+// ── laser dazzlers (p. 181)─────────────────────────────────────────────────
 
 /** High-Tech's table for the shared engine: a blinding laser cripples the eyes (p. 181). */
 export const HT_DAZZLE: DazzleTable = { book: "high-tech", blinding: "crippling", forGoodFrom: CRITICAL_MARGIN };

@@ -20,6 +20,7 @@ let contests: any[];
 let chat: any[];
 let on: Set<string>;
 let dialogAnswer: any;
+let confirmAnswer: boolean;
 let targets: any[];
 let selected: any[];
 let states: Map<any, Record<string, unknown>>;
@@ -88,6 +89,9 @@ function character(name: string, items: any[] = [], more: Record<string, any> = 
   return { name, uuid: `Actor.${name}`, type: "character", items: list, attributes: { IQ: 12, DX: 11, Per: 12 }, skills: {}, getActiveTokens: () => [{ center: { x: 0, y: 0 }, document: { elevation: 0 } }], ...more };
 }
 
+/** A remote operator's control roll (API 1.154.0). */
+const REMOTE = ["vehicleControl", "remoteControl"];
+
 const fire = (hook: string, context: any) => { for (const fn of hooks.get(hook) ?? []) fn(context); return context; };
 
 let battlefield: typeof Battlefield;
@@ -103,6 +107,7 @@ beforeEach(async () => {
   chat = [];
   on = new Set();
   dialogAnswer = null;
+  confirmAnswer = false;
   targets = [];
   selected = [];
   states = new Map();
@@ -114,7 +119,7 @@ beforeEach(async () => {
     get actors() { return gameActors; },
   });
   vi.stubGlobal("Hooks", { on: (h: string, fn: any) => { hooks.set(h, [...(hooks.get(h) ?? []), fn]); return 1; } });
-  vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => dialogAnswer } } } });
+  vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => dialogAnswer, confirm: async () => confirmAnswer } } } });
   vi.stubGlobal("ChatMessage", { implementation: { create: async (m: any) => chat.push(m), getSpeaker: () => ({}) } });
   vi.stubGlobal("ui", { notifications: { warn: vi.fn() } });
   vi.stubGlobal("canvas", { tokens: { get controlled() { return selected.map((actor) => ({ actor })); } }, grid: { measurePath: () => ({ distance }) } });
@@ -306,21 +311,21 @@ describe("reconnaissance drones (HT:EE p. 46)", () => {
     expect(onGear.modifiers.map((m: any) => m.value)).toEqual([1]);
     const flying = { ...drone(), documentName: "Actor", type: "vehicle", getActiveTokens: () => [{ center: { x: 0, y: 0 } }] };
     distance = 4 * 1760;
-    expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: flying, modifiers: [] }).modifiers).toHaveLength(1);
+    expect(fire("gworld.successRollModifiers", { actor: operator, tags: REMOTE, vehicle: flying, modifiers: [] }).modifiers).toHaveLength(1);
     distance = 5 * 1760;
-    expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: flying, modifiers: [], refusal: null }).modifiers).toEqual([]);
+    expect(fire("gworld.successRollModifiers", { actor: operator, tags: REMOTE, vehicle: flying, modifiers: [], refusal: null }).modifiers).toEqual([]);
   });
 
   it("refuses the operator's vehicle control roll past the controller's range (API 1.144.0)", () => {
     const operator = character("Operator");
     const flying = { ...drone(), documentName: "Actor", type: "vehicle", getActiveTokens: () => [{ center: { x: 0, y: 0 } }] };
     distance = 5 * 1760;
-    const refused = fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: flying, modifiers: [], refusal: null });
+    const refused = fire("gworld.successRollModifiers", { actor: operator, tags: REMOTE, vehicle: flying, modifiers: [], refusal: null });
     expect(refused.refusal).toBe('GCC.HT.Battlefield.OutOfRangeRefusal {"name":"Phantom 4 Pro","miles":5}');
     // Another listener's refusal is kept.
-    expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: flying, modifiers: [], refusal: "No" }).refusal).toBe("No");
+    expect(fire("gworld.successRollModifiers", { actor: operator, tags: REMOTE, vehicle: flying, modifiers: [], refusal: "No" }).refusal).toBe("No");
     distance = 4 * 1760;
-    expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: flying, modifiers: [], refusal: null }).refusal).toBeNull();
+    expect(fire("gworld.successRollModifiers", { actor: operator, tags: REMOTE, vehicle: flying, modifiers: [], refusal: null }).refusal).toBeNull();
     // A drone off the map, whose distance isn't known, is flown.
     expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: drone(), modifiers: [], refusal: null }).refusal).toBeNull();
   });
@@ -330,8 +335,8 @@ describe("reconnaissance drones (HT:EE p. 46)", () => {
     const at = (elevation: number) => ({ ...drone(), documentName: "Actor", type: "vehicle", getActiveTokens: () => [{ center: { x: 0, y: 0 }, document: { elevation } }] });
     distance = 100;
     // 600 yards is 1,800 feet, above the Phantom's 1,640.
-    expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: at(600), modifiers: [], refusal: null }).refusal).toContain("AboveCeilingRefusal");
-    expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: at(500), modifiers: [], refusal: null }).refusal).toBeNull();
+    expect(fire("gworld.successRollModifiers", { actor: operator, tags: REMOTE, vehicle: at(600), modifiers: [], refusal: null }).refusal).toContain("AboveCeilingRefusal");
+    expect(fire("gworld.successRollModifiers", { actor: operator, tags: REMOTE, vehicle: at(500), modifiers: [], refusal: null }).refusal).toBeNull();
   });
 
   it("rolls the autopilot's Piloting or Dodge", async () => {
@@ -354,5 +359,34 @@ describe("reconnaissance drones (HT:EE p. 46)", () => {
     const text = chat.map((m) => m.content).join();
     expect(text).toContain("OutOfRange");
     expect(text).toContain('AboveCeiling {"feet":"1,800"}');
+  });
+
+  it("leaves a crew member's roll aboard a drone on the map alone (not remote, API 1.154.0)", () => {
+    const operator = character("Operator");
+    const flying = { ...drone(), documentName: "Actor", type: "vehicle", getActiveTokens: () => [{ center: { x: 0, y: 0 } }] };
+    distance = 5 * 1760;
+    const aboard = fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: flying, modifiers: [], refusal: null, remote: false });
+    expect(aboard.refusal).toBeNull();
+    expect(aboard.modifiers).toEqual([]);
+  });
+
+  it("offers the targeted operator the drone's controls from the GM tool", async () => {
+    const updates: any[] = [];
+    const flying: any = { ...drone(), documentName: "Actor", type: "vehicle", system: { ...drone().system, crew: [], controller: "" }, getActiveTokens: () => [{ center: { x: 0, y: 0 } }], update: async (patch: any) => { updates.push(patch); } };
+    const operator = character("Operator");
+    selected = [flying];
+    targets = [operator];
+    distance = 1760;
+    confirmAnswer = true;
+    await tools.get("ht-recon-drone").open();
+    expect(updates).toEqual([{ "system.controller": "Actor.Operator" }]);
+    // Nothing is asked of one who has them, or one of its crew.
+    expect(await battlefield.offerControls({ ...flying, system: { ...flying.system, controller: "Actor.Operator" } }, operator)).toBe(false);
+    expect(await battlefield.offerControls({ ...flying, system: { ...flying.system, crew: [{ uuid: "Actor.Operator" }] } }, operator)).toBe(false);
+    // A drone carried as gear has no controller.
+    expect(await battlefield.offerControls(drone(), operator)).toBe(false);
+    confirmAnswer = false;
+    expect(await battlefield.offerControls(flying, operator)).toBe(false);
+    expect(updates).toHaveLength(1);
   });
 });

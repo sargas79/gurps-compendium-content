@@ -26,14 +26,15 @@
  *   - **Reconnaissance drones (reconDrones):** a vehicle record's drone
  *     data -- the autopilot's skill and Dodge, the remote control's bonus,
  *     the controller's range and the ceiling -- edited on its sheet and set
- *     on the two UAVs (HT:EE p. 46). The operator's control roll takes the
- *     remote control's bonus while he is within the controller's range, and
- *     is refused past it (API 1.144.0), and while the drone flies above its
- *     ceiling; the
+ *     on the two UAVs (HT:EE p. 46). The remote operator, the drone's
+ *     `controller` outside its crew (API 1.154.0), makes its control roll,
+ *     tagged `remoteControl`: it takes the remote control's bonus while he is
+ *     within the controller's range, and is refused past it (API 1.144.0), and
+ *     while the drone flies above its ceiling; the
  *     figures show on the vehicle actor's Hnd/SR (`gworld.vehicleStats`); a row
  *     button, or a GM tool for a drone on the map, rolls the autopilot's
  *     Piloting or Dodge, and the tool checks the controller's range and the
- *     ceiling against the map.
+ *     ceiling against the map, and offers the targeted operator the controls.
  */
 
 import { bookOf } from "../../../shared/book-tables.js";
@@ -354,9 +355,31 @@ export async function droneTool(api: GWorldApi): Promise<void> {
   const feet = heightFeet(drone);
   if (feet !== null && data.ceilingFeet > 0 && aboveCeiling(data, feet)) lines.push(F("AboveCeiling", { feet: Math.round(feet).toLocaleString("en-US") }));
   await card(drone, F("DroneCard", { name: drone.name }), lines);
+  if (operator) await offerControls(drone, operator);
   if (data.autopilot <= 0 && data.autopilotDodge <= 0) return;
   const what = await askAutopilot();
   if (what) await rollAutopilot(api, drone, drone, what);
+}
+
+/**
+ * Offers to hand a drone's controls to the targeted operator, who flies it
+ * from outside its crew (HT:EE p. 46): the vehicle's `controller` (API
+ * 1.154.0), which the vehicle sheet's Control button then rolls for, as a
+ * remote roll. Nothing is asked where he already has them or rides in it.
+ */
+export async function offerControls(drone: any, operator: any): Promise<boolean> {
+  const uuid = String(operator?.uuid ?? "");
+  if (!uuid || drone?.documentName !== "Actor" || drone.type !== "vehicle") return false;
+  if (String(drone.system?.controller ?? "") === uuid) return false;
+  if ((drone.system?.crew ?? []).some((seat: any) => String(seat?.uuid ?? "") === uuid)) return false;
+  const yes = await foundry.applications.api.DialogV2.confirm({
+    window: { title: L("ControlsTitle") },
+    content: `<p>${esc(F("ControlsAsk", { drone: drone.name, name: operator.name }))}</p>`,
+    rejectClose: false,
+  });
+  if (!yes) return false;
+  await drone.update({ "system.controller": uuid });
+  return true;
 }
 
 // ── registration ────────────────────────────────────────────────────────────
@@ -429,8 +452,13 @@ export function readyBattlefield(api: GWorldApi, on: BattlefieldSwitches): void 
     }
     // The remote control's bonus to the operator's Piloting, within the controller's range; past
     // it the operator can't fly the drone at all, and the roll is refused (HT:EE p. 46; a vehicle
-    // control roll can be refused since API 1.144.0).
-    if (on.drones() && (context.tags ?? []).includes("vehicleControl") && context.vehicle && isHighTechDrone(context.vehicle)) {
+    // control roll can be refused since API 1.144.0). On a drone on the map it is the remote
+    // operator's roll, tagged `remoteControl` (API 1.154.0: the vehicle's `controller`, not in its
+    // crew); one of its crew aboard flies it by hand. A drone carried as gear is never remote to
+    // the system, and its holder flies it by the remote control.
+    const tags: string[] = context.tags ?? [];
+    const remote = tags.includes("remoteControl") || context.vehicle?.documentName !== "Actor";
+    if (on.drones() && tags.includes("vehicleControl") && remote && context.vehicle && isHighTechDrone(context.vehicle)) {
       const data = droneData(context.vehicle);
       const yards = context.vehicle.documentName === "Actor" ? yardsBetween(context.vehicle, context.actor) : null;
       if (!withinControlRange(data, yards)) {

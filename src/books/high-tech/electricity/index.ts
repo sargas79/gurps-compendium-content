@@ -417,7 +417,8 @@ export async function arcFlashOn(api: GWorldApi, tokens: any[], answer: { materi
     const victim = token?.actor;
     if (!victim) continue;
     const rolled = await api.roll.damage({ actor: victim, label: F("ArcFlash.Label", { name: victim.name }), formula: ARC_FLASH_DAMAGE, damageType: "burn", source: "arcFlash" } as any);
-    const lines = [F("ArcFlash.Burn", { formula: ARC_FLASH_DAMAGE }), L(on.glare() ? "ArcFlash.Glare" : "ArcFlash.Light")];
+    // A burn a listener refused (API 1.154.0: null) isn't named; the flash still blinds.
+    const lines = [...(rolled === null ? [] : [F("ArcFlash.Burn", { formula: ARC_FLASH_DAMAGE })]), L(on.glare() ? "ArcFlash.Glare" : "ArcFlash.Light")];
     if (answer.material !== "none" && typeof rolled === "number") lines.push(F(api.rules.ignites(answer.material, rolled) ? "Ignites" : "NoFire", { material: L(`Material.${answer.material}`) }));
     if (answer.goggles) lines.push(L("ArcFlash.Goggles"));
     else {

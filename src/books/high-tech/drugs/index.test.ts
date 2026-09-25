@@ -17,6 +17,7 @@ type Listener = (...args: any[]) => void;
 const HOOKS = {
   successRollModifiers: "gworld.successRollModifiers",
   poisonCycle: "gworld.poisonCycle",
+  physicianRounds: "gworld.physicianRounds",
 };
 
 let hooks: Map<string, Listener[]>;
@@ -70,6 +71,12 @@ function fakeApi() {
       undoKnockdown: async (actor: any, o: any) => { woken.push({ actor, ...o }); return true; },
       cripple: async (actor: any, location: string, o: any) => { crippledParts.push({ id: "part1", location, ...o, months: 3 }); return crippledParts.at(-1); },
       crippled: () => crippledParts,
+      treatCrippled: async (actor: any, which: string, o: any) => {
+        const part = crippledParts.find((p) => p.id === which);
+        if (!actor?.isOwner || !part) return null;
+        Object.assign(part, { treatedAtTl: o.treatedAtTl, months: Math.max(1, 5 - (o.treatedAtTl >= 7 ? 3 : 0)) });
+        return part;
+      },
       removeCondition: async (actor: any, id: string) => { removedConditions.push(id); return true; },
     },
     roll: { success: async (o: any) => { successes.push(o); return successResult; } },
@@ -443,6 +450,35 @@ describe("High-Tech poisons (p. 227)", () => {
     expect(await checkBotulinHealed(fakeApi() as never, victim)).toBe(true);
     expect(removedConditions).toEqual(["id"]);
     expect(victim.getFlag(MODULE_ID, "htBotulinParalysis")).toBeUndefined();
+  });
+
+  it("puts the paralysis in a physician's care on their rounds, at the rounds' TL (API 1.155.0)", async () => {
+    const victim = person();
+    await victim.setFlag(MODULE_ID, "htBotulinParalysis", { part: "part1", condition: "id" });
+    crippledParts = [{ id: "part1", location: `${MODULE_ID}.ht-lungs-spine`, duration: "lasting", months: 5 }];
+    on.highTechPoisons = true;
+    const context = fire(HOOKS.physicianRounds, { healer: { name: "Doc" }, patient: victim, refusal: null, techLevel: 8, lines: [] });
+    // Another listener moves the rounds to TL7, after this one.
+    context.techLevel = 7;
+    await flush();
+    expect(crippledParts[0]).toMatchObject({ treatedAtTl: 7, months: 2 });
+    expect(chat.at(-1)).toContain("BotulinCare");
+    // Refused rounds give no care.
+    crippledParts[0].treatedAtTl = null;
+    const refused = fire(HOOKS.physicianRounds, { healer: { name: "Doc" }, patient: victim, refusal: null, techLevel: 8, lines: [] });
+    refused.refusal = "No";
+    await flush();
+    expect(crippledParts[0].treatedAtTl).toBeNull();
+    // A patient this user doesn't own: a line for the GM on the rounds' card.
+    const other = person([], { isOwner: false });
+    await other.setFlag(MODULE_ID, "htBotulinParalysis", { part: "part1", condition: "id" });
+    const gm = fire(HOOKS.physicianRounds, { healer: { name: "Doc" }, patient: other, refusal: null, techLevel: 8, lines: [] });
+    await flush();
+    expect(gm.lines.join()).toContain("BotulinCareGm");
+    expect(crippledParts[0].treatedAtTl).toBeNull();
+    // No paralysis, nothing.
+    const well = fire(HOOKS.physicianRounds, { healer: { name: "Doc" }, patient: person(), refusal: null, techLevel: 8, lines: [] });
+    expect(well.lines).toEqual([]);
   });
 
   it("rolls strychnine's hours when it strikes and ends it when they're up", async () => {
