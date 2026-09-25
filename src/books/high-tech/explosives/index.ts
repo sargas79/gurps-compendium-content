@@ -315,11 +315,13 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
       concussion: async ({ message, data, actor }: any) => {
         if (!actor || data.concussion?.rolled || !on.sideEffects()) return;
         const outcome = await senseRoll(api, actor, "hearing", Number(data.concussion.modifier) || 0);
+        if (!outcome) return;
         await api.chat.update(message, { ...data, concussion: { ...data.concussion, rolled: true, ...outcome } });
       },
       flash: async ({ message, data, actor }: any) => {
         if (!actor || data.flash?.rolled || !(on.sideEffects() || data.always === true)) return;
         const outcome = await senseRoll(api, actor, "vision", Number(data.flash.modifier) || 0);
+        if (!outcome) return;
         await api.chat.update(message, { ...data, flash: { ...data.flash, rolled: true, ...outcome } });
       },
       recoverHearing: async ({ message, data, actor }: any) => {
@@ -725,9 +727,10 @@ const wornNames = (actor: any): string[] => [...(actor?.items ?? [])].filter((i:
  * The HT roll against a blast's concussion (hearing) or flash (vision), and
  * what a failure leaves: a penalty to the sense, or the sense lost, for
  * (20 - HT) minutes (two seconds with the sense protected), and a stun
- * (p. 182).
+ * (p. 182). Null where the system refused the roll, so the card keeps its
+ * button (GWorldVTT #753).
  */
-async function senseRoll(api: GWorldApi, actor: any, sense: "hearing" | "vision", modifier: number): Promise<{ result: string; recover: SenseRecovery | null }> {
+async function senseRoll(api: GWorldApi, actor: any, sense: "hearing" | "vision", modifier: number): Promise<{ result: string; recover: SenseRecovery | null } | null> {
   const effects = (api.actors.derived(actor) as any)?.traitEffects ?? {};
   const protectedSense = effects.protectedSense?.[sense] === true;
   const worn = wornNames(actor);
@@ -739,7 +742,7 @@ async function senseRoll(api: GWorldApi, actor: any, sense: "hearing" | "vision"
   ];
   const name = String(actor.name ?? "");
   const outcome: any = await api.roll.success({ actor, base: ht, kind: "attribute", label: F(sense === "hearing" ? "ConcussionRoll" : "FlashRoll", { name }), modifiers, tags: ["HT", "resist", sense === "hearing" ? "concussion" : "flash"] } as any);
-  if (!outcome) return { result: "", recover: null };
+  if (!outcome) return null;
   if (outcome.success) return { result: F("Resisted", { name }), recover: null };
   const shielded = bonus >= 5;
   const loss = senseLoss({ margin: Number(outcome.margin) || 0, criticalFailure: Boolean(outcome.criticalFailure), ht, protectedSense: shielded });

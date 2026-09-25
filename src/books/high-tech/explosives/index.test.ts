@@ -351,6 +351,18 @@ describe("side effects of explosions (pp. 181-182)", () => {
     // With the sense protected, recovery is automatic: no roll offered.
   });
 
+  it("leaves the card as it was when the system refuses the roll (GWorldVTT #753)", async () => {
+    const victim = actorWith("Victim");
+    // A refused roll (effective HT below 3) comes back empty; `false` stands in for the system's null here.
+    outcomes = [false, false];
+    const data = { name: "Victim", concussion: { modifier: -12 }, flash: { modifier: -12 } };
+    const message: any = { data };
+    await cards.get("ht-blast-effects").actions.concussion({ message, data, actor: victim });
+    await cards.get("ht-blast-effects").actions.flash({ message, data, actor: victim });
+    expect(message.data).toBe(data);
+    expect(conditions.get("Victim") ?? []).toEqual([]);
+  });
+
   it("blinds on a flash failed by 10", async () => {
     const victim = actorWith("Victim");
     outcomes = [{ success: false, criticalFailure: false, margin: 10 }];
