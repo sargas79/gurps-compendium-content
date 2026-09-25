@@ -54,6 +54,16 @@ export const SKILL_DEFAULTS: Readonly<Record<string, number>> = Object.freeze({
   [ANALOG_MECHANIC]: -5,
 });
 
+/**
+ * Skills with no attribute default that default to another skill (Characters
+ * p. 173): Engineer (Analog Computers), which the supplement adds (HT:EE
+ * p. 13), from Mechanic (Analog Computers) at -6, as the module's own skill
+ * record gives it -- so a mechanic can try the build an engineer would make.
+ */
+export const SKILL_FROM_SKILL: Readonly<Record<string, readonly SkillChoice[]>> = Object.freeze({
+  [ANALOG_ENGINEER]: [{ skill: ANALOG_MECHANIC, modifier: -6 }],
+});
+
 /** A science, as against the operation and repair skills: a complex device's penalty is doubled for one (HT:EE p. 12). */
 export const isScience = (skill: string): boolean => !/^electronics (operation|repair)|^electrician|^mechanic|^hobby skill/i.test(skill.trim());
 
@@ -317,6 +327,23 @@ export function noisePenalty(points: number, cancels = 0): number {
 
 /** Reading a telegraph line with a mirror galvanometer: Electronics Operation (Communications) +4 (HT:EE p. 11). */
 export const TELEGRAPH_BONUS = 4;
+
+/**
+ * An oscilloscope compares two signals -- whether two voices are the same
+ * person's, say -- on an Electronics Operation (Scientific) roll, at no
+ * modifier (HT:EE p. 11).
+ */
+export const COMPARE_SKILL = SCIENTIFIC;
+
+/**
+ * The Geiger-Müller tube's high-voltage supply (HT:EE p. 12): it can inflict
+ * 5d lethal electrical damage, and is built as a Simple invention running on
+ * household power.
+ */
+export const GEIGER_SUPPLY = Object.freeze({ damage: "5d", grade: "simple" as const, power: "household" as const });
+
+/** Whether a record is the bare Geiger-Müller tube, which needs the supply; the counters build one in. */
+export const isGeigerTube = (name: unknown): boolean => nameKey(name) === "geiger-muller tube";
 
 /** The signal a tracer follows: audio and AM at no modifier, FM at -5; the spectrum analyzer at +2 for AM and FM (HT:EE p. 11). */
 export const SIGNALS = ["audio", "am", "fm"] as const;

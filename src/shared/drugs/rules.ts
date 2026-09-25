@@ -49,3 +49,33 @@ export function protectedByDelivery(delivery: readonly Delivery[], victim: Expos
   if (respiratory && (victim.doesntBreathe || victim.filterLungs)) return "breath";
   return null;
 }
+
+// ── more than one dose (Campaigns p. 441) ──
+
+/**
+ * What doubling a dose costs its resistance roll: -2 per doubling, as for any
+ * poison. A dose of a second depressant counts as another dose, so two doses
+ * are one doubling and four are two.
+ */
+export function doublingPenalty(doses: number): number {
+  const n = Math.max(1, Math.floor(Number(doses) || 1));
+  return -2 * Math.floor(Math.log2(n)) || 0;
+}
+
+/** An overdose: a critical failure on the resistance roll for two or more doses of depressants. */
+export function overdoses(doses: number, roll: { criticalFailure?: boolean }): boolean {
+  return Math.floor(Number(doses) || 1) > 1 && roll.criticalFailure === true;
+}
+
+/** An overdose's unconsciousness: hours equal to the margin of failure, an hour at least. */
+export function overdoseSeconds(margin: number): number {
+  return Math.max(1, Math.floor(Math.abs(Number(margin) || 0))) * 3600;
+}
+
+/**
+ * The overdose as a poison: the drug's own resistance roll (the hardest of
+ * the drugs taken), 1 point of toxic damage every 15 minutes for 24 cycles.
+ */
+export function overdosePoison(resistanceModifier: number | null, delivery: Delivery[] = []): PoisonNumbers {
+  return poisonNumbers({ delivery, resistanceModifier, damage: "toxic", adds: 1, intervalSeconds: 15 * 60, cycles: 24, reference: "Campaigns p. 441" });
+}

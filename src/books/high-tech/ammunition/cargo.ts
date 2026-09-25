@@ -69,6 +69,8 @@ export interface CargoLoad {
 export interface CargoSwitches {
   explosive: () => boolean;
   cargo: () => boolean;
+  /** Whether the gases' rolls are run: for cargo rounds, and for a tear-gas grenade's cloud (p. 192). */
+  gas?: () => boolean;
 }
 
 /** The cargo rounds that leave something on the map. */
@@ -195,6 +197,22 @@ interface CargoRelease {
 const RELEASE = "ht-cargo";
 
 /**
+ * A tear-gas cloud released where the actor's attack landed -- a thrown M7
+ * grenade's (p. 192) -- rolled for everyone in it as a tear-gas round's is
+ * (p. 171). The card's lines, or null where there is nowhere to put it.
+ */
+export async function releaseTearGas(api: GWorldApi, actor: any, title: string, radius: number, seconds: number): Promise<string[] | null> {
+  const load = { projectile: "tearGas" } as CargoLoad;
+  const id = await placeArea(api, { key: areaKey(load), label: title, actor, radiusYards: radius, seconds, lines: areaLines(load, radius), bare: true });
+  if (!id) return null;
+  return [
+    F("CloudPlaced", { radius, seconds }),
+    F("CloudForms", { seconds: smokeFormSeconds(radius) }),
+    ...(await exposeToGas(api, actorsIn(api, id), gasesOf(false), seconds)),
+  ];
+}
+
+/**
  * Leaves a fired cargo round's cloud or light where it lands, and doses those
  * in a gas (pp. 171-172). The firer's client asks the radius and time and
  * finds where it landed; placing the area and dosing the tokens in it are the
@@ -251,12 +269,13 @@ function flaresOver(api: GWorldApi, tokenId: string): Illumination[] {
 const scented = (actor: any): boolean => Number(actor?.getFlag?.(MODULE_ID, SCENT_FLAG)) > worldNow();
 
 export function readyCargo(api: GWorldApi, on: CargoSwitches, loadOf: (item: any, modeIndex: number) => CargoLoad | null): void {
+  const gasOn = () => on.cargo() || on.gas?.() === true;
   // A player's round lands through the GM's client, which may write the scene and the victims.
   registerRelay(RELEASE, (release: CargoRelease, userId: string) => (on.cargo() ? placeCargo(api, release, userId) : undefined));
 
   // Tear gas's two rolls and the vomiting agent's, as poisons the system doses (p. 171).
   for (const gas of GASES) {
-    api.data.registerPoison({ module: MODULE_ID, key: gas, label: `GCC.HT.Ammunition.Gas.${gas}`, poison: GAS_POISONS[gas] as any, available: () => on.cargo() });
+    api.data.registerPoison({ module: MODULE_ID, key: gas, label: `GCC.HT.Ammunition.Gas.${gas}`, poison: GAS_POISONS[gas] as any, available: gasOn });
   }
 
   // As the round is fired: early SAPLE's dud roll (p. 169), and a cargo round's cloud or light (pp. 171-172).
@@ -279,7 +298,7 @@ export function readyCargo(api: GWorldApi, on: CargoSwitches, loadOf: (item: any
   // A gas's failed roll: coughing, blindness or retching, for the cloud's time and the margin's minutes (p. 171).
   Hooks.on(api.combat.hooks.poisonCycle, (context: any) => {
     const source = String(context?.source ?? "");
-    if (!on.cargo() || !source.startsWith(`${MODULE_ID}.`) || context.resisted !== false) return;
+    if (!gasOn() || !source.startsWith(`${MODULE_ID}.`) || context.resisted !== false) return;
     const gas = source.slice(MODULE_ID.length + 1) as Gas;
     if (!(GASES as readonly string[]).includes(gas)) return;
     const actor = context.actor;

@@ -38,6 +38,7 @@ function fakeApi() {
       hooks: { objectStats: "gworld.objectStats" },
       registerPriceModifier: (m: any) => prices.set(m.key, m),
     },
+    combat: { hooks: { successRollModifiers: "gworld.successRollModifiers", afterSuccessRoll: "gworld.afterSuccessRoll" } },
     sheets: {
       registerSheetSection: (s: any) => sections.set(s.key, s),
       registerRowAction: (a: any) => actions.set(a.key, a),
@@ -148,10 +149,10 @@ describe("which gear the conventions reach", () => {
   it("reads a record's device data with nothing missing", () => {
     expect(deviceData(record("Bare", {}))).toEqual({
       complexity: null, prototypeYear: null, marketYear: null, cuttingEdge: false, kit: false, fragile: false, combined: false,
-      hp: null, ht: null, dr: null, parts: { count: 0, label: "", hp: 1, ht: 10, broken: 0 },
+      hp: null, ht: null, dr: null, parts: { count: 0, label: "", hp: 1, ht: 10, broken: 0, failing: 0 }, used: 0,
       soundQuality: null, carbonMicrophone: false, inexpensive: false, extraSpeakers: 0,
       earlyModel: false, diamondBlade: false, remoteControl: false, emergencyStop: false, magnet: { core: "", diameter: 0, length: 0 },
-      military: false, panTiltZoom: false,
+      military: false, panTiltZoom: false, doubleRadius: false, specialty: "",
     });
   });
 });
@@ -206,6 +207,18 @@ describe("cutting-edge gear (HT:EE p. 8)", () => {
     const context = sections.get("ht-device-item")!.context(record("New", { cost: 1, equipmentQuality: "fine" }, { cuttingEdge: true }));
     expect(context.cuttingEdgeLine).toBe("GCC.HT.Devices.FineUnavailable");
   });
+
+  it("prices a device bought used at the percentage of new the GM sets (HT:EE p. 8)", () => {
+    const item = record("Old Radio", { cost: 200, weight: 8 }, { used: 60 });
+    expect(price("ht-used", item)).toMatchObject({ cost: 120, weight: 8, label: 'GCC.HT.Devices.UsedPrice {"percent":60}' });
+    expect(price("ht-used", record("Heirloom", { cost: 35 }, { used: 10 }))!.cost).toBe(3.5);
+    expect(price("ht-used", record("New Radio", { cost: 200 }))).toBeNull();
+    expect(price("ht-used", record("UT", { cost: 200 }, { used: 60 }, "ultra-tech"))).toBeNull();
+    expect(deviceData(record("Odd", {}, { used: 250 })).used).toBe(100);
+    expect(sections.get("ht-device-item")!.context(item).usedLine).toBe('GCC.HT.Devices.UsedLine {"percent":60}');
+    on.cuttingEdge = false;
+    expect(price("ht-used", item)).toBeNull();
+  });
 });
 
 describe("breakable parts and device statistics (HT:EE pp. 8-9)", () => {
@@ -245,6 +258,73 @@ describe("breakable parts and device statistics (HT:EE pp. 8-9)", () => {
     expect(chat[0]).toContain("GCC.HT.Devices.Drop.Unhurt");
     // The item sheet says so until the tubes are replaced.
     expect(sections.get("ht-device-item")!.context(item).broken).toContain('"broken":3');
+    // The two that held are still at -1 HP: they roll HT in use.
+    expect(deviceData(item).parts.failing).toBe(2);
+    expect(chat[0]).toContain('GCC.HT.Devices.Drop.Survivors {"failing":2');
+  });
+
+  it("leaves parts at 0 HP working, to roll HT each second of use", async () => {
+    const item = radio();
+    const actor = owner([item]);
+    dialogAnswer = { yards: 1, speed: 0, surface: "hard" };
+    // 1 point: each 1-HP tube is at 0 HP, no roll yet.
+    dice = [1];
+    actions.get("ht-device-drop")!.run(item, actor);
+    await flush();
+    expect(deviceData(item).parts).toMatchObject({ broken: 0, failing: 5 });
+    expect(chat[0]).toContain("GCC.HT.Devices.Drop.Parts.failing");
+    expect(sections.get("ht-device-item")!.context(item).failing).toContain('"failing":5');
+    expect(actions.get("ht-device-run")!.visible(item)).toBe(true);
+  });
+
+  it("rolls the failing parts' HT after a roll made with the device, and a failure stops the part", async () => {
+    const item = record("Tube Radio", { cost: 200, weight: 8 }, { parts: { count: 5, label: "vacuum tubes", hp: 1, ht: 10, broken: 0, failing: 2 } });
+    const actor = owner([item]);
+    dice = [12, 9];
+    fire("gworld.afterSuccessRoll", { actor, item, skill: "Electronics Operation (Comm)", outcome: {} });
+    await flush();
+    expect(deviceData(item).parts).toMatchObject({ broken: 1, failing: 1 });
+    expect(chat[0]).toContain('GCC.HT.Devices.Run.Rolls {"count":2,"label":"vacuum tubes","ht":10,"rolls":"12, 9"}');
+    expect(chat[0]).toContain('GCC.HT.Devices.Run.Stopped {"stopped":1');
+    // Now it won't work: any roll made with it is refused, whatever the skill.
+    const use = fire("gworld.successRollModifiers", { actor, item, skill: "Electronics Operation (Comm)", modifiers: [], refusal: null });
+    expect(use.refusal).toContain("GCC.HT.Devices.BrokenRefusal");
+    const repair = fire("gworld.successRollModifiers", { actor, item, skill: "Electronics Repair (Comm)", modifiers: [], refusal: null });
+    expect(repair.refusal).toContain("GCC.HT.Devices.BrokenRefusal");
+    expect(actions.get("ht-device-run")!.visible(item)).toBe(false);
+  });
+
+  it("doesn't refuse the roll where another carried, unbroken tool serves the same skill", () => {
+    const broken = record("Tube Radio", { cost: 200, weight: 8, forSkills: ["Electronics Operation (Communications)"] }, { parts: { count: 5, broken: 1 } });
+    const spare = record("Spare Radio", { cost: 200, weight: 8, carried: true, forSkills: ["Electronics Operation/TL (Communications)"] }, { parts: { count: 5, broken: 0 } });
+    const stowed = record("Stowed Radio", { cost: 200, weight: 8, carried: false, forSkills: ["Electronics Operation (Communications)"] });
+    const roll = (actor: any) => fire("gworld.successRollModifiers", { actor, item: broken, skill: "Electronics Operation (Communications)", modifiers: [], refusal: null }).refusal;
+    expect(roll(owner([broken, spare]))).toBeNull();
+    // A stowed one, another broken one, or one for another skill doesn't serve.
+    expect(roll(owner([broken, stowed]))).toContain("GCC.HT.Devices.BrokenRefusal");
+    const alsoBroken = record("Other Radio", { forSkills: ["Electronics Operation (Communications)"] }, { parts: { count: 2, broken: 2 } });
+    expect(roll(owner([broken, alsoBroken]))).toContain("GCC.HT.Devices.BrokenRefusal");
+    const scope = record("Oscilloscope", { forSkills: ["Electronics Operation (Scientific)"] });
+    expect(roll(owner([broken, scope]))).toContain("GCC.HT.Devices.BrokenRefusal");
+    // An earlier rule's refusal keeps its reason.
+    const earlier = fire("gworld.successRollModifiers", { actor: owner([broken]), item: broken, skill: "Electronics Operation (Communications)", modifiers: [], refusal: "Burned out" });
+    expect(earlier.refusal).toBe("Burned out");
+  });
+
+  it("rolls nothing and refuses nothing for a sound device, or with the switch off", async () => {
+    const item = record("Tube Radio", { cost: 200, weight: 8 }, { parts: { count: 5, broken: 2, failing: 2 } });
+    const actor = owner([item]);
+    on.breakable = false;
+    fire("gworld.afterSuccessRoll", { actor, item, skill: "Electronics Operation (Comm)", outcome: {} });
+    await flush();
+    expect(chat).toEqual([]);
+    expect(fire("gworld.successRollModifiers", { actor, item, skill: "Electronics Operation (Comm)", modifiers: [], refusal: null }).refusal).toBeNull();
+    on.breakable = true;
+    const sound = radio();
+    owner([sound]);
+    fire("gworld.afterSuccessRoll", { actor, item: sound, skill: "Electronics Operation (Comm)", outcome: {} });
+    await flush();
+    expect(chat).toEqual([]);
   });
 
   it("marks the device's own injury past its DR", async () => {

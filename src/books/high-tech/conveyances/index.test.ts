@@ -163,6 +163,18 @@ describe("personal conveyances (High-Tech pp. 226, 230-231)", () => {
     expect(move(rider([gear("Off-Road Bike", { kind: "bicycle", enhancedMove: 0.5 }, { equipped: false })]))).toEqual([]);
   });
 
+  it("halves the rider's relative skill as the system halves Move below 1/3 FP or HP (Campaigns pp. 419, 426)", () => {
+    // Bicycling DX+8 is 8 x1.5 = 12 fresh; very tired, the system's Move 5 is 3, and the skill 4: x1.5 = 6.
+    const tired = rider([offRoadBike(), learned("Bicycling", 6, [{ value: 2 }])], {}, { system: { hp: { value: 10, max: 10 }, fp: { value: 3, max: 10 } } });
+    expect(moveAfter(tired, 3)).toBe(6);
+    // Reeling as well: halved twice, 2 x1.5 = 3.
+    const worse = rider([offRoadBike(), learned("Bicycling", 6, [{ value: 2 }])], {}, { system: { hp: { value: 3, max: 10 }, fp: { value: 3, max: 10 } } });
+    expect(moveAfter(worse, 2)).toBe(3);
+    // At 1/3 FP exactly, not yet very tired.
+    const fine = rider([offRoadBike(), learned("Bicycling", 6, [{ value: 2 }])], {}, { system: { hp: { value: 10, max: 10 }, fp: { value: 4, max: 12 } } });
+    expect(moveAfter(fine)).toBe(12);
+  });
+
   it("multiplies downhill Move by the slope and drops Road-Bound Enhanced Move off the road", () => {
     const racing = gear("Racing Bike", { kind: "bicycle", enhancedMove: 1, roadBound: true });
     expect(moveAfter(rider([offRoadBike(), learned("Bicycling", 5)], { htSlope: 7.5 }))).toBe(14);

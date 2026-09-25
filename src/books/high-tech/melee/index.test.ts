@@ -22,6 +22,7 @@ const HOOKS = {
   afflictionEffect: "gworld.afflictionEffect",
   afterSuccessRoll: "gworld.afterSuccessRoll",
   successRollModifiers: "gworld.successRollModifiers",
+  armorDr: "gworld.armorDr",
 };
 
 let hooks: Map<string, Listener[]>;
@@ -247,6 +248,21 @@ describe("blade composition (pp. 196-198)", () => {
 
 describe("stun weapons (p. 199)", () => {
   beforeEach(() => { on = { stunWeapons: true }; ready(); });
+
+  it("burns with the cattle prod only where no worn armour covers the spot (p. 199)", () => {
+    const prod = weapon("Cattle Prod", { meleeModes: [{ skill: "Shortsword", damageType: "burn" }] });
+    const blow = (lines: any[], more: Record<string, unknown> = {}) => fire(HOOKS.armorDr, { actor: soldier, item: prod, mode: { index: 0, ranged: false }, hitLocation: "torso", damageType: "burn", basicDamage: 3, lines, ...more }).lines;
+    // A jacket with DR stops it all; the line says why.
+    const covered = blow([{ label: "Leather Jacket", dr: 1, applies: true, source: "armor" }]);
+    expect(covered.at(-1)).toMatchObject({ label: expect.stringContaining("ProdProtected"), dr: 3, applies: true });
+    // Bare skin, clothing of DR 0, natural DR, or a refused piece: the burn stands.
+    for (const lines of [[], [{ label: "Shirt", dr: 0, applies: true, source: "armor" }], [{ label: "Tough Skin", dr: 2, applies: true, source: "natural" }], [{ label: "Vest", dr: 5, applies: false, source: "armor" }]]) {
+      expect(blow(lines)).toHaveLength(lines.length);
+    }
+    // Not the prod's burn: nothing.
+    expect(blow([{ label: "Jacket", dr: 1, applies: true, source: "armor" }], { damageType: "cr" })).toHaveLength(1);
+    expect(fire(HOOKS.armorDr, { actor: soldier, item: weapon("Stun Baton"), damageType: "burn", basicDamage: 3, lines: [{ label: "Jacket", dr: 1, applies: true }] }).lines).toHaveLength(1);
+  });
 
   it("holds the stun while in contact and (20 - HT) seconds after, then HT-3", async () => {
     const baton = weapon("Stun Baton", { meleeModes: [{ skill: "Shortsword", damageType: "cr", linked: { affliction: true } }] });

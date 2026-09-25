@@ -43,6 +43,7 @@ let worldTime: number;
 function fakeApi() {
   return {
     rules,
+    items: { changeQuantity: async (i: any, delta: number, o: any = {}) => { const from = Number(i.system.quantity) || 0; i.system.quantity = Math.max(0, from + delta); return { from, to: i.system.quantity, reason: o.reason ?? "" }; } },
     registry: { isRuleOn: (key: string) => key === "equipmentModifiers" },
     data: {
       hooks: { skillBonuses: "gworld.skillBonuses", moveModifiers: "gworld.moveModifiers" },

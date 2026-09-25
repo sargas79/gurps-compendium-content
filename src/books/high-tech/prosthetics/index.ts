@@ -9,7 +9,9 @@
  *     which item mitigates it, and the lesser disadvantage it leaves (a basic
  *     arm's Ham-Fisted 2) is put back in its place. A leg prosthetic also
  *     gives back reduced Basic Move through `gworld.traitEffects`. A hearing
- *     aid whose battery has run down mitigates nothing. The points stay as
+ *     aid whose battery has run down mitigates nothing, nor does an advanced
+ *     arm or leg past its 8 or 30 hours between recharges (built-in
+ *     batteries, tracked under the power switches). The points stay as
  *     bought: whether a PC pays back the difference is the GM's (p. 225).
  *   - **Elective surgery:** a GM tool that runs the operation through
  *     `actors.operate` (the Basic Set's surgery roll) and reads its outcome:

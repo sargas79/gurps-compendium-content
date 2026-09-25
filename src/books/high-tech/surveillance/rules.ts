@@ -9,7 +9,7 @@ export const SECURITY = "Electronics Operation (Security)";
 export const SURVEILLANCE = "Electronics Operation (Surveillance)";
 export const COMMUNICATIONS = "Electronics Operation (Communications)";
 export const EW = "Electronics Operation (EW)";
-export const EOD = "Explosives (EOD)";
+export const EOD = "Explosives (Explosive Ordnance Disposal)";
 
 const nameKey = (name: unknown) => String(name ?? "").trim().toLowerCase();
 
@@ -274,6 +274,12 @@ export const JAMMERS: Readonly<Record<string, JammerFigures>> = Object.freeze({
   "cell-phone jammer": { range: 15, skill: null, blocks: "cellPhone", hearing: CELL_PHONE_HEARING },
 });
 export const jammerByName = (name: unknown) => JAMMERS[nameKey(name)] ?? null;
+
+/** The cell-phone jammer, by its record's name. */
+export const isCellPhoneJammer = (name: unknown): boolean => nameKey(name) === "cell-phone jammer";
+
+/** A cell-phone jammer with double the radius has 4 times the cost and weight (HT:EE p. 50). */
+export const DOUBLE_RADIUS = Object.freeze({ range: 2, cost: 4, weight: 4 });
 
 // ── the supplement's jammers (HT:EE pp. 49-50) ──
 

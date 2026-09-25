@@ -193,6 +193,15 @@ describe("directed-energy weapons (HT:EE pp. 50-51)", () => {
     expect(context.modifiers).toEqual([{ label: "GCC.HT.ElectronicWeapons.EyeProtection", value: 7 }, { label: "GCC.HT.ElectronicWeapons.Obscured", value: 2 }]);
   });
 
+  it("a laser pointer, red or green, is aimed at -1; the dazzler isn't", () => {
+    const attack = (item: any) => fire("gworld.attackModifiers", { item, mode: { ranged: true }, options: {}, modifiers: [] }).modifiers;
+    expect(attack(record("Laser Pointer"))).toEqual([]);
+    on.directed = true;
+    expect(attack(record("Laser Pointer"))).toEqual([{ label: expect.stringContaining("PointerSkill"), value: -1 }]);
+    expect(attack(record("Green Laser Pointer"))).toEqual([{ label: expect.stringContaining("PointerSkill"), value: -1 }]);
+    expect(attack(record("Dazzler"))).toEqual([]);
+  });
+
   it("the dazzler blinds dark-adapted eyes for minutes, and does nothing in the light", () => {
     const pointer = record("Laser Pointer");
     const victim = person("Guard");

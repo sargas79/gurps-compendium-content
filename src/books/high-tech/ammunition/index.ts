@@ -145,6 +145,8 @@ export interface AmmunitionSwitches {
   cargo?: () => boolean;
   /** Hollow-points failing to expand, the GM's option (p. 167). */
   expansion?: () => boolean;
+  /** Tear gas's rolls for something other than a round: the grenades' switch (p. 192). */
+  gas?: () => boolean;
 }
 
 /** Whether any of the projectile switches is on. */
@@ -1005,7 +1007,7 @@ export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
     const gun = projectileGun(item, modeIndex);
     return { fired: firedProjectile(load, gun, on), gun, poison: load.poisonFiller };
   });
-  readyCargo(api, { explosive: () => on.explosive?.() === true, cargo: () => on.cargo?.() === true }, (item, modeIndex) => cargoLoadIn(item, modeIndex, on));
+  readyCargo(api, { explosive: () => on.explosive?.() === true, cargo: () => on.cargo?.() === true, gas: () => on.gas?.() === true }, (item, modeIndex) => cargoLoadIn(item, modeIndex, on));
   api.sheets.registerSheetSection({
     module: MODULE_ID,
     key: "ht-ammunition-item",

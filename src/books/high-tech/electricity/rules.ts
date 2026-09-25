@@ -6,7 +6,8 @@
  *
  * **Hazards (HT:EE p. 9).** The Basic Set's -1 per 2 points of injury on the
  * HT roll fits direct current. Alternating current is five times as harsh,
- * -5 per 2 points; radio-frequency current gives no such penalty; lightning
+ * -5 per 2 full points; radio-frequency current disregards the penalty,
+ * though the heart can still stop; lightning
  * is gentler, -1 per 5 points. More than 1 point of injury clamps the victim
  * to the source; a source doing only 1 point can be jerked away from with a
  * DX roll, avoiding that point. Optionally a shock rolled under 1d can do no
@@ -48,12 +49,23 @@ export type Current = "dc" | "ac" | "rf" | "lightning";
 export const CURRENTS: readonly Current[] = ["dc", "ac", "rf", "lightning"];
 
 /**
- * Points of injury per -1 to the HT roll against heart stoppage, as the
- * system's `injuryStep` takes it (HT:EE p. 9): DC is the Basic Set's 2, AC's
- * -5 per 2 points is a step of 2/5, radio-frequency current none (0), and
- * lightning 5.
+ * Points of injury per step of the HT roll against heart stoppage, as the
+ * system's `injuryStep` takes it (HT:EE p. 9): DC is the Basic Set's 2,
+ * AC the same 2 (its steps are 5 times as big: see `AC_STEP`), lightning 5.
+ * Radio-frequency current has none (0): the penalty is disregarded.
  */
-export const INJURY_STEP: Readonly<Record<Current, number>> = Object.freeze({ dc: 2, ac: 2 / 5, rf: 0, lightning: 5 });
+export const INJURY_STEP: Readonly<Record<Current, number>> = Object.freeze({ dc: 2, ac: 2, rf: 0, lightning: 5 });
+
+/**
+ * AC is -5 per 2 points, read in whole steps as DC's -1 per 2 points is: 0 at
+ * 1 point, -5 at 2-3, -10 at 4-5 (HT:EE p. 9). The system's step gives the
+ * -1 of each; this is the -4 more.
+ */
+export const AC_STEP = 5;
+export function acExtraModifier(injury: number): number {
+  const steps = Math.floor(Math.max(0, Number(injury) || 0) / INJURY_STEP.ac);
+  return steps ? -(AC_STEP - 1) * steps : 0;
+}
 
 /** More injury than this clamps the victim to the source (HT:EE p. 9). */
 export const HOLDING_INJURY = 1;

@@ -334,6 +334,129 @@
     }
   },
   {
+    "_id": "9bd0eecf0f847ae1",
+    "name": "Ethernet Adapter (Coaxial Cable)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 41",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 1973,
+            "marketYear": 1982
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 1973,
+            "marketYear": 1982
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "aee6b80b3954a165",
+    "name": "Ethernet Adapter (Twisted Pair)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 41",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 1983,
+            "marketYear": 1986
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 1983,
+            "marketYear": 1986
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "25efa571b1692ac2",
+    "name": "Ethernet Adapter (Fiber-Optic Cable)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 41",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 1978,
+            "marketYear": 1993
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 1978,
+            "marketYear": 1993
+          }
+        }
+      }
+    }
+  },
+  {
     "_id": "8ba0380081dd8518",
     "name": "Magnetic Lock (Mini)",
     "type": "equipment",

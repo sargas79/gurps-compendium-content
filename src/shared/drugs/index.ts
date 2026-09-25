@@ -7,7 +7,7 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../module.js";
-import type { PoisonNumbers } from "./rules.js";
+import type { Delivery, PoisonNumbers } from "./rules.js";
 
 export * from "./rules.js";
 
@@ -22,9 +22,25 @@ export interface PoisonTable<K extends string = string> {
   available: (key: K) => boolean;
 }
 
+/** How each registered poison is delivered, by the `source` its doses carry. */
+const DELIVERIES = new Map<string, readonly Delivery[]>();
+
+/**
+ * How a dose on a character was delivered, where that can be known: a
+ * registered table's poison by its source, a Basic Set example by its name
+ * (Campaigns p. 439). Null for anything else, which the caller takes on trust.
+ */
+export function doseDelivery(api: GWorldApi, dose: { source?: unknown; name?: unknown } | null | undefined): readonly string[] | null {
+  const known = DELIVERIES.get(String(dose?.source ?? ""));
+  if (known) return known;
+  const example = api.rules.poisonNamed?.(String(dose?.name ?? ""));
+  return example ? [...example.delivery] : null;
+}
+
 /** Offers every poison of a book's table in the sheet's dose dialog while its switch is on. */
 export function registerPoisonTable<K extends string>(api: GWorldApi, table: PoisonTable<K>): void {
   for (const key of Object.keys(table.poisons) as K[]) {
+    DELIVERIES.set(`${MODULE_ID}.${key}`, table.poisons[key].delivery);
     api.data.registerPoison({
       module: MODULE_ID,
       key,

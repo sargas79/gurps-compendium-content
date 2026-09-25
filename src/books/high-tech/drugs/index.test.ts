@@ -9,7 +9,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { MODULE_ID } from "../../../shared/module.js";
-import { checkBotulinHealed, drugData, readyDrugs } from "./index.js";
+import * as rules from "../../../../system/src/rules/index.js";
+import { checkBotulinHealed, checkPsychiatricExpired, drugData, readyDrugs } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -41,6 +42,8 @@ let removedConditions: string[];
 
 function fakeApi() {
   return {
+    rules,
+    items: { changeQuantity: async (i: any, delta: number) => { const from = Number(i.system.quantity) || 0; i.system.quantity = Math.max(0, from + delta); return { from, to: i.system.quantity }; } },
     registry: { isRuleOn: () => false },
     data: { registerPoison: (p: any) => poisons.push(p) },
     combat: { hooks: HOOKS, registerHitLocation: (l: any) => { locations.push(l); return `${l.module}.${l.key}`; } },
@@ -289,6 +292,51 @@ describe("hygiene and drugs (High-Tech pp. 221, 226-227)", () => {
     expect(treated[0]).toMatchObject({ id: "s", bonus: 3 });
   });
 
+  it("gives castor oil and charcoal only to a dose that could be a digestive poison", async () => {
+    const patient = person([], { doses: [
+      { id: "cobra", name: "Cobra Venom" },
+      { id: "arsenic", name: "Arsenic" },
+      { id: "curare", name: "Curare", source: `${MODULE_ID}.curare` },
+      { id: "gm", name: "The GM's Own" },
+    ] });
+    let offered: string[] = [];
+    vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async (o: any) => {
+      offered = [...String(o.content).matchAll(/value="([^"]+)"/g)].map((m) => m[1]!);
+      return { id: "arsenic" };
+    } } } } });
+    await run("ht-drug-give", gear("Castor Oil"), patient);
+    // Cobra venom and curare are follow-up poisons; the GM's own can't be known, so it stays.
+    expect(offered).toEqual(["arsenic", "gm"]);
+    expect(treated[0]).toMatchObject({ id: "arsenic", bonus: 1 });
+    // With nothing digestive, nothing to give.
+    treated = [];
+    await run("ht-drug-give", gear("Activated Charcoal"), person([], { doses: [{ id: "cobra", name: "Cobra Venom" }] }));
+    expect(treated).toEqual([]);
+    expect((globalThis as any).ui.notifications.warn).toHaveBeenCalledWith(expect.stringContaining("NoDigestivePoison"));
+  });
+
+  it("counts a second depressant as a doubled dose at -2, and overdoses on its critical failure", async () => {
+    const patient = person([], { conditionList: [{ id: `${MODULE_ID}.htTruthSerum`, label: "Truth Serum" }] });
+    successResult = { success: false, margin: 11, criticalFailure: true };
+    await run("ht-drug-give", gear("Morphine"), patient);
+    expect(successes[0].modifiers).toEqual([
+      { label: "GCC.HT.Drugs.PainkillerLine", value: -4 },
+      { label: expect.stringContaining("DoubledDoseLine"), value: -2 },
+    ]);
+    expect(applied).toContainEqual(expect.objectContaining({ key: "unconscious", duration: { seconds: 11 * 3600 } }));
+    // The drug as a poison at the harder roll, morphine's HT-4: 1 point every 15 minutes, 24 times.
+    expect(dosed[0].poison).toMatchObject({ resistanceModifier: -4, damage: "toxic", adds: 1, intervalSeconds: 900, cycles: 24 });
+    expect(chat.at(-1)).toContain("Overdose");
+  });
+
+  it("gives a single dose no doubling and no overdose, even on a critical failure", async () => {
+    successResult = { success: false, margin: 11, criticalFailure: true };
+    await run("ht-drug-give", gear("Morphine"), person());
+    expect(successes[0].modifiers).toHaveLength(1);
+    expect(dosed).toEqual([]);
+    expect(applied.some((a) => a.key === "unconscious")).toBe(false);
+  });
+
   it("costs truth serum's 1d FP and puts -2 on Will and self-control for (20 - HT)/2 minutes on a failed HT-1", async () => {
     const subject = person();
     targets = [subject];
@@ -323,6 +371,11 @@ describe("hygiene and drugs (High-Tech pp. 221, 226-227)", () => {
     ]);
     worldTime += 86401;
     expect(gather().every((t: any) => t.inPlay)).toBe(true);
+    // Once the day is up, the flag goes with world time and the card says so.
+    expect(await checkPsychiatricExpired(patient)).toBe(true);
+    expect(patient.getFlag(MODULE_ID, "htPsychiatric")).toBeUndefined();
+    expect(chat.at(-1)).toContain("PsychiatricWornOff");
+    expect(await checkPsychiatricExpired(patient)).toBe(false);
   });
 });
 

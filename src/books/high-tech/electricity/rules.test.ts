@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import { lethalShockModifier, parseDiceAdds } from "../../../../system/src/rules/index.js";
 import {
   INJURY_STEP,
+  acExtraModifier,
   inducedPenalty,
   largeBoltMultiplier,
   lightningRodDamage,
@@ -21,12 +22,14 @@ describe("the HT roll's step for each current (HT:EE p. 9)", () => {
     expect(lethalShockModifier(5, INJURY_STEP.dc)).toBe(-2);
   });
 
-  it("AC is -5 per 2 points", () => {
-    expect(lethalShockModifier(2, INJURY_STEP.ac)).toBe(-5);
-    expect(lethalShockModifier(4, INJURY_STEP.ac)).toBe(-10);
-    expect(lethalShockModifier(3, INJURY_STEP.ac)).toBe(-7);
-    // The step's fraction never rounds a whole multiple down.
-    for (let injury = 0; injury <= 200; injury += 2) expect(lethalShockModifier(injury, INJURY_STEP.ac)).toBe(-(injury / 2) * 5);
+  it("AC is -5 per 2 points, in whole steps as DC's are", () => {
+    const ac = (injury: number) => lethalShockModifier(injury, INJURY_STEP.ac) + acExtraModifier(injury);
+    expect(ac(1)).toBe(0);
+    expect(ac(2)).toBe(-5);
+    expect(ac(3)).toBe(-5);
+    expect(ac(4)).toBe(-10);
+    expect(ac(5)).toBe(-10);
+    for (let injury = 0; injury <= 200; injury += 1) expect(ac(injury)).toBe(-(Math.floor(injury / 2) * 5) || 0);
   });
 
   it("radio-frequency current gives no penalty, lightning -1 per 5", () => {
