@@ -35,7 +35,7 @@ function fakeApi() {
   return {
     rules,
     registry: { isRuleOn: (key: string) => key === "minimumSt" },
-    data: { registerPriceModifier: (m: any) => prices.push(m) },
+    data: { hooks: { legalityClass: "gworld.legalityClass" }, registerPriceModifier: (m: any) => prices.push(m) },
     combat: {
       hooks: HOOKS,
       registerAttackOption: (o: any) => { options.set(o.key, o); return `${o.module}.${o.key}`; },
@@ -203,6 +203,36 @@ describe("magazines (p. 155)", () => {
     const entry = fire(HOOKS.shotsEntry, { actor, item: glock, modeIndex: 0, mode: glock.system.rangedModes[0], entry: { capacity: 17 } }).entry;
     expect(entry.capacity).toBe(17);
     expect(prices.map((p) => p.apply(glock, { cost: 600, weight: 2 })).find(Boolean)).toBeUndefined();
+  });
+
+  it("costs -1 Malf. for magazines clamped or taped in harsh conditions, on a gun fed from a detachable magazine", () => {
+    on = { gunMagazines: true };
+    ready();
+    const actor = character();
+    const m16 = gun(actor, { name: "Colt M16A1, .223 Remington", skill: "Guns (Rifle)", shots: "20+1(3)", firearm: { magazinesJoined: true } });
+    expect(rows(m16)[0]).toMatchObject({ malfunction: 16 });
+    expect(rows(m16)[0].notes.map((n: any) => n.label)).toContain("GCC.HT.Accessories.Joined");
+    // A revolver's cylinder is no magazine to tape.
+    const revolver = gun(actor, { name: "Colt Python, .357 Magnum", shots: "6(3i)", firearm: { magazinesJoined: true } });
+    expect(rows(revolver)[0].malfunction).toBe(17);
+    on = {};
+    expect(rows(m16)[0].malfunction).toBe(17);
+  });
+
+  it("counts an LC3-4 gun with a high-capacity magazine as LC1-2 where the law restricts one", () => {
+    on = { gunMagazines: true };
+    ready();
+    const actor = character();
+    const glock = gun(actor, { firearm: { magazine: "extended", magazineRounds: 31, magazineRestricted: true } });
+    const legality = (item: any, lc: number | null) => fire("gworld.legalityClass", { item, actor, lc }).lc;
+    expect(legality(glock, 3)).toBe(1);
+    expect(legality(glock, 4)).toBe(2);
+    expect(legality(glock, 2)).toBe(2);
+    // The standard magazine, or a gun the law isn't said to reach, keeps its own.
+    glock.system.extensions[MODULE_ID].firearm.magazine = "";
+    expect(legality(glock, 3)).toBe(3);
+    const free = gun(actor, { firearm: { magazine: "extended", magazineRounds: 31 } });
+    expect(legality(free, 3)).toBe(3);
   });
 });
 

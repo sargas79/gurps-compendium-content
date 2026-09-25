@@ -12,7 +12,10 @@
  *     magazine on the gun: its capacity through `gworld.shotsEntry`, its
  *     weight and cost from the calibre's WPS, -1 Bulk past 1.5 (extended) or
  *     3 (drum) times the normal capacity, -1 Malf. for a drum or where the GM
- *     says it's unreliable.
+ *     says it's unreliable, and -1 Malf. for magazines clamped or taped
+ *     together where the GM finds the conditions harsh; a gun with a
+ *     high-capacity magazine where the law restricts one counts as LC1-2
+ *     rather than LC3-4 (`gworld.legalityClass`).
  *   - **Sights (gunSights):** the best magnifying sight -- a scope by the +1
  *     Acc, a night or thermal sight's +2, a computer sight's magnification --
  *     goes on the gun's rows as their scope (`scopeBonus`, and `scopeFixed`
@@ -67,6 +70,7 @@ import { calibreRowOf } from "../ammunition/calibres.js";
 import { shineTacticalLight, shinesInfrared } from "../expedition/index.js";
 import { isFirearm } from "../firearms/index.js";
 import { modernMalfunction } from "../firearms/rules.js";
+import { loadingOf } from "../reloading/index.js";
 import { familyData, gunTakesSuppressor } from "../weapon-families/index.js";
 import {
   ADD_ON_HOSTS,
@@ -99,6 +103,8 @@ import {
   magazinePriceChange,
   modeMatches,
   modeSetup,
+  JOINED_MAGAZINES_MALFUNCTION,
+  restrictedMagazineClass,
   overSightCap,
   rangefinderBonus,
   reflexBonus,
@@ -187,6 +193,8 @@ export function accessoryGunFields(f: any): Record<string, unknown> {
     magazineRounds: whole(1000),
     magazineUnreliable: new f.BooleanField({ initial: false }),
     magazineInGrip: new f.BooleanField({ initial: false }),
+    magazinesJoined: new f.BooleanField({ initial: false }),
+    magazineRestricted: new f.BooleanField({ initial: false }),
     report: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: ["", ...REPORTS] }),
     sealedBreech: new f.BooleanField({ initial: false }),
   };
@@ -233,6 +241,10 @@ interface GunData {
   magazineUnreliable: boolean;
   /** A high-density magazine in the grip, where the gun's own design has one (p. 155). */
   magazineInGrip: boolean;
+  /** Its magazines clamped or taped together, in conditions the GM finds harsh enough for -1 Malf. (p. 155). */
+  magazinesJoined: boolean;
+  /** A high-capacity magazine where the law restricts one: an LC3-4 gun counts as LC1-2 (p. 155). */
+  magazineRestricted: boolean;
   report: Report | "";
   sealedBreech: boolean;
 }
@@ -245,6 +257,8 @@ function gunData(item: any): GunData {
     magazineRounds: Math.max(0, Math.floor(Number(d.magazineRounds) || 0)),
     magazineUnreliable: d.magazineUnreliable === true,
     magazineInGrip: d.magazineInGrip === true,
+    magazinesJoined: d.magazinesJoined === true,
+    magazineRestricted: d.magazineRestricted === true,
     report: REPORTS.includes(d.report) ? d.report : "",
     sealedBreech: d.sealedBreech === true,
   };
@@ -345,6 +359,17 @@ export function gunMagazine(item: any): GunMagazine | null {
   // Not in a grip, unless the gun was designed for one there (p. 155).
   const refused = data.magazine === "highDensity" && !highDensityFits(String(mode.skill ?? "")) && !data.magazineInGrip ? L("HighDensityGrip") : null;
   return { kind: data.magazine, rounds, normal, wps, figures: magazineFigures({ kind: data.magazine, material: data.magazineMaterial, rounds, normal, wps, unreliable: data.magazineUnreliable }), refused };
+}
+
+/** Whether a gun feeds from a detachable magazine, the kind that can be clamped or taped to another (p. 155). */
+function feedsFromMagazine(api: GWorldApi, item: any): boolean {
+  return loadingOf(api, item) === "magazine";
+}
+
+/** Whether a gun's mode is fed from its magazine: its Shots are the standard magazine's. */
+function fedFromMagazine(item: any, mode: any): boolean {
+  const normal = magazineCapacity(String(rangedModes(item)[0]?.shots ?? ""));
+  return normal > 0 && magazineCapacity(String(mode?.shots ?? "")) === normal;
 }
 
 // ── what the gun's Bulk comes to ──
@@ -687,7 +712,11 @@ function gunContext(api: GWorldApi, item: any, on: AccessorySwitches): Record<st
       chosen: Boolean(data.magazine),
       grip: data.magazine === "highDensity" && !highDensityFits(String(mode.skill ?? "")),
       inGrip: data.magazineInGrip,
+      joinable: feedsFromMagazine(api, item),
+      joined: data.magazinesJoined,
+      restricted: data.magazineRestricted,
     };
+    if (data.magazinesJoined && feedsFromMagazine(api, item)) lines.push(F("JoinedLine", { malf: JOINED_MAGAZINES_MALFUNCTION }));
     if (magazine) {
       if (magazine.refused) lines.push(magazine.refused);
       else if (!magazine.wps) lines.push(L("MagazineNoCalibre"));
@@ -917,6 +946,16 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
     },
   });
 
+  // A high-capacity magazine where the law restricts one: an LC3-4 gun counts as LC1-2 (p. 155).
+  Hooks.on(api.data.hooks.legalityClass, (context: any) => {
+    const item = context?.item;
+    if (!on.magazines() || !firearm(item) || !gunData(item).magazineRestricted) return;
+    const magazine = gunMagazine(item);
+    if (!magazine || magazine.refused) return;
+    const lc = restrictedMagazineClass(typeof context.lc === "number" ? context.lc : null);
+    if (lc !== null) context.lc = lc;
+  });
+
   api.sheets.registerSheetSection({
     module: MODULE_ID,
     key: "ht-accessories-item",
@@ -951,6 +990,7 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
     const st = Number(api.actors.attribute(actor, "ST")) || 10;
     const minimumSt = api.registry.isRuleOn("minimumSt");
     const magazine = on.magazines() ? gunMagazine(item) : null;
+    const joined = on.magazines() && gunData(item).magazinesJoined && feedsFromMagazine(api, item);
     const suppressor = on.suppressors() ? fittedTo(item, on, ["suppressor"])[0] ?? null : null;
     const suppressing = suppressor && suppressorOn(item, on) ? suppressor : null;
     const state = gunState(api, item);
@@ -976,6 +1016,11 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
       if (magazine && !magazine.refused && magazine.figures.malfunction && typeof row.malfunction === "number") {
         row.malfunction += magazine.figures.malfunction;
         row.notes.push({ label: L(`Magazine.${magazine.kind}`), hint: F("MagazineHint", { rounds: magazine.rounds }) });
+      }
+      // Clamped or taped magazines in harsh conditions, as the GM says (p. 155).
+      if (joined && fedFromMagazine(item, mode) && typeof row.malfunction === "number") {
+        row.malfunction += JOINED_MAGAZINES_MALFUNCTION;
+        row.notes.push({ label: L("Joined"), hint: L("JoinedHint") });
       }
 
       if (suppressing) {

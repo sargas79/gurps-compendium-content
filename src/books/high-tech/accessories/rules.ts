@@ -157,6 +157,22 @@ export function magazinePriceChange(figures: MagazineFigures, normal: number, wp
   return { cost: figures.cost, weight: Math.round((figures.weight - Math.max(0, normal) * Math.max(0, wps)) * 100) / 100 };
 }
 
+/**
+ * Magazines clamped side by side or taped together (p. 155) get dirt inside,
+ * and a taped one pointing down its feed lips damaged: -1 Malf. where the GM
+ * finds the conditions harsh enough.
+ */
+export const JOINED_MAGAZINES_MALFUNCTION = -1;
+
+/**
+ * A gun's Legality Class where the law restricts high-capacity magazines
+ * (p. 155): an LC3-4 gun with one counts as LC1-2. Anything else keeps its
+ * own.
+ */
+export function restrictedMagazineClass(lc: number | null): number | null {
+  return typeof lc === "number" && lc >= 3 ? lc - 2 : lc;
+}
+
 // ── sights (pp. 155-157) ──
 
 /**
