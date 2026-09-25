@@ -67,6 +67,7 @@ import {
   batchTime,
   bulkDiscount,
   canHandload,
+  castingModifier,
   chambering,
   conversionsFor,
   discounted,
@@ -105,6 +106,7 @@ import {
   type ProjectileUpgrade,
 } from "./projectiles.js";
 import {
+  FLARE_BURN,
   HT_SMOKES,
   HT_SMOKE_TABLE,
   ILLUMINATIONS,
@@ -118,6 +120,8 @@ import {
 } from "./explosive.js";
 import { readyCargo, type CargoLoad } from "./cargo.js";
 import { bulletPoisonChoices, readyRounds } from "./rounds.js";
+import { LIMITED_FACTORS, PRINTED_KEYS, firesPrinted, limitedFactor, printedCps, printedRound, printedRoundsFor, printedRow, type PrintedFamily, type PrintedRound } from "./printed.js";
+import { readyPrinted } from "./printed-rounds.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.HT.Ammunition.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.HT.Ammunition.${key}`, data);
@@ -188,6 +192,10 @@ export interface HighTechLoad {
   seconds: number;
   /** A cargo round's own dice where the description prints them; blank for the mode's. */
   hitDamage: string;
+  /** A round the book prints with its own statistics (pp. 103, 143); blank for none. */
+  printed: string;
+  /** Limited-production or experimental rounds: CPS times 5 to 10 (p. 166); 0 for none. */
+  limited: number;
 }
 
 /** Registers the loads and the conversion field before the world's data is read. */
@@ -217,6 +225,8 @@ export function initAmmunition(): void {
         radius: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
         seconds: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
         hitDamage: new f.StringField({ required: true, nullable: false, blank: true, initial: "" }),
+        printed: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: ["", ...PRINTED_KEYS] }),
+        limited: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 10 }),
       }),
       { required: true, initial: [] },
     ),
@@ -256,6 +266,8 @@ function cleanLoad(raw: any, mode: number): HighTechLoad {
     radius: Math.max(0, Number(raw?.radius) || 0),
     seconds: Math.max(0, Math.floor(Number(raw?.seconds) || 0)),
     hitDamage: String(raw?.hitDamage ?? "").trim(),
+    printed: PRINTED_KEYS.includes(String(raw?.printed ?? "")) ? String(raw.printed) : "",
+    limited: limitedFactor(raw?.limited),
   };
 }
 
@@ -399,6 +411,11 @@ function projectileOn(projectile: string, on: AmmunitionSwitches): boolean {
  * gun's leave.
  */
 export function firedProjectile(load: HighTechLoad, gun: ProjectileGun, on: AmmunitionSwitches): ProjectileLoad {
+  // A printed round is the book's own: its projectile option, whatever the gun's record, and nothing added to it.
+  const printed = firedPrinted(load, gun, on);
+  if (printed) {
+    return { projectile: printed.projectile, shotMm: 0, shotCount: 0, material: "", projectileUpgrades: [], poisonCost: 0, hitDamage: "", liquid: load.liquid, printed: printed.key };
+  }
   const projectile: Projectile = load.projectile && projectileOn(load.projectile, on) && !projectileRefusal(load.projectile, gun) ? load.projectile : "";
   return {
     projectile,
@@ -412,8 +429,33 @@ export function firedProjectile(load: HighTechLoad, gun: ProjectileGun, on: Ammu
   };
 }
 
+/** Whether a printed round's switch is on: the switch of the projectile option it is. */
+function familyOn(family: PrintedFamily, on: AmmunitionSwitches): boolean {
+  if (family === "kinetic") return on.projectiles?.() === true;
+  if (family === "multiple") return on.multiple?.() === true;
+  if (family === "explosive") return on.explosive?.() === true;
+  return on.cargo?.() === true;
+}
+
+/** The printed round a load fires (pp. 103, 143), where its switch is on and the gun takes it; null for none. */
+export function firedPrinted(load: Pick<HighTechLoad, "printed">, gun: ProjectileGun, on: AmmunitionSwitches): PrintedRound | null {
+  const round = load.printed ? printedRound(load.printed) : null;
+  if (!round || !familyOn(round.family, on)) return null;
+  return firesPrinted(round, { calibre: gun.calibre }) ? round : null;
+}
+
+/** The printed rounds the sheet offers a gun: those whose switch is on and the gun takes, and the one chosen. */
+function printedChoices(load: HighTechLoad, gun: ProjectileGun, on: AmmunitionSwitches): Array<Record<string, unknown>> {
+  const offered = printedRoundsFor({ calibre: gun.calibre }).filter((r) => familyOn(r.family, on));
+  if (!offered.length) return [];
+  return [
+    { value: "", label: L("PrintedNone"), selected: !load.printed },
+    ...offered.map((r) => ({ value: r.key, label: F(`Printed.${r.key}`, { tl: r.tl }), selected: r.key === load.printed })),
+  ];
+}
+
 /** Whether a fired projectile changes anything. */
-const hasProjectile = (p: ProjectileLoad): boolean => Boolean(p.projectile || p.material || p.projectileUpgrades.length);
+const hasProjectile = (p: ProjectileLoad): boolean => Boolean(p.projectile || p.material || p.projectileUpgrades.length || p.printed);
 
 /** The factor distances underwater are multiplied by for a mode's projectile (p. 169), or 0 for the gun's own. */
 export function projectileUnderwaterFactor(item: any, modeIndex: number, on: AmmunitionSwitches): number {
@@ -452,8 +494,10 @@ function boxFacts(box: any, load: HighTechLoad, projectile = ""): GunFacts {
 
 /** The upgrades a mode's load fires with: those the gun takes, with the projectile it fires. */
 function firedUpgrades(item: any, modeIndex: number, load: HighTechLoad, on: AmmunitionSwitches): AmmunitionUpgrade[] {
-  const projectile = firedProjectile(load, projectileGun(item, modeIndex), on).projectile;
-  return allowedUpgrades(load.upgrades, gunFacts(item, modeIndex, projectile));
+  const fired = firedProjectile(load, projectileGun(item, modeIndex), on);
+  // A printed round is sold as the book prints it (pp. 103, 143).
+  if (fired.printed) return [];
+  return allowedUpgrades(load.upgrades, gunFacts(item, modeIndex, fired.projectile));
 }
 
 /** Whether a mode fires paper cartridges, which halve a muzzle-loader's loading time (p. 163). */
@@ -468,8 +512,11 @@ export function firesPaperCartridges(item: any, modeIndex: number, on: Ammunitio
  * penalty. Null where the load changes nothing.
  */
 export function ammunitionHearing(item: any, on: AmmunitionSwitches, modeIndex = 0): { silent: boolean; penalty: number } | null {
-  if (!on.upgrades() || !isFirearmItem(item)) return null;
+  if (!isFirearmItem(item)) return null;
   const load = loadIn(item, modeIndex).load;
+  // A printed silent round: the 12-gauge silent shot, the silent HE grenade (pp. 103, 143).
+  if (firedPrinted(load, projectileGun(item, modeIndex), on)?.silent) return { silent: true, penalty: 0 };
+  if (!on.upgrades()) return null;
   const upgrades = firedUpgrades(item, modeIndex, load, on);
   if (!upgrades.length) return null;
   const mode = rangedModes(item)[modeIndex] ?? {};
@@ -609,6 +656,9 @@ export async function loadBatch(api: GWorldApi, item: any, modeIndex: number, on
   const actor = item?.actor ?? null;
   const load = isBox(item) ? ownLoad(item, 0) : loadIn(item, modeIndex).load;
   const row = isBox(item) ? boxCalibre(item, load) : gunCalibre(item);
+  const fired = firedProjectile(load, isBox(item) ? boxProjectileGun(item, load) : projectileGun(item, modeIndex), on);
+  // Casting the projectiles too (p. 174): the book's examples as the modifier offered, the GM's to change.
+  const casting = castingModifier(fired.projectile, fired.material);
   const option = (value: string, label: string, selected: boolean) => `<option value="${esc(value)}"${selected ? " selected" : ""}>${esc(label)}</option>`;
   const asked = await (foundry.applications.api as any).DialogV2.prompt({
     window: { title: L("BatchTitle") },
@@ -616,18 +666,23 @@ export async function loadBatch(api: GWorldApi, item: any, modeIndex: number, on
       <label>${esc(L("BatchTool"))} <select name="tool">${HANDLOADING_TOOLS.map((t) => option(t, F(`Tool.${t}`, TOOLS[t]), t === "press")).join("")}</select></label>
       <label>${esc(L("BatchSource"))} <select name="source">${["handloaded", "reloaded"].map((s) => option(s, L(`Source.${s}`), (load.source || "handloaded") === s)).join("")}</select></label>
       <label>${esc(L("BatchRounds"))} <input type="number" name="rounds" value="20" min="1" step="1" style="width:90px"></label>
+      <label class="icheck" data-tooltip="${esc(L("CastHint"))}"><input type="checkbox" name="cast"> ${esc(L("Cast"))}</label>
+      <label>${esc(L("CastModifier"))} <input type="number" name="castModifier" value="${casting === "factory" ? 0 : casting}" step="1" style="width:70px"></label>
     </div>`,
     ok: {
       label: L("BatchLoad"),
       callback: (_e: Event, button: HTMLElement) => {
         const form = button.closest<HTMLElement>(".application");
         const get = (name: string) => form?.querySelector<HTMLInputElement | HTMLSelectElement>(`[name="${name}"]`)?.value ?? "";
-        return { tool: get("tool"), source: get("source"), rounds: Math.max(1, Math.floor(Number(get("rounds")) || 1)) };
+        const cast = form?.querySelector<HTMLInputElement>('[name="cast"]')?.checked === true;
+        return { tool: get("tool"), source: get("source"), rounds: Math.max(1, Math.floor(Number(get("rounds")) || 1)), cast, castModifier: Math.trunc(Number(get("castModifier")) || 0) };
       },
     },
     rejectClose: false,
-  }) as { tool: HandloadingTool; source: AmmunitionSource; rounds: number } | null;
+  }) as { tool: HandloadingTool; source: AmmunitionSource; rounds: number; cast: boolean; castModifier: number } | null;
   if (!asked) return;
+  if (asked.cast && casting === "factory") return void ui.notifications?.warn(L("CastFactory"));
+  const cast = asked.cast ? asked.castModifier : 0;
   const level = armoury(api, actor);
   if (level === null) return void ui.notifications?.warn(L("NoSkills"));
   const reloads = asked.source === "reloaded";
@@ -642,15 +697,15 @@ export async function loadBatch(api: GWorldApi, item: any, modeIndex: number, on
     const roll = new Roll("3d6");
     await roll.evaluate();
     rolls.push(roll);
-    const outcome: any = api.rules.resolveSuccess(Number(roll.total), level + (reloads ? RELOADING_BONUS : 0) + silver);
+    const outcome: any = api.rules.resolveSuccess(Number(roll.total), level + (reloads ? RELOADING_BONUS : 0) + silver + cast);
     if (!outcome.success) failures += 1;
     if (outcome.criticalSuccess) criticalSuccess = true;
     if (outcome.criticalFailure) criticalFailure = true;
   }
   const minutes = reloads && criticalSuccess ? Math.ceil(time.minutes * (1 - CRITICAL_TIME_SAVED)) : time.minutes;
-  const lines = [F("BatchLine", { rounds: asked.rounds, tool: L(`ToolName.${asked.tool}`), minutes, rolls: time.rolls, failures, level: level + (reloads ? RELOADING_BONUS : 0) + silver })];
+  const lines = [F("BatchLine", { rounds: asked.rounds, tool: L(`ToolName.${asked.tool}`), minutes, rolls: time.rolls, failures, level: level + (reloads ? RELOADING_BONUS : 0) + silver + cast })];
   if (silver) lines.push(F("BatchSilver", { modifier: silver }));
-  const fired = firedProjectile(load, isBox(item) ? boxProjectileGun(item, load) : projectileGun(item, modeIndex), on);
+  if (asked.cast) lines.push(F("BatchCast", { modifier: cast }));
   if (row) lines.push(F("BatchMaterials", { cost: Math.round(perShot(row, [], asked.source, projectileMultiples(fired)).cps * asked.rounds * 100) / 100 }));
   if (reloads && criticalSuccess) lines.push(L("BatchFaster"));
   const next: HighTechLoad = { ...load, mode: isBox(item) ? 0 : modeIndex, source: asked.source };
@@ -693,20 +748,37 @@ async function convert(api: GWorldApi, item: any, to: string): Promise<boolean> 
 
 const money = (n: number) => `$${Math.round(n * 100) / 100}`;
 
+/**
+ * A round's cost and weight per shot, before any discount: a printed round
+ * at the book's price (its experimental one in limited production), any
+ * other at the table's CPS times its upgrades and projectile, and five to ten
+ * times that in limited production (p. 166).
+ */
+function shotPrice(row: CalibreRow, load: HighTechLoad, upgrades: AmmunitionUpgrade[], source: AmmunitionSource, projectile: ProjectileLoad): { cps: number; wps: number; multiple: number; add: number; lc: number | null } {
+  const printed = projectile.printed ? printedRound(projectile.printed) : null;
+  if (printed) return { cps: printedCps(printed, load.limited), wps: row.wps, multiple: 1, add: 0, lc: printed.lc };
+  const extra = projectileMultiples(projectile);
+  const limited = load.limited || 1;
+  const shot = perShot(row, upgrades, source, { cps: extra.cps * limited, add: extra.add });
+  const multiples = upgradeMultiples(upgrades);
+  const lc = [multiples.lc, extra.lc].filter((n): n is number => n !== null);
+  return { ...shot, multiple: Math.round(multiples.cps * extra.cps * limited * 1000) / 1000, add: extra.add, lc: lc.length ? Math.min(...lc) : null };
+}
+
 /** The line naming a round's cost and weight with a load's upgrades and projectile. */
 function priceLine(row: CalibreRow, load: HighTechLoad, upgrades: AmmunitionUpgrade[], on: AmmunitionSwitches, projectile: ProjectileLoad, rounds?: number): string {
-  const source = on.handloading() ? load.source : "";
-  const extra = projectileMultiples(projectile);
-  const shot = perShot(row, upgrades, source, extra);
-  const multiples = upgradeMultiples(upgrades);
+  const source = on.handloading() && !projectile.printed ? load.source : "";
+  const shot = shotPrice(row, load, upgrades, source, projectile);
   const off = [rounds === undefined ? 0 : bulkDiscount(rounds), load.discount].filter(Boolean);
   const cps = discounted(shot.cps, ...off);
-  const parts = [F("PerShot", { cps: money(cps), wps: shot.wps, table: money(row.cps), multiple: Math.round(multiples.cps * extra.cps * 1000) / 1000 })];
-  if (extra.add) parts.push(F("PoisonLine", { cost: money(extra.add) }));
+  const parts = [projectile.printed
+    ? F("PrintedPerShot", { cps: money(cps), wps: shot.wps })
+    : F("PerShot", { cps: money(cps), wps: shot.wps, table: money(row.cps), multiple: shot.multiple })];
+  if (shot.add) parts.push(F("PoisonLine", { cost: money(shot.add) }));
+  if (load.limited) parts.push(F("LimitedLine", { factor: load.limited }));
   if (source) parts.push(L(`SourceLine.${source}`));
   if (off.length) parts.push(F("Discounts", { percents: off.map((p) => `${p}%`).join(", ") }));
-  const lc = [multiples.lc, extra.lc].filter((n): n is number => n !== null);
-  if (lc.length) parts.push(F("Lc", { lc: Math.min(...lc) }));
+  if (shot.lc !== null) parts.push(F("Lc", { lc: shot.lc }));
   return parts.join(" ");
 }
 
@@ -749,9 +821,34 @@ function cargoContext(load: HighTechLoad, fired: ProjectileLoad, gun: Projectile
 /** The sheet's projectile fields for a load: the projectile, a multiple load's size and count, poison, material, upgrades. */
 function projectileContext(load: HighTechLoad, gun: ProjectileGun, on: AmmunitionSwitches): Record<string, unknown> {
   const fired = firedProjectile(load, gun, on);
+  const printed = fired.printed ? printedRound(fired.printed) : null;
+  // Limited-production and experimental rounds (p. 166).
+  const limited = on.upgrades() || anyProjectiles(on)
+    ? LIMITED_FACTORS.map((n) => ({ value: n, label: n ? `×${n}` : L("LimitedNone"), selected: n === load.limited }))
+    : [];
+  const printedList = printedChoices(load, gun, on);
+  if (printed) {
+    // The book's round: its figures are its own, and only a smoke round's colour is left to choose.
+    const cargo = cargoContext(load, fired, gun);
+    return {
+      printed: printedList,
+      printedHint: L(`PrintedHint.${printed.key}`),
+      limited,
+      projectiles: [],
+      cargo: cargo?.smokes ? { smokes: cargo.smokes } : null,
+      projectileHint: "",
+      shot: null,
+      poison: null,
+      materials: [],
+      projectileUpgrades: [],
+    };
+  }
   const sized = ["shotshell", "canister", "multiFlechette", "rubberShot", "buckAndBall"].includes(fired.projectile);
   const filled = sized ? multipleLoad(fired, gun) : null;
   return {
+    printed: printedList,
+    printedHint: L("PrintedHint.none"),
+    limited,
     projectiles: on.projectiles?.() || on.multiple?.() || on.explosive?.() || on.cargo?.() ? projectileChoices(load, gun, on) : [],
     cargo: cargoContext(load, fired, gun),
     projectileHint: L(`ProjectileHint.${fired.projectile || "solid"}`),
@@ -792,7 +889,7 @@ function gunContext(item: any, on: AmmunitionSwitches): Record<string, unknown> 
       index,
       name: String(m.name || F("Mode", { index: index + 1 })),
       boxed: boxed ? F("FromBox", { box: box.name }) : "",
-      upgrades: on.upgrades() && !boxed ? upgradeChoices(load, facts) : [],
+      upgrades: on.upgrades() && !boxed && !fired.printed ? upgradeChoices(load, facts) : [],
       ...(boxed ? {} : projectileContext(load, gun, on)),
       // The rounds in the gun: its own calibre's, or the other round loaded.
       price: (on.upgrades() || anyProjectiles(on)) && (roundIn(item, index) ?? calibre) ? priceLine((roundIn(item, index) ?? calibre)!, load, on.upgrades() ? upgrades : [], on, fired) : "",
@@ -836,7 +933,7 @@ function boxContext(item: any, on: AmmunitionSwitches): Record<string, unknown> 
     modes: [{
       index: 0,
       name: "",
-      upgrades: on.upgrades() ? upgradeChoices(load, facts) : [],
+      upgrades: on.upgrades() && !fired.printed ? upgradeChoices(load, facts) : [],
       ...projectileContext(load, gun, on),
       price: priced && row ? priceLine(row, load, on.upgrades() ? upgrades : [], on, fired, quantity) : priced ? L("NoCalibre") : "",
       handloading: on.handloading() && canHandload(row),
@@ -883,6 +980,8 @@ function listeners(api: GWorldApi, element: HTMLElement, item: any, on: Ammuniti
       } else if (field === "source") await storeLoad(item, { ...load, source: input.value as AmmunitionSource });
       else if (field === "calibre") await storeLoad(item, { ...load, calibre: input.value.trim() });
       else if (field === "projectile") await storeLoad(item, { ...load, projectile: input.value as Projectile, shotMm: 0, shotCount: 0 });
+      else if (field === "printed") await storeLoad(item, { ...load, printed: input.value });
+      else if (field === "limited") await storeLoad(item, { ...load, limited: limitedFactor(input.value) });
       else if (field === "material") await storeLoad(item, { ...load, material: input.value as BulletMaterial });
       else if (field === "shotMm" || field === "shotCount" || field === "poisonCost" || field === "radius" || field === "seconds") {
         const value = Math.max(0, Number(input.value) || 0);
@@ -922,6 +1021,16 @@ function listeners(api: GWorldApi, element: HTMLElement, item: any, on: Ammuniti
 
 /** A mode's load as it is fired: the stored load with the projectile the switches and the gun let through. */
 type FiredLoad = HighTechLoad & { fired: ProjectileLoad };
+
+/** What a printed round does that its figures can't carry (pp. 103, 143). */
+function printedNotes(round: PrintedRound): Array<{ key: string; data?: Record<string, unknown> }> {
+  const notes: Array<{ key: string; data?: Record<string, unknown> }> = [];
+  if (round.noCycle) notes.push({ key: "noCycle" });
+  if (round.everySeconds) notes.push({ key: "everySeconds", data: { seconds: round.everySeconds } });
+  if (round.cloud) notes.push({ key: "printedCloud", data: { ...round.cloud } });
+  if (round.silent) notes.push({ key: "silent" });
+  return notes;
+}
 
 /** A projectile's tag: its name, a multiple load's size and count, a cargo round's kind. */
 function projectileLabel(fired: ProjectileLoad, gun: ProjectileGun, load?: HighTechLoad): string {
@@ -964,6 +1073,13 @@ function withoutBasicRound(api: GWorldApi, row: LoadRow, place: LoadPlace): Load
  */
 function blastOf(after: LoadRow, load: FiredLoad, gun: ProjectileGun, on: AmmunitionSwitches): LoadRow {
   const p = load.fired.projectile;
+  // A printed round's blast is the one the book prints for it; an explosive one is incendiary (p. 169).
+  if (load.fired.printed) {
+    const notes = [...after.notes];
+    if (p === "thermobaric") notes.push({ key: "thermobaric" });
+    if (p === "illumination") notes.push({ key: "flareBurn", data: { dice: FLARE_BURN.dice, seconds: FLARE_BURN.seconds } });
+    return { ...after, incendiary: after.incendiary || isExplosiveProjectile(p), notes };
+  }
   let row = after;
   const notes = [...after.notes];
   if (isExplosiveProjectile(p)) {
@@ -994,15 +1110,17 @@ function cargoLoadIn(item: any, modeIndex: number, on: AmmunitionSwitches): Carg
   const gun = projectileGun(item, modeIndex);
   const fired = firedProjectile(load, gun, on);
   if (!fired.projectile || !(isCargo(fired.projectile) || isExplosiveProjectile(fired.projectile))) return null;
+  // A printed round's cloud or light is the one the book prints (pp. 103, 143).
+  const cloud = fired.printed ? printedRound(fired.printed)?.cloud : undefined;
   return {
     projectile: fired.projectile,
     smoke: load.smoke,
-    illumination: load.illumination,
-    vomiting: load.vomiting,
+    illumination: fired.printed ? "parachute" : load.illumination,
+    vomiting: fired.printed ? false : load.vomiting,
     liquid: load.liquid,
     poisonFiller: load.poisonFiller,
-    radius: load.radius,
-    seconds: load.seconds,
+    radius: cloud?.radius ?? load.radius,
+    seconds: cloud?.seconds ?? load.seconds,
     tl: gun.tl,
   };
 }
@@ -1028,6 +1146,8 @@ export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
     return { fired: firedProjectile(load, gun, on), gun, poison: load.poisonFiller };
   });
   readyCargo(api, { explosive: () => on.explosive?.() === true, cargo: () => on.cargo?.() === true, gas: () => on.gas?.() === true }, (item, modeIndex) => cargoLoadIn(item, modeIndex, on));
+  // What the printed rounds do beyond their figures: the flame jet's pace, rock salt's pain, the net (pp. 103, 143).
+  readyPrinted(api, (item, modeIndex) => (isFirearmItem(item) ? firedPrinted(loadIn(item, modeIndex).load, projectileGun(item, modeIndex), on) : null));
   api.sheets.registerSheetSection({
     module: MODULE_ID,
     key: "ht-ammunition-item",
@@ -1049,10 +1169,10 @@ export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
       const row = boxCalibre(item, load);
       if (!row) return null;
       const fired = firedProjectile(load, boxProjectileGun(item, load), on);
-      // Rounds are priced from the table with the upgrades on, or where the box's projectile changes them.
-      if (!on.upgrades() && !hasProjectile(fired)) return null;
-      const upgrades = on.upgrades() ? allowedUpgrades(load.upgrades, boxFacts(item, load, fired.projectile)) : [];
-      const shot = perShot(row, upgrades, on.handloading() ? load.source : "", projectileMultiples(fired));
+      // Rounds are priced from the table with the upgrades on, or where the box's projectile, or limited production, changes them.
+      if (!on.upgrades() && !hasProjectile(fired) && !(load.limited && anyProjectiles(on))) return null;
+      const upgrades = on.upgrades() && !fired.printed ? allowedUpgrades(load.upgrades, boxFacts(item, load, fired.projectile)) : [];
+      const shot = shotPrice(row, load, upgrades, on.handloading() && !fired.printed ? load.source : "", fired);
       const quantity = Math.max(0, Math.floor(Number(item.system?.quantity) || 0));
       return { cost: discounted(shot.cps, bulkDiscount(quantity), load.discount), weight: shot.wps, label: F("PriceLabel", { round: row.name }) };
     },
@@ -1080,7 +1200,21 @@ export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
       let before = start;
       let factor = 1;
       let effectOf: ReturnType<typeof projectileRow> | null = null;
-      if (hasProjectile(load.fired)) {
+      const printed = load.fired.printed ? printedRound(load.fired.printed) : null;
+      if (printed) {
+        // The book's own figures (pp. 103, 143); "as slug" is the higher Rcl the gun lists.
+        const slugRecoil = Math.max(Number(start.recoil) || 0, ...rangedModes(place.item).map((m) => Number(m?.recoil) || 0));
+        const made = printedRow({ damage: start.damage, damageType: start.damageType, armorDivisor: start.armorDivisor, halfDamageRange: start.halfDamageRange, maxRange: start.maxRange, accuracy: start.accuracy ?? 0, projectiles: start.projectiles, recoil: start.recoil ?? 0, minSt: start.minSt ?? 0 }, printed, slugRecoil);
+        const { followUp, minRange, coneMaxWidth, ...figures } = made;
+        before = {
+          ...start, ...figures,
+          followUp: followUp ? { ...followUp, label: L("PrintedLine") } : null,
+          fragmentationType: "", fragmentationDivisor: 1, fragmentationLingerEvery: 0, fragmentationLingerFor: 0, blastPlacement: "",
+        };
+        if (minRange !== undefined) before.minRange = minRange;
+        if (coneMaxWidth) Object.assign(before, { coneMaxWidth, areaAttack: true });
+        notes.push(...printedNotes(printed));
+      } else if (hasProjectile(load.fired)) {
         if (load.fired.projectile) {
           const plain = withoutBasicRound(api, start, place);
           if (plain) {
@@ -1119,7 +1253,10 @@ export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
       return blastOf(after, load, gun, on);
     },
     tags: (load, after, place) => [
-      ...(load.fired.projectile ? [{ label: projectileLabel(load.fired, projectileGun(place.item, place.modeIndex), load), hint: L(`ProjectileHint.${load.fired.projectile}`) }] : []),
+      ...(load.fired.printed
+        ? [{ label: F(`Printed.${load.fired.printed}`, { tl: printedRound(load.fired.printed)?.tl ?? "" }), hint: L(`PrintedHint.${load.fired.printed}`) }]
+        : load.fired.projectile ? [{ label: projectileLabel(load.fired, projectileGun(place.item, place.modeIndex), load), hint: L(`ProjectileHint.${load.fired.projectile}`) }] : []),
+      ...(load.limited ? [{ label: F("LimitedTag", { factor: load.limited }), hint: L("LimitedHint") }] : []),
       ...(load.fired.material ? [{ label: L(`Material.${load.fired.material}`), hint: L(`MaterialHint.${load.fired.material}`) }] : []),
       ...load.fired.projectileUpgrades.map((u) => ({ label: L(`ProjectileUpgrade.${u}`), hint: L(`ProjectileUpgradeHint.${u}`) })),
       ...load.upgrades.map((u) => ({ label: L(`Upgrade.${u}`), hint: L(`UpgradeHint.${u}`) })),

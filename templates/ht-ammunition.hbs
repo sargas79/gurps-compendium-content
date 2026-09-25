@@ -30,6 +30,15 @@
         {{/each}}
       </div>
     {{/if}}
+    {{#if m.printed.length}}
+      <div class="ifields">
+        <label data-tooltip="{{m.printedHint}}">{{localize "GCC.HT.Ammunition.PrintedLabel"}}
+          <select data-gcc-ht-ammo="printed" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+            {{#each m.printed as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      </div>
+    {{/if}}
     {{#if m.projectiles.length}}
       <div class="ifields">
         <label data-tooltip="{{m.projectileHint}}">{{localize "GCC.HT.Ammunition.ProjectileLabel"}}
@@ -150,6 +159,15 @@
       </div>
     {{/if}}
     {{#if m.misload}}<p class="ihint">{{m.misload}}</p>{{/if}}
+    {{#if m.limited.length}}
+      <div class="ifields">
+        <label data-tooltip="{{localize 'GCC.HT.Ammunition.LimitedHint'}}">{{localize "GCC.HT.Ammunition.LimitedLabel"}}
+          <select data-gcc-ht-ammo="limited" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+            {{#each m.limited as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      </div>
+    {{/if}}
     {{#if m.price}}<p class="ihint">{{m.price}}</p>{{/if}}
     {{#if m.shop}}
       <p class="ihint">
