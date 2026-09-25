@@ -10,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { MODULE_ID } from "../../../shared/module.js";
 import * as rules from "../../../../system/src/rules/index.js";
-import { checkBotulinHealed, checkPsychiatricExpired, drugData, readyDrugs } from "./index.js";
+import { checkBotulinHealed, checkPendingDoses, checkPsychiatricExpired, drugData, readyDrugs } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -220,6 +220,7 @@ describe("hygiene and drugs (High-Tech pp. 221, 226-227)", () => {
     const patient = person();
     successResult = { success: false, margin: 3, criticalFailure: false };
     const morphine = gear("Morphine");
+    dialogAnswers = [{ route: "injected" }];
     await run("ht-drug-give", morphine, patient);
     expect(successes[0]).toMatchObject({ actor: patient, base: 10, modifiers: [{ value: -4 }] });
     expect(applied).toEqual([
@@ -234,7 +235,9 @@ describe("hygiene and drugs (High-Tech pp. 221, 226-227)", () => {
 
   it("does nothing for a patient who resists the morphine", async () => {
     const patient = person();
+    dialogAnswers = [{ route: "injected" }];
     await run("ht-drug-give", gear("Morphine"), patient);
+    expect(successes).toHaveLength(1);
     expect(applied).toEqual([]);
     expect(traitEffects(patient).effects.noShock).toBe(false);
   });
@@ -318,6 +321,7 @@ describe("hygiene and drugs (High-Tech pp. 221, 226-227)", () => {
   it("counts a second depressant as a doubled dose at -2, and overdoses on its critical failure", async () => {
     const patient = person([], { conditionList: [{ id: `${MODULE_ID}.htTruthSerum`, label: "Truth Serum" }] });
     successResult = { success: false, margin: 11, criticalFailure: true };
+    dialogAnswers = [{ route: "injected" }];
     await run("ht-drug-give", gear("Morphine"), patient);
     expect(successes[0].modifiers).toEqual([
       { label: "GCC.HT.Drugs.PainkillerLine", value: -4 },
@@ -331,6 +335,7 @@ describe("hygiene and drugs (High-Tech pp. 221, 226-227)", () => {
 
   it("gives a single dose no doubling and no overdose, even on a critical failure", async () => {
     successResult = { success: false, margin: 11, criticalFailure: true };
+    dialogAnswers = [{ route: "injected" }];
     await run("ht-drug-give", gear("Morphine"), person());
     expect(successes[0].modifiers).toHaveLength(1);
     expect(dosed).toEqual([]);
@@ -338,13 +343,46 @@ describe("hygiene and drugs (High-Tech pp. 221, 226-227)", () => {
   });
 
   it("costs truth serum's 1d FP and puts -2 on Will and self-control for (20 - HT)/2 minutes on a failed HT-1", async () => {
-    const subject = person();
+    const subject = person([], { uuid: "Actor.subject" });
+    const giver = person([], { uuid: "Actor.giver" });
+    vi.stubGlobal("fromUuidSync", (uuid: string) => (uuid === "Actor.subject" ? subject : null));
     targets = [subject];
     successResult = { success: false, margin: 1, criticalFailure: false };
-    await run("ht-drug-give", gear("Truth Serum"), person());
+    const serum = gear("Truth Serum");
+    await run("ht-drug-give", serum, giver);
+    // After 30 seconds (p. 227): nothing yet, the dose used and the delay on the card.
+    expect(serum.system.quantity).toBe(0);
+    expect(injuries).toEqual([]);
+    expect(successes).toEqual([]);
+    expect(chat.at(-1)).toContain("DoseInSeconds");
+    worldTime += 29;
+    expect(await checkPendingDoses(fakeApi() as never, giver)).toBe(0);
+    worldTime += 1;
+    expect(await checkPendingDoses(fakeApi() as never, giver)).toBe(1);
+    expect(giver.getFlag(MODULE_ID, "htPendingDoses")).toEqual([]);
+    expect(await checkPendingDoses(fakeApi() as never, giver)).toBe(0);
     expect(injuries).toEqual([expect.objectContaining({ actor: subject, amount: 4, spent: true, exertion: false })]);
     expect(successes[0]).toMatchObject({ actor: subject, modifiers: [{ value: -1 }] });
     expect(applied[0]).toMatchObject({ actor: subject, key: "htTruthSerum", effects: { modifiers: [{ value: -2, rolls: ["Will", "selfControl"] }] }, duration: { seconds: 300 } });
+  });
+
+  it("gives swallowed morphine 20 minutes to work (Campaigns p. 441), through world time on the active GM's client", async () => {
+    const patient = person([], { uuid: "Actor.patient" });
+    successResult = { success: false, margin: 2, criticalFailure: false };
+    dialogAnswers = [{ route: "oral" }];
+    await run("ht-drug-give", gear("Morphine"), patient);
+    expect(successes).toEqual([]);
+    expect(chat.at(-1)).toContain("DoseInMinutes");
+    expect(chat.at(-1)).toContain('"minutes":20');
+    worldTime += 1199;
+    expect(await checkPendingDoses(fakeApi() as never, patient)).toBe(0);
+    // The GM's client makes it work once world time passes the 20 minutes.
+    vi.stubGlobal("game", { ...(globalThis as any).game, user: { id: "gm", isGM: true, targets: new Set() }, users: { activeGM: { id: "gm" } }, actors: [patient], scenes: [], time: { get worldTime() { return worldTime; } } });
+    worldTime += 1;
+    fire("updateWorldTime");
+    await flush();
+    expect(successes[0]).toMatchObject({ actor: patient, modifiers: [{ value: -4 }] });
+    expect(applied).toContainEqual(expect.objectContaining({ key: "htMorphine", duration: { seconds: 7200 } }));
   });
 
   it("wakes a stunned or unconscious character with smelling salts on a HT roll", async () => {

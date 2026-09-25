@@ -782,3 +782,116 @@ describe("optical recognition software (p. 207)", () => {
     expect(actions.get("ht-optical-recognition").visible(software)).toBe(false);
   });
 });
+
+describe("wireless surveillance cameras (pp. 206, 212)", () => {
+  const camera = (wireless: boolean) => gear("Video Surveillance Camera (TL8)", { tl: "8", extensions: { [MODULE_ID]: { device: { wireless } } } });
+
+  it("offers the wireless option at $100 more, and a radio jammer hinders only a wireless camera", async () => {
+    const price = prices.find((m) => m.key === "ht-wireless-camera");
+    const section = sections.get("ht-surveillance-item");
+    expect(section.visible(camera(true))).toBe(false);
+    expect(price.apply(camera(true), { cost: 150, weight: 1 })).toBeNull();
+    on.add(key("jamming"));
+    expect(section.visible(camera(false))).toBe(true);
+    expect(section.context(camera(false)).camera).toBe(true);
+    expect(price.apply(camera(true), { cost: 450, weight: 3 })).toMatchObject({ cost: 550, weight: 3 });
+    expect(price.apply(camera(false), { cost: 150, weight: 1 })).toBeNull();
+    expect(actions.get("jammer-use-near").visible(camera(false))).toBe(false);
+    expect(actions.get("jammer-use-near").visible(camera(true))).toBe(true);
+    expect(section.context(camera(true)).lines.join(" ")).toContain("Camera.Wireless");
+    // Used near a switched-on area jammer, the camera's Electronics Operation (Surveillance) contests its operator's EW.
+    character("Jammer", [gear("Area Jammer (TL8)", {}, { jammerOn: true })], { skills: { "Electronics Operation (EW)": 14 } }, 0);
+    const wireless = camera(true);
+    const watcher = character("Watcher", [wireless], { skills: { "Electronics Operation (Surveillance)": 13 } }, 100);
+    await actions.get("jammer-use-near").run(wireless, watcher);
+    expect(contests[0]).toMatchObject({ first: { actor: watcher, base: 13, note: "Electronics Operation (Surveillance)" }, second: { base: 14 } });
+  });
+});
+
+describe("the cellular monitoring system (p. 209)", () => {
+  function setUp() {
+    const monitor = gear("Cellular Monitoring System", { tl: "8" });
+    const agent = character("Agent", [monitor], {}, 0);
+    const phone = gear("Cellular Phone", { tl: "8" });
+    const mark = character("Mark", [phone], {}, 300);
+    targets = [mark];
+    return { monitor, agent, phone, mark };
+  }
+
+  it("follows the targeted character's phone, and jams it outright wherever it is", async () => {
+    const { monitor, agent, phone, mark } = setUp();
+    expect(actions.get("ht-cell-monitor").visible(monitor)).toBe(false);
+    on.add(key("surveillanceGear"));
+    on.add(key("jamming"));
+    expect(actions.get("ht-cell-monitor").visible(monitor)).toBe(true);
+    dialogAnswer = { phone: phone.id, mode: "log" };
+    await actions.get("ht-cell-monitor").run(monitor, agent);
+    expect(monitor.flags[MODULE_ID].cellMonitored).toEqual([{ phone: phone.id, name: "Cellular Phone", holder: "Mark", mode: "log" }]);
+    expect(chat.at(-1).content).toContain("Monitor.Now.log");
+    // Logging jams nothing.
+    await actions.get("jammer-use-near").run(phone, mark);
+    expect(chat.at(-1).content).toContain("Jamming.NoneInReach");
+    dialogAnswer = { phone: phone.id, mode: "jam" };
+    await actions.get("ht-cell-monitor").run(monitor, agent);
+    expect(monitor.flags[MODULE_ID].cellMonitored).toHaveLength(1);
+    await actions.get("jammer-use-near").run(phone, mark);
+    expect(chat.at(-1).content).toContain("Jamming.Blocked");
+    // Another phone, even next to the first, isn't touched; the system has no switch of its own.
+    const other = gear("Cellular Phone", { tl: "8" });
+    const bystander = character("Bystander", [other], {}, 300);
+    await actions.get("jammer-use-near").run(other, bystander);
+    expect(chat.at(-1).content).toContain("Jamming.NoneInReach");
+    expect(actions.get("jammer-switch").visible(monitor)).toBe(false);
+    expect(sections.get("ht-surveillance-item").context(monitor).lines.join(" ")).toContain("Monitor.Jamming");
+    // Stopped, the phone works again.
+    dialogAnswer = { phone: phone.id, mode: "stop" };
+    await actions.get("ht-cell-monitor").run(monitor, agent);
+    expect(monitor.flags[MODULE_ID].cellMonitored).toEqual([]);
+    await actions.get("jammer-use-near").run(phone, mark);
+    expect(chat.at(-1).content).toContain("Jamming.NoneInReach");
+  });
+
+  it("follows four calls at most, and traces a call to its holder", async () => {
+    const { monitor, agent, phone } = setUp();
+    on.add(key("surveillanceGear"));
+    monitor.flags[MODULE_ID].cellMonitored = [1, 2, 3, 4].map((i) => ({ phone: `other${i}`, name: "Cell Phone", holder: `Someone ${i}`, mode: "log" }));
+    dialogAnswer = { phone: phone.id, mode: "block" };
+    await actions.get("ht-cell-monitor").run(monitor, agent);
+    expect(chat.at(-1).content).toContain("Monitor.Full");
+    expect(monitor.flags[MODULE_ID].cellMonitored).toHaveLength(4);
+    dialogAnswer = { phone: phone.id, mode: "trace" };
+    await actions.get("ht-cell-monitor").run(monitor, agent);
+    expect(chat.at(-1).content).toContain("Monitor.Traced");
+    expect(chat.at(-1).content).toContain("\"holder\":\"Mark\"");
+    expect(successes).toEqual([]);
+  });
+});
+
+describe("computer intrusion (p. 215)", () => {
+  it("reads emissions on EW at -1 per 100 yards past 300, -3 for one machine among many, and not past the reach", async () => {
+    const gearTl7 = gear("Computer Monitoring Gear (TL7)");
+    const van = character("Van", [gearTl7], { skills: { "Electronics Operation (Communications)": 14 } }, 0);
+    expect(actions.get("ht-computer-monitoring").visible(gearTl7)).toBe(false);
+    on.add(key("surveillanceGear"));
+    dialogAnswer = { yards: 520, urban: false, specific: true };
+    await actions.get("ht-computer-monitoring").run(gearTl7, van);
+    // EW defaults to Communications-4 (p. 209).
+    expect(successes[0]).toMatchObject({ actor: van, base: 10, skill: "Electronics Operation (EW)", modifiers: [{ value: -3 }, { value: -3 }] });
+    expect(chat.at(-1).content).toContain("Emissions.Read");
+    dialogAnswer = { yards: 150, urban: true, specific: false };
+    await actions.get("ht-computer-monitoring").run(gearTl7, van);
+    expect(successes).toHaveLength(1);
+    expect(chat.at(-1).content).toContain("Emissions.OutOfUrbanReach");
+    expect(sections.get("ht-surveillance-item").context(gear("Computer Monitoring Gear (TL8)", { tl: "8" })).lines.join(" ")).toContain("Emissions.Software");
+  });
+
+  it("installs a keyboard bug on an Electronics Operation (Surveillance) roll", async () => {
+    const bug = gear("Keyboard Bug");
+    const spy = character("Spy", [bug], { skills: { "Electronics Operation (Surveillance)": 12 } });
+    on.add(key("surveillanceGear"));
+    await actions.get("ht-keyboard-bug").run(bug, spy);
+    expect(successes[0]).toMatchObject({ base: 12, skill: "Electronics Operation (Surveillance)" });
+    expect(chat.at(-1).content).toContain("KeyboardBug.Installed");
+    expect(sections.get("ht-surveillance-item").context(bug).lines.join(" ")).toContain("KeyboardBug.Line");
+  });
+});

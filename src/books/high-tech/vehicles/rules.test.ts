@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { shapedArmourMultiplier } from "../../../shared/vehicles/rules.js";
@@ -8,6 +10,7 @@ import {
   chargeOf,
   ctisCopes,
   extinguishTarget,
+  fitFromData,
   fitWith,
   fitsGunPort,
   flatTyres,
@@ -130,5 +133,35 @@ describe("crew (High-Tech pp. 234-235)", () => {
     expect(tankHearing({ motorRunning: false, intercom: false, outside: false })).toBe(0);
     expect(tankHearing({ motorRunning: true, intercom: true, outside: true })).toBe(-10);
     expect(tankHearing({ motorRunning: false, intercom: false, outside: true })).toBe(-3);
+  });
+});
+
+describe("the fits the records carry (pp. 232-244)", () => {
+  const PACK = join(import.meta.dirname, "../../../../books/high-tech/packs-src/equipment/high-tech-by-hand.json");
+  const records = (JSON.parse(readFileSync(PACK, "utf8")) as Array<{ name: string; system: any }>)
+    .filter((r) => r.system?.extensions?.["gurps-compendium-content"]?.htVehicleFit !== undefined);
+  const carried = (name: string) => records.find((r) => r.name === name)?.system.extensions["gurps-compendium-content"].htVehicleFit;
+
+  it("puts each of the chapter's vehicles' fit in its record, as the book's table gives it", () => {
+    for (const [name, fit] of Object.entries(HT_VEHICLES)) {
+      expect(carried(name), name).toEqual(fit);
+      expect(fitFromData(carried(name)), name).toEqual(fit);
+    }
+  });
+
+  it("gives the AML's diesel upgrade its HT 10x and Range 495, and the AML's fittings (p. 240)", () => {
+    const petrol = records.find((r) => r.name === "Panhard AML60-7")!;
+    const diesel = records.find((r) => r.name === "Panhard AML60-7 (Diesel)")!;
+    expect(diesel.system.vehicle).toEqual({ ...petrol.system.vehicle, fragility: "x", range: 495 });
+    expect(diesel.system.vehicle.ht).toBe(10);
+    expect(carried("Panhard AML60-7 (Diesel)")).toEqual(HT_VEHICLES["Panhard AML60-7"]);
+    expect(records.map((r) => r.name).sort()).toEqual([...Object.keys(HT_VEHICLES), "Panhard AML60-7 (Diesel)"].sort());
+  });
+
+  it("reads a record's fit safely, keeping only the components it names rightly", () => {
+    expect(fitFromData(null)).toBeNull();
+    expect(fitFromData([])).toBeNull();
+    expect(fitFromData({ turretReadies: 3, riveted: "yes", tank: true, spaced: [{ part: "hull", arcs: ["front", "sideways"] }, { part: "wing" }], skirts: [{ part: "turret", dr: 0 }], crewArmour: [{ post: "gunner", front: 5 }, { post: "pilot", front: 20 }] }))
+      .toEqual({ turretReadies: 3, tank: true, spaced: [{ part: "hull", arcs: ["front"] }], crewArmour: [{ post: "pilot", front: 20 }] });
   });
 });

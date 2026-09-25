@@ -1,6 +1,6 @@
 /**
  * High-Tech's security screening, surveillance and jamming (pp. 205-213,
- * 217), registered with the system through the add-on API under three
+ * 215, 217), registered with the system through the add-on API under three
  * switches. The figures are in `rules.ts`; the bug sweep's Quick Contest and
  * the jammers are the shared countersurveillance engine's
  * (`src/shared/surveillance/`), with this book's table.
@@ -29,13 +29,21 @@
  *     endoscope, copy a sealed document with the document scanner, build a
  *     bug at home at SM+9, and sweep for a bug with a bug detector: the Quick
  *     Contest with whoever hid it, at the detector's quality, +4 for a radio
- *     beacon, none possible for a phone tap or laser mike (pp. 208-212).
+ *     beacon, none possible for a phone tap or laser mike (pp. 208-212). A
+ *     cellular monitoring system follows up to four of the targeted
+ *     character's phones -- logging their calls, keeping incoming calls
+ *     from them, or jamming one outright wherever it is -- and traces a call
+ *     to its holder (p. 209). Computer monitoring gear reads a device's
+ *     emissions on Electronics Operation (EW) at the range's penalty, and a
+ *     keyboard bug is installed on Electronics Operation (Surveillance)
+ *     (p. 215).
  *   - **Jamming (jamming):** a jammer is switched on from its row; radio
  *     gear's row button rolls the Quick Contest against each switched-on
  *     jammer on the map within range, or the unopposed roll within 10 times
  *     its range; a cell-phone jammer blocks cellular beacons outright, and a
  *     call through it takes a Hearing roll at -2 to follow (pp. 212-213,
- *     revised by HT:EE p. 50).
+ *     revised by HT:EE p. 50). A surveillance camera may be built wireless,
+ *     at $100 more, and a radio jammer then hinders it (pp. 206, 212).
  *   - **Jammer varieties (jammerKinds):** an operated radio jammer -- the
  *     area jammer, the supplement's large and portable jammers -- is switched
  *     on as broad-spectrum (its operator's EW roll, then -2 to every user in
@@ -51,8 +59,8 @@
 
 import { isRuleOn } from "../../../shared/book-tables.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { ask, card, carried, distanceText, esc, itemTl, picked, row, sensorData, skillBase, worn } from "../../../shared/sensors/index.js";
-import { JAMMER_TABLES, bugSweepContest, readyJamming, type Jammable, type Jammer, type JammerTable } from "../../../shared/surveillance/index.js";
+import { ask, card, carried, distanceText, esc, itemTl, picked, row, sensorData, skillBase, worn, yardsBetween } from "../../../shared/sensors/index.js";
+import { JAMMER_TABLES, bugSweepContest, gearKey, readyJamming, type Jammable, type Jammer, type JammerTable } from "../../../shared/surveillance/index.js";
 import type { JammerVariety } from "../../../shared/surveillance/rules.js";
 import { ACTIVE_SENSORS, EW_FROM_COMM, radioByName } from "../sensors/rules.js";
 import { DIRECT_SEQUENCE, FREQUENCY_HOPPING, spreadJammingBonus } from "../sigint/rules.js";
@@ -109,6 +117,19 @@ import {
   isContactMike,
   isCellPhoneJammer,
   DOUBLE_RADIUS,
+  CELL_MONITOR_CALLS,
+  COMPUTER_MONITORING,
+  MONITOR_MODES,
+  WIRELESS_CAMERA,
+  computerMonitoringPenalty,
+  isCallPhone,
+  isCellMonitor,
+  isComputerMonitoring,
+  isKeyboardBug,
+  isSurveillanceCamera,
+  monitorPhone,
+  type Monitored,
+  type MonitorMode,
   type Screener,
   type ScreeningSearch,
   type SecurityTask,
@@ -169,6 +190,11 @@ const options = (values: readonly string[], label: (v: string) => string, select
 export function jammerFor(item: any, switches: JammingSwitches): Jammer | null {
   if (!isGear(item)) return null;
   const name = nameOf(item);
+  // A cellular monitoring system jams outright the phones it was set to jam, wherever they are (p. 209).
+  if (isCellMonitor(name)) {
+    const jammed = monitoredOf(item).filter((m) => m.mode === "jam").map((m) => m.phone);
+    return isRuleOn(switches.jamming) && jammed.length ? { range: Infinity, skill: null, blocks: "cellPhone", targets: jammed } : null;
+  }
   const adapted = isRuleOn(switches.jammerKinds) ? adaptedJammer(item) : null;
   if (adapted) return { range: adapted.range, skill: null, hinders: RADIO_GEAR, variety: "broad", operatorLines: [{ label: L("Jammer.AdaptedLine"), value: ADAPTED_JAMMER.modifier }] };
   const own = jammerByName(name);
@@ -237,10 +263,13 @@ export function ownJammerRange(item: any, range: number): number {
   return isCellPhoneJammer(nameOf(item)) && deviceData(item).doubleRadius ? range * DOUBLE_RADIUS.range : range;
 }
 
+/** A surveillance camera built wireless (p. 206). */
+export const isWirelessCamera = (item: any): boolean => isGear(item) && isSurveillanceCamera(nameOf(item)) && deviceData(item).wireless;
+
 /**
  * A record as gear a jammer hinders: radio gear while either radio-jamming
- * rule is on; a radar (pp. 45-46) while radar jamming is, used with
- * Electronics Operation (Sensors) (HT:EE p. 49).
+ * rule is on, a wireless camera among it (p. 212); a radar (pp. 45-46) while
+ * radar jamming is, used with Electronics Operation (Sensors) (HT:EE p. 49).
  */
 export function jammableFor(item: any, switches: JammingSwitches): Jammable | null {
   if (!isGear(item)) return null;
@@ -248,6 +277,7 @@ export function jammableFor(item: any, switches: JammingSwitches): Jammable | nu
   if (isRuleOn(switches.jamming) || isRuleOn(switches.jammerKinds)) {
     const gear = jammableByName(name, itemTl(item));
     if (gear) return gear;
+    if (isWirelessCamera(item)) return { skill: SURVEILLANCE, kind: "radio" };
   }
   if (isRuleOn(switches.radarJamming) && ACTIVE_SENSORS[name]?.kind === "radar") return { skill: SENSORS, kind: "radar" };
   return null;
@@ -274,6 +304,12 @@ export function spreadLines(item: any, variety: JammerVariety, spreadSpectrum: s
   return bonus ? [{ label: F(variety === "selective" ? "Jammer.Hopping" : "Jammer.DirectSequence", { name: String(item.name) }), value: bonus }] : [];
 }
 
+/** A character's Electronics Operation (EW), which defaults to Electronics Operation (Communications)-4 (p. 209). */
+export function ewLevel(api: GWorldApi, actor: any): number {
+  const comm = api.actors.skillLevel(actor, COMMUNICATIONS);
+  return api.actors.skillLevel(actor, EW) ?? (comm !== null ? comm + EW_FROM_COMM : skillBase(api, actor, EW));
+}
+
 /** High-Tech's jammers and the gear they hinder, behind the book's jamming switches. */
 export function highTechJammers(switches: JammingSwitches): JammerTable {
   return {
@@ -284,11 +320,7 @@ export function highTechJammers(switches: JammingSwitches): JammerTable {
     shadow: JAMMER_SHADOW,
     jammer: (item) => jammerFor(item, switches),
     jammable: (item) => jammableFor(item, switches),
-    // Electronics Operation (EW) defaults to Electronics Operation (Communications)-4 (p. 209).
-    operatorSkill: (api, actor) => {
-      const comm = api.actors.skillLevel(actor, COMMUNICATIONS);
-      return api.actors.skillLevel(actor, EW) ?? (comm !== null ? comm + EW_FROM_COMM : skillBase(api, actor, EW));
-    },
+    operatorSkill: ewLevel,
     varieties: JAMMER_VARIETY_PENALTIES,
     operatorModifiers: (actor) => analyzerLines(actor, switches.jammerKinds),
     gearModifiers: (item, variety) => spreadLines(item, variety, switches.spreadSpectrum),
@@ -344,14 +376,25 @@ export function surveillanceLines(item: any, on: { screening: boolean; surveilla
     if (/^security document scanner$/i.test(name)) lines.push(F("DocumentScanner", { modifier: DOCUMENT_SCANNER }));
     if (/^shielded room\b/i.test(name)) lines.push(F("ShieldedRoom", { modifier: SHIELDED_ROOM }));
     if (/^voice modulator$/i.test(name)) lines.push(L(tl >= 8 ? "VoiceModulatorTl8" : "VoiceModulatorTl7"));
+    if (isCellMonitor(name)) {
+      lines.push(F("Monitor.Line", { calls: CELL_MONITOR_CALLS }));
+      for (const m of monitoredOf(item)) lines.push(F("Monitor.Following", { phone: m.name, holder: m.holder, mode: L(`Monitor.Mode.${m.mode}`) }));
+    }
+    if (isComputerMonitoring(name)) {
+      lines.push(F("Emissions.Line", { ...COMPUTER_MONITORING, max: COMPUTER_MONITORING.max.toLocaleString("en-US"), least:-Math.ceil((COMPUTER_MONITORING.max - COMPUTER_MONITORING.free) / COMPUTER_MONITORING.per) }));
+      if (tl >= 8) lines.push(F("Emissions.Software", { complexity: COMPUTER_MONITORING.complexity }));
+    }
+    if (isKeyboardBug(name)) lines.push(L("KeyboardBug.Line"));
   }
+  if ((on.screening || on.jamming) && isWirelessCamera(item)) lines.push(F("Camera.Wireless", { range: distanceText(NS, WIRELESS_CAMERA.range), cost: WIRELESS_CAMERA.cost }));
   if (on.jamming) {
     const jammer = jammerByName(name);
     if (jammer?.blocks) lines.push(F("Jammer.Blocks", { range: ownJammerRange(item, jammer.range), hearing: CELL_PHONE_HEARING, shadow: JAMMER_SHADOW }));
     else if (jammer) lines.push(F(jammer.skill === null ? "Jammer.Operated" : "Jammer.Unmanned", { range: jammer.range, skill: jammer.skill ?? 0, shadow: JAMMER_SHADOW }));
     if (isCellPhoneJammer(name) && deviceData(item).doubleRadius) lines.push(F("Jammer.DoubleRadius", DOUBLE_RADIUS));
-    if (jammableByName(name, tl)) lines.push(F("Jammer.Hindered", { shadow: JAMMER_SHADOW }));
+    if (jammableByName(name, tl) || isWirelessCamera(item)) lines.push(F("Jammer.Hindered", { shadow: JAMMER_SHADOW }));
     if (isWhiteNoise(name) && !on.covert) lines.push(L("Jammer.WhiteNoise"));
+    if (isCellMonitor(name) && monitoredOf(item).some((m) => m.mode === "jam")) lines.push(L("Monitor.Jamming"));
   }
   if (on.jammerKinds) {
     const own = jammerByName(name);
@@ -690,15 +733,118 @@ export async function sweepForBugs(api: GWorldApi, item: any, actor: any, covert
   if (found !== null) await card(actor, label, [L(found ? "Sweep.Found" : "Sweep.Missed"), time]);
 }
 
+// ── cellular monitoring (p. 209) ──
+
+/** The flag a cellular monitoring system keeps the phones it follows in. */
+export const MONITOR_FLAG = "cellMonitored";
+
+/** The phones a cellular monitoring system follows. */
+export function monitoredOf(item: any): Monitored[] {
+  const list = item?.flags?.[MODULE_ID]?.[MONITOR_FLAG];
+  if (!Array.isArray(list)) return [];
+  return list
+    .filter((m: any) => m && typeof m.phone === "string" && m.phone && (MONITOR_MODES as readonly string[]).includes(m.mode))
+    .map((m: any) => ({ phone: m.phone, name: String(m.name ?? ""), holder: String(m.holder ?? ""), mode: m.mode as MonitorMode }));
+}
+
+/** Where a phone is: the character carrying it, found by its key. */
+function holderOf(key: string): any {
+  const found = (globalThis as any).fromUuidSync?.(key);
+  return found?.parent ?? null;
+}
+
+/**
+ * Following one phone with a cellular monitoring system (p. 209): one the
+ * targeted character carries, or one it already follows. It logs the
+ * phone's calls, keeps incoming calls from reaching it, or jams it outright
+ * (a jammer on that phone alone, wherever it is), up to four phones at a
+ * time; or it traces a call, which says where the phone's holder is. The
+ * book gives no roll for any of it.
+ */
+export async function monitorPhones(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const target = picked().target;
+  const phones = target ? [...(target.items ?? [])].filter((i: any) => carried(i) && isCallPhone(nameOf(i), itemTl(i))) : [];
+  const followed = monitoredOf(item);
+  const choices = [
+    ...phones.map((p: any) => ({ key: gearKey(p), name: String(p.name ?? ""), holder: String(target.name ?? ""), actor: target })),
+    ...followed.filter((m) => !phones.some((p: any) => gearKey(p) === m.phone)).map((m) => ({ key: m.phone, name: m.name, holder: m.holder, actor: null as any })),
+  ];
+  if (!choices.length) return void ui.notifications?.warn(L("Monitor.NoPhone"));
+  const title = F("Monitor.Title", { name: item.name });
+  const modes = [...MONITOR_MODES, "trace", "stop"];
+  const answer = await ask(title,
+    row(L("Monitor.Phone"), `<select name="phone">${choices.map((c) => `<option value="${esc(c.key)}">${esc(F("Monitor.PhoneOf", { phone: c.name, holder: c.holder }))}</option>`).join("")}</select>`)
+    + row(L("Monitor.Do"), `<select name="mode">${options(modes, (m) => L(`Monitor.Mode.${m}`))}</select>`),
+    (form) => ({ phone: value(form, "phone") || choices[0]!.key, mode: value(form, "mode") || "log" }));
+  if (!answer) return;
+  const choice = choices.find((c) => c.key === answer.phone);
+  if (!choice) return;
+  const said = { phone: choice.name, holder: choice.holder };
+  if (answer.mode === "trace") {
+    const holder = choice.actor ?? holderOf(choice.key);
+    const yards = holder ? yardsBetween(actor, holder) : null;
+    return void (await card(actor, title, [yards === null ? F("Monitor.TracedOff", said) : F("Monitor.Traced", { ...said, distance: distanceText(NS, yards) })]));
+  }
+  if (answer.mode === "stop") {
+    await item.setFlag(MODULE_ID, MONITOR_FLAG, followed.filter((m) => m.phone !== choice.key));
+    return void (await card(actor, title, [F("Monitor.Stopped", said)]));
+  }
+  const mode = answer.mode as MonitorMode;
+  const list = monitorPhone(followed, { phone: choice.key, name: choice.name, holder: choice.holder, mode });
+  if (!list) return void (await card(actor, title, [F("Monitor.Full", { calls: CELL_MONITOR_CALLS })]));
+  await item.setFlag(MODULE_ID, MONITOR_FLAG, list);
+  await card(actor, title, [F(`Monitor.Now.${mode}`, said)]);
+}
+
+// ── computer intrusion (p. 215) ──
+
+/**
+ * Reading a device's emissions with computer monitoring gear (p. 215):
+ * Electronics Operation (EW) at -1 per 100 yards past 300, out to 1,000
+ * yards, or 100 in a noisy city; -3 to pick out one machine among many. The
+ * distance is the targeted character's, where there is one.
+ */
+export async function readEmissions(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const target = picked().target;
+  const measured = target ? yardsBetween(actor, target) : null;
+  const title = F("Emissions.Title", { name: item.name });
+  const answer = await ask(title,
+    row(L("Emissions.Distance"), `<input type="number" name="yards" value="${Math.round(measured ?? 100)}" min="0" step="10" style="width:80px" />`)
+    + row(F("Emissions.Urban", { range: COMPUTER_MONITORING.urban }), `<input type="checkbox" name="urban" />`)
+    + row(F("Emissions.Specific", { modifier: COMPUTER_MONITORING.specific }), `<input type="checkbox" name="specific" />`),
+    (form) => ({ yards: number(form, "yards"), urban: check(form, "urban"), specific: check(form, "specific") }));
+  if (!answer) return;
+  const penalty = computerMonitoringPenalty(answer.yards, answer.urban);
+  if (penalty === null) return void (await card(actor, title, [F(answer.urban ? "Emissions.OutOfUrbanReach" : "Emissions.OutOfReach", { yards: answer.yards, range: answer.urban ? COMPUTER_MONITORING.urban : COMPUTER_MONITORING.max })]));
+  const modifiers = [
+    ...(penalty ? [{ label: F("Emissions.RangeLine", { yards: answer.yards }), value: penalty }] : []),
+    ...(answer.specific ? [{ label: L("Emissions.SpecificLine"), value: COMPUTER_MONITORING.specific }] : []),
+  ];
+  const result: any = await api.roll.success({ actor, base: ewLevel(api, actor), skill: EW, label: title, modifiers, tags: ["surveillance"], item } as any);
+  if (result) await card(actor, title, [L(result.success ? "Emissions.Read" : "Emissions.Nothing")]);
+}
+
+/** Planting a keyboard bug: tools, a few minutes at the keyboard, and an Electronics Operation (Surveillance) roll (p. 215). */
+export async function installKeyboardBug(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const label = F("KeyboardBug.Label", { name: item.name });
+  const result: any = await api.roll.success({ actor, base: skillBase(api, actor, SURVEILLANCE), skill: SURVEILLANCE, label, tags: ["surveillance"], item } as any);
+  if (result) await card(actor, label, [L(result.success ? "KeyboardBug.Installed" : "KeyboardBug.Failed")]);
+}
+
 /** Registers the section, the buttons, the GM tool, the spike mike's hearing and the jammers. */
 export function readySurveillance(api: GWorldApi, on: SurveillanceSwitches): void {
+  // The wireless option is offered where the cameras' page (screening) or the jammers that hinder them are on.
+  const cameraOption = (item: any) => (on.screening() || on.jamming()) && isGear(item) && isSurveillanceCamera(nameOf(item));
   const state = () => ({ screening: on.screening(), surveillance: on.surveillance(), jamming: on.jamming(), jammerKinds: on.jammerKinds(), radarJamming: on.radarJamming(), covert: on.covert?.() ?? false });
   api.sheets.registerSheetSection({
     module: MODULE_ID,
     key: "ht-surveillance-item",
     sheet: "item",
     template: `modules/${MODULE_ID}/templates/ht-surveillance-item.hbs`,
-    visible: (item) => surveillanceLines(item, state()).length > 0,
+    visible: (item) => surveillanceLines(item, state()).length > 0 || cameraOption(item),
     context: (item) => ({
       lines: surveillanceLines(item, state()),
       editable: Boolean(item?.isOwner ?? true),
@@ -706,6 +852,10 @@ export function readySurveillance(api: GWorldApi, on: SurveillanceSwitches): voi
       cellJammer: on.jamming() && isGear(item) && isCellPhoneJammer(nameOf(item)),
       doubleRadius: deviceData(item).doubleRadius,
       doubleRadiusHint: F("Jammer.DoubleRadiusHint", DOUBLE_RADIUS),
+      // A surveillance camera built wireless (p. 206).
+      camera: cameraOption(item),
+      wireless: deviceData(item).wireless,
+      wirelessHint: F("Camera.WirelessHint", { cost: WIRELESS_CAMERA.cost, range: distanceText(NS, WIRELESS_CAMERA.range) }),
     }),
     listeners: (element, item) => {
       element.querySelectorAll<HTMLInputElement>("[data-ht-surveillance]").forEach((input) => {
@@ -727,6 +877,14 @@ export function readySurveillance(api: GWorldApi, on: SurveillanceSwitches): voi
     },
   });
 
+  // A wireless surveillance camera: $100 more on the final cost (p. 206).
+  api.data.registerPriceModifier({
+    module: MODULE_ID,
+    key: "ht-wireless-camera",
+    types: ["equipment"],
+    apply: (item, price) => (cameraOption(item) && deviceData(item).wireless ? { cost: price.cost + WIRELESS_CAMERA.cost, weight: price.weight, label: L("Camera.WirelessLabel") } : null),
+  });
+
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ht-security-system", label: L("Security.Title"), icon: "fa-solid fa-shield-halved", visible: on.screening, open: () => securitySystem(api) });
 
   const named = (pattern: RegExp) => (item: any) => isGear(item) && pattern.test(nameOf(item));
@@ -740,6 +898,9 @@ export function readySurveillance(api: GWorldApi, on: SurveillanceSwitches): voi
     { key: "ht-endoscope", label: L("Endoscope.Title"), icon: "fa-solid fa-eye", visible: (item) => on.surveillance() && named(/^search endoscope$/i)(item), run: (item, actor) => endoscope(api, item, actor) },
     { key: "ht-document-scanner", label: L("DocumentTitle"), icon: "fa-solid fa-envelope-open-text", visible: (item) => on.surveillance() && named(/^security document scanner$/i)(item), run: (item, actor) => documentScanner(api, item, actor) },
     { key: "ht-homemade-bug", label: L("Bug.HomemadeTitle"), icon: "fa-solid fa-screwdriver-wrench", visible: (item) => on.surveillance() && isGear(item) && typeof bugOf(nameOf(item))?.sm === "number", run: (item, actor) => homemadeBug(api, item, actor) },
+    { key: "ht-cell-monitor", label: L("Monitor.Action"), icon: "fa-solid fa-mobile-screen", visible: (item) => on.surveillance() && isGear(item) && isCellMonitor(nameOf(item)), run: (item, actor) => monitorPhones(api, item, actor) },
+    { key: "ht-computer-monitoring", label: L("Emissions.Action"), icon: "fa-solid fa-desktop", visible: (item) => on.surveillance() && isGear(item) && isComputerMonitoring(nameOf(item)), run: (item, actor) => readEmissions(api, item, actor) },
+    { key: "ht-keyboard-bug", label: L("KeyboardBug.Action"), icon: "fa-solid fa-keyboard", visible: (item) => on.surveillance() && isGear(item) && isKeyboardBug(nameOf(item)), run: (item, actor) => installKeyboardBug(api, item, actor) },
     { key: "ht-bug-sweep", label: L("Sweep.Title"), icon: "fa-solid fa-bug", visible: (item) => on.surveillance() && named(/^bug detector$/i)(item), run: (item, actor) => sweepForBugs(api, item, actor, on.covert?.() ?? false) },
   ];
   for (const action of actions) api.sheets.registerRowAction({ module: MODULE_ID, itemTypes: ["equipment"], ...action });

@@ -12,7 +12,7 @@ import { setRuleReader } from "../../../shared/book-tables.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { RESTRAINT_TABLES, resetRestraints } from "../../../shared/vehicles/index.js";
 import { UT_RESTRAINTS } from "../../ultra-tech/transport/index.js";
-import { initVehicles, readyVehicles, runKind } from "./index.js";
+import { fitOf, initVehicles, readyVehicles, runKind } from "./index.js";
 
 let hooks: Map<string, Array<(...args: any[]) => void>>;
 let options: Map<string, any>;
@@ -388,5 +388,18 @@ describe("crew, with only High-Tech's switch on", () => {
     expect(fight.fp).toBe(3);
     await runKind(fakeApi() as never, ft17, { kind: "ride", hours: 2, headOut: false } as any, [], { components: () => false, protection: () => false, crew: () => true });
     expect(injuries).toEqual([{ actor: "Driver", amount: 2, spent: true, exertion: false, details: { rule: "ride" } }]);
+  });
+});
+
+describe("the fit a vehicle's record carries", () => {
+  it("reads the record's own data, so a renamed vehicle keeps its fittings; an old copy by its name", () => {
+    const renamed = vehicleActor("Old Rattler", { dr: 45 }, { system: { tl: "6", speed: 0, crew: [], vehicle: { locations: "" }, derived: {}, extensions: { [MODULE_ID]: { htVehicleFit: { turretReadies: 2, riveted: true, tank: true } } } } });
+    expect(fitOf(renamed)).toEqual({ turretReadies: 2, riveted: true, tank: true });
+    // A copy made before the records carried their fit still finds it by name.
+    expect(fitOf(vehicleActor("Renault FT17", { dr: 45 }))).toMatchObject({ riveted: true, tank: true });
+    expect(fitOf(vehicleActor("Anything Else", {}))).toEqual({});
+    // The GM's fittings add to the record's.
+    renamed.flags[MODULE_ID] = { htVehicle: { fittings: ["intercom"] } };
+    expect(fitOf(renamed)).toMatchObject({ riveted: true, intercom: true });
   });
 });

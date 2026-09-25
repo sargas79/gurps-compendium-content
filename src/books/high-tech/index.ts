@@ -140,7 +140,7 @@ import { initEnforcement, readyEnforcement } from "./enforcement/index.js";
 import { readyProsthetics } from "./prosthetics/index.js";
 import { initConveyances, readyConveyances } from "./conveyances/index.js";
 import { initDrugs, readyDrugs } from "./drugs/index.js";
-import { initVehicles, readyVehicles } from "./vehicles/index.js";
+import { initVehicleFits, initVehicles, readyVehicles } from "./vehicles/index.js";
 import { readyInstruments } from "./instruments/index.js";
 import { initDevices, readyDevices } from "./devices/index.js";
 import { readyLighting } from "./lighting/index.js";
@@ -331,9 +331,9 @@ const RULES = [
   { key: "armorMaterials", pages: "pp. 65, 67", implemented: true },
   // Security screening, surveillance and jamming.
   { key: "securityScreening", pages: "pp. 205-207, 217", implemented: true },
-  { key: "surveillanceGear", pages: "pp. 208-212", implemented: true },
+  { key: "surveillanceGear", pages: "pp. 208-212, 215", implemented: true },
   // The cell-phone jammer as the supplement revises it (E3 in #471).
-  { key: "jamming", pages: "p. 50", reference: `${REFERENCE} pp. 212-213; ${EE_REFERENCE}`, implemented: true },
+  { key: "jamming", pages: "p. 50", reference: `${REFERENCE} pp. 206, 212-213; ${EE_REFERENCE}`, implemented: true },
   // Electricity and Electronics: broad-spectrum and selective jammers, radar jammers and spoofers.
   { key: "jammerKinds", pages: "pp. 49-50", reference: EE_REFERENCE, implemented: true },
   { key: "radarJamming", pages: "pp. 49-50", reference: EE_REFERENCE, implemented: true },
@@ -446,6 +446,7 @@ function init(): void {
   initConveyances();
   initDrugs();
   initVehicles(ruleKey("vehicleProtection"));
+  initVehicleFits();
   initDevices();
   initBattlefield();
 }
