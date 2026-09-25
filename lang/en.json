@@ -9031,6 +9031,8 @@
         "SheathThrustMode": "Sheath (thrust)",
         "SheathNote": "Sheath as baton",
         "SheathHint": "A hollow rigid sheath used as a baton: cheap quality for breakage (High-Tech p. 198).",
+        "SheathParrying": "Designed for parrying",
+        "SheathParryingHint": "A rigid sheath designed for parrying: good quality as a baton, not cheap (High-Tech p. 198). It costs more: the replacement price's double or triple, the GM's option.",
         "BladeLabel": "Blade",
         "BladeTooltip": "Stainless (TL6), ceramic or titanium (TL7) (High-Tech p. 198).",
         "Blade": {

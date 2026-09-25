@@ -215,6 +215,11 @@ describe("sheaths (p. 198)", () => {
     expect(derived.get("ht-sheath-swing").applies(knife("Survival Knife", 1))).toBe(false);
     expect(derived.get("ht-sheath-swing").applies(knife("Katana", 3.75, { sheath: "flexible" }))).toBe(false);
   });
+
+  it("makes a sheath designed for parrying good quality as a baton", () => {
+    const katana = knife("Katana", 3.75, { sheathParrying: true });
+    expect(derived.get("ht-sheath-swing").mode(katana, soldier, helpers)).toMatchObject({ quality: "good", notes: [{ hint: "GCC.HT.Melee.SheathParryingHint" }] });
+  });
 });
 
 describe("blade composition (pp. 196-198)", () => {

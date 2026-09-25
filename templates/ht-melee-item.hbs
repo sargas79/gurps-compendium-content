@@ -27,6 +27,11 @@
         <input type="number" min="0" step="0.05" data-gcc-ht-melee="sheathWeight" value="{{sheath.weight}}" placeholder="{{sheath.worked}}" {{#unless editable}}disabled{{/unless}} />
       </label>
     </div>
+    {{#if sheath.parrying}}
+      <div class="ichecks">
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Melee.SheathParryingHint'}}"><input type="checkbox" data-gcc-ht-melee="sheathParrying" {{#if sheath.parrying.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Melee.SheathParrying"}}</label>
+      </div>
+    {{/if}}
   {{/if}}
   {{#if blade}}
     <div class="ifields">

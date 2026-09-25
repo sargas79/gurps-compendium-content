@@ -20,7 +20,7 @@
  *     none: the blade alone weighs two thirds, the HT roll against corrosion
  *     and incidental damage is -1 or -2, a replacement sheath's price is
  *     shown, and a rigid sheath of a pound or more is a baton (derived rows,
- *     cheap quality for breakage).
+ *     cheap quality for breakage, or good for one designed for parrying).
  *   - **Blade composition (bladeComposition):** stainless, ceramic or
  *     titanium blades as a calculated field that reprices the weapon (a
  *     stainless sword's grade priced from list), with ceramic breaking as
@@ -126,6 +126,8 @@ export interface WeaponData {
   sheath: Sheath;
   /** The sheath's own weight where the book gives one; 0 for a third of the table weight. */
   sheathWeight: number;
+  /** A rigid sheath designed for parrying: good quality, not cheap, as a baton (p. 198). */
+  sheathParrying: boolean;
   blade: BladeMaterial;
   compound: boolean;
   sights: boolean;
@@ -141,6 +143,7 @@ export function initHighTechMelee(): void {
     [FIELD]: new f.SchemaField({
       sheath: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...SHEATHS] }),
       sheathWeight: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
+      sheathParrying: flag(),
       blade: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...BLADE_MATERIALS] }),
       compound: flag(),
       sights: flag(),
@@ -156,6 +159,7 @@ export function weaponData(item: any): WeaponData {
   return {
     sheath: SHEATHS.includes(d.sheath) ? d.sheath : "",
     sheathWeight: Math.max(0, Number(d.sheathWeight) || 0),
+    sheathParrying: d.sheathParrying === true,
     blade: BLADE_MATERIALS.includes(d.blade) ? d.blade : "",
     compound: d.compound === true,
     sights: d.sights === true,
@@ -333,6 +337,7 @@ function itemContext(api: GWorldApi, item: any, on: MeleeSwitches): Record<strin
           choices: SHEATHS.map((value) => ({ value, label: L(`Sheath.${value || "rigid"}`), selected: value === data.sheath })),
           weight: data.sheathWeight,
           worked: sheathWeight(Number(item.system?.weight) || 0, data.sheathWeight),
+          parrying: !data.sheath ? { checked: data.sheathParrying } : null,
         }
       : null,
     blade: bladed ? BLADE_MATERIALS.map((value) => ({ value, label: L(`Blade.${value || "steel"}`), selected: value === data.blade })) : null,
@@ -533,8 +538,11 @@ export function readyHighTechMelee(api: GWorldApi, on: MeleeSwitches): void {
     const data = weaponData(item);
     return sheathIsBaton(Number(item.system?.weight) || 0, data.sheathWeight, data.sheath);
   };
-  // A hollow sheath breaks as cheap (p. 198).
-  const sheathMore = (item: any) => ({ quality: "cheap", weight: sheathWeight(Number(item.system?.weight) || 0, weaponData(item).sheathWeight), notes: [{ label: L("SheathNote"), hint: L("SheathHint") }] });
+  // A hollow sheath breaks as cheap; one designed for parrying, as good (p. 198).
+  const sheathMore = (item: any) => {
+    const data = weaponData(item);
+    return { quality: data.sheathParrying ? "good" : "cheap", weight: sheathWeight(Number(item.system?.weight) || 0, data.sheathWeight), notes: [{ label: L("SheathNote"), hint: L(data.sheathParrying ? "SheathParryingHint" : "SheathHint") }] };
+  };
   register(SHEATH_SWING_MODE, batonOn, () => sheathBatonProfiles()[0] ?? null, L("SheathSwingMode"), sheathMore);
   register(SHEATH_THRUST_MODE, batonOn, () => sheathBatonProfiles()[1] ?? null, L("SheathThrustMode"), sheathMore);
 
