@@ -837,14 +837,13 @@ function projectileContext(load: HighTechLoad, gun: ProjectileGun, on: Ammunitio
     : [];
   const printedList = printedChoices(load, gun, on);
   if (printed) {
-    // The book's round: its figures are its own, and only a smoke round's colour is left to choose.
-    const cargo = cargoContext(load, fired, gun);
+    // The book's round: its figures, and its kind of smoke, are its own.
     return {
       printed: printedList,
       printedHint: L(`PrintedHint.${printed.key}`),
       limited,
       projectiles: [],
-      cargo: cargo?.smokes ? { smokes: cargo.smokes } : null,
+      cargo: null,
       projectileHint: "",
       shot: null,
       poison: null,
@@ -1120,10 +1119,11 @@ function cargoLoadIn(item: any, modeIndex: number, on: AmmunitionSwitches): Carg
   const fired = firedProjectile(load, gun, on);
   if (!fired.projectile || !(isCargo(fired.projectile) || isExplosiveProjectile(fired.projectile))) return null;
   // A printed round's cloud or light is the one the book prints (pp. 103, 143).
-  const cloud = fired.printed ? printedRound(fired.printed)?.cloud : undefined;
+  const printed = fired.printed ? printedRound(fired.printed) : null;
+  const cloud = printed?.cloud;
   return {
     projectile: fired.projectile,
-    smoke: load.smoke,
+    smoke: printed?.smoke ?? load.smoke,
     illumination: fired.printed ? "parachute" : load.illumination,
     vomiting: fired.printed ? false : load.vomiting,
     liquid: load.liquid,
@@ -1197,7 +1197,9 @@ export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
       const fired = firedProjectile(load, projectileGun(item, index), on);
       const upgrades = on.upgrades() ? firedUpgrades(item, index, load, on) : [];
       const worse = on.handloading() ? load.batchMalfunction : 0;
-      return upgrades.length || worse || hasProjectile(fired) ? { ...load, upgrades, batchMalfunction: worse, fired } : null;
+      // A load marked limited production alone changes nothing on the row but its tag (p. 166).
+      const limited = load.limited > 0 && (on.upgrades() || anyProjectiles(on));
+      return upgrades.length || worse || hasProjectile(fired) || limited ? { ...load, upgrades, batchMalfunction: worse, fired } : null;
     },
     // An upgrade improves the whole round, whatever projectile the Basic Set's choice put in it;
     // a High-Tech projectile takes the Basic Set round's place (`withoutBasicRound`).

@@ -14,6 +14,7 @@
 
 import { chambering } from "./rules.js";
 import { gunCalibreRows, type CalibreRow } from "./calibres.js";
+import type { HighTechSmoke } from "./explosive.js";
 import type { Projectile } from "./projectiles.js";
 
 /** The switch a printed round is offered under: the projectile option's it is. */
@@ -62,6 +63,8 @@ export interface PrintedRound {
   recoil?: "slug" | "slugLess1" | number;
   /** Won't cycle in auto-loaders (p. 103). */
   noCycle?: boolean;
+  /** The kind of smoke a smoke round is: the 40mm round comes in colours (p. 143). */
+  smoke?: HighTechSmoke;
   /** A cloud or a light, its radius in yards and how long it lasts. */
   cloud?: { radius: number; seconds: number };
   /** A cone this wide at its base, in yards (Characters p. 413). */
@@ -118,7 +121,7 @@ export const PRINTED_ROUNDS: readonly PrintedRound[] = [
   { key: "glShot7", page: 143, round: "40×46mmSR", tl: 7, projectile: "shotshell", family: "multiple", damage: "1d-1", damageType: "pi-", armorDivisor: 0.5, accuracy: 2, minRange: 0, halfDamageRange: 30, maxRange: 600, projectiles: 20, recoil: 1, cps: 5, lc: 3 },
   { key: "glShot8", page: 143, round: "40×46mmSR", tl: 8, projectile: "shotshell", family: "multiple", damage: "1d-1", damageType: "pi-", armorDivisor: 0.5, accuracy: 2, minRange: 0, halfDamageRange: 30, maxRange: 600, projectiles: 50, recoil: 1, cps: 5, lc: 3 },
   { key: "glSilentHe", page: 143, round: "40×46mmSR", tl: 7, projectile: "he", family: "explosive", damage: "4d+1", damageType: "cr", armorDivisor: 1, explosive: true, fragmentation: "2d", silent: true, cps: 100, lc: 1 },
-  { key: "glSmoke", page: 143, round: "40×46mmSR", also37: true, tl: 7, projectile: "smoke", family: "cargo", damage: "1d+1", damageType: "cr", armorDivisor: 0.5, doubleKnockback: true, minRange: 0, cloud: { radius: 8, seconds: 25 }, cps: 15, lc: 3 },
+  { key: "glSmoke", page: 143, round: "40×46mmSR", also37: true, tl: 7, projectile: "smoke", family: "cargo", damage: "1d+1", damageType: "cr", armorDivisor: 0.5, doubleKnockback: true, minRange: 0, smoke: "colored", cloud: { radius: 8, seconds: 25 }, cps: 15, lc: 3 },
   { key: "glTearGas", page: 143, round: "40×46mmSR", also37: true, tl: 7, projectile: "tearGas", family: "cargo", damage: "1d+1", damageType: "cr", armorDivisor: 0.5, doubleKnockback: true, minRange: 0, cloud: { radius: 8, seconds: 20 }, cps: 15, lc: 3 },
   { key: "glThermobaric", page: 143, round: "40×46mmSR", tl: 8, projectile: "thermobaric", family: "explosive", damage: "8d", damageType: "cr", armorDivisor: 1, explosive: true, fragmentation: "", cps: 40, lc: 1 },
 ];

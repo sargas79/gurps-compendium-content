@@ -29,7 +29,7 @@
 import { placeArea, type AreaLine } from "../../../shared/areas.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { smokeAreaLines, smokeFormSeconds } from "../../../shared/smoke/rules.js";
-import { wearsIrritantMask } from "../breathing/index.js";
+import { MASK_OFF_FLAG, wearsIrritantMask } from "../breathing/index.js";
 import { infraredLight, seesInfrared } from "../infrared.js";
 import {
   BLINDED_PENALTY,
@@ -64,8 +64,6 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 const SCENT_FLAG = "htScentMarker";
 /** The condition of a wearer whose goggles or visor a paint round covered (p. 172). */
 const PAINT_BLINDED = "htPaintBlinded";
-/** An actor retching from a vomiting agent, who must keep a gas mask off until then (p. 171): the world time it ends. */
-const MASK_OFF_FLAG = "htMaskOff";
 
 /** What a mode fires, as the cargo rules need it. */
 export interface CargoLoad {
@@ -193,19 +191,14 @@ export function gasOfSource(source: unknown): { gas: Gas; seconds: number } | nu
   return { gas: key as Gas, seconds: Math.max(0, Math.floor(Number(seconds) || 0)) };
 }
 
-/** Whether a victim of a vomiting agent must still keep a gas mask off (p. 171). */
-const maskForcedOff = (actor: any): boolean => Number(actor?.getFlag?.(MODULE_ID, MASK_OFF_FLAG)) > worldNow();
-
 /**
  * Whether a body keeps a gas out (Campaigns pp. 82, 429). A mask its wearer
- * has had to take off to retch keeps nothing out, and the Filter Lungs it gave
- * goes with it.
+ * has had to take off to retch (p. 171) gives nothing -- no immunity, and none
+ * of the Filter Lungs, air or seal it gave (the breathing rules leave it out).
  */
 function victimOf(api: GWorldApi, actor: any): { sealed: boolean; doesntBreathe: boolean; filterLungs: boolean; irritantImmune: boolean } {
   const effects = (api.actors.derived(actor) as any)?.traitEffects ?? {};
-  const masked = wearsIrritantMask(actor);
-  const off = masked && maskForcedOff(actor);
-  return { sealed: effects.sealed === true, doesntBreathe: effects.doesntBreathe === true, filterLungs: effects.filterLungs === true && !off, irritantImmune: masked && !off };
+  return { sealed: effects.sealed === true, doesntBreathe: effects.doesntBreathe === true, filterLungs: effects.filterLungs === true, irritantImmune: wearsIrritantMask(actor) };
 }
 
 /**
@@ -302,32 +295,35 @@ function flaresOver(api: GWorldApi, tokenId: string): Illumination[] {
 
 const isActiveGm = (): boolean => Boolean((game as any).users?.activeGM?.isSelf ?? (game as any).user?.isGM);
 
-/** A token's centre where a movement started, in scene pixels. */
-function startedAt(token: any, movement: any): { x: number; y: number } | null {
-  const origin = movement?.origin;
-  if (!origin || !Number.isFinite(origin.x) || !Number.isFinite(origin.y)) return null;
-  const centre = token.getCenterPoint?.(origin);
+/** A token's centre at a point of its movement (its top-left corner), in scene pixels. */
+function centreAt(token: any, point: any): { x: number; y: number } | null {
+  if (!point || !Number.isFinite(point.x) || !Number.isFinite(point.y)) return null;
+  const centre = token.getCenterPoint?.(point);
   if (centre && Number.isFinite(centre.x)) return centre;
   const size = Number(token.parent?.grid?.size) || 100;
-  return { x: origin.x + ((Number(token.width) || 1) * size) / 2, y: origin.y + ((Number(token.height) || 1) * size) / 2 };
+  return { x: point.x + ((Number(token.width) || 1) * size) / 2, y: point.y + ((Number(token.height) || 1) * size) / 2 };
 }
 
+/** Whether a point lies in a cloud's circle (its centre and radius in scene pixels). */
+const inCloud = (point: { x: number; y: number } | null, area: any): boolean =>
+  Boolean(point && area?.center && Number(area.radius) > 0 && Math.hypot(point.x - area.center.x, point.y - area.center.y) <= Number(area.radius));
+
 /**
- * Rolls the gas of each cloud a token has just walked into (p. 171): one it
- * stands in now and didn't where its move began, for the seconds of cloud
- * left.
+ * Rolls the gas of each cloud a token has just walked into (p. 171): one its
+ * movement ends in and didn't begin in, for the seconds of cloud left. Both
+ * ends are the movement's own: when `moveToken` fires the token's prepared
+ * position can still be the old one (Foundry v14), so the system's
+ * `standsIn` isn't asked.
  */
 async function walkIntoClouds(api: GWorldApi, token: any, movement: any): Promise<void> {
   const scene = token.parent;
   const now = worldNow();
-  const before = startedAt(token, movement);
+  const before = centreAt(token, movement?.origin);
+  const after = centreAt(token, movement?.destination ?? token._source ?? token);
   for (const area of api.areas.list(scene) as any[]) {
     const cloud = cloudOf(area?.id);
     if (!cloud || (typeof area.expires === "number" && now >= area.expires)) continue;
-    const inside: any[] = (api.areas as any).standsIn?.(scene, area) ?? [];
-    if (!inside.some((t) => t?.id === token.id)) continue;
-    const wasInside = before && area.center && Number(area.radius) > 0 && Math.hypot(before.x - area.center.x, before.y - area.center.y) <= Number(area.radius);
-    if (wasInside) continue;
+    if (!inCloud(after, area) || inCloud(before, area)) continue;
     const left = typeof area.expires === "number" ? Math.max(0, area.expires - now) : 0;
     const lines = [F("WalkedIn", { name: token.actor.name, cloud: String(area.label ?? "") }), ...(await exposeToGas(api, null, [token.actor], cloudGases(cloud), left))];
     await say(token.actor, String(area.label ?? ""), lines);
@@ -414,10 +410,12 @@ export function readyCargo(api: GWorldApi, on: CargoSwitches, loadOf: (item: any
     const actor = context.actor;
     if (!actor?.isOwner) return;
     const effect = gasEffect(gas, Number(context.margin) || 0, dosed.seconds);
-    // A vomiting agent forces off any gas mask donned after exposure, for as long as the retching lasts (p. 171).
-    if (gas === "vomitingAgent" && wearsIrritantMask(actor)) {
-      void actor.setFlag(MODULE_ID, MASK_OFF_FLAG, worldNow() + effect.seconds);
-      void say(actor, L(`Gas.${gas}`), [F("MaskOff", { name: actor.name })]);
+    // A vomiting agent forces off any gas mask donned after exposure, for as long as the retching lasts (p. 171):
+    // one put on now comes off, and one already on would have kept the agent out.
+    if (gas === "vomitingAgent") {
+      const masked = wearsIrritantMask(actor);
+      void actor.setFlag?.(MODULE_ID, MASK_OFF_FLAG, worldNow() + effect.seconds);
+      if (masked) void say(actor, L(`Gas.${gas}`), [F("MaskOff", { name: actor.name })]);
     }
     if (effect.condition === "blinded") {
       void api.actors.applyCondition(actor, {

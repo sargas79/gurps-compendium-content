@@ -194,6 +194,15 @@ describe("a grenade launcher's printed rounds (p. 143)", () => {
     expect(areas[0]).toMatchObject({ radius: 8, expires: 1020 });
   });
 
+  it("fills the smoke round's 8-yard cloud with coloured smoke, whatever the load says", async () => {
+    on.cargoProjectiles = true;
+    const smoke = m79([load({ printed: "glSmoke", smoke: "screening" })]);
+    fire(HOOKS.afterShots, { actor: smoke.actor, item: smoke, modeIndex: 0 });
+    await flush();
+    expect(areas[0]).toMatchObject({ radius: 8, expires: 1025 });
+    expect(areas[0].lines[0]).toMatchObject({ value: -7 });
+  });
+
   it("stuns whoever fails to resist the net round's charge", () => {
     on.projectileOptions = true;
     const net = m79([load({ printed: "glNet" })]);
@@ -211,6 +220,13 @@ describe("the price of a box of printed or limited-production rounds (pp. 103, 1
     const apply = prices[0].apply;
     expect(apply(box([load({ printed: "sgBeanbag" })], "12G 2.5in"))).toMatchObject({ cost: 1.5 });
     expect(apply(box([load({ printed: "sgApds", limited: 5 })]))).toMatchObject({ cost: 7.5 });
+  });
+
+  it("tags a gun's row with its limited-production load, even with nothing else in it", () => {
+    on.projectileOptions = true;
+    const shown = row(remington([load({ limited: 5 })]));
+    expect(shown).toMatchObject({ damage: "1d+1", projectiles: 9 });
+    expect(labels(shown)).toContain('GCC.HT.Ammunition.LimitedTag {"factor":5}');
   });
 
   it("multiplies any other round's cost in limited production", () => {

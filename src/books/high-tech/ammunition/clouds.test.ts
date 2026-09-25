@@ -11,7 +11,11 @@ import { MODULE_ID } from "../../../shared/module.js";
 import { readyAmmunition, type AmmunitionSwitches } from "./index.js";
 
 // A gas mask is worn where the test's actor says so.
-vi.mock("../breathing/index.js", () => ({ wearsIrritantMask: (actor: any) => actor?.masked === true }));
+// A gas mask is worn where the test's actor says so, and gives nothing while it must stay off.
+vi.mock("../breathing/index.js", () => ({
+  MASK_OFF_FLAG: "htMaskOff",
+  wearsIrritantMask: (actor: any) => actor?.masked === true && !(Number(actor?.flags?.htMaskOff) > Number((globalThis as any).game?.time?.worldTime)),
+}));
 
 type Listener = (...args: any[]) => void;
 
@@ -91,10 +95,15 @@ function person(name: string, masked = false): any {
   return actor;
 }
 
-/** A token of `actor` that moved from `from` (its top-left corner) to where it now stands. */
-const moved = (actor: any, from: { x: number; y: number }) => {
-  const token = { id: `t-${actor.name}`, actor, parent: { id: "s1", grid: { size: 100 } }, width: 1, height: 1, getCenterPoint: (o: any) => ({ x: o.x + 50, y: o.y + 50 }) };
-  return { token, movement: { origin: { x: from.x, y: from.y } } };
+/**
+ * A token of `actor` that moved from `from` to `to` (its top-left corner), by
+ * default into the middle of the clouds the tests put at (500, 500). Its
+ * prepared position is still the old one, as Foundry v14 has it when
+ * `moveToken` fires.
+ */
+const moved = (actor: any, from: { x: number; y: number }, to = { x: 450, y: 450 }) => {
+  const token = { id: `t-${actor.name}`, actor, x: from.x, y: from.y, parent: { id: "s1", grid: { size: 100 } }, width: 1, height: 1, getCenterPoint: (o: any) => ({ x: o.x + 50, y: o.y + 50 }) };
+  return { token, movement: { origin: { x: from.x, y: from.y }, destination: { x: to.x, y: to.y } } };
 };
 
 function fire(hook: string, context: any): any {
@@ -166,30 +175,45 @@ describe("a cloud after it is released (p. 171)", () => {
     for (const listener of hooks.get("moveToken") ?? []) listener(inside.token, inside.movement);
     await flush();
     expect(doses).toEqual([]);
-    const outside = moved(walker, { x: 2000, y: 450 });
-    inArea = [];
+    const outside = moved(walker, { x: 2000, y: 450 }, { x: 2100, y: 450 });
     for (const listener of hooks.get("moveToken") ?? []) listener(outside.token, outside.movement);
     await flush();
     expect(doses).toEqual([]);
     areas[0].expires = 900;
-    inArea = [outside.token];
-    for (const listener of hooks.get("moveToken") ?? []) listener(outside.token, outside.movement);
+    const late = moved(walker, { x: 2000, y: 450 });
+    for (const listener of hooks.get("moveToken") ?? []) listener(late.token, late.movement);
     await flush();
     expect(doses).toEqual([]);
   });
 
-  it("makes a retching victim take off the gas mask, which then keeps out nothing until the retching stops", async () => {
-    const victim = person("Rioter", true);
+  it("keeps a mask put on after a vomiting agent's roll off until the retching stops (p. 171)", async () => {
+    // Unmasked, the victim fails against the vomiting agent: no mask to take off yet.
+    const victim = person("Rioter");
     fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.vomitingAgent@20`, resisted: false, margin: 1 });
     // 20 seconds in the cloud and five minutes for the margin.
     expect(victim.flags.htMaskOff).toBe(1000 + 20 + 300);
-    expect(chat.join(" ")).toContain("MaskOff");
+    expect(chat.join(" ")).not.toContain("MaskOff");
+    // The mask goes on, and the victim walks into a tear-gas cloud: it keeps nothing out.
+    victim.masked = true;
     areas = [{ id: `${MODULE_ID}-ht-cloud-tearGas-abc`, label: "Tear gas", center: { x: 500, y: 500 }, radius: 800, expires: 1040, lines: [] }];
     const { token, movement } = moved(victim, { x: 1500, y: 450 });
     inArea = [token];
     for (const listener of hooks.get("moveToken") ?? []) listener(token, movement);
     await flush();
     expect(doses.map((d) => d.source)).toEqual([`${MODULE_ID}.tearGasCoughing@40`, `${MODULE_ID}.tearGasBlinding@40`]);
+    // Once the retching is over the mask works again.
+    doses = [];
+    (game as any).time.worldTime = 1400;
+    areas[0].expires = 1440;
+    for (const listener of hooks.get("moveToken") ?? []) listener(token, movement);
+    await flush();
+    expect(doses).toEqual([]);
+  });
+
+  it("says the mask comes off when the victim was wearing one", () => {
+    const victim = person("Masked", true);
+    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.vomitingAgent@20`, resisted: false, margin: 1 });
+    expect(chat.join(" ")).toContain("MaskOff");
   });
 });
 
