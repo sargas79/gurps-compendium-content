@@ -29,7 +29,8 @@
  *     +4 HT against contagion; the Apollo suits sealed with their helmets,
  *     breathing from a tank or the EVA suit's seven-hour pack, the EVA suit's
  *     climate control, the helmets' senses; biomedical sensors on the patient
- *     as +1 to Diagnosis; and the sheet's notes for the rest.
+ *     as +1 to Diagnosis, or -2 read from afar; and the sheet's notes for
+ *     the rest.
  *
  * The Environment Suit skill that limits DX while a suit is worn is the
  * record's `environmentSuit`, which the system reads.
