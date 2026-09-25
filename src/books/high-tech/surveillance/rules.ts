@@ -46,6 +46,17 @@ export const defeatSkill = (sophisticated: boolean): string => (sophisticated ? 
 export const COUNTERSNIPER_BASE = 10;
 /** Optical recognition software as a guard's Perception: 14 conservatively, 18 or more generously (p. 207). */
 export const OPTICAL_RECOGNITION = Object.freeze({ conservative: 14, generous: 18 });
+
+/**
+ * What a subject fools optical recognition with (p. 207): Disguise or Acting,
+ * "about as easily as they would a guard", the better of the two; null for a
+ * subject with neither.
+ */
+export function recognitionCover(disguise: number | null, acting: number | null): { skill: "Disguise" | "Acting"; level: number } | null {
+  if (disguise === null && acting === null) return null;
+  if (acting !== null && (disguise === null || acting > disguise)) return { skill: "Acting", level: acting };
+  return { skill: "Disguise", level: disguise! };
+}
 /** A millimeter-wave camera sees as Imaging Radar out to 10 yards (p. 207). */
 export const MILLIMETER_WAVE_RANGE = 10;
 

@@ -19,6 +19,8 @@
  *     (an identity verifier's quality, and getting past it, are the locks
  *     rule's). A row button on the acoustic
  *     countersniper system rolls against 10 plus the shot's Hearing modifier;
+ *     one on optical recognition software runs its Per 14 (or 18) against
+ *     the targeted subject's Disguise or Acting, in secret;
  *     the other gear shows its figures on its sheet (pp. 205-207, 217).
  *   - **Surveillance gear (surveillanceGear):** a spike mike worn is
  *     Parabolic Hearing at (TL-4) levels; row buttons listen with a contact
@@ -68,6 +70,7 @@ import {
   MILLIMETER_WAVE_RANGE,
   NOISY_BUG,
   OPTICAL_RECOGNITION,
+  recognitionCover,
   SCREENING_SKILLS,
   SEARCH_ENDOSCOPE,
   SECURITY,
@@ -393,6 +396,37 @@ async function countersniper(api: GWorldApi, item: any, actor: any): Promise<voi
   if (result) await card(actor, label, [L(result.success ? "Security.ShooterFound" : "Security.ShooterLost")]);
 }
 
+/**
+ * Optical recognition software watching the targeted character (p. 207): a
+ * guard with Per 14 for recognition, or 18 for a GM who trusts it more, in a
+ * Quick Contest against the subject's Disguise or Acting, the better; a
+ * subject with neither is recognized on the software's Per roll alone.
+ */
+async function opticalRecognition(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const subject = picked().target;
+  if (!subject) return void ui.notifications?.warn(L("Security.RecognitionTarget"));
+  const answer = await ask(L("Security.RecognitionTitle"),
+    row(L("Security.RecognitionPer"), `<select name="per">${options(["conservative", "generous"], (v) => F(`Security.Recognition.${v}`, OPTICAL_RECOGNITION), "conservative")}</select>`),
+    (form) => ({ per: value(form, "per") === "generous" ? OPTICAL_RECOGNITION.generous : OPTICAL_RECOGNITION.conservative }));
+  if (!answer) return;
+  const label = F("Security.RecognitionLabel", { name: item.name, subject: subject.name });
+  const cover = recognitionCover(api.actors.skillLevel(subject, "Disguise"), api.actors.skillLevel(subject, "Acting"));
+  if (!cover) {
+    const result: any = await api.roll.success({ actor, base: answer.per, label, item, tags: ["opticalRecognition"], subject } as any);
+    if (result) await gmCard(label, [F(result.success ? "Security.Recognized" : "Security.NotRecognized", { subject: subject.name })]);
+    return;
+  }
+  const outcome: any = await api.roll.quickContest({
+    label,
+    first: { actor, base: answer.per, note: L("Security.RecognitionNote"), item },
+    second: { actor: subject, base: cover.level, note: cover.skill },
+    tags: ["opticalRecognition"],
+    secret: true,
+  } as any);
+  if (!outcome) return;
+  await gmCard(label, [F(outcome.outcome === "first" ? "Security.Recognized" : "Security.NotRecognized", { subject: subject.name })]);
+}
+
 // ── the security system GM tool ──
 
 /** Posts a card the GMs alone see: the intruders needn't know until they trip the alarm (p. 205). */
@@ -637,6 +671,7 @@ export function readySurveillance(api: GWorldApi, on: SurveillanceSwitches): voi
   const named = (pattern: RegExp) => (item: any) => isGear(item) && pattern.test(nameOf(item));
   const actions: Array<{ key: string; label: string; icon: string; visible: (item: any) => boolean; run: (item: any, actor: any) => Promise<void> }> = [
     { key: "ht-screen", label: L("Screen.Action"), icon: "fa-solid fa-magnifying-glass", visible: (item) => on.screening() && isGear(item) && screenerOf(nameOf(item)) !== null, run: (item, actor) => screen(api, item, actor) },
+    { key: "ht-optical-recognition", label: L("Security.RecognitionTitle"), icon: "fa-solid fa-id-badge", visible: (item) => on.screening() && named(/^optical recognition software$/i)(item), run: (item, actor) => opticalRecognition(api, item, actor) },
     { key: "ht-countersniper", label: L("Security.CountersniperTitle"), icon: "fa-solid fa-crosshairs", visible: (item) => on.screening() && named(/^acoustic countersniper system$/i)(item), run: (item, actor) => countersniper(api, item, actor) },
     { key: "ht-contact-mike", label: L("Mike.ContactTitle"), icon: "fa-solid fa-ear-listen", visible: (item) => on.surveillance() && isGear(item) && isContactMike(nameOf(item)), run: (item, actor) => contactMike(api, item, actor, on.covert?.() ?? false) },
     { key: "ht-pinhead-mike", label: L("Mike.PinheadTitle"), icon: "fa-solid fa-microphone", visible: (item) => on.surveillance() && isGear(item) && isPinheadMike(nameOf(item)), run: (item, actor) => pinheadMike(api, item, actor) },

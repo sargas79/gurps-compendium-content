@@ -705,3 +705,25 @@ describe("radar jammers and spoofers (HT:EE pp. 49-50)", () => {
     expect(section.context(gear("Large Radar")).lines).toEqual(["GCC.HT.Surveillance.Jammer.RadarHindered"]);
   });
 });
+
+describe("optical recognition software (p. 207)", () => {
+  it("contests the software's Per 14 (or 18) with the subject's better of Disguise and Acting, in secret", async () => {
+    on.add(key("securityScreening"));
+    const software = gear("Optical Recognition Software");
+    const guard = character("Guard", [software]);
+    targets = [character("Spy", [], { skills: { Disguise: 13, Acting: 15 } })];
+    dialogAnswer = { per: 18 };
+    await actions.get("ht-optical-recognition").run(software, guard);
+    expect(contests[0]).toMatchObject({ first: { base: 18 }, second: { base: 15, note: "Acting" }, secret: true });
+    expect(chat.at(-1).content).toContain("Security.Recognized");
+    // A subject with neither skill is recognized on the software's roll alone.
+    targets = [character("Clerk", [])];
+    successResult = { success: false };
+    dialogAnswer = { per: 14 };
+    await actions.get("ht-optical-recognition").run(software, guard);
+    expect(successes.at(-1)).toMatchObject({ base: 14, tags: ["opticalRecognition"] });
+    expect(chat.at(-1).content).toContain("Security.NotRecognized");
+    on.delete(key("securityScreening"));
+    expect(actions.get("ht-optical-recognition").visible(software)).toBe(false);
+  });
+});

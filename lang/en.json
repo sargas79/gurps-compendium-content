@@ -9690,7 +9690,18 @@
             "vision": "Vision {modifier}",
             "observation": "Observation",
             "traps": "Per-based Traps"
-          }
+          },
+          "RecognitionTitle": "Watch for a face",
+          "RecognitionTarget": "Target the one character the cameras are watching.",
+          "RecognitionPer": "Recognition",
+          "Recognition": {
+            "conservative": "Per {conservative} (conservative)",
+            "generous": "Per {generous} (generous)"
+          },
+          "RecognitionLabel": "{name} watches {subject}",
+          "RecognitionNote": "Optical recognition",
+          "Recognized": "The software recognizes {subject}.",
+          "NotRecognized": "The software doesn't recognize {subject}."
         },
         "Mike": {
           "Spike": "In use (equipped): Parabolic Hearing {levels}, hearing {factor} times as far through the wall (p. 208).",
