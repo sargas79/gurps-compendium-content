@@ -183,6 +183,31 @@ export function batteryMultiplier(lamp: Lamp): number {
 export const BEAM_SPILL_DARKNESS = WORST_PARTIAL_DARKNESS;
 
 /**
+ * How wide a beam's cone is where it is focused, in yards: a conical beam 2
+ * yards, a close-range beam 32 inches (HT:EE p. 22's Illuminating Effect
+ * Table).
+ */
+export const BEAM_WIDTH: Readonly<Record<Geometry, number>> = Object.freeze({ exposed: 0, recessed: 0, conical: 2, closeRange: 32 / 36 });
+
+/** The cone is never narrower than the lamp's own half yard either side of its axis. */
+const BEAM_MIN_HALF_WIDTH = 0.5;
+
+/**
+ * Whether a spot lies in a lamp's beam: `along` yards ahead of the lamp on
+ * its axis and `off` yards to one side. A beam lights only the area it is
+ * aimed at (HT:EE p. 20): a cone widening evenly from the lamp to its width
+ * at its range, and on at the same angle past it. A lamp lighting all round
+ * lights every spot.
+ */
+export function inBeam(lamp: Lamp, along: number, off: number): boolean {
+  if (!isBeam(lamp)) return true;
+  if (!(along >= 0)) return Math.hypot(along, off) <= BEAM_MIN_HALF_WIDTH;
+  const range = Math.max(1, lamp.range);
+  const half = Math.max(BEAM_MIN_HALF_WIDTH, (BEAM_WIDTH[lamp.geometry] / 2) * (along / range));
+  return Math.abs(off) <= half + 1e-9;
+}
+
+/**
  * The step a lamp's light reaches this far away. A lamp lighting all round
  * gives its lux out to a yard and falls off from there. A beam lights only
  * where it is aimed: its lux out to its range, then falling off by the same
@@ -238,6 +263,18 @@ export const darknessLux = (darkness: number): number => stepLux(NO_PENALTY_STEP
 
 /** A beam aimed by someone who heard the target: -6 in place of worse darkness, the skill no higher than 9 (HT:EE p. 20). */
 export const HEARD_AIM = Object.freeze({ penalty: -6, cap: 9 });
+
+/**
+ * Aiming by ear, once the aimer has heard the target (HT:EE p. 20): -6 in
+ * place of the darkness where that is better, and whatever more brings the
+ * adjusted skill down to 9. Null where the darkness is no worse than -6.
+ */
+export function heardAim(base: number, darkness: number): { penalty: number; cap: number } | null {
+  const dark = Math.min(0, Math.trunc(Number(darkness) || 0));
+  if (dark >= HEARD_AIM.penalty) return null;
+  const adjusted = Math.trunc(Number(base) || 0) + HEARD_AIM.penalty;
+  return { penalty: HEARD_AIM.penalty, cap: Math.min(0, HEARD_AIM.cap - adjusted) };
+}
 
 /** Where a missed beam lands: yards equal to the margin of failure, left on an odd die, right on an even one (HT:EE p. 20). */
 export function beamDrift(margin: number, die: number): { yards: number; side: "left" | "right" } {

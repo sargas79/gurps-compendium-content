@@ -7,14 +7,18 @@
  *     its element and its geometry, and the darkness it leaves as it falls off
  *     with distance: read by the system for each light on the canvas that is
  *     a lamp (`areas.registerLightLevel`, API 1.116.0) -- a light the GM has
- *     made one of the supplement's lamps in its configuration sheet, or a
- *     token's own light where its character carries one. The least
+ *     made one of the supplement's lamps in its configuration sheet, a
+ *     token's own light where its character carries one, or a lamp set down
+ *     as a module's light on an area. A beam lights only its cone, pointed
+ *     the way its light or token is turned; beside it, the darkness stays no
+ *     worse than -9 as far as the light reaches. The least
  *     darkness a light leaves wins, and none makes the spot darker than it
  *     was. A GM tool reads the light at the selected tokens, and whether it
  *     is bright enough for reading or surgery (-2 without); Sewing and
  *     Surgery rolls take that -2 from the light at the roller's token. A row action aims
- *     a beam: DX at the darkness where it is aimed, drifting left or right on
- *     a miss.
+ *     a beam: DX at the darkness where it is aimed, or by ear at -6 (the
+ *     skill no higher than 9) once a Hearing roll or a Quick Contest against
+ *     the target's Stealth finds it, drifting left or right on a miss.
  *   - **Glare (lightDazzle):** light five steps above what the eyes are
  *     adapted to, or 200,000 lux, calls for an HT roll at -1 a step past
  *     that: a failure dazzles (-4 to Vision) for minutes, a critical failure
@@ -36,6 +40,7 @@ import {
   ELEMENTS,
   ELEMENT_KEYS,
   FLASHBULB,
+  BEAM_SPILL_DARKNESS,
   HEARD_AIM,
   LAMPS,
   NO_PENALTY_STEP,
@@ -48,6 +53,8 @@ import {
   flashbulbStepAt,
   glareOutcome,
   glareRoll,
+  heardAim,
+  inBeam,
   isBeam,
   lampDarknessAt,
   lampFrom,
@@ -100,8 +107,36 @@ export function carriedLamp(actor: any): { item: any; lamp: Lamp } | null {
   return pool.sort((a, b) => lampLux(b.lamp) - lampLux(a.lamp))[0] ?? null;
 }
 
-/** The lamp a light on the canvas is: one the GM marked, or the lamp a token's character carries; null for any other. */
+/** An item by its id, on a character on the map or in the world. */
+function itemById(id: string): any {
+  const tokens: any[] = stage()?.tokens?.placeables ?? [];
+  for (const token of tokens) {
+    const found = token?.actor?.items?.get?.(id);
+    if (found) return found;
+  }
+  for (const actor of (game as any).actors ?? []) {
+    const found = actor?.items?.get?.(id);
+    if (found) return found;
+  }
+  return null;
+}
+
+/**
+ * The lamp a module's light on an area is (GWorld API 1.102.0): a light set
+ * down, whose area id names its item (`<module>-ht-light-<item id>-...`), read
+ * as that item's lamp with its own wattage and element; else a lamp by the
+ * area's label, the name of what was set down. Null for any other.
+ */
+export function lampOfArea(area: any): Lamp | null {
+  if (!area || typeof area.id !== "string" || !area.light) return null;
+  const itemId = new RegExp(`^${MODULE_ID}-ht-light-([A-Za-z0-9]+)`).exec(area.id)?.[1];
+  const own = itemId ? lampOf(itemById(itemId)) : null;
+  return own ?? lampNamed(area.label);
+}
+
+/** The lamp a light on the canvas is: one the GM marked, the lamp a token's character carries, or a lamp set down on an area; null for any other. */
 export function lampOfLight(light: any): Lamp | null {
+  if (light && !light.documentName && !light.document && light.light) return lampOfArea(light);
   const doc = light?.document ?? light;
   if (doc?.documentName === "AmbientLight") {
     const data = doc.flags?.[MODULE_ID]?.[LAMP_FLAG];
@@ -115,11 +150,37 @@ export function lampOfLight(light: any): Lamp | null {
 /** While a spot's light is being measured, the lux each lamp that reaches it gives there. */
 let measuring: number[] | null = null;
 
+/**
+ * Whether a spot lies in the beam of a lamp on the canvas: the light's (or
+ * the token's) rotation is where it points, Foundry's 0 facing down the map.
+ * A light on an area has no direction, and its lamp lights its whole circle.
+ */
+export function beamReaches(lamp: Lamp, light: any, spot: { x?: number; y?: number; distance?: number }): boolean {
+  if (!isBeam(lamp)) return true;
+  const doc = light?.document ?? light;
+  if (doc?.documentName !== "Token" && doc?.documentName !== "AmbientLight") return true;
+  const size = Number(stage()?.grid?.size) || 100;
+  const centre = doc.documentName === "Token"
+    ? (centreOf(doc.object) ?? { x: Number(doc.x) + ((Number(doc.width) || 1) * size) / 2, y: Number(doc.y) + ((Number(doc.height) || 1) * size) / 2 })
+    : { x: Number(doc.x), y: Number(doc.y) };
+  const dx = Number(spot?.x) - centre.x;
+  const dy = Number(spot?.y) - centre.y;
+  const pixels = Math.hypot(dx, dy);
+  if (!Number.isFinite(pixels) || pixels === 0) return true;
+  const perPixel = Number(spot?.distance) > 0 ? Number(spot.distance) / pixels : (Number(stage()?.grid?.distance) || 1) / size;
+  const angle = (((Number(doc.rotation) || 0) + 90) * Math.PI) / 180;
+  const along = (dx * Math.cos(angle) + dy * Math.sin(angle)) * perPixel;
+  const off = (-dx * Math.sin(angle) + dy * Math.cos(angle)) * perPixel;
+  return inBeam(lamp, along, off);
+}
+
 /** The darkness a lamp on the canvas leaves at a spot, for the system's reading (HT:EE p. 20). */
-export function lampLevel(on: LightingSwitches, light: any, spot: { distance?: number }): number | null {
+export function lampLevel(on: LightingSwitches, light: any, spot: { x?: number; y?: number; distance?: number }): number | null {
   if (!on.illumination()) return null;
   const lamp = lampOfLight(light);
   if (!lamp) return null;
+  // Outside its beam, a beam in use still keeps the darkness around it no worse than -9 (HT:EE p. 20).
+  if (!beamReaches(lamp, light, spot)) return BEAM_SPILL_DARKNESS;
   const yards = Math.max(0, Number(spot?.distance) || 0);
   measuring?.push(stepLux(lampStepAt(lamp, yards)));
   return lampDarknessAt(lamp, yards);
@@ -275,15 +336,71 @@ export async function readLight(api: GWorldApi): Promise<void> {
 
 // ── aiming a beam (HT:EE p. 20) ──
 
-/** Aims a beam at the targeted token: DX at the darkness there; a miss lands to one side. */
+/** A character's Hearing score, as the system worked it out. */
+function hearingOf(api: GWorldApi, actor: any): number {
+  const derived: any = api.actors.derived(actor);
+  const senses: any[] = derived?.senses ?? [];
+  return Number(senses.find((s) => s?.sense === "hearing")?.score) || Number(derived?.per) || (api.actors.attribute(actor, "Per") ?? 10);
+}
+
+/**
+ * Aiming by ear (HT:EE p. 20): where the darkness is worse than -6, the
+ * aimer may first listen for the target -- a Hearing roll, or a Quick Contest
+ * of Hearing against the target's Stealth where it moves quietly. Heard, the
+ * beam is aimed at -6 in place of the darkness, the skill no higher than 9.
+ * True where it was heard, false where not or the aimer sticks to sight, null
+ * where the dialog was closed.
+ */
+async function aimByEar(api: GWorldApi, actor: any, target: any, penalty: number): Promise<boolean | null> {
+  const how: any = await foundry.applications.api.DialogV2.prompt({
+    window: { title: L("AimAction") },
+    content: `<div class="gworld"><p class="ihint">${esc(F("EarHint", { penalty, heard: HEARD_AIM.penalty, cap: HEARD_AIM.cap }))}</p>
+      <div class="ifields"><label>${esc(L("EarHow"))} <select name="how">
+        <option value="sight">${esc(L("Ear.sight"))}</option>
+        <option value="hearing">${esc(L("Ear.hearing"))}</option>
+        <option value="stealth">${esc(L("Ear.stealth"))}</option>
+      </select></label></div></div>`,
+    ok: { label: L("AimAction"), callback: (_event: Event, button: HTMLElement) => button.closest<HTMLElement>(".application")?.querySelector<HTMLSelectElement>('[name="how"]')?.value ?? "sight" },
+    rejectClose: false,
+  });
+  if (!how) return null;
+  if (how === "sight") return false;
+  const who = target?.actor ?? null;
+  const label = F("EarRoll", { name: String(target?.name ?? who?.name ?? "") });
+  if (how === "stealth" && who) {
+    const stealth = api.actors.skillLevel(who, "Stealth") ?? (Number(api.actors.attribute(who, "DX")) || 10) - 5;
+    const result: any = await api.roll.quickContest({
+      label,
+      first: { actor, base: hearingOf(api, actor), note: "Hearing" },
+      second: { actor: who, base: stealth, note: "Stealth" },
+      tags: ["hearing", "beamAim"],
+    } as any);
+    return result ? result.outcome === "first" : null;
+  }
+  const result: any = await api.roll.success({ actor, base: hearingOf(api, actor), skill: "Hearing", label, tags: ["hearing", "detection", "beamAim"], subject: who } as any);
+  return result ? result.success === true : null;
+}
+
+/**
+ * Aims a beam at the targeted token: DX at the darkness there, or by ear at
+ * -6 where that is better and the target was heard (HT:EE p. 20); a miss
+ * lands to one side.
+ */
 export async function aimBeam(api: GWorldApi, item: any, actor: any, die: () => number = d6): Promise<void> {
   const targets = [...((game as any).user?.targets ?? [])];
   if (targets.length !== 1) return void ui.notifications?.warn(L("AimTarget"));
   const target = targets[0];
   const here = lightAt(api, target, actor);
-  const modifiers = here && here.penalty < 0 ? [{ label: L("AimDarkness"), value: here.penalty }] : [];
+  const dx = Number(api.actors.attribute(actor, "DX")) || 10;
+  let modifiers = here && here.penalty < 0 ? [{ label: L("AimDarkness"), value: here.penalty }] : [];
+  const ear = here ? heardAim(dx, here.penalty) : null;
+  if (ear) {
+    const heard = await aimByEar(api, actor, target, here!.penalty);
+    if (heard === null) return;
+    if (heard) modifiers = [{ label: L("AimHeard"), value: ear.penalty }, ...(ear.cap ? [{ label: F("AimCap", { cap: HEARD_AIM.cap }), value: ear.cap }] : [])];
+  }
   const outcome: any = await api.roll.success({
-    actor, base: Number(api.actors.attribute(actor, "DX")) || 10, label: F("AimRoll", { name: String(item.name ?? "") }), skill: "DX", kind: "attribute",
+    actor, base: dx, label: F("AimRoll", { name: String(item.name ?? "") }), skill: "DX", kind: "attribute",
     modifiers, tags: ["beamAim"], item,
   } as any);
   if (!outcome) return;
@@ -292,7 +409,6 @@ export async function aimBeam(api: GWorldApi, item: any, actor: any, die: () => 
     const drift = beamDrift(Number(outcome.margin) || 1, die());
     return F("AimMiss", { name: who, yards: drift.yards, side: L(`Side.${drift.side}`) });
   })()];
-  if (here && here.penalty < HEARD_AIM.penalty) lines.push(F("AimHeard", { penalty: HEARD_AIM.penalty, cap: HEARD_AIM.cap }));
   await say(actor, String(item.name ?? ""), lines);
 }
 

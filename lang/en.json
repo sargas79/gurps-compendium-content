@@ -8764,7 +8764,16 @@
         "AimDarkness": "Darkness where it is aimed",
         "AimHit": "The beam lights {name}.",
         "AimMiss": "The beam misses {name}: it lights a spot {yards} yards to the {side}.",
-        "AimHeard": "Had the aimer won a Quick Contest of Hearing against the target's Stealth, the darkness would count as {penalty}, the roll no better than {cap}.",
+        "AimHeard": "Aimed by ear, in place of the darkness",
+        "AimCap": "By ear, no better than {cap}",
+        "EarHint": "The darkness where the beam goes is {penalty}. Having heard the target, the aimer may aim by ear at {heard} instead, the roll no better than {cap} (HT:EE p. 20).",
+        "EarHow": "Aim",
+        "Ear": {
+          "sight": "By sight, at the darkness",
+          "hearing": "By ear: a Hearing roll first",
+          "stealth": "By ear: Hearing against the target's Stealth"
+        },
+        "EarRoll": "Listening for {name}",
         "Side": {
           "left": "left",
           "right": "right"
