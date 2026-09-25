@@ -16,7 +16,6 @@ import {
   readiesNeeded,
   snapStrikesWielder,
   workDamage,
-  wrongKitModifier,
   type CarriedKit,
 } from "./rules.js";
 
@@ -39,8 +38,6 @@ describe("tool kits (High-Tech p. 24)", () => {
     expect(kitFor(smithy, "Machinist/TL6", toolSkillKey)).toBe(-2);
     expect(kitFor(smithy, "Carpentry", toolSkillKey)).toBe(-5);
     expect(kitFor(kit("portable", ["Smith (Iron)"], ["Machinist"]), "Machinist", toolSkillKey)).toBeNull();
-    expect(wrongKitModifier([smithy, kit("portable", ["Carpentry (Furniture)"])], "Carpentry", toolSkillKey)).toBe(-2);
-    expect(wrongKitModifier([], "Carpentry", toolSkillKey)).toBeNull();
   });
 
   it("reads a list of crafts as a person types it", () => {

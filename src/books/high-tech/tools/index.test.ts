@@ -1,6 +1,6 @@
 /**
  * The tools as the system meets them: a kit for another specialty through
- * `gworld.skillBonuses`, prices, a tool's work as a derived row, the Ready
+ * `data.registerToolGrade`, prices, a tool's work as a derived row, the Ready
  * maneuvers a rescue tool takes, the chainsaw's rows and mishaps, the nail
  * gun's -4, the glass cutter and duct tape, and the household hazards -- with
  * only High-Tech's switches on (decision D1).
@@ -10,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
-import { readyTools, toolData, wrongKitLine } from "./index.js";
+import { readyTools, toolData, wrongKitGrade } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -40,6 +40,7 @@ let successResult: any;
 let dialogAnswer: any;
 let targets: any[];
 let needsEquipment: any[];
+let graders: any[];
 
 function fakeApi() {
   return {
@@ -50,6 +51,7 @@ function fakeApi() {
       registerPriceModifier: (m: any) => prices.push(m),
       registerPoison: (p: any) => poisons.push(p),
       registerNeedsEquipment: (r: any) => { needsEquipment.push(r); return `${r.module}.${r.key}`; },
+      registerToolGrade: (r: any) => { graders.push(r); return `${r.module}.${r.key}`; },
     },
     combat: {
       hooks: HOOKS,
@@ -116,12 +118,6 @@ function ready(): void {
   readyTools(fakeApi() as never, { kits: rule("toolKits"), forcedEntry: rule("forcedEntryTools"), chainsaws: rule("chainsaws"), hazards: rule("householdHazards") });
 }
 
-function skillLines(actor: any, name: string): any[] {
-  const context = { actor, name, lines: [{ key: "tools", label: "Equipment", value: 0, source: "system" }] };
-  fire("gworld.skillBonuses", context);
-  return context.lines;
-}
-
 function attack(item: any, actor: any, mode: Record<string, unknown> = { index: 0, ranged: false }): any {
   return fire(HOOKS.attackModifiers, { actor, item, mode, modifiers: [], refusal: null });
 }
@@ -144,6 +140,7 @@ beforeEach(() => {
   dialogAnswer = null;
   targets = [];
   needsEquipment = [];
+  graders = [];
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
@@ -223,7 +220,7 @@ describe("with every switch off", () => {
     const hacksaw = equipment("Hacksaw", { work: { damage: "sw-3", type: "cut", divisor: 2 } });
     const kit = equipment("Portable Tool Kit", { kit: "portable" }, { forSkills: ["Mechanic (Automobile)"] });
     expect(derived.get("ht-tool-work").applies(hacksaw)).toBe(false);
-    expect(skillLines(worker([kit]), "Mechanic/TL7 (Motorcycle)")[0].value).toBe(0);
+    expect(graders[0].grade(kit, { name: "Mechanic/TL7 (Motorcycle)" }, worker([kit]))).toBeNull();
     expect(prices[0].apply(equipment("Easel Kit", { kit: "portable", lightCraft: true }), { cost: 600, weight: 20 })).toBeNull();
     expect(actions.get("ht-hazard").visible(equipment("Toaster", { hazard: { kind: "burn", damage: "1d-3" } }))).toBe(false);
     expect(poisons[0].available()).toBe(false);
@@ -233,12 +230,20 @@ describe("with every switch off", () => {
 describe("tool kits (High-Tech p. 24)", () => {
   beforeEach(() => { on = { toolKits: true }; ready(); });
 
-  it("gives another specialty's portable kit -2 where no kit of the skill's own is carried", () => {
+  it("grades another specialty's portable kit at -2 for the system to weigh (API 1.145.0)", () => {
+    const [grader] = graders;
+    expect(grader).toMatchObject({ module: MODULE_ID, key: "ht-wrong-kit" });
     const auto = equipment("Portable Tool Kit", { kit: "portable" }, { forSkills: ["Mechanic (Automobile)"] });
-    const lines = skillLines(worker([auto]), "Mechanic/TL7 (Motorcycle)");
-    expect(lines[0]).toMatchObject({ key: "tools", value: -2, reason: "GCC.HT.Tools.WrongKitReason" });
+    expect(grader.grade(auto, { name: "Mechanic/TL7 (Motorcycle)" }, worker([auto]))).toEqual({ modifier: -2 });
+    // Its own specialty, an unrelated skill, a mini-tool kit and gear that isn't a kit are left to the system.
+    expect(grader.grade(auto, { name: "Mechanic/TL7 (Automobile)" }, worker([auto]))).toBeNull();
+    expect(grader.grade(auto, { name: "Electrician/TL7" }, worker([auto]))).toBeNull();
     const moto = equipment("Mini-Tool Kit", { kit: "mini" }, { forSkills: ["Mechanic (Motorcycle)"] });
-    expect(wrongKitLine(fakeApi() as never, worker([auto, moto]), "Mechanic/TL7 (Motorcycle)")).toBeNull();
+    expect(grader.grade(moto, { name: "Mechanic/TL7 (Automobile)" }, worker([moto]))).toBeNull();
+    expect(grader.grade(equipment("Hacksaw", {}, { forSkills: ["Mechanic (Automobile)"] }), { name: "Mechanic (Motorcycle)" }, worker())).toBeNull();
+    on = {};
+    expect(grader.grade(auto, { name: "Mechanic/TL7 (Motorcycle)" }, worker([auto]))).toBeNull();
+    expect(wrongKitGrade(fakeApi() as never, auto, "Mechanic (Motorcycle)")).toEqual({ modifier: -2 });
   });
 
   it("marks the repair skills as needing a kit, for the system's no-equipment line (API 1.135.0)", () => {
@@ -252,18 +257,12 @@ describe("tool kits (High-Tech p. 24)", () => {
     expect(needs.test({ name: "Machinist/TL7" }, worker())).toBe(false);
   });
 
-  it("puts another specialty's kit in place of the system's no-equipment line", () => {
-    const auto = equipment("Portable Tool Kit", { kit: "portable" }, { forSkills: ["Mechanic (Automobile)"] });
-    const context = { actor: worker([auto]), name: "Mechanic/TL7 (Motorcycle)", lines: [{ key: "tools", label: "No equipment", value: -10, source: "system" }] };
-    fire("gworld.skillBonuses", context);
-    expect(context.lines).toEqual([expect.objectContaining({ key: "tools", label: "GCC.HT.Tools.WrongKit", value: -2, reason: "GCC.HT.Tools.WrongKitReason" })]);
-  });
-
   it("gives a workshop its close and distant crafts", () => {
+    const [grader] = graders;
     const smithy = equipment("Workshop", { kit: "workshop", closeCrafts: "Machinist", distantCrafts: "Carpentry" }, { forSkills: ["Smith (Iron)"] });
-    expect(skillLines(worker([smithy]), "Machinist/TL5")[0].value).toBe(-2);
-    expect(skillLines(worker([smithy]), "Carpentry")[0].value).toBe(-5);
-    expect(skillLines(worker([smithy]), "Cooking")[0].value).toBe(0);
+    expect(grader.grade(smithy, { name: "Machinist/TL5" }, worker([smithy]))).toEqual({ modifier: -2 });
+    expect(grader.grade(smithy, { name: "Carpentry" }, worker([smithy]))).toEqual({ modifier: -5 });
+    expect(grader.grade(smithy, { name: "Cooking" }, worker([smithy]))).toBeNull();
   });
 
   it("reprices a light craft's kit and a large vehicle's", () => {

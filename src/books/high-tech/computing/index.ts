@@ -9,9 +9,9 @@
  *     the computer (HT:EE p. 37; the variant in `highTechComputers`); and a
  *     vacuum-tube computer's daily HT roll against a burned-out tube, with the
  *     minor repair that mends it (p. 37, after Campaigns p. 484); until then
- *     a roll that works the machine -- made with the computer, or Computer
- *     Operation or Programming with a program on it -- is refused, and a
- *     program picked as another skill's tool gives nothing.
+ *     the machine and the programs on it serve no skill as tools
+ *     (`data.registerToolGrade`), so the system picks other gear, and a roll
+ *     still made with one of them is refused.
  *   - **computerInterfaces:** the interface a High-Tech computer is worked
  *     through, set on its sheet: a familiarity of its own (-2 until learned,
  *     under the system's familiarity rule), driven only by a computer of the
@@ -124,14 +124,6 @@ export function computerBehind(item: any): any | null {
 /** Whether a vacuum-tube computer is down with a burned-out tube, where the eras' switch is on (HT:EE p. 37). */
 export function isBurntOut(computer: any, on: Pick<ComputingSwitches, "eras">): boolean {
   return on.eras() && computerSetup(computer).burntOut === true && builtWith(computer, "vacuumTube");
-}
-
-/** The bonus a tool gives a skill's level, where the system picked it as that skill's tool; 0 otherwise. */
-function toolBonusOf(actor: any, skill: string, tool: any): number {
-  const key = (name: unknown) => String(name ?? "").replace(/\/TL[\d^]*/gi, "").trim().toLowerCase();
-  const own = [...(actor?.items ?? [])].find((i: any) => i.type === "skill" && key(i.name) === key(skill));
-  const derived = own?.system?.derived;
-  return derived?.toolItemId === tool?.id ? Math.max(0, Number(derived?.toolBonus) || 0) : 0;
 }
 
 /** Whether the character carries a stylus. */
@@ -340,20 +332,27 @@ function sectionListeners(api: GWorldApi, element: HTMLElement, item: any): void
 
 /** Registers the table-side parts. */
 export function readyComputing(api: GWorldApi, on: ComputingSwitches): void {
+  // A computer down with a burned-out tube, and the programs on it, serve no skill as tools
+  // (HT:EE p. 37; API 1.145.0): the system passes them over for working gear when it picks a
+  // skill's tool. Registered before the tool kits' grader.
+  api.data.registerToolGrade({
+    module: MODULE_ID,
+    key: "ht-burnt-out-computer",
+    grade: (item) => {
+      const computer = computerBehind(item);
+      return computer && isBurntOut(computer, on) ? false : null;
+    },
+  });
+
   // After High-Tech's own computer lines (information/), which a high-level language may lift.
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     if (!context?.item || !(on.eras() || on.interfaces() || on.languages())) return;
     const computer = computerBehind(context.item);
     if (!computer) return;
-    // A burned-out tube stops the machine until the minor repair (HT:EE p. 37; Campaigns p. 484).
+    // A burned-out tube stops the machine until the minor repair (HT:EE p. 37; Campaigns p. 484):
+    // a roll its caller still makes with it, or with a program on it, is refused.
     if (isBurntOut(computer, on)) {
-      const skill = String(context.skill ?? "");
-      // Working the machine itself can't be done; a program only picked as a tool just gives nothing.
-      if (context.item === computer || isOperation(skill) || isProgramming(skill)) {
-        if (!context.refusal) context.refusal = F("BurntOutRefusal", { name: computer.name });
-      } else if (Array.isArray(context.modifiers)) {
-        context.modifiers.push({ key: "ht.burntOut", label: F("BurntOutProgram", { name: context.item.name, computer: computer.name }), value: -toolBonusOf(context.actor, skill, context.item) });
-      }
+      if (!context.refusal) context.refusal = F("BurntOutRefusal", { name: computer.name });
       return;
     }
     if (!(on.interfaces() || on.languages())) return;
