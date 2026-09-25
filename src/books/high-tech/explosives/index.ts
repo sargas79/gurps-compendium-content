@@ -250,7 +250,7 @@ async function skillRoll(api: GWorldApi, actor: any, choices: ReadonlyArray<{ sk
 }
 
 export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: ExplosiveExtras = {}): void {
-  // â”€â”€ the REF table (p. 183) â”€â”€
+  // ── the REF table (p. 183) ──
   const ids = new Map<ExplosiveRow, string>();
   for (const each of EXPLOSIVES) {
     const id = (api.data as any).registerExplosive({
@@ -359,7 +359,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     if (dice) context.formula = formatDamage(scaleDamage(dice, times));
   });
 
-  // â”€â”€ side effects of explosions (pp. 181-182) â”€â”€
+  // ── side effects of explosions (pp. 181-182) ──
   api.combat.registerAttackOption({
     module: MODULE_ID,
     key: ENCLOSURE_OPTION,
@@ -423,7 +423,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     }
   });
 
-  // â”€â”€ demolition charges (pp. 182-183) â”€â”€
+  // ── demolition charges (pp. 182-183) ──
   const structures = (): Array<{ value: string; label: string }> => [
     { value: "", label: L("NoStructure") },
     { value: "custom", label: L("CustomStructure") },
@@ -571,7 +571,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     await say(actor, L("PlanTitle"), [L(have >= needed ? "PlanSuccess" : "PlanSuccessShort")]);
   };
 
-  // â”€â”€ unstable and home-made explosives (pp. 184-187) â”€â”€
+  // ── unstable and home-made explosives (pp. 184-187) ──
   const jolt = async (actor: any, item: any, number: number, fromBlow: boolean) => {
     const name = String(item.name ?? "");
     const charge = chargeOf(item);
@@ -724,7 +724,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     if (fuelAir) context.divisorPerYard = FUEL_AIR_DIVISOR_PER_YARD;
   });
 
-  // â”€â”€ incendiaries (p. 188) â”€â”€
+  // ── incendiaries (p. 188) ──
   // The DR thermite destroys, off the armour worn over the place it burns; what it
   // returns is the points worn off, which may be fewer where the armour runs out.
   const wearArmor = async (actor: any, location: string, points: number): Promise<number> => {
@@ -876,17 +876,33 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
   });
 }
 
-/** Everyone else with a token within `yards` of the actor's on the scene, and how far away, in whole yards. */
+/** A token document's centre in the scene's pixels. */
+function centreOf(token: any, size: number): { x: number; y: number } {
+  return { x: (Number(token.x) || 0) + ((Number(token.width) || 1) * size) / 2, y: (Number(token.y) || 0) + ((Number(token.height) || 1) * size) / 2 };
+}
+
+/**
+ * Every other token within `yards` of the actor's token, on that token's own
+ * scene (not whichever the GM is viewing), and how far away in whole yards.
+ * Tokens are told apart by the token, so each copy of an unlinked actor counts.
+ */
 function actorsNear(actor: any, yards: number): Array<{ actor: any; yards: number }> {
-  const stage = (globalThis as any).canvas;
-  const from = actor?.getActiveTokens?.()?.[0];
-  if (!from?.center || !stage?.grid?.measurePath) return [];
+  // An unlinked actor is its token's; a linked one, its token on the scene being viewed, else on any scene.
+  const from = actor?.token
+    ?? actor?.getActiveTokens?.(false, true)?.[0]
+    ?? [...((game as any).scenes ?? [])].flatMap((s: any) => [...(s.tokens ?? [])]).find((t: any) => t?.actorLink && t.actorId === actor?.id)
+    ?? null;
+  const scene = from?.parent;
+  if (!from || !scene?.tokens) return [];
+  const size = Number(scene.grid?.size) || 100;
+  const perSquare = Number(scene.grid?.distance) || 1;
+  const here = centreOf(from, size);
   const out: Array<{ actor: any; yards: number }> = [];
-  for (const token of stage.tokens?.placeables ?? []) {
-    const other = token?.actor;
-    if (!other || other === actor || (actor.id && other.id === actor.id) || !token.center) continue;
-    const distance = Number(stage.grid.measurePath([from.center, token.center])?.distance);
-    if (Number.isFinite(distance) && distance <= yards) out.push({ actor: other, yards: Math.round(distance) });
+  for (const token of scene.tokens) {
+    if (!token?.actor || token.id === from.id) continue;
+    const there = centreOf(token, size);
+    const distance = Math.round((Math.hypot(there.x - here.x, there.y - here.y) / size) * perSquare);
+    if (distance <= yards) out.push({ actor: token.actor, yards: distance });
   }
   return out;
 }

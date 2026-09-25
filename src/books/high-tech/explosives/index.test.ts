@@ -603,18 +603,21 @@ describe("incendiaries (p. 188)", () => {
   });
 
   it("throws sparks and heat on everyone within two yards of a burning victim each second (p. 188)", async () => {
+    // The burning token's own scene, a yard a 100-pixel square; the GM is viewing another.
+    const scene: any = { grid: { size: 100, distance: 1 }, tokens: [] };
     const at = (name: string, x: number) => {
       const actor: any = actorWith(name);
       actor.id = name;
-      const token = { actor, center: { x, y: 0 } };
-      actor.getActiveTokens = () => [token];
+      const token = { id: `t-${name}-${x}`, actor, x: x * 100, y: 0, width: 1, height: 1, parent: scene };
+      actor.token = token;
+      scene.tokens.push(token);
       return token;
     };
     const victim = at("Victim", 0);
-    const near = at("Near", 1);
-    const far = at("Far", 2);
-    const away = at("Away", 5);
-    vi.stubGlobal("canvas", { tokens: { placeables: [victim, near, far, away] }, grid: { measurePath: ([a, b]: any[]) => ({ distance: Math.abs(a.x - b.x) }) } });
+    at("Near", 1);
+    at("Far", 2);
+    at("Away", 5);
+    vi.stubGlobal("canvas", { scene: { tokens: [] }, tokens: { placeables: [] } });
     targets = [{ actor: victim.actor }];
     derived.drByLocation = { torso: 0 };
     dialog = { pounds: "1", on: "actor", location: "torso", structure: "custom", dr: "0", hp: "0" };
@@ -629,6 +632,31 @@ describe("incendiaries (p. 188)", () => {
       { actor: "Far", amount: 1, label: "GCC.HT.Explosives.Thermite.SparksTitle" },
     ]);
     expect(chat.some((c) => c.includes('"name":"Near","yards":1,"damage":3,"injury":3'))).toBe(true);
+  });
+
+  it("sparks every token of one unlinked actor, the burning one's copies included", async () => {
+    const scene: any = { grid: { size: 100, distance: 1 }, tokens: [] };
+    // Three goons of one actor, each token with its own synthetic actor of the same id.
+    const goon = (x: number) => {
+      const actor: any = actorWith("Goon");
+      actor.id = "goon";
+      const token = { id: `goon-${x}`, actor, x: x * 100, y: 0, width: 1, height: 1, parent: scene };
+      actor.token = token;
+      scene.tokens.push(token);
+      return token;
+    };
+    const burning = goon(0);
+    goon(1);
+    goon(2);
+    targets = [{ actor: burning.actor }];
+    derived.drByLocation = { torso: 0 };
+    dialog = { pounds: "1", on: "actor", location: "torso", structure: "custom", dr: "0", hp: "0" };
+    actions.get("ht-thermite").run(thermiteRecord(), actorWith("Saboteur"));
+    await flush();
+    dice = [1, 1, 1];
+    fire(HOOKS.turnStart, null, { actor: burning.actor });
+    await flush();
+    expect(injuries.filter((i) => i.label === "GCC.HT.Explosives.Thermite.SparksTitle").map((i) => i.amount)).toEqual([3, 1]);
   });
 
   it("wears the armour it burns through for good, 1 DR in 10 points", async () => {
