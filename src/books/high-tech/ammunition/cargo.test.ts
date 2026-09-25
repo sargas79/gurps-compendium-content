@@ -478,6 +478,54 @@ describe("the projectile options and upgrades in play (pp. 167, 174-175)", () =>
     expect(doses[1]).toMatchObject({ source: `${MODULE_ID}.ricin`, dice: 3 });
   });
 
+  it("makes a DU penetrator incendiary once it gets through rigid armour of DR 10 or more (p. 169)", () => {
+    on.projectileOptions = true;
+    const g3 = gun("H&K G3, 7.62x51mm", { skill: "Guns (Rifle)", damageFormula: "6d+2", damageType: "pi", halfDamageRange: 1000, maxRange: 4200 }, [load({ projectile: "apdsdu" })], "8");
+    const piece = (id: string, dr: number, flexible: boolean, locations: string[] = ["torso"]) => ({ id, type: "armor", name: id, system: { equipped: true, flexible, dr, locations }, flags: {} });
+    const victim = (...worn: any[]) => ({ id: "v1", name: "Target", isOwner: true, items: worn });
+    const hit = (actor: any, result: Record<string, unknown>, damage: Record<string, unknown> = {}, item = g3) =>
+      fire(HOOKS.afterDamage, { actor, item, mode: { index: 0, ranged: true }, damage: { type: "pi", hitLocation: "torso", incendiary: false, ...damage }, result: { hitLocation: "torso", naturalDr: 0, ...result } }).damage.incendiary;
+    const plate = victim(piece("Plate", 12, false));
+    expect(hit(plate, { wornDr: 12, effectiveDr: 6, penetrating: 5 })).toBe(true);
+    // Stopped by the armour, it isn't.
+    expect(hit(plate, { wornDr: 12, effectiveDr: 6, penetrating: 0 })).toBe(false);
+    // Flexible armour of any DR doesn't count, nor rigid below DR 10, nor a piece elsewhere.
+    expect(hit(victim(piece("Vest", 12, true)), { wornDr: 12, penetrating: 5 })).toBe(false);
+    expect(hit(victim(piece("Plate", 8, false), piece("Vest", 6, true)), { wornDr: 14, penetrating: 5 })).toBe(false);
+    expect(hit(victim(piece("Helmet", 12, false, ["skull"])), { wornDr: 0, penetrating: 5 })).toBe(false);
+    // A piece a listener refused, and a chink that halved the armour, leave less than DR 10.
+    expect(hit(plate, { wornDr: 0, penetrating: 5, refusedPieces: ["Plate"] })).toBe(false);
+    expect(hit(plate, { wornDr: 6, penetrating: 5 })).toBe(false);
+    // Only with the switch on, and only for a DU round.
+    on.projectileOptions = false;
+    expect(hit(plate, { wornDr: 12, penetrating: 5 })).toBe(false);
+    on.projectileOptions = true;
+    const ap = gun("H&K G3 AP, 7.62x51mm", { skill: "Guns (Rifle)", damageFormula: "6d+2", damageType: "pi" }, [load({ projectile: "ap" })], "8");
+    expect(hit(plate, { wornDr: 12, penetrating: 5 }, {}, ap)).toBe(false);
+  });
+
+  it("halves buck-and-ball's first hit by the ball's own 1/2D, not the buckshot's (p. 173)", () => {
+    on.multipleProjectileLoads = true;
+    const bess = gun("Brown Bess, .75 Flintlock", { skill: "Guns (Musket)", damageFormula: "4d+1", damageType: "pi++", halfDamageRange: 100, maxRange: 1500 }, [load({ projectile: "buckAndBall" })], "5");
+    const roll = (distanceYards: number | null, hit: any, extra: Record<string, unknown> = {}) =>
+      fire(HOOKS.damageModifiers, { actor: bess.actor, item: bess, mode: { index: 0, ranged: true }, formula: "4d+1", modifiers: [], distanceYards, halfDamage: true, hit, line: null, ...extra }).halfDamage;
+    const first = { index: 0, first: true, hits: 2 };
+    // The ball's 1/2D is 90 (x0.9); the buckshot's, the row's, is far shorter.
+    expect(roll(60, first)).toBe(false);
+    expect(roll(90, first)).toBe(true);
+    // The buckshot's hits, a second line, and a roll with no range keep the attack's.
+    expect(roll(60, { index: 1, first: false, hits: 2 })).toBe(true);
+    expect(roll(60, first, { line: "followUp" })).toBe(true);
+    expect(roll(null, first)).toBe(true);
+    // A row the attack saw doubled (underwater, a steep shot) doubles the ball's too.
+    fire(HOOKS.attackModifiers, { actor: bess.actor, item: bess, ranged: true, mode: { index: 0, ranged: true }, dataset: { halfDamageRange: String(2 * Math.round(8.38 * 5)) }, modifiers: [], refusal: null });
+    expect(roll(150, first)).toBe(false);
+    expect(roll(180, first)).toBe(true);
+    // Off with its switch.
+    on.multipleProjectileLoads = false;
+    expect(roll(60, first)).toBe(true);
+  });
+
   it("offers an airburst round's fuse as an attack option: +4 at TL7, +3 or +1 on a TL6 time fuse", () => {
     on.explosiveProjectiles = true;
     on.projectileUpgrades = true;
