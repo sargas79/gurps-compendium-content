@@ -11243,7 +11243,9 @@
         "PlotLine": "Timed meter readings",
         "Pedometer": "An electronic pedometer: Hiking needs 10% less study time (High-Tech: Electricity and Electronics p. 13).",
         "HeartMonitorTraining": "A digital heart monitor: training for HT or fitness needs 10% less time (High-Tech: Electricity and Electronics p. 12).",
-        "CombinedRecord": "Combined device"
+        "CombinedRecord": "Combined device",
+        "RoutineField": "Routine professional check (this month's job roll made)",
+        "RoutineFound": "A routine professional check: it finds what is there without a roll (HT:EE p. 10)."
       },
       "ElectricSecurity": {
         "SectionTitle": "Electric security (Electricity and Electronics)",
