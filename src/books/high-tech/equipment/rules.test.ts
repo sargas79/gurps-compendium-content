@@ -7,7 +7,9 @@ import {
   HIGH_TECH_GADGETS as HT,
   bondedName,
   combineGadgets,
+  combinedEndurance,
   equipmentBonusLines,
+  loadedAmmoWeight,
   familiarityOffset,
   sharedBatteryEndurance,
 } from "./rules.js";
@@ -143,6 +145,27 @@ describe("combination gadgets (High-Tech p. 10)", () => {
 
   it("has no LC where no part has one", () => {
     expect(combineGadgets([pda, pda], true).lc).toBeNull();
+  });
+
+  it("leaves out each part's loaded ammunition, and puts it back: every weapon keeps its own (p. 10)", () => {
+    const pistol = { name: "Pistol", cost: 500, weight: 2.5, cellWeight: 0, ammoWeight: 0.5, lc: 3, tl: 7 };
+    const light = { name: "Tactical Light", cost: 100, weight: 1, cellWeight: 0.33, lc: 4, tl: 8 };
+    const made = combineGadgets([pistol, light], true);
+    // Empty weights 2 and 0.67: 2 + 0.8 x 0.67, then the battery and the magazine.
+    expect(made.emptyWeight).toBe(2.54);
+    expect(made.ammoWeight).toBe(0.5);
+    expect(made.weight).toBe(3.37);
+  });
+
+  it("reads a weapon's loaded ammunition from its reload weight, else its magazine at the calibre's weight per shot", () => {
+    expect(loadedAmmoWeight([{ reloadWeight: 0.4, shots: "15+1(3)" }], 0.03)).toBe(0.4);
+    expect(loadedAmmoWeight([{ reloadWeight: 0, shots: "30+1(3)" }, { reloadWeight: 0, shots: "30(3)" }], 0.026)).toBe(0.78);
+    expect(loadedAmmoWeight([{ shots: "T(1)" }], null)).toBe(0);
+  });
+
+  it("counts the shared batteries down for the hungriest part", () => {
+    expect(combinedEndurance([{ hours: 33 }, { hours: 5 }])).toBe(5);
+    expect(combinedEndurance([])).toBeNull();
   });
 
   it("runs a part off another battery in proportion to the batteries' weights", () => {

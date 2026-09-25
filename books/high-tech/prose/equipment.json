@@ -1352,6 +1352,14 @@
     "description": "<p>Wood as fuel is customarily measured by the cord: a pile of wood weighing 1-2 tons. Wood has the advantage of being a sustainable fuel; an acre of average forest produces about a cord per year. A household in even the coldest of climes needs no more than 20 cords a year. Homes in more temperate areas may use as little as 3-6 cords a winter.</p><p>A cord of wood costs $50-$200, depending on the type of wood and whether it's seasoned (drying since the previous cutting season) or green (newly chopped). Since a full day's work with a good axe can produce a cord of firewood - felled, cut, split, and stacked - a cord of wood is the price of a day's pay for an unskilled laborer in most settings. At higher TLs, a chainsaw and hydraulic splitter can work 10 times as fast!</p>"
   },
   {
+    "_id": "ff33b4cdf5bef27e",
+    "name": "Hydrogen Cylinder",
+    "pages": "HT15",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name: the extra cylinders are priced in the hydrogen fuel cell's entry",
+    "description": ""
+  },
+  {
     "_id": "81263c91c6a73714",
     "name": "Small Collection (per skill)",
     "pages": "HT18",

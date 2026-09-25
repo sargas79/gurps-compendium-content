@@ -123,7 +123,7 @@ describe("adapters and inverters (p. 14)", () => {
 
   it("offers an inverter on gear with no batteries, and prices it with the batteries it carries", () => {
     only(BATTERIES_RULE);
-    const fridge = gear("high-tech", {});
+    const fridge = gear("high-tech", { raw: "External power", grades: ["external"] });
     expect(tableForInverter(fridge)?.book).toBe("high-tech");
     expect(tableForInverter({ ...fridge, system: { ...fridge.system, rangedModes: [{}] } })).toBeNull();
     const fitted = gear("high-tech", { cell: "M", cells: 1, inverter: true, draw: { endurance: "8 hrs." } });
@@ -146,7 +146,15 @@ describe("adapters and inverters (p. 14)", () => {
     expect(tableForInverter({ ...gear("high-tech", {}, "8", { weight: 0 }), name: "Basic Code-Breaking Program (TL8)" })).toBeNull();
     expect(tableForInverter({ ...gear("high-tech", {}, "8", { weight: 0 }), name: "CVSA Software" })).toBeNull();
     // Gear that merely mentions programs still weighs something and is offered one.
-    expect(tableForInverter({ ...gear("high-tech", {}), name: "Programming Console" })?.book).toBe("high-tech");
+    expect(tableForInverter({ ...gear("high-tech", { grades: ["external"] }), name: "Programming Console" })?.book).toBe("high-tech");
+  });
+
+  it("offers an inverter only on a record printed as running on external power, or on gear made by hand (p. 14)", () => {
+    only(BATTERIES_RULE);
+    // A tent, a knife's sheath: nothing to invert.
+    expect(tableForInverter(gear("high-tech", {}))).toBeNull();
+    expect(tableForInverter(gear("high-tech", { raw: "Household power", grades: ["household"] }))?.book).toBe("high-tech");
+    expect(tableForInverter(gear(null, {}))?.book).toBe("high-tech");
   });
 
   it("offers neither on Ultra-Tech gear", () => {
