@@ -41,6 +41,7 @@ function fire(hook: string, ...args: any[]): any {
 function fakeApi() {
   return {
     rules,
+    items: { changeQuantity: async (i: any, delta: number, o: any = {}) => { const from = Number(i.system.quantity) || 0; i.system.quantity = Math.max(0, from + delta); return { from, to: i.system.quantity, reason: o.reason ?? "" }; } },
     registry: { isRuleOn: (key: string) => systemRules.has(key) },
     data: { hooks: { skillBonuses: "gworld.skillBonuses" } },
     combat: { hooks: HOOKS },

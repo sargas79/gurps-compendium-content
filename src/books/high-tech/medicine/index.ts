@@ -150,11 +150,12 @@ function targetedActor(): any {
   return targets.length === 1 ? targets[0]?.actor ?? null : null;
 }
 
-/** Takes one off a consumable's count; false where there is none left. */
-async function useOne(item: any): Promise<boolean> {
+/** Takes one off a consumable's count (`items.changeQuantity`); false where there is none left. */
+async function useOne(api: GWorldApi, item: any): Promise<boolean> {
   const quantity = Number(item?.system?.quantity);
-  if (Number.isFinite(quantity) && quantity <= 0) return false;
-  if (Number.isFinite(quantity)) await item.update({ "system.quantity": quantity - 1 });
+  if (!Number.isFinite(quantity)) return true;
+  if (quantity <= 0) return false;
+  await api.items.changeQuantity(item, -1, { reason: nameOf(item) });
   return true;
 }
 
@@ -428,10 +429,10 @@ export function hemostaticFor(api: GWorldApi, healer: any, patient: any): { item
 }
 
 /** Starting an IV from a bag of fluid: a minute, and a quart of water (a meal, for dextrose) (p. 220). */
-async function startIv(item: any, actor: any): Promise<void> {
+async function startIv(api: GWorldApi, item: any, actor: any): Promise<void> {
   const patient = targetedActor() ?? actor;
   if (!gearOf(actor, "ivKit").length) return void ui.notifications?.warn(L("NeedIvKit"));
-  if (!(await useOne(item))) return void ui.notifications?.warn(F("NoneLeft", { name: nameOf(item) }));
+  if (!(await useOne(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name: nameOf(item) }));
   const lines = [F("IvStarted", { name: patient.name, item: nameOf(item), minutes: IV.startMinutes, least: IV.hoursLeast, most: IV.hoursMost }), L("IvWater")];
   if (medicalData(item).meal) lines.push(L("IvMeal"));
   await say(patient, nameOf(item), lines);
@@ -609,7 +610,7 @@ export function readyMedicine(api: GWorldApi, on: MedicineSwitches): void {
       const hemostatic = hemostaticFor(api, context.actor, context.opponent);
       if (hemostatic) {
         context.modifiers.push({ label: F("HemostaticLine", { name: nameOf(hemostatic.item), seconds: HEMOSTATIC.seconds }), value: hemostatic.value });
-        if (hemostatic.item.isOwner) void useOne(hemostatic.item);
+        if (hemostatic.item.isOwner) void useOne(api, hemostatic.item);
       }
     }
 
@@ -652,7 +653,7 @@ export function readyMedicine(api: GWorldApi, on: MedicineSwitches): void {
 
   action("ht-defibrillate", "DefibrillateAction", "fa-solid fa-heart-pulse", (item) => on.emergency() && kindIs("defibrillator")(item), (item, actor) => defibrillate(api, item, actor));
   action("ht-aed", "AedAction", "fa-solid fa-heart-circle-bolt", (item) => on.emergency() && kindIs("aed")(item), (item, actor) => useAed(api, item, actor));
-  action("ht-start-iv", "IvAction", "fa-solid fa-droplet", (item) => on.emergency() && kindIs("ivFluid")(item), (item, actor) => startIv(item, actor));
+  action("ht-start-iv", "IvAction", "fa-solid fa-droplet", (item) => on.emergency() && kindIs("ivFluid")(item), (item, actor) => startIv(api, item, actor));
   action("ht-scan", "ScanAction", "fa-solid fa-x-ray", (item) => on.facilities() && kindIs("imaging")(item), (item, actor) => scan(api, item, actor));
   action("ht-anesthetize", "AnesthesiaAction", "fa-solid fa-mask-ventilator", (item) => on.facilities() && kindIs("anesthesia")(item), (item, actor) => anesthetize(api, item, actor));
   action("ht-antiseptic", "AntisepticAction", "fa-solid fa-pump-medical", (item) => on.facilities() && kindIs("antiseptic")(item), (item, actor) => cleanWound(item, actor));
