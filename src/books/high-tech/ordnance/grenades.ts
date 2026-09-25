@@ -19,7 +19,9 @@
  *   - **A Molotov cocktail through an engine grating** (p. 191): the vehicle's
  *     HT rolls while the fire burns, and what they cost its engine.
  *   - **Smoke, white phosphorus, thermite and flashbangs** (pp. 192-193): the
- *     cloud a smoke or WP grenade leaves; WP's fragments burn and go on
+ *     cloud a smoke or WP grenade leaves, and the M7's tear gas, rolled for
+ *     everyone in it as a tear-gas round's is; the canister's burn to bare
+ *     flesh on the card; WP's fragments burn and go on
  *     burning; the AN-M14 burns as thermite (through the incendiaries'
  *     engine); a flashbang is resisted at +5 for each of Protected Hearing and
  *     Protected Vision, and its stun recovered at HT-5.
@@ -29,6 +31,7 @@ import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
 import { placeArea } from "../../../shared/areas.js";
 import { smokeAreaLines } from "../../../shared/smoke/rules.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { releaseTearGas } from "../ammunition/cargo.js";
 import { HT_SMOKE_TABLE } from "../ammunition/explosive.js";
 import { eyeBonus, hearingBonus } from "../explosives/rules.js";
 import {
@@ -322,10 +325,19 @@ export function readyGrenades(api: GWorldApi, on: () => boolean): void {
     const item = context?.item;
     const facts = on() ? grenadeOf(item) : null;
     if (!facts?.cloud || !item?.isOwner) return;
+    const name = String(item.name ?? "");
+    const hot = facts.hotCanister ? [F("HotCanister", { dice: facts.hotCanister })] : [];
+    if (facts.tearGas) {
+      void (async () => {
+        const lines = await releaseTearGas(api, context.actor, name, facts.cloud!.radius, facts.cloud!.seconds);
+        await say(context.actor, name, lines ? [...lines, ...hot] : [L("CloudNoPlace")]);
+      })();
+      return;
+    }
     const lines = smokeAreaLines(HT_SMOKE_TABLE[facts.whitePhosphorus ? "hot" : "screening"], { vision: (value) => F("CloudVision", { value }), sensors: L("CloudSensors") });
     void (async () => {
-      const id = await placeArea(api, { key: "ht-grenade-smoke", label: String(item.name ?? ""), actor: context.actor, radiusYards: facts.cloud!.radius, seconds: facts.cloud!.seconds, lines });
-      await say(context.actor, String(item.name ?? ""), [id ? F("CloudPlaced", { radius: facts.cloud!.radius, seconds: facts.cloud!.seconds }) : L("CloudNoPlace")]);
+      const id = await placeArea(api, { key: "ht-grenade-smoke", label: name, actor: context.actor, radiusYards: facts.cloud!.radius, seconds: facts.cloud!.seconds, lines });
+      await say(context.actor, name, id ? [F("CloudPlaced", { radius: facts.cloud!.radius, seconds: facts.cloud!.seconds }), ...hot] : [L("CloudNoPlace")]);
     })();
   });
 

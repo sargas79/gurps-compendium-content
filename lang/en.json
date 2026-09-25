@@ -8159,6 +8159,7 @@
         "CloudSensors": "Smoke (sensors)",
         "CloudPlaced": "Smoke fills a {radius}-yard radius for {seconds} seconds.",
         "CloudNoPlace": "No scene or spot to put the cloud on: place a template or target a token.",
+        "HotCanister": "The canister burns hot enough to do {dice} burn to bare flesh touching it, and sets dry vegetation and paper alight (Campaigns p. 433).",
         "FlashbangHearing": "Protected Hearing",
         "FlashbangVision": "Protected Vision",
         "FlashbangRecovery": "Flashbang stun",

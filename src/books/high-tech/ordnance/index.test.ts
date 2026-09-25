@@ -56,6 +56,8 @@ let malfunctions: Map<any, any>;
 let postures: Array<[string, string]>;
 let worldTime: number;
 let combat: any;
+let dosed: any[];
+let placed: any[];
 
 const fire = (name: string, ...args: any[]) => (hooks.get(name) ?? []).map((fn) => fn(...args));
 const flush = async () => { for (let i = 0; i < 30; i += 1) await Promise.resolve(); };
@@ -94,7 +96,7 @@ function fakeApi() {
     registry: { isRuleOn: (key: string) => key === "explosions" || on[key] === true },
     data: { registerExplosive: (r: any) => `${r.module}.${r.key}`, registerPoison: () => null },
     hazards: { detonate: async () => null, irradiate: async (o: any) => { irradiated.push(o); } },
-    areas: { add: () => "area", list: () => [] },
+    areas: { add: (_scene: any, area: any) => { placed.push(area); return "area"; }, list: () => [], standsIn: () => targets },
     items: {
       objectStats: () => ({ ht: 10, dr: 0 }),
       malfunction: (i: any) => malfunctions.get(i) ?? null,
@@ -124,6 +126,8 @@ function fakeApi() {
         return id;
       },
       removeCondition: async () => undefined,
+      dosePoison: async (actor: any, poison: any) => { dosed.push({ actor: actor.name, ...poison }); return { id: `d${dosed.length}` }; },
+      advancePoison: async () => null,
       applyInjury: async () => null,
       setPosture: async (actor: any, posture: string) => { postures.push([actor.name, posture]); actor.system.posture = posture; },
     },
@@ -158,6 +162,8 @@ beforeEach(() => {
   postures = [];
   worldTime = 0;
   combat = null;
+  dosed = [];
+  placed = [];
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
@@ -302,6 +308,29 @@ describe("hand grenades (pp. 190-192)", () => {
     const recovery = { actor: operator, tags: ["stunRecovery", "HT"], modifiers: [] as any[] };
     fire(HOOKS.successRollModifiers, recovery);
     expect(recovery.modifiers).toEqual([{ label: "GCC.HT.Ordnance.FlashbangRecovery", value: -5 }]);
+  });
+
+  it("fills the M7's 7 yards with tear gas for 25 seconds, rolled for everyone in it, and the AN-M8's smoke (p. 192)", async () => {
+    vi.stubGlobal("canvas", { scene: { id: "s" }, templates: { placeables: [] } });
+    const victim = actorWith("Victim");
+    targets = [{ actor: victim, center: { x: 100, y: 100 } }];
+    const m7 = item("M7");
+    fire(HOOKS.afterShots, { actor: actorWith("Thrower", [m7]), item: m7, modeIndex: 0 });
+    await flush();
+    expect(placed[0]).toMatchObject({ radius: 7, center: { x: 100, y: 100 } });
+    // Tear gas's two HT-2 rolls, dosed as a tear-gas round's are (p. 171).
+    expect(dosed.map((d) => d.source)).toEqual([`${MODULE_ID}.tearGasCoughing`, `${MODULE_ID}.tearGasBlinding`]);
+    expect(dosed.every((d) => d.actor === "Victim")).toBe(true);
+    expect(chat.at(-1)).toContain("HotCanister");
+    // The smoke grenade: a smoke cloud and the hot canister, nobody dosed.
+    dosed = [];
+    const smoke = item("AN-M8");
+    fire(HOOKS.afterShots, { actor: actorWith("Thrower", [smoke]), item: smoke, modeIndex: 0 });
+    await flush();
+    expect(placed[1]).toMatchObject({ radius: 7 });
+    expect(dosed).toEqual([]);
+    expect(chat.at(-1)).toContain("CloudPlaced");
+    expect(chat.at(-1)).toContain("HotCanister");
   });
 
   it("burns the AN-M14 as thermite for 40 seconds, without the incendiaries' switch", async () => {
