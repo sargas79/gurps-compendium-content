@@ -40,6 +40,7 @@ let targets: any[];
 let combat: any;
 let placeables: any[];
 let quantities: any[];
+let sections: Map<string, any>;
 
 const fire = (name: string, ...args: any[]) => (hooks.get(name) ?? []).map((fn) => fn(...args));
 const flush = async () => { for (let i = 0; i < 30; i += 1) await Promise.resolve(); };
@@ -67,7 +68,7 @@ function fakeApi() {
       setWeaponState: async (i: any, _module: string, patch: any) => { weaponState.set(i, { ...(weaponState.get(i) ?? {}), ...patch }); },
       getWeaponState: (i: any) => weaponState.get(i) ?? null,
     },
-    sheets: { registerRowAction: (a: any) => actions.set(a.key, a) },
+    sheets: { registerRowAction: (a: any) => actions.set(a.key, a), registerSheetSection: (s: any) => sections.set(s.key, s) },
     items: { changeQuantity: async (i: any, delta: number, o: any) => { quantities.push({ item: i.name, delta, ...o }); i.system.quantity = Math.max(0, (Number(i.system.quantity) || 0) + delta); return {}; } },
     actors: {
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? 10,
@@ -97,6 +98,7 @@ beforeEach(() => {
   combat = null;
   placeables = [];
   quantities = [];
+  sections = new Map();
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => { hooks.set(name, [...(hooks.get(name) ?? []), fn]); return 1; } });
   vi.stubGlobal("game", {
     i18n: { localize: (k: string) => k, format: (k: string, d: unknown) => `${k} ${JSON.stringify(d)}` },
@@ -301,6 +303,26 @@ describe("homingSeekers (HT:EE p. 49)", () => {
     fire(HOOKS.attackModifiers, context);
     expect(context.modifiers).toEqual([]);
     expect(context.tags).toEqual(["infrared"]);
+  });
+
+  it("keeps a homing weapon's own seeker on its sheet, which every attack then homes with (HT:EE p. 49)", async () => {
+    const stinger = item("GD FIM-92A Stinger, 70mm");
+    const section = sections.get("ee-seeker-item");
+    expect(section.visible(stinger)).toBe(false);
+    on.homingSeekers = true;
+    expect(section.visible(stinger)).toBe(true);
+    expect(section.visible(item("Springfield M1873, .45-70"))).toBe(false);
+    // The book's own: infrared.
+    expect(section.context(stinger).choices.find((c: any) => c.selected).value).toBe("infrared");
+    stinger.flags = { ...(stinger.flags ?? {}), [MODULE_ID]: { ...(stinger.flags?.[MODULE_ID] ?? {}), eeSeeker: "radar" } };
+    expect(section.context(stinger).choices.find((c: any) => c.selected).value).toBe("radar");
+    const context = attack(stinger, actorWith("Gunner", [stinger]));
+    fire(HOOKS.attackModifiers, context);
+    expect(context.tags).toEqual(["radar"]);
+    // The option still picks another for one attack.
+    const picked = attack(stinger, actorWith("Gunner", [stinger]), { options: { [`${MODULE_ID}.ee-seeker`]: "infrared" } });
+    fire(HOOKS.attackModifiers, picked);
+    expect(picked.tags).toEqual(["infrared"]);
   });
 
   it("offers the seeker as an option: -2 on a warm hull, -3 at a torpedo's vital area", () => {

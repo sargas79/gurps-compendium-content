@@ -10787,7 +10787,10 @@
           "warmHull": "Infrared seeker on a warm hull",
           "vitalArea": "Homing on propulsion and steering (vital area)"
         },
-        "NotDesignated": "Nobody carrying a laser designator is aiming at this target: a laser-homing missile would miss (HT:EE p. 49; Campaigns p. 412)."
+        "NotDesignated": "Nobody carrying a laser designator is aiming at this target: a laser-homing missile would miss (HT:EE p. 49; Campaigns p. 412).",
+        "SeekerTitle": "Homing",
+        "SeekerNone": "None set",
+        "SeekerHint": "What this weapon's seeker homes on, used by every attack unless the attack option picks another (HT:EE p. 49)."
       },
       "Audio": {
         "Title": "Audio (Electricity and Electronics)",

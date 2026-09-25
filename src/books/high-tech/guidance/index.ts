@@ -22,8 +22,9 @@
  *     Artillery (Guided Missile) to lock on, then the missile's own skill of
  *     10 -- and, since it is rolled only once that lock-on succeeds, the
  *     system's lock-on Acc even where the Aim box was left empty
- *     (`gworld.homingAttack`, API 1.128.0). An attack option says what the
- *     seeker homes on (High-Tech's missiles give their own), which tags the
+ *     (`gworld.homingAttack`, API 1.128.0). The weapon's sheet says what its
+ *     seeker homes on (High-Tech's missiles give their own), and an attack
+ *     option may pick another for one attack; that tags the
  *     roll with that sense; an infrared seeker on a warm hull takes -2, and
  *     an advanced acoustic torpedo may home on propulsion and steering as the
  *     vital area (-3, Campaigns p. 554). A laser-homing missile is
@@ -118,10 +119,21 @@ export function fittedFuze(api: GWorldApi, item: any): FittedFuze | null {
   return state && typeof state === "object" && state.kind ? (state as FittedFuze) : null;
 }
 
+/** The flag a homing weapon's own seeker is kept in, set on its sheet (HT:EE p. 49). */
+export const SEEKER_FLAG = "eeSeeker";
+
+/**
+ * The seeker a homing weapon is built with: the one set on its sheet, else
+ * the one the book gives its record (High-Tech's missiles); null for none.
+ */
+export function recordSeeker(item: any): SeekerChoice | null {
+  return seekerChoice(item?.flags?.[MODULE_ID]?.[SEEKER_FLAG]) ?? seekersOf(nameOf(item))[0] ?? null;
+}
+
 /** The seeker an attack homes with: the option chosen, else the record's own. */
 export function chosenSeeker(item: any, options: Record<string, unknown> | undefined): SeekerChoice | null {
   const picked = seekerChoice(options?.[`${MODULE_ID}.${SEEKER_OPTION}`]);
-  return picked ?? (seekersOf(nameOf(item))[0] ?? null);
+  return picked ?? recordSeeker(item);
 }
 
 /** Yards between two token documents on the scene, by their centres. */
@@ -309,7 +321,7 @@ function readySeekers(api: GWorldApi, on: () => boolean): void {
   const seekerFor = (item: any): SeekerChoice | null => {
     const key = weaponKey(item);
     const picked = chosen.has(key) ? chosen.get(key)! : null;
-    return picked ?? seekersOf(nameOf(item))[0] ?? null;
+    return picked ?? recordSeeker(item);
   };
 
   // The Basic Set's lock-on and the missile's own skill on a homing row that doesn't say them.
@@ -320,7 +332,8 @@ function readySeekers(api: GWorldApi, on: () => boolean): void {
       const row = entry.row;
       if (!String(row.aimingSkill ?? "").trim()) row.aimingSkill = HOMING_AIMING_SKILL;
       if (!(Number(row.guidedSkillLevel) > 0)) row.guidedSkillLevel = HOMING_SKILL;
-      const seeker = seekersOf(nameOf(context.item))[0];
+      const own = recordSeeker(context.item);
+      const seeker = own ? seekerOf(own) : null;
       row.notes?.push?.({ label: F("HomingNote", { skill: row.guidedSkillLevel }), hint: seeker ? F("SeekerHint", { seeker: L(`Seekers.${seeker}`) }) : L("HomingHint") });
     }
   });
@@ -341,13 +354,34 @@ function readySeekers(api: GWorldApi, on: () => boolean): void {
     available: (context: any) => on() && homingWeapon(context?.item),
     apply: (context: any, value: unknown) => {
       chosen.set(weaponKey(context?.item), seekerChoice(value));
-      const choice = seekerChoice(value) ?? seekersOf(nameOf(context?.item))[0] ?? null;
+      const choice = seekerChoice(value) ?? recordSeeker(context?.item);
       const line = choice ? seekerModifier(choice) : null;
       return line ? { modifiers: [{ label: L(`Lines.${line.key}`), value: line.value, key: line.key }] } : null;
     },
   } as any);
 
   const people = (actor: any) => [actor, ...sceneActors()].filter((a, i, all) => a && all.indexOf(a) === i);
+
+  // The seeker a homing weapon is built with, set once on its sheet rather than at every attack (HT:EE p. 49).
+  api.sheets.registerSheetSection({
+    module: MODULE_ID,
+    key: "ee-seeker-item",
+    sheet: "item",
+    template: `modules/${MODULE_ID}/templates/ee-guidance-item.hbs`,
+    visible: (item: any) => on() && homingWeapon(item),
+    context: (item: any) => {
+      const own = recordSeeker(item);
+      return {
+        editable: Boolean(item?.isOwner ?? true),
+        choices: [{ value: "", label: L("SeekerNone"), selected: !own }, ...SEEKER_CHOICES.map((c) => ({ value: c, label: L(`Seekers.${c}`), selected: c === own }))],
+      };
+    },
+    listeners: (element: HTMLElement, item: any) => {
+      element.querySelector<HTMLSelectElement>("[data-gcc-ee-seeker]")?.addEventListener("change", (event) => {
+        void item.setFlag(MODULE_ID, SEEKER_FLAG, (event.currentTarget as HTMLSelectElement).value || null);
+      });
+    },
+  } as any);
 
   // Before the attack: locked on, and who holds a laser seeker's spot (Campaigns pp. 412-413; HT:EE p. 49).
   Hooks.on(api.combat.hooks.homingAttack, (context: any) => {
