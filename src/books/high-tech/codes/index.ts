@@ -80,6 +80,7 @@ import {
 } from "./rules.js";
 import { DECRYPTION_MACHINES, machineBonus, type DecryptionMachine } from "../sigint/rules.js";
 import { complexityOf } from "../computing/index.js";
+import { computerData } from "../../../shared/computers/data.js";
 
 const NS = "GCC.HT.Codes";
 const L = (key: string) => game.i18n.localize(`${NS}.${key}`);
@@ -152,18 +153,26 @@ function makerLevel(api: GWorldApi, maker: any, code: Code): number {
   return code === "improvised" ? improvisedLevel(attribute(api, maker, "IQ"), cryptography) : cryptography ?? CIPHER_WHEEL_SKILL;
 }
 
+/** A computer's Complexity: a High-Tech computer's as its table works it out, or the system's own `complexity` (Campaigns p. 472); 0 where neither says. */
+const measured = (item: any): number => Math.max(complexityOf(item) ?? 0, Math.floor(Number(item?.system?.complexity) || 0));
+
 /**
- * The highest Complexity among the computers a character carries: a
- * High-Tech computer's as its table works it out, or the system's own
- * `complexity` on any other (Campaigns p. 472). 0 for none.
+ * The computers a code-breaker can run the program on: those carried, and
+ * the one the program is installed on (`runsOn`) wherever it is. The
+ * highest Complexity among them, and the first computer whose Complexity
+ * can't be measured -- an ordinary record that states none -- or null.
  */
-export function bestComputer(actor: any): number {
+export function computersFor(actor: any, program: any = null): { best: number; unmeasured: any } {
+  const host = program ? actor?.items?.get?.(computerData(program).runsOn) ?? [...(actor?.items ?? [])].find((i: any) => i.id === computerData(program).runsOn) ?? null : null;
   let best = 0;
+  let unmeasured: any = null;
   for (const item of actor?.items ?? []) {
-    if (!carried(item)) continue;
-    best = Math.max(best, complexityOf(item) ?? 0, Math.floor(Number(item.system?.complexity) || 0));
+    if (item !== host && !carried(item)) continue;
+    const complexity = measured(item);
+    if (complexity > 0) best = Math.max(best, complexity);
+    else if (item === host || isComputer(String(item.name ?? ""))) unmeasured ??= item;
   }
-  return best;
+  return { best, unmeasured };
 }
 
 /** Hours as the card says them. */
@@ -227,15 +236,18 @@ export async function breakCode(api: GWorldApi, breaker: any, program: any = nul
   const software = program ?? [...(breaker.items ?? [])].find((i: any) => carried(i) && isCodeBreakingProgram(String(i.name)));
   if (answer.code !== "basic6" && !software) return void say(breaker, title, [F("NeedsProgram", { complexity: figures.complexity })]);
   // The program runs on a computer of the standard's Complexity, and of its own (p. 211).
+  const notes: string[] = [];
   if (answer.code !== "basic6") {
     const needs = computerNeeded(figures.complexity ?? 0, programComplexity(String(software.name ?? "")));
-    const best = bestComputer(breaker);
-    if (best < needs) return void say(breaker, title, [best > 0 ? F("ComputerTooSmall", { complexity: needs, best }) : F("NeedsComputer", { complexity: needs })]);
+    const { best, unmeasured } = computersFor(breaker, software);
+    // A computer whose Complexity can't be measured is let through, with the question left to the GM.
+    if (best < needs && unmeasured) notes.push(F("ComplexityUnknown", { name: unmeasured.name, complexity: needs }));
+    else if (best < needs) return void say(breaker, title, [best > 0 ? F("ComputerTooSmall", { complexity: needs, best }) : F("NeedsComputer", { complexity: needs })]);
   }
   const time = timeSpentModifier(answer.spent * figures.hours, figures.hours);
   if (time) modifiers.push({ label: F("TimeLine", { times: answer.spent }), value: time });
   await api.roll.success({ actor: breaker, base: cryptography!, skill: CRYPTOGRAPHY, label, modifiers, tags: ["codeBreaking"], ...(software ? { item: software } : {}) } as any);
-  await say(breaker, title, [F("StandardLine", { time: duration(figures.hours * answer.spent), base: duration(figures.hours), complexity: figures.complexity })]);
+  await say(breaker, title, [F("StandardLine", { time: duration(figures.hours * answer.spent), base: duration(figures.hours), complexity: figures.complexity }), ...notes]);
 }
 
 // ── forgery (pp. 213-214) ──
@@ -254,7 +266,16 @@ function forgeryOutcome(api: GWorldApi, options: { actor: any; item: any; tool: 
   const printer = tool === "counterfeiting" && options.documentTl >= tracedPrinterTl ? gear.find((i) => isPrinter(i.name)) : null;
   if (!printer) return { base, skill: options.skill, modifiers };
   const known = printer.flags?.[MODULE_ID]?.[TRACED_PRINTER];
-  if (typeof known === "boolean") return { base, skill: options.skill, modifiers, lines: [F(known ? "PrinterTraced" : "PrinterClean", { name: printer.name })] };
+  // Known already: the GMs are told again, and the forger's card says only that it was settled.
+  if (typeof known === "boolean") {
+    return {
+      base, skill: options.skill, modifiers,
+      after: async () => {
+        await say(options.actor, String(printer.name ?? ""), [F(known ? "PrinterTraced" : "PrinterClean", { name: printer.name })], true);
+        return [F("PrinterChecked", { name: printer.name })];
+      },
+    };
+  }
   return { base, skill: options.skill, modifiers, after: () => checkPrinter(api, options.actor, printer) };
 }
 

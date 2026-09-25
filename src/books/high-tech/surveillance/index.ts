@@ -761,7 +761,7 @@ function holderOf(key: string): any {
  * time; or it traces a call, which says where the phone's holder is. The
  * book gives no roll for any of it.
  */
-export async function monitorPhones(api: GWorldApi, item: any, actor: any): Promise<void> {
+export async function monitorPhones(api: GWorldApi, item: any, actor: any, jamming = true): Promise<void> {
   if (!actor) return;
   const target = picked().target;
   const phones = target ? [...(target.items ?? [])].filter((i: any) => carried(i) && isCallPhone(nameOf(i), itemTl(i))) : [];
@@ -772,7 +772,8 @@ export async function monitorPhones(api: GWorldApi, item: any, actor: any): Prom
   ];
   if (!choices.length) return void ui.notifications?.warn(L("Monitor.NoPhone"));
   const title = F("Monitor.Title", { name: item.name });
-  const modes = [...MONITOR_MODES, "trace", "stop"];
+  // Jamming a phone outright is the jamming rule's, offered only while it is on.
+  const modes = [...MONITOR_MODES.filter((m) => jamming || m !== "jam"), "trace", "stop"];
   const answer = await ask(title,
     row(L("Monitor.Phone"), `<select name="phone">${choices.map((c) => `<option value="${esc(c.key)}">${esc(F("Monitor.PhoneOf", { phone: c.name, holder: c.holder }))}</option>`).join("")}</select>`)
     + row(L("Monitor.Do"), `<select name="mode">${options(modes, (m) => L(`Monitor.Mode.${m}`))}</select>`),
@@ -790,6 +791,7 @@ export async function monitorPhones(api: GWorldApi, item: any, actor: any): Prom
     await item.setFlag(MODULE_ID, MONITOR_FLAG, followed.filter((m) => m.phone !== choice.key));
     return void (await card(actor, title, [F("Monitor.Stopped", said)]));
   }
+  if (!modes.includes(answer.mode)) return;
   const mode = answer.mode as MonitorMode;
   const list = monitorPhone(followed, { phone: choice.key, name: choice.name, holder: choice.holder, mode });
   if (!list) return void (await card(actor, title, [F("Monitor.Full", { calls: CELL_MONITOR_CALLS })]));
@@ -898,7 +900,7 @@ export function readySurveillance(api: GWorldApi, on: SurveillanceSwitches): voi
     { key: "ht-endoscope", label: L("Endoscope.Title"), icon: "fa-solid fa-eye", visible: (item) => on.surveillance() && named(/^search endoscope$/i)(item), run: (item, actor) => endoscope(api, item, actor) },
     { key: "ht-document-scanner", label: L("DocumentTitle"), icon: "fa-solid fa-envelope-open-text", visible: (item) => on.surveillance() && named(/^security document scanner$/i)(item), run: (item, actor) => documentScanner(api, item, actor) },
     { key: "ht-homemade-bug", label: L("Bug.HomemadeTitle"), icon: "fa-solid fa-screwdriver-wrench", visible: (item) => on.surveillance() && isGear(item) && typeof bugOf(nameOf(item))?.sm === "number", run: (item, actor) => homemadeBug(api, item, actor) },
-    { key: "ht-cell-monitor", label: L("Monitor.Action"), icon: "fa-solid fa-mobile-screen", visible: (item) => on.surveillance() && isGear(item) && isCellMonitor(nameOf(item)), run: (item, actor) => monitorPhones(api, item, actor) },
+    { key: "ht-cell-monitor", label: L("Monitor.Action"), icon: "fa-solid fa-mobile-screen", visible: (item) => on.surveillance() && isGear(item) && isCellMonitor(nameOf(item)), run: (item, actor) => monitorPhones(api, item, actor, on.jamming()) },
     { key: "ht-computer-monitoring", label: L("Emissions.Action"), icon: "fa-solid fa-desktop", visible: (item) => on.surveillance() && isGear(item) && isComputerMonitoring(nameOf(item)), run: (item, actor) => readEmissions(api, item, actor) },
     { key: "ht-keyboard-bug", label: L("KeyboardBug.Action"), icon: "fa-solid fa-keyboard", visible: (item) => on.surveillance() && isGear(item) && isKeyboardBug(nameOf(item)), run: (item, actor) => installKeyboardBug(api, item, actor) },
     { key: "ht-bug-sweep", label: L("Sweep.Title"), icon: "fa-solid fa-bug", visible: (item) => on.surveillance() && named(/^bug detector$/i)(item), run: (item, actor) => sweepForBugs(api, item, actor, on.covert?.() ?? false) },

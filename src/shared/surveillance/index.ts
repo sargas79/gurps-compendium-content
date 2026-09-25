@@ -214,6 +214,13 @@ function actorsOnMap(): any[] {
   return [...new Set(tokens.map((t) => t.actor).filter(Boolean))];
 }
 
+/** Every actor in the world: the world's actors, and every scene's unlinked tokens' own. */
+function actorsInWorld(): any[] {
+  const game_ = (globalThis as any).game;
+  const unlinked = [...(game_?.scenes ?? [])].flatMap((scene: any) => [...(scene.tokens ?? [])].filter((t: any) => !t.actorLink && t.actor).map((t: any) => t.actor));
+  return [...(game_?.actors ?? []), ...unlinked];
+}
+
 /**
  * How a jammer reaches gear this many yards away: a jammer that hinders some
  * kinds of gear ignores the rest; one that blocks a kind blocks it within its
@@ -239,7 +246,10 @@ export function jammerReach(jammer: Jammer, gear: Jammable, yards: number, shado
 export function jammersReaching(actor: any, gear: Jammable, actors: any[] = actorsOnMap(), gearItem: any = null): JammerInReach[] {
   const found: JammerInReach[] = [];
   const key = gearItem ? gearKey(gearItem) : "";
-  for (const holder of actors) {
+  // A jammer that names this gear blocks it from anywhere: its holder needn't be on the map in view.
+  const named = key ? actorsInWorld().filter((a) => !actors.includes(a)) : [];
+  for (const holder of [...actors, ...named]) {
+    const onMap = actors.includes(holder);
     for (const item of holder?.items ?? []) {
       if (!carried(item)) continue;
       const own = jammerOf(item);
@@ -249,7 +259,7 @@ export function jammersReaching(actor: any, gear: Jammable, actors: any[] = acto
         if (key && jammer.targets.includes(key)) found.push({ holder, item, table, jammer, yards: holder === actor ? 0 : (yardsBetween(actor, holder) ?? Infinity), reach: "blocked" });
         continue;
       }
-      if (!isSwitchedOn(item)) continue;
+      if (!onMap || !isSwitchedOn(item)) continue;
       const yards = holder === actor ? 0 : yardsBetween(actor, holder);
       if (yards === null) continue;
       const reach = jammerReach(jammer, gear, yards, table.shadow);

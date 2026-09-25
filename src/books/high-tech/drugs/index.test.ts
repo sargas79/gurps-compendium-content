@@ -10,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { MODULE_ID } from "../../../shared/module.js";
 import * as rules from "../../../../system/src/rules/index.js";
-import { checkBotulinHealed, checkPendingDoses, checkPsychiatricExpired, drugData, readyDrugs } from "./index.js";
+import { applyDelayedDosesNow, checkBotulinHealed, checkPendingDoses, checkPsychiatricExpired, drugData, readyDrugs } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -50,6 +50,7 @@ function fakeApi() {
     sheets: {
       registerSheetSection: (s: any) => sections.push(s),
       registerRowAction: (a: any) => actions.set(a.key, a),
+      registerGmTool: (t: any) => actions.set(`tool:${t.key}`, t),
     },
     actors: {
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? 10,
@@ -383,6 +384,49 @@ describe("hygiene and drugs (High-Tech pp. 221, 226-227)", () => {
     await flush();
     expect(successes[0]).toMatchObject({ actor: patient, modifiers: [{ value: -4 }] });
     expect(applied).toContainEqual(expect.objectContaining({ key: "htMorphine", duration: { seconds: 7200 } }));
+  });
+
+  it("applies a delayed dose once: not from an unlinked token's copy of its giver, nor twice on two quick ticks", async () => {
+    const patient = person([], { uuid: "Actor.patient" });
+    successResult = { success: false, margin: 2, criticalFailure: false };
+    dialogAnswers = [{ route: "oral" }];
+    await run("ht-drug-give", gear("Morphine"), patient);
+    const [dose] = patient.getFlag(MODULE_ID, "htPendingDoses");
+    expect(typeof dose.id).toBe("string");
+    expect(dose.id.length).toBeGreaterThan(0);
+    // An unlinked token of the same actor reads the base's flags until its own delta writes them.
+    const copy = { ...patient, uuid: "Scene.s.Token.t.Actor.patient", isToken: true, token: { delta: { _source: { flags: {} } } } };
+    const scene = { tokens: [{ actorLink: false, actor: copy }] };
+    vi.stubGlobal("game", { ...(globalThis as any).game, user: { id: "gm", isGM: true, targets: new Set() }, users: { activeGM: { id: "gm" } }, actors: [patient], scenes: [scene], time: { get worldTime() { return worldTime; } } });
+    worldTime += 1200;
+    // Two ticks before the first has finished.
+    fire("updateWorldTime");
+    fire("updateWorldTime");
+    await flush();
+    expect(successes).toHaveLength(1);
+    expect(applied.filter((a) => a.key === "htMorphine")).toHaveLength(1);
+    expect(patient.getFlag(MODULE_ID, "htPendingDoses")).toEqual([]);
+    expect(await checkPendingDoses(fakeApi() as never, copy)).toBe(0);
+    // A token copy reading a base's fresh dose leaves it to the base.
+    const base = [{ id: "fresh", kind: "truthSerum", name: "Truth Serum", patient: "Actor.patient", due: 0 }];
+    const reader = { ...copy, getFlag: () => base };
+    expect(await checkPendingDoses(fakeApi() as never, reader)).toBe(0);
+  });
+
+  it("lets the GM make every delayed dose work now, for a game whose world time stands still", async () => {
+    const patient = person([], { uuid: "Actor.patient" });
+    const giver = person([], { uuid: "Actor.giver" });
+    vi.stubGlobal("fromUuidSync", (uuid: string) => (uuid === "Actor.patient" ? patient : null));
+    targets = [patient];
+    successResult = { success: false, margin: 1, criticalFailure: false };
+    await run("ht-drug-give", gear("Truth Serum"), giver);
+    expect(successes).toEqual([]);
+    vi.stubGlobal("game", { ...(globalThis as any).game, actors: [giver], scenes: [] });
+    expect(actions.get("tool:ht-delayed-doses").visible()).toBe(true);
+    expect(await applyDelayedDosesNow(fakeApi() as never)).toBe(1);
+    expect(successes[0]).toMatchObject({ actor: patient, modifiers: [{ value: -1 }] });
+    expect(giver.getFlag(MODULE_ID, "htPendingDoses")).toEqual([]);
+    expect(await applyDelayedDosesNow(fakeApi() as never)).toBe(0);
   });
 
   it("wakes a stunned or unconscious character with smelling salts on a HT roll", async () => {

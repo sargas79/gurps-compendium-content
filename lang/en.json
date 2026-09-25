@@ -5580,6 +5580,7 @@
         "MitigatedReason": "Mitigated by a course of electroconvulsive therapy ({name})"
       },
       "Codes": {
+        "ComplexityUnknown": "{name} states no Complexity: the GM decides whether it can run the program, which needs Complexity {complexity} (p. 211).",
         "NeedsComputer": "The program needs a Complexity {complexity} computer to run on, and none is carried (p. 211).",
         "ComputerTooSmall": "The program needs a Complexity {complexity} computer to run on; the best carried is Complexity {best} (p. 211).",
         "PrinterLabel": "Counterfeiting: avoiding a printer that marks its pages ({name})",
@@ -10362,6 +10363,8 @@
         "RideTired": "{name} loses {fp} FP to the ride."
       },
       "Drugs": {
+        "ApplyDelayedTitle": "Delayed doses: work now",
+        "NoDelayedDoses": "No delayed dose is waiting.",
         "Route": "Given",
         "RouteHint": "Swallowed, a painkiller takes about 20 minutes to work; injected, it works at once (Campaigns p. 441).",
         "RouteInjected": "Injected (at once)",

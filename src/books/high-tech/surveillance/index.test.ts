@@ -851,6 +851,23 @@ describe("the cellular monitoring system (p. 209)", () => {
     expect(chat.at(-1).content).toContain("Jamming.NoneInReach");
   });
 
+  it("jams the phone from a system whose holder isn't on the scene in view, and offers jamming only under its switch", async () => {
+    const { monitor, agent, phone, mark } = setUp();
+    on.add(key("surveillanceGear"));
+    // Jamming off: "jam" isn't offered, and an answer of it does nothing.
+    dialogAnswer = { phone: phone.id, mode: "jam" };
+    await actions.get("ht-cell-monitor").run(monitor, agent);
+    expect(monitor.flags[MODULE_ID].cellMonitored).toBeUndefined();
+    on.add(key("jamming"));
+    await actions.get("ht-cell-monitor").run(monitor, agent);
+    expect(monitor.flags[MODULE_ID].cellMonitored).toHaveLength(1);
+    // The agent's van is on another scene: only the mark has a token here.
+    tokens = tokens.filter((t) => t.actor === mark);
+    vi.stubGlobal("game", { ...(globalThis as any).game, actors: [mark], scenes: [{ tokens: [{ actorLink: false, actor: agent }] }] });
+    await actions.get("jammer-use-near").run(phone, mark);
+    expect(chat.at(-1).content).toContain("Jamming.Blocked");
+  });
+
   it("follows four calls at most, and traces a call to its holder", async () => {
     const { monitor, agent, phone } = setUp();
     on.add(key("surveillanceGear"));

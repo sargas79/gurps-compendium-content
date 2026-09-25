@@ -244,6 +244,30 @@ describe("code-breaking computers and encryption gear (p. 211)", () => {
     expect(rolls).toHaveLength(0);
   });
 
+  it("lets through a computer whose Complexity can't be measured, and counts the program's host wherever it is", async () => {
+    const program: any = gear("Good Code-Breaking Program");
+    const breaker = character("Breaker", { skills: { Cryptography: 14 }, items: [program] });
+    answer = { code: "basic7", maker: 0, helpers: 0, apparatus: 1, spent: 1 };
+    // An ordinary computer record that states no Complexity: the roll is made, and the card leaves it to the GM.
+    breaker.items.push(gear("Office Computer"));
+    await action("ht-break-code").run(program, breaker);
+    expect(rolls).toHaveLength(1);
+    expect(said()).toContain("ComplexityUnknown");
+    // The mainframe the program is installed on counts though nobody carries it.
+    rolls.length = 0;
+    breaker.items.length = 1;
+    const host: any = { ...gear("Mainframe Computer", { complexity: 5, carried: false }), id: "host" };
+    breaker.items.push(host);
+    program.system.extensions = { [MODULE_ID]: { computer: { runsOn: "host" } } };
+    await action("ht-break-code").run(program, breaker);
+    expect(rolls).toHaveLength(1);
+    expect(said()).not.toContain("ComplexityUnknown");
+    program.system.extensions = {};
+    rolls.length = 0;
+    await action("ht-break-code").run(program, breaker);
+    expect(rolls).toHaveLength(0);
+  });
+
   it("says what each piece of encryption gear makes and needs, under the encryption switch", () => {
     const section = sections.find((s) => s.key === "ht-codes-item");
     const lines = (name: string) => section.context(gear(name)).lines.join(" ");
@@ -277,7 +301,12 @@ describe("counterfeiting at TL8 (p. 214)", () => {
     rolls.length = 0;
     await forge.run(tools, counterfeiter);
     expect(rolls).toHaveLength(1);
-    expect(said()).toContain("PrinterTraced");
+    // The forger's card says only that it was settled; the answer goes to the GMs alone.
+    expect(said()).toContain("PrinterChecked");
+    expect(said()).not.toContain("PrinterTraced");
+    const whisper = (ChatMessage.implementation.create as any).mock.calls.at(-2)[0];
+    expect(whisper.content).toContain("PrinterTraced");
+    expect(whisper.whisper).toEqual(["gm"]);
     // A TL7 note or plain forgery rolls nothing more.
     rolls.length = 0;
     answer = { skill: "Counterfeiting", tl: 7 };

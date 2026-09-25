@@ -517,6 +517,8 @@ type DelayedDrug = "morphine" | "truthSerum";
 
 /** A dose given and not yet at work. */
 interface PendingDose {
+  /** Its own id, so a dose is applied once however often the list is read. */
+  id: string;
   kind: DelayedDrug;
   name: string;
   patient: string;
@@ -529,8 +531,21 @@ function pendingDoses(actor: any): PendingDose[] {
   if (!Array.isArray(list)) return [];
   return list
     .filter((d: any) => d && (d.kind === "morphine" || d.kind === "truthSerum"))
-    .map((d: any) => ({ kind: d.kind, name: String(d.name ?? ""), patient: String(d.patient ?? ""), due: Number(d.due) || 0 }));
+    .map((d: any) => ({ id: String(d.id ?? ""), kind: d.kind, name: String(d.name ?? ""), patient: String(d.patient ?? ""), due: Number(d.due) || 0 }));
 }
+
+/**
+ * Whether an actor's pending doses are its own: an unlinked token's actor
+ * reads its base actor's flags until its own delta writes them, and those
+ * doses are the base actor's to apply.
+ */
+function ownsPending(actor: any): boolean {
+  if (!actor?.isToken) return true;
+  return actor.token?.delta?._source?.flags?.[MODULE_ID]?.[PENDING_FLAG] !== undefined;
+}
+
+/** A new dose's id. */
+const doseId = (): string => (globalThis as any).foundry?.utils?.randomID?.() ?? Math.random().toString(36).slice(2, 18);
 
 /**
  * A dose that works after a delay: kept on the character who gave it until
@@ -538,30 +553,58 @@ function pendingDoses(actor: any): PendingDose[] {
  */
 async function delayDose(giver: any, patient: any, kind: DelayedDrug, name: string, seconds: number): Promise<void> {
   const holder = giver ?? patient;
-  await holder.setFlag(MODULE_ID, PENDING_FLAG, [...pendingDoses(holder), { kind, name, patient: String(patient.uuid ?? ""), due: worldNow() + seconds }]);
+  await holder.setFlag(MODULE_ID, PENDING_FLAG, [...pendingDoses(holder), { id: doseId(), kind, name, patient: String(patient.uuid ?? ""), due: worldNow() + seconds }]);
   const who = String(patient.name ?? "");
   await say(patient, name, [seconds >= 60 ? F("DoseInMinutes", { name: who, minutes: seconds / 60 }) : F("DoseInSeconds", { name: who, seconds })]);
 }
 
+/** The givers whose doses are being applied now, so two quick ticks don't both apply them. */
+const applying = new Set<string>();
+/** The doses applied so far, by id: a list read again before its update lands still applies each once. */
+const applied = new Set<string>();
+
 /**
  * Makes the doses a character gave take effect once world time reaches
- * them; a patient who can't be found any more is let go. Returns how many
- * took effect.
+ * them, or all of them at once (`now`, the GM's tool); a patient who can't
+ * be found any more is let go. Each dose comes off the list before it
+ * works. Returns how many took effect.
  */
-export async function checkPendingDoses(api: GWorldApi, giver: any): Promise<number> {
-  const pending = pendingDoses(giver);
-  if (!pending.length || !giver?.isOwner) return 0;
-  const now = worldNow();
-  const due = pending.filter((d) => d.due <= now);
+export async function checkPendingDoses(api: GWorldApi, giver: any, now = false): Promise<number> {
+  if (!giver?.isOwner || !ownsPending(giver)) return 0;
+  const key = String(giver.uuid ?? giver.id ?? "");
+  if (applying.has(key)) return 0;
+  const pending = pendingDoses(giver).filter((d) => !d.id || !applied.has(d.id));
+  const time = worldNow();
+  const due = pending.filter((d) => now || d.due <= time);
   if (!due.length) return 0;
-  await giver.setFlag(MODULE_ID, PENDING_FLAG, pending.filter((d) => d.due > now));
-  let count = 0;
-  for (const dose of due) {
-    const patient = dose.patient && dose.patient === String(giver.uuid ?? "") ? giver : (globalThis as any).fromUuidSync?.(dose.patient) ?? null;
-    if (!patient) continue;
-    await doseTakesEffect(api, patient, dose.kind, dose.name);
-    count += 1;
+  applying.add(key);
+  try {
+    for (const dose of due) if (dose.id) applied.add(dose.id);
+    await giver.setFlag(MODULE_ID, PENDING_FLAG, pending.filter((d) => !due.includes(d)));
+    let count = 0;
+    for (const dose of due) {
+      const patient = dose.patient && dose.patient === String(giver.uuid ?? "") ? giver : (globalThis as any).fromUuidSync?.(dose.patient) ?? null;
+      if (!patient) continue;
+      await doseTakesEffect(api, patient, dose.kind, dose.name);
+      count += 1;
+    }
+    return count;
+  } finally {
+    applying.delete(key);
   }
+}
+
+/** World actors, and the unlinked tokens' own on every scene. */
+function everyActor(): any[] {
+  const unlinked = [...((game as any).scenes ?? [])].flatMap((scene: any) => [...(scene.tokens ?? [])].filter((t: any) => !t.actorLink && t.actor).map((t: any) => t.actor));
+  return [...((game as any).actors ?? []), ...unlinked];
+}
+
+/** The GM's tool: every delayed dose works now, for a game that doesn't move world time on. */
+export async function applyDelayedDosesNow(api: GWorldApi): Promise<number> {
+  let count = 0;
+  for (const actor of everyActor()) if (actor.getFlag?.(MODULE_ID, PENDING_FLAG)?.length) count += await checkPendingDoses(api, actor, true);
+  if (!count) ui.notifications?.info(L("NoDelayedDoses"));
   return count;
 }
 
@@ -760,9 +803,7 @@ export function readyDrugs(api: GWorldApi, on: DrugSwitches): void {
   // A psychiatric drug's day runs out with world time too (p. 227), and a delayed dose comes due.
   Hooks.on("updateWorldTime", () => {
     if (!(on.poisons() || on.hygiene()) || !isActiveGm()) return;
-    // World actors, and the unlinked tokens' own on every scene.
-    const unlinked = [...((game as any).scenes ?? [])].flatMap((scene: any) => [...(scene.tokens ?? [])].filter((t: any) => !t.actorLink && t.actor).map((t: any) => t.actor));
-    for (const actor of [...((game as any).actors ?? []), ...unlinked]) {
+    for (const actor of everyActor()) {
       if (on.poisons() && actor.getFlag?.(MODULE_ID, BOTULIN_FLAG)) void checkBotulinHealed(api, actor);
       if (on.hygiene() && actor.getFlag?.(MODULE_ID, PSYCHIATRIC_FLAG)) void checkPsychiatricExpired(actor);
       // Oral morphine and truth serum work once their delay is up.
@@ -772,6 +813,16 @@ export function readyDrugs(api: GWorldApi, on: DrugSwitches): void {
   Hooks.on("updateActor", (actor: any, changes: any) => {
     if (!on.poisons() || !isActiveGm() || changes?.flags?.gworld?.crippled === undefined) return;
     if (actor.getFlag?.(MODULE_ID, BOTULIN_FLAG)) void checkBotulinHealed(api, actor);
+  });
+
+  // Delayed doses given now, for a game that doesn't move world time on.
+  api.sheets.registerGmTool({
+    module: MODULE_ID,
+    key: "ht-delayed-doses",
+    label: L("ApplyDelayedTitle"),
+    icon: "fa-solid fa-hourglass-end",
+    visible: () => on.hygiene(),
+    open: () => { void applyDelayedDosesNow(api); },
   });
 
   // ── row actions ──
