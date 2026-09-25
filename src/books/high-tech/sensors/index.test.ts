@@ -643,18 +643,11 @@ describe("radioDesign: how a radio is built (HT:EE pp. 28-30, 32, 34)", () => {
       dialogAnswer = { task: "send", cipher: false };
       await actions.get("ht-telegraphy").run(rotary, character("Sparks", [rotary]));
       expect(successes[0].modifiers).toEqual([{ label: expect.stringContaining("GCC.HT.Sensor.QualityLine"), value: 1 }]);
-      // The set is a tool for Electronics Operation (Communications) at its quality (HT:EE p. 28), over its own grade.
-      const grade = grades.find((g) => g.key === "ht-rotary-spark-gap").grade;
-      expect(grade(rotary, "Electronics Operation (Communications)")).toEqual({ modifier: 1 });
-      const ultra = transmitter({ commMode: "transmitter", sparkGap: true, wideband: true, ultraRotarySparkGap: true });
-      ultra.system.equipmentQuality = "good";
-      expect(grade(ultra, "Electronics Operation (Communications)")).toEqual({ modifier: 3 });
-      expect(grade(rotary, "Electronics Operation (EW)")).toBeNull();
-      expect(grade(transmitter(), "Electronics Operation (Communications)")).toBeNull();
-      // Where the preparation picked the set as the skill's tool, the skill carries it already: no second line.
+      // Only on what is sent with the set: no tool for the skill at large.
+      expect(grades).toEqual([]);
       successes = [];
-      const skill = { type: "skill", name: "Electronics Operation (Communications)", system: { derived: { toolItemId: rotary.id } } };
-      await actions.get("ht-telegraphy").run(rotary, character("Sparks", [rotary, skill]));
+      dialogAnswer = { task: "recognize", cipher: false };
+      await actions.get("ht-telegraphy").run(rotary, character("Sparks", [rotary]));
       expect(successes[0].modifiers).toEqual([]);
       successResult = { success: true, margin: 3 };
       await link([gear("Large Radio (TL6)", {}, { tl: "6" })], [transmitter({ commMode: "transmitter", sparkGap: true, wideband: true, ultraRotarySparkGap: true })], 10);
@@ -678,6 +671,10 @@ describe("radioDesign: how a radio is built (HT:EE pp. 28-30, 32, 34)", () => {
       const diode = power.powerData(printed("Large Radio (TL6)", 3, 3, { commMode: "receiver", sparkGap: true, diodeDetector: true }));
       expect(diode.draw?.cells).toBe(1);
       expect(diode.enduranceFactor).toBeCloseTo(14 / 3);
+      // A transmitter built with a detector ticked keeps its own power: the detectors are receivers' alone.
+      const sender = power.powerData(printed("Large Radio (TL6)", 3, 3, { commMode: "transmitter", sparkGap: true, crystalDetector: true, wideband: true }));
+      expect(sender.draw?.cells).toBe(3);
+      expect(power.powerData(printed("Large Radio (TL6)", 3, 3, { commMode: "", sparkGap: true, diodeDetector: true })).draw?.cells).toBe(3);
       // Nothing changes with the design rules off.
       on = new Set([HT.radios]);
       expect(power.powerData(printed("Medium Radio (TL6)", 4, 14, { commMode: "receiver", sparkGap: true, crystalDetector: true })).draw?.cells).toBe(4);

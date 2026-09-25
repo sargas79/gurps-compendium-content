@@ -27,7 +27,7 @@ import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ask, card, carried, esc, itemTl, picked, row, sensorData, skillBase, yardsBetween } from "../../../shared/sensors/index.js";
 import { rangeExtensionModifier } from "../../../shared/sensors/rules.js";
 import { CONDITIONS, INTERFERENCE, tuningRoll } from "../sensors/reception.js";
-import { ewLevel, findsDirection, hearingModifier, peripheralOf, radioOf, spreadOf, tracingOscilloscope } from "../sensors/index.js";
+import { ewLevel, findsDirection, hearingModifier, peripheralOf, radioOf, spreadOf, supplementOn, tracingOscilloscope } from "../sensors/index.js";
 import { radioPairRange } from "../sensors/rules.js";
 import { droneSpread } from "../battlefield/index.js";
 import {
@@ -107,14 +107,18 @@ function antennaOfItem(item: any): SearchAntenna {
   return options.directionalAntenna ? "directional" : options.dipoleAntenna ? "dipole" : "whip";
 }
 
-/** The targeted character's transmitting radio, if any. */
-/** A drone with a spread-spectrum control link: the targeted drone itself, or one its operator carries (HT:EE p. 46). */
+/**
+ * A drone with a spread-spectrum control link, where the spread-spectrum
+ * rules are on: the targeted drone itself, or one its operator carries
+ * (HT:EE pp. 46-47).
+ */
 function linkedDrone(target: any): any {
-  if (!target) return null;
+  if (!target || !supplementOn("spread")) return null;
   if (droneSpread(target).hopping) return target;
   return [...(target.items ?? [])].find((i: any) => carried(i) && droneSpread(i).hopping) ?? null;
 }
 
+/** The targeted character's transmitting radio, if any. */
 function theirRadio(target: any): any {
   return target ? [...(target.items ?? [])].find((i: any) => carried(i) && radioOf(i)) ?? null : null;
 }

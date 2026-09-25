@@ -126,6 +126,8 @@ beforeEach(async () => {
   vi.resetModules();
   const tables = await import("../../../shared/book-tables.js");
   tables.setRuleReader((k) => on.has(k));
+  const sensors = await import("../sensors/index.js");
+  sensors.highTechSensors({ radios: key("radios"), activeSensors: key("activeSensors"), visualSensors: key("visualSensors"), passiveSensors: key("passiveSensors"), spreadSpectrum: key("spreadSpectrum") } as never);
   battlefield = await import("./index.js");
   battlefield.readyBattlefield(fakeApi() as never, { sensors: () => on.has(key("battlefieldSensors")), drones: () => on.has(key("reconDrones")), seekers: () => on.has(key("homingSeekers")) });
 });
@@ -346,6 +348,8 @@ describe("reconnaissance drones (HT:EE p. 46)", () => {
     expect(fire("gworld.vehicleStats", { vehicle: gear("Truck", {}, { category: "vehicle", vehicle: {} }), lines: [] }).lines).toEqual([]);
     // The T-Hawk's spread-spectrum link (HT:EE p. 46).
     const hawk = drone({ ...PHANTOM, spreadSpectrum: true });
+    expect(sections.get("ht-drone-item").context(hawk).lines.join(" | ")).not.toContain("SpreadLine");
+    on.add(key("spreadSpectrum"));
     expect(sections.get("ht-drone-item").context(hawk).lines.join(" | ")).toContain('SpreadLine {"detect":-4}');
   });
 

@@ -23,7 +23,11 @@
  *     screen -1 without a keyboard carried (a Typing roll with no computer
  *     named takes the touch-screen computer in use), a VR headset offsetting
  *     up to -2 of a Computer Operation roll's penalties, and wired gloves,
- *     ticked on a VR computer, -2 to a DX-based skill worked through it.
+ *     ticked on a VR computer, -2 to a DX-based skill worked through it. The
+ *     arrow keys and the headset count only on a roll tagged for them
+ *     (`screenNavigation`, `vrTask`), as the computer's "Work it" row asks.
+ *     A roll the system makes is neither: which tasks those are is the
+ *     GM's.
  *   - **programmingLanguages:** on a Computer Programming roll made with a
  *     High-Tech computer or a program on it, machine code's -5 (not for
  *     Eidetic Memory), and a high-level language lifting the penalty for an
@@ -163,11 +167,23 @@ function dexterityBased(actor: any, skill: string): boolean {
   return own?.system?.attribute === "DX";
 }
 
-/** The interface lines a roll with a computer takes, labelled (HT:EE pp. 39-41); `penalties` is what the roll already carries. */
-export function interfaceRollLines(api: GWorldApi, actor: any, computer: any, skill: string, penalties = 0): Array<{ key: string; label: string; value: number }> {
+/** A roll's tag for navigating the display, which a text interface does by the arrow keys (HT:EE p. 40). */
+export const NAVIGATION_TAG = "screenNavigation";
+/** A roll's tag for a task a VR headset helps with (HT:EE p. 41). */
+export const VR_TASK_TAG = "vrTask";
+
+/**
+ * The interface lines a roll with a computer takes, labelled (HT:EE pp.
+ * 39-41); `penalties` is what the roll already carries, `tags` what it is
+ * tagged with.
+ */
+export function interfaceRollLines(api: GWorldApi, actor: any, computer: any, skill: string, penalties = 0, tags: readonly string[] = []): Array<{ key: string; label: string; value: number }> {
   const setup = computerSetup(computer);
   if (!setup.interface) return [];
-  const roll = { computerOperation: isOperation(skill), stylus: carriesStylus(actor), typing: isTyping(skill), keyboard: carriesKeyboard(actor), dexterity: dexterityBased(actor, skill), penalties };
+  const roll = {
+    computerOperation: isOperation(skill), stylus: carriesStylus(actor), typing: isTyping(skill), keyboard: carriesKeyboard(actor), dexterity: dexterityBased(actor, skill), penalties,
+    navigating: tags.includes(NAVIGATION_TAG), vrTask: tags.includes(VR_TASK_TAG),
+  };
   const lines = interfaceLines(setup, complexityOf(computer) ?? 0, roll, familiarity(api, actor));
   const name = L(`Interface.${setup.interface}`);
   // With a stylus the screen is worked single-touch.
@@ -270,6 +286,37 @@ async function complementaryRoll(api: GWorldApi, item: any, actor: any): Promise
   const value = complementaryModifier(outcome);
   await actor.setFlag(MODULE_ID, COMPLEMENTARY_FLAG, { computer: item.id, value });
   await say(actor, String(item.name ?? ""), [F("ComplementaryKept", { value: signed(value) })]);
+}
+
+/**
+ * Works a computer on Computer Operation, saying what the task is: navigating
+ * the display (a text interface's arrow keys, -1) and a task the VR headset
+ * helps with (up to -2 of penalties offset) (HT:EE pp. 40-41).
+ */
+async function workComputer(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const kind = computerSetup(item).interface;
+  const answer = (await foundry.applications.api.DialogV2.prompt({
+    window: { title: F("WorkTitle", { name: item.name }) },
+    content: `<div class="gworld" style="display:grid;gap:6px">
+      ${kind === "text" ? `<label><input type="checkbox" name="navigating" /> ${esc(L("WorkNavigating"))}</label>` : ""}
+      ${kind === "vr" ? `<label><input type="checkbox" name="vrTask" /> ${esc(L("WorkVr"))}</label>` : ""}
+      <p class="ihint">${esc(L("WorkHint"))}</p>
+    </div>`,
+    ok: {
+      label: L("Roll"),
+      callback: (_event: Event, button: HTMLElement) => {
+        const form = button.closest<HTMLElement>(".application");
+        const checked = (name: string) => Boolean(form?.querySelector<HTMLInputElement>(`[name="${name}"]`)?.checked);
+        return { navigating: checked("navigating"), vrTask: checked("vrTask") };
+      },
+    },
+    rejectClose: false,
+  })) as { navigating: boolean; vrTask: boolean } | null;
+  if (!answer) return;
+  const level = levelOrDefault(api, actor, "Computer Operation", COMPUTER_OPERATION_DEFAULT);
+  if (level === null) return;
+  const tags = ["computerWork", ...(answer.navigating ? [NAVIGATION_TAG] : []), ...(answer.vrTask ? [VR_TASK_TAG] : [])];
+  await api.roll.success({ actor, base: level, skill: "Computer Operation", label: F("WorkTitle", { name: item.name }), item, tags } as any);
 }
 
 /** "Programs" a hard-wired machine: by designing its circuits, rewiring it, or setting its jacks and switches (HT:EE p. 38). */
@@ -388,7 +435,7 @@ export function readyComputing(api: GWorldApi, on: ComputingSwitches): void {
     if (!(on.interfaces() || on.languages())) return;
     const skill = String(context.skill ?? "");
     const penalties = (context.modifiers as any[]).reduce((sum, m) => sum + Math.min(0, Number(m?.value) || 0), 0);
-    if (on.interfaces()) context.modifiers.push(...interfaceRollLines(api, context.actor, computer, skill, penalties));
+    if (on.interfaces()) context.modifiers.push(...interfaceRollLines(api, context.actor, computer, skill, penalties, Array.isArray(context.tags) ? context.tags : []));
     if (on.languages() && isProgramming(skill)) {
       const { lines, lift } = languageLines(context.actor, computer);
       for (let i = context.modifiers.length - 1; i >= 0; i -= 1) if (lift.includes(context.modifiers[i]?.key)) context.modifiers.splice(i, 1);
@@ -433,6 +480,15 @@ export function readyComputing(api: GWorldApi, on: ComputingSwitches): void {
     icon: "fa-solid fa-screwdriver-wrench",
     visible: (item) => on.eras() && computerRow(item) && computerSetup(item).burntOut,
     run: (item, actor) => repairBurnout(api, item, actor),
+  });
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-computer-work",
+    itemTypes: ["equipment"],
+    label: L("Work"),
+    icon: "fa-solid fa-computer",
+    visible: (item) => on.interfaces() && computerRow(item) && ["text", "vr"].includes(computerSetup(item).interface),
+    run: (item, actor) => workComputer(api, item, actor),
   });
   api.sheets.registerRowAction({
     module: MODULE_ID,

@@ -37,8 +37,8 @@
  *     priced, the receivers' range and rolls in the comm tool and the
  *     tuning roll, and the trench radio kit's sets and wire; a crystal set
  *     keeps no cells, a diode set runs on one M cell for 14 hours; a rotary
- *     spark gap's quality is its set's as a tool for Electronics Operation
- *     (Communications) (`data.registerToolGrade`); in the comm tool, speech
+ *     spark gap's quality goes on sending and faking a fist with its set; in
+ *     the comm tool, speech
  *     sent to a coherer set, live video between sets that can't send or
  *     receive it, and an FM set's interference -- static it ignores, a
  *     signal as strong as the one it wants blocks it.
@@ -1308,7 +1308,7 @@ export function initHighTechSensors(switches: SensorSwitches): void {
     const input = designOf(item);
     if (!input) return null;
     // What a crystal or diode receiver runs on (HT:EE p. 28): nothing, or the diode's filament alone.
-    const detector = detectorPower(designActive(input), printedDraw(item));
+    const detector = detectorPower(designActive(input), printedDraw(item), input.commMode);
     if (detector && "unpowered" in detector) return { unpowered: true };
     if (detector) return detector;
     const printed = PRINTED_RADIOS[nameOf(item)];
@@ -1391,9 +1391,8 @@ async function telegraphy(api: GWorldApi, item: any, actor: any): Promise<void> 
   const slow = answer.cipher && answer.task === "send" && supplementOn("cipher") ? encipheredTimeBonus(answer.times) : 0;
   if (slow) modifiers.push({ label: F("CipherTimeLine", { times: answer.times }), value: slow });
   // A rotary spark gap's steadier output: a quality bonus to send on it (HT:EE p. 28).
-  // A rotary spark gap's quality is the set's as a tool (registerToolGrade, below); where the preparation picked
-  // the set for the skill, the skill carries it already.
-  const quality = answer.task === "send" || answer.task === "fake" ? rotaryQuality(actor, item) : 0;
+  // A rotary spark gap's quality, on what is sent with the set (HT:EE p. 28).
+  const quality = answer.task === "send" || answer.task === "fake" ? rotaryQuality(item) : 0;
   const sender = quality ? [...modifiers, { label: F("QualityLine", { name: item.name }), value: quality }] : modifiers;
   const label = F("TelegraphyRoll", { task: L(`Telegraphy.${answer.task}`), name: item.name });
   const contested = answer.task === "fake" || (answer.task === "tap" && tapIsContested(itemTl(item)));
@@ -1697,27 +1696,9 @@ async function readRadiation(api: GWorldApi, item: any, actor: any): Promise<voi
   await card(actor, F("GeigerRoll", { name: item.name }), [L(result.success ? "GeigerClue" : "GeigerNothing")]);
 }
 
-/** Electronics Operation (Communications), as a skill's name reads, of any TL. */
-const COMM_SKILL = /^electronics operation \(comm/i;
-
-/** What an item's own equipment grade is worth as a technological tool (Campaigns p. 345). */
-function ownGrade(api: GWorldApi, item: any): number {
-  const grade = String(item?.system?.equipmentQuality ?? "basic");
-  return Number(api.rules.toolModifier(grade as never, item?.system?.equipmentModifier, { technological: true, tl: itemTl(item) })) || 0;
-}
-
-/**
- * A rotary spark gap's quality on a roll made with its set (HT:EE p. 28),
- * where the skill's own tool line doesn't carry it already: the tool the
- * preparation picked for Electronics Operation (Communications) is another
- * item, or none.
- */
-function rotaryQuality(actor: any, item: any): number {
-  const quality = qualityBonus(designed(item));
-  if (!quality) return 0;
-  const skill = [...(actor?.items ?? [])].find((i: any) => i?.type === "skill" && COMM_SKILL.test(String(i.name ?? "")));
-  const picked = skill?.system?.derived?.toolItemId ?? null;
-  return picked && String(picked) === String(item?.id) ? 0 : quality;
+/** A rotary spark gap's quality on a roll made with its own set (HT:EE p. 28): sending, or faking a fist, on it. */
+function rotaryQuality(item: any): number {
+  return qualityBonus(designed(item));
 }
 
 /**
@@ -1756,17 +1737,6 @@ export function readyHighTechSensors(api: GWorldApi, on: { radios: () => boolean
   ];
   for (const action of actions) api.sheets.registerRowAction({ module: MODULE_ID, itemTypes: ["equipment"], ...action });
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ht-emissions", label: L("EmissionsTitle"), icon: "fa-solid fa-wave-square", visible: rangefindingOn, open: () => detectEmissions(api) });
-
-  // A rotary spark gap's +1 (or +2) is the transmitter's quality on Electronics Operation (Communications)
-  // (HT:EE p. 28): the set serves the skill as a tool, over its own grade, so the system can pick it for the roll.
-  api.data.registerToolGrade({
-    module: MODULE_ID,
-    key: "ht-rotary-spark-gap",
-    grade: (item: any, skill: string) => {
-      const quality = COMM_SKILL.test(String(skill ?? "")) ? qualityBonus(designed(item)) : 0;
-      return quality ? { modifier: ownGrade(api, item) + quality } : null;
-    },
-  });
 
   // The plotter's own roll in a fix's Quick Contest, for its criticals (HT:EE p. 47).
   Hooks.on(api.combat.hooks.afterQuickContest, (context: any) => {

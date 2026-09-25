@@ -108,11 +108,6 @@ export const DAYS_PER_MONTH = 30;
  */
 export const ACTIVE_DENIAL = Object.freeze({ afterSeconds: 1, radiusYards: 5 });
 
-/** Whether a victim has left the Active Denial System's beam: more than its 5-yard radius from where it was aimed (HT:EE p. 51, note [5]). */
-export function outOfBeam(yards: number | null): boolean {
-  return yards !== null && Number.isFinite(yards) && yards > ACTIVE_DENIAL.radiusYards;
-}
-
 /** Whether a hailing device's victim has heard a minute of its sound, by world time (HT:EE p. 51, note [4]). */
 export function heardAMinute(since: number, now: number): boolean {
   return Number.isFinite(since) && now - since >= HAILING.exposureSeconds;

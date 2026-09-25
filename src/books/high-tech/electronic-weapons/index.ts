@@ -31,9 +31,10 @@
  *     makes it 1d months, or permanent on a critical failure; Protected
  *     Hearing +5 against both and no permanent loss, Deafness immune (note
  *     [4]). The Active Denial System: Agony while in the beam, free to move
- *     away; a victim whose token moves more than 5 yards from where the beam
- *     came down (`gworld.landed`) is out of it, as is one a row action names,
- *     and the Agony then lasts a second (note [5]).
+ *     away; where the beam comes down (`gworld.landed`) it is placed as a
+ *     5-yard area, and a victim whose token moves out of it (`areas.standsIn`)
+ *     is out of the beam, as is one a row action names, and the Agony then
+ *     lasts a second (note [5]).
  *   - **Non-nuclear EMP (nonNuclearEmp):** a row action sets off an NNEMP at
  *     the targeted characters within 220 yards, once its explosive charge is
  *     set up on Explosives (Demolition) (a failure: it doesn't go off). The GM picks their gear and
@@ -61,7 +62,6 @@ import {
   PULSE_KINDS,
   darkAdapted,
   heardAMinute,
-  outOfBeam,
   fromSupplement,
   hearingLoss,
   isActiveDenial,
@@ -131,6 +131,11 @@ function charactersAround(): any[] {
   for (const token of (globalThis as any).canvas?.tokens?.placeables ?? []) if (token?.actor) found.add(token.actor);
   return [...found];
 }
+
+/** An actor's key for the in-memory sets: its uuid, or its name for an actor without one. */
+const actorKey = (actor: any): string => String(actor?.uuid ?? actor?.id ?? actor?.name ?? "");
+/** What the Active Denial System's beam areas' ids carry. */
+const BEAM_AREA = "ee-ads-beam";
 
 const conditionIds = (api: GWorldApi, actor: any): string[] => ((api.actors.conditions(actor) ?? []) as any[]).map((c) => String(c?.id ?? ""));
 const hasCondition = (api: GWorldApi, actor: any, key: string): boolean => conditionIds(api, actor).includes(`${MODULE_ID}.${key}`);
@@ -253,14 +258,18 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
     } else if (isHailing(item)) {
       if (effects.deafness === true) return void say(actor, nameOf(item), [F("Deaf", { name })]);
       context.effects.push({ key: "moderatePain" });
-      if (actor.isOwner) void actor.setFlag(MODULE_ID, HAILED_FLAG, { margin: Math.abs(margin), since: worldNow() });
+      // A new exposure starts the minute afresh; one still going keeps the time it began.
+      const prior = itemFlag(actor, HAILED_FLAG);
+      const live = prior && !prior.rolled && conditionIds(api, actor).includes("moderatePain");
+      const flag = live ? { ...prior, margin: Math.max(Number(prior.margin) || 0, Math.abs(margin)) } : { margin: Math.abs(margin), since: worldNow(), rolled: false };
+      if (actor.isOwner) void actor.setFlag(MODULE_ID, HAILED_FLAG, flag);
       void say(actor, nameOf(item), [F("HailedLine", { name })]);
     } else if (isDenial(item)) {
       context.effects.push({ key: "agony" });
       context.effects.push({ module: MODULE_ID, key: DENIAL, label: L("DenialCondition") });
-      // Where the beam came down, for the victim who moves out of it.
+      // The beam's area where it came down, for the victim who moves out of it.
       const beam = stateOf(api, item).beam;
-      if (beam && actor.isOwner) void actor.setFlag(MODULE_ID, BEAM_FLAG, beam);
+      if (actor.isOwner) void (beam ? actor.setFlag(MODULE_ID, BEAM_FLAG, beam) : actor.unsetFlag?.(MODULE_ID, BEAM_FLAG));
       void say(actor, nameOf(item), [F("DenialLine", { name })]);
     }
   });
@@ -287,37 +296,61 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
 
   const hailed = (): any[] => targetedTokens().map((t) => t?.actor).filter((a: any) => a && itemFlag(a, HAILED_FLAG));
 
-  // The Active Denial System's beam comes down where it was aimed (API 1.154.0): its victims are in it there.
+  // The Active Denial System's beam comes down where it was aimed (API 1.154.0): a 5-yard area there, its
+  // victims in it. A shot that lands nowhere (a miss, or no single target) leaves no beam to be in.
   Hooks.on(api.combat.hooks.landed, (context: any) => {
     const item = context?.item;
-    if (!on.directed() || !isDenial(item) || !item?.isOwner || !context.point) return;
-    const scene = context.target?.parent?.id ?? (globalThis as any).canvas?.scene?.id ?? "";
-    void api.combat.setWeaponState(item, MODULE_ID, { ...stateOf(api, item), beam: { x: Number(context.point.x) || 0, y: Number(context.point.y) || 0, scene: String(scene) } });
+    if (!on.directed() || !isDenial(item) || !item?.isOwner) return;
+    void (async () => {
+      const before = stateOf(api, item).beam;
+      const scene = context.point ? String(context.target?.parent?.id ?? (globalThis as any).canvas?.scene?.id ?? "") : "";
+      const area = scene ? await api.areas.add(scene, {
+        id: `${MODULE_ID}-${BEAM_AREA}-${item.id}-${foundry.utils.randomID(8)}`,
+        label: nameOf(item),
+        center: { x: Number(context.point.x) || 0, y: Number(context.point.y) || 0 },
+        radius: ACTIVE_DENIAL.radiusYards,
+        lines: [],
+        expires: null,
+      } as any, item.actor ? { source: item.actor } : undefined) : null;
+      // The beam moved on: the old area goes, and victims still standing in it are left to the row action.
+      if (before?.area && before.scene) await api.areas.remove(before.scene, before.area, item.actor ? { source: item.actor } : undefined);
+      await api.combat.setWeaponState(item, MODULE_ID, { ...stateOf(api, item), beam: area ? { scene, area } : null });
+    })();
   });
 
-  // A victim whose token moves more than the beam's radius from where it came down is out of it (note [5]).
+  // A victim whose token moves out of the beam's area is out of it (note [5]).
   Hooks.on("updateToken", (moved: any, changes: any) => {
     if (!on.directed() || !isActiveGm() || !changes || (changes.x === undefined && changes.y === undefined)) return;
     const victim = moved?.actor;
     const beam = victim ? itemFlag(victim, BEAM_FLAG) : null;
-    if (!beam || !hasCondition(api, victim, DENIAL) || String(beam.scene ?? "") !== String(moved.parent?.id ?? "")) return;
-    const size = Number(moved.parent?.grid?.size) || 100;
-    const perYard = size / (Number(moved.parent?.grid?.distance) || 1);
-    const x = Number(changes.x ?? moved.x) + ((Number(moved.width) || 1) * size) / 2;
-    const y = Number(changes.y ?? moved.y) + ((Number(moved.height) || 1) * size) / 2;
-    const yards = Math.hypot(x - Number(beam.x), y - Number(beam.y)) / perYard;
-    if (outOfBeam(yards)) void leaveBeam([victim], null, victim);
+    const scene = moved?.parent;
+    if (!beam?.area || !hasCondition(api, victim, DENIAL) || String(beam.scene ?? "") !== String(scene?.id ?? "")) return;
+    // An area gone (the beam turned off or moved on) says nothing: the row action is for that.
+    if (!(api.areas.list(scene) as any[]).some((a) => a?.id === beam.area)) return;
+    const inside = (api.areas.standsIn(scene, beam.area) as any[]).some((doc) => doc === moved || (doc?.id && doc.id === moved.id));
+    if (!inside) void leaveBeam([victim], null, victim);
   });
+
+  /** The victims being taken out of the beam now, so a second move or click doesn't do it twice. */
+  const leaving = new Set<string>();
 
   /** Victims out of the beam: the Agony lasts a second more (note [5]). */
   const leaveBeam = async (victims: any[], item: any, speaker: any) => {
-    for (const victim of victims) {
-      await api.actors.removeCondition(victim, `${MODULE_ID}.${DENIAL}`);
-      if (conditionIds(api, victim).includes("agony")) await api.actors.removeCondition(victim, "agony");
-      await api.actors.applyCondition(victim, { key: "agony", duration: { seconds: ACTIVE_DENIAL.afterSeconds } } as any);
-      await victim.unsetFlag?.(MODULE_ID, BEAM_FLAG);
+    const going = victims.filter((v) => !leaving.has(actorKey(v)));
+    if (!going.length) return;
+    for (const victim of going) leaving.add(actorKey(victim));
+    try {
+      const source = speaker ? { source: speaker } : undefined;
+      for (const victim of going) {
+        await api.actors.removeCondition(victim, `${MODULE_ID}.${DENIAL}`, source as any);
+        if (conditionIds(api, victim).includes("agony")) await api.actors.removeCondition(victim, "agony", source as any);
+        await api.actors.applyCondition(victim, { key: "agony", duration: { seconds: ACTIVE_DENIAL.afterSeconds } } as any, source as any);
+        if (victim.isOwner) await victim.unsetFlag?.(MODULE_ID, BEAM_FLAG);
+      }
+      await say(speaker, item ? nameOf(item) : L("DenialCondition"), [F("DenialLeft", { names: going.map((v) => v.name).join(", "), seconds: ACTIVE_DENIAL.afterSeconds })]);
+    } finally {
+      for (const victim of going) leaving.delete(actorKey(victim));
     }
-    await say(speaker, item ? nameOf(item) : L("DenialCondition"), [F("DenialLeft", { names: victims.map((v) => v.name).join(", "), seconds: ACTIVE_DENIAL.afterSeconds })]);
   };
 
   // A minute of the hailing device's sound, by the world's clock: the tinnitus roll comes by itself (note [4]).
@@ -334,11 +367,26 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
     }
   });
 
+  /** The victims whose tinnitus is being rolled now, so the clock and the row, or two ticks of the clock, don't both roll it. */
+  const deafening = new Set<string>();
+
   /** The tinnitus a minute of the sound leaves one victim, and the HT roll against lasting loss; the line saying so. */
-  const tinnitus = async (victim: any): Promise<string | null> => {
+  const tinnitus = async (victim: any, source: any = null): Promise<string | null> => {
+    const key = actorKey(victim);
+    if (deafening.has(key)) return null;
+    deafening.add(key);
+    try {
+      return await rollTinnitus(victim, source);
+    } finally {
+      deafening.delete(key);
+    }
+  };
+
+  const rollTinnitus = async (victim: any, source: any): Promise<string | null> => {
     const flag = itemFlag(victim, HAILED_FLAG) ?? {};
-    // Marked first, so the clock and the row don't both roll it.
-    await victim.setFlag?.(MODULE_ID, HAILED_FLAG, { ...flag, rolled: true });
+    if (flag.rolled) return null;
+    // Marked first, where this user may write the victim: the roll is made once an exposure.
+    if (victim.isOwner) await victim.setFlag?.(MODULE_ID, HAILED_FLAG, { ...flag, rolled: true });
     const name = String(victim.name ?? "");
     const minutes = tinnitusMinutes(Number(flag.margin) || 1);
     const shielded = traitEffectsOf(api, victim).protectedSense?.hearing === true;
@@ -350,7 +398,7 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
     const loss = hearingLoss({ success: outcome.success === true, criticalFailure: outcome.criticalFailure === true }, shielded);
     const months = loss === "months" ? d6() : 0;
     const seconds = loss === "passes" ? minutes * 60 : loss === "months" ? months * DAYS_PER_MONTH * 86400 : null;
-    await api.actors.applyCondition(victim, { module: MODULE_ID, key: TINNITUS, label: L("Tinnitus"), ...(seconds === null ? {} : { duration: { seconds } }) } as any);
+    await api.actors.applyCondition(victim, { module: MODULE_ID, key: TINNITUS, label: L("Tinnitus"), ...(seconds === null ? {} : { duration: { seconds } }) } as any, (source ? { source } : undefined) as any);
     return loss === "passes" ? F("TinnitusMinutes", { name, minutes }) : loss === "months" ? F("TinnitusMonths", { name, months }) : F("TinnitusPermanent", { name });
   };
 
@@ -370,7 +418,7 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
     if (!victims.length) return void ui.notifications?.warn(L("NoHailed"));
     const lines: string[] = [];
     for (const victim of victims) {
-      const line = await tinnitus(victim);
+      const line = await tinnitus(victim, actor);
       if (line) lines.push(line);
     }
     await say(actor, nameOf(item), lines);
@@ -389,8 +437,8 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
         const victims = hailed();
         if (!victims.length) return void ui.notifications?.warn(L("NoHailed"));
         for (const victim of victims) {
-          if (conditionIds(api, victim).includes("moderatePain")) await api.actors.removeCondition(victim, "moderatePain");
-          await victim.unsetFlag?.(MODULE_ID, HAILED_FLAG);
+          if (conditionIds(api, victim).includes("moderatePain")) await api.actors.removeCondition(victim, "moderatePain", { source: actor } as any);
+          if (victim.isOwner) await victim.unsetFlag?.(MODULE_ID, HAILED_FLAG);
         }
         await say(actor, nameOf(item), [F("HailStopped", { names: victims.map((v) => v.name).join(", ") })]);
       })();

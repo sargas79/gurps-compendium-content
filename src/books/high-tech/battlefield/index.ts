@@ -54,6 +54,7 @@ import { ask, card, esc, lockTargetOf, lockedSensor, picked, row, skillBase, yar
 import { crewOf, isVehicle, vehicleAboard } from "../../../shared/vehicles/index.js";
 import { deviceData, storeDevice, takesDeviceStatistics } from "../devices/index.js";
 import { ACTIVE_SENSORS } from "../sensors/rules.js";
+import { supplementOn } from "../sensors/index.js";
 import { SENSORS } from "../surveillance/rules.js";
 import { chosenSeeker } from "../guidance/index.js";
 import { homes, seekerOf } from "../guidance/rules.js";
@@ -132,7 +133,8 @@ export const DRONE_SPREAD_DETECT = -4;
 /**
  * The spread spectrum of a drone's control link, where the vehicle actor or
  * item is one of High-Tech's drones built with it (HT:EE p. 46): frequency
- * hopping, for the SIGINT rules that detect it.
+ * hopping, for the SIGINT rules that detect it, which count it only while
+ * the spread-spectrum switch is on.
  */
 export function droneSpread(doc: any): { hopping: boolean } {
   return { hopping: Boolean(doc) && isHighTechDrone(doc) && droneData(doc).spreadSpectrum };
@@ -190,7 +192,7 @@ export function droneLines(doc: any): string[] {
   if (data.remoteBonus > 0) lines.push(F("RemoteLine", { bonus: signed(data.remoteBonus) }));
   if (data.controlRangeMiles > 0) lines.push(F("RangeLine", { miles: data.controlRangeMiles }));
   if (data.ceilingFeet > 0) lines.push(F("CeilingLine", { feet: data.ceilingFeet.toLocaleString("en-US") }));
-  if (data.spreadSpectrum) lines.push(F("SpreadLine", { detect: DRONE_SPREAD_DETECT }));
+  if (data.spreadSpectrum && supplementOn("spread")) lines.push(F("SpreadLine", { detect: DRONE_SPREAD_DETECT }));
   return lines;
 }
 

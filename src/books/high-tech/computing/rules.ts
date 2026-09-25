@@ -237,16 +237,18 @@ export interface InterfaceLine {
  * +1, and an early screen's -2 on every roll; voice control's -2, and -2 more before it is trained; a
  * brain-computer interface's -2. None where the computer's Complexity is too
  * low to drive the interface at all. And what the supplement prints for the
- * tasks themselves (HT:EE pp. 40-41): a text interface's -1 on Computer
- * Operation, its display navigated with the arrow keys alone; a touch
- * screen's -1 to typing without a keyboard of its own; a VR headset
- * offsetting up to 2 of the penalties already on a Computer Operation roll;
- * and wired gloves' -2 to a skill of manual dexterity worked in VR.
+ * tasks themselves (HT:EE pp. 40-41): a text interface's -1 on a Computer
+ * Operation roll that navigates the display with the arrow keys alone; a
+ * touch screen's -1 to typing without a keyboard of its own; a VR headset
+ * offsetting up to 2 of the penalties already on a Computer Operation roll
+ * for a task it helps with; and wired gloves' -2 to a skill of manual
+ * dexterity worked in VR. Which tasks navigate the display, and which the
+ * headset helps, is the roll's to say (`navigating`, `vrTask`).
  */
 export function interfaceLines(
   setup: InterfaceSetup,
   complexity: number,
-  roll: { computerOperation: boolean; stylus: boolean; typing?: boolean; keyboard?: boolean; dexterity?: boolean; penalties?: number },
+  roll: { computerOperation: boolean; stylus: boolean; typing?: boolean; keyboard?: boolean; dexterity?: boolean; penalties?: number; navigating?: boolean; vrTask?: boolean },
   familiar: ((name: string) => boolean) | null,
 ): InterfaceLine[] {
   const kind = setup.interface;
@@ -270,9 +272,9 @@ export function interfaceLines(
     if (!setup.voiceTrained) lines.push({ key: "voiceUntrained", value: VOICE_UNTRAINED });
   }
   if (kind === "bci") lines.push({ key: "bci", value: BCI_PENALTY });
-  if (kind === "text" && roll.computerOperation) lines.push({ key: "arrowKeys", value: ARROW_KEYS });
+  if (kind === "text" && roll.computerOperation && roll.navigating) lines.push({ key: "arrowKeys", value: ARROW_KEYS });
   if (kind === "touch" && roll.typing && !roll.keyboard) lines.push({ key: "touchTyping", value: TOUCH_TYPING });
-  if (kind === "vr" && roll.computerOperation) {
+  if (kind === "vr" && roll.computerOperation && roll.vrTask) {
     const offset = Math.min(VR_OFFSET, Math.max(0, -(roll.penalties ?? 0)));
     if (offset) lines.push({ key: "vr", value: offset });
   }

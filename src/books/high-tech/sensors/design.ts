@@ -274,10 +274,13 @@ export const DIODE_FILAMENT = Object.freeze({ cell: "M", hours: 14 });
  * What a spark-gap receiver's detector runs on (HT:EE p. 28): a crystal set
  * needs no power at all; a diode set's power only heats the filament, M/14
  * hours, which a set printed on M cells takes as one cell for 14 hours in
- * place of its own draw. Null where neither detector is built in, or the
- * set's printed cells aren't M (its draw then stands, and the sheet says).
+ * place of its own draw. Null where neither detector is built in, the set
+ * isn't receive-only (the detectors are receivers' alone, and a transmitter
+ * keeps its own power), or the set's printed cells aren't M (its draw then
+ * stands, and the sheet says).
  */
-export function detectorPower(active: readonly DesignKey[], draw: { cell: string | null; cells: number; hours: number | null } | null): { unpowered: true } | { cells: number; endurance: number } | null {
+export function detectorPower(active: readonly DesignKey[], draw: { cell: string | null; cells: number; hours: number | null } | null, commMode: CommMode): { unpowered: true } | { cells: number; endurance: number } | null {
+  if (commMode !== "receiver") return null;
   if (active.includes("crystalDetector")) return { unpowered: true };
   if (!active.includes("diodeDetector") || !draw || draw.cell !== DIODE_FILAMENT.cell || !(draw.hours && draw.hours > 0)) return null;
   const cells = Math.max(1, Math.floor(draw.cells) || 1);

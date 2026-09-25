@@ -30,6 +30,8 @@ let targets: any[];
 let dialogAnswer: any;
 let hitLocations: boolean;
 let rolls: any[];
+let areas: any[];
+let inside: Set<any>;
 let worldTime: number;
 
 function fakeApi() {
@@ -56,7 +58,13 @@ function fakeApi() {
       removeCondition: async (actor: any, id: string) => { conditions.set(actor, (conditions.get(actor) ?? []).filter((c) => c.id !== id)); },
       skillLevel: () => 12,
     },
-    areas: { darknessAt: () => (darkness === null ? null : { darkness, penalty: -darkness }) },
+    areas: {
+      darknessAt: () => (darkness === null ? null : { darkness, penalty: -darkness }),
+      add: async (scene: string, area: any, options: any) => { areas.push({ scene, ...area, options }); return area.id; },
+      remove: async (scene: string, id: string) => { areas = areas.filter((a) => !(a.scene === scene && a.id === id)); },
+      list: () => areas,
+      standsIn: (_scene: any, id: string) => [...inside].filter(() => areas.some((a) => a.id === id)),
+    },
     items: {
       equipmentFailure: async (o: any) => { failures.push(o); return { outcome: failureOutcome }; },
       setMalfunction: vi.fn(async () => {}),
@@ -123,15 +131,18 @@ beforeEach(() => {
   dialogAnswer = null;
   hitLocations = false;
   rolls = [];
+  areas = [];
+  inside = new Set();
   worldTime = 1000;
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
     get user() { return { targets: new Set(targets), isGM: true }; },
     get time() { return { worldTime }; },
+    get users() { return { activeGM: { isSelf: true } }; },
     actors: [],
   });
-  vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => dialogAnswer } } } });
+  vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s, randomID: () => "rnd" }, applications: { api: { DialogV2: { prompt: async () => dialogAnswer } } } });
   vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), create: async (m: any) => { chat.push(m.content); } } });
   vi.stubGlobal("CONFIG", { Dice: { randomUniform: () => 0.5 } });
   vi.stubGlobal("canvas", { scene: { grid: { size: 100, distance: 1 } } });
@@ -261,7 +272,7 @@ describe("directed-energy weapons (HT:EE pp. 50-51)", () => {
     on.directed = true;
     effectsOf(victim, lrad, -3);
     await flush();
-    expect(victim.flags[MODULE_ID].eeHailed).toEqual({ margin: 3, since: 1000 });
+    expect(victim.flags[MODULE_ID].eeHailed).toEqual({ margin: 3, since: 1000, rolled: false });
     conditions.set(victim, [{ id: "moderatePain" }]);
     worldTime = 1030;
     fire("updateWorldTime", {});
@@ -272,6 +283,20 @@ describe("directed-energy weapons (HT:EE pp. 50-51)", () => {
     await flush();
     expect(rolls[0]).toMatchObject({ actor: victim, tags: ["hearing", "tinnitus"] });
     expect(applied[0][1]).toMatchObject({ key: "ee-tinnitus" });
+    // A new exposure after that starts the minute afresh.
+    conditions.set(victim, []);
+    worldTime = 1500;
+    effectsOf(victim, lrad, -2);
+    await flush();
+    expect(victim.flags[MODULE_ID].eeHailed).toEqual({ margin: 2, since: 1500, rolled: false });
+    // A second failed roll while the sound goes on keeps when it began.
+    conditions.set(victim, [{ id: "moderatePain" }]);
+    worldTime = 1520;
+    effectsOf(victim, lrad, -4);
+    await flush();
+    expect(victim.flags[MODULE_ID].eeHailed).toEqual({ margin: 4, since: 1500, rolled: false });
+    victim.flags[MODULE_ID].eeHailed.rolled = true;
+    worldTime = 1060;
     // Once only; and not for a victim whose pain the sound stopping took away.
     fire("updateWorldTime", {});
     await flush();
@@ -286,27 +311,70 @@ describe("directed-energy weapons (HT:EE pp. 50-51)", () => {
     expect(rolls).toHaveLength(1);
   });
 
-  it("the Active Denial System: a victim whose token moves out of the beam's 5 yards is out of it", async () => {
+  it("the Active Denial System: its beam is a 5-yard area where it lands, and a victim who moves out of it is out", async () => {
     const ads = record("Active Denial System", { reference: "High-Tech: Electricity and Electronics p. 50" });
+    const operator = person("Operator", [ads]);
     on.directed = true;
-    // The beam comes down on the targeted token's centre.
+    // The beam comes down on the targeted token's centre: an area of 5 yards there, placed with the operator as its source.
     fire("gworld.landed", { item: ads, hit: true, point: { x: 500, y: 500 }, target: { parent: { id: "scene1" } } });
     await flush();
+    expect(areas).toEqual([expect.objectContaining({ scene: "scene1", center: { x: 500, y: 500 }, radius: 5, options: { source: operator } })]);
     const victim = person("Rioter");
     effectsOf(victim, ads);
     await flush();
-    expect(victim.flags[MODULE_ID].eeDenialBeam).toEqual({ x: 500, y: 500, scene: "scene1" });
+    const areaId = areas[0].id;
+    expect(victim.flags[MODULE_ID].eeDenialBeam).toEqual({ scene: "scene1", area: areaId });
     conditions.set(victim, [{ id: `${MODULE_ID}.ee-active-denial` }, { id: "agony" }]);
-    const token = { actor: victim, x: 450, y: 450, width: 1, height: 1, parent: { id: "scene1", grid: { size: 100, distance: 1 } } };
-    // Four yards off: still in it.
-    for (const fn of hooks.get("updateToken") ?? []) fn(token, { x: 850 });
+    const scene = { id: "scene1" };
+    const token = { id: "tok1", actor: victim, parent: scene };
+    const move = () => { for (const fn of hooks.get("updateToken") ?? []) fn(token, { x: 1 }); };
+    // Still standing in it.
+    inside.add(token);
+    move();
     await flush();
     expect(applied).toEqual([]);
-    // Six yards off: out, the Agony for a second more.
-    for (const fn of hooks.get("updateToken") ?? []) fn(token, { x: 1050 });
+    // Out of it: the Agony for a second more, once however often the move is heard.
+    inside.clear();
+    move();
+    move();
     await flush();
     expect(applied).toEqual([["Rioter", { key: "agony", duration: { seconds: 1 } }]]);
     expect(victim.flags[MODULE_ID].eeDenialBeam).toBeUndefined();
+  });
+
+  it("the Active Denial System: a shot that lands nowhere leaves no beam, and a new landing takes the old area away", async () => {
+    const ads = record("Active Denial System", { reference: "High-Tech: Electricity and Electronics p. 50" });
+    person("Operator", [ads]);
+    on.directed = true;
+    fire("gworld.landed", { item: ads, hit: true, point: { x: 500, y: 500 }, target: { parent: { id: "scene1" } } });
+    await flush();
+    expect(state.get(ads.id).beam).toMatchObject({ scene: "scene1" });
+    fire("gworld.landed", { item: ads, hit: false, point: null, target: null });
+    await flush();
+    expect(state.get(ads.id).beam).toBeNull();
+    expect(areas).toEqual([]);
+    const victim = person("Rioter");
+    effectsOf(victim, ads);
+    await flush();
+    expect(victim.flags[MODULE_ID]?.eeDenialBeam).toBeUndefined();
+  });
+
+  it("the hailing device: the clock and the row don't both roll a victim's tinnitus", async () => {
+    const lrad = record("Acoustic Hailing Device", { reference: "High-Tech: Electricity and Electronics p. 32" });
+    const operator = person("Operator", [lrad]);
+    const victim = person("Rioter");
+    (globalThis as any).game.actors.push(victim);
+    on.directed = true;
+    effectsOf(victim, lrad, -3);
+    await flush();
+    conditions.set(victim, [{ id: "moderatePain" }]);
+    worldTime = 1100;
+    targets = [{ actor: victim }];
+    fire("updateWorldTime", {});
+    fire("updateWorldTime", {});
+    actions.get("ee-hailing-minute").run(lrad, operator);
+    await flush();
+    expect(rolls).toHaveLength(1);
   });
 
   it("the Active Denial System: agony while in the beam, free to flee, a second after leaving", async () => {

@@ -268,11 +268,12 @@ describe("computerInterfaces (HT:EE pp. 39-41)", () => {
 
   it("puts the tasks' own lines on the roll: arrow keys, touch typing, the VR headset and wired gloves (HT:EE pp. 40-41)", () => {
     on = new Set([key("computerInterfaces")]);
-    const lines = (actor: any, item: any, skill: string, modifiers: any[] = []) =>
-      fire("gworld.successRollModifiers", { actor, item, skill, modifiers: [...modifiers] }).modifiers.slice(modifiers.length).map((l: any) => [l.key, l.value]);
-    // A text interface navigated by the arrow keys: -1 on Computer Operation.
+    const lines = (actor: any, item: any, skill: string, modifiers: any[] = [], tags: string[] = []) =>
+      fire("gworld.successRollModifiers", { actor, item, skill, tags, modifiers: [...modifiers] }).modifiers.slice(modifiers.length).map((l: any) => [l.key, l.value]);
+    // A text interface navigated by the arrow keys: -1 on a Computer Operation roll that navigates the display, and no other.
     const terminal = record("Medium Computer", { tl: "8" }, {}, { interface: "text" });
-    expect(lines(character([terminal]), terminal, "Computer Operation")).toEqual([["ht.interface.arrowKeys", -1]]);
+    expect(lines(character([terminal]), terminal, "Computer Operation", [], ["screenNavigation"])).toEqual([["ht.interface.arrowKeys", -1]]);
+    expect(lines(character([terminal]), terminal, "Computer Operation")).toEqual([]);
     // Typing on a desktop touch screen: -1, unless a keyboard is carried.
     const pad = record("Medium Computer", { tl: "8" }, {}, { interface: "touch", touch: "desktop", multitouch: true });
     const typist = character([pad]);
@@ -283,19 +284,31 @@ describe("computerInterfaces (HT:EE pp. 39-41)", () => {
     // A Typing roll with no computer named takes the touch-screen computer in use.
     pad.system.equipped = true;
     expect(lines(typist, null, "Typing")).toEqual([["ht.interface.touchTyping", -1]]);
-    // The VR headset offsets up to -2 of the penalties already on a Computer Operation roll.
+    // The VR headset offsets up to -2 of the penalties already on a Computer Operation roll for a task it helps with.
     const rig = record("Medium Computer", { tl: "8" }, {}, { interface: "vr", wiredGloves: true });
     const user = character([rig, { id: "pilot", name: "Piloting (Vertol)", type: "skill", system: { attribute: "DX" } }]);
-    expect(lines(user, rig, "Computer Operation", [{ value: -3 }])).toEqual([["ht.interface.vr", 2]]);
-    expect(lines(user, rig, "Computer Operation", [{ value: -1 }])).toEqual([["ht.interface.vr", 1]]);
-    expect(lines(user, rig, "Computer Operation")).toEqual([]);
+    expect(lines(user, rig, "Computer Operation", [{ value: -3 }], ["vrTask"])).toEqual([["ht.interface.vr", 2]]);
+    expect(lines(user, rig, "Computer Operation", [{ value: -1 }], ["vrTask"])).toEqual([["ht.interface.vr", 1]]);
+    expect(lines(user, rig, "Computer Operation", [{ value: -3 }])).toEqual([]);
+    expect(lines(user, rig, "Computer Operation", [], ["vrTask"])).toEqual([]);
     // Wired gloves: -2 to a DX-based skill worked through it.
     expect(lines(user, rig, "Piloting (Vertol)")).toEqual([["ht.interface.wiredGloves", -2]]);
     rig.system.extensions[MODULE_ID].htComputer.wiredGloves = false;
     expect(lines(user, rig, "Piloting (Vertol)")).toEqual([]);
     // Nothing with the switch off.
     on = new Set();
-    expect(lines(character([terminal]), terminal, "Computer Operation")).toEqual([]);
+    expect(lines(character([terminal]), terminal, "Computer Operation", [], ["screenNavigation"])).toEqual([]);
+  });
+
+  it("works a computer from its row, tagged for what the task is", async () => {
+    on = new Set([key("computerInterfaces")]);
+    const rig = record("Medium Computer", { tl: "8" }, {}, { interface: "vr" });
+    const actor = character([rig]);
+    expect(action("ht-computer-work").visible(rig)).toBe(true);
+    expect(action("ht-computer-work").visible(record("Medium Computer", { tl: "8" }, {}, { interface: "graphic" }))).toBe(false);
+    vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => ({ navigating: false, vrTask: true }) } } } });
+    await action("ht-computer-work").run(rig, actor);
+    expect(calls[0]).toEqual(["roll", expect.objectContaining({ base: 13, skill: "Computer Operation", item: rig, tags: ["computerWork", "vrTask"] })]);
   });
 
   it("shows the interface section on a High-Tech computer with only its switch on", () => {

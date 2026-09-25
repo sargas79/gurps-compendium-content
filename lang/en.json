@@ -5058,7 +5058,7 @@
         },
         "computerInterfaces": {
           "Name": "Computer interfaces (Electricity and Electronics)",
-          "Hint": "The interface a High-Tech computer is worked through: text, graphic, touch screen, VR, voice or brain-computer. Each is a familiarity, -2 until learned under the familiarity rule, and needs a computer of Complexity 1, 2, 2, 3, 4 or 6 to drive it. A touch screen's modifier to Computer Operation by size and multitouch, a carried stylus's +1, voice control's -2 (and -2 more until trained to its user), a touch screen from before 1988 at -2, and a brain-computer interface's -2 go on rolls made with the computer or a program on it. A light pen calls for an HT roll every 10 minutes: 1 FP on a failure, and 1 HP too on a critical failure (High-Tech: Electricity and Electronics pp. 39-41). The tasks' own figures go on too: a text interface's -1 to navigate by the arrow keys, typing on a touch screen -1 without a keyboard, a VR headset offsetting up to -2 of a Computer Operation roll's penalties, and wired gloves (ticked on a VR computer) -2 to DX-based skills (Electricity and Electronics pp. 40-41)."
+          "Hint": "The interface a High-Tech computer is worked through: text, graphic, touch screen, VR, voice or brain-computer. Each is a familiarity, -2 until learned under the familiarity rule, and needs a computer of Complexity 1, 2, 2, 3, 4 or 6 to drive it. A touch screen's modifier to Computer Operation by size and multitouch, a carried stylus's +1, voice control's -2 (and -2 more until trained to its user), a touch screen from before 1988 at -2, and a brain-computer interface's -2 go on rolls made with the computer or a program on it. A light pen calls for an HT roll every 10 minutes: 1 FP on a failure, and 1 HP too on a critical failure (High-Tech: Electricity and Electronics pp. 39-41). The tasks' own figures go on too: a text interface's -1 to navigate by the arrow keys and a VR headset offsetting up to -2 of a Computer Operation roll's penalties, each ticked on the computer's \"Work it\" row for the task it fits, typing on a touch screen -1 without a keyboard, and wired gloves (ticked on a VR computer) -2 to DX-based skills (Electricity and Electronics pp. 40-41)."
         },
         "programmingLanguages": {
           "Name": "Programming languages (Electricity and Electronics)",
@@ -5162,7 +5162,7 @@
         },
         "radioDesign": {
           "Name": "Radio design",
-          "Hint": "Needs Radios and telegraphy. How a radio is built, from the supplement Electricity and Electronics, as options that reprice the radio: at TL6 a spark-gap set (code only, receive-only or send-only), its coherer, crystal or diode detector (x0.1 range; the crystal's spot is a roll, +2 or -2), its rotary spark gap (+1 quality, x5; ultra-high-speed +2, x20, with distorted audio) and its wideband transmitter (x1.25 weight, cells last a fifth as long); send-only (x0.9); quartz tuning (no drift, cutting edge at TL6); the grid-leak (range /5), regenerative (a roll to adjust; on a critical failure it oscillates and jams receivers within 440 yards) and superheterodyne (a Hearing roll to tune) receivers; audio (x2 on the supplement's code sets), FM (TL7, cutting edge at TL7), video (TL7) and digital video (TL8), x4 cost and x2 weight; a flatscreen television wall-mounted up to 64\" at x5 cost and weight, or larger at x20. The trench radio's transmitter and receiver are read as radios, and its wire as a dipole for its owner's radios (Electricity and Electronics pp. 28-30, 32, 34). A crystal set keeps no cells, a diode set one M cell for 14 hours; a rotary spark gap's quality is its set's as a tool for Electronics Operation (Communications); in the comm tool, speech to a coherer set doesn't come through, live video needs a set that sends it and one that receives it, and an FM set ignores static but is blocked by a signal as strong as the one it wants (Electricity and Electronics pp. 28, 32, 34)."
+          "Hint": "Needs Radios and telegraphy. How a radio is built, from the supplement Electricity and Electronics, as options that reprice the radio: at TL6 a spark-gap set (code only, receive-only or send-only), its coherer, crystal or diode detector (x0.1 range; the crystal's spot is a roll, +2 or -2), its rotary spark gap (+1 quality, x5; ultra-high-speed +2, x20, with distorted audio) and its wideband transmitter (x1.25 weight, cells last a fifth as long); send-only (x0.9); quartz tuning (no drift, cutting edge at TL6); the grid-leak (range /5), regenerative (a roll to adjust; on a critical failure it oscillates and jams receivers within 440 yards) and superheterodyne (a Hearing roll to tune) receivers; audio (x2 on the supplement's code sets), FM (TL7, cutting edge at TL7), video (TL7) and digital video (TL8), x4 cost and x2 weight; a flatscreen television wall-mounted up to 64\" at x5 cost and weight, or larger at x20. The trench radio's transmitter and receiver are read as radios, and its wire as a dipole for its owner's radios (Electricity and Electronics pp. 28-30, 32, 34). A crystal set keeps no cells, a diode set one M cell for 14 hours; a rotary spark gap's quality goes on sending and faking a fist with its set; in the comm tool, speech to a coherer set doesn't come through, live video needs a set that sends it and one that receives it, and an FM set ignores static but is blocked by a signal as strong as the one it wants (Electricity and Electronics pp. 28, 32, 34)."
         },
         "rangefindingEmissions": {
           "Name": "Active rangefinding (Electricity and Electronics)",
@@ -5346,7 +5346,7 @@
         },
         "reconDrones": {
           "Name": "Reconnaissance drones (Electricity and Electronics)",
-          "Hint": "A vehicle record's drone figures, on its sheet and set on the two UAVs: the autopilot's skill and Dodge, the remote control's bonus, the controller's range and the ceiling. The remote operator, named as the drone's controller outside its crew, makes its control roll, which takes the remote control's bonus while he is within the controller's range, and is refused past it or while the drone is above its ceiling; the figures show as a hint on the vehicle's Hnd/SR once it is on the road; a row button, or a GM tool for a drone on the map, rolls the autopilot's Piloting or its Dodge against obstacles, and the tool checks the controller's range to the targeted operator and the ceiling against the token's elevation, and offers the targeted operator the controls (High-Tech: Electricity and Electronics p. 46). A spread-spectrum control link (the T-Hawk's) is -4 to detect with signals intelligence (Electricity and Electronics pp. 46-47)."
+          "Hint": "A vehicle record's drone figures, on its sheet and set on the two UAVs: the autopilot's skill and Dodge, the remote control's bonus, the controller's range and the ceiling. The remote operator, named as the drone's controller outside its crew, makes its control roll, which takes the remote control's bonus while he is within the controller's range, and is refused past it or while the drone is above its ceiling; the figures show as a hint on the vehicle's Hnd/SR once it is on the road; a row button, or a GM tool for a drone on the map, rolls the autopilot's Piloting or its Dodge against obstacles, and the tool checks the controller's range to the targeted operator and the ceiling against the token's elevation, and offers the targeted operator the controls (High-Tech: Electricity and Electronics p. 46). A spread-spectrum control link (the T-Hawk's) is -4 to detect with signals intelligence, with the spread-spectrum rules on (Electricity and Electronics pp. 46-47)."
         },
         "electricStunners": {
           "Name": "Electric stunners",
@@ -5354,7 +5354,7 @@
         },
         "directedEnergyWeapons": {
           "Name": "Directed-energy weapons",
-          "Hint": "From the supplement Electricity and Electronics. The dazzler and the laser pointer blind for minutes equal to the margin, but only where the darkness at the victim is -2 or worse; DR does nothing, Protected Vision gives +5, a Nictitating Membrane +1 a level, and obscuring conditions +1 a point of their Vision penalty (an attack option). The acoustic hailing device's Moderate Pain lasts while the sound does; after a minute of it by the world's clock (or at once from a row action), tinnitus (Hard of Hearing) for a minute a point of failure and an HT roll that keeps it 1d months, or for good on a critical failure. Protected Hearing gives +5 and prevents permanent loss; Deafness is immune. The Active Denial System's Agony lasts while in the beam, though the victim can move away, and a second after leaving it: a token moved more than 5 yards from where the beam came down, or a row action (Electricity and Electronics pp. 50-51)."
+          "Hint": "From the supplement Electricity and Electronics. The dazzler and the laser pointer blind for minutes equal to the margin, but only where the darkness at the victim is -2 or worse; DR does nothing, Protected Vision gives +5, a Nictitating Membrane +1 a level, and obscuring conditions +1 a point of their Vision penalty (an attack option). The acoustic hailing device's Moderate Pain lasts while the sound does; after a minute of it by the world's clock (or at once from a row action), tinnitus (Hard of Hearing) for a minute a point of failure and an HT roll that keeps it 1d months, or for good on a critical failure. Protected Hearing gives +5 and prevents permanent loss; Deafness is immune. The Active Denial System's Agony lasts while in the beam, though the victim can move away, and a second after leaving it: a token moved out of the 5-yard area where the beam came down, or a row action (Electricity and Electronics pp. 50-51)."
         },
         "nonNuclearEmp": {
           "Name": "Non-nuclear EMP",
@@ -10708,14 +10708,19 @@
         "VoiceTrainedHint": "Until 8 hours of training, rolls to work it by spoken command are at -2 more (High-Tech: Electricity and Electronics p. 40).",
         "WiredGloves": "Wired gloves",
         "WiredGlovesHint": "Prototype wired gloves worn with the VR headset: -2 to skills of manual dexterity worked through it (Electricity and Electronics p. 41).",
+        "Work": "Work it",
+        "WorkTitle": "Computer Operation on {name}",
+        "WorkNavigating": "Navigating the display (arrow keys alone: -1)",
+        "WorkVr": "A task the VR headset helps with (offsets up to -2)",
+        "WorkHint": "Tick what the task is: the text interface's arrow keys and the headset's offset count only where they apply (Electricity and Electronics pp. 40-41).",
         "Familiar": "Familiar",
         "FamiliarHint": "Whether the character's familiarities list this interface. Unfamiliar, it is -2 to skill for the first 8 hours of use (High-Tech: Electricity and Electronics p. 39).",
         "TooLow": "{name} needs Complexity {needs}; this computer is Complexity {complexity} and can't drive it.",
         "Note": {
-          "text": "Computer Operation through a text interface takes -1 for navigating the display by the arrow keys alone, which extra time can make up (High-Tech: Electricity and Electronics p. 40).",
+          "text": "Navigating the display by the arrow keys alone is -1 on Computer Operation, which extra time can make up: tick it on the \"Work it\" row (High-Tech: Electricity and Electronics p. 40).",
           "graphic": "A light pen held to the screen calls for an HT roll every 10 minutes (its row button) (High-Tech: Electricity and Electronics p. 40).",
           "touch": "Typing on the touch screen is -1, unless the typist carries a keyboard to use with it (High-Tech: Electricity and Electronics p. 40).",
-          "vr": "The VR headset offsets up to -2 of the penalties on a Computer Operation roll; wired gloves, ticked here, are -2 to DX-based skills worked through it (High-Tech: Electricity and Electronics p. 41).",
+          "vr": "The VR headset offsets up to -2 of the penalties on a Computer Operation task it helps with (tick it on the \"Work it\" row); wired gloves, ticked here, are -2 to DX-based skills worked through it (High-Tech: Electricity and Electronics p. 41).",
           "voice": "Voice control is -2 to Computer Operation and other skills for navigating a screen (High-Tech: Electricity and Electronics p. 40).",
           "bci": "A noninvasive interface's weak signals are -2 to skill, which extra time can make up (High-Tech: Electricity and Electronics p. 41)."
         },
@@ -11385,7 +11390,7 @@
         "TinnitusMonths": "{name} has tinnitus for {months} months.",
         "TinnitusPermanent": "{name}'s hearing loss is permanent.",
         "DenialCondition": "Active Denial: in the beam, free to flee",
-        "DenialLine": "{name} is in Agony while in the beam, and can still move away: more than 5 yards from where it came down, the Agony ends a second later.",
+        "DenialLine": "{name} is in Agony while in the beam, and can still move away: out of the 5 yards where it came down, the Agony ends a second later.",
         "DenialLeave": "Victims leave the beam",
         "DenialLeft": "Out of the beam: {names}, in Agony for {seconds} second more.",
         "NoDenied": "Target the characters leaving the beam.",
