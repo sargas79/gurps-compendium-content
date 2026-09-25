@@ -93,6 +93,29 @@ export const PIECE_LOCATIONS: Readonly<Record<Piece, readonly string[]>> = Objec
 /** Each missing piece's penalty on the roll against the cold (p. 63; Campaigns p. 345). */
 export const MISSING_PIECE_PENALTY = -1;
 
+/**
+ * What a piece of clothing worn apart from the outfit is, by its name: boots,
+ * gloves or mittens, a warm hat, a scarf or balaclava (p. 63's "waterproof
+ * boots, gloves, a warm hat, and a scarf"). A hard hat keeps nothing warm.
+ */
+const PIECE_NAMES: ReadonlyArray<[Piece, RegExp]> = [
+  ["boots", /\bboots?\b/i],
+  ["gloves", /\b(gloves?|mittens?)$/i],
+  ["hat", /^(hat\b|(fur|winter|warm) hat\b|skullcap\b|watch cap\b|beanie\b|balaclava\b)/i],
+  ["scarf", /^(scarf\b|balaclava\b|neck gaiter\b)/i],
+];
+
+/** The outfit pieces a separately worn item stands in for. */
+export function piecesOf(name: unknown): Piece[] {
+  const base = baseName(name).replace(/\s*\([^)]*\)\s*$/, "").trim();
+  return PIECE_NAMES.filter(([, pattern]) => pattern.test(base)).map(([piece]) => piece);
+}
+
+/** The pieces still missing once what is worn apart from the outfit fills them. */
+export function stillMissing(missing: readonly Piece[], wornApart: readonly Piece[]): Piece[] {
+  return missing.filter((piece) => !wornApart.includes(piece));
+}
+
 /** The penalty for the pieces missing from a winter or arctic outfit. */
 export function missingPiecesPenalty(missing: readonly Piece[]): number {
   const count = new Set(missing).size;
@@ -150,16 +173,42 @@ export function outfitWeightFactor(row: Outfit["weightRow"], tl: number): number
 /** Heated clothing: counts as winter clothes, and without power that is all it does. */
 export const HEATED_CLOTHING = /^heated clothing$/i;
 
+/** A cooling vest (p. 74). */
+export const COOLING_SYSTEM = /^cooling system$/i;
+
 /** High-Tech's climate-control gear and the degrees each adds to the comfort zone (p. 74). */
 export const HIGH_TECH_CLIMATE_GEAR: readonly ClimateGear[] = Object.freeze([
   { pattern: HEATED_CLOTHING, zone: { coldF: 60, heatF: 0 }, powered: true },
   { pattern: /^climate-control system$/i, zone: { coldF: 60, heatF: 60 }, powered: true },
-  // A phase-change or evaporative vest: four hours, then a soak in ice water.
-  { pattern: /^cooling system$/i, zone: { coldF: 0, heatF: 30 } },
+  // A phase-change or evaporative vest: four hours, then a soak in ice water
+  // (its charge is read in `index.ts`, which sets `running` on this entry).
+  { pattern: COOLING_SYSTEM, zone: { coldF: 0, heatF: 30 } },
 ]);
 
 /** A cooling system's charge, and the soak that renews it (p. 74). */
 export const COOLING_VEST = { hours: 4, soakMinutes: 15 } as const;
+
+/**
+ * When a charge put in now runs out, in world seconds: four hours of cooling,
+ * after the quarter hour's soak in ice-cold water where it is being soaked.
+ */
+export function coolingUntil(now: number, soaked: boolean): number {
+  return now + (soaked ? COOLING_VEST.soakMinutes * 60 : 0) + COOLING_VEST.hours * 3600;
+}
+
+/**
+ * A cooling vest's charge at a moment: `fresh` where none has been put in or
+ * run down yet (it comes charged, and starts on its four hours when first
+ * worn), `soaking` during the quarter hour in the water, `charged` with the
+ * seconds left, or `spent`.
+ */
+export function coolingCharge(until: number | null, now: number): { state: "fresh" | "soaking" | "charged" | "spent"; seconds: number } {
+  if (until === null) return { state: "fresh", seconds: COOLING_VEST.hours * 3600 };
+  const left = until - now;
+  if (left <= 0) return { state: "spent", seconds: 0 };
+  if (left > COOLING_VEST.hours * 3600) return { state: "soaking", seconds: left - COOLING_VEST.hours * 3600 };
+  return { state: "charged", seconds: left };
+}
 
 /**
  * A march's fatigue in the heat without the hot weather's extra point an

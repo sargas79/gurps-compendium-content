@@ -119,6 +119,19 @@ describe("High-Tech's table in the gadget engine", () => {
     expect(gadgetPriceOf(vest, gadgetItem(vest))).toBeNull();
   });
 
+  it("counts a tactical light as rugged and expensive already, and never charges them again (p. 52)", () => {
+    only(key("equipmentOptions"));
+    const light = gear({ name: "Small Tactical Light (TL8)", gadget: { rugged: true, grade: "expensive" } });
+    light.system.extensions[MODULE_ID].expedition = { light: { kind: "tactical", radius: 0, beam: 25 } };
+    // Rugged and expensive ticked: the list price already pays for them.
+    expect(gadgetPriceOf(light, gadgetItem(light))).toBeNull();
+    light.system.extensions[MODULE_ID].ultraTech = { styling: 2 };
+    expect(gadgetPriceOf(light, gadgetItem(light))).toMatchObject({ cost: 200, weight: 2 });
+    // Its failure roll takes rugged's +2 whatever was ticked.
+    light.system.extensions[MODULE_ID].ultraTech = {};
+    expect(failureLines(gadgetTables(light).options!, light)).toEqual([{ label: expect.stringContaining("Rugged"), value: 2 }]);
+  });
+
   it("leaves Ultra-Tech's gear priced as before", () => {
     only(key("gadgetOptions"));
     const armour = gear({ book: "ultra-tech", type: "armor", gadget: { rugged: true }, system: { tl: "10" } });

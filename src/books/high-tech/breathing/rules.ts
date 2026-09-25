@@ -195,8 +195,30 @@ export function breathesPureOxygen(name: string): boolean {
 }
 export const OXYGEN_DEPTH_FEET = 30;
 
+/**
+ * Whether a diver risks the bends on surfacing: one who breathed a
+ * pure-oxygen rebreather deeper than 30' (p. 76, which sends the reader to
+ * The Bends, Campaigns p. 435).
+ */
+export function oxygenBendsRisk(name: string, depthFeet: number): boolean {
+  return breathesPureOxygen(name) && Math.max(0, Number(depthFeet) || 0) > OXYGEN_DEPTH_FEET;
+}
+
 /** Scuba (Closed-Circuit): the optional specialty's defaults from and to Scuba (p. 76). */
 export const CLOSED_CIRCUIT_DEFAULTS = { fromScuba: -4, toScuba: -2 } as const;
+
+/** The optional specialty's name, and plain Scuba's (Characters p. 219). */
+export const CLOSED_CIRCUIT = /^scuba(\/tl[\d^]*)?\s*\(\s*closed[- ]circuit\s*\)\s*$/i;
+export const OPEN_CIRCUIT = /^scuba(\/tl[\d^]*)?\s*$/i;
+
+/**
+ * A Scuba skill's default from the other (p. 76): Scuba (Closed-Circuit) at
+ * Scuba-4, or Scuba at Scuba (Closed-Circuit)-2; null without the other.
+ */
+export function scubaDefault(closedCircuit: boolean, other: number | null): number | null {
+  if (other === null || !Number.isFinite(other)) return null;
+  return other + (closedCircuit ? CLOSED_CIRCUIT_DEFAULTS.fromScuba : CLOSED_CIRCUIT_DEFAULTS.toScuba);
+}
 
 // ── environment suits (pp. 74-76) ───────────────────────────────────────────
 
@@ -228,12 +250,31 @@ export function isCleanSuit(name: string): boolean {
 
 /** The anti-G suit: +3 to HT rolls to resist high acceleration (p. 74). */
 export const ANTI_G_BONUS = 3;
+export const ANTI_G = /^anti-g suit$/i;
 
 /** Wet turnout gear: +5 DR against burning, and burning damage through it doubled (p. 75). */
 export const WET_TURNOUT = { dr: 5, multiplier: 2 } as const;
 
 /** An NBC suit's seal is reliable for 72 hours at most (p. 75). */
 export const NBC_SEAL_HOURS = 72;
+
+/**
+ * Whether an NBC suit still seals (p. 75): not once it has got wet, and not
+ * past 72 hours from when it was first put on (`since`, world seconds; null
+ * for one never worn).
+ */
+export function nbcSeals(options: { wet: boolean; since: number | null; now: number }): boolean {
+  if (options.wet) return false;
+  return options.since === null || options.now - options.since < NBC_SEAL_HOURS * 3600;
+}
+
+export function isNbcSuit(name: string): boolean {
+  return /^nbc suit$/i.test(baseName(name));
+}
+
+/** Suits that come with climate control (pp. 74-76): the EVA suit always, a bomb suit where it is fitted with one. */
+export const SPACE_SUIT_EVA = /^space suit, eva$/i;
+export const BOMB_SUIT = /^bomb disposal suit$/i;
 
 /**
  * Gear that comes with biomedical sensors: the sensors themselves, added to

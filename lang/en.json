@@ -5686,7 +5686,8 @@
         "Simple": "Simple enough at TL{campaign} to skip maintenance: under ${threshold}.",
         "Rugged": "Rugged",
         "Quality": "Quality ({quality})",
-        "StylingLine": "Styling: {name}"
+        "StylingLine": "Styling: {name}",
+        "BuiltIn": "Built {options} as listed: the list price already pays for it, and it isn't added again (tactical lights, High-Tech p. 52)."
       },
       "Equipment": {
         "ItemTitle": "High-Tech equipment",
@@ -6636,10 +6637,11 @@
         "IlluminatedHint": "Lit by battery or tritium: up to 2 off darkness penalties on an aimed shot, in place of the scope's 1 (High-Tech p. 155).",
         "TacticalLight": "Tactical light on",
         "TacticalLightLine": "Tactical light: switched on for a shot within its {yards}-yard beam, darkness is no worse than {floor}.",
-        "TacticalLightNote": "{name}: darkness no worse than -3 out to {yards} yards; the target may be dazzled (HT-4) at the GM's call.",
+        "TacticalLightNote": "{name}: darkness no worse than -3 out to {yards} yards. Someone looking into it rolls HT-4 or is blinded: the gun's row shines it in the eyes of the targets.",
         "DarknessLine": "{label} (sights and light)",
         "LaserHit": "{name} (dot out to {yards} yd)",
-        "HearSubsonic": "Subsonic ammunition"
+        "HearSubsonic": "Subsonic ammunition",
+        "TacticalLightEyes": "Shine the light in their eyes"
       },
       "Ammunition": {
         "Title": "Ammunition (High-Tech)",
@@ -7796,7 +7798,7 @@
         "Imposed": "While in use: Colorblindness, No Depth Perception and No Peripheral Vision.",
         "Mounted": "A camera or vehicle sensor: not worn as a sense.",
         "ProtectedVisionLine": "Coated lenses: Protected Vision against laser light.",
-        "StabilizedLine": "Stabilized: cancels up to -{penalty} in movement penalties when observing (the GM applies it).",
+        "StabilizedLine": "Stabilized: cancels up to -{penalty} of the movement penalty on a Vision roll made through it from a moving vehicle.",
         "IlluminatorLine": "Has its own IR illuminator.",
         "LensShine": "On a bright day its glint can be seen on a Vision roll; avoiding it takes a Stealth roll (row button).",
         "LensShineHooded": "On a bright day its glint can be seen on a Vision roll; avoiding it takes a Stealth roll at {bonus} (row button).",
@@ -7841,7 +7843,10 @@
         "Medium": {
           "soil": "Soil",
           "ice": "Ice (x20 range)",
-          "rock": "Concrete or rock (range /10)"
+          "rock": "Concrete or rock (range /10)",
+          "air": "In air",
+          "water": "Underwater",
+          "vacuum": "In vacuum"
         },
         "MediumLine": "In {medium}: range {range}.",
         "GprAntenna": "Antenna (ground-penetrating radar)",
@@ -8125,7 +8130,39 @@
           "improvised": "Improvised direction finder",
           "haste": "Haste: a brief signal"
         },
-        "DirectionFinderOpen": "{name}: a fix"
+        "DirectionFinderOpen": "{name}: a fix",
+        "EyeDrLine": "In use, it protects the eyes behind it with DR {dr}.",
+        "EyeDr": "{name} over the eyes",
+        "ObservingMoving": "Observing through {name} from a moving vehicle ({penalty})",
+        "ObservingStabilized": "Observing through {name} from a moving vehicle ({penalty}, up to -{stabilized} cancelled)",
+        "FixPenalty": "Hydrophone fix ({name}): the detection's modifiers, never a bonus",
+        "SoundMedium": "Where",
+        "AirOnly": {
+          "water": "Sound-detection gear works only in air: underwater, use a hydrophone.",
+          "vacuum": "Sound-detection gear works only in air: in vacuum there is nothing to hear."
+        },
+        "OtherSites": "Other sites",
+        "Sites": {
+          "none": "None yet",
+          "success": "A success at one",
+          "critical": "A critical success at one",
+          "twoSuccesses": "Successes at two"
+        },
+        "Triangulated": "With the other sites' results, the source is triangulated: found to within two yards.",
+        "Detector": {
+          "testKit": "50 treated strips for a wide range of chemicals: a positive test in a minute or two at TL6, at once at TL8.",
+          "handheld": "Senses chemical weapons, drugs or explosives within about a foot.",
+          "nbc": "Sounds an alarm at any known NBC agent; can be linked to other sensors or watched from a laptop.",
+          "geiger": "Measures the type and level of radiation: {skill} reads a clue to its source (row button).",
+          "badge": "Its colour strip shows the total dose it has been exposed to.",
+          "dosimeter": "Tracks the total dose, and sounds an alarm when it reaches dangerous levels.",
+          "metal": "Beeps over metal up to {inches}\" underground ({small}\" for small things like coins and rings)."
+        },
+        "MetalDetectorTl8": "At TL8, a screen shows the find's general shape and composition, and it weighs half as much.",
+        "GeigerTitle": "Read the radiation",
+        "GeigerRoll": "Reading the {name}",
+        "GeigerClue": "A clue to the radiation's source: the GM says what the readings suggest.",
+        "GeigerNothing": "The readings say nothing about where it comes from."
       },
       "Survival": {
         "Title": "Survival gear",
@@ -8144,7 +8181,7 @@
         "FireStarterLine": "{name}",
         "FireLabel": "Building a fire ({skill}, DX-based)",
         "SurvivalDefault": "Survival default, DX-5",
-        "ForagingItem": "Up to {rolls} Fishing or Survival rolls a day for food (Foraging, p. B427).",
+        "ForagingItem": "Up to {rolls} Fishing or Survival rolls a day for food, an hour each: roll them from this row (Foraging, p. B427).",
         "TrapItem": "ST {st}: strikes for thrust+{adds} crushing at that ST, and its victim breaks free against it.",
         "TrapAction": "Spring on the target",
         "TrapTarget": "Target the one character caught in the trap.",
@@ -8203,14 +8240,14 @@
         "Descent": "It comes down at {speed} yards a second ({load} lbs. of its {rated}).",
         "DescentOver": "It comes down at {speed} yards a second: {load} lbs. is over its {rated}.",
         "DescentUnrated": "It comes down at {speed} yards a second.",
-        "Flies": "It flies rather than drops (rated for {rated} lbs.); see its vehicle statistics.",
+        "Flies": "It flies rather than drops (rated for {rated} lbs.): it glides at Move {move} over the ground, up to Move {tailwind} with a good tailwind high up; see its vehicle statistics.",
         "FallLanding": "{name} hits the ground at {velocity} yards a second",
         "HardLanding": "{name} lands hard at {velocity} yards a second",
         "LandingHint": "Rolled where the GM rules the landing hurts: the ground was reached too soon, the chute failed, or the Parachuting roll went wrong.",
         "NauseaRoll": "HT against nausea",
         "EarlyChute": "{name}",
         "DeathFromAbove": "Death from Above",
-        "DeathFromAboveRefusal": "Only on Move and Attack, coming down under a canopy.",
+        "DeathFromAboveRefusal": "Only on Move and Attack, coming down under an open canopy (jump from the parachute's row).",
         "DeathFromAboveLine": "Parachuting is lower than the weapon's skill",
         "DeathFromAboveNote": "Death from Above: the lower of Parachuting and the weapon's skill, on Move and Attack (High-Tech p. 61).",
         "SnackItem": "Counts as a decent meal when resting: +{fp} FP (tick the meal on the Rest dialog).",
@@ -8222,7 +8259,41 @@
         "Miles": "{miles} miles",
         "Yards": "{yards} yards",
         "WhistleItem": "Heard on an unmodified Hearing roll at {yards} yards; the row's button rolls a targeted listener's Hearing.",
-        "WhistleAction": "Who hears the whistle"
+        "WhistleAction": "Who hears the whistle",
+        "ForageAction": "Forage",
+        "ForageRoll": "Foraging with the {name} ({attempt} of {rolls} today)",
+        "ForageGear": "{name}",
+        "ForageFound": "{name} finds food after an hour's foraging ({left} more tries today).",
+        "ForageNothing": "{name} finds nothing in an hour's foraging ({left} more tries today).",
+        "ForageSpent": "No more foraging today: {rolls} rolls a day at most.",
+        "Wind": "Wind (mph)",
+        "NoPull": "Doesn't pull the ripcord",
+        "NoPullAutoHint": "A jumper knocked out, or who never pulls: this chute's barometric device opens it at {yards} yards (High-Tech p. 61).",
+        "NoPullHint": "A jumper knocked out, or who never pulls: nothing opens this chute before the ground.",
+        "AutoDeploys": "The barometric device opens it at {yards} yards.",
+        "NeverOpens": "Nobody pulls the ripcord, and nothing else opens the chute: the whole fall.",
+        "Drift": "Drifts {yards} yards downwind on the way down ({seconds} seconds in a {wind} mph wind).",
+        "UnderCanopy": "Under the canopy until the landing: Death from Above is possible.",
+        "Landed": "Landed.",
+        "LandedAction": "Landed",
+        "AutoDeployItem": "A barometric device opens it at {yards} yards if the jumper doesn't.",
+        "GlideItem": "Glides at Move {move} over the ground, up to Move {tailwind} with a good tailwind high up.",
+        "Reserve": "Reserve chute",
+        "ReserveHint": "A reserve chute adds $250 and 15 lbs. (High-Tech p. 61).",
+        "ReserveItem": "Packed with a reserve chute (+${cost}, +{weight} lbs.).",
+        "GuidedItem": "Steers cargo by GPS to within a few dozen yards of the landing point, at Move {low}-{high} over the ground; up to {tons} tons.",
+        "PodItem": "Carries one person, {lbs} lbs. with their gear; steered and landed by GPS, with no controls inside.",
+        "EatHint": "Eaten at rest, it is a decent meal on the Rest dialog. On the move, at the GM's option, it gives {fp} FP back now and takes {crash} FP {hours} hours later (High-Tech p. 35).",
+        "OnTheMove": "Eaten on the move, not resting",
+        "SnackOnTheMove": "{name} has a {item} on the move: +{fp} FP now, and {crash} FP gone in {hours} hours.",
+        "SnackCrash": "{name}'s {item} wears off: -{fp} FP.",
+        "Maritime": {
+          "snorkel": "Lets a swimmer keep his face in the water while swimming on the surface.",
+          "raft": "Self-inflating, for one (the four-person model is three times the cost and weight), with a canopy and sea anchor.",
+          "cage": "A shelter for up to three divers, on or below the surface: DR 20.",
+          "beacon": "Triggers when submerged, or by hand: an alarm aboard the vessel, and its radio direction finder gives the distance and direction to it.",
+          "scuba": "A full set: wetsuit, mask, snorkel, fins, buoyancy compensator, a medium air tank and a regulator. Put the fins on to swim with them."
+        }
       },
       "Ordnance": {
         "NoSkill": "Knows none of: {skills}.",
@@ -8546,7 +8617,79 @@
         "PaddedPrice": "Padded grapnel",
         "PaddedLine": "Padded grapnel",
         "GrapnelHeardAction": "Who hears it land",
-        "GrapnelHeardNote": "Only where it lands on stone, concrete or the like (High-Tech p. 55)."
+        "GrapnelHeardNote": "Only where it lands on stone, concrete or the like (High-Tech p. 55).",
+        "SetDownBeam": "{name} is set down, its beam lighting a cone {yards} yards long and {width} yards wide at the end.",
+        "NoPlaceBeam": "Nowhere to set it down: the bearer has no token on the viewed scene.",
+        "FireArea": "Fire ({name})",
+        "FireTitle": "A broken lantern's fire",
+        "FireCard": "{name}'s oil burns {yards} yard round it for {seconds} seconds: {formula} burning a second to whoever stands in it, DR at a fifth of its value (armour divisor {divisor}).",
+        "FireBurn": "Roll a second's burning ({formula})",
+        "FireSecond": "{name}'s fire",
+        "FireOut": "{name}'s fire has burned out.",
+        "CantPutOut": "{name} can't be put out: it glows until it is spent.",
+        "Wound": "{name} is wound for {seconds} seconds: light for {minutes} minutes.",
+        "OutOfFuel": {
+          "pint": "{name} is out of oil: fill it from its row first.",
+          "carbide": "{name} is out of carbide: recharge it from its row first.",
+          "ounce": "{name} has burned down: light another from its row first.",
+          "snap": "{name} is spent: snap another from its row first."
+        },
+        "OutOfFuelLine": {
+          "pint": "Out of oil.",
+          "carbide": "Out of carbide.",
+          "ounce": "Burned down.",
+          "snap": "Spent."
+        },
+        "BurnsFor": "Light for {time} more.",
+        "BurnLeft": "Burning time left: {time}.",
+        "HoursMinutes": "{hours} h {minutes} min",
+        "MinutesOnly": "{minutes} min",
+        "Burn": {
+          "pint": "Burns {time} on a pint of oil.",
+          "carbide": "Burns {time} on a quarter pound of carbide ($0.30 a charge).",
+          "ounce": "Burns {time} an ounce.",
+          "snap": "Glows {time} once snapped, and can't be put out.",
+          "wind": "Gives {time} of light for {winding} seconds' winding or shaking."
+        },
+        "RefuelAction": "Refill",
+        "Refuel": {
+          "ounce": "A new candle",
+          "snap": "A new chemlight"
+        },
+        "Refuelled": {
+          "pint": "{name} is filled with a pint of oil: {time} of light.",
+          "carbide": "{name} is recharged with carbide: {time} of light.",
+          "ounce": "A new ounce of {name}: {time} of light.",
+          "snap": "A new {name}: {time} of light once snapped."
+        },
+        "NoneLeft": "No {name} left.",
+        "Tl8Battery": "Made at TL8: its batteries last {factor} times as long.",
+        "TritiumLine": "Self-powered for 10 years: enough to read a map or find a keyhole by. It can be shuttered but never switched off.",
+        "SloshLine": "Sloshes when not full to the brim: no Stealth benefit from load-bearing equipment while it does.",
+        "NotFull": "Not full",
+        "NotFullHint": "A canteen not filled to the brim sloshes loudly, which undoes quality LBE's Stealth benefit (High-Tech p. 53).",
+        "RetrieveLine": "Getting something out of it is a long action of {dice}d seconds, with no Fast-Draw.",
+        "RetrieveAction": "Get something out",
+        "Retrieved": "{name} gets something out of the {item}: {seconds} seconds.",
+        "FlapLine": "Opening a pouch's secured flap takes {readies} more Ready maneuver.",
+        "RopeLine": "Working load: {lbs} lbs. Past it, or with sudden jerks or constant strain, it wears and may fail.",
+        "DrillLine": "One hand holds the bit, the other hammers: {minutes} minutes for a 3\" bolt hole in normal rock.",
+        "LiftLine": "Climbs or descends a rope at {speed} yards a second, up to {lbs} lbs.; a fuel cartridge lifts {yards} yards ({left} yards left).",
+        "AvalancheLine": "A personal rescue beacon found at {least}-{most} yards under snow.",
+        "CramponIce": "+{bonus} to Climbing on ice: the row's button rolls the climb.",
+        "IceClimbAction": "Climb on ice",
+        "IceClimbRoll": "Climbing on ice",
+        "CramponLine": "{name} on ice",
+        "LiftAction": "Ride the rope",
+        "LiftYards": "Yards",
+        "LiftLoad": "Load (lbs.)",
+        "LiftDown": "Going down",
+        "LiftTooHeavy": "{load} lbs. is more than the {lbs} lbs. it lifts.",
+        "LiftNoFuel": "The cartridge has {left} yards of ascent left, not {yards}.",
+        "LiftedUp": "{name} rides {yards} yards up in {seconds} seconds ({left} yards left on the cartridge).",
+        "LiftedDown": "{name} rides {yards} yards down in {seconds} seconds.",
+        "CartridgeAction": "New cartridge",
+        "CartridgeFitted": "A new fuel cartridge: {yards} yards of ascent."
       },
       "Lighting": {
         "Title": "Lamp",
@@ -8732,7 +8875,7 @@
         "MissingLine": "Clothing missing: {pieces}",
         "ZoneCold": "Adds {degrees} degrees to the cold end of the comfort zone while worn.",
         "ZoneBoth": "Adds {degrees} degrees to both ends of the comfort zone while worn.",
-        "ZoneHeat": "Adds {degrees} degrees to the hot end of the comfort zone while worn: {hours} hours a charge, recharged by {minutes} minutes in ice-cold water (not tracked).",
+        "ZoneHeat": "Adds {degrees} degrees to the hot end of the comfort zone while worn and charged: {hours} hours a charge, recharged by {minutes} minutes in ice-cold water.",
         "PoweredItem": "Only while its power lasts.",
         "HotMarchItem": "A hike in the heat costs no extra FP while it runs.",
         "HeatedWinterItem": "Counts as winter clothes, with or without power.",
@@ -8745,7 +8888,16 @@
           "hand": "hand",
           "foot": "foot"
         },
-        "HotBattleLine": "{name}: body armour on a hot day, +{fp} FP (High-Tech p. 65; Campaigns p. 426)"
+        "HotBattleLine": "{name}: body armour on a hot day, +{fp} FP (High-Tech p. 65; Campaigns p. 426)",
+        "FilledItem": "Worn apart from the outfit, filling its gaps: {names}.",
+        "SoakAction": "Soak in ice water",
+        "SoakedLine": "Soaked in ice-cold water: it cools again after {minutes} minutes, for {hours} hours.",
+        "Cooling": {
+          "fresh": "Charged: {hours} hours of cooling, counted from when it is first put on.",
+          "soaking": "In the ice water: cooling again in {minutes} minutes.",
+          "charged": "Charge left: {hours} h {minutes} min.",
+          "spent": "Spent: no cooling until it has had {soak} minutes in ice-cold water."
+        }
       },
       "Melee": {
         "Title": "Melee and muscle-powered weapons (High-Tech)",
@@ -8970,7 +9122,7 @@
         "HotSuitSource": "{name}: FP tripled",
         "NbcSeal": "Loses its seal quickly in the wet, and is unreliable after {hours} hours at most.",
         "CleanSuit": "+{bonus} HT against catching a disease from a victim.",
-        "AntiG": "+{bonus} to HT rolls to resist high acceleration: the GM adds it, as the system rolls none.",
+        "AntiG": "+{bonus} to HT rolls to resist high acceleration: roll it from this row.",
         "DrySuit": "Resists thermal shock in cold water; proper clothing beneath it keeps out the cold.",
         "Wetsuit": "Counts as winter clothing in cold water.",
         "Turnout": "Wet, it gives +{dr} DR against burning, but burning damage that gets through is multiplied by {times}.",
@@ -8980,7 +9132,34 @@
         "TurnoutSteam": "{name}: steam",
         "BombSuit": "The hands are bare.",
         "Biomedical": "Biomedical sensors: +{bonus} to Diagnosis on the wearer, or Diagnosis at {remote} from afar.",
-        "BiomedicalModifier": "Biomedical sensors ({item})"
+        "BiomedicalModifier": "Biomedical sensors ({item})",
+        "NbcSealLost": "Its seal is gone: wet, or worn past its hours. It seals nothing now.",
+        "NbcWet": "Got wet",
+        "NbcWetHint": "An NBC suit quickly loses its seal in a wet environment (High-Tech p. 75).",
+        "Fitted": "Fitted with climate control",
+        "FittedHint": "Some bomb disposal suits are fitted with a climate-control system: 60 degrees added to both ends of the comfort zone (High-Tech pp. 74, 76).",
+        "SuitClimate": "Climate control: 60 degrees added to both ends of the comfort zone, and no extra FP for a hike in the heat.",
+        "OxygenDeep": "Pure oxygen below {feet}': the diver risks the bends on coming back to the surface.",
+        "BendsCard": "{name} is back at the surface after breathing pure oxygen below {feet}': roll HT against the bends.",
+        "BendsRoll": "HT against the bends",
+        "Bends": {
+          "clear": "{name} comes through with no ill effects.",
+          "agony": "{name} is in agony from joint pain: roll HT hourly to recover.",
+          "collapse": "{name} falls unconscious or into painful paralysis: roll HT hourly to recover, each failure 1d injury.",
+          "death": "Critical failure: {name} dies painfully (the GM's to apply)."
+        },
+        "AccelerationAction": "High acceleration",
+        "GForce": "Acceleration (G)",
+        "HomeGravity": "Home gravity (G)",
+        "Braced": "Seated or lying down",
+        "Inverted": "Upside down",
+        "GForceLine": "{g} G",
+        "AccelerationRoll": "HT against {g} G",
+        "NoAccelerationRoll": "{g} G is under 2.5 times home gravity: no roll.",
+        "AccelerationFp": "{name} loses {fp} FP to the acceleration.",
+        "AccelerationBlackout": "{name} loses {fp} FP and blacks out for {seconds} seconds.",
+        "ClosedFromScuba": "Scuba (Closed-Circuit) from Scuba{modifier} (High-Tech p. 76)",
+        "ScubaFromClosed": "Scuba from Scuba (Closed-Circuit){modifier} (High-Tech p. 76)"
       },
       "Security": {
         "Title": "Locks, traps and barriers (High-Tech)",

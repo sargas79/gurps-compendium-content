@@ -8,6 +8,11 @@
       </label>
     </div>
   {{/if}}
+  {{#if reserve}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Survival.ReserveHint'}}"><input type="checkbox" data-gcc-ht-survival="reserve" {{#if reserve.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Survival.Reserve"}}</label>
+    </div>
+  {{/if}}
   {{#if desalinator}}
     <div class="ichecks">
       <label class="icheck" data-tooltip="{{localize 'GCC.HT.Survival.LargeHint'}}"><input type="checkbox" data-gcc-ht-survival="large" {{#if desalinator.large}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Survival.Large"}}</label>

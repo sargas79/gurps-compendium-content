@@ -7,11 +7,16 @@ import {
   OTHER_KIND,
   SIMILAR_SPECIALTY,
   deathFromAboveLine,
+  descentSeconds,
+  driftYards,
+  dueCrashes,
   finsMoveLine,
   fireBuildingLevel,
+  foragingAttempt,
   jumpOutcome,
   kitMismatch,
   landingSpeed,
+  pullHeight,
   ratedWeight,
   shelterLine,
   shelterModifier,
@@ -124,5 +129,33 @@ describe("parachutes (High-Tech p. 61)", () => {
   it("shoots at the lower of Parachuting and the weapon's skill (Death from Above)", () => {
     expect(deathFromAboveLine(14, 11)).toBe(-3);
     expect(deathFromAboveLine(12, 15)).toBe(0);
+  });
+
+  it("opens where pulled, or by the TL8 device at 1,000', or never", () => {
+    expect(pullHeight(500, true, false)).toBe(500);
+    expect(pullHeight(1000, false, true)).toBe(333);
+    expect(pullHeight(200, false, true)).toBe(200);
+    expect(pullHeight(1000, false, false)).toBe(0);
+  });
+
+  it("drifts with the wind for the time under the canopy", () => {
+    expect(descentSeconds(580, 80, 5)).toBe(100);
+    expect(descentSeconds(50, 80, 5)).toBe(0);
+    expect(descentSeconds(500, 80, 0)).toBe(0);
+    expect(driftYards(100, 10)).toBe(489);
+    expect(driftYards(100, 0)).toBe(0);
+  });
+});
+
+describe("foraging and snacks (High-Tech pp. 35, 55, 58)", () => {
+  it("allows five foraging rolls a day", () => {
+    expect(foragingAttempt(null, 3)).toBe(1);
+    expect(foragingAttempt({ day: 3, rolls: 4 }, 3)).toBe(5);
+    expect(foragingAttempt({ day: 3, rolls: 5 }, 3)).toBeNull();
+    expect(foragingAttempt({ day: 2, rolls: 5 }, 3)).toBe(1);
+  });
+
+  it("splits the snack crashes due from those to come", () => {
+    expect(dueCrashes([{ at: 10 }, { at: 30 }], 20)).toEqual({ due: [{ at: 10 }], later: [{ at: 30 }] });
   });
 });

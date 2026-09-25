@@ -125,7 +125,7 @@ import { initClothing, readyClothing } from "./clothing/index.js";
 import { ordnanceExtras, readyOrdnance } from "./ordnance/index.js";
 import { initExpedition, readyExpedition } from "./expedition/index.js";
 import { initHighTechCamouflage, readyHighTechCamouflage } from "./camouflage/index.js";
-import { readyBreathing } from "./breathing/index.js";
+import { readyBreathing, suitClimateGear } from "./breathing/index.js";
 import { initHighTechSecurity, readyHighTechSecurity } from "./security/index.js";
 import { initMedicine, readyMedicine } from "./medicine/index.js";
 import { readyHighTechCodes } from "./codes/index.js";
@@ -430,8 +430,9 @@ function init(): void {
   });
   initSurvival();
   initExpedition();
-  // With the supplement's heaters and fans, under its appliances switch.
-  initClothing(ruleKey("climateControl"), applianceClimateGear(ruleKey("electricAppliances")));
+  // With the supplement's heaters and fans, under its appliances switch, and
+  // the environment suits' climate control, under theirs.
+  initClothing(ruleKey("climateControl"), [...applianceClimateGear(ruleKey("electricAppliances")), ...suitClimateGear(ruleKey("environmentSuits"))]);
   initHighTechMelee();
   initHighTechCamouflage(ruleKey("camouflageGear"));
   initHighTechSecurity();

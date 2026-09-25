@@ -8,12 +8,14 @@
  * Biomedical sensors are one rule two books print (Ultra-Tech p. 187,
  * High-Tech p. 75), so they are one listener: each book registers which of
  * its gear carries them, and a patient's sensors give +1 once, whichever
- * books are on.
+ * books are on -- or -2 where the medic reads them from afar, his token
+ * beyond reach of the patient's.
  */
 
 import { BookTables, bookOf, type BookTable } from "../book-tables.js";
 import { climateTolerance, widenComfortZone } from "../climate/rules.js";
 import type { GWorldApi } from "../module.js";
+import { yardsBetween } from "../sensors/index.js";
 import { BIOMEDICAL, pressureSupportLevel, type Protection } from "./rules.js";
 
 export * from "./rules.js";
@@ -107,6 +109,20 @@ export function biomedicalTableOf(item: any): BiomedicalTable | null {
 
 const wornGear = (item: any) => (item?.type === "armor" || item?.type === "equipment") && item.system?.equipped === true;
 
+/** The reach a medic examines a patient in person within, in yards. */
+export const EXAMINE_REACH = 1;
+
+/**
+ * Whether a medic reads a patient's sensors from afar: both on the map, and
+ * further apart than he could examine the patient in person. Where the map
+ * can't say, the examination is in person.
+ */
+export function isRemote(medic: any, patient: any): boolean {
+  if (!medic || !patient || medic === patient) return false;
+  const yards = yardsBetween(medic, patient);
+  return yards !== null && yards > EXAMINE_REACH;
+}
+
 let biomedicalReadied = false;
 
 /** Puts a patient's biomedical sensors on a Diagnosis roll, once whichever books ask. */
@@ -119,8 +135,10 @@ export function readyBiomedical(api: GWorldApi): void {
     for (const item of patient?.items ?? []) {
       const table = wornGear(item) ? biomedicalTableOf(item) : null;
       if (!table) continue;
-      // However many pieces, or books, claim them, the sensors are +1 once.
-      context.modifiers.push({ label: table.label(item), value: BIOMEDICAL.inPerson });
+      // However many pieces, or books, claim them, the sensors count once: +1
+      // in person, or -2 read from afar over a comm.
+      const value = isRemote(context.actor, patient) ? BIOMEDICAL.remote : BIOMEDICAL.inPerson;
+      context.modifiers.push({ label: table.label(item), value });
       return;
     }
   });

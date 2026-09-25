@@ -64,6 +64,7 @@ import { ACCESSORY_TABLES, accessoryOf, minStPenaltyAfter, minStPenaltyAt, multi
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { calibreRowOf } from "../ammunition/calibres.js";
+import { shineTacticalLight, shinesInfrared } from "../expedition/index.js";
 import { isFirearm } from "../firearms/index.js";
 import { modernMalfunction } from "../firearms/rules.js";
 import { familyData, gunTakesSuppressor } from "../weapon-families/index.js";
@@ -1154,6 +1155,21 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
       return light ? { notes: [F("TacticalLightNote", { name: light.item.name, yards: light.figures.yards ?? 0 })] } : null;
     },
   } as any);
+  // Its dazzle: whoever looks into it rolls HT-4 or is blinded (p. 52), from the gun's row.
+  const dazzlingLight = (gun: any) => fittedTo(gun, on, ["tacticalLight"]).find((l) => !shinesInfrared(l.item));
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-tactical-light-eyes",
+    itemTypes: ["equipment"],
+    label: L("TacticalLightEyes"),
+    icon: "fa-solid fa-eye-slash",
+    // An infrared light blinds nobody (p. 52): no dazzle from it.
+    visible: (item) => on.sights() && firearm(item) && dazzlingLight(item) !== undefined,
+    run: (item, actor) => {
+      const light = dazzlingLight(item);
+      if (light) void shineTacticalLight(api, String(light.item.name ?? ""), light.figures.yards ?? 0, actor);
+    },
+  });
 
   // Looking through a night, thermal or computer sight: its vision, and colorblind with tunnel vision (pp. 156-157).
   Hooks.on("gworld.traitEffects", (context: any) => {

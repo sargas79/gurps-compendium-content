@@ -10,6 +10,9 @@ import {
   hasBiomedicalSensors,
   hotSuitFp,
   isAirMask,
+  nbcSeals,
+  oxygenBendsRisk,
+  scubaDefault,
   isTankFed,
   mufflesSpeech,
   pressureAtDepth,
@@ -93,5 +96,26 @@ describe("environment suits (High-Tech pp. 74-76)", () => {
     expect(hasBiomedicalSensors("Biomedical Sensors")).toBe(true);
     expect(hasBiomedicalSensors("Space Suit, EVA")).toBe(true);
     expect(hasBiomedicalSensors("NBC Suit")).toBe(false);
+  });
+
+  it("lets an NBC suit's seal go wet or after 72 hours (p. 75)", () => {
+    expect(nbcSeals({ wet: false, since: null, now: 0 })).toBe(true);
+    expect(nbcSeals({ wet: false, since: 0, now: 72 * 3600 - 1 })).toBe(true);
+    expect(nbcSeals({ wet: false, since: 0, now: 72 * 3600 })).toBe(false);
+    expect(nbcSeals({ wet: true, since: null, now: 0 })).toBe(false);
+  });
+});
+
+describe("diving (p. 76)", () => {
+  it("risks the bends below 30' on pure oxygen only", () => {
+    expect(oxygenBendsRisk("Rebreather", 31)).toBe(true);
+    expect(oxygenBendsRisk("Early Rebreather", 30)).toBe(false);
+    expect(oxygenBendsRisk("Advanced Rebreather", 100)).toBe(false);
+  });
+
+  it("defaults the Scuba skills from each other", () => {
+    expect(scubaDefault(true, 14)).toBe(10);
+    expect(scubaDefault(false, 14)).toBe(12);
+    expect(scubaDefault(true, null)).toBeNull();
   });
 });

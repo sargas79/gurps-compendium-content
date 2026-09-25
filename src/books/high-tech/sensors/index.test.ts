@@ -23,6 +23,7 @@ const HOOKS = {
   successRollModifiers: "gworld.successRollModifiers",
   defenseModifiers: "gworld.defenseModifiers",
   afterQuickContest: "gworld.afterQuickContest",
+  armorDr: "gworld.armorDr",
 };
 
 let hooks: Map<string, Listener[]>;
@@ -69,6 +70,7 @@ function fakeApi() {
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
       derived: (actor: any) => actor?.derived ?? null,
       addPendingModifier: async (actor: any, request: any) => { held.push({ actor: actor.name, ...request }); return "p1"; },
+      vehicleAboard: (actor: any) => actor?.aboard ?? null,
     },
     roll: {
       success: async (o: any) => { successes.push(o); return successResult; },
@@ -851,6 +853,29 @@ describe("optics, night vision and thermographs (pp. 47-48)", () => {
     expect(vision.modifiers.map((m: any) => m.value)).toEqual([2, 4]);
   });
 
+  it("protects the eyes behind a worn optic with DR 1 (p. 47)", () => {
+    const dr = (actor: any, hitLocation: string) => fire(HOOKS.armorDr, { actor, hitLocation, lines: [] }).lines;
+    const scout = character("Scout", [wornGear("Binoculars (TL6)")]);
+    expect(dr(scout, "eye")).toEqual([expect.objectContaining({ dr: 1, source: "armor", applies: true })]);
+    expect(dr(scout, "face")).toEqual([]);
+    expect(dr(character("Scout", [gear("Binoculars (TL6)")]), "eye")).toEqual([]);
+    expect(dr(character("Guard", [wornGear("Thermal-Imaging Surveillance Camera")]), "eye")).toEqual([]);
+  });
+
+  it("puts a moving vehicle's jolting on a Vision roll through binoculars, and stabilized ones cancel up to -3 (p. 47)", () => {
+    const vision = (actor: any) => fire(HOOKS.successRollModifiers, { actor, skill: "", tags: ["attribute", "vision"], modifiers: [] }).modifiers;
+    const aboard = { vehicle: {}, operator: false, moving: true, medium: "ground" };
+    // A handheld optic on a bad road: -3 (Campaigns p. 548).
+    expect(vision(character("Scout", [wornGear("Binoculars (TL6)")], { aboard }))).toEqual([{ key: `${MODULE_ID}.observingMoving`, label: expect.stringContaining("ObservingMoving"), value: -3 }]);
+    expect(vision(character("Scout", [wornGear("Stabilized Binoculars")], { aboard }))).toEqual([expect.objectContaining({ value: 0, label: expect.stringContaining("ObservingStabilized") })]);
+    // In the air a handheld piece takes -1.
+    expect(vision(character("Scout", [wornGear("Binoculars (TL6)")], { aboard: { ...aboard, medium: "air" } }))[0].value).toBe(-1);
+    // Standing still, no optic up, or an optic with no magnification: nothing.
+    expect(vision(character("Scout", [wornGear("Binoculars (TL6)")], { aboard: { ...aboard, moving: false } }))).toEqual([]);
+    expect(vision(character("Scout", [gear("Binoculars (TL6)")], { aboard }))).toEqual([]);
+    expect(vision(character("Scout", [wornGear("Night Vision Goggles")], { aboard }))).toEqual([]);
+  });
+
   it("rolls Stealth against lens shine, +4 with a hood", async () => {
     const spotter = character("Spotter", [], { skills: { Stealth: 12 } });
     await actions.get("ht-lens-shine").run(gear("Binoculars (TL6)", { lensHood: true }), spotter);
@@ -869,10 +894,54 @@ describe("hydrophones and sound detectors (pp. 48-50)", () => {
     dialogAnswer = { sm: 7, speed: 10, range: 700, current: 0 };
     await actions.get("ht-hydrophone").run(hydrophone, listener);
     expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([6, 7, 4, -15]);
+    // The fix's +3, and the detection's own lines (7 + 4 - 15) carried to the attack (p. 49).
     const attack = fire(HOOKS.attackModifiers, { actor: listener, mode: { ranged: true }, targets: [sub], modifiers: [] });
-    expect(attack.modifiers.map((m: any) => m.value)).toEqual([3]);
+    expect(attack.modifiers.map((m: any) => m.value)).toEqual([3, -4]);
+    expect(attack.modifiers[1].label).toContain("FixPenalty");
     const shadow = fire(HOOKS.successRollModifiers, { actor: listener, skill: "Shadowing", tags: ["skill"], subject: sub, modifiers: [] });
     expect(shadow.modifiers.map((m: any) => m.value)).toEqual([4]);
+  });
+
+  it("never carries a bonus from the detection to the attack", async () => {
+    const hydrophone = gear("Medium Hydrophone");
+    const listener = character("Sonarman", [hydrophone]);
+    const tanker = character("Tanker", [], { system: { sm: 12 } });
+    targets = [tanker];
+    // Size +12, range 100 yards -10: a net bonus, which the attack doesn't get.
+    dialogAnswer = { sm: 12, speed: 0, range: 100, current: 0 };
+    await actions.get("ht-hydrophone").run(hydrophone, listener);
+    const attack = fire(HOOKS.attackModifiers, { actor: listener, mode: { ranged: true }, targets: [tanker], modifiers: [] });
+    expect(attack.modifiers.map((m: any) => m.value)).toEqual([3]);
+  });
+
+  it("works a sound detector only in air, and triangulates with the other sites' results", async () => {
+    const horns = gear("Sound-Detection Gear");
+    const listener = character("Listener", [horns]);
+    dialogAnswer = { task: "locate", miles: 10, db: 100, ambient: 0, medium: "water", sites: "none" };
+    await actions.get("ht-sound-detection").run(horns, listener);
+    expect(successes).toEqual([]);
+    expect(chat.at(-1)).toContain("AirOnly.water");
+    dialogAnswer = { task: "locate", miles: 10, db: 100, ambient: 0, medium: "air", sites: "success" };
+    successResult = { success: true, criticalSuccess: true, margin: 8 };
+    await actions.get("ht-sound-detection").run(horns, listener);
+    expect(chat.at(-1)).toContain("Triangulated");
+    successResult = { success: true, margin: 2 };
+    await actions.get("ht-sound-detection").run(horns, listener);
+    expect(chat.at(-1)).toContain("GCC.HT.Sensor.Triangulate");
+  });
+
+  it("lists what each detector finds, weighs the metal detector half at TL8, and reads a Geiger counter", async () => {
+    expect(section().context(gear("Handheld Detector")).lines[0]).toContain("Detector.handheld");
+    expect(price(gear("Metal Detector", {}, { tl: "8" }), 100, 12)).toMatchObject({ weight: 6 });
+    expect(price(gear("Metal Detector", {}, { tl: "7" }), 100, 12)).toBeNull();
+    const counter = gear("Geiger Counter (TL8)");
+    expect(actions.get("ht-geiger").visible(counter)).toBe(true);
+    await actions.get("ht-geiger").run(counter, character("Tech", [counter], { skills: { "Electronics Operation (Scientific)": 13 } }));
+    expect(successes.at(-1)).toMatchObject({ base: 13, skill: "Electronics Operation (Scientific)" });
+    expect(chat.at(-1)).toContain("GeigerClue");
+    // With the supplement's instruments on, its own "Use" reads it instead.
+    on = new Set([HT.passiveSensors, key("electricalMeasurement")]);
+    expect(actions.get("ht-geiger").visible(counter)).toBe(false);
   });
 
   it("gives a search hydrophone no fix to hit, at a tenth of the price", async () => {

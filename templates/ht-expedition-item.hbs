@@ -23,5 +23,10 @@
       <label class="icheck" data-tooltip="{{localize 'GCC.HT.Expedition.NoSignalHint'}}"><input type="checkbox" data-gcc-ht-gps {{#if gps.noSignal}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Expedition.NoSignal"}}</label>
     </div>
   {{/if}}
+  {{#if canteen}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Expedition.NotFullHint'}}"><input type="checkbox" data-gcc-ht-canteen {{#if canteen.notFull}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Expedition.NotFull"}}</label>
+    </div>
+  {{/if}}
   {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
 </div>

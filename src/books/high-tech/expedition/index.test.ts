@@ -33,9 +33,14 @@ let dialogAnswer: any;
 let targets: any[];
 let tokens: any[];
 
+let damages: any[];
+let changed: any[];
+
 function fakeApi() {
   return {
     registry: { isRuleOn: () => false },
+    rules: { formatDiceAdds: ({ dice, adds }: any) => `${dice}d${adds > 0 ? `+${adds}` : adds < 0 ? adds : ""}` },
+    items: { changeQuantity: async (item: any, delta: number) => { changed.push({ item: item.name, delta }); return { from: 1, to: 1 + delta }; } },
     hazards: { fall: async (actor: any, o: any) => { falls.push({ actor: actor.name, ...o }); return 0; } },
     areas: {
       list: () => areas,
@@ -70,6 +75,7 @@ function fakeApi() {
     },
     roll: {
       success: async (o: any) => { successes.push(o); return successResult; },
+      damage: async (o: any) => { damages.push(o); return 0; },
     },
   };
 }
@@ -143,6 +149,8 @@ beforeEach(() => {
   updated = [];
   areas = [];
   chat = [];
+  damages = [];
+  changed = [];
   on = {};
   successResult = { success: true, margin: 2 };
   dieRoll = 10;
@@ -289,8 +297,108 @@ describe("light sources (High-Tech pp. 51-52)", () => {
     actions.get("ht-light-set-down").run(lantern, bearer);
     await flush();
     expect(lantern.flags[MODULE_ID].expedition).toMatchObject({ lit: false, broken: true });
-    expect(chat.at(-1)).toContain("GlassFire");
+    expect(chat.at(-1)).toContain("LanternBreaks");
+    // Its burning oil: a 1-yard fire on the map for 10d seconds, and the card for each second's 1d-1 (p. 51; p. 191).
+    expect(areas).toEqual([expect.objectContaining({ id: `${MODULE_ID}-ht-lantern-fire-GlassLantern-r1`, radius: 1, expires: 9 })]);
+    expect(posted.at(-1)).toMatchObject({ key: `${MODULE_ID}.ht-lantern-fire`, data: { formula: "1d-1", divisor: 5, seconds: 9, until: 9 } });
+    await cards.get("ht-lantern-fire").actions.burn.run({ data: posted.at(-1).data, actor: bearer });
+    expect(damages.at(-1)).toMatchObject({ formula: "1d-1", damageType: "burn", armorDivisor: 5 });
+    (game as any).time.worldTime = 9;
+    await cards.get("ht-lantern-fire").actions.burn.run({ data: posted.at(-1).data, actor: bearer });
+    expect(damages).toHaveLength(1);
+    // An unlit one breaks with no fire.
+    const cold = gear("Glass Lantern", { light: { kind: "glassLantern", radius: 5, beam: 0 } });
+    actions.get("ht-light-set-down").run(cold, person("Other", [cold]));
+    await flush();
+    expect(areas).toHaveLength(1);
+  });
+
+  it("sets a lit beam down as a cone toward the one target, or the way its bearer faces", async () => {
+    const torch = gear("Flashlight", { light: { kind: "electric", radius: 0, beam: 10 } }, {}, { lit: true });
+    const bearer = person("Bearer", [torch]);
+    const own = tokenAt("b", 0, bearer);
+    targets = [tokenAt("t", 8, person("Target"))];
+    expect(actions.get("ht-light-set-down").visible(torch)).toBe(true);
+    actions.get("ht-light-set-down").run(torch, bearer);
+    await flush();
+    expect(areas[0]).toMatchObject({ center: { x: 0, y: 0 }, cone: { toward: { x: 8, y: 0 }, length: 10, width: 2 } });
+    expect(torch.flags[MODULE_ID].expedition.placed).toBe(true);
+    // A target standing in the placed cone is lit.
+    areas[0].inside = [{ id: "t" }];
+    expect(lightOver(fakeApi() as never, person("Shooter"), { id: "t" })).toBe("Flashlight");
+    // No target: along the token's facing.
+    await actions.get("ht-light-pick-up").run(torch, bearer);
+    await flush();
+    targets = [];
+    own.document.rotation = 0;
+    actions.get("ht-light-set-down").run(torch, bearer);
+    await flush();
+    expect(areas.at(-1).cone).toMatchObject({ direction: 90, length: 10 });
+  });
+
+  it("sets an infrared beam down that lights only for eyes that see infrared", async () => {
+    const torch = gear("Flashlight", { light: { kind: "electric", radius: 0, beam: 10, infrared: true } }, {}, { lit: true });
+    const bearer = person("Bearer", [torch]);
+    tokenAt("b", 0, bearer);
+    targets = [tokenAt("t", 8, person("Target"))];
+    actions.get("ht-light-set-down").run(torch, bearer);
+    await flush();
+    expect(areas[0].id).toBe(`${MODULE_ID}-ht-light-Flashlight-ir-r1`);
+    areas[0].inside = [{ id: "t" }];
+    expect(lightOver(fakeApi() as never, person("Unaided"), { id: "t" })).toBeNull();
+    expect(lightOver(fakeApi() as never, person("Goggled", [], { derived: { vision: { nightVision: 3 } } }), { id: "t" })).toBe("Flashlight");
+    // Picked up, it leaves the map like any other.
+    await actions.get("ht-light-pick-up").run(torch, bearer);
+    await flush();
     expect(areas).toEqual([]);
+  });
+
+  it("burns a lantern's pint down, puts it out at the end, and refills it", async () => {
+    const lantern = gear("Kerosene Lantern", { light: { kind: "kerosene", radius: 5, beam: 0 } });
+    const bearer = person("Bearer", [lantern]);
+    const target = tokenAt("t", 3, person("Target"));
+    tokens = [tokenAt("b", 0, bearer), target];
+    actions.get("ht-light-switch").run(lantern, bearer);
+    await flush();
+    expect(lantern.flags[MODULE_ID].expedition).toMatchObject({ lit: true, litAt: 0, burned: 0 });
+    expect(chat.at(-1)).toContain("BurnsFor");
+    (game as any).time.worldTime = 4 * 3600;
+    // Out: four hours burned are kept.
+    actions.get("ht-light-switch").run(lantern, bearer);
+    await flush();
+    expect(lantern.flags[MODULE_ID].expedition).toMatchObject({ lit: false, litAt: null, burned: 4 * 3600 });
+    actions.get("ht-light-switch").run(lantern, bearer);
+    await flush();
+    (game as any).time.worldTime = 12 * 3600 - 1;
+    expect(darknessAttack(person("Shooter"), target).modifiers[0].value).toBe(-3);
+    (game as any).time.worldTime = 12 * 3600;
+    // Twelve hours a pint: it has gone out.
+    expect(darknessAttack(person("Shooter"), target).modifiers[0].value).toBe(-7);
+    expect(actions.get("ht-light-refuel").visible(lantern)).toBe(true);
+    actions.get("ht-light-refuel").run(lantern, bearer);
+    await flush();
+    expect(lantern.flags[MODULE_ID].expedition).toMatchObject({ lit: false, burned: 0 });
+    expect(chat.at(-1)).toContain("Refuelled.pint");
+  });
+
+  it("snaps a chemlight that can't be put out, winds a survival flashlight, and takes a new candle off the count", async () => {
+    const stick = gear("Chemlight", { light: { kind: "chemical", radius: 2, beam: 0 } }, { quantity: 3 });
+    const bearer = person("Bearer", [stick]);
+    actions.get("ht-light-switch").run(stick, bearer);
+    await flush();
+    actions.get("ht-light-switch").run(stick, bearer);
+    await flush();
+    expect(stick.flags[MODULE_ID].expedition.lit).toBe(true);
+    expect((globalThis as any).ui.notifications.warn).toHaveBeenCalledWith(expect.stringContaining("CantPutOut"));
+    (game as any).time.worldTime = 12 * 3600;
+    actions.get("ht-light-refuel").run(stick, bearer);
+    await flush();
+    expect(changed).toEqual([{ item: "Chemlight", delta: -1 }]);
+    const winder = gear("Survival Flashlight", { light: { kind: "electric", radius: 0, beam: 1 } }, { tl: "8" });
+    actions.get("ht-light-switch").run(winder, person("Winder", [winder]));
+    await flush();
+    expect(chat.at(-1)).toContain('Wound {"name":"Survival Flashlight","seconds":30,"minutes":6}');
+    expect(actions.get("ht-light-refuel").visible(winder)).toBe(false);
   });
 
   it("shines a tactical light in the eyes of targets within its beam: HT-4, or blinded 10 s per point", async () => {
@@ -511,5 +619,60 @@ describe("quality LBE and Stealth (High-Tech p. 54)", () => {
     const old = gear("Haversack", { carry: "lbe" }, { tl: "5", equipmentQuality: "fine" });
     expect(stealth(person("Soldier", [old]), -3)).toMatchObject({ value: -3 });
     expect(stealth(person("Soldier", []), -2)).toMatchObject({ value: -2 });
+  });
+
+  it("loses the benefit to a canteen not full to the brim, but never to a water pack (p. 53)", () => {
+    const fine = gear("Tactical Vest", { carry: "lbe" }, { tl: "8", equipmentQuality: "fine" });
+    const canteen = gear("Canteen", {}, {}, { notFull: true });
+    expect(stealth(person("Soldier", [fine, canteen]), -3)).toMatchObject({ value: -3 });
+    expect(stealth(person("Soldier", [fine, gear("Canteen", {})]), -3)).toMatchObject({ value: -1 });
+    expect(stealth(person("Soldier", [fine, gear("Water Pack", {}, {}, { notFull: true })]), -3)).toMatchObject({ value: -1 });
+  });
+
+  it("gets something out of a pack in 2d seconds, a bag 1d", async () => {
+    const pack = gear("Backpack, Large", { carry: "backpack" });
+    dieRoll = 7;
+    expect(actions.get("ht-pack-retrieve").visible(pack)).toBe(true);
+    expect(actions.get("ht-pack-retrieve").visible(gear("Web Gear", { carry: "lbe" }))).toBe(false);
+    actions.get("ht-pack-retrieve").run(pack, person("Hiker", [pack]));
+    await flush();
+    expect(chat.at(-1)).toContain('"seconds":7');
+  });
+});
+
+describe("crampons on ice and the lifting device (High-Tech pp. 55-56)", () => {
+  beforeEach(() => { on = { climbingGear: true }; ready(); });
+
+  it("rolls a climb on ice with the worn crampons' +1", async () => {
+    const crampons = gear("Crampons", { climbing: "crampons" }, { equipped: true });
+    const climber = person("Climber", [crampons], { skills: { Climbing: 12 } });
+    actions.get("ht-crampons-ice").run(crampons, climber);
+    await flush();
+    expect(successes.at(-1)).toMatchObject({ base: 12, skill: "Climbing", tags: ["climbing", "climb-ice", "DX"], modifiers: [{ value: 1 }] });
+    crampons.system.equipped = false;
+    actions.get("ht-crampons-ice").run(crampons, person("Novice", [crampons]));
+    await flush();
+    expect(successes.at(-1)).toMatchObject({ base: 7, modifiers: [] });
+  });
+
+  it("rides a rope at 3 yards a second on a cartridge's 200 yards, up to 300 lbs.", async () => {
+    const lifter = gear("Personal Lifting Device", {});
+    const climber = person("Climber", [lifter]);
+    dialogAnswer = { yards: 150, load: 250, down: false };
+    actions.get("ht-lifting-device").run(lifter, climber);
+    await flush();
+    expect(chat.at(-1)).toContain('LiftedUp {"name":"Climber","yards":150,"seconds":50,"left":50}');
+    dialogAnswer = { yards: 60, load: 250, down: false };
+    actions.get("ht-lifting-device").run(lifter, climber);
+    await flush();
+    expect(chat.at(-1)).toContain("LiftNoFuel");
+    dialogAnswer = { yards: 60, load: 350, down: true };
+    actions.get("ht-lifting-device").run(lifter, climber);
+    await flush();
+    expect(chat.at(-1)).toContain("LiftTooHeavy");
+    expect(actions.get("ht-lifting-cartridge").visible(lifter)).toBe(true);
+    actions.get("ht-lifting-cartridge").run(lifter, climber);
+    await flush();
+    expect(lifter.flags[MODULE_ID].expedition.climbed).toBe(0);
   });
 });

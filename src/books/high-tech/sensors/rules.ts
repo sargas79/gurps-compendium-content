@@ -364,6 +364,24 @@ export const THERMOGRAPH = Object.freeze({ spot: 2, tracking: 3, distinguish: -4
 /** Stabilized binoculars cancel up to -3 in movement penalties (p. 47). */
 export const STABILIZED = 3;
 
+/** Every optic protects the eyes behind it with DR 1 (p. 47). */
+export const OPTIC_EYE_DR = 1;
+
+/**
+ * The ride a Vision roll through a magnifying optic from a moving vehicle is
+ * taken to be on. The Basic Set puts no movement penalty on Vision; the book
+ * speaks of one (p. 47), and the table for shooting from a moving vehicle
+ * (Campaigns p. 548) is the one there is: a handheld optic, read on its
+ * middle row -- a bad road or calm water.
+ */
+export const OBSERVING_RIDE = "rough" as const;
+
+/** A movement penalty after stabilization: up to -3 of it cancelled (p. 47), never a bonus. */
+export function stabilizedPenalty(penalty: number, stabilized: boolean): number {
+  const value = Math.min(0, Math.trunc(Number(penalty) || 0));
+  return stabilized ? Math.min(0, value + STABILIZED) : value;
+}
+
 /** What a worn optic does for the senses (pp. 47-48). */
 export function opticSenses(optic: Optic, illuminated: boolean): {
   nightVision: number;
@@ -427,8 +445,54 @@ export function hydrophoneModifiers(options: { sm: number; speed: number; range:
   return lines.filter((l) => l.value !== 0);
 }
 
+/**
+ * What a hydrophone fix carries to an attack it directs (p. 49): the
+ * detection roll's own modifiers -- the target's size and speed, the range,
+ * the current -- but never a bonus. The hydrophone's bonus to detect is the
+ * gear's, not the target's, and stays with the detection.
+ */
+export function hydrophoneFixPenalty(lines: ReadonlyArray<{ value: number }>): number {
+  return Math.min(0, lines.reduce((sum, l) => sum + (Number(l.value) || 0), 0));
+}
+
 /** A sound detector: +4 to Electronics Operation (Sensors) to analyze and identify a sound (p. 49). */
 export const SOUND_IDENTIFY = 4;
+
+/** Where a sound detector works: in air only, not underwater or in vacuum (p. 49). */
+export const SOUND_MEDIA = ["air", "water", "vacuum"] as const;
+export type SoundMedium = (typeof SOUND_MEDIA)[number];
+
+/**
+ * Whether sound detectors at several sites have fixed a source (p. 49):
+ * successes at three sites, or a success at one and a critical success at
+ * another.
+ */
+export function soundTriangulated(results: ReadonlyArray<"success" | "critical" | "failure">): boolean {
+  const successes = results.filter((r) => r !== "failure").length;
+  return successes >= 3 || (successes >= 2 && results.includes("critical"));
+}
+
+/** The detectors the book prints with no roll of their own, by record name (pp. 48-50), for their sheet lines. */
+export const DETECTORS: ReadonlyArray<[RegExp, string]> = [
+  [/^chemical test kit$/i, "testKit"],
+  [/^handheld detector$/i, "handheld"],
+  [/^portable nbc detector$/i, "nbc"],
+  [/^geiger counter\b/i, "geiger"],
+  [/^radiation badge$/i, "badge"],
+  [/^personal dosimeter$/i, "dosimeter"],
+  [/^metal detector$/i, "metal"],
+];
+
+/** A detector's key, or null. */
+export function detectorOf(name: string): string | null {
+  return DETECTORS.find(([pattern]) => pattern.test(String(name ?? "").trim()))?.[1] ?? null;
+}
+
+/** A Geiger counter's reading gives a clue to the source on Electronics Operation (Scientific) (p. 49). */
+export const GEIGER_SKILL = "Electronics Operation (Scientific)";
+
+/** The metal detector: up to 20" down, 6" for small things; half the weight at TL8 (p. 50). */
+export const METAL_DETECTOR = Object.freeze({ inches: 20, smallInches: 6, tl8Weight: 0.5 });
 
 /**
  * Sound-detection gear locating a sound (p. 49): a 100-decibel source at 10

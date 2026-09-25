@@ -98,6 +98,18 @@ export const FORAGING_ROLLS_A_DAY = 5;
 /** A spring trap's blow: thrust+2 crushing at its own ST (p. 58). */
 export const TRAP_DAMAGE_ADDS = 2;
 
+/** Each foraging attempt takes an hour, during which a march makes no progress (p. 55). */
+export const FORAGING_HOURS = 1;
+
+/**
+ * The foraging roll a day's count allows (p. 58): the first five, counted
+ * afresh each day of world time; null past the fifth.
+ */
+export function foragingAttempt(count: { day: number; rolls: number } | null, day: number): number | null {
+  const used = count && count.day === day ? count.rolls : 0;
+  return used < FORAGING_ROLLS_A_DAY ? used + 1 : null;
+}
+
 // ── survival kits (p. 58) ──
 
 /** The Survival specialties by kind (Characters p. 224). */
@@ -187,6 +199,10 @@ export function survivalKitLine(kits: readonly CarriedSurvivalKit[], rolled: str
 export function waterFilterBonus(tl: number): number {
   return Math.max(0, Math.floor(tl) - 2);
 }
+
+/** The charcoal-filtered canteen: +2 to HT drinking bacteria-ridden water (p. 53). */
+export const CHARCOAL_CANTEEN = /^charcoal-filtered canteen$/i;
+export const CHARCOAL_CANTEEN_BONUS = 2;
 
 /** A hand-pumped desalinator (p. 59): 10 minutes' pumping for 1 FP; the large model costs and weighs three times as much. */
 export const DESALINATOR = Object.freeze({ minutes: 10, fp: 1, largeMultiplier: 3 });
@@ -291,6 +307,42 @@ export function jumpOutcome(heightYards: number, openingYards: number, fallVeloc
 /** The earliest chutes' roll against nausea: HT-4 (p. 61). */
 export const EARLY_CHUTE_NAUSEA = -4;
 
+/** From TL8 a barometric device opens the canopy at a preset height, usually 1,000' (p. 61). */
+export const AUTO_DEPLOY = Object.freeze({ tl: 8, yards: Math.round(1000 / 3) });
+
+/**
+ * Where the canopy starts to open, in yards above the ground: where the
+ * ripcord is pulled, or for a jumper who never pulls it, the barometric
+ * device's height (or at once, lower than that) -- or 0, the whole fall,
+ * with no device (p. 61).
+ */
+export function pullHeight(heightYards: number, pulls: boolean, autoDeploy: boolean): number {
+  const height = Math.max(0, Number(heightYards) || 0);
+  if (pulls) return height;
+  return autoDeploy ? Math.min(height, AUTO_DEPLOY.yards) : 0;
+}
+
+/** Seconds under an open canopy: from where it is fully open to the ground (p. 61). */
+export function descentSeconds(pullYards: number, openingYards: number, speed: number): number {
+  if (!(speed > 0)) return 0;
+  return Math.max(0, (Math.max(0, pullYards) - Math.max(0, openingYards)) / speed);
+}
+
+/** How far the wind carries a chute in that time: it drifts with the wind (p. 61). */
+export function driftYards(seconds: number, windMph: number): number {
+  return Math.round(Math.max(0, seconds) * Math.max(0, windMph) * (1760 / 3600));
+}
+
+/** A ram-air chute glides at Move 15 over the ground, up to 35 with a good tailwind high up (p. 61). */
+export const RAM_AIR_GLIDE = Object.freeze({ move: 15, tailwind: 35 });
+
+/** A reserve chute: +$250 and 15 lbs. (p. 61). */
+export const RESERVE_CHUTE = Object.freeze({ cost: 250, weight: 15 });
+
+/** Guided parachute delivery steers to within a few dozen yards at Move 10-15, up to 5 tons; the infiltration pod carries 500 lbs. (p. 61). */
+export const GUIDED_DELIVERY = Object.freeze({ moveLow: 10, moveHigh: 15, tons: 5 });
+export const INFILTRATION_POD_LBS = 500;
+
 /**
  * Death from Above (p. 61): the lower of Parachuting and the weapon's skill,
  * as a line on the weapon's roll (0 where Parachuting is no lower).
@@ -307,3 +359,14 @@ export const PARACHUTING_IQ_DEFAULT = -6;
 
 /** What a snack is worth to a rest: a decent meal's extra FP (p. 35; Campaigns p. 427). */
 export const SNACK_REST_FP = 1;
+
+/**
+ * A snack eaten on the move, at the GM's option: 1 FP back now, and 2 FP
+ * lost two hours later (p. 35).
+ */
+export const SNACK_ON_THE_MOVE = Object.freeze({ fp: 1, crashFp: 2, crashHours: 2 });
+
+/** The crashes due by a world time, and those still to come. */
+export function dueCrashes<T extends { at: number }>(pending: readonly T[], now: number): { due: T[]; later: T[] } {
+  return { due: pending.filter((p) => p.at <= now), later: pending.filter((p) => p.at > now) };
+}
