@@ -14,8 +14,8 @@ import { CLIMATE_TABLES, resetClimate } from "../../../shared/climate/index.js";
 import { CELL_TABLES } from "../../../shared/power/data.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { highTechBatteries } from "../power/index.js";
-import { HIGH_TECH_CLIMATE_GEAR } from "./rules.js";
-import { readyClothing, wornClothing } from "./index.js";
+import { suitClimateGear } from "../breathing/index.js";
+import { clothingClimateGear, readyClothing, wornClothing } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -34,22 +34,29 @@ let on: Record<string, boolean>;
 
 const key = (k: string) => `${MODULE_ID}.${k}`;
 
+let actions: Map<string, any>;
+let sections: Map<string, any>;
+let worldTime: number;
+let chat: string[];
+
 function fakeApi() {
   return {
     data: { registerPriceModifier: (m: any) => prices.push(m) },
     combat: { hooks: HOOKS },
-    sheets: { registerSheetSection: () => undefined },
+    sheets: { registerSheetSection: (s: any) => sections.set(s.key, s), registerRowAction: (a: any) => actions.set(a.key, a) },
     roll: { damage: async (o: any) => { damage.push(o); return 0; } },
   };
 }
 
 function wear(name: string, more: Record<string, any> = {}, clothing: Record<string, unknown> = {}, power: Record<string, unknown> | null = null): any {
+  const flags: Record<string, any> = { book: "high-tech" };
   return {
     id: name,
     name,
     type: "equipment",
     isOwner: true,
-    flags: { [MODULE_ID]: { book: "high-tech" } },
+    flags: { [MODULE_ID]: flags },
+    setFlag: async (_scope: string, key: string, value: unknown) => { flags[key] = value; },
     system: {
       tl: "7",
       carried: true,
@@ -61,10 +68,14 @@ function wear(name: string, more: Record<string, any> = {}, clothing: Record<str
   };
 }
 
-const person = (items: any[]) => ({ name: "Trekker", uuid: "Actor.trekker", items });
+const person = (items: any[]) => {
+  const actor = { name: "Trekker", uuid: "Actor.trekker", items };
+  for (const item of items) item.actor = actor;
+  return actor;
+};
 
-function fire(hook: string, context: any): any {
-  for (const listener of hooks.get(hook) ?? []) listener(context);
+function fire(hook: string, context: any, ...more: any[]): any {
+  for (const listener of hooks.get(hook) ?? []) listener(context, ...more);
   return context;
 }
 
@@ -83,10 +94,14 @@ beforeEach(() => {
   hooks = new Map();
   prices = [];
   damage = [];
+  actions = new Map();
+  sections = new Map();
+  chat = [];
+  worldTime = 1000;
   on = {};
   resetClimate();
   CLIMATE_TABLES.clear();
-  CLIMATE_TABLES.register({ book: "high-tech", tls: { min: 5, max: 8 }, rule: key("climateControl"), gear: HIGH_TECH_CLIMATE_GEAR });
+  CLIMATE_TABLES.register({ book: "high-tech", tls: { min: 5, max: 8 }, rule: key("climateControl"), gear: clothingClimateGear(suitClimateGear(key("environmentSuits"))) });
   CELL_TABLES.clear();
   CELL_TABLES.register(highTechBatteries());
   // Only High-Tech's switches: no Ultra-Tech table is registered at all.
@@ -94,7 +109,11 @@ beforeEach(() => {
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (k: string) => k, format: (k: string, data: Record<string, unknown>) => `${k} ${JSON.stringify(data)}` },
+    user: { id: "me" },
+    get time() { return { worldTime }; },
   });
+  vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s } });
+  vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), create: async (m: any) => { chat.push(m.content); } } });
 });
 
 afterEach(() => {
@@ -260,5 +279,101 @@ describe("climate-controlled clothing (High-Tech p. 74)", () => {
     const battle = (actor: any) => fire(HOOKS.fatigueCost, { actor, fp: 1, reason: "battle", exertion: true, details: { seconds: 30, hot: true }, sources: [] }).fp;
     expect(battle(person([flak, wear("Cooling System")]))).toBe(1);
     expect(battle(person([flak]))).toBe(3);
+  });
+});
+
+describe("pieces worn apart from the outfit (High-Tech p. 63)", () => {
+  beforeEach(() => { on = { clothingAndWeather: true, frostbite: true }; ready(); });
+
+  const armour = (name: string, more: Record<string, unknown> = {}) => ({ id: name, name, type: "armor", system: { carried: true, equipped: true, ...more } });
+
+  it("fills a gap in winter or arctic clothes with boots, gloves, a hat or a scarf worn on their own", async () => {
+    const trekker = person([wear("Arctic Clothes", {}, { missing: { boots: true, gloves: true, hat: true } }), armour("Boots, Arctic (TL7)"), wear("Hat, Leather or Felt")]);
+    expect(coldRoll(trekker, "arctic")).toEqual([{ label: expect.stringContaining("gloves"), value: -1 }]);
+    // Frostbite finds only the bare hands.
+    fire(HOOKS.afterFatigue, { actor: trekker, fpLost: 1, reason: "exposure", details: { heat: false }, sources: [] });
+    await flush();
+    expect(damage.map((d) => d.calledShot.hitLocation)).toEqual(["hand"]);
+    // The outfit's sheet names what fills its gaps.
+    const lines: string[] = sections.get("ht-clothing-item").context(trekker.items[0]).lines;
+    expect(lines).toContainEqual(expect.stringContaining('"penalty":-1'));
+    expect(lines).toContainEqual(expect.stringContaining("Boots, Arctic (TL7), Hat, Leather or Felt"));
+  });
+
+  it("counts only what is worn, and never a hard hat as a warm one", () => {
+    const trekker = person([wear("Winter Clothes", {}, { missing: { boots: true, hat: true } }), armour("Boots", { equipped: false }), armour("Hard Hat")]);
+    expect(coldRoll(trekker, "winter")).toEqual([{ label: expect.any(String), value: -2 }]);
+    expect(coldRoll(person([wear("Winter Clothes", {}, { missing: { gloves: true, scarf: true } }), armour("Hockey Glove"), wear("Scarf")]), "winter")).toEqual([]);
+  });
+});
+
+describe("the cooling vest's charge (High-Tech p. 74)", () => {
+  beforeEach(() => { on = { climateControl: true }; ready(); });
+
+  const heat = (actor: any) => tolerance(actor).effects.temperatureTolerance.heatF;
+
+  it("cools for four hours from when it is first put on, then needs a soak", async () => {
+    const vest = wear("Cooling System", { equipped: false });
+    const wearer = person([vest]);
+    expect(heat(wearer)).toBe(0);
+    vest.system.equipped = true;
+    // Put on: its four hours start.
+    fire("updateItem", vest, { system: { equipped: true } }, {}, "me");
+    await flush();
+    expect(vest.flags[MODULE_ID].htCoolingUntil).toBe(1000 + 4 * 3600);
+    expect(heat(wearer)).toBe(30);
+    // Taken off and put on again: the charge runs on from where it was.
+    fire("updateItem", vest, { system: { equipped: true } }, {}, "me");
+    await flush();
+    expect(vest.flags[MODULE_ID].htCoolingUntil).toBe(1000 + 4 * 3600);
+    worldTime += 4 * 3600;
+    expect(heat(wearer)).toBe(0);
+    expect(sections.get("ht-clothing-item").context(vest).lines).toContainEqual(expect.stringContaining("Cooling.spent"));
+  });
+
+  it("is soaked from its row: a quarter hour in the water, then four hours more", async () => {
+    const vest = wear("Cooling System");
+    const wearer = person([vest]);
+    vest.flags[MODULE_ID].htCoolingUntil = 0;
+    expect(heat(wearer)).toBe(0);
+    expect(actions.get("ht-cooling-soak").visible(vest)).toBe(true);
+    actions.get("ht-cooling-soak").run(vest, wearer);
+    await flush();
+    expect(chat).toHaveLength(1);
+    expect(heat(wearer)).toBe(0);
+    worldTime += 15 * 60;
+    expect(heat(wearer)).toBe(30);
+    worldTime += 4 * 3600;
+    expect(heat(wearer)).toBe(0);
+  });
+
+  it("leaves another's put-on alone, and a vest with no switch has no row", () => {
+    const vest = wear("Cooling System");
+    person([vest]);
+    fire("updateItem", vest, { system: { equipped: true } }, {}, "someone else");
+    expect(vest.flags[MODULE_ID].htCoolingUntil).toBeUndefined();
+    on = {};
+    expect(actions.get("ht-cooling-soak").visible(vest)).toBe(false);
+  });
+});
+
+describe("environment suits' climate control (High-Tech pp. 74-76)", () => {
+  beforeEach(() => { on = { environmentSuits: true }; ready(); });
+
+  const march = (actor: any) => fire(HOOKS.fatigueCost, { actor, fp: 12, reason: "hiking", exertion: true, details: { hours: 4, hot: true }, sources: [] }).fp;
+  const suit = (name: string, flags: Record<string, unknown> = {}) => {
+    const item = wear(name);
+    item.type = "armor";
+    Object.assign(item.flags[MODULE_ID], flags);
+    return item;
+  };
+
+  it("spares a hot march under the EVA suit, and under a bomb suit fitted with it, with the suits' switch alone", () => {
+    expect(march(person([suit("Space Suit, EVA")]))).toBe(8);
+    expect(march(person([suit("Bomb Disposal Suit")]))).toBe(12);
+    expect(march(person([suit("Bomb Disposal Suit", { htClimateFitted: true })]))).toBe(8);
+    expect(tolerance(person([suit("Bomb Disposal Suit", { htClimateFitted: true })])).effects.temperatureTolerance).toEqual({ coldF: 60, heatF: 60 });
+    on = {};
+    expect(march(person([suit("Space Suit, EVA")]))).toBe(12);
   });
 });

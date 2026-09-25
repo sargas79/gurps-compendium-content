@@ -13,5 +13,15 @@
       <label class="icheck" data-tooltip="{{localize 'GCC.HT.Breathing.WetHint'}}"><input type="checkbox" data-gcc-ht-turnout-wet {{#if wet}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Breathing.Wet"}}</label>
     </div>
   {{/if}}
+  {{#if nbc}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Breathing.NbcWetHint'}}"><input type="checkbox" data-gcc-ht-turnout-wet {{#if wet}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Breathing.NbcWet"}}</label>
+    </div>
+  {{/if}}
+  {{#if fitted}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Breathing.FittedHint'}}"><input type="checkbox" data-gcc-ht-climate-fitted {{#if fitted.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Breathing.Fitted"}}</label>
+    </div>
+  {{/if}}
   {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
 </div>

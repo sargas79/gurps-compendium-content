@@ -31,12 +31,40 @@ let on: Record<string, boolean>;
 let dialogAnswer: any;
 let targets: any[];
 
+let cards: Map<string, any>;
+let posted: any[];
+let rolls: any[];
+let rollOutcome: any;
+let injuries: any[];
+let conditions: any[];
+let worldTime: number;
+
 function fakeApi() {
   return {
     combat: { hooks: HOOKS },
+    data: { hooks: { skillLevels: "gworld.skillLevels" } },
     sheets: {
       registerSheetSection: (s: any) => sections.set(s.key, s),
       registerRowAction: (a: any) => actions.set(a.key, a),
+    },
+    chat: {
+      registerChatCard: (c: any) => cards.set(c.key, c),
+      post: async (key: string, data: any, options: any) => { posted.push({ key, data, options }); },
+      update: async (message: any, data: any) => { message.data = data; return true; },
+    },
+    roll: { success: async (o: any) => { rolls.push(o); return rollOutcome; } },
+    actors: {
+      attribute: () => 11,
+      applyInjury: async (actor: any, o: any) => { injuries.push(o); },
+      applyCondition: async (actor: any, o: any) => { conditions.push(o); return "id"; },
+    },
+    rules: {
+      accelerationNeedsRoll: ({ gForce }: any) => gForce >= 2.5,
+      accelerationTarget: ({ health, gForce }: any) => health - 2 * Math.floor(Math.log2(gForce / 2.5)),
+      accelerationHarm: ({ margin, criticalFailure }: any) => ({ fatigue: Math.abs(margin), blackoutSeconds: criticalFailure ? Math.abs(margin) * 10 : 0 }),
+      bendsOutcome: ({ success, criticalSuccess, criticalFailure }: any) => (criticalSuccess ? "clear" : criticalFailure ? "death" : success ? "agony" : "collapse"),
+      defaultCreditPoints: () => 0,
+      relativeLevelForPoints: () => null,
     },
   };
 }
@@ -60,7 +88,13 @@ function piece(name: string, more: Record<string, any> = {}, type = "armor"): an
 const tank = (name = "Air Tank, Small", tl = "8", more: Record<string, any> = {}) => piece(name, { system: { tl, equipped: false }, ...more }, "equipment");
 
 function person(items: any[] = []): any {
-  const actor: any = { name: "Diver", isOwner: true, items, system: { tl: "8" } };
+  const flags: Record<string, any> = {};
+  const actor: any = {
+    name: "Diver", isOwner: true, items, system: { tl: "8" }, flags: { [MODULE_ID]: flags },
+    getFlag: (_scope: string, key: string) => flags[key],
+    setFlag: async (_scope: string, key: string, value: unknown) => { flags[key] = value; },
+    unsetFlag: async (_scope: string, key: string) => { delete flags[key]; },
+  };
   for (const item of items) item.actor = actor;
   return actor;
 }
@@ -93,10 +127,18 @@ beforeEach(() => {
   on = {};
   dialogAnswer = null;
   targets = [];
+  cards = new Map();
+  posted = [];
+  rolls = [];
+  rollOutcome = null;
+  injuries = [];
+  conditions = [];
+  worldTime = 1000;
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
-    user: { get targets() { return new Set(targets); } },
+    user: { id: "me", get targets() { return new Set(targets); } },
+    get time() { return { worldTime }; },
   });
   vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => dialogAnswer } } } });
   vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), create: async (m: any) => { chat.push(m.content); } } });
@@ -324,5 +366,125 @@ describe("wet turnout gear (High-Tech p. 75)", () => {
     const burn = fire(HOOKS.injury, { actor: firefighter, damage: { type: "burn", basicDamage: 12 } });
     expect(burn.damage.vulnerabilities).toEqual([{ form: "burn", multiplier: 2, label: expect.stringContaining("TurnoutSteam") }]);
     expect(fire(HOOKS.injury, { actor: firefighter, damage: { type: "cr", basicDamage: 12 } }).damage.vulnerabilities).toBeUndefined();
+  });
+});
+
+describe("the diver's depth, and the bends on pure oxygen (High-Tech pp. 74, 76)", () => {
+  beforeEach(() => { on = { breathingGear: true }; ready(); });
+
+  it("keeps the depth on the diver, so every supply they carry reads it", async () => {
+    const small = tank();
+    const large = tank("Air Tank, Large");
+    const diver = person([small, large]);
+    dialogAnswer = { minutes: 10, depth: 66 };
+    await actions.get("ht-breathe").run(small, diver);
+    expect(airState(large).depthFeet).toBe(66);
+    // A loose tank keeps its own.
+    const loose = tank();
+    dialogAnswer = { minutes: 0, depth: 33 };
+    await actions.get("ht-breathe").run(loose, null);
+    expect(airState(loose).depthFeet).toBe(33);
+  });
+
+  it("warns a diver on a pure-oxygen rebreather below 30', and rolls against the bends at the surface", async () => {
+    const rig = piece("Rebreather");
+    const diver = person([rig]);
+    const depth = (feet: number) => sections.get("ht-breathing-item").listeners({
+      querySelector: (selector: string) => (selector === "[data-gcc-ht-dive-depth]" ? { addEventListener: (_e: string, fn: any) => fn({ currentTarget: { value: String(feet) } }) } : null),
+    }, rig);
+    depth(20);
+    await flush();
+    expect(chat).toEqual([]);
+    depth(45);
+    await flush();
+    expect(chat.at(-1)).toContain("OxygenDeep");
+    depth(10);
+    await flush();
+    expect(posted).toEqual([]);
+    depth(0);
+    await flush();
+    expect(posted).toEqual([expect.objectContaining({ key: `${MODULE_ID}.ht-bends` })]);
+    // The roll: a plain success is agony.
+    rollOutcome = { success: true, margin: 2 };
+    const message: any = {};
+    await cards.get("ht-bends").actions.roll({ message, data: posted[0].data, actor: diver });
+    expect(rolls.at(-1)).toMatchObject({ base: 11, tags: ["bends", "HT"] });
+    expect(conditions).toEqual([{ key: "agony" }]);
+    expect(message.data.result).toContain("Bends.agony");
+    // Once up, the risk is spent.
+    depth(0);
+    await flush();
+    expect(posted).toHaveLength(1);
+  });
+
+  it("never warns on a mixed-gas rebreather", async () => {
+    const rig = piece("Advanced Rebreather");
+    person([rig]);
+    await sections.get("ht-breathing-item").listeners({ querySelector: (s: string) => (s === "[data-gcc-ht-dive-depth]" ? { addEventListener: (_e: string, fn: any) => fn({ currentTarget: { value: "100" } }) } : null) }, rig);
+    await flush();
+    expect(chat).toEqual([]);
+  });
+
+  it("defaults Scuba (Closed-Circuit) from Scuba at -4, and Scuba from it at -2", () => {
+    const skills = [{ name: "Scuba/TL8 (Closed-Circuit)", level: 9, fromDefault: true, item: { system: { points: 0, attribute: "DX" } } }, { name: "Scuba/TL8", level: 14, fromDefault: false, item: { system: { points: 4 } } }];
+    fire("gworld.skillLevels", { skills, attributes: { DX: 12 } });
+    expect(skills[0]).toMatchObject({ level: 10, fromDefault: true, note: expect.stringContaining("ClosedFromScuba") });
+    expect(skills[1]!.level).toBe(14);
+    const other = [{ name: "Scuba (Closed-Circuit)", level: 15, fromDefault: false, item: { system: { points: 8 } } }, { name: "Scuba", level: 10, fromDefault: true, item: { system: {} } }];
+    fire("gworld.skillLevels", { skills: other, attributes: {} });
+    expect(other[1]).toMatchObject({ level: 13, fromDefault: true });
+    on = {};
+    const off = [{ name: "Scuba (Closed-Circuit)", level: 9, fromDefault: true, item: { system: {} } }, { name: "Scuba", level: 14, item: { system: {} } }];
+    fire("gworld.skillLevels", { skills: off, attributes: {} });
+    expect(off[0]!.level).toBe(9);
+  });
+});
+
+describe("environment suits' details (High-Tech pp. 74-76)", () => {
+  beforeEach(() => { on = { environmentSuits: true }; ready(); });
+
+  it("lets an NBC suit's seal go when it gets wet, or 72 hours after it was first put on", async () => {
+    const suit = piece("NBC Suit");
+    const mask = piece("Gas Mask", { system: { tl: "8" } });
+    const wearer = person([suit, mask]);
+    fire("updateItem", suit, { system: { equipped: true } }, {}, "me");
+    await flush();
+    expect(suit.flags[MODULE_ID].htNbcSince).toBe(1000);
+    on = { environmentSuits: true, breathingGear: true };
+    expect(effectsOf(wearer).effects.sealed).toBe(true);
+    worldTime += 72 * 3600;
+    expect(effectsOf(wearer).effects.sealed).toBeUndefined();
+    expect(breathingLines(suit, switches())).toContainEqual("GCC.HT.Breathing.NbcSealLost");
+    worldTime = 1000;
+    suit.flags[MODULE_ID].htWet = true;
+    expect(effectsOf(wearer).effects.sealed).toBeUndefined();
+    expect(sections.get("ht-breathing-item").context(suit)).toMatchObject({ nbc: true, wet: true });
+  });
+
+  it("rolls HT against high acceleration from the anti-G suit's row, with its +3", async () => {
+    const suit = piece("Anti-G Suit");
+    const pilot = person([suit]);
+    expect(actions.get("ht-acceleration").visible(suit)).toBe(true);
+    expect(actions.get("ht-acceleration").visible(piece("Dry Suit"))).toBe(false);
+    dialogAnswer = { g: 10, home: 1, braced: true, inverted: false };
+    rollOutcome = { success: false, margin: -3, criticalFailure: true };
+    await actions.get("ht-acceleration").run(suit, pilot);
+    await flush();
+    expect(rolls.at(-1)).toMatchObject({ base: 11, tags: ["acceleration", "HT"], modifiers: [{ label: expect.stringContaining("GForceLine"), value: -4 }, { label: "GCC.HT.Breathing.Braced", value: 2 }] });
+    expect(injuries).toEqual([expect.objectContaining({ amount: 3, fatigue: true })]);
+    expect(conditions).toEqual([{ key: "unconscious", holdRecovery: { seconds: 30 } }]);
+    // The suit's +3 goes on any roll tagged for acceleration.
+    expect(fire(HOOKS.successRollModifiers, { actor: pilot, tags: ["acceleration", "HT"], modifiers: [] }).modifiers).toEqual([{ label: "Anti-G Suit", value: 3 }]);
+    // Under 2.5 G: no roll.
+    dialogAnswer = { g: 2, home: 1, braced: false, inverted: false };
+    const count = rolls.length;
+    await actions.get("ht-acceleration").run(suit, pilot);
+    expect(rolls).toHaveLength(count);
+    expect(chat.at(-1)).toContain("NoAccelerationRoll");
+  });
+
+  it("offers a bomb suit's climate-control tick", () => {
+    expect(sections.get("ht-breathing-item").context(piece("Bomb Disposal Suit", { system: { tl: "8" } })).fitted).toEqual({ checked: false });
+    expect(breathingLines(piece("Bomb Disposal Suit", { flags: { htClimateFitted: true } }), switches())).toContainEqual("GCC.HT.Breathing.SuitClimate");
   });
 });

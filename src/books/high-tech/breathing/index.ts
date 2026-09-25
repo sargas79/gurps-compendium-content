@@ -9,14 +9,23 @@
  *     Tunnel Vision, through `gworld.traitEffects`; an SCBA, scuba or
  *     full-face mask as Doesn't Breathe while a tank feeds it, a rebreather or
  *     scuba set while its own gas lasts, and hard-hat dress while worn; a
- *     tank's air by TL, divided by the depth, a minute less for every FP spent
+ *     tank's air by TL, divided by the depth the diver is at (kept on the
+ *     diver, so all their supplies read it), a minute less for every FP spent
  *     (`gworld.fatigueCost`) and every failed Fright Check
  *     (`gworld.afterSuccessRoll`), and row actions to breathe from it and to
- *     refill it; a gas mask keeping tear gas out of the eyes and nose; and the
- *     sheet's notes: don times, muffled speech, the TL6 hose, bubbles.
+ *     refill it; a diver who breathed a pure-oxygen rebreather below 30'
+ *     rolls HT against the bends (Campaigns p. 435) on a card when back at the
+ *     surface; Scuba (Closed-Circuit) at Scuba-4, and Scuba from it at -2
+ *     (`gworld.skillLevels`); a gas mask keeping tear gas out of the eyes and
+ *     nose; and the sheet's notes: don times, muffled speech, the TL6 hose,
+ *     bubbles.
  *   - **Environment suits (environmentSuits):** biohazard and NBC suits sealed
- *     with an air mask under them, the TL8 biohazard lining's PF 2.5, and the
- *     biohazard suit tripling the FP of effort and weather; the clean suit's
+ *     with an air mask under them (an NBC suit no longer, once wet or 72 hours
+ *     after it was first put on), the TL8 biohazard lining's PF 2.5, and the
+ *     biohazard suit tripling the FP of effort and weather; the anti-G suit's
+ *     row rolling HT against high acceleration (Campaigns p. 434) with its
+ *     +3; the EVA suit's climate control, and a bomb suit's where one is
+ *     fitted, in the climate engine (`suitClimateGear`); the clean suit's
  *     +4 HT against contagion; the Apollo suits sealed with their helmets,
  *     breathing from a tank or the EVA suit's seven-hour pack, the EVA suit's
  *     climate control, the helmets' senses; biomedical sensors on the patient
@@ -27,17 +36,25 @@
  */
 
 import { bookOf } from "../../../shared/book-tables.js";
+import type { ClimateGear } from "../../../shared/climate/index.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { BIOMEDICAL, BIOMEDICAL_TABLES, addProtection, protectionText, readyBiomedical } from "../../../shared/protective-gear/index.js";
 import {
   AIR_LOST,
+  ANTI_G,
   ANTI_G_BONUS,
+  BOMB_SUIT,
   CLEAN_SUIT_CONTAGION,
+  CLIMATE_CONTROL,
+  CLOSED_CIRCUIT,
+  CLOSED_CIRCUIT_DEFAULTS,
   GAS_MASK_FILTER,
   GAS_MASK_HOSE,
   HOT_SUIT_REASONS,
   NBC_SEAL_HOURS,
+  OPEN_CIRCUIT,
   OXYGEN_DEPTH_FEET,
+  SPACE_SUIT_EVA,
   WET_TURNOUT,
   airLeft,
   airTankSize,
@@ -51,13 +68,18 @@ import {
   isBiohazardSuit,
   isCleanSuit,
   isGasMask,
+  isNbcSuit,
   isRebreather,
   isTankFed,
   mufflesSpeech,
+  nbcSeals,
+  oxygenBendsRisk,
   pressureAtDepth,
+  scubaDefault,
   supplyMinutes,
   type BreathingRule,
 } from "./rules.js";
+import { defaultedLevel, type CostTable } from "../skills/rules.js";
 
 const NS = "GCC.HT.Breathing";
 const L = (key: string) => game.i18n.localize(`${NS}.${key}`);
@@ -66,8 +88,37 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 
 /** Item flag: the textbook minutes of a supply used, and the depth it is breathed at. */
 const AIR_FLAG = "htAir";
-/** Item flag: turnout gear soaked with water (p. 75). */
+/** Item flag: turnout gear soaked with water (p. 75), or an NBC suit that got wet. */
 const WET_FLAG = "htWet";
+/** Actor flag: the depth the diver is at, in feet. */
+const DEPTH_FLAG = "htDiveDepth";
+/** Actor flag: the diver breathed pure oxygen below 30' and risks the bends on surfacing (p. 76). */
+const BENDS_FLAG = "htOxygenBends";
+/** Item flag: the world time an NBC suit was first put on (p. 75). */
+const NBC_FLAG = "htNbcSince";
+/** Item flag: a bomb disposal suit fitted with a climate-control system (p. 76). */
+const FITTED_FLAG = "htClimateFitted";
+const BENDS_CARD = "ht-bends";
+const worldNow = (): number => Number((game as any).time?.worldTime) || 0;
+
+/**
+ * The environment suits' climate control, for the climate engine (pp. 74-76):
+ * the EVA suit's always, a bomb disposal suit's where the sheet says one is
+ * fitted. So the engine's readers -- a hot march, armour in a hot battle --
+ * know the suits cool, under the suits' own switch.
+ */
+export function suitClimateGear(rule: string): ClimateGear[] {
+  return [
+    { pattern: SPACE_SUIT_EVA, zone: CLIMATE_CONTROL, rule },
+    { pattern: BOMB_SUIT, zone: CLIMATE_CONTROL, rule, running: (item: any) => item?.flags?.[MODULE_ID]?.[FITTED_FLAG] === true },
+  ];
+}
+
+/** Whether a worn NBC suit still seals: dry, and within 72 hours of first being put on (p. 75). */
+export function nbcSealHolds(item: any): boolean {
+  const since = item?.flags?.[MODULE_ID]?.[NBC_FLAG];
+  return nbcSeals({ wet: item?.flags?.[MODULE_ID]?.[WET_FLAG] === true, since: typeof since === "number" ? since : null, now: worldNow() });
+}
 
 /** Worn turnout gear that is soaked, or null. */
 function wetTurnout(actor: any): any {
@@ -99,10 +150,51 @@ const nameOf = (item: any) => String(item?.name ?? "");
  */
 const supplyTl = (item: any) => Math.max(tlOf(item), Number(/\d+/.exec(String(item?.actor?.system?.tl ?? ""))?.[0]) || 0);
 
+/**
+ * The depth a diver is at, kept on the diver, so every tank and rebreather
+ * they carry reads the same depth (p. 74); null for one never given a depth.
+ */
+export function diverDepth(actor: any): number | null {
+  const feet = actor?.getFlag?.(MODULE_ID, DEPTH_FLAG) ?? actor?.flags?.[MODULE_ID]?.[DEPTH_FLAG];
+  return typeof feet === "number" && Number.isFinite(feet) ? Math.max(0, feet) : null;
+}
+
 export function airState(item: any): AirState {
   const stored = item?.getFlag?.(MODULE_ID, AIR_FLAG) ?? item?.flags?.[MODULE_ID]?.[AIR_FLAG] ?? {};
-  return { used: Math.max(0, Number(stored.used) || 0), depthFeet: Math.max(0, Number(stored.depthFeet) || 0) };
+  // The diver's depth where the supply is carried; a loose supply keeps its own.
+  const depth = diverDepth(item?.actor) ?? stored.depthFeet;
+  return { used: Math.max(0, Number(stored.used) || 0), depthFeet: Math.max(0, Number(depth) || 0) };
 }
+
+/**
+ * Sets the depth a supply is breathed at: on its diver where it is carried,
+ * on the supply itself otherwise. A diver coming up from below 30' on a
+ * pure-oxygen rebreather rolls against the bends at the surface (p. 76).
+ */
+async function setDepth(item: any, feet: number): Promise<void> {
+  const depth = Math.max(0, Number(feet) || 0);
+  const actor = item?.actor;
+  if (!actor) {
+    await item?.setFlag?.(MODULE_ID, AIR_FLAG, { ...airState(item), depthFeet: depth });
+    return;
+  }
+  if (!actor.isOwner) return;
+  await actor.setFlag(MODULE_ID, DEPTH_FLAG, depth);
+  if (depth > 0) {
+    if (breathingOn() && oxygenBendsRisk(nameOf(item), depth) && actor.getFlag?.(MODULE_ID, BENDS_FLAG) !== true) {
+      await actor.setFlag(MODULE_ID, BENDS_FLAG, true);
+      await say(actor, nameOf(item), [F("OxygenDeep", { feet: OXYGEN_DEPTH_FEET })]);
+    }
+    return;
+  }
+  if (actor.getFlag?.(MODULE_ID, BENDS_FLAG) === true) {
+    await actor.unsetFlag(MODULE_ID, BENDS_FLAG);
+    if (bendsCard) await bendsCard(actor, nameOf(item));
+  }
+}
+
+/** Posts the card for a diver's roll against the bends; set when the book is ready. */
+let bendsCard: ((actor: any, source: string) => Promise<void>) | null = null;
 
 /** The minutes a supply has left at its depth, or null for an item that isn't one. */
 export function minutesLeft(item: any): number | null {
@@ -212,13 +304,17 @@ export function breathingLines(item: any, on: BreathingSwitches): string[] {
   }
   if (on.suits()) {
     if (isBiohazardSuit(name)) lines.push(L("HotSuit"));
-    if (/^nbc suit$/i.test(base)) lines.push(F("NbcSeal", { hours: NBC_SEAL_HOURS }));
+    if (isNbcSuit(name)) {
+      lines.push(F("NbcSeal", { hours: NBC_SEAL_HOURS }));
+      if (!nbcSealHolds(item)) lines.push(L("NbcSealLost"));
+    }
     if (isCleanSuit(name)) lines.push(F("CleanSuit", { bonus: CLEAN_SUIT_CONTAGION }));
     if (/^anti-g suit$/i.test(base)) lines.push(F("AntiG", { bonus: ANTI_G_BONUS }));
     if (/^dry suit$/i.test(base)) lines.push(L("DrySuit"));
     if (/^wetsuit$/i.test(base)) lines.push(L("Wetsuit"));
     if (/^turnout gear$/i.test(base)) lines.push(F("Turnout", { dr: WET_TURNOUT.dr, times: WET_TURNOUT.multiplier }));
     if (/^bomb disposal suit$/i.test(base)) lines.push(L("BombSuit"));
+    if (SPACE_SUIT_EVA.test(base) || (BOMB_SUIT.test(base) && item?.flags?.[MODULE_ID]?.[FITTED_FLAG] === true)) lines.push(L("SuitClimate"));
     if (hasBiomedicalSensors(name)) lines.push(F("Biomedical", { bonus: BIOMEDICAL.inPerson, remote: BIOMEDICAL.remote }));
   }
   return lines;
@@ -228,17 +324,74 @@ function itemContext(item: any, on: BreathingSwitches): Record<string, unknown> 
   const minutes = supplyMinutes(nameOf(item), tlOf(item));
   const supply = ours(item) && minutes !== null && (/^space suit, eva$/i.test(breathingName(item)) ? on.suits() : on.breathing());
   const turnout = on.suits() && /^turnout gear$/i.test(breathingName(item));
-  return { lines: breathingLines(item, on), supply, depthFeet: airState(item).depthFeet, turnout, wet: item?.getFlag?.(MODULE_ID, WET_FLAG) === true, editable: item?.isOwner === true };
+  // An NBC suit that got wet loses its seal (p. 75): the same tick as turnout gear's.
+  const nbc = on.suits() && ours(item) && isNbcSuit(nameOf(item));
+  const fitted = on.suits() && ours(item) && BOMB_SUIT.test(breathingName(item)) ? { checked: item?.flags?.[MODULE_ID]?.[FITTED_FLAG] === true } : null;
+  return { lines: breathingLines(item, on), supply, depthFeet: airState(item).depthFeet, turnout, nbc, fitted, wet: item?.getFlag?.(MODULE_ID, WET_FLAG) === true, editable: item?.isOwner === true };
 }
 
 function itemListeners(element: HTMLElement, item: any): void {
   element.querySelector<HTMLInputElement>("[data-gcc-ht-turnout-wet]")?.addEventListener("change", async (event) => {
     await item.setFlag(MODULE_ID, WET_FLAG, (event.currentTarget as HTMLInputElement).checked);
   });
-  element.querySelector<HTMLInputElement>("[data-gcc-ht-dive-depth]")?.addEventListener("change", async (event) => {
-    const feet = Math.max(0, Number((event.currentTarget as HTMLInputElement).value) || 0);
-    await item.setFlag(MODULE_ID, AIR_FLAG, { ...airState(item), depthFeet: feet });
+  element.querySelector<HTMLInputElement>("[data-gcc-ht-climate-fitted]")?.addEventListener("change", async (event) => {
+    await item.setFlag(MODULE_ID, FITTED_FLAG, (event.currentTarget as HTMLInputElement).checked);
   });
+  element.querySelector<HTMLInputElement>("[data-gcc-ht-dive-depth]")?.addEventListener("change", async (event) => {
+    await setDepth(item, Math.max(0, Number((event.currentTarget as HTMLInputElement).value) || 0));
+  });
+}
+
+// ── high acceleration (Campaigns p. 434) ─────────────────────────────────────
+
+/**
+ * The HT roll against a sudden high acceleration: -2 a doubling past 2.5
+ * times home gravity, +2 seated or lying down, -2 upside down, and the anti-G
+ * suit's +3 through the roll's `acceleration` tag (p. 74). A failure costs FP
+ * equal to the margin; a critical failure also blacks the wearer out for ten
+ * seconds a point of it.
+ */
+async function accelerationRoll(api: GWorldApi, actor: any): Promise<void> {
+  if (!actor) return;
+  const answer: any = await foundry.applications.api.DialogV2.prompt({
+    window: { title: L("AccelerationAction") },
+    content: `<div class="gworld" style="display:grid;gap:6px">`
+      + `<label>${esc(L("GForce"))} <input type="number" name="g" value="5" min="0" step="0.5"></label>`
+      + `<label>${esc(L("HomeGravity"))} <input type="number" name="home" value="1" min="0" step="0.1"></label>`
+      + `<label class="icheck"><input type="checkbox" name="braced" checked> ${esc(L("Braced"))}</label>`
+      + `<label class="icheck"><input type="checkbox" name="inverted"> ${esc(L("Inverted"))}</label></div>`,
+    ok: {
+      label: L("AccelerationAction"),
+      callback: (_event: Event, button: HTMLElement) => {
+        const form = button.closest(".application");
+        return {
+          g: Number(form?.querySelector<HTMLInputElement>("[name=g]")?.value) || 0,
+          home: Number(form?.querySelector<HTMLInputElement>("[name=home]")?.value) || 1,
+          braced: form?.querySelector<HTMLInputElement>("[name=braced]")?.checked === true,
+          inverted: form?.querySelector<HTMLInputElement>("[name=inverted]")?.checked === true,
+        };
+      },
+    },
+    rejectClose: false,
+  });
+  if (!answer) return;
+  if (!api.rules.accelerationNeedsRoll({ gForce: answer.g, homeGravity: answer.home })) {
+    await say(actor, L("AccelerationAction"), [F("NoAccelerationRoll", { g: answer.g })]);
+    return;
+  }
+  const ht = Number(api.actors.attribute(actor, "HT")) || 10;
+  const doublings = api.rules.accelerationTarget({ health: 0, gForce: answer.g, homeGravity: answer.home });
+  const modifiers = [
+    ...(doublings ? [{ label: F("GForceLine", { g: answer.g }), value: doublings }] : []),
+    ...(answer.braced ? [{ label: L("Braced"), value: 2 }] : []),
+    ...(answer.inverted ? [{ label: L("Inverted"), value: -2 }] : []),
+  ];
+  const outcome: any = await api.roll.success({ actor, base: ht, label: F("AccelerationRoll", { g: answer.g }), skill: "HT", kind: "attribute", modifiers, tags: ["acceleration", "HT"] } as any);
+  if (!outcome || "refused" in outcome || outcome.success) return;
+  const harm = api.rules.accelerationHarm({ margin: Number(outcome.margin) || 0, criticalFailure: outcome.criticalFailure === true });
+  if (harm.fatigue > 0) await api.actors.applyInjury(actor, { amount: harm.fatigue, fatigue: true, label: L("AccelerationAction") } as any);
+  if (harm.blackoutSeconds > 0) await api.actors.applyCondition(actor, { key: "unconscious", holdRecovery: { seconds: harm.blackoutSeconds } } as any);
+  await say(actor, L("AccelerationAction"), [F(harm.blackoutSeconds ? "AccelerationBlackout" : "AccelerationFp", { name: String(actor.name ?? ""), fp: harm.fatigue, seconds: harm.blackoutSeconds })]);
 }
 
 // ── ready ────────────────────────────────────────────────────────────────────
@@ -285,6 +438,8 @@ export function readyBreathing(api: GWorldApi, on: BreathingSwitches): void {
     let pf = 1;
     let pfLabel = "";
     for (const item of wornItems) {
+      // A wet NBC suit, or one worn past 72 hours, no longer seals (p. 75).
+      if (on.suits() && isNbcSuit(nameOf(item)) && !nbcSealHolds(item)) continue;
       const protection = breathingProtection(nameOf(item), tlOf(item), names, ruleOn);
       if (!protection) continue;
       addProtection(context, protection, nameOf(item));
@@ -331,7 +486,8 @@ export function readyBreathing(api: GWorldApi, on: BreathingSwitches): void {
       if (!answer) return;
       const depthFeet = Math.max(0, answer.depth);
       const used = state.used + airUsedBreathing(answer.minutes, depthFeet);
-      await item.setFlag(MODULE_ID, AIR_FLAG, { used, depthFeet });
+      await item.setFlag(MODULE_ID, AIR_FLAG, { ...(item.getFlag?.(MODULE_ID, AIR_FLAG) ?? {}), used });
+      await setDepth(item, depthFeet);
       const left = minutesLeft(item) ?? 0;
       await say(actor, nameOf(item), [F("Breathed", { minutes: answer.minutes, feet: depthFeet, left: round(left) }), ...(left <= 0 ? [L("Empty")] : [])]);
     },
@@ -384,6 +540,81 @@ export function readyBreathing(api: GWorldApi, on: BreathingSwitches): void {
     if (tags.includes("contagion")) {
       const suit = [...(context.actor.items ?? [])].find((i: any) => worn(i) && ours(i) && isCleanSuit(nameOf(i)));
       if (suit) context.modifiers.push({ label: nameOf(suit), value: CLEAN_SUIT_CONTAGION });
+    }
+    // The anti-G suit against high acceleration (p. 74; Campaigns p. 434).
+    if (tags.includes("acceleration")) {
+      const suit = [...(context.actor.items ?? [])].find((i: any) => worn(i) && ours(i) && ANTI_G.test(breathingName(i)));
+      if (suit) context.modifiers.push({ label: nameOf(suit), value: ANTI_G_BONUS });
+    }
+  });
+
+  // High acceleration (Campaigns p. 434), which the system has the rule for
+  // but rolls nowhere: the HT roll, from the anti-G suit's row (p. 74).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-acceleration",
+    itemTypes: ["armor", "equipment"],
+    label: L("AccelerationAction"),
+    icon: "fa-solid fa-jet-fighter",
+    visible: (item) => on.suits() && ours(item) && ANTI_G.test(breathingName(item)),
+    run: (_item, actor) => { void accelerationRoll(api, actor); },
+  });
+
+  // A NBC suit's 72 hours run from when it is first put on (p. 75).
+  Hooks.on("updateItem", (item: any, changes: any, _options: any, userId: string) => {
+    if (userId !== (game as any).user?.id || !on.suits() || changes?.system?.equipped !== true || !ours(item) || !isNbcSuit(nameOf(item))) return;
+    if (typeof item.flags?.[MODULE_ID]?.[NBC_FLAG] !== "number" && item.isOwner) void item.setFlag(MODULE_ID, NBC_FLAG, worldNow());
+  });
+
+  // The bends, for a diver back at the surface from below 30' on pure oxygen (p. 76; Campaigns p. 435).
+  api.chat.registerChatCard({
+    module: MODULE_ID,
+    key: BENDS_CARD,
+    template: `modules/${MODULE_ID}/templates/ht-bends-card.hbs`,
+    actions: {
+      roll: async ({ message, data, actor }: any) => {
+        if (!on.breathing() || data?.result || !actor) return;
+        const outcome: any = await api.roll.success({ actor, base: Number(api.actors.attribute(actor, "HT")) || 10, label: L("BendsRoll"), skill: "HT", kind: "attribute", tags: ["bends", "HT"] } as any);
+        if (!outcome || "refused" in outcome) return;
+        const result = api.rules.bendsOutcome({ success: outcome.success === true, criticalSuccess: outcome.criticalSuccess === true, criticalFailure: outcome.criticalFailure === true });
+        if (result === "agony") await api.actors.applyCondition(actor, { key: "agony" } as any);
+        if (result === "collapse") await api.actors.applyCondition(actor, { key: "unconscious" } as any);
+        await api.chat.update(message, { ...data, result: F(`Bends.${result}`, { name: String(actor.name ?? "") }) });
+      },
+    },
+  } as any);
+  bendsCard = async (actor, source) => {
+    await api.chat.post(`${MODULE_ID}.${BENDS_CARD}`, { title: source, text: F("BendsCard", { name: String(actor?.name ?? ""), feet: OXYGEN_DEPTH_FEET }), result: "" }, { actor } as any);
+  };
+
+  // Scuba (Closed-Circuit), the GM's optional specialty for rebreathers:
+  // Scuba-4, and Scuba from it at -2 (p. 76).
+  Hooks.on(api.data.hooks.skillLevels, (context: any) => {
+    if (!on.breathing() || !Array.isArray(context?.skills)) return;
+    const skills: any[] = context.skills;
+    const closed = skills.find((s) => CLOSED_CIRCUIT.test(String(s?.name ?? "")));
+    const open = skills.find((s) => OPEN_CIRCUIT.test(String(s?.name ?? "")));
+    if (!closed || !open) return;
+    // Both levels as the system worked them out, so one default doesn't feed the other.
+    const known = { closed: typeof closed.level === "number" ? closed.level : null, open: typeof open.level === "number" ? open.level : null };
+    const attributes = context.attributes ?? {};
+    const table = api.rules as unknown as CostTable;
+    for (const [entry, closedCircuit, other] of [[closed, true, known.open], [open, false, known.closed]] as const) {
+      const level = scubaDefault(closedCircuit, other);
+      if (level === null) continue;
+      const system = entry.item?.system ?? {};
+      const derived = system.derived ?? {};
+      const changed = defaultedLevel({
+        level: typeof entry.level === "number" ? entry.level : null,
+        fromDefault: Boolean(entry.fromDefault),
+        points: Number(system.points) || 0,
+        relativeLevel: typeof derived.relativeLevel === "number" ? derived.relativeLevel : null,
+        defaultCredit: Number(derived.defaultCredit) || 0,
+        attribute: Number(attributes[String(system.attribute ?? "DX")]) || 10,
+        difficulty: String(system.difficulty ?? "A"),
+      }, level, table);
+      const modifier = closedCircuit ? CLOSED_CIRCUIT_DEFAULTS.fromScuba : CLOSED_CIRCUIT_DEFAULTS.toScuba;
+      if (changed) Object.assign(entry, { ...changed, note: F(closedCircuit ? "ClosedFromScuba" : "ScubaFromClosed", { modifier }), source: MODULE_ID });
     }
   });
 

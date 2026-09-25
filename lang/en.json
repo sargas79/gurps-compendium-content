@@ -8587,7 +8587,7 @@
         "MissingLine": "Clothing missing: {pieces}",
         "ZoneCold": "Adds {degrees} degrees to the cold end of the comfort zone while worn.",
         "ZoneBoth": "Adds {degrees} degrees to both ends of the comfort zone while worn.",
-        "ZoneHeat": "Adds {degrees} degrees to the hot end of the comfort zone while worn: {hours} hours a charge, recharged by {minutes} minutes in ice-cold water (not tracked).",
+        "ZoneHeat": "Adds {degrees} degrees to the hot end of the comfort zone while worn and charged: {hours} hours a charge, recharged by {minutes} minutes in ice-cold water.",
         "PoweredItem": "Only while its power lasts.",
         "HotMarchItem": "A hike in the heat costs no extra FP while it runs.",
         "HeatedWinterItem": "Counts as winter clothes, with or without power.",
@@ -8600,7 +8600,16 @@
           "hand": "hand",
           "foot": "foot"
         },
-        "HotBattleLine": "{name}: body armour on a hot day, +{fp} FP (High-Tech p. 65; Campaigns p. 426)"
+        "HotBattleLine": "{name}: body armour on a hot day, +{fp} FP (High-Tech p. 65; Campaigns p. 426)",
+        "FilledItem": "Worn apart from the outfit, filling its gaps: {names}.",
+        "SoakAction": "Soak in ice water",
+        "SoakedLine": "Soaked in ice-cold water: it cools again after {minutes} minutes, for {hours} hours.",
+        "Cooling": {
+          "fresh": "Charged: {hours} hours of cooling, counted from when it is first put on.",
+          "soaking": "In the ice water: cooling again in {minutes} minutes.",
+          "charged": "Charge left: {hours} h {minutes} min.",
+          "spent": "Spent: no cooling until it has had {soak} minutes in ice-cold water."
+        }
       },
       "Melee": {
         "Title": "Melee and muscle-powered weapons (High-Tech)",
@@ -8824,7 +8833,7 @@
         "HotSuitSource": "{name}: FP tripled",
         "NbcSeal": "Loses its seal quickly in the wet, and is unreliable after {hours} hours at most.",
         "CleanSuit": "+{bonus} HT against catching a disease from a victim.",
-        "AntiG": "+{bonus} to HT rolls to resist high acceleration: the GM adds it, as the system rolls none.",
+        "AntiG": "+{bonus} to HT rolls to resist high acceleration: roll it from this row.",
         "DrySuit": "Resists thermal shock in cold water; proper clothing beneath it keeps out the cold.",
         "Wetsuit": "Counts as winter clothing in cold water.",
         "Turnout": "Wet, it gives +{dr} DR against burning, but burning damage that gets through is multiplied by {times}.",
@@ -8834,7 +8843,34 @@
         "TurnoutSteam": "{name}: steam",
         "BombSuit": "The hands are bare.",
         "Biomedical": "Biomedical sensors: +{bonus} to Diagnosis on the wearer, or Diagnosis at {remote} from afar.",
-        "BiomedicalModifier": "Biomedical sensors ({item})"
+        "BiomedicalModifier": "Biomedical sensors ({item})",
+        "NbcSealLost": "Its seal is gone: wet, or worn past its hours. It seals nothing now.",
+        "NbcWet": "Got wet",
+        "NbcWetHint": "An NBC suit quickly loses its seal in a wet environment (High-Tech p. 75).",
+        "Fitted": "Fitted with climate control",
+        "FittedHint": "Some bomb disposal suits are fitted with a climate-control system: 60 degrees added to both ends of the comfort zone (High-Tech pp. 74, 76).",
+        "SuitClimate": "Climate control: 60 degrees added to both ends of the comfort zone, and no extra FP for a hike in the heat.",
+        "OxygenDeep": "Pure oxygen below {feet}': the diver risks the bends on coming back to the surface.",
+        "BendsCard": "{name} is back at the surface after breathing pure oxygen below {feet}': roll HT against the bends.",
+        "BendsRoll": "HT against the bends",
+        "Bends": {
+          "clear": "{name} comes through with no ill effects.",
+          "agony": "{name} is in agony from joint pain: roll HT hourly to recover.",
+          "collapse": "{name} falls unconscious or into painful paralysis: roll HT hourly to recover, each failure 1d injury.",
+          "death": "Critical failure: {name} dies painfully (the GM's to apply)."
+        },
+        "AccelerationAction": "High acceleration",
+        "GForce": "Acceleration (G)",
+        "HomeGravity": "Home gravity (G)",
+        "Braced": "Seated or lying down",
+        "Inverted": "Upside down",
+        "GForceLine": "{g} G",
+        "AccelerationRoll": "HT against {g} G",
+        "NoAccelerationRoll": "{g} G is under 2.5 times home gravity: no roll.",
+        "AccelerationFp": "{name} loses {fp} FP to the acceleration.",
+        "AccelerationBlackout": "{name} loses {fp} FP and blacks out for {seconds} seconds.",
+        "ClosedFromScuba": "Scuba (Closed-Circuit) from Scuba{modifier} (High-Tech p. 76)",
+        "ScubaFromClosed": "Scuba from Scuba (Closed-Circuit){modifier} (High-Tech p. 76)"
       },
       "Security": {
         "Title": "Locks, traps and barriers (High-Tech)",
