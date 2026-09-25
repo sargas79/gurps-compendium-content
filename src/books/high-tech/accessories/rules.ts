@@ -67,6 +67,22 @@ export function accessoryFits(fits: AccessoryFigures["fits"], skill: string): bo
   return fits === "sidearm" ? pistol : !pistol;
 }
 
+/** The sights a firearm's gear includes: every kind under the gunSights switch. */
+const SIGHT_KINDS: readonly AccessoryFigures["kind"][] = ["scope", "reflexSight", "visibilitySights", "nightSight", "thermalSight", "computerSight", "targetingLaser", "tacticalLight"];
+
+/**
+ * The firearm sights a bow or crossbow takes (p. 201), by the skill it is
+ * shot with, or null for anything else (a gun takes them all). A bow takes
+ * the sighting aids a gun does; a crossbow, scopes, collimating sights
+ * and targeting lasers. A slingshot and a speargun take none.
+ */
+export function bowSightKinds(skill: string): readonly AccessoryFigures["kind"][] | null {
+  const text = String(skill ?? "").trim();
+  if (/^bow\b/i.test(text)) return /slingshot/i.test(text) ? [] : SIGHT_KINDS;
+  if (/^crossbow\b/i.test(text)) return /speargun/i.test(text) ? [] : ["scope", "reflexSight", "targetingLaser"];
+  return null;
+}
+
 /** What a record of this name is as an accessory, or null. */
 export function catalogueFigures(name: string): AccessoryFigures | null {
   const text = String(name ?? "").trim();

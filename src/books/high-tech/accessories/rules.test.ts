@@ -28,7 +28,24 @@ import {
   unaimedScopeBulk,
   accessoryFits,
   suppressorBuildRolls,
+  bowSightKinds,
+  restrictedMagazineClass,
 } from "./rules.js";
+
+describe("bows' sights and the law on magazines (High-Tech pp. 155, 201)", () => {
+  it("gives a bow a gun's sights, a crossbow its scopes, collimating sights and lasers, and a slingshot or speargun none", () => {
+    expect(bowSightKinds("Bow")).toContain("nightSight");
+    expect(bowSightKinds("Crossbow")).toEqual(["scope", "reflexSight", "targetingLaser"]);
+    expect(bowSightKinds("Bow (Slingshot)")).toEqual([]);
+    expect(bowSightKinds("Crossbow (Speargun)")).toEqual([]);
+    expect(bowSightKinds("Guns (Rifle)")).toBeNull();
+  });
+
+  it("makes an LC3-4 gun LC1-2 where high-capacity magazines are restricted", () => {
+    expect([4, 3, 2, 1, 0].map((lc) => restrictedMagazineClass(lc))).toEqual([2, 1, 2, 1, 0]);
+    expect(restrictedMagazineClass(null)).toBeNull();
+  });
+});
 
 describe("what fits and what is built (High-Tech pp. 156-159)", () => {
   it("puts a sidearm's laser only on a pistol and a shoulder arm's on anything else, and a tactical light on any gun", () => {

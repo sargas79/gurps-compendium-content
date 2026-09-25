@@ -236,6 +236,45 @@ describe("magazines (p. 155)", () => {
   });
 });
 
+describe("sights on bows and crossbows (p. 201)", () => {
+  function launcher(actor: any, name: string, skill: string): any {
+    const item = gun(actor, { name, skill, accuracy: 4, bulk: -6, shots: "1(4)" });
+    item.system.weaponClass = "bow";
+    item.system.rangedModes[0].malfunction = null;
+    return item;
+  }
+
+  it("fits a crossbow with a scope, a collimating sight and a laser, and nothing else", () => {
+    on = { gunSights: true, suppressors: true };
+    ready();
+    const actor = character();
+    const crossbow = launcher(actor, "Crossbow", "Crossbow");
+    const scope = accessory(actor, "Fixed-Power Scope (TL7, per +1 Acc)", crossbow, { level: 2 });
+    accessory(actor, "Detachable Baffle Suppressor, Pistol", crossbow, { level: 2 });
+    accessory(actor, "Night Sight (TL8)", crossbow);
+    expect(fittedTo(crossbow, switches()).map((f) => f.item.name)).toEqual([scope.name]);
+    expect(rows(crossbow)[0]).toMatchObject({ scopeBonus: 2, scopeFixed: true });
+    // Held to the crossbow's own Acc 4, as a gun's sights are.
+    expect(valueOf(attack(crossbow, aimedAt(4, 2)).modifiers, "SightCap")).toBeUndefined();
+    // A speargun takes none.
+    const speargun = launcher(actor, "Speargun", "Crossbow (Speargun)");
+    accessory(actor, "Fixed-Power Scope (TL7, per +1 Acc)", speargun, { level: 2 });
+    expect(fittedTo(speargun, switches())).toEqual([]);
+  });
+
+  it("lets a bow take a night sight, as a gun would, and leaves it all alone with the sights switch off", () => {
+    on = { gunSights: true };
+    ready();
+    const actor = character();
+    const bow = launcher(actor, "Compound Bow", "Bow");
+    const night = accessory(actor, "Night Sight (TL8)", bow);
+    expect(fittedTo(bow, switches()).map((f) => f.item.name)).toEqual([night.name]);
+    expect(rows(bow)[0].scopeBonus).toBe(2);
+    on = {};
+    expect(rows(bow)[0].scopeBonus).toBe(0);
+  });
+});
+
 describe("sights (pp. 155-157)", () => {
   it("gives a fixed-power scope nothing until aimed its bonus in seconds, then holds it to base Acc", () => {
     on = { gunSights: true };

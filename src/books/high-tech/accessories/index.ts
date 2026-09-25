@@ -34,7 +34,9 @@
  *     Looking through a night, thermal or computer sight (toggled from the
  *     gun's row) gives its Night Vision or Infravision and leaves the shooter
  *     colorblind with tunnel vision, through `gworld.traitEffects`. A
- *     targeting laser's colour reprices it.
+ *     targeting laser's colour reprices it. A bow takes these sights
+ *     as a gun does, and a crossbow its scopes, collimating sights and
+ *     targeting lasers (p. 201).
  *   - **Suppressors (suppressors):** fitted only to a gun that takes one
  *     (never an ordinary revolver: the weapon families' `gunTakesSuppressor`);
  *     their Bulk; a wiper design's damage and range, for its 40 shots; a
@@ -77,6 +79,7 @@ import {
   BIPOD,
   FOLDED_STOCK,
   accessoryFits,
+  bowSightKinds,
   HEARD_AT,
   HOME_BUILT,
   LASER_COLOUR,
@@ -303,6 +306,9 @@ export function fittedTo(gun: any, on: AccessorySwitches, kinds?: readonly Acces
     // A suppressor on a gun it doesn't work on does nothing (p. 159), nor a sidearm's or shoulder arm's gear on the other.
     if (known.figures.kind === "suppressor" && !gunTakesSuppressor(gun)) continue;
     if (!accessoryFits(known.figures.fits, gunSkill(gun))) continue;
+    // A bow or crossbow takes the sights alone (p. 201).
+    const bow = bowSightKinds(gunSkill(gun));
+    if (bow && !bow.includes(known.figures.kind)) continue;
     out.push({ item, figures: known.figures, data });
   }
   return out;
@@ -606,11 +612,22 @@ async function say(actor: any, title: string, lines: string[]): Promise<void> {
 
 // ── item sheets ──
 
-/** The guns an accessory can be fitted to: the character's firearms, less the revolvers a suppressor won't fit. */
+/**
+ * The guns an accessory can be fitted to: the character's firearms, less the
+ * revolvers a suppressor won't fit; and for a sight, bows and crossbows that
+ * take it (p. 201).
+ */
 function gunsFor(api: GWorldApi, accessory: any, figures: AccessoryFigures): any[] {
   const actor = accessory?.actor ?? accessory?.parent;
-  return [...(actor?.items ?? [])].filter((i: any) => i.id !== accessory.id && isFirearm(api, i) && (figures.kind !== "suppressor" || gunTakesSuppressor(i)) && accessoryFits(figures.fits, gunSkill(i)));
+  return [...(actor?.items ?? [])].filter((i: any) => {
+    if (i.id === accessory.id || i?.type !== "equipment") return false;
+    if (!isFirearm(api, i)) return bowSightKinds(gunSkill(i))?.includes(figures.kind) === true;
+    return (figures.kind !== "suppressor" || gunTakesSuppressor(i)) && accessoryFits(figures.fits, gunSkill(i));
+  });
 }
+
+/** A bow or crossbow that takes firearm sights (p. 201). */
+const sightedBow = (item: any): boolean => item?.type === "equipment" && (bowSightKinds(gunSkill(item))?.length ?? 0) > 0;
 
 function accessoryContext(api: GWorldApi, item: any, figures: AccessoryFigures, on: AccessorySwitches): Record<string, unknown> {
   const data = accessoryData(item);
@@ -906,6 +923,8 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
   });
 
   const firearm = (item: any) => isFirearm(api, item);
+  /** A gun, or a bow or crossbow with firearm sights (p. 201): what the sights work on. */
+  const sighted = (item: any) => firearm(item) || (on.sights() && sightedBow(item));
 
   // An accessory's own price: by the level, by the laser's colour, by a computer sight's vision, by a home-built grade (pp. 155-159).
   api.data.registerPriceModifier({
@@ -985,7 +1004,7 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
   // The rows: magazine Malf., suppressors, stocks and bipods (pp. 155-160).
   Hooks.on(api.combat.hooks.weaponAttacks, (context: any) => {
     const item = context?.item;
-    if (!firearm(item)) return;
+    if (!sighted(item)) return;
     const actor = context.actor;
     const st = Number(api.actors.attribute(actor, "ST")) || 10;
     const minimumSt = api.registry.isRuleOn("minimumSt");
@@ -1101,7 +1120,7 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
   // The shot: the setup, Bulk, the sights and their cap, bracing (pp. 155-160).
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
     const item = context?.item;
-    if (context?.mode?.ranged !== true || !firearm(item)) return;
+    if (context?.mode?.ranged !== true || !sighted(item)) return;
     const actor = context.actor;
     const modeIndex = Number(context.mode.index) || 0;
     const mode = rangedModes(item)[modeIndex] ?? {};
@@ -1194,7 +1213,7 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
     key: LIGHT_OPTION,
     label: L("TacticalLight"),
     attack: "ranged",
-    available: (context: any) => on.sights() && firearm(context?.item) && fittedTo(context.item, on, ["tacticalLight"]).length > 0,
+    available: (context: any) => on.sights() && sighted(context?.item) && fittedTo(context.item, on, ["tacticalLight"]).length > 0,
     apply: (context: any) => {
       const light = fittedTo(context?.item, on, ["tacticalLight"])[0];
       return light ? { notes: [F("TacticalLightNote", { name: light.item.name, yards: light.figures.yards ?? 0 })] } : null;
@@ -1209,7 +1228,7 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
     label: L("TacticalLightEyes"),
     icon: "fa-solid fa-eye-slash",
     // An infrared light blinds nobody (p. 52): no dazzle from it.
-    visible: (item) => on.sights() && firearm(item) && dazzlingLight(item) !== undefined,
+    visible: (item) => on.sights() && sighted(item) && dazzlingLight(item) !== undefined,
     run: (item, actor) => {
       const light = dazzlingLight(item);
       if (light) void shineTacticalLight(api, String(light.item.name ?? ""), light.figures.yards ?? 0, actor);
@@ -1272,7 +1291,7 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
   };
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ht-fold-stock", itemTypes: ["equipment"], label: L("FoldStock"), icon: "fa-solid fa-arrows-left-right-to-line", visible: (item) => on.stocks() && firearm(item) && hasFoldingStock(item, on), run: (item, actor) => toggle("stockFolded", item, actor, "StockFoldedSaid", "StockUnfoldedSaid") });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ht-bipod", itemTypes: ["equipment"], label: L("Bipod"), icon: "fa-solid fa-person-rifle", visible: (item) => on.stocks() && firearm(item) && hasBipod(item, on), run: (item, actor) => toggle("bipodDeployed", item, actor, "BipodDeployedSaid", "BipodFoldedSaid") });
-  api.sheets.registerRowAction({ module: MODULE_ID, key: "ht-sight", itemTypes: ["equipment"], label: L("UseSight"), icon: "fa-solid fa-binoculars", visible: (item) => on.sights() && firearm(item) && fittedTo(item, on).some((f) => f.figures.imposesTunnelVision), run: (item, actor) => toggle("sightInUse", item, actor, "SightOnSaid", "SightOffSaid") });
+  api.sheets.registerRowAction({ module: MODULE_ID, key: "ht-sight", itemTypes: ["equipment"], label: L("UseSight"), icon: "fa-solid fa-binoculars", visible: (item) => on.sights() && sighted(item) && fittedTo(item, on).some((f) => f.figures.imposesTunnelVision), run: (item, actor) => toggle("sightInUse", item, actor, "SightOnSaid", "SightOffSaid") });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ht-hear-shot", itemTypes: ["equipment"], label: L("HearTitleShort"), icon: "fa-solid fa-ear-listen", visible: (item) => on.suppressors() && firearm(item), run: (item, actor) => hearTheShot(api, item, actor, on) });
 }
 
