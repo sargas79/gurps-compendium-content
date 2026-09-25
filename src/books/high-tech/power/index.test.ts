@@ -172,6 +172,10 @@ describe("the Gear tab's cells", () => {
     const context: any = powerGearContext(actor);
     expect(context.groups.map((g: any) => [g.ns, g.rows.map((r: any) => r.name)])).toEqual([["GCC.UT", ["Scanner"]], ["GCC.HT", ["Radio", "Lamp"]]]);
     expect(context.groups[1].rows[0].supply).toContain("GCC.HT.Power");
+    // An endurance counted in tests (p. 223): tracked as uses are, and shown in tests.
+    const analyzer = named("Portable Clinical Analyzer", gear("high-tech", { draw: { cell: "XS", cells: 2, endurance: "300 tests" }, usesUsed: 20 }));
+    const row = (powerGearContext({ system: {}, items: [analyzer] }) as any).groups[0].rows[0];
+    expect(row).toMatchObject({ charge: "GCC.HT.Power.CountLeft", tracksUses: true, usesUsed: 20 });
     vi.unstubAllGlobals();
   });
 });

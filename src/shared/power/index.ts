@@ -390,7 +390,9 @@ export function powerGearContext(actor: any): Record<string, unknown> {
     const uses = usesLeft(data);
     if (data.external) charge = L(ns, "OnExternal");
     else if (uses && !data.cosmic) {
-      charge = F(ns, "UsesLeft", { left: uses.left, total: uses.total });
+      charge = uses.unit === "uses"
+        ? F(ns, "UsesLeft", { left: uses.left, total: uses.total })
+        : F(ns, "CountLeft", { left: uses.left, total: uses.total, unit: L(ns, `Counted.${uses.unit}`) });
       fraction = uses.total ? uses.left / uses.total : 0;
     } else if (left === "unlimited" || data.cosmic) charge = L(ns, "Unlimited");
     else if (left) {
