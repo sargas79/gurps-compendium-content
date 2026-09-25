@@ -1,5 +1,48 @@
 # Changelog
 
+## v0.21.0 — High-Tech backlog
+
+Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
+High-Tech against **gworld v1.49.0**, which this release requires (add-on API
+1.151.0). On an older system the add-on registers no rules, and says so in the
+console.
+
+Most of the High-Tech (#510) and Electricity and Electronics (#549) backlogs, and every item that waited on the system.
+
+- **Players' actions reach others through the GM (#565):**
+  - Tear gas, poison gas, cautery and the lab's shocks reach characters the player doesn't own.
+  - Clouds and lights a player's action leaves go on the scene the player is looking at.
+- **Tools (#565):**
+  - A kit serves another specialty of its skill at -2, and its TL is weighed against the skill's.
+  - A broken device or a burned-out computer is passed over for a working tool.
+- **Heat (#565):** body armour or a ghillie suit makes a hot day cost 2 FP instead of 1, for a battle and for each hour of a march. Cooling gear takes the hot day's cost away.
+- **Other system follow-ups (#565):**
+  - The heart monitor shortens HT and fitness study.
+  - An out-of-range drone operator's control roll is refused.
+  - Thermite burns at the hit location.
+- **Weapons (#560, #563):**
+  - Weapon Bond, multi-barrel misfires, precision and rugged guns, and holster Bulk and sling bracing.
+  - Hollow points underwater, the steep-shot toggle, cylinder swaps, powder aids, the Broadwell drum and Hotchkiss canister.
+  - Indirect-fire vision and FO optics, suppressor building, and bipods on cover.
+  - Poison bullets, hollow-point expansion (off by default), airburst, self-destruct, tracers and beehive rounds.
+- **Gear (#561, #562, #564):**
+  - Stabilised binoculars and sensor switches, set-down lights and flares, infrared lights, light durations, foraging, parachute details, snacks on the move, and the anti-G suit and bends.
+  - Fire extinguishers and the fire shelter, the Claymore's cone, the car stopper and spike strip, and lasting crippling.
+  - Back plates, several searchers, tinted goggles, blankets as cover and over a radiation source, and team ghillie customising.
+- **Ordnance, medicine and vehicles (#559):**
+  - Doubled drug doses and overdose, psychiatric expiry, imaging and antiseptic uses, and prosthetic batteries.
+  - The M7's gas cloud, the Molotov's engine hit and stun grenade areas.
+  - Cockpit armour and gun shields, and e-bike batteries.
+- **Electricity and Electronics (#557, #558):**
+  - Broken parts enforced, used-device prices, cautery tools and the stethoscope's bonuses, wet cells, appliance hazards, and dim light for sewing and surgery.
+  - Superheterodyne receivers and regenerative interference, burned-out computers, the Ethernet adapter's three media, the green laser pointer, the double-radius jammer and the secret spoofer.
+- **Fixes:**
+  - The High-Tech blast card no longer loses its buttons when a roll is refused (GWorldVTT #753).
+  - The EOD skill name now matches the Basic Set's.
+  - AC current steps in whole steps.
+
+What the rules still don't cover is listed in #510 and #549.
+
 ## v0.20.0 — High-Tech follow-ups
 
 Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
