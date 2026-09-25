@@ -1130,6 +1130,20 @@ export function airburstFragmentsOf(item: any, modeIndex: number, on: Ammunition
   return dice || null;
 }
 
+/**
+ * Buck-and-ball's ball's 1/2D, from the mode's own figures, beside the
+ * buckshot's 1/2D the row takes (p. 173); null where the ball has none.
+ */
+function ballReach(item: any, modeIndex: number, fired: ProjectileLoad, gun: ProjectileGun): { half: number; buckHalf: number } | null {
+  const mode = rangedModes(item)[modeIndex] ?? {};
+  const effect = projectileRow({
+    damage: String(mode.damageFormula ?? ""), damageType: String(mode.damageType ?? "pi"), armorDivisor: Number(mode.armorDivisor) || 1,
+    halfDamageRange: Number(mode.halfDamageRange) || 0, maxRange: Number(mode.maxRange) || 0, accuracy: 0, malfunction: null, projectiles: 1, recoil: 0,
+  }, fired, gun);
+  const half = Number(effect.notes.find((n) => n.key === "ballRange")?.data?.half) || 0;
+  return half > 0 ? { half, buckHalf: effect.row.halfDamageRange } : null;
+}
+
 /** The cargo a mode fires, as the switches let it: its round, its choices, and the gun's TL; null for none. */
 function cargoLoadIn(item: any, modeIndex: number, on: AmmunitionSwitches): CargoLoad | null {
   if (!isFirearmItem(item)) return null;
@@ -1171,7 +1185,8 @@ export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
     if (!isFirearmItem(item)) return null;
     const load = loadIn(item, modeIndex).load;
     const gun = projectileGun(item, modeIndex);
-    return { fired: firedProjectile(load, gun, on), gun, poison: load.poisonFiller };
+    const fired = firedProjectile(load, gun, on);
+    return { fired, gun, poison: load.poisonFiller, ball: fired.projectile === "buckAndBall" ? ballReach(item, modeIndex, fired, gun) : null };
   });
   readyCargo(api, { explosive: () => on.explosive?.() === true, cargo: () => on.cargo?.() === true, gas: () => on.gas?.() === true }, (item, modeIndex) => cargoLoadIn(item, modeIndex, on));
   // An airburst HE round's cone of fragments, from where it burst along the line of fire (p. 175).
