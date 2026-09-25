@@ -7154,6 +7154,8 @@
         "SapleDud": "A dud: no blast (1d: {roll}, needed {need} or less).",
         "AirburstCone": "Airburst: {fragments} fragments in a cone from where it burst, on along the line of fire, out to {reach} yards (High-Tech p. 175). The GM targets those in it and rolls the fragments.",
         "AirburstCaught": "In the cone: {names}.",
+        "AirburstTargetHit": "{target}, the target hit, took the row's own roll.",
+        "AirburstCaughtOthers": "Also in the cone: {names}.",
         "AirburstNobody": "Nobody stands in the cone.",
         "AirburstNoCone": "Airburst: {fragments} fragments in a cone along the line of fire (High-Tech p. 175). With no scene or no shooter's token to measure from, the GM places it.",
         "Blinded": "Blinded (tear gas)",

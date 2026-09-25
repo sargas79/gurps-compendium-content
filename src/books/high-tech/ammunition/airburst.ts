@@ -73,12 +73,17 @@ export function readyAirburst(api: GWorldApi, fragmentsOf: (item: any, modeIndex
       return;
     }
     const perYard = (Number(scene.grid?.size) || 100) / (Number(scene.grid?.distance) || 1);
+    // On a hit the target has had the row's own roll: the cone names the others.
+    const struck = context.hit && context.target ? String(context.target.id ?? context.target.uuid ?? "") : "";
+    const docName = (doc: any) => String(doc?.name ?? doc?.actor?.name ?? "");
     const inCone = ((api.areas.standsIn(scene, airburstCone(point, direction, reach, perYard)) ?? []) as any[])
-      .map((doc) => String(doc?.name ?? doc?.actor?.name ?? ""))
+      .filter((doc) => !struck || String(doc?.id ?? doc?.uuid ?? "") !== struck)
+      .map(docName)
       .filter(Boolean);
     void say(context.actor, name, [
       F("AirburstCone", { fragments, reach }),
-      inCone.length ? F("AirburstCaught", { names: inCone.join(", ") }) : L("AirburstNobody"),
+      ...(struck ? [F("AirburstTargetHit", { target: docName(context.target) })] : []),
+      inCone.length ? F(struck ? "AirburstCaughtOthers" : "AirburstCaught", { names: inCone.join(", ") }) : L("AirburstNobody"),
     ]);
   });
 }

@@ -191,14 +191,16 @@ describe("explosive rounds on the sheet (pp. 169-170, 175)", () => {
     const ab = m79([load({ projectile: "he", projectileUpgrades: ["airburst"] })]);
     ab.actor.isOwner = true;
     ab.actor.getActiveTokens = () => [{ center: { x: 100, y: 500 } }];
-    inArea = [{ name: "Goon" }, { name: "Other goon" }];
+    inArea = [{ id: "t1", name: "Goon" }, { id: "t2", name: "Other goon" }];
     // A hit on the one target at (500, 500): the cone opens east from there, 2d of fragments reaching 10 yards.
-    fire(HOOKS.landed, { actor: ab.actor, item: ab, mode: { index: 0, ranged: true }, thrown: false, hit: true, target: {}, point: { x: 500, y: 500 }, scatter: null });
+    fire(HOOKS.landed, { actor: ab.actor, item: ab, mode: { index: 0, ranged: true }, thrown: false, hit: true, target: { id: "t1", name: "Goon" }, point: { x: 500, y: 500 }, scatter: null });
     await flush();
     expect(asked[0].cone).toMatchObject({ direction: 0, length: 1000, width: 1000, base: 100, origin: { x: 500, y: 500 } });
     expect(asked[0].center).toEqual({ x: 500, y: 500 });
     expect(chat.at(-1)).toContain('AirburstCone {"fragments":"2d","reach":10}');
-    expect(chat.at(-1)).toContain("Goon, Other goon");
+    // The target hit took the row's own roll: the cone names only the others.
+    expect(chat.at(-1)).toContain('AirburstTargetHit {"target":"Goon"}');
+    expect(chat.at(-1)).toContain('AirburstCaughtOthers {"names":"Other goon"}');
     // A miss waits for its Scatter roll; a plain HE round has no cone.
     fire(HOOKS.landed, { actor: ab.actor, item: ab, mode: { index: 0, ranged: true }, thrown: false, hit: false, target: {}, point: null, scatter: null });
     const he = m79([load({ projectile: "he" })]);
@@ -233,6 +235,41 @@ describe("explosive rounds on the sheet (pp. 169-170, 175)", () => {
     fire(HOOKS.afterShots, { actor: cannon.actor, item: cannon, modeIndex: 0, kind: "single" });
     await flush();
     expect(chat.join(" ")).toContain("GCC.HT.Ammunition.SapleBursts");
+  });
+
+  it("rolls SAPLE's dud once for a Spraying Fire burst, every target of it", async () => {
+    on.explosiveProjectiles = true;
+    const cannon = hotchkiss([load({ projectile: "saple" })]);
+    const target = (index: number) => fire(HOOKS.attackModifiers, { actor: cannon.actor, item: cannon, ranged: true, rollType: "attack", mode: { index: 0, ranged: true }, modifiers: [], refusal: null, dropLines: { followUp: false, linked: false }, spraying: { index, of: 3, shots: 1, recoil: 0, wasted: 0 } });
+    dice = [5, 1, 1];
+    expect([0, 1, 2].map((i) => target(i).dropLines.followUp)).toEqual([true, true, true]);
+    // Only the first target's die was taken.
+    expect(dice).toEqual([1, 1]);
+    fire(HOOKS.afterShots, { actor: cannon.actor, item: cannon, modeIndex: 0, kind: "spraying", targets: 3 });
+    await flush();
+    expect(chat.filter((c) => c.includes("SapleDud"))).toHaveLength(1);
+  });
+
+  it("leaves no stale SAPLE roll from an attack that never fired", async () => {
+    on.explosiveProjectiles = true;
+    const cannon = hotchkiss([load({ projectile: "saple" })]);
+    const attack = (refusal: string | null = null) => fire(HOOKS.attackModifiers, { actor: cannon.actor, item: cannon, ranged: true, rollType: "attack", mode: { index: 0, ranged: true }, modifiers: [], refusal, dropLines: { followUp: false, linked: false } });
+    dice = [5];
+    attack();
+    // The dud's attack is refused afterwards and never fires; the next one is refused outright.
+    attack("Out of range");
+    fire(HOOKS.afterShots, { actor: cannon.actor, item: cannon, modeIndex: 0, kind: "single" });
+    await flush();
+    expect(chat).toEqual([]);
+  });
+
+  it("leaves a fire mission's smoke shell's cloud, from rounds the card spent", async () => {
+    on.cargoProjectiles = true;
+    const smoke = m79([load({ projectile: "smoke" })]);
+    const reason = game.i18n.format("GCC.HT.IndirectFire.SpendReason", { weapon: smoke.name });
+    fire(HOOKS.afterShots, { actor: smoke.actor, item: smoke, modeIndex: 0, kind: "module", reason, shots: 1, fired: 1, targets: 0 });
+    await flush();
+    expect(areas).toHaveLength(1);
   });
 
   it("leaves rounds a module spent alone: no SAPLE card, no cloud", async () => {
