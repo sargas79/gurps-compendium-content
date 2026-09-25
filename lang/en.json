@@ -11178,6 +11178,7 @@
         "PlotLabel": "A waveform plotted by hand",
         "PlotLine": "Timed meter readings",
         "Pedometer": "An electronic pedometer: Hiking needs 10% less study time (High-Tech: Electricity and Electronics p. 13).",
+        "HeartMonitorTraining": "A digital heart monitor: training for HT or fitness needs 10% less time (High-Tech: Electricity and Electronics p. 12).",
         "CombinedRecord": "Combined device"
       },
       "ElectricSecurity": {

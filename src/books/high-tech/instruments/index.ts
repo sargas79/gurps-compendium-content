@@ -36,7 +36,8 @@
  *     (Analog Computers), or Mechanic (Analog Computers)-6), and a waveform plotted by
  *     hand from Physics' or Mathematics (Applied)'s row at -2. Studying
  *     Hiking with an electronic pedometer carried takes 10% less time
- *     (p. 13), through the Study tool's `gworld.studyModifiers`.
+ *     (p. 13), and studying HT, Fit or Very Fit with a digital heart monitor
+ *     carried the same (p. 12), through the Study tool's `gworld.studyModifiers`.
  *   - **combinedDevices** (HT:EE p. 9): a device combined from separate
  *     parts is at -2 to use. A High-Tech device's sheet marks it as one (the
  *     `device.combined` field, beside #490's), and every roll made with it
@@ -69,6 +70,8 @@ import {
   CONNECT_BONUS,
   GEIGER_SUPPLY,
   HAND_PLOT,
+  HEART_MONITOR,
+  HEART_MONITOR_TIME,
   LINES,
   LINE_DAMAGE,
   MAGNETIC_WORST,
@@ -92,6 +95,7 @@ import {
   complexityPenalty,
   copyCost,
   darknessPenalty,
+  fitnessStudy,
   instrumentOf,
   isAccelerometer,
   isDisplay,
@@ -564,13 +568,19 @@ export function readyInstruments(api: GWorldApi, on: InstrumentSwitches): void {
   const any = () => on.measurement() || on.instruments() || on.combined();
   const sameSkill = (item: any, name: string) => item?.type === "skill" && api.rules.toolSkillKey(String(item.name ?? "")) === api.rules.toolSkillKey(name);
 
-  // Studying Hiking with an electronic pedometer carried: 10% less study time (HT:EE p. 13; API 1.133.0).
-  Hooks.on(api.combat.hooks.studyModifiers, (context: any) => {
-    if (!on.instruments() || !context || !sameSkill(context.skill, PEDOMETER_SKILL)) return;
-    if (!carriedGear(context.actor).some((item) => PEDOMETER.test(nameOf(item).trim()) && ourBook(item))) return;
+  // Studying Hiking with an electronic pedometer carried: 10% less study time (HT:EE p. 13; API
+  // 1.133.0). Studying HT, Fit or Very Fit with a digital heart monitor: the same (HT:EE p. 12;
+  // attributes and traits reach the Study tool since API 1.146.0, with `skill` null for them).
+  const carries = (actor: any, name: RegExp) => carriedGear(actor).some((item) => name.test(nameOf(item).trim()) && ourBook(item));
+  const speedUp = (context: any, timeFactor: number, line: string) => {
     const multiplier = Number(context.multiplier);
-    context.multiplier = (Number.isFinite(multiplier) && multiplier >= 0 ? multiplier : 1) * studyMultiplier(PEDOMETER_TIME);
-    if (Array.isArray(context.lines)) context.lines.push(L("Pedometer"));
+    context.multiplier = (Number.isFinite(multiplier) && multiplier >= 0 ? multiplier : 1) * studyMultiplier(timeFactor);
+    if (Array.isArray(context.lines)) context.lines.push(L(line));
+  };
+  Hooks.on(api.combat.hooks.studyModifiers, (context: any) => {
+    if (!on.instruments() || !context) return;
+    if (sameSkill(context.skill, PEDOMETER_SKILL) && carries(context.actor, PEDOMETER)) speedUp(context, PEDOMETER_TIME, "Pedometer");
+    else if (fitnessStudy(context.studied) && carries(context.actor, HEART_MONITOR)) speedUp(context, HEART_MONITOR_TIME, "HeartMonitorTraining");
   });
   const kindIs = (item: any, test: (inst: Instrument) => boolean) => {
     const inst = instrumentItem(item);

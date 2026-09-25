@@ -463,3 +463,17 @@ export const PEDOMETER = /^electronic pedometer$/i;
 export const PEDOMETER_SKILL = "Hiking";
 export const PEDOMETER_TIME = 0.9;
 export const studyMultiplier = (timeFactor: number): number => 1 / timeFactor;
+
+/**
+ * A digital heart monitor paces training for HT or fitness, cutting its time
+ * by 10% (HT:EE p. 12): study of HT, or of Fit or Very Fit (Characters p. 294).
+ */
+export const HEART_MONITOR = /^digital heart monitor$/i;
+export const HEART_MONITOR_TIME = 0.9;
+export const FITNESS_TRAIT = /^(very )?fit\b/i;
+export function fitnessStudy(studied: { kind?: unknown; attribute?: unknown; item?: { name?: unknown } | null; name?: unknown } | null | undefined): boolean {
+  if (!studied) return false;
+  if (studied.kind === "attribute") return studied.attribute === "HT";
+  if (studied.kind === "trait") return FITNESS_TRAIT.test(String(studied.item?.name ?? studied.name ?? "").trim());
+  return false;
+}
