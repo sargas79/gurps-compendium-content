@@ -12,8 +12,9 @@
  *     until then the pin can go back in.
  *   - **The throw:** the card says how long is left on the fuse and whether a
  *     foe has time to pick it up and throw it back (p. B410); a critical
- *     failure drops it at the thrower's feet. One held past its fuse goes off
- *     in the hand.
+ *     failure drops it at the thrower's feet, where it goes off by itself
+ *     when its fuse runs out unless a row action picks it up again. One held
+ *     past its fuse goes off in the hand.
  *   - **Booby traps and improvised grenades** (pp. 190-191): the rolls to rig
  *     one and to make one.
  *   - **A Molotov cocktail through an engine grating** (p. 191): an attack
@@ -58,11 +59,12 @@ const MOLOTOV_OPTION = "ht-molotov-grating";
 const isMolotov = (item: any): boolean => /\bmolotov\b/i.test(String(item?.name ?? ""));
 const FLASHBANG_FLAG = "htFlashbangStun";
 
-/** What a grenade stack keeps: primed, armed, and when its fuse started. */
+/** What a grenade stack keeps: primed, armed, when its fuse started, and whether it lies dropped at its thrower's feet. */
 interface GrenadeState {
   htPrimed?: boolean;
   htArmed?: boolean;
   htLit?: ClockStamp | null;
+  htDropped?: boolean;
 }
 
 /** Whether an item has a thrown mode that explodes or afflicts: a grenade the tables don't name may still be one. */
@@ -209,9 +211,12 @@ export function readyGrenades(api: GWorldApi, on: () => boolean): void {
     pending.delete(key);
     if (!on() || !item?.isOwner) return;
     void (async () => {
-      await setState(item, { htArmed: false, htLit: null });
       const name = String(item.name ?? "");
       const fuse = afterThrow(facts, burned);
+      // Dropped at the thrower's feet with its fuse running: it goes off there when the fuse runs out,
+      // unless someone picks it up first. A pin grenade's fuse started as the handle flew off.
+      const dropped = Boolean(context.outcome?.criticalFailure && fuse.left);
+      await setState(item, dropped ? { htArmed: false, htLit: stateOf(item).htLit ?? clockNow(actor), htDropped: true } : { htArmed: false, htLit: null, htDropped: false });
       const lines: string[] = [];
       if (context.outcome?.criticalFailure) lines.push(F("Dropped", { name }));
       if (facts.impact) lines.push(L(context.outcome?.criticalFailure ? "ImpactDropped" : "Impact"));
@@ -224,7 +229,26 @@ export function readyGrenades(api: GWorldApi, on: () => boolean): void {
     })();
   });
 
-  // A grenade held past its fuse goes off in the hand.
+  // Picking up a grenade dropped with its fuse running, to throw it again or away (p. 190; p. B410).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-grenade-pick-up",
+    itemTypes: ["equipment"],
+    label: L("PickUp"),
+    icon: "fa-solid fa-hand",
+    visible: (item: any) => on() && Boolean(grenadeOf(item)) && stateOf(item).htDropped === true,
+    run: (item: any, actor: any) => {
+      void (async () => {
+        const facts = grenadeOf(item);
+        if (!facts) return;
+        await setState(item, { htArmed: true, htDropped: false });
+        const left = afterThrow(facts, secondsSince(stateOf(item).htLit, clockNow(actor))).left;
+        await say(actor, String(item.name ?? ""), [F("PickedUp", { name: String(actor?.name ?? ""), least: left?.[0] ?? 0, most: left?.[1] ?? 0 })]);
+      })();
+    },
+  } as any);
+
+  // A grenade held past its fuse goes off in the hand; one dropped at the thrower's feet, there.
   Hooks.on(api.combat.hooks.turnStart, async (_combat: any, combatant: any) => {
     const actor = combatant?.actor;
     if (!on() || !actor || !isActiveGm()) return;
@@ -232,17 +256,19 @@ export function readyGrenades(api: GWorldApi, on: () => boolean): void {
       const facts = grenadeOf(item);
       const state = facts ? stateOf(item) : null;
       if (!facts || !state?.htLit || !goesOffInHand(facts, secondsSince(state.htLit, clockNow(actor)))) continue;
-      await setState(item, { htArmed: false, htLit: null });
+      const dropped = state.htDropped === true;
+      await setState(item, { htArmed: false, htLit: null, htDropped: false });
       const name = String(item.name ?? "");
-      await say(actor, name, [F("InHand", { name: String(actor.name ?? ""), grenade: name })]);
+      await say(actor, name, [F(dropped ? "AtFeet" : "InHand", { name: String(actor.name ?? ""), grenade: name })]);
       const main = mainMode(item);
       if (main && formulaOf(main.mode)) {
         await api.roll.damage({
-          actor, item, mode: { index: main.index, ranged: main.ranged }, label: F("InHandLabel", { name }),
+          actor, item, mode: { index: main.index, ranged: main.ranged }, label: F(dropped ? "AtFeetLabel" : "InHandLabel", { name }),
           formula: formulaOf(main.mode), damageType: main.mode.damageType ?? "cr", armorDivisor: Number(main.mode.armorDivisor) || 1,
           explosive: main.mode.explosive === true, fragmentation: String(main.mode.fragmentation ?? ""),
           fragmentationType: main.mode.fragmentationType ?? "", fragmentationDivisor: Number(main.mode.fragmentationDivisor) || 1,
-          blastPlacement: "contact",
+          // Held, it is a contact blast on the holder; dropped, it goes off on the ground beside him.
+          blastPlacement: dropped ? "" : "contact",
         } as any);
       }
     }
