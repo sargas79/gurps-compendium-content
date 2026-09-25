@@ -4939,7 +4939,7 @@
         },
         "indirectFire": {
           "Name": "Indirect fire and forward observers",
-          "Hint": "A gun's row runs a fire mission: observed fire, where the forward observer's Navigation roll (+1 compass, +3 GPS, -10 without a map) and Forward Observer roll (-3 per 500 yards after magnification and a rangefinder, Vision modifiers, a fire-control computer) set the first shot's -10, each correction after a shot is another roll and 2d+5 seconds, and the gun attacks without Acc; or predicted fire on an area off a map. The card gives the time of flight and the scatter of a miss, squared for a target the gunner can't see (High-Tech pp. 139-141)."
+          "Hint": "A gun's row runs a fire mission: observed fire, where the forward observer's Navigation roll (+1 compass, +3 GPS, -10 without a map) and Forward Observer roll (-3 per 500 yards after magnification and a rangefinder, Vision modifiers, a fire-control computer) set the first shot's -10, each correction after a shot is another roll and 2d+5 seconds, and the gun attacks without Acc; or predicted fire on an area off a map. The observer's magnification and rangefinder are read off the binoculars, scopes and computer sights he carries, and his Vision modifiers off the map (darkness at the target, its SM); a smart round on his laser designator is his DX-based Forward Observer roll in place of the gunner's. The card gives the time of flight and the scatter of a miss, squared for a target the gunner can't see (High-Tech pp. 139-141)."
         },
         "gunMagazines": {
           "Name": "Gun magazines",
@@ -6397,6 +6397,12 @@
         "Rangefinder": "Rangefinder's reach (yards, 0 for none)",
         "FireControl": "Fire-control computer bonus",
         "Vision": "Other Vision modifiers",
+        "VisionHint": "Filled in from the map: the darkness at the target for the observer's eyes, and the target's Size Modifier. Add what else the GM rules.",
+        "OpticsFound": "Magnification from the observer's {item} (x{magnification}).",
+        "OpticsAsk": "No binoculars or scope on the sheet: enter what the observer looks through.",
+        "Designated": "Smart round on the observer's laser designator",
+        "DesignatedHint": "The observer guides the round with a laser designator: his DX-based Forward Observer roll, with his Vision modifiers, replaces the gunner's (High-Tech p. 139).",
+        "DesignateRoll": "Laser designation by {fo}: {weapon}",
         "Start": "Start the mission",
         "NoMode": "This weapon has no mode that fires indirectly.",
         "NoGun": "The gun or its attack row is gone.",

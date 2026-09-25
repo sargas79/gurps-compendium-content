@@ -6,7 +6,10 @@
  * One dialog sets the mission up: observed fire under a forward observer, or
  * predicted fire on an area off a map; the gun's mode; the FO, his skills and
  * what he navigates and looks with; how far away the target is and the
- * mission's trajectory. One card then runs it, a button at a time:
+ * mission's trajectory. The FO's magnification and rangefinder start from
+ * the optics he carries, and his Vision modifiers from the map: the darkness
+ * at the target for his eyes and the target's SM. One card then runs it, a
+ * button at a time:
  *
  *   - the FO's Navigation roll (+1 compass, +3 GPS, -10 without a map);
  *   - his Forward Observer roll to find the target (-3 per 500 yards after
@@ -17,12 +20,16 @@
  *   - the gun's attack: its skill at -10 plus the FO's adjustment and no Acc
  *     (predicted fire: the Basic Set's +4 for attacking an area instead), the
  *     time of flight, and on a miss the scatter, squared as for an Artillery
- *     shot at a target the gunner can't see (Campaigns p. 414);
+ *     shot at a target the gunner can't see (Campaigns p. 414); for a smart
+ *     round on the FO's laser designator, his DX-based Forward Observer roll
+ *     in its place;
  *   - each correction after a shot: another Forward Observer roll and 2d+5
  *     seconds, its margin added on.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { catalogueFigures } from "../accessories/rules.js";
+import { OPTICS } from "../sensors/rules.js";
 import {
   INDIRECT_FIRE_PENALTY,
   NAVIGATION_AID_BONUS,
@@ -97,6 +104,43 @@ export function carriedNavigationAid(actor: any): { aid: NavigationAid; counted:
   return { aid: "none", counted: null, found: null };
 }
 
+/**
+ * What the FO looks with (p. 139), read off his carried gear: the best
+ * magnification of the optics he carries (binoculars, a spotting scope; not a
+ * camera or a vehicle's sensor), and the reach of a rangefinder in a
+ * computer sight he carries.
+ */
+export function observerOptics(actor: any): { magnification: number; rangefinderYards: number; optic: string | null } {
+  const gear = [...(actor?.items ?? [])].filter((i: any) => i?.type === "equipment" && i.system?.carried !== false);
+  let magnification = 1;
+  let optic: string | null = null;
+  let rangefinderYards = 0;
+  for (const item of gear) {
+    const name = String(item.name ?? "");
+    const figures = OPTICS[name];
+    if (figures && !figures.mounted && figures.magnification > magnification) {
+      magnification = figures.magnification;
+      optic = name;
+    }
+    const sight = catalogueFigures(name);
+    if (sight?.rangefinder && Number(sight.yards) > rangefinderYards) rangefinderYards = Number(sight.yards);
+  }
+  return { magnification, rangefinderYards, optic };
+}
+
+/**
+ * The Vision modifiers the map gives the FO against the target: the darkness
+ * there for his eyes (`areas.darknessAt`, GWorld API 1.96.0), and the
+ * target's Size Modifier. 0 where there is no target token.
+ */
+export function observerVision(api: GWorldApi, observer: any, target: any): number {
+  if (!target) return 0;
+  const reading = typeof (api.areas as any)?.darknessAt === "function" ? (api.areas as any).darknessAt(null, target, { observer }) : null;
+  const dark = reading && !reading.total ? Math.min(0, Number(reading.penalty) || 0) : 0;
+  const sm = Math.trunc(Number(target?.actor?.system?.sm) || 0);
+  return dark + sm;
+}
+
 /** One line of the card's log. */
 interface LogLine { text: string; note?: string }
 
@@ -129,6 +173,9 @@ export interface MissionData {
   /** The last shot hit, or missed with a round that still goes off where it lands. */
   canDamage: boolean;
   lastHit: boolean;
+  /** A smart round the FO guides with a laser designator: his DX-based Forward Observer roll replaces the gunner's (p. 139). */
+  designated: boolean;
+  designatorSkill: number;
   log: LogLine[];
   [key: string]: unknown;
 }
@@ -174,6 +221,10 @@ export async function planMission(api: GWorldApi, item: any, gunner: any): Promi
   const gunYards = yardsBetween(tokenOf(gunner), target) ?? 1000;
   const foYards = (a: any) => yardsBetween(tokenOf(a), target) ?? 1000;
   const aidOf = (a: any) => carriedNavigationAid(a);
+  const opticsHint = (a: any) => {
+    const read = observerOptics(a);
+    return read.optic ? F("OpticsFound", { item: read.optic, magnification: read.magnification }) : L("OpticsAsk");
+  };
   const aidHint = (a: any) => {
     const read = aidOf(a);
     return read.counted ? F("AidCounted", { item: read.counted }) : read.found ? F("AidFound", { item: read.found }) : L("AidAsk");
@@ -198,10 +249,13 @@ export async function planMission(api: GWorldApi, item: any, gunner: any): Promi
       <p class="ihint" data-aid-hint>${esc(aidHint(fo))}</p>
       <label class="icheck"><input type="checkbox" name="map" checked> ${esc(L("Map"))}</label>
       ${row(L("FoYards"), number("foYards", foYards(fo), 'min="0"'))}
-      ${row(L("Magnification"), number("magnification", 1, 'min="1"'))}
-      ${row(L("Rangefinder"), number("rangefinder", 0, 'min="0"'))}
+      ${row(L("Magnification"), number("magnification", observerOptics(fo).magnification, 'min="1"'))}
+      ${row(L("Rangefinder"), number("rangefinder", observerOptics(fo).rangefinderYards, 'min="0"'))}
+      <p class="ihint" data-optics-hint>${esc(opticsHint(fo))}</p>
       ${row(L("FireControl"), number("fireControl", 0, 'min="0"'))}
-      ${row(L("Vision"), number("vision", 0))}
+      ${row(L("Vision"), number("vision", observerVision(api, fo, target)))}
+      <p class="ihint">${esc(L("VisionHint"))}</p>
+      <label class="icheck" data-tooltip="${esc(L("DesignatedHint"))}"><input type="checkbox" name="designated"> ${esc(L("Designated"))}</label>
     </fieldset></div>`;
 
   const form = await foundry.applications.api.DialogV2.prompt({
@@ -220,8 +274,13 @@ export async function planMission(api: GWorldApi, item: any, gunner: any): Promi
         set("navigationSkill", observerSkill(api, picked, "Navigation"));
         set("aid", aidOf(picked).aid);
         set("foYards", foYards(picked));
+        set("magnification", observerOptics(picked).magnification);
+        set("rangefinder", observerOptics(picked).rangefinderYards);
+        set("vision", observerVision(api, picked, target));
         const hint = root?.querySelector<HTMLElement>("[data-aid-hint]");
         if (hint) hint.textContent = aidHint(picked);
+        const optics = root?.querySelector<HTMLElement>("[data-optics-hint]");
+        if (optics) optics.textContent = opticsHint(picked);
       });
       const fieldset = root?.querySelector<HTMLElement>("[data-observed]");
       field<HTMLSelectElement>("mission")?.addEventListener("change", (event) => {
@@ -256,6 +315,10 @@ export function missionFrom(api: GWorldApi, options: { gunner: any; item: any; r
   if (range) observation.push({ label: F("RangeLine", { yards: foYards, effective: Math.round(effective) }), value: range });
   if (whole(form.fireControl) > 0) observation.push({ label: L("FireControlLine"), value: whole(form.fireControl) });
   if (whole(form.vision)) observation.push({ label: L("VisionLine"), value: whole(form.vision) });
+  const foSkill = whole(form.foSkill, 5);
+  const designated = mission === "observed" && Boolean(form.designated) && fo !== null;
+  const iq = designated ? Number(api.actors.attribute(fo, "IQ" as never)) || 10 : 10;
+  const dx = designated ? Number(api.actors.attribute(fo, "DX" as never)) || 10 : 10;
 
   return {
     mission,
@@ -266,7 +329,7 @@ export function missionFrom(api: GWorldApi, options: { gunner: any; item: any; r
     weapon: [String(item.name ?? ""), rows.length > 1 && row?.mode ? `(${row.mode})` : ""].filter(Boolean).join(" "),
     foUuid: String(fo?.uuid ?? ""),
     foName: String(fo?.name ?? ""),
-    foSkill: whole(form.foSkill, 5),
+    foSkill,
     navigationSkill: whole(form.navigationSkill, 5),
     navigation: navigationModifiers({ aid, map: Boolean(form.map) }).map((line) => ({ label: L(`NavigationLines.${line.key}`), value: line.value })),
     observation,
@@ -281,6 +344,9 @@ export function missionFrom(api: GWorldApi, options: { gunner: any; item: any; r
     shots: 0,
     canDamage: false,
     lastHit: false,
+    designated,
+    // Forward Observer is IQ-based; the designator's roll is the same skill based on DX (Characters p. 172).
+    designatorSkill: designated ? api.rules.basedOnAnother(foSkill, iq, dx) : 0,
     log: [],
   };
 }
@@ -345,15 +411,26 @@ export async function fire(api: GWorldApi, data: MissionData): Promise<MissionDa
   }
   if (data.gunnerModifier) modifiers.push({ label: L("GunnerModifierLine"), value: data.gunnerModifier });
 
-  const outcome: any = await api.roll.success({
-    actor: gunner,
-    base: row.skillLevel,
-    label: F("FireRoll", { weapon: data.weapon }),
-    kind: "attack",
-    skill: String(row.skillName ?? ""),
-    modifiers,
-    tags: ["indirectFire"],
-  } as any);
+  // A smart round on the FO's laser: his DX-based Forward Observer roll in place of the gunner's, as he sees the target (p. 139).
+  const fo = data.designated ? fromUuid(data.foUuid) : null;
+  const outcome: any = fo
+    ? await api.roll.success({
+      actor: fo,
+      base: data.designatorSkill,
+      label: F("DesignateRoll", { fo: data.foName, weapon: data.weapon }),
+      skill: FORWARD_OBSERVER,
+      modifiers: [...data.observation, ...(data.gunnerModifier ? [{ label: L("GunnerModifierLine"), value: data.gunnerModifier }] : [])],
+      tags: ["indirectFire", "laserDesignation"],
+    } as any)
+    : await api.roll.success({
+      actor: gunner,
+      base: row.skillLevel,
+      label: F("FireRoll", { weapon: data.weapon }),
+      kind: "attack",
+      skill: String(row.skillName ?? ""),
+      modifiers,
+      tags: ["indirectFire"],
+    } as any);
   if (!outcome) return data;
 
   const shot = data.shots + 1;

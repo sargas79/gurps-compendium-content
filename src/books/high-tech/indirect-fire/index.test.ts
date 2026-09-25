@@ -9,7 +9,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
-import { carriedNavigationAid, damage, fire, missionFrom, missionView, navigate, observe, observerSkill, readyIndirectFire, type MissionData } from "./index.js";
+import { carriedNavigationAid, damage, fire, missionFrom, missionView, navigate, observe, observerOptics, observerSkill, observerVision, readyIndirectFire, type MissionData } from "./index.js";
 
 let successes: any[];
 let outcomes: any[];
@@ -201,6 +201,33 @@ describe("running the mission", () => {
     outcomes.push({ success: true, margin: 2 });
     await fire(api as never, data);
     expect(successes[0].modifiers).toEqual([{ label: "GCC.HT.IndirectFire.AreaLine", value: 4 }]);
+  });
+
+  it("rolls the FO's DX-based Forward Observer for a round on his laser designator", async () => {
+    const api = fakeApi();
+    // Forward Observer-14 on IQ 10, DX 10: 14; the FO's own Vision lines go with it.
+    const data = { ...mission(api, { designated: true }), stage: "fire" };
+    expect(data).toMatchObject({ designated: true, designatorSkill: 14 });
+    outcomes.push({ success: true, margin: 3 });
+    await fire(api as never, data);
+    expect(successes[0]).toMatchObject({ base: 14, skill: "Forward Observer", tags: ["indirectFire", "laserDesignation"] });
+    expect(successes[0].modifiers).toEqual(data.observation);
+    expect(successes[0].actor.uuid).toBe("fo");
+  });
+});
+
+describe("the observer's optics and sight", () => {
+  it("reads the best optic and a computer sight's rangefinder off the FO's gear", () => {
+    const gear = (items: any[]) => ({ items: items.map((i) => ({ type: "equipment", system: {}, ...i })) });
+    expect(observerOptics(gear([{ name: "Binoculars (TL6)" }, { name: "Military-Grade Binoculars (TL7)" }, { name: "Thermal-Imaging Sensor" }]))).toEqual({ magnification: 10, rangefinderYards: 0, optic: "Military-Grade Binoculars (TL7)" });
+    expect(observerOptics(gear([{ name: "Computer Sight" }]))).toMatchObject({ magnification: 1, rangefinderYards: 4000 });
+    expect(observerOptics(gear([{ name: "Spotting Scope", system: { carried: false } }]))).toMatchObject({ magnification: 1, optic: null });
+  });
+
+  it("reads the darkness at the target for the FO's eyes, and the target's SM", () => {
+    const api: any = { areas: { darknessAt: (_s: unknown, token: any) => ({ darkness: 5, total: false, penalty: token.dark }) } };
+    expect(observerVision(api, {}, { dark: -5, actor: { system: { sm: 2 } } })).toBe(-3);
+    expect(observerVision(api, {}, null)).toBe(0);
   });
 });
 
