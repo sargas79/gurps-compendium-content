@@ -6,7 +6,8 @@
  * A burn is kept as a flag on the actor (`{ seconds, ... }`) and a module
  * condition naming the seconds left. On each of the victim's turns the active
  * GM rolls a second's damage against the DR the fire meets, takes what gets
- * through off the victim's HP (`actors.applyInjury`), and counts the burn
+ * through off the victim's HP (`actors.applyInjury`, at the place it burns
+ * where the fire is on one spot, since API 1.148.0), and counts the burn
  * down; at 0 it goes out. Taking the condition off puts it out -- the GM's
  * say that it was smothered, drenched or scraped off -- and so does its rule
  * being switched off.
@@ -35,6 +36,13 @@ export interface LingeringBurn {
   dice: { dice: number; adds: number };
   /** The DR the fire meets this second. */
   dr: (api: GWorldApi, actor: any, state: BurnState) => number;
+  /**
+   * The hit location it burns, for a fire on one spot: what gets through is
+   * burning damage there, multiplied by the place's wounding modifier and
+   * crippling it as a wound there does (Campaigns pp. 398-399). Left out, the
+   * injury has no location.
+   */
+  location?: (state: BurnState) => string | null;
   /**
    * The state after a second that rolled `roll`, before the count-down. It may
    * change the victim too: thermite wears down the armour it burns through.
@@ -82,7 +90,8 @@ async function tick(api: GWorldApi, actor: any, burn: LingeringBurn): Promise<vo
   const roll = secondOfBurning(Array.from({ length: burn.dice.dice }, d6), burn.dice.adds);
   const dr = Math.max(0, Math.floor(burn.dr(api, actor, state)));
   const injury = Math.max(0, roll - dr);
-  if (injury > 0) await api.actors.applyInjury(actor, { amount: injury, label: burn.title() });
+  const location = burn.location?.(state) ?? null;
+  if (injury > 0) await api.actors.applyInjury(actor, { amount: injury, label: burn.title(), ...(location ? { location, damageType: "burn" } : {}) });
   const next = burn.after ? await burn.after(state, roll, actor) : state;
   const left = Math.max(0, (Number(state.seconds) || 0) - 1);
   const name = String(actor.name ?? "");

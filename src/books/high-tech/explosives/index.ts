@@ -598,6 +598,8 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     title: () => L("Thermite.Title"),
     conditionLabel: (seconds) => F("Thermite.Burning", { seconds }),
     dice: { dice: THERMITE.dice, adds: THERMITE.adds },
+    // Its 3d burning a second touches one spot: injury there, with the place's wounding modifier (API 1.148.0).
+    location: (state) => String(state.location ?? "torso"),
     dr: (a, actor, state) => thermiteDrOnVictim(Number((a.actors.derived(actor) as any)?.drByLocation?.[String(state.location ?? "torso")]) || 0, Number(state.damage) || 0, Number(state.worn) || 0),
     // Every 10 points destroy a point of DR for good, even on armour (p. 188): worn off the
     // armour on the spot (`items.wearDr`), and counted against the rest of the DR there.
