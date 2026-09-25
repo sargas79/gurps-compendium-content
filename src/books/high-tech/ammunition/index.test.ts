@@ -360,4 +360,33 @@ describe("a batch of handloads (High-Tech p. 174)", () => {
     expect(chat.at(-1)).toContain("BatchAdded");
     expect(chat.at(-1)).toContain('"total":30');
   });
+
+  it("casts the projectiles at the book's example modifier, and refuses to cast flechettes (p. 174)", async () => {
+    on.projectileOptions = true;
+    const warnings: string[] = [];
+    (globalThis as any).ui = { notifications: { warn: (m: string) => warnings.push(m) } };
+    const api = {
+      ...fakeApi(),
+      actors: { skillLevel: (_a: any, name: string) => (name === "Armoury (Small Arms)" ? 12 : null), attribute: () => 10 },
+      items: { changeQuantity: async (item: any, delta: number) => ({ from: item.system.quantity, to: item.system.quantity + delta }) },
+    };
+    const rounds = box({ quantity: 0, fits: "12G 2.75in", loads: [load({ projectile: "aphc" })] });
+    rounds.actor = { name: "Loader", items: [rounds] };
+    rounds.update = async (changes: Record<string, unknown>) => { for (const [path, value] of Object.entries(changes)) setPath(rounds, path, value); };
+    vi.stubGlobal("Roll", class { total = 10; async evaluate() { return this; } });
+    let content = "";
+    (globalThis as any).foundry.applications = { api: { DialogV2: { prompt: async (o: any) => { content = o.content; return { tool: "press", source: "handloaded", rounds: 20, cast: true, castModifier: -2 }; } } } };
+    await loadBatch(api as never, rounds, 0, switches);
+    // APHC is offered at -2; the rolls are at Armoury 12 - 2.
+    expect(content).toContain('name="castModifier" value="-2"');
+    expect(chat.at(-1)).toContain('"level":10');
+    expect(chat.at(-1)).toContain("BatchCast");
+    on.multipleProjectileLoads = true;
+    const flechettes = box({ quantity: 0, fits: "12G 2.75in", loads: [load({ projectile: "multiFlechette" })] });
+    flechettes.actor = rounds.actor;
+    const before = chat.length;
+    await loadBatch(api as never, flechettes, 0, switches);
+    expect(warnings).toEqual(["GCC.HT.Ammunition.CastFactory"]);
+    expect(chat.length).toBe(before);
+  });
 });

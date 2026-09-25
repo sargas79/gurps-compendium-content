@@ -142,6 +142,24 @@ const worn = (item: any) => isGear(item) && item.system?.equipped === true;
 const carried = (item: any) => isGear(item) && item.system?.carried !== false;
 /** The book's own gear, or gear from no book at all: another book's is its own table's. */
 const ours = (item: any) => { const book = bookOf(item); return book === null || book === "high-tech"; };
+
+/**
+ * A character who has had to take a gas mask off to retch (p. 171): the world
+ * time the retching ends, set by the ammunition's gas rules.
+ */
+export const MASK_OFF_FLAG = "htMaskOff";
+
+/** Whether a character must keep their mask off: until then it gives nothing, air, filter or seal. */
+export const maskForcedOff = (actor: any): boolean => Number(actor?.getFlag?.(MODULE_ID, MASK_OFF_FLAG)) > (Number((game as any).time?.worldTime) || 0);
+
+/** A mask over the face, or a helmet that seals over it: what the wearer takes off to retch. */
+const isMask = (item: any): boolean => isAirMask(nameOf(item)) || isRebreather(nameOf(item)) || /^(scuba gear|closed-dress suit|hard-hat suit)$/i.test(breathingName(item));
+
+/** The pieces a character wears, less a mask they have had to take off. */
+function wornGear(actor: any): any[] {
+  const off = maskForcedOff(actor);
+  return [...(actor?.items ?? [])].filter((i: any) => worn(i) && ours(i) && !(off && isMask(i)));
+}
 /** The TL an item was made at, TL7 where it says none. */
 const tlOf = (item: any) => Number(/\d+/.exec(String(item?.system?.tl ?? ""))?.[0]) || 7;
 const nameOf = (item: any) => String(item?.name ?? "");
@@ -215,7 +233,7 @@ const hasAir = (item: any) => (minutesLeft(item) ?? 0) > 0;
  */
 export function airSupply(actor: any, on: BreathingSwitches): any {
   const items = [...(actor?.items ?? [])].filter(ours);
-  const wornItems = items.filter(worn);
+  const wornItems = wornGear(actor);
   const wearing = (pattern: RegExp) => wornItems.find((i) => pattern.test(breathingName(i)));
   if (on.breathing()) {
     const own = wornItems.find((i) => (isRebreather(nameOf(i)) || /^scuba gear$/i.test(breathingName(i))) && hasAir(i));
@@ -244,7 +262,7 @@ let breathingOn: () => boolean = () => false;
  */
 export function wearsIrritantMask(actor: any): boolean {
   if (!breathingOn() || !actor) return false;
-  return [...(actor.items ?? [])].some((i: any) => worn(i) && ours(i) && (isAirMask(nameOf(i)) || isRebreather(nameOf(i)) || /^(scuba gear|closed-dress suit|hard-hat suit)$/i.test(breathingName(i))));
+  return wornGear(actor).some(isMask);
 }
 
 /** Takes minutes off a supply's air: a textbook minute for each. */
@@ -435,7 +453,8 @@ export function readyBreathing(api: GWorldApi, on: BreathingSwitches): void {
   // ── what the gear is, in trait terms (pp. 72-76) ──
   Hooks.on("gworld.traitEffects", (context: any) => {
     if (!anyOn() || !context?.actor || !context.effects) return;
-    const wornItems = [...(context.actor.items ?? [])].filter((i: any) => worn(i) && ours(i));
+    // A mask taken off to retch gives nothing, nor seals the suit worn over it (p. 171).
+    const wornItems = wornGear(context.actor);
     const names = wornItems.map(nameOf);
     let pf = 1;
     let pfLabel = "";
