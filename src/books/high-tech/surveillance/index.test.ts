@@ -32,6 +32,7 @@ let targets: any[];
 let tokens: any[];
 let successResult: any;
 let contestOutcome: string;
+let prices: any[];
 
 const key = (k: string) => `${MODULE_ID}.${k}`;
 
@@ -39,6 +40,7 @@ function fakeApi() {
   return {
     registry: { isRuleOn: (k: string) => on.has(k) },
     combat: { hooks: { successRollModifiers: "gworld.successRollModifiers" } },
+    data: { registerPriceModifier: (m: any) => prices.push(m) },
     sheets: {
       registerSheetSection: (s: any) => sections.set(s.key, s),
       registerRowAction: (a: any) => actions.set(a.key, a),
@@ -122,6 +124,7 @@ beforeEach(async () => {
   tokens = [];
   successResult = { success: true, criticalFailure: false };
   contestOutcome = "first";
+  prices = [];
   vi.stubGlobal("game", { i18n: { localize: (k: string) => k, format: (k: string, d: any) => `${k} ${JSON.stringify(d)}` }, user: { get targets() { return new Set(targets.map((actor) => ({ actor }))); }, isGM: true } });
   vi.stubGlobal("Hooks", { on: (hook: string, fn: Listener) => hooks.set(hook, [...(hooks.get(hook) ?? []), fn]) });
   vi.stubGlobal("foundry", {
@@ -384,6 +387,36 @@ describe("jamming (pp. 212-213)", () => {
     expect(successes).toEqual([]);
   });
 
+  it("builds a cell-phone jammer with double the radius, at 4 times the cost and weight (HT:EE p. 50)", async () => {
+    const doubled = () => {
+      const jammer = gear("Cell-Phone Jammer", { tl: "8", extensions: { [MODULE_ID]: { device: { doubleRadius: true } } } }, { jammerOn: true });
+      return jammer;
+    };
+    const price = prices.find((m) => m.key === "ht-cell-jammer-radius");
+    const section = sections.get("ht-surveillance-item");
+    expect(price.apply(doubled(), { cost: 500, weight: 5 })).toBeNull();
+    on.add(key("jamming"));
+    expect(price.apply(doubled(), { cost: 500, weight: 5 })).toMatchObject({ cost: 2000, weight: 20 });
+    expect(price.apply(gear("Cell-Phone Jammer", { tl: "8" }), { cost: 500, weight: 5 })).toBeNull();
+    expect(shared.jammerOf(doubled())!.jammer.range).toBe(30);
+    expect(shared.jammerOf(gear("Cell-Phone Jammer", { tl: "8" }))!.jammer.range).toBe(15);
+    const context = section.context(doubled());
+    expect(context.cellJammer).toBe(true);
+    expect(context.doubleRadius).toBe(true);
+    expect(context.lines.join(" ")).toContain('"range":30');
+    // The jammer that blocks is never read as an operated one, doubled or not.
+    expect(context.lines.join(" ")).not.toContain("Jammer.Operated");
+    expect(section.context(gear("Cell-Phone Jammer", { tl: "8" })).lines.join(" ")).not.toContain("Jammer.Operated");
+    expect(section.context(gear("Area Jammer (TL8)")).cellJammer).toBe(false);
+    // A beacon 20 yards off is blocked by the doubled jammer.
+    const holder = character("Holder", [doubled()], {}, 0);
+    const beacon = gear("Cellular Beacon", { tl: "8" });
+    const tracker = character("Tracker", [beacon], {}, 20);
+    await actions.get("jammer-use-near").run(beacon, tracker);
+    expect(chat.at(-1).content).toContain("Jamming.Blocked");
+    expect(holder.items.length).toBe(1);
+  });
+
   it("lets a caller follow a call through a cell-phone jammer by ear: Hearing-2 within 15 yards, unmodified to 150 (HT:EE p. 50)", async () => {
     on.add(key("jamming"));
     scene("Cell-Phone Jammer", 0);
@@ -628,13 +661,40 @@ describe("radar jammers and spoofers (HT:EE pp. 49-50)", () => {
     expect(await shared.useNearJammers(fakeApi() as never, radar, user)).toBe("spoofed");
     expect(contests[0].first).toMatchObject({ actor: user, base: 13, note: SENSORS });
     expect(contests[0].second).toMatchObject({ actor: holder, base: 14, note: EW });
+    // Rolled in secret; the user is shown the signal getting through, and the GMs alone are told it is false.
+    expect(contests[0].secret).toBe(true);
+    expect(chat.at(-2).content).toContain("Jamming.GetsThrough");
+    expect(chat.at(-2).whisper).toBeUndefined();
     expect(chat.at(-1).content).toContain("Jamming.Spoofed");
+    expect(chat.at(-1).whisper).toEqual(["gm"]);
     contestOutcome = "first";
     expect(await shared.useNearJammers(fakeApi() as never, radar, user)).toBe("through");
     tokens = [];
     const beyond = scene("Radar Spoofer", 31 * 1760);
     expect(await shared.useNearJammers(fakeApi() as never, beyond.radar, beyond.user)).toBe("clear");
     expect(contests.length).toBe(2);
+  });
+
+  it("carries on past a lost spoof as past a won one, and tells the GMs only at the end", async () => {
+    on.add(key("radarJamming"));
+    const { radar, user } = scene("Radar Spoofer", 20 * 1760);
+    // A radar jammer further off, reached after the spoofer.
+    character("Blinder", [gear("Radar Jammer (TL7)", {}, { jammerOn: true })], { skills: { [EW]: 14 } }, -5 * 1760);
+    contestOutcome = "second";
+    successResult = { success: true };
+    expect(await shared.useNearJammers(fakeApi() as never, radar, user)).toBe("spoofed");
+    // The jammer's roll was made all the same, and the user's card reads as an unspoofed one would.
+    expect(successes).toHaveLength(1);
+    expect(chat.filter((m) => !m.whisper).map((m) => m.content).join(" ")).not.toContain("Spoofed");
+    expect(chat.at(-2).content).toContain("Jamming.GetsThrough");
+    expect(chat.at(-1)).toMatchObject({ whisper: ["gm"] });
+    expect(chat.at(-1).content).toContain("Jamming.Spoofed");
+    // Jammed by the next one: the user sees the jamming, the GMs still hear of the spoof.
+    chat = [];
+    successResult = { success: false };
+    expect(await shared.useNearJammers(fakeApi() as never, radar, user)).toBe("jammed");
+    expect(chat.at(-2).content).toContain("Jamming.Jammed");
+    expect(chat.at(-1)).toMatchObject({ whisper: ["gm"] });
   });
 
   it("puts the radar jammer, the spoofer and the radar's hindrance on the sheet", () => {

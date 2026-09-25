@@ -18,6 +18,7 @@ import {
   isElectricStunner,
   isEyeLaser,
   isHailingDevice,
+  isLaserPointer,
   isNnemp,
   nnempModifier,
   nnempRepairPenalty,
@@ -43,6 +44,9 @@ describe("the records the rules match (#480)", () => {
     ["Cattle Prod", isCattleProd],
     ["Dazzler", isEyeLaser],
     ["Laser Pointer", isEyeLaser],
+    ["Green Laser Pointer", isEyeLaser],
+    ["Laser Pointer", isLaserPointer],
+    ["Green Laser Pointer", isLaserPointer],
     ["Acoustic Hailing Device", isHailingDevice],
     ["Active Denial System", isActiveDenial],
     ["NNEMP", isNnemp],
@@ -58,12 +62,21 @@ describe("the records the rules match (#480)", () => {
 
   it("gives the supplement's Air Taser High-Tech's ranged-stunner field, and cites the supplement for the lasers", () => {
     expect(named("Air Taser Model 34000")[0].system.extensions["gurps-compendium-content"].firearm.stunSeconds).toBe(5);
-    for (const name of ["Dazzler", "Laser Pointer"]) expect(named(name).every((r) => fromSupplement(r.system.reference))).toBe(true);
+    for (const name of ["Dazzler", "Laser Pointer", "Green Laser Pointer"]) expect(named(name).every((r) => fromSupplement(r.system.reference))).toBe(true);
+  });
+
+  it("gives the green laser pointer the Ranged Weapons Table's 10/100 (HT:EE p. 51, note [3])", () => {
+    const [red] = named("Laser Pointer");
+    const [green] = named("Green Laser Pointer");
+    expect(red.system.rangedModes[0]).toMatchObject({ halfDamageRange: 2, maxRange: 20 });
+    expect(green.system.rangedModes[0]).toMatchObject({ halfDamageRange: 10, maxRange: 100, afflictionModifier: -2, accuracy: 5 });
+    expect(green.system.extensions["gurps-compendium-content"].device.marketYear).toBe(2000);
   });
 
   it("matches nothing else", () => {
     expect(isElectricStunner("Stun Grenade")).toBe(false);
     expect(isEyeLaser("Laser Sight")).toBe(false);
+    expect(isLaserPointer("Dazzler")).toBe(false);
     expect(isNnemp("Nuclear Bomb")).toBe(false);
   });
 });

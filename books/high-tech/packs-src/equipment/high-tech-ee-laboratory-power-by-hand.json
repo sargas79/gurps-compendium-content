@@ -1275,5 +1275,91 @@
         }
       }
     }
+  },
+  {
+    "_id": "b4901251637aba9d",
+    "name": "Green Laser Pointer",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 7,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 21",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 7,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [
+        {
+          "name": "dazzle",
+          "skill": "Beam Weapons (Pistol)",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": true,
+          "afflictionAttribute": "HT",
+          "afflictionModifier": -2,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "accuracy": 5,
+          "scopeBonus": 0,
+          "halfDamageRange": 10,
+          "maxRange": 100,
+          "rangeIsStMultiple": false,
+          "rateOfFire": 1,
+          "projectiles": 1,
+          "shots": "50,000",
+          "loaded": 50000,
+          "reloadWeight": 0,
+          "ammunition": "",
+          "minSt": 2,
+          "twoHanded": false,
+          "weaponSt": null,
+          "thrown": false,
+          "mount": "",
+          "bulk": 0,
+          "recoil": 1,
+          "malfunction": null
+        }
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "T",
+              "cells": 1,
+              "endurance": "1 year.",
+              "raw": "T/1 year."
+            }
+          },
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 2000
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 2000
+          }
+        }
+      }
+    }
   }
 ]

@@ -131,6 +131,8 @@ export interface DeviceData {
   military: boolean;
   /** A surveillance camera with pan, tilt and zoom (HT:EE p. 45). */
   panTiltZoom: boolean;
+  /** A cell-phone jammer built with double the radius, at 4 times the cost and weight (HT:EE p. 50). */
+  doubleRadius: boolean;
   /** The specialty a device is designed for, blank for none: a laser scalpel's Surgery (HT:EE p. 14). */
   specialty: string;
 }
@@ -176,6 +178,7 @@ export function initDevices(): void {
       }),
       military: new f.BooleanField({ initial: false }),
       panTiltZoom: new f.BooleanField({ initial: false }),
+      doubleRadius: new f.BooleanField({ initial: false }),
       specialty: new f.StringField({ required: true, nullable: false, blank: true, initial: "" }),
     }),
   });
@@ -217,6 +220,7 @@ export function deviceData(item: any): DeviceData {
     },
     military: d.military === true,
     panTiltZoom: d.panTiltZoom === true,
+    doubleRadius: d.doubleRadius === true,
     specialty: String(d.specialty ?? "").trim(),
   };
 }

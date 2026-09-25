@@ -31,6 +31,7 @@ const lines = (list: any[]) => list.map((m) => m.value);
 function fakeApi() {
   return {
     registry: { isRuleOn: (k: string) => on.has(k) },
+    data: { registerPriceModifier: () => {} },
     sheets: {
       registerSheetSection: (s: any) => sections.set(s.key, s),
       registerRowAction: (a: any) => actions.set(a.key, a),

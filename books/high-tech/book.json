@@ -4067,7 +4067,11 @@
           "Hot Stick (Fiberglass)": "Hot Stick",
           "Small Tesla Coil": "Tesla Coil",
           "Large Tesla Coil": "Tesla Coil",
-          "Electrobat II": "Electrobat"
+          "Electrobat II": "Electrobat",
+          "Ethernet Adapter (Coaxial Cable)": "Ethernet Adapter",
+          "Ethernet Adapter (Twisted Pair)": "Ethernet Adapter",
+          "Ethernet Adapter (Fiber-Optic Cable)": "Ethernet Adapter",
+          "Green Laser Pointer": "Laser Pointer"
         },
         "families": [
           { "pattern": "^Compact Digital Oscilloscope$", "replace": "Digital Oscilloscope" },
@@ -4112,6 +4116,10 @@
           {
             "pattern": "^Reconnaissance UAVs$",
             "reason": "the two UAVs are kept by hand as vehicles from the Reconnaissance UAVs Table; the entry's price is two T-Hawks and their controller (HT:EE p. 46)"
+          },
+          {
+            "pattern": "^Ethernet Adapter$",
+            "reason": "the entry names three media, each with its own years; one record a medium is kept by hand (HT:EE p. 41)"
           }
         ],
         "set": [

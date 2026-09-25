@@ -152,7 +152,7 @@ describe("which gear the conventions reach", () => {
       hp: null, ht: null, dr: null, parts: { count: 0, label: "", hp: 1, ht: 10, broken: 0, failing: 0 }, used: 0,
       soundQuality: null, carbonMicrophone: false, inexpensive: false, extraSpeakers: 0,
       earlyModel: false, diamondBlade: false, remoteControl: false, emergencyStop: false, magnet: { core: "", diameter: 0, length: 0 },
-      military: false, panTiltZoom: false, specialty: "",
+      military: false, panTiltZoom: false, doubleRadius: false, specialty: "",
     });
   });
 });
