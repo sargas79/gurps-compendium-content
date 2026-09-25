@@ -78,6 +78,9 @@ describe("endurance", () => {
     expect(hoursText(8)).toEqual({ value: 8, unit: "hr" });
     expect(hoursText(72)).toEqual({ value: 3, unit: "day" });
     expect(hoursText(720)).toEqual({ value: 4.3, unit: "wk" });
+    // Under an hour, in minutes: a supercapacitor's minute (HT:EE p. 18).
+    expect(hoursText(1 / 60)).toEqual({ value: 1, unit: "min" });
+    expect(hoursText(0)).toEqual({ value: 0, unit: "hr" });
   });
 });
 

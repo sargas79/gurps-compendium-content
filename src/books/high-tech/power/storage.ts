@@ -49,6 +49,30 @@ export function supercapacitorStandsFor(size: string, sizes: readonly string[]):
   return at >= 0 && at + 1 < sizes.length ? sizes[at + 1]! : null;
 }
 
+/**
+ * What a supercapacitor in a gadget is against the gadget's batteries
+ * (HT:EE p. 18): one a size smaller, which stands in for them for a minute,
+ * weighing what a battery of its size does and costing twenty times as much
+ * -- an alkaline battery's price and weight, as the sizes are rated. Its
+ * factors on the gadget's own size's printed figures, and the size; null
+ * below the smallest size.
+ */
+export function supercapacitorFactors(
+  size: string,
+  sizes: readonly string[],
+  printed: (size: string) => { cost: number; weight: number },
+  alkaline: (size: string) => { cost: number; weight: number } | null,
+): { size: string; cost: number; weight: number } | null {
+  const at = sizes.indexOf(size);
+  if (at <= 0) return null;
+  const smaller = sizes[at - 1]!;
+  const own = printed(size);
+  const small = printed(smaller);
+  const a = alkaline(smaller) ?? { cost: 1, weight: 1 };
+  if (!(own.cost > 0) || !(own.weight > 0)) return null;
+  return { size: smaller, cost: (small.cost * a.cost * SUPERCAPACITOR.cost) / own.cost, weight: (small.weight * a.weight) / own.weight };
+}
+
 // ── flywheels (HT:EE p. 18) ─────────────────────────────────────────────────
 
 /** The flywheel sizes printed: the share of the same-size battery's energy stored, and the peak output. */

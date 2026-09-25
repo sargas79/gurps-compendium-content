@@ -23,7 +23,9 @@
  *     modifier, worse for each capacitor wired in (-2 for a second, then the
  *     Speed/Range penalty for the count); supercapacitors as a choice on a
  *     battery record, twenty times the price for the next size's output for
- *     a minute; flywheels by material, repriced and reweighed. The
+ *     a minute, and on a gadget one size smaller than its batteries, which
+ *     then runs a minute on it; flywheels by material, repriced and
+ *     reweighed, and a store a gadget can be plugged into. The
  *     supplement's generators join High-Tech's generator table as data
  *     (`generators.ts`), read by the Gear tab's generators section.
  *   - **External power (externalPower):** the five grades of external power
@@ -38,7 +40,7 @@
 
 import { bookOf, isRuleOn } from "../../../shared/book-tables.js";
 import { cellOf, powerData, registerCellVariant, storePower, type CellVariant, type PowerData } from "../../../shared/power/data.js";
-import { enduranceLeft } from "../../../shared/power/index.js";
+import { enduranceLeft, recharge, rechargeableGear } from "../../../shared/power/index.js";
 import type { CellFigures } from "../../../shared/power/rules.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
@@ -74,6 +76,7 @@ import {
   flywheelFigures,
   flywheelPrice,
   materialFits,
+  supercapacitorFactors,
   supercapacitorStandsFor,
 } from "./storage.js";
 
@@ -125,6 +128,26 @@ export function registerChemistryVariant(own: CellFigures, ruleKey: string): voi
   registerCellVariant((item, cell, figures) => chemistryVariant(item, cell, figures, own, () => isRuleOn(ruleKey)));
 }
 
+/**
+ * The cell variant a supercapacitor gives a gadget (HT:EE p. 18): it has the
+ * output of the next size up for a minute, so a gadget runs a minute on one a
+ * size smaller than its batteries -- an M supercapacitor in place of an L
+ * battery -- at the smaller size's weight and twenty times its price, and it
+ * is recharged. None below the smallest size, or with the switch off.
+ */
+export function supercapacitorVariant(item: any, cell: { size: string } | null, figures: CellFigures, own: CellFigures, on: () => boolean): CellVariant | null {
+  if (figures !== own || !cell || !on() || !isOwnGear(item) || batterySizeOf(item, figures) !== null) return null;
+  if (item?.system?.extensions?.[MODULE_ID]?.power?.chemistry !== SUPERCAPACITOR.key) return null;
+  const factors = supercapacitorFactors(cell.size, figures.sizes, (size) => figures.cells[size]!, (size) => chemistryFactors(size, "alkaline"));
+  if (!factors) return null;
+  return { label: "GCC.HT.Energy.SupercapacitorFor", labelData: { size: factors.size }, endurance: 1, cost: factors.cost, weight: factors.weight, rechargeable: true, fixedHours: SUPERCAPACITOR.minutes / 60 };
+}
+
+/** Registers the supercapacitor variant with the engine, under the energy storage switch's full key. */
+export function registerSupercapacitorVariant(own: CellFigures, ruleKey: string): void {
+  registerCellVariant((item, cell, figures) => supercapacitorVariant(item, cell, figures, own, () => isRuleOn(ruleKey)));
+}
+
 /** A battery record's price and weight in its chemistry, or as a supercapacitor (HT:EE pp. 16-18). */
 export function batteryRecordPrice(item: any, figures: CellFigures, price: { cost: number; weight: number }, on: ElectricSwitches): { cost: number; weight: number; label: string } | null {
   const size = batterySizeOf(item, figures);
@@ -161,7 +184,7 @@ function sectionShows(item: any, figures: CellFigures, on: ElectricSwitches): bo
   const data = powerData(item);
   const battery = batterySizeOf(item, figures) !== null;
   if (on.chemistry() && (battery || loadedSize(item, figures) !== null)) return true;
-  if (on.storage() && (battery || data.storage.kind === "flywheel" || data.storage.kind === "capacitor")) return true;
+  if (on.storage() && (battery || data.storage.kind === "flywheel" || data.storage.kind === "capacitor" || loadedSize(item, figures) !== null)) return true;
   return on.external() && (data.grades.length > 0 || data.builtIn);
 }
 
@@ -173,7 +196,8 @@ function sectionContext(api: GWorldApi, item: any, figures: CellFigures, on: Ele
   const chosen = data.chemistry;
   const lines: string[] = [];
   let chemistry: Record<string, unknown> | null = null;
-  const offerSuper = on.storage() && battery !== null;
+  // A battery record may be made a supercapacitor, and a gadget run on one a size smaller than its batteries.
+  const offerSuper = on.storage() && (battery !== null || (loaded !== null && figures.sizes.indexOf(loaded.size) > 0));
   if (size && ((on.chemistry() && (battery || loaded)) || offerSuper)) {
     const printed = PRINTED_CHEMISTRY[size];
     const options = [
@@ -196,9 +220,12 @@ function sectionContext(api: GWorldApi, item: any, figures: CellFigures, on: Ele
       if (chosen === "daniellCell") lines.push(F("DaniellHint", { penalty: DANIELL_PENALTY }));
       if (chosen === "gravityCell") lines.push(L("GravityHint"));
     }
-    if (chosen === SUPERCAPACITOR.key && offerSuper) {
+    if (chosen === SUPERCAPACITOR.key && offerSuper && battery) {
       const next = supercapacitorStandsFor(size, figures.sizes);
       lines.push(next ? F("SupercapacitorLine", { size: next, minutes: SUPERCAPACITOR.minutes }) : F("SupercapacitorLargest", { size, minutes: SUPERCAPACITOR.minutes }));
+    } else if (chosen === SUPERCAPACITOR.key && offerSuper && loaded) {
+      const smaller = figures.sizes[figures.sizes.indexOf(loaded.size) - 1];
+      lines.push(F("SupercapacitorGadget", { size: smaller, usual: loaded.size, minutes: SUPERCAPACITOR.minutes }));
     }
   }
   let flywheel: Record<string, unknown> | null = null;
@@ -321,16 +348,50 @@ export async function lithiumIonRunaway(api: GWorldApi, item: any, actor: any, f
 
 const CHARGER_NAME = /^Car-Battery Recharger$/;
 
-export async function chargeBattery(api: GWorldApi, item: any, actor: any): Promise<void> {
+/** The chemistry a gadget's loaded batteries are: the one chosen, else what High-Tech's table prints the size as. */
+function loadedChemistry(item: any, figures: CellFigures): string | null {
+  const loaded = loadedSize(item, figures);
+  if (!loaded) return null;
+  return powerData(item).chemistry || PRINTED_CHEMISTRY[loaded.size] || null;
+}
+
+/** The carried gadgets a charger can recharge: rechargeable ones on batteries of its chemistry. */
+export function chargeableGear(actor: any, figures: CellFigures, chemistry: string): ReturnType<typeof rechargeableGear> {
+  return rechargeableGear(actor).filter((t) => loadedChemistry(t.item, figures) === chemistry);
+}
+
+/** The select of gadgets a charger can recharge, "nothing named" first. */
+function targetRow(targets: ReturnType<typeof rechargeableGear>): string {
+  return targets.length
+    ? row(L("Charger.Target"), select("target", [["", L("Charger.NoTarget")], ...targets.map((t): [string, string] => [String(t.item.id), F("Charger.TargetOption", { name: t.item.name, left: Math.round(t.left * 10) / 10, total: Math.round(t.total * 10) / 10 })])]))
+    : "";
+}
+
+/** Recharges a gadget in full, and says so; or says the battery is charged where none is named. */
+async function charged(actor: any, item: any, target: ReturnType<typeof rechargeableGear>[number] | null, hours: number | null): Promise<void> {
+  if (target) await recharge(target.item, target.total);
+  const line = target
+    ? (hours === null ? F("Charger.GadgetChargedNoTime", { name: target.item.name }) : F("Charger.GadgetCharged", { name: target.item.name, hours }))
+    : F("Charger.Charged", { hours });
+  await say(actor, item.name, [line]);
+}
+
+export async function chargeBattery(api: GWorldApi, item: any, actor: any, figures?: CellFigures): Promise<void> {
   if (!actor) return;
+  // A lead-acid battery in a gadget the character carries can be the one charged (HT:EE p. 18).
+  const targets = figures ? chargeableGear(actor, figures, "leadAcid") : [];
   const answer = await ask(L("Charger.Title"),
     `<p class="ihint">${esc(L("Charger.Hint"))}</p>`
+    + targetRow(targets)
     + row(L("Charger.Setting"), select("setting", [["medium", F("Charger.medium", { hours: CHARGER_HOURS.medium })], ["high", F("Charger.high", { hours: CHARGER_HOURS.high })]]))
     + row(L("Charger.Size"), select("size", [["L", "L"], ["VL", "VL"]])),
-    (form) => ({ setting: field(form, "setting")?.value === "high" ? "high" : "medium", size: field(form, "size")?.value === "VL" ? "VL" : "L" }));
+    (form) => ({ target: String(field(form, "target")?.value ?? ""), setting: field(form, "setting")?.value === "high" ? "high" : "medium", size: field(form, "size")?.value === "VL" ? "VL" : "L" }));
   if (!answer) return;
+  const target = targets.find((t) => String(t.item.id) === answer.target) ?? null;
+  // The battery that may blow up is the gadget's own, where one is named.
+  const size = target && (target.size === "L" || target.size === "VL") ? target.size : answer.size;
   if (answer.setting === "medium") {
-    await say(actor, item.name, [F("Charger.Charged", { hours: CHARGER_HOURS.medium })]);
+    await charged(actor, item, target, CHARGER_HOURS.medium);
     return;
   }
   // The high setting has to be watched: Electrician, or Mechanic for the engine.
@@ -343,12 +404,32 @@ export async function chargeBattery(api: GWorldApi, item: any, actor: any): Prom
   const result: any = await api.roll.success({ actor, base: best.level, skill: best.skill, item, label: F("Charger.RollLabel", { name: item.name }), modifiers: [], tags: ["batteryCharger"] } as any);
   if (!result || "refused" in result) return;
   if (!result.criticalFailure) {
-    await say(actor, item.name, [F("Charger.Charged", { hours: CHARGER_HOURS.high })]);
+    await charged(actor, item, target, CHARGER_HOURS.high);
     return;
   }
-  const blast = chargerExplosion(answer.size);
-  await say(actor, item.name, [F("Charger.Explodes", { size: answer.size }), F("Charger.Acid", { yards: blast.acidYards })]);
-  await api.roll.damage({ actor, item, label: F("Charger.BlastLabel", { size: answer.size }), formula: blast.formula, damageType: "cr", explosive: true, source: "batteryExplosion" } as any);
+  const blast = chargerExplosion(size);
+  await say(actor, item.name, [F("Charger.Explodes", { size }), F("Charger.Acid", { yards: blast.acidYards })]);
+  await api.roll.damage({ actor, item, label: F("Charger.BlastLabel", { size }), formula: blast.formula, damageType: "cr", explosive: true, source: "batteryExplosion" } as any);
+}
+
+// ── the lithium-ion battery recharger (HT:EE p. 18) ─────────────────────────
+
+const LITHIUM_CHARGER_NAME = /^Lithium-Ion Battery Recharger$/;
+
+/**
+ * Recharges a lithium-ion battery plugged into the recharger (HT:EE p. 18):
+ * a gadget the character carries on lithium-ion batteries, in full. The book
+ * gives no time for it.
+ */
+export async function chargeLithiumIon(item: any, actor: any, figures: CellFigures): Promise<void> {
+  if (!actor) return;
+  const targets = chargeableGear(actor, figures, "lithiumIon");
+  if (!targets.length) return void ui.notifications?.warn(L("Charger.NoLithiumIon"));
+  const answer = await ask(L("Charger.LithiumTitle"), `<p class="ihint">${esc(L("Charger.LithiumHint"))}</p>` + targetRow(targets),
+    (form) => ({ target: String(field(form, "target")?.value ?? "") }));
+  const target = targets.find((t) => String(t.item.id) === answer?.target) ?? null;
+  if (!target) return;
+  await charged(actor, item, target, null);
 }
 
 // ── the voltaic pile (HT:EE p. 16) ───────────────────────────────────────────
@@ -461,7 +542,17 @@ export function readyElectricity(api: GWorldApi, figures: CellFigures, on: Elect
     label: L("Charger.Title"),
     icon: "fa-solid fa-car-battery",
     visible: (item) => on.chemistry() && isOwnGear(item) && CHARGER_NAME.test(String(item?.name ?? "")),
-    run: (item, actor) => { void chargeBattery(api, item, actor); },
+    run: (item, actor) => { void chargeBattery(api, item, actor, figures); },
+  });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ee-lithium-charger",
+    itemTypes: ["equipment"],
+    label: L("Charger.LithiumTitle"),
+    icon: "fa-solid fa-plug-circle-bolt",
+    visible: (item) => on.chemistry() && isOwnGear(item) && LITHIUM_CHARGER_NAME.test(String(item?.name ?? "")),
+    run: (item, actor) => { void chargeLithiumIon(item, actor, figures); },
   });
 
   api.sheets.registerRowAction({
