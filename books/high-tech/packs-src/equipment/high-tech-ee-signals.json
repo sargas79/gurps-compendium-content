@@ -2220,6 +2220,12 @@
             "complexity": "",
             "prototypeYear": 1925,
             "marketYear": 1935
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
