@@ -6,6 +6,11 @@ import { describe, expect, it } from "vitest";
 
 import { explosive } from "./ref.js";
 import {
+  cordCut,
+  cordPounds,
+  flatCharge,
+  maxDamage,
+  sparksAt,
   chargeFor,
   concussionModifier,
   enclosureFactor,
@@ -30,6 +35,25 @@ import {
   thermiteOnObject,
   thermiteSeconds,
 } from "./rules.js";
+
+describe("flat charges, cutting cord and thermite's sparks (pp. 183, 188)", () => {
+  it("shakes apart what the blast can't get through: a tenth of it, against a hundredth of the DR", () => {
+    expect(maxDamage({ dice: 6, adds: 0, multiplier: 2 })).toBe(72);
+    expect(maxDamage({ dice: 8, adds: 2 })).toBe(50);
+    expect(flatCharge(72, 100)).toEqual({ damage: 7, dr: 1 });
+    expect(flatCharge(72, 72)).toEqual({ damage: 7, dr: 0 });
+    expect(flatCharge(72, 71)).toBeNull();
+  });
+
+  it("takes a pound of cord per 2', and cuts at 24 against a fifth of the DR", () => {
+    expect([1, 2, 3, 20].map(cordPounds)).toEqual([1, 1, 2, 10]);
+    expect(cordCut(12)).toEqual({ damage: 24, dr: 2 });
+  });
+
+  it("burns 3 a second within a yard of thermite, 1 at two, none past", () => {
+    expect([0, 1, 2, 3].map(sparksAt)).toEqual([3, 3, 1, 0]);
+  });
+});
 
 describe("damage formulas", () => {
   it("reads and writes the system's grammar", () => {

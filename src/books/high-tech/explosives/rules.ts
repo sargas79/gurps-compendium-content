@@ -255,6 +255,25 @@ export function shapedDr(dr: number): number {
 }
 
 /**
+ * A flat or "pancake" charge (p. 183): where its blast can't get through the
+ * target's DR, a tenth of the damage, now cutting, against a hundredth of
+ * the DR. Null where the blast gets through, and it is an ordinary charge.
+ */
+export const FLAT_CHARGE = Object.freeze({ damageDivisor: 10, drDivisor: 100 });
+
+export function flatCharge(damage: number, dr: number): { damage: number; dr: number } | null {
+  const blast = Math.max(0, Math.floor(Number(damage) || 0));
+  const armour = Math.max(0, Math.floor(Number(dr) || 0));
+  if (blast > armour) return null;
+  return { damage: Math.floor(blast / FLAT_CHARGE.damageDivisor), dr: Math.floor(armour / FLAT_CHARGE.drDivisor) };
+}
+
+/** The most a formula's dice can do: 6 a die and the adds, times any multiplier. */
+export function maxDamage(d: DiceAdds): number {
+  return Math.max(0, (d.dice * 6 + d.adds) * (d.multiplier && d.multiplier > 1 ? d.multiplier : 1));
+}
+
+/**
  * Cutting cord, a flexible linear shaped charge (p. 188): a 2' length weighs
  * a pound and does 4dx2 cr ex to anyone nearby, but against the thing it is
  * laid on to cut, 4d(5) cr ex at its maximum.

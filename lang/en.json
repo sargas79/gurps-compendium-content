@@ -7605,7 +7605,15 @@
           "Hint": "Each 2' of cord is a pound. It does 4dx2 cr ex to anyone nearby; against what it is laid on to cut, 4d(5) cr ex at its maximum (High-Tech p. 188).",
           "Short": "That takes {pounds} lb. of cord; there are only {have}.",
           "BlastLabel": "Cutting cord ({feet}') goes off",
-          "Cut": "{label}: {damage} against DR {dr} (a fifth: {divided}) -- {injury} injury, {hp} of {max} HP left.",
+          "Cut": "{label}: {damage} against DR {dr} (a fifth: {divided}) -- {injury} injury, {hp} of {max} HP left."
+        },
+        "Flat": {
+          "Label": "Flat charge",
+          "Title": "Flat charge",
+          "Tag": "flat",
+          "Hit": "{label}: the blast ({damage}) can't get through DR {dr}, so it shakes it apart -- {cut} cutting against DR {divided}: {injury} injury, {hp} of {max} HP left."
+        },
+        "Structure": {
           "States": {
             "standing": "It stands.",
             "breached": "It is breached.",
@@ -7616,7 +7624,7 @@
           "RollsToStand": "At -1xHP or less: the GM rolls its HT to stay up (Campaigns p. 484)."
         },
         "Detonate": "Detonate",
-        "DetonateHint": "Packed against the target, the charge does it the most its dice could; set nearby, the share its distance leaves. A shaped charge with a metal liner divides the structure's DR by 10 (High-Tech pp. 182-183).",
+        "DetonateHint": "Packed against the target, the charge does it the most its dice could; set nearby, the share its distance leaves. A shaped charge with a metal liner divides the structure's DR by 10; a flat charge packed against it whose blast can't get through its DR does a tenth of the damage, cutting, against a hundredth of the DR (High-Tech pp. 182-183).",
         "Pounds": "Pounds",
         "Placement": "Placement",
         "Contact": "Packed against the target",

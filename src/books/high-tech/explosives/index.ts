@@ -22,7 +22,9 @@
  *     explosives the system's Demolition tool and `hazards.detonate` offer; a
  *     row action on an explosive record that sets it off (its pounds, packed
  *     against a door or wall or set nearby, a shaped charge dividing the
- *     structure's DR by 10); and one that works out the charge a job takes
+ *     structure's DR by 10, a flat charge whose blast can't get through it
+ *     doing a tenth of its most, cutting, against a hundredth of the DR);
+ *     and one that works out the charge a job takes
  *     (a crater, timbers, girders, holes in walls and plates), tamped or
  *     shaped, and rolls Explosives (Demolition) for it; and cutting cord laid
  *     along a cut, a pound for each 2', 4dx2 to anyone nearby and 4d(5) at
@@ -79,8 +81,10 @@ import {
   enclosureFactor,
   eyeBonus,
   failedBatch,
+  flatCharge,
   flashModifier,
   lastingSenseTrait,
+  maxDamage,
   senseRecovery,
   formatDamage,
   hearingBonus,
@@ -186,6 +190,14 @@ async function say(actor: any, title: string, lines: string[]): Promise<void> {
   });
 }
 
+/** What a blow left a structure as, and the HT roll it now calls for (Campaigns p. 484). */
+function structureLines(blast: { state: string; rollsToHold: boolean; rollsToStand: boolean }): string[] {
+  return [
+    L(`Structure.States.${blast.state}`),
+    ...(blast.rollsToHold || blast.rollsToStand ? [L(blast.rollsToStand ? "Structure.RollsToStand" : "Structure.RollsToHold")] : []),
+  ];
+}
+
 function field(form: HTMLElement | null | undefined, name: string): string {
   const el = form?.querySelector<HTMLInputElement | HTMLSelectElement>(`[name="${name}"]`);
   if (!el) return "";
@@ -260,7 +272,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
   let pending: { label: string; factor: number } | null = null;
 
   /** Sets off a record's charge: the system's detonation, with this book's settings. */
-  const setOff = async (actor: any, item: any, options: { pounds: number; placement: "contact" | "nearby"; distance: number; structure: any; shaped: boolean; enclosure: Enclosure; label?: string }) => {
+  const setOff = async (actor: any, item: any, options: { pounds: number; placement: "contact" | "nearby"; distance: number; structure: any; shaped: boolean; flat?: boolean; enclosure: Enclosure; label?: string }) => {
     const charge = chargeOf(item);
     if (!charge || !(options.pounds > 0)) return null;
     const name = String(item.name ?? "");
@@ -280,16 +292,24 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     const enclosure = on.sideEffects() ? enclosureFactor(options.enclosure) : 1;
     const weak = flaw === "weak" ? WEAK_FACTOR : 1;
     const factor = enclosure * weak;
+    // A flat charge packed against a structure its blast can't get through shakes it apart instead (p. 183).
+    const flat = options.flat && !options.shaped && options.structure && options.placement === "contact" && on.demolition()
+      ? flatBlow(options.pounds, charge.row.ref, options.structure.dr)
+      : null;
     const bits = [
       ...(enclosure !== 1 ? [F("EnclosedTag", { times: enclosure })] : []),
       ...(weak !== 1 ? [L("WeakTag")] : []),
       ...(options.shaped && options.structure ? [L("ShapedTag")] : []),
+      ...(flat ? [L("Flat.Tag")] : []),
     ];
     const label = options.label ?? F("ChargeLabel", { pounds: options.pounds, name, extra: bits.length ? ` (${bits.join(", ")})` : "" });
-    const structure = options.structure && options.shaped && on.demolition()
-      ? { ...options.structure, dr: shapedDr(options.structure.dr), label: F("ShapedStructure", { label: options.structure.label ?? "" }) }
-      : options.structure;
+    const structure = flat
+      ? null
+      : options.structure && options.shaped && on.demolition()
+        ? { ...options.structure, dr: shapedDr(options.structure.dr), label: F("ShapedStructure", { label: options.structure.label ?? "" }) }
+        : options.structure;
     pending = factor !== 1 ? { label, factor } : null;
+    let result: any;
     try {
       const id = ids.get(charge.row);
       const call = (api as any).hazards.detonate({
@@ -297,10 +317,28 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
         weightLbs: options.pounds, placement: options.placement, distanceYards: options.distance, structure: structure ?? null, actor, label,
       });
       pending = null;
-      return await call;
+      result = await call;
     } finally {
       pending = null;
     }
+    if (flat && options.structure) {
+      const target = options.structure;
+      const blast = (api.rules as any).blastAgainstStructure({ damage: flat.damage, dr: flat.dr, hp: target.hp, damageTaken: target.damageTaken });
+      await say(actor, L("Flat.Title"), [
+        F("Flat.Hit", { label: target.label ?? "", damage: flat.most, dr: target.dr, cut: flat.damage, divided: flat.dr, injury: blast.injury, hp: blast.hp, max: target.hp }),
+        ...structureLines(blast),
+      ]);
+    }
+    return result;
+  };
+
+  /** A flat charge's blow on a structure, where its most can't get through the DR; null where it can (p. 183). */
+  const flatBlow = (pounds: number, ref: number, dr: number): { most: number; damage: number; dr: number } | null => {
+    const dice = (api.rules as any).chargeDamage?.(pounds, ref)?.dice ?? null;
+    if (!dice) return null;
+    const most = maxDamage(dice);
+    const blow = flatCharge(most, dr);
+    return blow ? { most, ...blow } : null;
   };
 
   // What the charge's dialog scales: the dice `detonate` rolls (it has no item).
@@ -418,6 +456,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
           row(L("CustomHp"), number("hp", 0, "1")),
           row(L("DamageTaken"), number("taken", 0, "1")),
           checkbox("shaped", L("Shaped")),
+          checkbox("flat", L("Flat.Label")),
           ...(on.sideEffects() ? [row(L("Enclosure"), select("enclosure", ENCLOSURES.map((e) => ({ value: e, label: L(`Enclosures.${e || "none"}`) }))))] : []),
           `<p class="ihint" style="margin:0">${esc(L("DetonateHint"))}</p>`,
         ].join(""), L("Detonate"));
@@ -428,6 +467,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
           distance: Number(value("distance")) || 0,
           structure: structureFrom(value),
           shaped: value("shaped") === "on",
+          flat: value("flat") === "on",
           enclosure: ((ENCLOSURES as readonly string[]).includes(value("enclosure")) ? value("enclosure") : "") as Enclosure,
         });
       })();
@@ -469,8 +509,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     const blast = (api.rules as any).blastAgainstStructure({ damage: cut.damage, dr: cut.dr, hp: structure.hp, damageTaken: structure.damageTaken });
     await say(actor, L("Cord.Title"), [
       F("Cord.Cut", { label: structure.label, damage: cut.damage, dr: structure.dr, divided: cut.dr, injury: blast.injury, hp: blast.hp, max: structure.hp }),
-      L(`Cord.States.${blast.state}`),
-      ...(blast.rollsToHold || blast.rollsToStand ? [L(blast.rollsToStand ? "Cord.RollsToStand" : "Cord.RollsToHold")] : []),
+      ...structureLines(blast),
     ]);
   };
 

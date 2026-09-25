@@ -243,6 +243,25 @@ describe("demolition charges (pp. 182-183)", () => {
     expect(detonations[0].structure).toMatchObject({ dr: 5, hp: 60 });
   });
 
+  it("shakes a structure apart with a flat charge whose blast can't get through its DR (p. 183)", async () => {
+    const tnt = record("TNT (per pound)", "TNT");
+    const sapper = actorWith("Sapper", [tnt]);
+    // A pound of TNT is 6dx2, at most 72: not through DR 100, so 7 cutting against DR 1.
+    dialog = { pounds: "1", placement: "contact", distance: "1", structure: "custom", dr: "100", hp: "50", taken: "0", shaped: "", flat: "on" };
+    actions.get("ht-detonate").run(tnt, sapper);
+    await flush();
+    expect(detonations[0]).toMatchObject({ weightLbs: 1, placement: "contact", structure: null });
+    expect(detonations[0].label).toContain("Flat.Tag");
+    expect(chat.at(-1)).toContain('"damage":72,"dr":100,"cut":7,"divided":1,"injury":6,"hp":44,"max":50');
+    expect(chat.at(-1)).toContain("Structure.States.standing");
+
+    // Through DR 50 the blast is an ordinary one.
+    dialog = { ...dialog, dr: "50" };
+    actions.get("ht-detonate").run(tnt, sapper);
+    await flush();
+    expect(detonations[1].structure).toMatchObject({ dr: 50, hp: 50 });
+  });
+
   it("cuts with cutting cord: a pound per 2', 4dx2 nearby, and 24 against a fifth of the DR (p. 188)", async () => {
     const cord = { id: "cord", name: "Cutting Cord (per pound)", type: "equipment", isOwner: true, system: { quantity: 3, carried: true, meleeModes: [], rangedModes: [] } };
     const sapper = actorWith("Sapper", [cord]);
@@ -256,7 +275,7 @@ describe("demolition charges (pp. 182-183)", () => {
     expect(damages[0]).toMatchObject({ formula: "4dx2", damageType: "cr", explosive: true, actor: sapper });
     // 24 against DR 12/5 = 2: 22 injury of 20 HP.
     expect(chat.at(-1)).toContain('"damage":24,"dr":12,"divided":2,"injury":22,"hp":-2,"max":20');
-    expect(chat.at(-1)).toContain("Cord.RollsToHold");
+    expect(chat.at(-1)).toContain("Structure.RollsToHold");
 
     dialog = { feet: "4", structure: "", dr: "0", hp: "0", taken: "0" };
     actions.get("ht-cutting-cord").run(cord, sapper);
