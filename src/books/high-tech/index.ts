@@ -218,6 +218,7 @@ const RULES = [
   { key: "handloading", pages: "p. 174", implemented: true },
   { key: "misloading", pages: "p. 178", implemented: true },
   { key: "projectileOptions", pages: "pp. 86, 109, 166-169", implemented: true },
+  { key: "hollowPointExpansion", pages: "p. 167", implemented: true },
   { key: "exoticBullets", pages: "p. 168", implemented: true },
   { key: "multipleProjectileLoads", pages: "pp. 172-174", implemented: true },
   { key: "projectileUpgrades", pages: "pp. 174-175", implemented: true },
@@ -460,7 +461,7 @@ function ready(api: GWorldApi): void {
   const ammunition = {
     upgrades: rule("ammunitionUpgrades"), handloading: rule("handloading"), misloading: rule("misloading"),
     projectiles: rule("projectileOptions"), exotic: rule("exoticBullets"), multiple: rule("multipleProjectileLoads"), projectileUpgrades: rule("projectileUpgrades"),
-    explosive: rule("explosiveProjectiles"), cargo: rule("cargoProjectiles"), gas: rule("grenadeHandling"),
+    explosive: rule("explosiveProjectiles"), cargo: rule("cargoProjectiles"), expansion: rule("hollowPointExpansion"), poisons: rule("highTechPoisons"), gas: rule("grenadeHandling"),
   };
   // The loads first: what the gun fires is its own row before the setting (underwater, sights, bursts) changes it.
   readyAmmunition(api, ammunition);

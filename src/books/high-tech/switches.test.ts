@@ -137,6 +137,9 @@ const SCENARIOS: Record<string, { record: string; arrange: Arrange }> = {
  * and sees it act, and why.
  */
 const SHOWN_ELSEWHERE: Record<string, string> = {
+  // An option on the projectile options: a handgun's hollow-point, rolled as
+  // the blow is applied, so it needs the projectileOptions switch and a load.
+  hollowPointExpansion: "ammunition/cargo.test.ts: rolls a handgun hollow-point's expansion under its own switch, a failure hitting as the solid bullet",
   // An option on the suppressor rule: it multiplies a fitted suppressor's
   // penalty, in the Hearing roll's dialog, so it needs the suppressors switch
   // and a suppressor on the gun.
@@ -524,7 +527,7 @@ describe("each High-Tech switch, on alone over the book's records (#397)", () =>
 
   it("reads the book's records and its switches, and nothing else registers", async () => {
     expect(docs.length).toBeGreaterThan(1400);
-    expect(switches()).toHaveLength(159);
+    expect(switches()).toHaveLength(160);
     on = new Set();
     baseOffered = await offered();
   });

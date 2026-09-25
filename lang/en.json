@@ -4983,6 +4983,10 @@
           "Name": "Projectile Options",
           "Hint": "Each ranged mode (and each box of rounds) can load a projectile in place of the solid bullet: rifled slugs, hollow-points, poison, AP, APHC, frangible, APDS, APFSDS, baton, beanbag, SAPFSDS, underwater darts, the depleted-uranium rounds and Minié balls. The row's damage, type, divisor, range, Acc and Malf. follow, a shotgun working from its slug's figures, and the price takes the projectile's multiple. It replaces the Basic Set round chosen on the mode (High-Tech pp. 86, 109, 166-169)."
         },
+        "hollowPointExpansion": {
+          "Name": "Hollow-Points Failing to Expand",
+          "Hint": "The GM's option: a handgun's hollow-point or poison bullet only expands, with its better damage type and (0.5), on 1d <= TL-3, rolled as the blow is applied; otherwise it hits as the solid bullet (High-Tech p. 167)."
+        },
         "exoticBullets": {
           "Name": "Exotic Bullets",
           "Hint": "A load's bullets can be silver (x50 cost; -1 Acc and Malf. in a rifled gun unless jacketed hollow-points; -3 to handload), another dense metal, a light material (half damage and range) or a very light one (a tenth) (High-Tech p. 168)."
@@ -4993,7 +4997,7 @@
         },
         "projectileUpgrades": {
           "Name": "Projectile Upgrades",
-          "Hint": "Airburst (a miss scatters by the margin squared; +3 or +4 to hit an area), incendiary, self-destruct and tracer (incendiary out to 1/2D), each x1.5 cost (High-Tech pp. 174-175)."
+          "Hint": "Airburst (an attack option: +4 to hit an area, +3 on a TL5-6 time fuse or +1 at a flier; a miss scatters by the margin squared), incendiary, self-destruct (no shot past 1/2D) and tracer (incendiary; +1 to the next attack after a burst of full RoF), each x1.5 cost (High-Tech pp. 174-175)."
         },
         "explosiveProjectiles": {
           "Name": "Explosive Rounds",
@@ -6731,13 +6735,13 @@
           "slug": "A shotgun fires this projectile from a rifled slug's figures: four times the buckshot's damage, +1 Acc, 1/2D x2.5, Max x1.5 (High-Tech pp. 166, 168).",
           "hpExpansion": "At the GM's option a low-velocity hollow-point only expands, and gets its better damage type, on a roll of TL-3 or less on 1d (High-Tech p. 167).",
           "noDr": "An object with no DR gets DR 1 against it (High-Tech pp. 166-167, 173).",
-          "poison": "A hit that penetrates delivers one dose of the poison as a follow-up attack; the GM applies it (High-Tech p. 167).",
+          "poison": "A hit that penetrates delivers one dose of the poison the load names as a follow-up attack (High-Tech p. 167).",
           "depletedUranium": "Treat as an incendiary attack when it penetrates non-flexible armour with DR 10 or more (High-Tech p. 169).",
           "underwaterDart": "Underwater, distance to the target is multiplied by 25 rather than 1,000 (High-Tech p. 169).",
           "minie": "A muzzle-loading rifle firing Minié balls takes a musket's time to load (High-Tech pp. 86, 109).",
           "ballRange": "The full-calibre ball has 0.9 of the gun's range; the row's range is the buckshot's (High-Tech p. 173).",
           "shell": "Its figures are in the weapon's description; the load prices the shell and bursts in the air (High-Tech pp. 173-174).",
-          "beehive": "Beehive explodes at its Maximum Range and has no 1/2D; its figures are the weapon's (High-Tech p. 173).",
+          "beehive": "Beehive explodes at its Maximum Range and has no 1/2D, which the row drops; its other figures are the weapon's (High-Tech p. 173).",
           "silver": "Soft silver fouls a rifled barrel: -1 Acc and Malf. at the GM's discretion; jacketed hollow-points avoid it (High-Tech p. 168).",
           "airburst": "Attacking an Area (Campaigns p. 414): a proximity fuse gives the full +4. When fired indirectly the fragments rain down, ignoring posture and any cover that isn't overhead (High-Tech pp. 174-175).",
           "airburstFuse": "A TL5-6 time fuse gives +3 rather than +4 to hit an area, or only +1 against a flying target (High-Tech p. 174).",
@@ -7050,6 +7054,24 @@
         "AreaAsk": "Where the round lands: the latest template you placed, or the one token targeted.",
         "AreaPlace": "Place",
         "AreaNoPlace": "No place for the cloud: place a template or target one token (the GM places areas).",
+        "NoPoison": "(none chosen)",
+        "BulletPoison": "Poison",
+        "BulletPoisonHint": "The poison each round carries: one dose is delivered as a follow-up when a hit gets through DR. High-Tech's own poisons are offered while its poisons switch is on (High-Tech pp. 167, 227).",
+        "NoBulletPoison": "The poison bullet got through, but its load names no poison in play: the GM doses the victim.",
+        "BulletDosed": "{name} takes a dose of {poison} from the bullet (High-Tech p. 167).",
+        "Expanded": "The hollow-point expands (rolled {roll}, needed {need} or less; High-Tech p. 167).",
+        "NotExpanded": "The hollow-point fails to expand (rolled {roll}, needed {need} or less): it hits as a solid bullet, {type} (High-Tech p. 167).",
+        "Airburst": {
+          "Label": "Airburst",
+          "none": "Not at an area",
+          "area": "Airburst at an area",
+          "flier": "Airburst at a flier",
+          "Note": "Attacking an Area; a miss scatters by the square of the margin (High-Tech pp. 174-175; Campaigns p. 414)"
+        },
+        "SelfDestructRefusal": "The round destroys itself at {range} yards, short of the target at {at} (High-Tech p. 175).",
+        "TracerSeen": "The tracers give away the firer's position (High-Tech p. 175).",
+        "TracerBonus": "Tracers",
+        "TracerNext": "After a long burst: +1 to the next attack with the gun, on the next turn (High-Tech p. 175).",
         "CloudPlaced": "A cloud of {radius} yards' radius, for {seconds} seconds.",
         "LightPlaced": "A flare lights {radius} yards round it for {seconds} seconds.",
         "CloudForms": "It takes {seconds} s to form.",
