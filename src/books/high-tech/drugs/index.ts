@@ -317,10 +317,8 @@ const BOTULIN_FLAG = "htBotulinParalysis";
 /**
  * Records botulin's paralysis as a lasting crippling injury of the lungs and
  * spine (p. 227; Campaigns p. 422) through the system's crippled parts
- * (API 1.114.0), which heals in 1d months less a physician's help: a
- * physician's rounds on the patient later put the part in their care at the
- * rounds' TL (`botulinCare`, API 1.155.0). The paralysis condition stays until
- * that part has healed.
+ * (API 1.114.0), which heals in 1d months less a physician's help. The
+ * paralysis condition stays until that part has healed.
  */
 async function crippleByBotulin(api: GWorldApi, actor: any, conditionId: string, title: string): Promise<void> {
   const part: any = await api.actors.cripple(actor, `${MODULE_ID}.${NERVES_KEY}`, { duration: "lasting", label: title });
@@ -337,23 +335,6 @@ export async function checkBotulinHealed(api: GWorldApi, actor: any): Promise<bo
   if (kept.condition) await api.actors.removeCondition(actor, kept.condition);
   await actor.unsetFlag(MODULE_ID, BOTULIN_FLAG);
   await say(actor, L("Poison.botulin"), [F("BotulinHealed", { name: String(actor.name ?? "") })]);
-  return true;
-}
-
-/**
- * A physician's rounds on a patient paralysed by botulin: the lasting part is
- * put in the physician's care at the rounds' TL (Campaigns p. 422; API
- * 1.155.0), unless the rounds were refused. A later physician's TL replaces
- * the earlier one.
- */
-export async function botulinCare(api: GWorldApi, context: any, partId: string): Promise<boolean> {
-  if (typeof context?.refusal === "string" && context.refusal.trim()) return false;
-  const tl = Number(context.techLevel);
-  const patient = context.patient;
-  if (!Number.isFinite(tl) || !patient) return false;
-  const part: any = await (api.actors as any).treatCrippled(patient, partId, { treatedAtTl: Math.floor(tl) });
-  if (!part) return false;
-  await say(patient, L("Poison.botulin"), [F("BotulinCare", { name: String(patient.name ?? ""), healer: String(context.healer?.name ?? ""), tl: Math.floor(tl), months: part.months ?? "?" })]);
   return true;
 }
 
@@ -713,19 +694,6 @@ export function readyDrugs(api: GWorldApi, on: DrugSwitches): void {
   Hooks.on("updateActor", (actor: any, changes: any) => {
     if (!on.poisons() || !isActiveGm() || changes?.flags?.gworld?.crippled === undefined) return;
     if (actor.getFlag?.(MODULE_ID, BOTULIN_FLAG)) void checkBotulinHealed(api, actor);
-  });
-  // A physician taking over a paralysed patient's case: the lasting part heals in its 1d months
-  // less the relief at the rounds' TL (Campaigns p. 422; `actors.treatCrippled`, API 1.155.0).
-  // Read once every listener has had its say, so a refusal or another TL is seen.
-  Hooks.on(api.combat.hooks.physicianRounds, (context: any) => {
-    const patient = context?.patient;
-    const kept = patient?.getFlag?.(MODULE_ID, BOTULIN_FLAG) as { part?: string } | undefined;
-    if (!on.poisons() || !kept?.part) return;
-    if (!patient.isOwner) {
-      if (Array.isArray(context.lines)) context.lines.push(F("BotulinCareGm", { name: String(patient.name ?? "") }));
-      return;
-    }
-    void Promise.resolve().then(() => botulinCare(api, context, String(kept.part)));
   });
 
   // ── row actions ──

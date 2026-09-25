@@ -380,13 +380,16 @@ describe("reconnaissance drones (HT:EE p. 46)", () => {
     confirmAnswer = true;
     await tools.get("ht-recon-drone").open();
     expect(updates).toEqual([{ "system.controller": "Actor.Operator" }]);
-    // Nothing is asked of one who has them, or one of its crew.
+    // Nothing is asked of one who has them.
     expect(await battlefield.offerControls({ ...flying, system: { ...flying.system, controller: "Actor.Operator" } }, operator)).toBe(false);
-    expect(await battlefield.offerControls({ ...flying, system: { ...flying.system, crew: [{ uuid: "Actor.Operator" }] } }, operator)).toBe(false);
+    // One seated in its crew, as drones were flown before API 1.154.0, leaves the crew in the same update.
+    const seated: any = { ...flying, system: { ...flying.system, crew: [{ uuid: "Actor.Operator", operator: true }, { uuid: "Actor.Spotter" }] }, update: async (patch: any) => { updates.push(patch); } };
+    expect(await battlefield.offerControls(seated, operator)).toBe(true);
+    expect(updates[1]).toEqual({ "system.controller": "Actor.Operator", "system.crew": [{ uuid: "Actor.Spotter" }] });
     // A drone carried as gear has no controller.
     expect(await battlefield.offerControls(drone(), operator)).toBe(false);
     confirmAnswer = false;
     expect(await battlefield.offerControls(flying, operator)).toBe(false);
-    expect(updates).toHaveLength(1);
+    expect(updates).toHaveLength(2);
   });
 });

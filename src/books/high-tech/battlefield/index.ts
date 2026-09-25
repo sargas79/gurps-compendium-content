@@ -365,20 +365,27 @@ export async function droneTool(api: GWorldApi): Promise<void> {
  * Offers to hand a drone's controls to the targeted operator, who flies it
  * from outside its crew (HT:EE p. 46): the vehicle's `controller` (API
  * 1.154.0), which the vehicle sheet's Control button then rolls for, as a
- * remote roll. Nothing is asked where he already has them or rides in it.
+ * remote roll. An operator seated in its crew -- as a drone had to be flown
+ * before API 1.154.0 -- is taken out of it in the same update, so the drone
+ * keeps its remote rules. Nothing is asked where he already has them.
  */
 export async function offerControls(drone: any, operator: any): Promise<boolean> {
   const uuid = String(operator?.uuid ?? "");
   if (!uuid || drone?.documentName !== "Actor" || drone.type !== "vehicle") return false;
   if (String(drone.system?.controller ?? "") === uuid) return false;
-  if ((drone.system?.crew ?? []).some((seat: any) => String(seat?.uuid ?? "") === uuid)) return false;
+  const crew: any[] = Array.isArray(drone.system?.crew) ? drone.system.crew : [];
+  const seated = crew.some((seat: any) => String(seat?.uuid ?? "") === uuid);
   const yes = await foundry.applications.api.DialogV2.confirm({
     window: { title: L("ControlsTitle") },
-    content: `<p>${esc(F("ControlsAsk", { drone: drone.name, name: operator.name }))}</p>`,
+    content: `<p>${esc(F(seated ? "ControlsAskSeated" : "ControlsAsk", { drone: drone.name, name: operator.name }))}</p>`,
     rejectClose: false,
   });
   if (!yes) return false;
-  await drone.update({ "system.controller": uuid });
+  // `system.controller` as the API documents setting it (API 1.154.0).
+  await drone.update({
+    "system.controller": uuid,
+    ...(seated ? { "system.crew": crew.filter((seat: any) => String(seat?.uuid ?? "") !== uuid) } : {}),
+  });
   return true;
 }
 

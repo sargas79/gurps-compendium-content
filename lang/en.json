@@ -5398,7 +5398,7 @@
         },
         "highTechPoisons": {
           "Name": "High-Tech poisons",
-          "Hint": "Curare, ricin, strychnine, botulin and irradiated thallium dosed and cycled by the system: their damage whatever the roll, and a HT roll each cycle for curare's paralysis and choking, ricin's coughing and choking, strychnine's seizures and choking over 2d hours, and botulin's paralysis, a point harder each cycle and lasting as a crippling injury, which a physician's rounds shorten; a row action administers a dose to the targets (High-Tech p. 227)."
+          "Hint": "Curare, ricin, strychnine, botulin and irradiated thallium dosed and cycled by the system: their damage whatever the roll, and a HT roll each cycle for curare's paralysis and choking, ricin's coughing and choking, strychnine's seizures and choking over 2d hours, and botulin's paralysis, a point harder each cycle and lasting as a crippling injury; a row action administers a dose to the targets (High-Tech p. 227)."
         },
         "vehicleComponents": {
           "Name": "Vehicle components",
@@ -10275,8 +10275,6 @@
         "LungsAndSpine": "Lungs and spine",
         "BotulinCrippled": "{name}'s lungs and spine are crippled: a lasting injury that heals in {months} month(s) of immobility on a ventilator, the paralysis lasting as long (High-Tech p. 227; Campaigns p. 422).",
         "BotulinHealed": "{name}'s lungs and spine have healed: the botulin paralysis is over.",
-        "BotulinCare": "{healer} takes over {name}'s case at TL{tl}: the lungs and spine now heal in {months} month(s) from the poisoning (Campaigns p. 422).",
-        "BotulinCareGm": "{name}'s botulin paralysis heals sooner under a physician's care: the GM records the treating TL on the crippled lungs and spine (Campaigns p. 422).",
         "GiveAction": "Give a dose",
         "DoseAction": "Administer to the targets",
         "PickVictims": "Target the characters to poison first.",
@@ -11118,7 +11116,8 @@
         "AboveCeiling": "At {feet} feet, the drone is above its ceiling.",
         "AboveCeilingRefusal": "{name} is at {feet} feet, above its {ceiling}-foot ceiling: its controls can't reach it there (HT:EE p. 46).",
         "ControlsTitle": "Remote operator",
-        "ControlsAsk": "Hand {drone}'s controls to {name}? The vehicle sheet's Control button then rolls for them, from outside its crew."
+        "ControlsAsk": "Hand {drone}'s controls to {name}? The vehicle sheet's Control button then rolls for them, from outside its crew.",
+        "ControlsAskSeated": "{name} is seated in {drone}'s crew. Take them out of it and hand them the controls? Only a remote operator outside the crew takes the remote control's bonus and its range and ceiling (HT:EE p. 46)."
       },
       "Skills": {
         "Default": "Default: {skill} (HT:EE p. {page})",
