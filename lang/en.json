@@ -4839,7 +4839,7 @@
         },
         "gunDrawing": {
           "Name": "Drawing guns",
-          "Hint": "Fast-Draw one gun per hand each turn, the off hand at -4; a failure ends the turn's drawing and a critical failure drops the gun, or both. The odd positions apply, with where the gun is carried: a pistol +0 in the belt or at the hip, -1 at the small of the back or in a shoulder holster, -2 in an ankle holster or boot, -3 in a pocket or concealed; a long arm +0 on a patrol sling, -2 slung over the shoulder, -4 on the back. Holsters and slings by name: a military holster -2 (none with its flap tucked away), an undercover holster -1, a Fast-Draw rig +2, a patrol sling +1; a pistol takes a Ready in or out of its holster, a slung long arm two (three from the back), and a successful Fast-Draw saves one. A sleeve holster fails or breaks on its own terms, a retention holster gives +2 to Retain Weapon, a lanyard lets you recover a dropped gun with a DX roll, and Quick-Sheathe stows a gun as fast as Fast-Draw draws it (High-Tech pp. 81-82, 153-154, 249)."
+          "Hint": "Fast-Draw one gun per hand each turn, the off hand at -4; a failure ends the turn's drawing and a critical failure drops the gun, or both. The odd positions apply, with where the gun is carried: a pistol +0 in the belt or at the hip, -1 at the small of the back or in a shoulder holster, -2 in an ankle holster or boot, -3 in a pocket or concealed; a long arm +0 on a patrol sling, -2 slung over the shoulder, -4 on the back. Holsters and slings by name: a military holster -2 (none with its flap tucked away), an undercover holster -1, a Fast-Draw rig +2, a patrol sling +1; a pistol takes a Ready in or out of its holster, a slung long arm two (three from the back), and a successful Fast-Draw saves one. A sleeve holster fails or breaks on its own terms, a retention holster gives +2 to Retain Weapon, a lanyard lets you recover a dropped gun with a DX roll, and Quick-Sheathe stows a gun as fast as Fast-Draw draws it. An undercover holster at the ankle takes a gun of Bulk -1 or 0 only. A long arm on a rifle sling is braced for +1 on an aimed shot after a Ready maneuver per -1 Bulk; leaving the brace takes a Ready (High-Tech pp. 81-82, 153-154, 249)."
         },
         "gunfightStandoff": {
           "Name": "Who draws first (guns)",
@@ -5885,7 +5885,17 @@
         "StowedFree": "{gun} is stowed, as a free action.",
         "StowedAfter": "{gun}: stowing takes {readies} Ready maneuver(s).",
         "RetrieveLabel": "Retrieve {gun} by its lanyard",
-        "TooBulky": "{holster} takes a gun of Bulk -1 or less",
+        "TooBulky": "{holster} takes a gun of Bulk -1 or 0 only",
+        "Brace": {
+          "Action": "Brace on the sling",
+          "Title": "Sling brace ({gun})",
+          "NeedsReady": "Bracing on the sling takes Ready maneuvers",
+          "OnePerTurn": "One Ready a turn goes to the sling",
+          "Progress": "{spent} of {needed} Ready maneuvers spent bracing on the sling.",
+          "Done": "Braced on the sling: +{bonus} on an aimed shot while the position is held.",
+          "Left": "Out of the sling brace; the hands are free.",
+          "Line": "Braced ({holster})"
+        },
         "FlapTucked": "Flap tucked away",
         "FlapTuckedHint": "No -2 to Fast-Draw, but no protection from the elements either",
         "HammerLoop": "Hammer loop",
@@ -5906,9 +5916,9 @@
           "shoulder": "Worn under the off-hand arm: the shoulder holster's -1 is its place's.",
           "sleeve": "Delivers a gun of Bulk -1 or less on a Fast-Draw roll; a failure needs the free hand and a Ready, a critical failure breaks it.",
           "fastDrawRig": "A Ready in or out, and fast.",
-          "undercover": "Worn inside the waistband or at the ankle.",
+          "undercover": "Worn inside the waistband or at the ankle; at the ankle, only a gun of Bulk -1 or 0.",
           "retention": "+2 to Retain Weapon while the gun is in it.",
-          "rifleSling": "Unslinging or slinging takes two Ready maneuvers, three from the back.",
+          "rifleSling": "Unslinging or slinging takes two Ready maneuvers, three from the back. Braces the gun for an aimed shot: a Ready maneuver per -1 Bulk, from the gun's row.",
           "patrolSling": "Raising the gun takes one Ready.",
           "scabbard": "Keeps the elements off a long arm."
         },

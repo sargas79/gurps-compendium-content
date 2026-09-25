@@ -13,7 +13,9 @@
  *     and whether it is in hand. The holster records take their effects by
  *     name: a Fast-Draw modifier, the Ready maneuvers a draw takes, a sleeve
  *     holster's own outcomes, a retention holster's +2 to Retain Weapon.
- *     Quick-Sheathe stows a gun as fast as Fast-Draw draws it.
+ *     Quick-Sheathe stows a gun as fast as Fast-Draw draws it. An undercover
+ *     holster at the ankle takes only a gun of Bulk -1 or 0, and a rifle
+ *     sling braces a long arm for an aimed shot, a Ready per -1 Bulk.
  *   - **Who Draws First? with guns:** a GM tool settles a standoff between
  *     two gunfighters, with a hand on the gun, the worse Bulk, Combat Reflexes
  *     for the ready one, and the odd positions.
@@ -40,6 +42,8 @@ import {
   isLanyard,
   quickSheatheSpecialties,
   readiesAfterFastDraw,
+  SLING_BRACE_BONUS,
+  slingBraceReadies,
   type GunDraws,
   type GunSide,
   type GunSpecialty,
@@ -54,6 +58,8 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 const FIELD = "holster";
 /** Guns drawn this turn, by hand, and whether a draw has failed. */
 const DRAWS = "ht-draws";
+/** A Ready spent this turn on a sling brace. */
+const SLING_TURN = "ht-sling-brace";
 
 export interface DrawingSwitches {
   drawing: () => boolean;
@@ -216,12 +222,47 @@ async function stowGun(api: GWorldApi, actor: any, gun: any): Promise<void> {
     const outcome: any = await api.roll.success({ actor, base: level, label: F("QuickSheatheLabel", { gun: gun.name }), skill, modifiers: drawLines(actor, gun, "master", { grappled: false, upsideDown: false }) } as any);
     if (!outcome) return;
     const left = outcome.success ? readiesAfterFastDraw(readies) : readies;
-    await api.combat.setWeaponState(gun, MODULE_ID, { drawn: false, loopFree: false });
+    await api.combat.setWeaponState(gun, MODULE_ID, { drawn: false, loopFree: false, slingBrace: 0 });
     await say(actor, F("QuickSheatheLabel", { gun: gun.name }), [left ? F("StowedAfter", { gun: gun.name, readies: left }) : F("StowedFree", { gun: gun.name })]);
     return;
   }
-  await api.combat.setWeaponState(gun, MODULE_ID, { drawn: false, loopFree: false });
+  await api.combat.setWeaponState(gun, MODULE_ID, { drawn: false, loopFree: false, slingBrace: 0 });
   ui.notifications?.info(F("StowedAfter", { gun: gun.name, readies }));
+}
+
+const inCombat = (actor: any): boolean => Boolean((game as any).combat?.started) && Boolean((game as any).combat?.combatants?.some?.((c: any) => c?.actor?.id === actor?.id));
+
+/** The Ready maneuvers spent bracing a long arm on its sling, kept on the gun. */
+export function slingBraceSpent(api: GWorldApi, gun: any): number {
+  return Math.max(0, Math.floor(Number((api.combat.getWeaponState(gun, MODULE_ID) as any)?.slingBrace) || 0));
+}
+
+/** Whether a long arm is braced on its sling: every Ready its Bulk asks for spent (p. 154). */
+export function slingBraced(api: GWorldApi, gun: any): boolean {
+  return holsterOf(gun)?.kind === "rifleSling" && slingBraceSpent(api, gun) >= slingBraceReadies(bulkOf(gun));
+}
+
+/**
+ * Braces a long arm on its rifle sling, a Ready maneuver at a time, one per
+ * -1 Bulk; once braced, leaves the brace, a Ready more (p. 154). In combat
+ * each step takes the turn's Ready; out of it the brace is taken at once.
+ */
+export async function braceOnSling(api: GWorldApi, gun: any, actor: any): Promise<void> {
+  const needed = slingBraceReadies(bulkOf(gun));
+  const spent = slingBraceSpent(api, gun);
+  const fighting = inCombat(actor);
+  if (fighting && String(actor?.system?.maneuver ?? "") !== "ready") return void ui.notifications?.warn(L("Brace.NeedsReady"));
+  if (fighting && api.combat.getCombatState(actor, MODULE_ID, SLING_TURN)) return void ui.notifications?.warn(L("Brace.OnePerTurn"));
+  if (spent >= needed) {
+    await api.combat.setWeaponState(gun, MODULE_ID, { slingBrace: 0 });
+    if (fighting) await api.combat.setCombatState(actor, MODULE_ID, SLING_TURN, true, "turn");
+    await say(actor, F("Brace.Title", { gun: gun.name }), [L("Brace.Left")]);
+    return;
+  }
+  const now = fighting ? spent + 1 : needed;
+  await api.combat.setWeaponState(gun, MODULE_ID, { slingBrace: now });
+  if (fighting) await api.combat.setCombatState(actor, MODULE_ID, SLING_TURN, true, "turn");
+  await say(actor, F("Brace.Title", { gun: gun.name }), [now >= needed ? F("Brace.Done", { bonus: SLING_BRACE_BONUS }) : F("Brace.Progress", { spent: now, needed })]);
 }
 
 /** Retrieves a dropped gun on its lanyard: a DX roll, one Ready per attempt (p. 154). */
@@ -274,7 +315,7 @@ function itemContext(api: GWorldApi, item: any): Record<string, unknown> {
   const bulk = bulkOf(item);
   const holsters = [...(actor?.items ?? [])]
     .filter((i: any) => holsterKindOf(String(i.name ?? "")))
-    .map((i: any) => ({ value: i.id, label: i.name, selected: i.id === data.item, disabled: !holsterFits(holsterKindOf(String(i.name))!, bulk) }));
+    .map((i: any) => ({ value: i.id, label: i.name, selected: i.id === data.item, disabled: !holsterFits(holsterKindOf(String(i.name))!, bulk, carryOf(item)) }));
   return {
     gun: {
       owned: Boolean(actor),
@@ -295,7 +336,7 @@ function itemListeners(api: GWorldApi, element: HTMLElement, item: any): void {
       if (input instanceof HTMLInputElement && input.type === "checkbox") return void (await item.update({ [`${path}.${key}`]: input.checked }));
       const chosen = input.value ? (item.actor ?? item.parent)?.items?.get?.(input.value) : null;
       const kind = chosen ? holsterKindOf(String(chosen.name ?? "")) : null;
-      if (kind && !holsterFits(kind, bulkOf(item))) {
+      if (kind && !holsterFits(kind, bulkOf(item), carryOf(item))) {
         ui.notifications?.warn(F("TooBulky", { holster: chosen.name }));
         input.value = holsterData(item).item;
         return;
@@ -344,6 +385,26 @@ export function readyDrawing(api: GWorldApi, on: DrawingSwitches): void {
         });
       });
     },
+  });
+
+  // Bracing a long arm on its rifle sling (p. 154).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-sling-brace",
+    itemTypes: ["equipment"],
+    label: L("Brace.Action"),
+    icon: "fa-solid fa-link",
+    visible: (item) => on.drawing() && isFirearm(api, item) && holsterOf(item)?.kind === "rifleSling",
+    run: (item, actor) => { void braceOnSling(api, item, actor); },
+  });
+
+  // A braced sling: +1 on an aimed shot, as bracing gives (Characters p. 364), unless the shot is braced already.
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    const item = context?.item;
+    if (!on.drawing() || context?.rollType !== "attack" || !context.ranged || !isFirearm(api, item) || !slingBraced(api, item)) return;
+    const lines: any[] = context.modifiers ?? [];
+    if (!lines.some((l) => l?.key === "accuracy") || lines.some((l) => l?.key === "braced")) return;
+    lines.push({ label: F("Brace.Line", { holster: String(holsterOf(item)!.item.name) }), value: SLING_BRACE_BONUS, key: "braced" });
   });
 
   // A retention holster: +2 to Retain Weapon while the gun is in it (p. 154):

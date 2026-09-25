@@ -11,7 +11,7 @@ import { setRuleReader } from "../../../shared/book-tables.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { CARRY_TABLES } from "../../../shared/readying/index.js";
 import { GUN_CARRIES, gunCarryModifier } from "./rules.js";
-import { drawLines, holsterOf, readyDrawing } from "./index.js";
+import { braceOnSling, drawLines, holsterOf, readyDrawing } from "./index.js";
 
 type Listener = (context: any) => void;
 
@@ -30,14 +30,14 @@ function fakeApi() {
     registry: { isRuleOn: () => false },
     rules: { weaponClassOf: () => "firearm" },
     combat: {
-      hooks: { successRollModifiers: "gworld.successRollModifiers" },
+      hooks: { successRollModifiers: "gworld.successRollModifiers", attackModifiers: "gworld.attackModifiers" },
       getWeaponState: (item: any) => weaponState.get(item.id) ?? {},
       setWeaponState: async (item: any, _m: string, patch: any) => { weaponState.set(item.id, { ...(weaponState.get(item.id) ?? {}), ...patch }); },
       getCombatState: () => undefined,
       setCombatState: async () => {},
       grapple: () => null,
     },
-    sheets: { registerSheetSection: vi.fn(), registerGmTool: (tool: any) => gmTools.push(tool) },
+    sheets: { registerSheetSection: vi.fn(), registerGmTool: (tool: any) => gmTools.push(tool), registerRowAction: vi.fn() },
     actors: {
       skillLevel: (actor: any, name: string) => actor.skills?.[name] ?? null,
       derived: (actor: any) => ({ ranged: actor.ranged }),
@@ -163,6 +163,42 @@ describe("a retention holster", () => {
     };
     expect(roll(kept)).toEqual([{ label: "Retention Holster", value: 2 }]);
     expect(roll(loose)).toEqual([]);
+  });
+});
+
+describe("bracing on a rifle sling (p. 154)", () => {
+  const rifle = () => ({
+    id: "m1",
+    name: "Springfield M1903",
+    type: "equipment",
+    system: { carried: true, weaponClass: "firearm", meleeModes: [], rangedModes: [{ skill: "Guns (Rifle)", bulk: -2 }], extensions: { [MODULE_ID]: { holster: { item: "sl" } } } },
+  });
+  const shot = (gun: any, actor: any, modifiers: any[]) => {
+    const context = { actor, item: gun, rollType: "attack", ranged: true, modifiers };
+    for (const l of hooks.get("gworld.attackModifiers") ?? []) l(context);
+    return context.modifiers;
+  };
+
+  it("takes a Ready per -1 Bulk in combat, then braces an aimed shot for +1, and a Ready more to leave", async () => {
+    readyDrawing(fakeApi() as never, { drawing: () => true, standoff: () => false });
+    const gun = rifle();
+    const actor = gunman("Svetlana", gun, [holster("sl", "Rifle Sling")]);
+    actor.id = "a1";
+    vi.stubGlobal("game", { ...(globalThis as any).game, combat: { started: true, combatants: [{ actor: { id: "a1" } }] } });
+    const aimed = () => [{ label: "Aim", value: 5, key: "accuracy" }];
+    actor.system.maneuver = "attack";
+    await braceOnSling(fakeApi() as never, gun, actor);
+    expect(weaponState.get("m1")?.slingBrace ?? 0).toBe(0);
+    actor.system.maneuver = "ready";
+    await braceOnSling(fakeApi() as never, gun, actor);
+    expect(shot(gun, actor, aimed())).toHaveLength(1);
+    await braceOnSling(fakeApi() as never, gun, actor);
+    expect(shot(gun, actor, aimed())).toContainEqual({ label: "GCC.HT.Drawing.Brace.Line {\"holster\":\"Rifle Sling\"}", value: 1, key: "braced" });
+    // Not on an unaimed shot, nor twice on one already braced.
+    expect(shot(gun, actor, [])).toEqual([]);
+    expect(shot(gun, actor, [...aimed(), { label: "Braced", value: 1, key: "braced" }])).toHaveLength(2);
+    await braceOnSling(fakeApi() as never, gun, actor);
+    expect(shot(gun, actor, aimed())).toHaveLength(1);
   });
 });
 
