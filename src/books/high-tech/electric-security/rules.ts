@@ -137,7 +137,7 @@ export function stethoscopeBonus(bonus: number, noisy: boolean): number {
 }
 
 /** The skill the stethoscope helps against a mechanical bomb. */
-export const EOD_SKILL = "Explosives (EOD)";
+export const EOD_SKILL = "Explosives (Explosive Ordnance Disposal)";
 
 // ── screening (HT:EE p. 43) ──
 

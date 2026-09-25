@@ -23,7 +23,6 @@ import {
   partsBroken,
   partsFailing,
   partsStopping,
-  rollsOnTheDevice,
   usedPercent,
   usedPrice,
   unavailableWhileNew,
@@ -122,14 +121,6 @@ describe("breakable parts (HT:EE p. 8)", () => {
     expect(partsFailing("sound", 1, 0, 4)).toBe(1);
     expect(partsStopping([9, 12, 17], 3, 10)).toBe(2);
     expect(partsStopping([9, 12], 1, 10)).toBe(0);
-  });
-
-  it("refuses nothing rolled on the device itself: repairs and HT", () => {
-    expect(rollsOnTheDevice("Electronics Repair (Comm)")).toBe(true);
-    expect(rollsOnTheDevice("Electrician")).toBe(true);
-    expect(rollsOnTheDevice("HT")).toBe(true);
-    expect(rollsOnTheDevice("Electronics Operation (Comm)")).toBe(false);
-    expect(rollsOnTheDevice("Photography")).toBe(false);
   });
 });
 

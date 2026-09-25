@@ -44,7 +44,7 @@ const values = (roll: any) => roll.modifiers.map((m: any) => m.value);
 function character(name: string, options: { skills?: Record<string, number>; attributes?: Record<string, number>; items?: any[]; derived?: any } = {}): any {
   const skills = Object.fromEntries(Object.entries(options.skills ?? {}).map(([k, v]) => [api.rules.toolSkillKey(k), v]));
   const skillItems = Object.keys(options.skills ?? {}).map((name) => ({ type: "skill", name }));
-  return { id: name, name, skills, attributes: options.attributes ?? {}, items: [...skillItems, ...(options.items ?? [])], derived: options.derived };
+  return { id: name, name, isOwner: true, skills, attributes: options.attributes ?? {}, items: [...skillItems, ...(options.items ?? [])], derived: options.derived };
 }
 const gear = (name: string, extra: Record<string, unknown> = {}, book: string | null = "high-tech") => ({
   name,
@@ -418,6 +418,19 @@ describe("the laboratory instruments (HT:EE pp. 10-13)", () => {
     targets = [victim];
     await action("ht-geiger-supply").run(tube, physicist);
     expect(shocks[0]).toMatchObject({ actor: victim, kind: "lethal", formula: "5d", continuous: true, source: "geigerSupply" });
+  });
+
+  it("shocks no one the user doesn't own, from the Geiger supply or the Van de Graaff, and warns", async () => {
+    const stranger = { ...character("Stranger"), isOwner: false };
+    targets = [stranger];
+    const tube = gear("Geiger-Müller Tube");
+    await action("ht-geiger-supply").run(tube, character("Physicist", { items: [tube] }));
+    const generator = gear("Van de Graaff Generator");
+    form = { sphere: "9" };
+    await action("ht-instrument-discharge").run(generator, character("Teacher", { items: [generator] }));
+    expect(shocks).toEqual([]);
+    expect(ui.notifications!.warn).toHaveBeenCalledTimes(2);
+    expect(ui.notifications!.warn).toHaveBeenCalledWith(expect.stringContaining("NotYourVictim"));
   });
 
   it("builds an analog computer from Mechanic (Analog Computers)-6 for one without the Engineer skill", async () => {

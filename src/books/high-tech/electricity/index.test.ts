@@ -177,8 +177,8 @@ describe("electrical hazards (HT:EE p. 9)", () => {
     expect(damageSeen[0].injury).toBeGreaterThan(1);
     expect(damageSeen[0].modifier - (modifiersSeen[0].modifier ?? 0)).toBe(-4 * Math.floor(damageSeen[0].injury / 2));
     expect(damageSeen[2].modifier).toBe(modifiersSeen[2].modifier);
-    // RF disregards the effect: no heart stoppage at all.
-    expect(modifiersSeen[1]).toMatchObject({ heartAttackMargin: null, heartAttackOnCritical: false });
+    // RF drops only the penalty: the heart can still stop, as on any lethal shock.
+    expect(modifiersSeen[1]).toMatchObject({ injuryStep: 0, heartAttackMargin: 5 });
     expect(modifiersSeen[2].heartAttackMargin).toBe(5);
   });
 

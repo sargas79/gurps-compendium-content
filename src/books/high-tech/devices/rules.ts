@@ -196,14 +196,6 @@ export function partsStopping(htRolls: readonly number[], failing: number, ht: n
   return htRolls.slice(0, Math.max(0, Math.floor(failing) || 0)).filter((roll) => !succeeds(roll, ht)).length;
 }
 
-/**
- * Skills rolled on a device rather than with it -- the repairs -- and HT
- * itself: a device's broken parts don't refuse those.
- */
-export function rollsOnTheDevice(skill: unknown): boolean {
-  return /^(?:ht|electronics repair|electrician|mechanic|machinist|armoury|armory)\b/i.test(String(skill ?? "").trim());
-}
-
 // ── used devices (HT:EE p. 8) ───────────────────────────────────────────────
 
 /**

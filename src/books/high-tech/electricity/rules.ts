@@ -6,8 +6,8 @@
  *
  * **Hazards (HT:EE p. 9).** The Basic Set's -1 per 2 points of injury on the
  * HT roll fits direct current. Alternating current is five times as harsh,
- * -5 per 2 full points; radio-frequency current's effect is disregarded,
- * with no penalty and no heart stoppage; lightning
+ * -5 per 2 full points; radio-frequency current disregards the penalty,
+ * though the heart can still stop; lightning
  * is gentler, -1 per 5 points. More than 1 point of injury clamps the victim
  * to the source; a source doing only 1 point can be jerked away from with a
  * DX roll, avoiding that point. Optionally a shock rolled under 1d can do no
@@ -52,7 +52,7 @@ export const CURRENTS: readonly Current[] = ["dc", "ac", "rf", "lightning"];
  * Points of injury per step of the HT roll against heart stoppage, as the
  * system's `injuryStep` takes it (HT:EE p. 9): DC is the Basic Set's 2,
  * AC the same 2 (its steps are 5 times as big: see `AC_STEP`), lightning 5.
- * Radio-frequency current has none (0): its effect is disregarded.
+ * Radio-frequency current has none (0): the penalty is disregarded.
  */
 export const INJURY_STEP: Readonly<Record<Current, number>> = Object.freeze({ dc: 2, ac: 2, rf: 0, lightning: 5 });
 
@@ -66,12 +66,6 @@ export function acExtraModifier(injury: number): number {
   const steps = Math.floor(Math.max(0, Number(injury) || 0) / INJURY_STEP.ac);
   return steps ? -(AC_STEP - 1) * steps : 0;
 }
-
-/**
- * Whether a lethal shock of this current can stop the heart: radio-frequency
- * current disregards the effect entirely, so it never does (HT:EE p. 9).
- */
-export const stopsHeart = (current: Current): boolean => current !== "rf";
 
 /** More injury than this clamps the victim to the source (HT:EE p. 9). */
 export const HOLDING_INJURY = 1;

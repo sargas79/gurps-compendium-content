@@ -7,6 +7,8 @@
  * does. High-Tech's switches alone (decision D1).
  */
 
+import { readFileSync } from "node:fs";
+
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
@@ -14,6 +16,7 @@ import { MODULE_ID } from "../../../shared/module.js";
 import { SECURITY_TABLES } from "../../../shared/security/index.js";
 import type * as Security from "../security/index.js";
 import type * as Electric from "./index.js";
+import { EOD_SKILL } from "./rules.js";
 
 let actions: Map<string, any>;
 let sections: Map<string, any>;
@@ -371,11 +374,18 @@ describe("screening and alarms, with only their switch on", () => {
     expect(actions.get("ht-ee-stethoscope-eod").visible(gear("Stethoscope"))).toBe(false);
     dialogAnswer = { noisy: false };
     await electric.listenToBomb(fakeApi() as never, stethoscope, tech);
-    expect(pending[0]).toMatchObject({ actor: "Tech", value: 1, skill: "Explosives (EOD)" });
+    expect(pending[0]).toMatchObject({ actor: "Tech", value: 1, skill: "Explosives (Explosive Ordnance Disposal)" });
     expect(chat[0].content).toContain('"bonus":"+1"');
     dialogAnswer = { noisy: true };
     await electric.listenToBomb(fakeApi() as never, stethoscope, tech);
     expect(pending[1]).toMatchObject({ value: 2 });
+  });
+
+  it("names the Basic Set's own EOD skill, so the held bonus is spent on its roll", () => {
+    const skills = JSON.parse(readFileSync(new URL("../../../../system/packs-src/skills/basic-set-skills.json", import.meta.url), "utf-8")) as Array<{ name: string }>;
+    const names = skills.map((s) => s.name.replace(/\/TL\d*/i, ""));
+    expect(names).toContain(EOD_SKILL);
+    expect(EOD_SKILL).toBe("Explosives (Explosive Ordnance Disposal)");
   });
 
   it("cancels -1 of a noise penalty when the digital stethoscope cracks a safe", () => {

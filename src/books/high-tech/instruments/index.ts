@@ -411,6 +411,8 @@ async function compareSignals(api: GWorldApi, item: any, actor: any): Promise<vo
 async function supplyShock(api: GWorldApi, actor: any): Promise<void> {
   const victim = [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter(Boolean)[0] ?? actor;
   if (!victim) return;
+  // The shock is written to the victim: only their owner (or the GM) can run it.
+  if (!victim.isOwner) return void ui.notifications?.warn(F("NotYourVictim", { name: victim.name }));
   await api.hazards.shock({ actor: victim, kind: "lethal", modifier: 0, continuous: true, formula: GEIGER_SUPPLY.damage, metalArmor: false, source: "geigerSupply" } as any);
 }
 
@@ -474,6 +476,7 @@ async function discharge(api: GWorldApi, item: any, actor: any): Promise<void> {
   if (!inst?.sphere) return;
   const targets = [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter(Boolean);
   const victim = targets[0] ?? actor;
+  if (victim && !victim.isOwner) return void ui.notifications?.warn(F("NotYourVictim", { name: victim.name }));
   const answer = await ask(F("DischargeTitle", { name: nameOf(item) }),
     `<p class="ihint">${esc(F("DischargeVictim", { name: victim?.name ?? "" }))}</p>`
     + row(L("Sphere"), `<input type="number" name="sphere" value="${inst.sphere}" min="${inst.sphere}" step="1" style="width:70px" />`),

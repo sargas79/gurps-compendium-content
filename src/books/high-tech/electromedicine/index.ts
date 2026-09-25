@@ -179,6 +179,11 @@ const laserScalpel = (actor: any, skill: unknown) =>
 export async function cauterize(api: GWorldApi, item: any, actor: any): Promise<void> {
   const patient = targetedActor() ?? actor;
   if (!actor || !patient) return;
+  // Stopping the bleeding and the pain are written to the patient: a user who
+  // doesn't own the patient can't, and the module has no relay to the GM, so
+  // nothing is rolled and the GM is asked to run it (as for any change to a
+  // character this user can't edit).
+  if (!patient.isOwner) return void ui.notifications?.warn(F("NotYourPatient", { name: patient.name }));
   const level = surgeryLevel((skill) => api.actors.skillLevel(actor, skill) ?? null);
   if (level === null) return void ui.notifications?.warn(L("NoSurgery"));
   const answer = await foundry.applications.api.DialogV2.prompt({

@@ -82,6 +82,7 @@ function person(name: string, items: any[] = [], more: Record<string, any> = {})
   return {
     name,
     uuid: `Actor.${name}`,
+    isOwner: true,
     items,
     attributes: { IQ: 12, HT: 11 },
     skills: {},
@@ -283,6 +284,19 @@ describe("electrocautery and the cautery pen (HT:EE pp. 13-14)", () => {
     expect(stopped).toEqual([]);
     expect(quantities).toEqual([{ item: "Cautery Pen", delta: -1 }]);
     expect(chat[0]).toContain("NotCauterized");
+  });
+
+  it("rolls nothing and claims nothing on a patient the healer doesn't own, and warns", async () => {
+    on = true;
+    const cautery = record("Electrocautery");
+    const doctor = person("Doctor", [cautery], { skills: { Surgery: 13 } });
+    targets = [person("Stranger", [], { isOwner: false })];
+    await run("ee-cautery", cautery, doctor);
+    expect(successes).toEqual([]);
+    expect(stopped).toEqual([]);
+    expect(conditions).toEqual([]);
+    expect(chat).toEqual([]);
+    expect(ui.notifications!.warn).toHaveBeenCalledWith(expect.stringContaining("NotYourPatient"));
   });
 
   it("wants some Surgery skill or default", async () => {

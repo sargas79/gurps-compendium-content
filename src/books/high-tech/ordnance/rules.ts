@@ -197,8 +197,8 @@ export const mineFacts = (name: string): MineFacts | null => MINES[String(name ?
 export const MINE_TASKS = {
   place: [{ skill: "Explosives (Demolition)", modifier: 4 }, { skill: "Soldier", modifier: 0 }, { skill: "Traps", modifier: 2 }],
   improvised: [{ skill: "Explosives (Demolition)", modifier: -2 }],
-  probe: [{ skill: "Explosives (EOD)", modifier: 0 }, { skill: "Soldier", modifier: -5 }],
-  disarm: [{ skill: "Explosives (EOD)", modifier: 0 }],
+  probe: [{ skill: "Explosives (Explosive Ordnance Disposal)", modifier: 0 }, { skill: "Soldier", modifier: -5 }],
+  disarm: [{ skill: "Explosives (Explosive Ordnance Disposal)", modifier: 0 }],
 } as const;
 export type MineTask = keyof typeof MINE_TASKS;
 

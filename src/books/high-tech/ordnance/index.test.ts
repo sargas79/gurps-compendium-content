@@ -333,7 +333,7 @@ describe("land mines (p. 189)", () => {
 
   it("rolls the best of the skills to place one, and sets the TMi35 off on a failed disarm", async () => {
     const mine = item("TMi35");
-    const sapper = actorWith("Sapper", [mine], { skills: { Soldier: 12, "Explosives (EOD)": 12 } });
+    const sapper = actorWith("Sapper", [mine], { skills: { Soldier: 12, "Explosives (Explosive Ordnance Disposal)": 12 } });
     dialog = { task: "place", antiLifting: "", tamper: "0" };
     actions.get("ht-mine-task").run(mine, sapper);
     await flush();

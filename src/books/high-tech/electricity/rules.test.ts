@@ -11,7 +11,6 @@ import {
   shieldDr,
   shockGear,
   sparkTarget,
-  stopsHeart,
   voltageDamage,
   weakShock,
   weakShockBonus,
@@ -33,10 +32,8 @@ describe("the HT roll's step for each current (HT:EE p. 9)", () => {
     for (let injury = 0; injury <= 200; injury += 1) expect(ac(injury)).toBe(-(Math.floor(injury / 2) * 5) || 0);
   });
 
-  it("radio-frequency current's effect is disregarded: no penalty and no heart stoppage; lightning -1 per 5", () => {
+  it("radio-frequency current gives no penalty, lightning -1 per 5", () => {
     expect(lethalShockModifier(12, INJURY_STEP.rf)).toBe(0);
-    expect(stopsHeart("rf")).toBe(false);
-    expect(stopsHeart("ac")).toBe(true);
     expect(lethalShockModifier(12, INJURY_STEP.lightning)).toBe(-2);
   });
 });

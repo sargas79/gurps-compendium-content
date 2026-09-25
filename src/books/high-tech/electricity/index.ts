@@ -67,7 +67,6 @@ import {
   shieldDr,
   shockGear,
   sparkTarget,
-  stopsHeart,
   voltageDamage,
   weakShock,
   weakShockBonus,
@@ -208,11 +207,6 @@ function hazardModifiers(context: any, shock: PendingShock | null): void {
   if (shock?.current && kind !== "nonlethal") {
     context.injuryStep = INJURY_STEP[shock.current];
     if (shock.current !== "dc") context.lines.push(L(`Step.${shock.current}`));
-    // Radio-frequency current: the effect is disregarded, heart and all.
-    if (!stopsHeart(shock.current)) {
-      context.heartAttackMargin = null;
-      context.heartAttackOnCritical = false;
-    }
   }
   if (kind === "nonlethal" && nonlethalCanStopHeart(Number(context.modifier) || 0)) {
     context.heartAttackMargin = NONLETHAL_HEART_MARGIN;

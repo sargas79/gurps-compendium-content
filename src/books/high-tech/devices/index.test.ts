@@ -286,12 +286,29 @@ describe("breakable parts and device statistics (HT:EE pp. 8-9)", () => {
     expect(deviceData(item).parts).toMatchObject({ broken: 1, failing: 1 });
     expect(chat[0]).toContain('GCC.HT.Devices.Run.Rolls {"count":2,"label":"vacuum tubes","ht":10,"rolls":"12, 9"}');
     expect(chat[0]).toContain('GCC.HT.Devices.Run.Stopped {"stopped":1');
-    // Now it won't work: its rolls are refused, but not the repair.
+    // Now it won't work: any roll made with it is refused, whatever the skill.
     const use = fire("gworld.successRollModifiers", { actor, item, skill: "Electronics Operation (Comm)", modifiers: [], refusal: null });
     expect(use.refusal).toContain("GCC.HT.Devices.BrokenRefusal");
     const repair = fire("gworld.successRollModifiers", { actor, item, skill: "Electronics Repair (Comm)", modifiers: [], refusal: null });
-    expect(repair.refusal).toBeNull();
+    expect(repair.refusal).toContain("GCC.HT.Devices.BrokenRefusal");
     expect(actions.get("ht-device-run")!.visible(item)).toBe(false);
+  });
+
+  it("doesn't refuse the roll where another carried, unbroken tool serves the same skill", () => {
+    const broken = record("Tube Radio", { cost: 200, weight: 8, forSkills: ["Electronics Operation (Communications)"] }, { parts: { count: 5, broken: 1 } });
+    const spare = record("Spare Radio", { cost: 200, weight: 8, carried: true, forSkills: ["Electronics Operation/TL (Communications)"] }, { parts: { count: 5, broken: 0 } });
+    const stowed = record("Stowed Radio", { cost: 200, weight: 8, carried: false, forSkills: ["Electronics Operation (Communications)"] });
+    const roll = (actor: any) => fire("gworld.successRollModifiers", { actor, item: broken, skill: "Electronics Operation (Communications)", modifiers: [], refusal: null }).refusal;
+    expect(roll(owner([broken, spare]))).toBeNull();
+    // A stowed one, another broken one, or one for another skill doesn't serve.
+    expect(roll(owner([broken, stowed]))).toContain("GCC.HT.Devices.BrokenRefusal");
+    const alsoBroken = record("Other Radio", { forSkills: ["Electronics Operation (Communications)"] }, { parts: { count: 2, broken: 2 } });
+    expect(roll(owner([broken, alsoBroken]))).toContain("GCC.HT.Devices.BrokenRefusal");
+    const scope = record("Oscilloscope", { forSkills: ["Electronics Operation (Scientific)"] });
+    expect(roll(owner([broken, scope]))).toContain("GCC.HT.Devices.BrokenRefusal");
+    // An earlier rule's refusal keeps its reason.
+    const earlier = fire("gworld.successRollModifiers", { actor: owner([broken]), item: broken, skill: "Electronics Operation (Communications)", modifiers: [], refusal: "Burned out" });
+    expect(earlier.refusal).toBe("Burned out");
   });
 
   it("rolls nothing and refuses nothing for a sound device, or with the switch off", async () => {
