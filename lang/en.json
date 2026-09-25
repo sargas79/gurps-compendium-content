@@ -6274,7 +6274,8 @@
           "speedloader": "Speedloader ({seconds} s, {fastDraw} with Fast-Draw)",
           "clamped": "Clamped magazines ({seconds} s; not with Fast-Draw)",
           "assistant": "Assistant gunner ({seconds} s; not with Fast-Draw)",
-          "spareMagazine": "A spare magazine, swapped in ({seconds} s)"
+          "spareMagazine": "A spare magazine, swapped in ({seconds} s)",
+          "spareMagazineWhole": "A spare magazine, swapped in ({seconds} s for the whole load; not with Fast-Draw)"
         },
         "CaseSeconds": "Seconds a case (gate)",
         "CaseSecondsTooltip": "Seconds to clear each spent case through the loading gate: 0 for an ejector rod's one second; at least 2 without a rod, 3 for the Colt's Sheriff's model (High-Tech pp. 87, 95).",

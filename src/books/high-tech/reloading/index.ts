@@ -288,11 +288,16 @@ export function reloadEntry(api: GWorldApi, item: any, modeIndex: number, mode: 
 
   // A round at a time: the Reload button asks how many and times that many (GWorld API 1.88.0). Not
   // where the time is a whole: a speedloader's, Double-Loading's pairs, fouling's tenths of the total.
-  if (byTheRound && !speedloader && !doubling && !fouling && !own.spareMagazine) {
+  // A spare for a magazine that detaches, though it is normally charged in place: swapped in as a detachable one,
+  // in place of charging it, only where the aid is ticked (p. 112).
+  const spare = own.spareMagazine && (type === "clip" || type === "internal") ? loadingSeconds("magazine", 1)! : null;
+  if (byTheRound && !speedloader && !doubling && !fouling) {
     entry.reloadSeconds = byTheRound.seconds;
     entry.perRoundSeconds = byTheRound.perRound;
     entry.fastDrawSeconds = byTheRound.fastDrawPerRound;
     entry.fastDrawPer = "round";
+    // Timed round by round, the swap replaces the time of the rounds missing; Fast-Draw's saving comes a round at a time, so none is taken off the swap.
+    if (spare) aids.push({ id: aidId("spareMagazine"), label: F("Aid.spareMagazineWhole", { seconds: spare.seconds }), seconds: spare.seconds - time.seconds, fastDrawSeconds: 0 });
     return;
   }
 
@@ -323,11 +328,7 @@ export function reloadEntry(api: GWorldApi, item: any, modeIndex: number, mode: 
     if (type === "magazine") aids.push({ id: aidId("clamped"), label: F("Aid.clamped", { seconds: helped }), ...off, checked: carries(actor, /^magazine clamp/i) });
     if (type !== "magazine" || isMachineGun(item)) aids.push({ id: aidId("assistant"), label: F("Aid.assistant", { seconds: helped }), ...off });
   }
-  // A spare for a magazine that detaches, though it is normally charged in place: swapped in as a detachable one (p. 112).
-  if (own.spareMagazine && (type === "clip" || type === "internal")) {
-    const swap = loadingSeconds("magazine", 1)!;
-    aids.push({ id: aidId("spareMagazine"), label: F("Aid.spareMagazine", { seconds: swap.seconds }), seconds: swap.seconds - entry.reloadSeconds, fastDrawSeconds: swap.seconds - swap.fastDraw });
-  }
+  if (spare) aids.push({ id: aidId("spareMagazine"), label: F("Aid.spareMagazine", { seconds: spare.seconds }), seconds: spare.seconds - entry.reloadSeconds, fastDrawSeconds: spare.seconds - spare.fastDraw });
 }
 
 async function say(actor: any, title: string, lines: string[]): Promise<void> {

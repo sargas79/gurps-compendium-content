@@ -262,6 +262,12 @@ describe("loose powder and ball (High-Tech p. 86)", () => {
     const smle = (firearm: Record<string, unknown> = {}) => gun({ name: "SMLE Mk III, .303", skill: "Guns (Rifle)", shots: "10(5)", rof: 1, tl: "6", firearm });
     expect(entryOf(smle()).aids.some((a: any) => a.id.endsWith("spareMagazine"))).toBe(false);
     expect([reload(smle({ spareMagazine: true }), ["spareMagazine"]), reload(smle({ spareMagazine: true }), ["spareMagazine"], true)]).toEqual([3, 2]);
+    // An internal magazine still loads round by round; the spare replaces the time only when ticked.
+    const model70 = gun({ name: "Winchester Model 70, .30-06", skill: "Guns (Rifle)", shots: "5(3i)", rof: 1, tl: "7", loaded: 0, firearm: { loadingType: "internal", spareMagazine: true } });
+    expect(entryOf(model70).perRoundSeconds).toBe(2);
+    expect(reload(model70)).toBe(11);
+    expect(reload(model70, [], true)).toBe(6);
+    expect(reload(model70, ["spareMagazine"])).toBe(3);
     const sheriff = gun({ name: "Colt M1873 SAA, .45 Long Colt", shots: "6(5i)", rof: 1, tl: "5", firearm: { loadingType: "gate", caseSeconds: 3 } });
     expect(reload(sheriff)).toBe(32);
   });

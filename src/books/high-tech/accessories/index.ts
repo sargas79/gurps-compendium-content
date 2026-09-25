@@ -65,6 +65,7 @@ import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extens
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { calibreRowOf } from "../ammunition/calibres.js";
 import { isFirearm } from "../firearms/index.js";
+import { modernMalfunction } from "../firearms/rules.js";
 import { familyData, gunTakesSuppressor } from "../weapon-families/index.js";
 import {
   ADD_ON_HOSTS,
@@ -133,6 +134,8 @@ export interface AccessorySwitches {
   suppressors: () => boolean;
   cinematic: () => boolean;
   stocks: () => boolean;
+  /** Gun care, whose TL6-8 swap of misfires and stoppages a botched suppressor's malfunction takes too (p. 81). */
+  gunCare?: () => boolean;
 }
 
 /** Which switch each kind of accessory is under. */
@@ -262,7 +265,7 @@ function calibreOf(item: any) {
 
 /** Whether an accessory's rule is on. */
 function kindOn(on: AccessorySwitches, figures: AccessoryFigures): boolean {
-  return on[SWITCH_OF[figures.kind]]();
+  return on[SWITCH_OF[figures.kind]]?.() === true;
 }
 
 interface Fitted {
@@ -775,12 +778,22 @@ export async function buildSuppressor(api: GWorldApi, item: any, actor: any, mod
   return result;
 }
 
-/** The first shot through a botched suppressor: the Firearm Malfunction Table, and the gun put out of action as it says. */
-export async function botchedFirstShot(api: GWorldApi, gun: any, actor: any, suppressor: any): Promise<string> {
+/**
+ * The first shot through a botched suppressor: the Firearm Malfunction Table
+ * (Campaigns p. 407), read as the system reads it -- an explosion is a
+ * mechanical problem where the gun's TL can't explode -- and, with gun care
+ * on, misfires and stoppages swapped at TL6-8 as this book's malfunction
+ * listener swaps them (p. 81). The mode fired is put out of action.
+ */
+export async function botchedFirstShot(api: GWorldApi, gun: any, actor: any, suppressor: any, modeIndex = 0, gunCare: () => boolean = () => false): Promise<string> {
   const roll = new Roll("3d6");
   await roll.evaluate();
-  const kind = String(api.rules.malfunctionFor(Number(roll.total) || 10));
-  if (gun?.isOwner) await api.items.setMalfunction(gun, { kind, modeIndex: 0 } as any);
+  const tl = tlOf(gun);
+  let kind = String(api.rules.malfunctionFor(Number(roll.total) || 10));
+  if (kind === "explosion" && !api.rules.mayExplode(tl)) kind = "mechanical";
+  // A suppressor is never on an ordinary revolver (p. 159), so the swap applies as for any other gun.
+  if (gunCare()) kind = modernMalfunction(kind, tl, false);
+  if (gun?.isOwner) await api.items.setMalfunction(gun, { kind, modeIndex } as any);
   await say(actor, String(suppressor.name ?? ""), [F("BotchedShot", { roll: roll.total, kind: game.i18n.localize(`GWORLD.Malfunction.${kind}`), gun: String(gun?.name ?? "") })]);
   return kind;
 }
@@ -1179,7 +1192,7 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
     // A botched home build: the first shot through it rolls the Firearm Malfunction Table (p. 159).
     if (fitted.data.buildFailed) {
       void fitted.item.update({ [`system.extensions.${MODULE_ID}.${FIELD}.buildFailed`]: false });
-      void botchedFirstShot(api, item, context.actor, fitted.item);
+      void botchedFirstShot(api, item, context.actor, fitted.item, Math.max(0, Math.floor(Number(context.modeIndex) || 0)), on.gunCare);
     }
     const lifetime = lifetimeOf(fitted.figures, fitted.data);
     if (!lifetime || fitted.data.fired >= lifetime) return;

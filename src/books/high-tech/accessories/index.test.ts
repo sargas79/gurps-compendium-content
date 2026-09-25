@@ -11,7 +11,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as rules from "../../../../system/src/rules/index.js";
 import { ACCESSORY_TABLES } from "../../../shared/accessories/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
-import { accessoryBulk, fittedMagnifier, fittedScopeBonus, fittedTo, hearingLines, readyAccessories, reportOfGun, type AccessorySwitches } from "./index.js";
+import { accessoryBulk, botchedFirstShot, fittedMagnifier, fittedScopeBonus, fittedTo, hearingLines, readyAccessories, reportOfGun, type AccessorySwitches } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -408,10 +408,29 @@ describe("the follow-ups (#372)", () => {
     const actor = character();
     const pistol = gun(actor);
     const can = accessory(actor, "Detachable Baffle Suppressor, Pistol or SMG", pistol, { grade: "average", level: 2, lifetime: 10, buildFailed: true });
-    fire(HOOKS.afterShots, { actor, item: pistol, modeIndex: 0, shots: 1, fired: 1 });
+    fire(HOOKS.afterShots, { actor, item: pistol, modeIndex: 1, shots: 1, fired: 1 });
     await new Promise((r) => setTimeout(r, 0));
-    expect(set).toHaveLength(1);
+    // 18 on the table: an explosion, which a TL8 gun can't do -- mechanical, on the mode fired.
+    expect(set).toEqual([{ kind: "mechanical", modeIndex: 1 }]);
     expect(can.system.extensions[MODULE_ID].gunAccessory.buildFailed).toBe(false);
+  });
+
+  it("reads the table as the system and gun care do: explosions below TL5, misfires and stoppages swapped at TL6-8", async () => {
+    const set: any[] = [];
+    const api: any = { ...fakeApi(), items: { setMalfunction: async (_g: any, m: any) => { set.push(m); } } };
+    let total = 18;
+    vi.stubGlobal("Roll", class { total = total; async evaluate() { return this; } });
+    const actor = character();
+    const old = gun(actor);
+    old.system.tl = "4";
+    const suppressor = { name: "Suppressor" };
+    expect(await botchedFirstShot(api, old, actor, suppressor, 0)).toBe("explosion");
+    const pistol = gun(actor);
+    pistol.system.tl = "7";
+    total = 5; // a misfire on the table
+    expect(await botchedFirstShot(api, pistol, actor, suppressor, 0, () => false)).toBe("misfire");
+    expect(await botchedFirstShot(api, pistol, actor, suppressor, 0, () => true)).toBe("stoppage");
+    expect(set.map((m) => m.kind)).toEqual(["explosion", "misfire", "stoppage"]);
   });
 });
 

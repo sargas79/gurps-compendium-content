@@ -455,7 +455,7 @@ function ready(api: GWorldApi): void {
   readyBlackMarket(api, rule("blackMarket"));
   readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction"), sustainedFire: rule("sustainedFire"), multiBarrel: (item, modeIndex) => isMultiBarrelled(api, item, modeIndex) });
   readyDrawing(api, { drawing: rule("gunDrawing"), standoff: rule("gunfightStandoff") });
-  const accessories = { magazines: rule("gunMagazines"), sights: rule("gunSights"), suppressors: rule("suppressors"), cinematic: rule("cinematicSilencers"), stocks: rule("stocksAndMounts") };
+  const accessories = { magazines: rule("gunMagazines"), sights: rule("gunSights"), suppressors: rule("suppressors"), cinematic: rule("cinematicSilencers"), stocks: rule("stocksAndMounts"), gunCare: rule("gunCare") };
   const ammunition = {
     upgrades: rule("ammunitionUpgrades"), handloading: rule("handloading"), misloading: rule("misloading"),
     projectiles: rule("projectileOptions"), exotic: rule("exoticBullets"), multiple: rule("multipleProjectileLoads"), projectileUpgrades: rule("projectileUpgrades"),
