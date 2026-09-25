@@ -8,12 +8,16 @@ import {
   eyeBeamOf,
   flameDr,
   flameMalfunction,
+  paintBlinds,
   sprayAgent,
   sprayEffectSeconds,
+  squirtLoad,
+  squirtPenalty,
   sweepWidth,
   sweptDamage,
   tankStruck,
   unthickenedRange,
+  waterOnly,
 } from "./rules.js";
 
 describe("flamethrowers (High-Tech pp. 178-179)", () => {
@@ -106,5 +110,27 @@ describe("laser dazzlers (High-Tech p. 181), through the shared engine", () => {
     expect(blindnessFrom(HT_DAZZLE, "blinding", -10)).toEqual({ kind: "blinded", permanent: true });
     // A margin already made positive reads the same.
     expect(blindnessFrom(HT_DAZZLE, "dazzle", 5)).toEqual(blindnessFrom(HT_DAZZLE, "dazzle", -5));
+  });
+});
+
+describe("the squirt carbine's loads (High-Tech p. 180)", () => {
+  it("halves water's flinch to -1, holy or not, and leaves the rest at -2", () => {
+    expect(squirtPenalty("water", -2)).toBe(-1);
+    expect(squirtPenalty("holyWater", -2)).toBe(-1);
+    expect(squirtPenalty("water", 0)).toBe(0);
+    expect(squirtPenalty("paint", -2)).toBe(-2);
+    expect(waterOnly("alcohol")).toBe(false);
+  });
+
+  it("reads an unknown load as water", () => {
+    expect(squirtLoad("garlic")).toBe("garlic");
+    expect(squirtLoad("acid")).toBe("water");
+  });
+
+  it("blinds goggles or a visor with paint on a hit that wasn't stopped", () => {
+    expect(paintBlinds("paint", { hit: true, defended: false }, true)).toBe(true);
+    expect(paintBlinds("paint", { hit: true, defended: true }, true)).toBe(false);
+    expect(paintBlinds("paint", { hit: true, defended: false }, false)).toBe(false);
+    expect(paintBlinds("water", { hit: true, defended: false }, true)).toBe(false);
   });
 });

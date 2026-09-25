@@ -889,7 +889,9 @@ export function readySurvival(api: GWorldApi, on: SurvivalSwitches): void {
       landing: async ({ message, data, actor }: any) => {
         const landing = (data as JumpData).landing;
         if (!on.parachuting() || !landing || landing.rolled) return;
-        await api.roll.damage({ actor, label: landing.label, formula: landing.formula, damageType: "cr" as never, source: "parachuteLanding" });
+        // A roll a listener refused (API 1.154.0: null) leaves the button to press again.
+        const rolled = await api.roll.damage({ actor, label: landing.label, formula: landing.formula, damageType: "cr" as never, source: "parachuteLanding" });
+        if (rolled === null) return;
         await setCanopy(actor, false);
         await api.chat.update(message, { ...data, landing: { ...landing, rolled: true }, ...(data.canopy ? { canopy: { landed: true } } : {}) });
       },

@@ -321,7 +321,8 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     } finally {
       pending = null;
     }
-    if (flat && options.structure) {
+    // A charge a listener refused doesn't go off (API 1.154.0: `detonate` resolves to null).
+    if (flat && options.structure && result !== null) {
       const target = options.structure;
       const blast = (api.rules as any).blastAgainstStructure({ damage: flat.damage, dr: flat.dr, hp: target.hp, damageTaken: target.damageTaken });
       await say(actor, L("Flat.Title"), [

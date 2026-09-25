@@ -26,6 +26,7 @@ let options: Map<string, any>;
 let cards: Map<string, any>;
 let prices: any[];
 let damage: any[];
+let damageResult: number | null;
 let successes: any[];
 let contests: any[];
 let injuries: any[];
@@ -73,7 +74,7 @@ function fakeApi() {
       derived: (actor: any) => actor?.derived ?? null,
     },
     roll: {
-      damage: async (o: any) => { damage.push(o); return 0; },
+      damage: async (o: any) => { damage.push(o); return damageResult; },
       success: async (o: any) => { successes.push(o); return successResult; },
       quickContest: async (o: any) => { contests.push(o); return contestResult; },
     },
@@ -155,6 +156,7 @@ beforeEach(() => {
   conditions = [];
   posted = [];
   updated = [];
+  damageResult = 0;
   chat = [];
   on = {};
   successResult = { success: true };
@@ -430,6 +432,22 @@ describe("parachuting (High-Tech p. 61)", () => {
     expect(damage[0]).toMatchObject({ damageType: "cr", source: "parachuteLanding" });
     await card.actions.landing({ message: "m", data: updated[0].data, actor: jumper });
     expect(damage).toHaveLength(1);
+  });
+
+  it("leaves the landing to roll again where a listener refused it (API 1.154.0)", async () => {
+    const jumper = person([chute()]);
+    dialogAnswer = { height: 300, load: 150 };
+    actions.get("ht-jump").run(jumper.items[0], jumper);
+    await flush();
+    const card = cards.get("ht-survival-card");
+    damageResult = null;
+    await card.actions.landing({ message: "m", data: posted[0].data, actor: jumper });
+    expect(damage).toHaveLength(1);
+    expect(updated).toEqual([]);
+    damageResult = 0;
+    await card.actions.landing({ message: "m", data: posted[0].data, actor: jumper });
+    expect(damage).toHaveLength(2);
+    expect(updated[0].data.landing.rolled).toBe(true);
   });
 
   it("makes the earliest chutes roll HT-4 against nausea", async () => {

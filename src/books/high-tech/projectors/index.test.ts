@@ -10,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
-import { readyProjectors } from "./index.js";
+import { readyProjectors, squirtInTheFace } from "./index.js";
 
 type Listener = (...args: any[]) => unknown;
 
@@ -42,6 +42,11 @@ let conditions: Map<string, any[]>;
 let malfunctions: any[];
 let weaponState: Map<any, any>;
 let derived: any;
+let rowActions: Map<string, any>;
+let splashes: any[];
+let splashOutcome: any;
+let sources: any[];
+let targets: any[];
 
 const fire = (name: string, ...args: any[]) => (hooks.get(name) ?? []).map((fn) => fn(...args));
 const flush = async () => { for (let i = 0; i < 10; i += 1) await Promise.resolve(); };
@@ -97,15 +102,17 @@ function fakeApi() {
       registerAttackOption: (option: any) => { options.push(option); },
       setWeaponState: async (item: any, _module: string, patch: any) => { weaponState.set(item, { ...(weaponState.get(item) ?? {}), ...patch }); },
       getWeaponState: (item: any) => weaponState.get(item) ?? null,
+      liquidInTheFace: async (o: any) => { splashes.push(o); return splashOutcome; },
     },
     data: { hooks: { objectStats: "gworld.objectStats" } },
     registry: { isRuleOn: (key: string) => on[key] === true },
     rules,
-    sheets: { registerSheetSection: vi.fn() },
+    sheets: { registerSheetSection: vi.fn(), registerRowAction: (a: any) => rowActions.set(a.key, a) },
     actors: {
       derived: () => derived,
       conditions: (actor: any) => conditions.get(actor.name) ?? [],
-      applyCondition: async (actor: any, c: any) => {
+      applyCondition: async (actor: any, c: any, how?: any) => {
+        sources.push(how?.source ?? null);
         const id = c.module ? `${c.module}.${c.key}` : c.key;
         conditions.set(actor.name, [...(conditions.get(actor.name) ?? []).filter((x) => x.id !== id), { id, ...c }]);
         return id;
@@ -148,11 +155,16 @@ beforeEach(() => {
   conditions = new Map();
   malfunctions = [];
   weaponState = new Map();
+  rowActions = new Map();
+  splashes = [];
+  splashOutcome = { blinded: false, blindSeconds: 0, flinched: true, defended: false, will: 10, conditions: [] };
+  sources = [];
+  targets = [];
   derived = { traitEffects: {}, drByLocation: {} };
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("CONFIG", { Dice: { randomUniform: () => ((dice.shift() ?? 1) - 1) / 6 + 0.01 } });
   vi.stubGlobal("game", {
-    user: { id: "gm", isGM: true },
+    user: { id: "gm", isGM: true, get targets() { return new Set(targets.map((actor) => ({ actor }))); } },
     users: { activeGM: { isSelf: true }, [Symbol.iterator]: function* () { yield { id: "gm", isGM: true }; } },
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
   });
@@ -476,5 +488,67 @@ describe("laser dazzlers (laserDazzlers)", () => {
     const theirs = { actor: victim, item: laser("Laser Dazzler", -5, "ultra-tech"), label: "", margin: -3, effects: [] as any[] };
     fire(HOOKS.afflictionEffect, theirs);
     expect(theirs.effects).toEqual([]);
+  });
+});
+
+describe("the squirt carbine's liquids (sprayGuns; API 1.155.0)", () => {
+  const carbine = () => ({
+    id: "squirt", uuid: "Item.squirt", name: "Squirt Carbine", type: "equipment", isOwner: true,
+    flags: { [MODULE_ID]: { book: "high-tech" } },
+    system: { tl: "8", meleeModes: [], rangedModes: [{ name: "squirt", skill: "Liquid Projector (Squirt Gun)" }] },
+  });
+
+  it("shows its button only on a squirt gun, with the switch on", () => {
+    const action = rowActions.get("ht-squirt-face");
+    expect(action.visible(carbine())).toBe(false);
+    on.sprayGuns = true;
+    expect(action.visible(carbine())).toBe(true);
+    expect(action.visible(spray("Pepper Spray", -4))).toBe(false);
+  });
+
+  it("runs Liquids in the Face with the load, applied through the GM for the victim", async () => {
+    const shooter = actorWith("Shooter");
+    const victim = actorWith("Victim");
+    targets = [victim];
+    await squirtInTheFace(api as never, carbine(), shooter, { load: "alcohol", result: "hit", defense: "parry", eyewear: false });
+    expect(splashes).toHaveLength(1);
+    expect(splashes[0]).toMatchObject({ attacker: shooter, victim, hit: true, criticalHit: false, defense: "parry", apply: true, source: shooter });
+    expect(splashes[0].liquid).toContain("GCC.HT.Projectors.Squirt.Loads.alcohol");
+    // The system left the conditions; the module adds none of its own.
+    expect(conditions.get("Victim") ?? []).toEqual([]);
+  });
+
+  it("halves water's flinch to -1 with the module's own conditions (p. 180)", async () => {
+    const shooter = actorWith("Shooter");
+    const victim = actorWith("Victim");
+    targets = [victim];
+    await squirtInTheFace(api as never, carbine(), shooter, { load: "holyWater", result: "hit", defense: "none", eyewear: false });
+    expect(splashes[0].apply).toBe(false);
+    const left = conditions.get("Victim") ?? [];
+    expect(left.map((c) => c.id)).toEqual([`${MODULE_ID}.ht-squirt-flinchDefense`, `${MODULE_ID}.ht-squirt-flinchNextTurn`]);
+    expect(left.map((c) => c.effects.modifiers[0].value)).toEqual([-1, -1]);
+    expect(left[0].effects.modifiers[0].rolls).toEqual(["defense"]);
+    expect(sources).toEqual([shooter, shooter]);
+    expect(chat.join()).toContain("Squirt.WaterLine");
+  });
+
+  it("blinds a victim in goggles with paint until it's wiped off, on a hit not stopped", async () => {
+    const shooter = actorWith("Shooter");
+    const victim = actorWith("Victim");
+    targets = [victim];
+    await squirtInTheFace(api as never, carbine(), shooter, { load: "paint", result: "hit", defense: "none", eyewear: true });
+    expect((conditions.get("Victim") ?? []).map((c) => c.id)).toEqual([`${MODULE_ID}.ht-squirt-painted`]);
+    expect(chat.join()).toContain("Squirt.PaintLine");
+    // Dodged: nothing.
+    conditions = new Map();
+    splashOutcome = { ...splashOutcome, flinched: false, defended: true };
+    await squirtInTheFace(api as never, carbine(), shooter, { load: "paint", result: "hit", defense: "dodge", eyewear: true });
+    expect(conditions.get("Victim") ?? []).toEqual([]);
+  });
+
+  it("asks for a target first", async () => {
+    vi.stubGlobal("ui", { notifications: { warn: vi.fn() } });
+    await squirtInTheFace(api as never, carbine(), actorWith("Shooter"), { load: "water", result: "hit", defense: "none", eyewear: false });
+    expect(splashes).toEqual([]);
   });
 });

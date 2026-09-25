@@ -5110,7 +5110,7 @@
         },
         "sprayGuns": {
           "Name": "Spray guns and aerosols",
-          "Hint": "A spray must hit the face, but the wide jet gives +2 to hit it. Tear gas and pepper spray force two HT rolls at the spray's penalty, one against coughing and one against blindness; tear gas's last minutes equal to the margin of failure, pepper spray's until washed off with plenty of water (High-Tech p. 180)."
+          "Hint": "A spray must hit the face, but the wide jet gives +2 to hit it. Tear gas and pepper spray force two HT rolls at the spray's penalty, one against coughing and one against blindness; tear gas's last minutes equal to the margin of failure, pepper spray's until washed off with plenty of water. A squirt gun's row button runs Liquids in the Face with its load: water's flinch at -1, and paint blinding a victim in goggles or a visor until wiped off (High-Tech p. 180)."
         },
         "laserDazzlers": {
           "Name": "Laser dazzlers and blinding lasers",
@@ -5298,7 +5298,7 @@
         },
         "concealedArmor": {
           "Name": "Concealing armour",
-          "Hint": "Hiding worn armour from someone looking for it is a Quick Contest of Holdout against their Search at the range penalty: Holdout is at -DR for rigid armour and -DR/3 (rounded up) for flexible, with up to +4 back for a design made to be concealed. A worn long coat or poncho gives +4 to Holdout and undercover clothing +1 or +2 (High-Tech pp. 64, 66)."
+          "Hint": "Hiding worn armour from someone looking for it is a Quick Contest of Holdout against their Search at the range penalty: Holdout is at -DR for rigid armour and -DR/3 (rounded up) for flexible, with up to +4 back for a design made to be concealed. A worn long coat or poncho gives +4 to a Holdout roll and undercover clothing +1 or +2, as what the character wears (High-Tech pp. 64, 66)."
         },
         "armorMaterials": {
           "Name": "Armour materials",
@@ -5346,7 +5346,7 @@
         },
         "reconDrones": {
           "Name": "Reconnaissance drones (Electricity and Electronics)",
-          "Hint": "A vehicle record's drone figures, on its sheet and set on the two UAVs: the autopilot's skill and Dodge, the remote control's bonus, the controller's range and the ceiling. The operator's control roll takes the remote control's bonus while he is within the controller's range, and is refused past it or while the drone is above its ceiling; the figures show as a hint on the vehicle's Hnd/SR once it is on the road; a row button, or a GM tool for a drone on the map, rolls the autopilot's Piloting or its Dodge against obstacles, and the tool checks the controller's range to the targeted operator and the ceiling against the token's elevation (High-Tech: Electricity and Electronics p. 46)."
+          "Hint": "A vehicle record's drone figures, on its sheet and set on the two UAVs: the autopilot's skill and Dodge, the remote control's bonus, the controller's range and the ceiling. The remote operator, named as the drone's controller outside its crew, makes its control roll, which takes the remote control's bonus while he is within the controller's range, and is refused past it or while the drone is above its ceiling; the figures show as a hint on the vehicle's Hnd/SR once it is on the road; a row button, or a GM tool for a drone on the map, rolls the autopilot's Piloting or its Dodge against obstacles, and the tool checks the controller's range to the targeted operator and the ceiling against the token's elevation, and offers the targeted operator the controls (High-Tech: Electricity and Electronics p. 46)."
         },
         "electricStunners": {
           "Name": "Electric stunners",
@@ -7810,6 +7810,43 @@
           "CoughingLine": "{name} is coughing {lasting}.",
           "BlindedLine": "{name} is blinded {lasting}."
         },
+        "Squirt": {
+          "Title": "Squirt in the face",
+          "Hint": "Make the attack first, at the face. Then say how it went: Liquids in the Face (Campaigns p. 405) with the gun's load (High-Tech p. 180).",
+          "PickTarget": "Target the character the jet was aimed at first.",
+          "Load": "Load",
+          "Loads": {
+            "water": "Water",
+            "holyWater": "Holy water",
+            "paint": "Water-soluble paint",
+            "malodorous": "Malodorous fluid",
+            "alcohol": "Alcohol",
+            "garlic": "Distilled garlic"
+          },
+          "Result": "The attack",
+          "Results": {
+            "hit": "Hit",
+            "critical": "Critical hit",
+            "miss": "Missed"
+          },
+          "Defense": "Defense made",
+          "Defenses": {
+            "none": "None, or failed",
+            "dodge": "Dodge",
+            "block": "Block",
+            "parry": "Parry (stops nothing)"
+          },
+          "Eyewear": "{name} wears goggles or a visor",
+          "Liquid": "{load} from a {weapon}",
+          "Effects": {
+            "flinchDefense": "Flinched (water): defenses",
+            "flinchNextTurn": "Flinched (water): DX and senses",
+            "blinded": "Blinded (water in the eyes)"
+          },
+          "WaterLine": "Water is merely distracting: {name}'s flinch is at -1, not -2 (High-Tech p. 180).",
+          "Painted": "Paint over the eyes",
+          "PaintLine": "Paint covers {name}'s goggles or visor: blind until it's wiped off ({readies} Ready maneuvers) or the gear comes off (High-Tech p. 180)."
+        },
         "Laser": {
           "Note": {
             "dazzle": "Dazzler",
@@ -9760,7 +9797,6 @@
         "XrayMaximumHint": "Turned on the targeted victim at maximum intensity, the machine gives {rads} rads an hour (High-Tech p. 223).",
         "XrayMinutes": "Minutes",
         "XrayMaximumDone": "{operator} turns the X-ray machine on {name} at maximum intensity for {minutes} minute(s): {rads} rads.",
-        "XrayMaximumGm": "{name} takes {rads} rads from {minutes} minute(s) at maximum intensity: the GM applies the dose.",
         "TheaterAction": "Operation in its specialty",
         "TheaterInSpecialty": "In use for an operation in its own specialty: +TL/2 (quality) to Surgery (p. 224). Switch it off for any other operation.",
         "TheaterOtherSpecialty": "Basic equipment for Surgery outside its specialty; switch it on for an operation in its specialty, +TL/2 (quality) (p. 224)."
@@ -11078,7 +11114,10 @@
         "OutOfRange": "{name} is {miles} miles away: beyond the controller's range. The drone flies on its autopilot.",
         "OutOfRangeRefusal": "{name} is {miles} miles away, beyond the controller's range: its operator can't fly it. It flies on its autopilot.",
         "AboveCeiling": "At {feet} feet, the drone is above its ceiling.",
-        "AboveCeilingRefusal": "{name} is at {feet} feet, above its {ceiling}-foot ceiling: its controls can't reach it there (HT:EE p. 46)."
+        "AboveCeilingRefusal": "{name} is at {feet} feet, above its {ceiling}-foot ceiling: its controls can't reach it there (HT:EE p. 46).",
+        "ControlsTitle": "Remote operator",
+        "ControlsAsk": "Hand {drone}'s controls to {name}? The vehicle sheet's Control button then rolls for them, from outside its crew.",
+        "ControlsAskSeated": "{name} is seated in {drone}'s crew. Take them out of it and hand them the controls? Only a remote operator outside the crew takes the remote control's bonus and its range and ceiling (HT:EE p. 46)."
       },
       "Skills": {
         "Default": "Default: {skill} (HT:EE p. {page})",

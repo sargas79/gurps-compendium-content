@@ -5,13 +5,15 @@
  *
  *   - **init:** this module's gear fields on equipment and armour.
  *   - **ready:** the price modifier; the attack rows, breakage odds, Holdout
- *     and equipment failure through the system's hooks; an item sheet section
+ *     (the worn article's bonus as a Holdout roll's clothing line) and
+ *     equipment failure through the system's hooks; an item sheet section
  *     for the options and loads; and a Gear tab section for Signature Gear and
  *     concealment. The mind disruptor's and neutralizer's Will rolls take the
  *     victim's Mind Shield and no DR (p. 58).
  */
 
 import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
+import { isHoldoutRoll, wearClothingLine } from "../../../shared/concealment/rules.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { gearData, loadFor, registerGearData, storeGear, type GearData, type StoredLoad } from "./data.js";
 import {
@@ -240,11 +242,12 @@ export function readyGear(api: GWorldApi, on: () => boolean): void {
     if (shield && Array.isArray(context.modifiers)) context.modifiers.push({ label: L("MindShield"), value: shield });
   });
 
-  // An article's Holdout, and Undercover's, on the Holdout skill (p. 59).
-  Hooks.on(api.data.hooks.skillBonuses, (context: any) => {
-    if (!on() || String(context?.name ?? "").trim().toLowerCase() !== "holdout") return;
+  // An article's Holdout, and Undercover's, on a Holdout roll (p. 59): what the character wears,
+  // the roll's `clothing` line (Characters p. 200; API 1.152.0), the better of it and one there.
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!on() || !isHoldoutRoll(context) || !Array.isArray(context.modifiers)) return;
     const concealment = concealmentOf(context.actor);
-    if (concealment.holdout) context.lines.push({ label: `${L("Gadget.Holdout")} (${concealment.source})`, value: concealment.holdout, source: MODULE_ID });
+    if (concealment.holdout) wearClothingLine(context.modifiers, concealment.holdout, `${L("Gadget.Holdout")} (${concealment.source})`);
   });
 
   api.sheets.registerSheetSection({

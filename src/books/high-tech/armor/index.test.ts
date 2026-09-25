@@ -2,7 +2,8 @@
  * High-Tech's armour as the system meets it: the partial pieces, the toe box,
  * the tops and the front figures through `gworld.armorDr`, striking around
  * through `gworld.attackModifiers`, the plates through `gworld.afterDamage`,
- * the clothes through `gworld.skillBonuses`, the concealing contest through
+ * the clothes as a Holdout roll's clothing line through
+ * `gworld.successRollModifiers` (API 1.152.0), the concealing contest through
  * `roll.quickContest`, and the materials as a price modifier and on a
  * shield's object figures -- with only High-Tech's switches on (decision D1).
  */
@@ -21,6 +22,7 @@ const HOOKS = {
   afterDamage: "gworld.afterDamage",
   attackModifiers: "gworld.attackModifiers",
   skillBonuses: "gworld.skillBonuses",
+  successRollModifiers: "gworld.successRollModifiers",
   objectStats: "gworld.objectStats",
 };
 
@@ -127,8 +129,8 @@ describe("with every switch off", () => {
     const pads = piece("Shoulder Pads", { dr: 1, locations: ["torso"] }, { coverage: 1, slamPads: true });
     expect(fire(HOOKS.damageModifiers, { actor: person("Player", [pads]), source: "slam", modifiers: [] }).modifiers).toEqual([]);
     expect(prices[0].apply(piece("Plate", {}, { material: "titanium" }), { cost: 100, weight: 30 })).toBeNull();
-    const skill = fire(HOOKS.skillBonuses, { actor: person("Spy", [piece("Long Coat", {}, {}, "equipment")]), name: "Holdout", lines: [] });
-    expect(skill.lines).toEqual([]);
+    const roll = fire(HOOKS.successRollModifiers, { actor: person("Spy", [piece("Long Coat", { equipped: true }, {}, "equipment")]), skill: "Holdout", tags: ["holdout"], modifiers: [] });
+    expect(roll.modifiers).toEqual([]);
     expect(actions.every((a) => !a.visible(guard))).toBe(true);
     expect(options[0].available()).toBe(false);
   });
@@ -344,12 +346,20 @@ describe("a plate worn at the back, with the switch off", () => {
 describe("concealing armour (High-Tech pp. 64, 66)", () => {
   beforeEach(() => { on = { concealedArmor: true }; ready(); });
 
-  it("adds worn clothes' Holdout bonus to the skill", () => {
+  it("puts worn clothes' Holdout bonus on a Holdout roll as its clothing line (API 1.152.0)", () => {
     const spy = person("Spy", [piece("Long Coat", { equipped: true }, {}, "equipment"), piece("Undercover Clothing (Ordinary Clothes, +1)", {}, {}, "equipment")]);
-    expect(fire(HOOKS.skillBonuses, { actor: spy, name: "Holdout", lines: [] }).lines).toEqual([{ label: expect.stringContaining("Long Coat"), value: 4, source: MODULE_ID }]);
-    expect(fire(HOOKS.skillBonuses, { actor: spy, name: "Stealth", lines: [] }).lines).toEqual([]);
+    const roll = (actor: any, skill: string, modifiers: any[] = []) => fire(HOOKS.successRollModifiers, { actor, skill, tags: ["holdout"], item: null, modifiers }).modifiers;
+    expect(roll(spy, "Holdout")).toEqual([{ key: "clothing", label: expect.stringContaining("Long Coat"), value: 4 }]);
+    // The searcher's side of the contest, and other skills, get nothing.
+    expect(roll(spy, "Search")).toEqual([]);
+    expect(roll(spy, "Stealth")).toEqual([]);
+    // What the caller said the character wears: the better of the two, never both.
+    expect(roll(spy, "Holdout", [{ key: "clothing", label: "Clothing", value: 2 }])).toEqual([{ key: "clothing", label: expect.stringContaining("Long Coat"), value: 4 }]);
+    expect(roll(spy, "Holdout", [{ key: "clothing", label: "Clothing", value: 5 }])).toEqual([{ key: "clothing", label: "Clothing", value: 5 }]);
+    // No longer on the skill itself.
+    expect(fire(HOOKS.skillBonuses, { actor: spy, name: "Holdout", lines: [] }).lines).toEqual([]);
     const carried = person("Spy", [piece("Long Coat", { equipped: false }, {}, "equipment")]);
-    expect(fire(HOOKS.skillBonuses, { actor: carried, name: "Holdout", lines: [] }).lines).toEqual([]);
+    expect(roll(carried, "Holdout")).toEqual([]);
   });
 
   it("rolls Holdout at -DR/3 for a flexible vest, less its design, against Search at range", async () => {
@@ -374,8 +384,8 @@ describe("concealing armour (High-Tech pp. 64, 66)", () => {
     (globalThis as any).game.user.targets = new Set([{ actor: searcher }]);
     await concealFromSearch(fakeApi() as never, plate, man, { partial: () => false, conceal: () => true, materials: () => false });
     expect(contests[0].first.base).toBe(6);
-    // The coat counts at default, since the skill's lines don't reach it.
-    expect(contests[0].first.modifiers.map((m: any) => m.value)).toEqual([-5, 4]);
+    // The coat comes in on the roll's own hook, at default as with the skill.
+    expect(contests[0].first.modifiers.map((m: any) => m.value)).toEqual([-5]);
     expect(contests[0].second.base).toBe(7);
   });
 
