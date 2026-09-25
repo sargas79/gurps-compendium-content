@@ -20,6 +20,8 @@
  *     screen, and hearing a sound-baffled vehicle at -(TL-4).
  *   - **Protection (vehicleProtection):** spaced armour's DR x1.5 and
  *     laminated armour's x2 against HEAT and HEDP before the armour divisor,
+ *     cockpit armour and gun shields told on an occupant hit
+ *     (`gworld.afterVehicleHit`'s `occupantHit`),
  *     and HESH's spall stopped, on the vehicle's DR where a shot lands
  *     (`gworld.vehicleDr`), armour skirts added on their faces; riveted armour's
  *     flying rivets once the shot is worked out (`gworld.afterVehicleHit`); on
@@ -77,6 +79,7 @@ import {
   armourKindAt,
   chargeOf,
   combatFatigue,
+  crewArmourDr,
   extinguishTarget,
   fitWith,
   fitsGunPort,
@@ -93,6 +96,7 @@ import {
   tankHearing,
   turretReadies,
   type Charge,
+  type CrewArmour,
   type VehicleFit,
 } from "./rules.js";
 
@@ -209,8 +213,36 @@ export function fitLines(vehicle: any, on: VehicleSwitches): string[] {
     if (fit.spaced?.length) lines.push(F("Line.spaced", { where: fit.spaced.map((s) => L(`Part.${s.part}`) + (s.arcs?.length ? ` (${s.arcs.map((a) => L(`Arc.${a}`)).join(", ")})` : "")).join(", ") }));
     for (const skirt of fit.skirts ?? []) lines.push(F("Line.skirt", { dr: skirt.dr, part: L(`Part.${skirt.part}`) }));
     if (fit.riveted) lines.push(F("Line.riveted", { damage: RIVET_SPALL.damage }));
+    for (const armour of fit.crewArmour ?? []) lines.push(F("Line.crewArmour", { post: L(`Post.${armour.post}`), faces: crewArmourFaces(armour) }));
+    for (const shield of fit.gunShields ?? []) lines.push(F("Line.gunShield", { dr: shield.dr, mount: L(`Mount.${shield.mount}`) }));
   }
   if (on.crew() && fit.tank) lines.push(L(fit.intercom ? "Line.tankIntercom" : "Line.tank"));
+  return lines;
+}
+
+/** A crew post's armour, face by face, as the sheet and the card say it. */
+function crewArmourFaces(armour: CrewArmour): string {
+  return (["front", "side", "rear"] as const)
+    .map((face) => ({ face, dr: crewArmourDr(armour, face) }))
+    .filter((f) => f.dr !== null)
+    .map((f) => F("Face", { dr: f.dr, face: L(`Arc.${f.face}`) }))
+    .join(", ");
+}
+
+/**
+ * An occupant hit (Campaigns p. 555) on a vehicle whose crew posts are
+ * armoured: what the cockpit armour gives the crewman behind it from the
+ * face the shot came in by, and the gun shields on single mounts. Which
+ * occupant was hit is the GM's pick, so the card says both.
+ */
+export function occupantHitLines(fit: VehicleFit, arc: string | null, dice: number): string[] {
+  const lines: string[] = [];
+  for (const armour of fit.crewArmour ?? []) {
+    const dr = crewArmourDr(armour, arc);
+    const post = L(`Post.${armour.post}`);
+    lines.push(dr === null ? F("Occupant.noArmour", { post, face: L(`Arc.${arc ?? "front"}`) }) : F("Occupant.armour", { post, dr, face: L(`Arc.${arc ?? "front"}`), dice }));
+  }
+  for (const shield of fit.gunShields ?? []) lines.push(F("Occupant.gunShield", { dr: shield.dr, mount: L(`Mount.${shield.mount}`) }));
   return lines;
 }
 
@@ -529,6 +561,14 @@ export function readyVehicles(api: GWorldApi, on: VehicleSwitches): void {
     rivetBlows.delete(key);
     if (!on.protection() || basic === undefined || !fitOf(context.vehicle).riveted) return;
     if (rivetsMayFly(basic, Number(context.penetrating) || 0)) void rivetSpall(api, context.vehicle);
+  });
+
+  // An occupant hit: the cockpit armour and gun shields a crewman is behind (pp. 237-238, 242).
+  Hooks.on(api.combat.hooks.afterVehicleHit, (context: any) => {
+    const dice = Number(context?.occupantHit?.dice) || 0;
+    if (!on.protection() || !context?.vehicle || dice <= 0) return;
+    const lines = occupantHitLines(fitOf(context.vehicle), context.arc ?? null, dice);
+    if (lines.length) void say(context.vehicle, L("Occupant.Title"), lines);
   });
 
   // Running on flat run-flat tyres: -1 Handling and top speed less 20% while

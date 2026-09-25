@@ -9676,8 +9676,24 @@
           "spaced": "Spaced armour ({where}): DR x1.5 against HEAT and HEDP; no HESH spall.",
           "skirt": "Armour skirts: DR {dr} on the {part} sides, as spaced armour.",
           "riveted": "Riveted armour: {damage}+ stopped may send rivets flying inside.",
+          "crewArmour": "Cockpit armour around the {post} against an occupant hit: {faces}.",
+          "gunShield": "A DR {dr} gun shield on the {mount}, for its gunner alone.",
           "tank": "Tank crew: -4 to hear each other with the motor running, -10 to hear outside; -2 Vision buttoned up.",
           "tankIntercom": "Tank crew with headsets: -10 to hear outside with the motor running; -2 Vision buttoned up."
+        },
+        "Face": "DR {dr} from the {face}",
+        "Post": {
+          "pilot": "pilot",
+          "coxswain": "coxswain"
+        },
+        "Mount": {
+          "rearPintle": "rear pintle mount"
+        },
+        "Occupant": {
+          "Title": "Occupant hit",
+          "armour": "If the {post} is the one hit, his cockpit armour gives DR {dr} from the {face} against the {dice}d cutting.",
+          "noArmour": "The {post}'s cockpit armour gives nothing from the {face}.",
+          "gunShield": "A gunner at the {mount} is behind a DR {dr} gun shield, if the shot came from where the gun points."
         },
         "Spall": {
           "Title": "Flying rivets",
