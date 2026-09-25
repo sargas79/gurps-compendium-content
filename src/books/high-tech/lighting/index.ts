@@ -8,10 +8,11 @@
  *     with distance: read by the system for each light on the canvas that is
  *     a lamp (`areas.registerLightLevel`, API 1.116.0) -- a light the GM has
  *     made one of the supplement's lamps in its configuration sheet, a
- *     token's own light where its character carries one, or a lamp set down
- *     as a module's light on an area. A beam lights only its cone, pointed
- *     the way its light or token is turned; beside it, the darkness stays no
- *     worse than -9 as far as the light reaches. The least
+ *     token's own light where its character carries one lit, or a lamp set
+ *     down as a module's light on an area. A beam lights only its cone --
+ *     where it was aimed from its row, else the way its light or token is
+ *     turned where Foundry's own light is directional; beside it, the
+ *     darkness stays no worse than -9 as far as the light reaches. The least
  *     darkness a light leaves wins, and none makes the spot darker than it
  *     was. A GM tool reads the light at the selected tokens, and whether it
  *     is bright enough for reading or surgery (-2 without); Sewing and
@@ -97,29 +98,38 @@ export function lampOf(item: any): Lamp | null {
 
 /**
  * The lamp a character's own light is: the brightest they carry that is lit
- * (High-Tech's light switch, where it has been used), else the brightest they
- * carry at all.
+ * (High-Tech's light switch). An unlit lamp isn't what the token's light
+ * shows, so with none lit this is null, and the light keeps its own reading
+ * -- a lit lantern beside an unlit flashlight stays the lantern's.
  */
 export function carriedLamp(actor: any): { item: any; lamp: Lamp } | null {
-  const lamps = [...(actor?.items ?? [])].filter(carried).map((item) => ({ item, lamp: lampOf(item) })).filter((l): l is { item: any; lamp: Lamp } => l.lamp !== null);
-  const lit = lamps.filter((l) => l.item?.flags?.[MODULE_ID]?.expedition?.lit === true);
-  const pool = lit.length ? lit : lamps;
-  return pool.sort((a, b) => lampLux(b.lamp) - lampLux(a.lamp))[0] ?? null;
+  const lit = [...(actor?.items ?? [])]
+    .filter((item) => carried(item) && item?.flags?.[MODULE_ID]?.expedition?.lit === true)
+    .map((item) => ({ item, lamp: lampOf(item) }))
+    .filter((l): l is { item: any; lamp: Lamp } => l.lamp !== null);
+  return lit.sort((a, b) => lampLux(b.lamp) - lampLux(a.lamp))[0] ?? null;
 }
+
+/** Items found by id, kept while they are still where they were found. */
+const itemCache = new Map<string, any>();
 
 /** An item by its id, on a character on the map or in the world. */
 function itemById(id: string): any {
-  const tokens: any[] = stage()?.tokens?.placeables ?? [];
-  for (const token of tokens) {
-    const found = token?.actor?.items?.get?.(id);
-    if (found) return found;
-  }
-  for (const actor of (game as any).actors ?? []) {
+  const cached = itemCache.get(id);
+  if (cached && cached.parent?.items?.get?.(id) === cached) return cached;
+  itemCache.delete(id);
+  const actors = [...((stage()?.tokens?.placeables ?? []) as any[]).map((t) => t?.actor), ...((game as any).actors ?? [])];
+  for (const actor of actors) {
     const found = actor?.items?.get?.(id);
-    if (found) return found;
+    if (!found) continue;
+    itemCache.set(id, found);
+    return found;
   }
   return null;
 }
+
+/** The flag an aimed beam's direction is kept in, on the lamp: degrees clockwise from the scene's east. */
+export const AIM_FLAG = "eeAim";
 
 /**
  * The lamp a module's light on an area is (GWorld API 1.102.0): a light set
@@ -129,9 +139,10 @@ function itemById(id: string): any {
  */
 export function lampOfArea(area: any): Lamp | null {
   if (!area || typeof area.id !== "string" || !area.light) return null;
+  // Only this module's lights set down: another module's area is its own light.
   const itemId = new RegExp(`^${MODULE_ID}-ht-light-([A-Za-z0-9]+)`).exec(area.id)?.[1];
-  const own = itemId ? lampOf(itemById(itemId)) : null;
-  return own ?? lampNamed(area.label);
+  if (!itemId) return null;
+  return lampOf(itemById(itemId)) ?? lampNamed(area.label);
 }
 
 /** The lamp a light on the canvas is: one the GM marked, the lamp a token's character carries, or a lamp set down on an area; null for any other. */
@@ -147,18 +158,37 @@ export function lampOfLight(light: any): Lamp | null {
   return null;
 }
 
+/**
+ * Which way a light on the canvas points, in degrees clockwise from the
+ * scene's east, or null for one that lights all round: a beam aimed from its
+ * row (kept on the lamp), else Foundry's own rotation where the light's
+ * emission angle is under 360 (Foundry's rotation 0 faces down the map).
+ */
+export function beamDirection(light: any): number | null {
+  const doc = light?.document ?? light;
+  if (doc?.documentName === "Token") {
+    const aimed = Number(carriedLamp(doc.actor)?.item?.flags?.[MODULE_ID]?.[AIM_FLAG]?.direction);
+    if (Number.isFinite(aimed)) return aimed;
+  }
+  const angle = Number(doc?.documentName === "Token" ? doc?.light?.angle : doc?.documentName === "AmbientLight" ? doc?.config?.angle : NaN);
+  if (!(angle > 0 && angle < 360)) return null;
+  return (Number(doc.rotation) || 0) + 90;
+}
+
 /** While a spot's light is being measured, the lux each lamp that reaches it gives there. */
 let measuring: number[] | null = null;
 
 /**
- * Whether a spot lies in the beam of a lamp on the canvas: the light's (or
- * the token's) rotation is where it points, Foundry's 0 facing down the map.
- * A light on an area has no direction, and its lamp lights its whole circle.
+ * Whether a spot lies in the beam of a lamp on the canvas, pointed as
+ * `beamDirection` says. A light with no direction -- one lighting all round
+ * in Foundry, never aimed, or a light on an area -- lights its whole circle.
  */
 export function beamReaches(lamp: Lamp, light: any, spot: { x?: number; y?: number; distance?: number }): boolean {
   if (!isBeam(lamp)) return true;
   const doc = light?.document ?? light;
   if (doc?.documentName !== "Token" && doc?.documentName !== "AmbientLight") return true;
+  const direction = beamDirection(doc);
+  if (direction === null) return true;
   const size = Number(stage()?.grid?.size) || 100;
   const centre = doc.documentName === "Token"
     ? (centreOf(doc.object) ?? { x: Number(doc.x) + ((Number(doc.width) || 1) * size) / 2, y: Number(doc.y) + ((Number(doc.height) || 1) * size) / 2 })
@@ -168,7 +198,7 @@ export function beamReaches(lamp: Lamp, light: any, spot: { x?: number; y?: numb
   const pixels = Math.hypot(dx, dy);
   if (!Number.isFinite(pixels) || pixels === 0) return true;
   const perPixel = Number(spot?.distance) > 0 ? Number(spot.distance) / pixels : (Number(stage()?.grid?.distance) || 1) / size;
-  const angle = (((Number(doc.rotation) || 0) + 90) * Math.PI) / 180;
+  const angle = (direction * Math.PI) / 180;
   const along = (dx * Math.cos(angle) + dy * Math.sin(angle)) * perPixel;
   const off = (-dx * Math.sin(angle) + dy * Math.cos(angle)) * perPixel;
   return inBeam(lamp, along, off);
@@ -405,6 +435,14 @@ export async function aimBeam(api: GWorldApi, item: any, actor: any, die: () => 
   } as any);
   if (!outcome) return;
   const who = String(target.name ?? target.actor?.name ?? "");
+  // On a hit the beam points at the target from now on, for the darkness its cone leaves (HT:EE p. 20).
+  if (outcome.success) {
+    const from = centreOf(actor?.getActiveTokens?.()?.[0]);
+    const to = centreOf(target);
+    if (from && to && (from.x !== to.x || from.y !== to.y) && item?.isOwner !== false && typeof item?.setFlag === "function") {
+      await item.setFlag(MODULE_ID, AIM_FLAG, { direction: (Math.atan2(to.y - from.y, to.x - from.x) * 180) / Math.PI });
+    }
+  }
   const lines = [outcome.success ? F("AimHit", { name: who }) : (() => {
     const drift = beamDrift(Number(outcome.margin) || 1, die());
     return F("AimMiss", { name: who, yards: drift.yards, side: L(`Side.${drift.side}`) });

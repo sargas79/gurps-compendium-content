@@ -201,23 +201,34 @@ describe("the darkness a lamp leaves (HT:EE p. 20)", () => {
     expect(lampLevel(switches, ambientLight({ lamp: "", watts: 100 }), { distance: 1 })).toBeNull();
   });
 
-  it("reads a token's own light as the lamp its character carries, the lit one first", () => {
+  it("reads a token's own light as the lit lamp its character carries, the brightest lit one first", () => {
     on.illumination = true;
-    const flashlight = lamp("Flashlight");
+    const flashlight = lamp("Flashlight", {}, { expedition: { lit: true } });
     const spotlight = lamp("Spotlight");
     const actor = person("Ann", [flashlight, lamp("Kerosene Lantern")]);
     const token = tokenAt("t1", 0, actor);
     // A 1.5-watt conical beam: 9 lux, -2, out to its 10 yards.
     expect(lampLevel(switches, token.document, { distance: 5 })).toBe(2);
     actor.items.push(spotlight);
-    expect(carriedLamp(actor)?.item).toBe(spotlight);
-    flashlight.flags[MODULE_ID].expedition = { lit: true };
     expect(carriedLamp(actor)?.item).toBe(flashlight);
+    spotlight.flags[MODULE_ID].expedition = { lit: true };
+    expect(carriedLamp(actor)?.item).toBe(spotlight);
+  });
+
+  it("leaves a token's light its own reading where its only lamp is unlit: a lit lantern beside an unlit flashlight", () => {
+    on.illumination = true;
+    const lantern = lamp("Kerosene Lantern", {}, { expedition: { lit: true } });
+    const actor = person("Ann", [lantern, lamp("Flashlight")]);
+    const token = tokenAt("t1", 0, actor);
+    token.document.object = token;
+    token.document.light = { angle: 60 };
+    expect(carriedLamp(actor)).toBeNull();
+    expect(lampLevel(switches, token.document, { x: 500, y: 0, distance: 5 })).toBeNull();
   });
 
   it("takes the wattage and element set on the item", () => {
     on.illumination = true;
-    const actor = person("Ann", [lamp("Flashlight", {}, { [LAMP_FLAG]: { element: "led", brighter: true } })]);
+    const actor = person("Ann", [lamp("Flashlight", {}, { [LAMP_FLAG]: { element: "led", brighter: true }, expedition: { lit: true } })]);
     const token = tokenAt("t1", 0, actor);
     // An LED fitted for light: 54 lux, -1.
     expect(lampLevel(switches, token.document, { distance: 5 })).toBe(1);
@@ -225,10 +236,11 @@ describe("the darkness a lamp leaves (HT:EE p. 20)", () => {
 
   it("lights only the cone a beam is pointed along, and leaves -9 beside it (HT:EE pp. 20, 22)", () => {
     on.illumination = true;
-    const actor = person("Ann", [lamp("Flashlight")]);
+    const actor = person("Ann", [lamp("Flashlight", {}, { expedition: { lit: true } })]);
     const token = tokenAt("t1", 0, actor);
-    // Rotation 0 points down the map (+y). 100 pixels a yard here.
+    // Rotation 0 points down the map (+y), where Foundry's own light is directional. 100 pixels a yard here.
     token.document.rotation = 0;
+    token.document.light = { angle: 60 };
     token.document.object = token;
     const at = (x: number, y: number) => lampLevel(switches, token.document, { x, y, distance: Math.hypot(x, y) / 100 });
     expect(at(0, 500)).toBe(2);
@@ -245,6 +257,23 @@ describe("the darkness a lamp leaves (HT:EE p. 20)", () => {
     expect(lampLevel(switches, { ...floor, x: 0, y: 0, rotation: 0 }, { x: 0, y: -100, distance: 1 })).toBe(0);
   });
 
+  it("lights the whole circle where the light has no facing: Foundry's angle is 360 and it was never aimed", () => {
+    on.illumination = true;
+    const flashlight = lamp("Flashlight", {}, { expedition: { lit: true } });
+    const token = tokenAt("t1", 0, person("Ann", [flashlight]));
+    token.document.object = token;
+    token.document.rotation = 0;
+    token.document.light = { angle: 360 };
+    const at = (x: number, y: number) => lampLevel(switches, token.document, { x, y, distance: Math.hypot(x, y) / 100 });
+    expect([at(0, 500), at(0, -500), at(500, 0)]).toEqual([2, 2, 2]);
+    // A spotlight on the map, all round in Foundry: likewise.
+    const spot = { ...ambientLight({ lamp: "Spotlight" }), x: 0, y: 0, rotation: 0, config: { angle: 360 } };
+    expect(lampLevel(switches, spot, { x: 0, y: -500, distance: 5 })).not.toBe(9);
+    // Aimed at a target, the beam points that way whatever Foundry's angle.
+    flashlight.flags[MODULE_ID].eeAim = { direction: 0 };
+    expect([at(500, 0), at(0, 500)]).toEqual([2, 9]);
+  });
+
   it("reads a light set down on an area as its item's lamp, or by its label (API 1.102.0)", () => {
     on.illumination = true;
     const lantern = lamp("Floor Lamp", {}, { [LAMP_FLAG]: { watts: 100 } });
@@ -254,8 +283,10 @@ describe("the darkness a lamp leaves (HT:EE p. 20)", () => {
     const area = { id: `${MODULE_ID}-ht-light-${lantern.id}-abcd1234`, label: "Something", light: { radius: 5 } };
     // 100 rated watts exposed: 150 lux, 0 at a yard, -1 at 2.
     expect(lampLevel(switches, area, { distance: 2 })).toBe(1);
-    expect(lampLevel(switches, { id: "other-area", label: "Table Lamp", light: { radius: 5 } }, { distance: 2 })).toBe(2);
-    expect(lampLevel(switches, { id: "other-area", label: "Campfire", light: { radius: 5 } }, { distance: 2 })).toBeNull();
+    // A light set down whose item is gone is read by its label; another module's area light is its own.
+    expect(lampLevel(switches, { id: `${MODULE_ID}-ht-light-gone-abcd`, label: "Table Lamp", light: { radius: 5 } }, { distance: 2 })).toBe(2);
+    expect(lampLevel(switches, { id: `${MODULE_ID}-ht-light-gone-abcd`, label: "Campfire", light: { radius: 5 } }, { distance: 2 })).toBeNull();
+    expect(lampLevel(switches, { id: "other-module-lamp", label: "Table Lamp", light: { radius: 5 } }, { distance: 2 })).toBeNull();
   });
 
   it("leaves another book's lamp alone", () => {
@@ -330,9 +361,14 @@ describe("aiming a beam (HT:EE p. 20)", () => {
     const actor = person("Ann");
     targets = [tokenAt("t2", 5, person("Bob"))];
     ambient = 5;
-    await aimBeam(fakeApi() as never, lamp("Flashlight"), actor);
+    const flashlight = lamp("Flashlight");
+    flashlight.setFlag = async (_m: string, k: string, v: unknown) => { flashlight.flags[MODULE_ID][k] = v; };
+    tokenAt("t1", 0, actor);
+    await aimBeam(fakeApi() as never, flashlight, actor);
     expect(successes[0]).toMatchObject({ base: 12, skill: "DX", modifiers: [{ label: "GCC.HT.Lighting.AimDarkness", value: -5 }] });
     expect(chat[0]).toContain("GCC.HT.Lighting.AimHit");
+    // A hit points the beam at the target (east, 0 degrees) from now on.
+    expect(flashlight.flags[MODULE_ID].eeAim).toEqual({ direction: 0 });
   });
 
   it("aims by ear at -6 in darkness worse than that, once the target is heard, the skill no higher than 9", async () => {

@@ -122,7 +122,7 @@ beforeEach(async () => {
   const tables = await import("../../../shared/book-tables.js");
   tables.setRuleReader((k) => on.has(k));
   battlefield = await import("./index.js");
-  battlefield.readyBattlefield(fakeApi() as never, { sensors: () => on.has(key("battlefieldSensors")), drones: () => on.has(key("reconDrones")) });
+  battlefield.readyBattlefield(fakeApi() as never, { sensors: () => on.has(key("battlefieldSensors")), drones: () => on.has(key("reconDrones")), seekers: () => on.has(key("homingSeekers")) });
 });
 
 afterEach(() => {
@@ -258,6 +258,9 @@ describe("chaff (HT:EE p. 45)", () => {
     const missile = gear("Missile", {}, { rangedModes: [{ guidance: "homing" }] });
     const firer = character("Firer", [missile]);
     const shot = (seeker: string) => fire("gworld.attackModifiers", { actor: firer, item: missile, mode: { ranged: true, index: 0 }, options: { [`${MODULE_ID}.ee-seeker`]: seeker }, targets: [pilot], modifiers: [] });
+    // Seekers are the homing seekers switch's.
+    expect(shot("radar").modifiers).toEqual([]);
+    on.add(key("homingSeekers"));
     expect(shot("radar").modifiers.map((m: any) => m.value)).toEqual([-4]);
     expect(shot("infrared").modifiers).toEqual([]);
     // A gun that doesn't home takes nothing, whatever the option says.

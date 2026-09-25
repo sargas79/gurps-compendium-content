@@ -312,9 +312,15 @@ describe("homingSeekers (HT:EE p. 49)", () => {
     on.homingSeekers = true;
     expect(section.visible(stinger)).toBe(true);
     expect(section.visible(item("Springfield M1873, .45-70"))).toBe(false);
-    // The book's own: infrared.
-    expect(section.context(stinger).choices.find((c: any) => c.selected).value).toBe("infrared");
-    stinger.flags = { ...(stinger.flags ?? {}), [MODULE_ID]: { ...(stinger.flags?.[MODULE_ID] ?? {}), eeSeeker: "radar" } };
+    // The book's own: infrared, offered as "as the record says".
+    expect(section.context(stinger).choices.find((c: any) => c.selected).value).toBe("");
+    // Set to none, it stays none: no seeker, no sense tagged.
+    stinger.flags = { ...(stinger.flags ?? {}), [MODULE_ID]: { ...(stinger.flags?.[MODULE_ID] ?? {}), eeSeeker: "none" } };
+    expect(section.context(stinger).choices.find((c: any) => c.selected).value).toBe("none");
+    const none = attack(stinger, actorWith("Gunner", [stinger]));
+    fire(HOOKS.attackModifiers, none);
+    expect(none.tags).toEqual([]);
+    stinger.flags[MODULE_ID].eeSeeker = "radar";
     expect(section.context(stinger).choices.find((c: any) => c.selected).value).toBe("radar");
     const context = attack(stinger, actorWith("Gunner", [stinger]));
     fire(HOOKS.attackModifiers, context);

@@ -83,6 +83,8 @@ const CHAFF_STATE = "eeChaff";
 export interface BattlefieldSwitches {
   sensors: () => boolean;
   drones: () => boolean;
+  /** The homing seekers switch, which chaff against a radar-homing missile needs too (HT:EE p. 49). */
+  seekers?: () => boolean;
 }
 
 // ── data ─────────────────────────────────────────────────────────────────────
@@ -411,7 +413,7 @@ export function readyBattlefield(api: GWorldApi, on: BattlefieldSwitches): void 
     if (locked && isRadar(locked.item)) {
       const uuid = lockTargetOf(api, context.actor);
       target = (context.targets ?? []).find((t: any) => String(t?.uuid) === uuid) ?? null;
-    } else if (homesByRadar(context)) target = (context.targets ?? [])[0] ?? null;
+    } else if (on.seekers?.() && homesByRadar(context)) target = (context.targets ?? [])[0] ?? null;
     if (!target) return;
     const penalty = chaffPenalty(chaffAround(api, target));
     if (penalty) context.modifiers.push({ label: F("ChaffModifier", { name: target.name }), value: penalty });

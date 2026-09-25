@@ -121,13 +121,18 @@ export function fittedFuze(api: GWorldApi, item: any): FittedFuze | null {
 
 /** The flag a homing weapon's own seeker is kept in, set on its sheet (HT:EE p. 49). */
 export const SEEKER_FLAG = "eeSeeker";
+/** The flag's value for a weapon set to no seeker, even where its record gives one. */
+export const NO_SEEKER = "none";
 
 /**
- * The seeker a homing weapon is built with: the one set on its sheet, else
- * the one the book gives its record (High-Tech's missiles); null for none.
+ * The seeker a homing weapon is built with: the one set on its sheet (none,
+ * where the sheet says none), else the one the book gives its record
+ * (High-Tech's missiles); null for none.
  */
 export function recordSeeker(item: any): SeekerChoice | null {
-  return seekerChoice(item?.flags?.[MODULE_ID]?.[SEEKER_FLAG]) ?? seekersOf(nameOf(item))[0] ?? null;
+  const set = item?.flags?.[MODULE_ID]?.[SEEKER_FLAG];
+  if (set === NO_SEEKER) return null;
+  return seekerChoice(set) ?? seekersOf(nameOf(item))[0] ?? null;
 }
 
 /** The seeker an attack homes with: the option chosen, else the record's own. */
@@ -370,15 +375,19 @@ function readySeekers(api: GWorldApi, on: () => boolean): void {
     template: `modules/${MODULE_ID}/templates/ee-guidance-item.hbs`,
     visible: (item: any) => on() && homingWeapon(item),
     context: (item: any) => {
-      const own = recordSeeker(item);
-      return {
-        editable: Boolean(item?.isOwner ?? true),
-        choices: [{ value: "", label: L("SeekerNone"), selected: !own }, ...SEEKER_CHOICES.map((c) => ({ value: c, label: L(`Seekers.${c}`), selected: c === own }))],
-      };
+      const set = String(item?.flags?.[MODULE_ID]?.[SEEKER_FLAG] ?? "");
+      const printed = seekersOf(nameOf(item))[0] ?? null;
+      const choices = [
+        ...(printed ? [{ value: "", label: F("SeekerRecord", { seeker: L(`Seekers.${printed}`) }), selected: set === "" }] : []),
+        { value: NO_SEEKER, label: L("SeekerNone"), selected: set === NO_SEEKER || (!printed && !seekerChoice(set)) },
+        ...SEEKER_CHOICES.map((c) => ({ value: c, label: L(`Seekers.${c}`), selected: c === set })),
+      ];
+      return { editable: Boolean(item?.isOwner ?? true), choices };
     },
     listeners: (element: HTMLElement, item: any) => {
       element.querySelector<HTMLSelectElement>("[data-gcc-ee-seeker]")?.addEventListener("change", (event) => {
-        void item.setFlag(MODULE_ID, SEEKER_FLAG, (event.currentTarget as HTMLSelectElement).value || null);
+        // "" is the record's own seeker; "none" sticks as none, even over a record that gives one.
+        void item.setFlag(MODULE_ID, SEEKER_FLAG, (event.currentTarget as HTMLSelectElement).value);
       });
     },
   } as any);

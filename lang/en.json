@@ -5150,7 +5150,7 @@
         },
         "illumination": {
           "Name": "Illumination (Electricity and Electronics)",
-          "Hint": "A lamp's lux is its rated wattage times its geometry (x1.5 exposed, x3 recessed, x6 conical beam, x30 close-range beam), read against the Illumination Levels table: -5 at 0.05 lux up to no penalty from 100. It falls a step at 2 yards, two at 3-5, three at 6-10 and 3 more for each tenfold distance; a beam gives its lux out to its range and never leaves worse than -9. The supplement's lamps on the map (a light the GM marks with a tool, a token's own light where its character carries one, or a lamp set down) leave that darkness; a beam lights only its cone, pointed the way its light or token is turned, and leaves -9 beside it; the least darkness wins and no lamp darkens a spot. Reading and sewing need 500 lux and surgery 50,000, else -2: Sewing and Surgery rolls take it from the light at the roller's token, and a GM tool reads the light at the selected tokens. A row action aims a beam on DX at the darkness where it is aimed, or by ear at -6 (skill no higher than 9) once a Hearing roll or a Quick Contest against the target's Stealth finds it; a miss lands yards equal to the margin to the left or right (High-Tech: Electricity and Electronics pp. 20-22)."
+          "Hint": "A lamp's lux is its rated wattage times its geometry (x1.5 exposed, x3 recessed, x6 conical beam, x30 close-range beam), read against the Illumination Levels table: -5 at 0.05 lux up to no penalty from 100. It falls a step at 2 yards, two at 3-5, three at 6-10 and 3 more for each tenfold distance; a beam gives its lux out to its range and never leaves worse than -9. The supplement's lamps on the map (a light the GM marks with a tool, a token's own light where its character carries one lit, or a lamp set down) leave that darkness; a beam lights only its cone, pointed where it was last aimed, else the way a directional light or token is turned, and leaves -9 beside it; the least darkness wins and no lamp darkens a spot. Reading and sewing need 500 lux and surgery 50,000, else -2: Sewing and Surgery rolls take it from the light at the roller's token, and a GM tool reads the light at the selected tokens. A row action aims a beam on DX at the darkness where it is aimed, or by ear at -6 (skill no higher than 9) once a Hearing roll or a Quick Contest against the target's Stealth finds it; a miss lands yards equal to the margin to the left or right (High-Tech: Electricity and Electronics pp. 20-22)."
         },
         "lightDazzle": {
           "Name": "Glare (Electricity and Electronics)",
@@ -10855,7 +10855,8 @@
         },
         "NotDesignated": "Nobody carrying a laser designator is aiming at this target: a laser-homing missile would miss (HT:EE p. 49; Campaigns p. 412).",
         "SeekerTitle": "Homing",
-        "SeekerNone": "None set",
+        "SeekerNone": "None",
+        "SeekerRecord": "As the record says ({seeker})",
         "SeekerSheetHint": "What this weapon's seeker homes on, used by every attack unless the attack option picks another (HT:EE p. 49)."
       },
       "Audio": {

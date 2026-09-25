@@ -519,7 +519,7 @@ function ready(api: GWorldApi): void {
   readyCovertListening(api, rule("covertListening"));
   readyElectricSecurity(api, electric);
   // After the devices' object figures, which military gear's HT and DR override.
-  readyBattlefield(api, { sensors: rule("battlefieldSensors"), drones: rule("reconDrones") });
+  readyBattlefield(api, { sensors: rule("battlefieldSensors"), drones: rule("reconDrones"), seekers: rule("homingSeekers") });
   readyOddments(api, { oddments: rule("protectiveOddments"), cover: rule("portableCover") });
   readyEnforcement(api);
   readyProsthetics(api, rule("prosthetics"));
