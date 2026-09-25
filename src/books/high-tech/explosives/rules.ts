@@ -260,7 +260,8 @@ export function shapedDr(dr: number): number {
 export const NITRO_SHOCK = 12;
 export const IMPURE_NITRO_SHOCK = 10;
 
-const isNitro = (row: ExplosiveRow | null) => /^nitroglycerin\b/i.test(String(row?.type ?? ""));
+/** Nitroglycerin itself, the liquid a yegg carries in a rubber ball (pp. 184-185). */
+export const isNitro = (row: ExplosiveRow | null) => /^nitroglycerin\b/i.test(String(row?.type ?? ""));
 /** An explosive with nitroglycerin in it: nitro itself, dynamite and blasting gelatin (pp. 183-185). */
 export const carriesNitro = (row: ExplosiveRow | null) => /\(NG\)|^Dynamite\b|^Blasting Gelatin\b/i.test(`${row?.type ?? ""} ${row?.use ?? ""}`);
 /** Dynamite -- which can be boiled for its nitro (p. 185). Military dynamite has none. */

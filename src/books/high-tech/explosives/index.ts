@@ -7,7 +7,9 @@
  *   - **Side effects of explosions (explosionSideEffects):** a blast in a
  *     sealed room or vehicle does double damage to everyone in it, 1.5 times
  *     with doors and windows to blow out -- chosen as an attack option on an
- *     explosive row and in the charge's dialog, and rolled as the scaled dice.
+ *     explosive row (or one whose linked line explodes, as a HEAT round's
+ *     blast, which alone is scaled) and in the charge's dialog, and rolled as
+ *     the scaled dice.
  *     Anyone a blast's crushing damage reaches rolls HT against concussion,
  *     and anyone its crushing or burning damage reaches and who was looking
  *     toward it rolls HT against the flash, from a card the blow leaves:
@@ -26,8 +28,10 @@
  *   - **Unstable explosives (unstableExplosives):** nitroglycerin that is
  *     jolted -- a row action, or a blow to whoever carries it -- goes off on
  *     12+ on 3d, and anything with a number set on it (impure nitro, sweating
- *     dynamite) on that number, which the item sheet asks for only on an
- *     explosive with nitro in it; skimming nitro from dynamite; home-cooked
+ *     dynamite) on that number, which the item sheet asks the GM for only on
+ *     an explosive with nitro in it, and which a player judges by eye with
+ *     an Explosives (Demolition) roll; nitro slung in a rubber ball, cushioned
+ *     by a DX roll instead of the 3d; skimming nitro from dynamite; home-cooked
  *     black powder, plastique, ANFO and fuel-air devices, with what a failed
  *     batch comes out as; and a fuel-air blast's slower falloff.
  *   - **Incendiaries (incendiaryAgents):** thermite set burning on a victim
@@ -76,6 +80,7 @@ import {
   isDynamite,
   isFuelAir,
   isNapalm,
+  isNitro,
   parseDamage,
   recipeFor,
   scaleDamage,
@@ -146,8 +151,25 @@ export function poundsOf(item: any): number {
 /** Thermite: an incendiary record, by name (p. 188). */
 export const isThermite = (item: any): boolean => item?.type === "equipment" && /^thermite\b/i.test(String(item?.name ?? "")) && !chargeOf(item);
 
-/** Every mode of an item that explodes. */
-const explosiveModes = (item: any): any[] => [...(item?.system?.meleeModes ?? []), ...(item?.system?.rangedModes ?? [])].filter((m) => m?.explosive === true);
+/** A mode's own explosive linked or follow-up lines: a HEAT round's blast. */
+const explosiveLines = (mode: any): any[] => [mode?.linked, mode?.linkedAlso].filter((line) => line?.explosive === true && line?.damage);
+
+/** Every mode of an item that explodes, itself or on a line linked to it. */
+const explosiveModes = (item: any): any[] => [...(item?.system?.meleeModes ?? []), ...(item?.system?.rangedModes ?? [])].filter((m) => m?.explosive === true || explosiveLines(m).length > 0);
+
+/**
+ * Whether the damage being rolled from a mode explodes: the mode's own, or a
+ * linked line of its that does, known by its dice (the roll names no line).
+ */
+export function rollExplodes(mode: any, formula: string): boolean {
+  if (mode?.explosive === true) return true;
+  const rolled = parseDamage(formula);
+  if (!rolled) return false;
+  return explosiveLines(mode).some((line) => {
+    const own = parseDamage(String(line.damage));
+    return own !== null && formatDamage(own) === formatDamage(rolled);
+  });
+}
 
 async function say(actor: any, title: string, lines: string[]): Promise<void> {
   await ChatMessage.implementation.create({
@@ -208,7 +230,7 @@ async function skillRoll(api: GWorldApi, actor: any, choices: ReadonlyArray<{ sk
 }
 
 export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: ExplosiveExtras = {}): void {
-  // ── the REF table (p. 183) ──
+  // â”€â”€ the REF table (p. 183) â”€â”€
   const ids = new Map<ExplosiveRow, string>();
   for (const each of EXPLOSIVES) {
     const id = (api.data as any).registerExplosive({
@@ -280,17 +302,18 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
       if (dice) context.formula = formatDamage(scaleDamage(dice, pending.factor));
       return;
     }
-    // A blast in an enclosed space, chosen on the attack (p. 181).
+    // A blast in an enclosed space, chosen on the attack (p. 181): the mode's
+    // own, or the blast on a line linked to it.
     const item = context?.item;
     if (!on.sideEffects() || !item || context.mode?.derived) return;
     const modes = context.mode?.ranged ? item.system?.rangedModes : item.system?.meleeModes;
-    if (modes?.[Number(context.mode?.index) || 0]?.explosive !== true) return;
+    if (!rollExplodes(modes?.[Number(context.mode?.index) || 0], String(context.formula ?? ""))) return;
     const times = enclosureFactor((api.combat.getWeaponState(item, MODULE_ID) as any)?.htEnclosure);
     const dice = times !== 1 ? parseDamage(String(context.formula ?? "")) : null;
     if (dice) context.formula = formatDamage(scaleDamage(dice, times));
   });
 
-  // ── side effects of explosions (pp. 181-182) ──
+  // â”€â”€ side effects of explosions (pp. 181-182) â”€â”€
   api.combat.registerAttackOption({
     module: MODULE_ID,
     key: ENCLOSURE_OPTION,
@@ -354,7 +377,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     }
   });
 
-  // ── demolition charges (pp. 182-183) ──
+  // â”€â”€ demolition charges (pp. 182-183) â”€â”€
   const structures = (): Array<{ value: string; label: string }> => [
     { value: "", label: L("NoStructure") },
     { value: "custom", label: L("CustomStructure") },
@@ -461,12 +484,24 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     await say(actor, L("PlanTitle"), [L(have >= needed ? "PlanSuccess" : "PlanSuccessShort")]);
   };
 
-  // ── unstable and home-made explosives (pp. 184-187) ──
+  // â”€â”€ unstable and home-made explosives (pp. 184-187) â”€â”€
   const jolt = async (actor: any, item: any, number: number, fromBlow: boolean) => {
-    const rolled = roll3d();
     const name = String(item.name ?? "");
-    const goes = shockDetonates(rolled, number);
-    await say(actor, name, [F(fromBlow ? "JoltedByBlow" : "Jolted", { name, roll: rolled, number }), L(goes ? "JoltExplodes" : "JoltHolds")]);
+    const charge = chargeOf(item);
+    let goes: boolean;
+    if (charge?.cushioned && isNitro(charge.row)) {
+      // Nitro slung in a rubber ball: a DX roll cushions it, and a failure sets it off (p. 185).
+      const outcome: any = await api.roll.success({ actor, base: Number(api.actors.attribute(actor, "DX")) || 10, kind: "attribute", label: F("CushionRoll", { name }), tags: ["DX", "nitro"] } as any);
+      if (!outcome) return;
+      goes = !outcome.success;
+      await say(actor, name, [F(fromBlow ? "CushionByBlow" : "Cushion", { name }), L(goes ? "JoltExplodes" : "Cushioned")]);
+    } else {
+      const rolled = roll3d();
+      goes = shockDetonates(rolled, number);
+      // The number the GM set on old dynamite or impure nitro is his to know, until someone judges it.
+      const secret = (charge?.shockOn ?? 0) > 0;
+      await say(actor, name, [F(secret ? (fromBlow ? "JoltedByBlowUnknown" : "JoltedUnknown") : fromBlow ? "JoltedByBlow" : "Jolted", { name, roll: rolled, number }), L(goes ? "JoltExplodes" : "JoltHolds")]);
+    }
     if (goes) await setOff(actor, item, { pounds: poundsOf(item), placement: "contact", distance: 0, structure: null, shaped: false, enclosure: "", label: F("JoltLabel", { name, pounds: poundsOf(item) }) });
   };
 
@@ -479,16 +514,40 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     context: (item: any) => {
       const charge = chargeOf(item)!;
       const number = shockNumber(charge.row, charge.shockOn);
+      const gm = (game as any).user?.isGM === true;
       return {
         editable: item.isOwner,
         field: `system.extensions.${MODULE_ID}.explosive`,
         shockOn: charge.shockOn,
         // Only nitro sweats or comes out impure: the number is for an explosive with nitro in it, or one already set (pp. 184-185).
-        sweats: carriesNitro(charge.row) || charge.shockOn > 0,
+        // It is the GM's to decide, and to know: a player judges it by eye (p. 185).
+        sweats: gm && (carriesNitro(charge.row) || charge.shockOn > 0),
+        nitro: isNitro(charge.row),
+        cushioned: charge.cushioned,
         homeMade: charge.homeMade,
         flaws: FLAWS.map((f) => ({ value: f, label: L(`Flaws.${f || "none"}`), selected: f === charge.homeMade })),
-        line: number === null ? L("Stable") : F("ShockLine", { number }),
+        line: number === null ? L("Stable") : charge.shockOn > 0 && !gm ? L("ShockUnknown") : F("ShockLine", { number }),
       };
+    },
+  } as any);
+
+  // Old, sweating dynamite (or impure nitro): judging by eye what sets it off takes an Explosives (Demolition) roll (p. 185).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-explosive-judge",
+    itemTypes: ["equipment"],
+    label: L("Judge"),
+    icon: "fa-solid fa-magnifying-glass",
+    visible: (item: any) => on.unstable() && (chargeOf(item)?.shockOn ?? 0) > 0,
+    run: (item: any, actor: any) => {
+      void (async () => {
+        const charge = chargeOf(item);
+        if (!charge?.shockOn) return;
+        const name = String(item.name ?? "");
+        const outcome = await skillRoll(api, actor, [{ skill: DEMOLITION, modifier: 0 }], F("JudgeRoll", { name }), [], ["judgeShock"]);
+        if (!outcome) return;
+        await say(actor, name, [outcome.success ? F("Judged", { name, number: charge.shockOn }) : F("NotJudged", { name })]);
+      })();
     },
   } as any);
 
@@ -578,7 +637,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     if (fuelAir) context.divisorPerYard = FUEL_AIR_DIVISOR_PER_YARD;
   });
 
-  // ── incendiaries (p. 188) ──
+  // â”€â”€ incendiaries (p. 188) â”€â”€
   // The DR thermite destroys, off the armour worn over the place it burns; what it
   // returns is the points worn off, which may be fewer where the armour runs out.
   const wearArmor = async (actor: any, location: string, points: number): Promise<number> => {

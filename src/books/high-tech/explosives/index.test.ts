@@ -283,6 +283,19 @@ describe("side effects of explosions (pp. 181-182)", () => {
     expect(context.formula).toBe("12d");
   });
 
+  it("scales a HEAT round's linked blast indoors, and leaves its jet alone", async () => {
+    const heat = { name: "HEAT", isOwner: true, system: { meleeModes: [], rangedModes: [{ explosive: false, damageFormula: "6dx3", linked: { damage: "7dx2", explosive: true } }] } };
+    expect(options.find((o) => o.key === "ht-enclosure").available({ item: heat })).toBe(true);
+    fire(HOOKS.attackModifiers, { item: heat, options: { [`${MODULE_ID}.ht-enclosure`]: "sealed" }, modifiers: [] });
+    await flush();
+    const jet = { item: heat, mode: { index: 0, ranged: true }, formula: "6dx3", modifiers: [] };
+    fire(HOOKS.damageModifiers, jet);
+    expect(jet.formula).toBe("6dx3");
+    const blast = { item: heat, mode: { index: 0, ranged: true }, formula: "7d×2", modifiers: [] };
+    fire(HOOKS.damageModifiers, blast);
+    expect(blast.formula).toBe("7dx4");
+  });
+
   it("leaves a card for the concussion and flash rolls, and applies what a failure does", async () => {
     const victim = { ...actorWith("Victim"), attributes: { HT: 12 } };
     fire(HOOKS.afterDamage, { actor: victim, damage: { type: "cr", basicDamage: 21, blastDistance: 2 }, result: { penetrating: 12 } });
@@ -415,6 +428,43 @@ describe("unstable explosives (pp. 184-187)", () => {
     fire(HOOKS.afterDamage, { actor: carrier, damage: { type: "pi", basicDamage: 6 }, result: { injury: 6 } });
     await flush();
     expect(detonations).toHaveLength(1);
+  });
+
+  it("keeps the GM's number from a player, who judges it by eye with Explosives (Demolition) (p. 185)", async () => {
+    const sweating = record("Dynamite, 80% (per pound)", "Dynamite (80%)", 1, { shockOn: 9 });
+    const section = sections.find((s) => s.key === "ht-explosives-item");
+    expect(section.context(sweating).line).toContain("ShockLine");
+    (game as any).user.isGM = false;
+    expect(section.context(sweating)).toMatchObject({ sweats: false, line: "GCC.HT.Explosives.ShockUnknown" });
+    // Nitro's own 12 is no secret.
+    expect(section.context(record("Nitroglycerin (per pound)", "Nitroglycerin (NG)")).line).toContain("ShockLine");
+
+    const judge = actions.get("ht-explosive-judge");
+    expect(judge.visible(sweating)).toBe(true);
+    expect(judge.visible(record("Dynamite, 80% (per pound)", "Dynamite (80%)"))).toBe(false);
+    const sapper = { ...actorWith("Sapper"), skills: { "Explosives (Demolition)": 12 } };
+    judge.run(sweating, sapper);
+    await flush();
+    expect(successes[0]).toMatchObject({ base: 12, skill: "Explosives (Demolition)" });
+    expect(chat.at(-1)).toContain('Judged {"name":"Dynamite, 80% (per pound)","number":9}');
+    outcomes = [{ success: false, margin: 1 }];
+    judge.run(sweating, sapper);
+    await flush();
+    expect(chat.at(-1)).toContain("NotJudged");
+  });
+
+  it("cushions nitro in a rubber ball with a DX roll when its carrier is hit, not the 3d (p. 185)", async () => {
+    const ball = record("Nitroglycerin (per pound)", "Nitroglycerin (NG)", 0.5, { cushioned: true });
+    const yegg = { ...actorWith("Yegg", [ball]), attributes: { DX: 13 } };
+    expect(sections.find((s) => s.key === "ht-explosives-item").context(ball)).toMatchObject({ nitro: true, cushioned: true });
+    fire(HOOKS.afterDamage, { actor: yegg, damage: { type: "cr", basicDamage: 3 }, result: { injury: 3 } });
+    await flush();
+    expect(successes[0]).toMatchObject({ base: 13, kind: "attribute" });
+    expect(detonations).toHaveLength(0);
+    outcomes = [{ success: false, margin: 2 }];
+    fire(HOOKS.afterDamage, { actor: yegg, damage: { type: "cr", basicDamage: 3 }, result: { injury: 3 } });
+    await flush();
+    expect(detonations[0]).toMatchObject({ weightLbs: 0.5, placement: "contact" });
   });
 
   it("skims nitro, and a failure by 2 blows half the dynamite up", async () => {

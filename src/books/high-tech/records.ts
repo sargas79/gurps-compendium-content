@@ -14,8 +14,9 @@
  *     of TNT, a tube holding a quarter-pound of extrudable explosive (#349).
  *     The REF comes from the table, not the record, so the two can't disagree;
  *     the demolition rules (#378) read it. Beside them, the 3d roll a jolt
- *     sets the item off on (old, sweating dynamite; impure nitro), and what a
- *     home-made batch came out as (#378).
+ *     sets the item off on (old, sweating dynamite; impure nitro), what a
+ *     home-made batch came out as (#378), and nitro carried cushioned in a
+ *     rubber ball (#510).
  *
  *   - `invention`: the years High-Tech: Electricity and Electronics dates a
  *     device by, the year it went on sale and the year a working model was
@@ -65,6 +66,8 @@ export function registerHighTechRecordData(): void {
       shockOn: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 18 }),
       // A home-made batch: blank for bought, else what the roll to make it left (#378).
       homeMade: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...FLAWS] }),
+      // Nitro slung in a rubber ball under the shirt: a DX roll, not the 3d, when its carrier is hit or falls (p. 185).
+      cushioned: new f.BooleanField({ initial: false }),
     }),
     firearmBuild: new f.SchemaField({
       waterPints: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
@@ -96,11 +99,11 @@ export function firearmBuild(item: any): FirearmBuild {
 }
 
 /** An item's charge: its row of the REF table and the pounds of it, or null for an item that is none. */
-export function chargeOf(item: any): { row: ExplosiveRow; pounds: number; shockOn: number; homeMade: Flaw } | null {
+export function chargeOf(item: any): { row: ExplosiveRow; pounds: number; shockOn: number; homeMade: Flaw; cushioned: boolean } | null {
   const data = item?.system?.extensions?.[MODULE_ID]?.explosive;
   const row = explosive(String(data?.type ?? ""));
   const pounds = Number(data?.pounds);
   if (!row || !(pounds > 0)) return null;
   const shockOn = Math.floor(Number(data?.shockOn) || 0);
-  return { row, pounds, shockOn: shockOn >= 3 && shockOn <= 18 ? shockOn : 0, homeMade: FLAWS.includes(data?.homeMade) ? data.homeMade : "" };
+  return { row, pounds, shockOn: shockOn >= 3 && shockOn <= 18 ? shockOn : 0, homeMade: FLAWS.includes(data?.homeMade) ? data.homeMade : "", cushioned: data?.cushioned === true };
 }
