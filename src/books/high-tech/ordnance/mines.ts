@@ -161,7 +161,7 @@ export function readyMines(api: GWorldApi, on: () => boolean): void {
       ...tokens.map((t, i) => row(String(t.name ?? t.actor?.name ?? ""), number(`d${i}`, yardsBetween(origin, t) ?? 10))),
     ].join(""), L("Mine.Fire"));
     if (!value) return;
-    let inCone = (_token: any) => true;
+    let inCone: (token: any) => boolean = () => true;
     if (facing !== null) {
       const perYard = (Number(scene.grid?.size) || 100) / (Number(scene.grid?.distance) || 1);
       const direction = ((Number(value("facing")) || 0) % 360 + 360) % 360;
