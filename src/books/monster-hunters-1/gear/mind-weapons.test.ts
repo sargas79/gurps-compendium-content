@@ -113,6 +113,6 @@ describe("with Ultra-Tech's neural beams switched on too", () => {
     // Ultra-Tech's: its own listener alone.
     const ut = resist(booked("Mind Disruptor", "ultra-tech", "Ultra-Tech p. 121"));
     expect(ut).toHaveLength(1);
-    expect(ut[0].label).not.toBe("GCC.MH1.MindShield");
+    expect((ut[0] as { label?: string } | undefined)?.label).not.toBe("GCC.MH1.MindShield");
   });
 });
