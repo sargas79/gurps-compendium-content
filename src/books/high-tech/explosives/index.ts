@@ -703,7 +703,8 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
   // burn ticks on the GM's client, which may hurt anyone.
   const sparks = async (victim: any) => {
     const lines: string[] = [];
-    for (const { actor, yards } of actorsNear(victim, THERMITE_SPARKS[THERMITE_SPARKS.length - 1].yards)) {
+    const reach = Math.max(...THERMITE_SPARKS.map((band) => band.yards));
+    for (const { actor, yards } of actorsNear(victim, reach)) {
       const damage = sparksAt(yards);
       if (!damage) continue;
       const injury = Math.max(0, damage - largeAreaDr(api, actor));
