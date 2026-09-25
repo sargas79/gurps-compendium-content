@@ -7,9 +7,11 @@
  *   - **ready:** the price modifier; the attack rows, breakage odds, Holdout
  *     and equipment failure through the system's hooks; an item sheet section
  *     for the options and loads; and a Gear tab section for Signature Gear and
- *     concealment.
+ *     concealment. The mind disruptor's and neutralizer's Will rolls take the
+ *     victim's Mind Shield and no DR (p. 58).
  */
 
+import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { gearData, loadFor, registerGearData, storeGear, type GearData, type StoredLoad } from "./data.js";
 import {
@@ -34,6 +36,7 @@ import {
   specialReloadCost,
 } from "./special-ammunition.js";
 import { improvedWeaponPrice, allowedWeapon } from "./weapon-improvements.js";
+import { isMindWeapon, mindShieldLevels } from "./mind-weapons.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.MH1.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.MH1.${key}`, data);
@@ -226,6 +229,15 @@ export function readyGear(api: GWorldApi, on: () => boolean): void {
   // Rugged: "+2 on rolls to avoid breakage, water damage, etc." (p. 54).
   Hooks.on(api.combat.hooks.equipmentFailure, (context: any) => {
     if (on() && gearData(context?.item).gadget.rugged) context.modifiers.push({ label: L("Gadget.Rugged"), value: RUGGED_BONUS });
+  });
+
+  // The mind disruptor and the neutralizer: Will "with a bonus equal to any
+  // Mind Shield" (p. 58). Armour is no help, so the system's DR line goes.
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!on() || !context?.tags?.includes?.("resist") || !isMindWeapon(context.attack?.item)) return;
+    dropAfflictionDr(context);
+    const shield = mindShieldLevels(context.actor?.items ?? []);
+    if (shield && Array.isArray(context.modifiers)) context.modifiers.push({ label: L("MindShield"), value: shield });
   });
 
   // An article's Holdout, and Undercover's, on the Holdout skill (p. 59).
