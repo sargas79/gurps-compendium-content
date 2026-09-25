@@ -217,7 +217,7 @@ import {
   type Spread,
 } from "../sigint/rules.js";
 import { timeSpentModifier } from "../../../shared/time-spent.js";
-import { DETECTOR_SKILLS, DWELL, detectorSkill, dwellRange, emissionModifier, emissionReach, rangefindingPenalty, sensorSizeModifier, type Dwell } from "./rangefinding.js";
+import { DETECTOR_SKILLS, DWELL, LASER_MEASURE, isLaserMeasure, detectorSkill, dwellRange, emissionModifier, emissionReach, rangefindingPenalty, sensorSizeModifier, type Dwell } from "./rangefinding.js";
 
 const NS = "GCC.HT";
 const L = (key: string) => game.i18n.localize(`${NS}.Sensor.${key}`);
@@ -1622,6 +1622,11 @@ export function readyHighTechSensors(api: GWorldApi, on: { radios: () => boolean
       // An active IR source is a light to night-vision gear and thermographs: +4 to locate it (p. 47).
       const viewer = subject && tags.includes("detection") ? wornViewer(actor) : null;
       if (viewer && shinesInfrared(subject)) context.modifiers.push({ label: F("InfraredSource", { name: viewer.name }), value: IR_LOCATE });
+    }
+    // The laser measuring tool: +1 to Cartography, Engineer and the like, measuring out to 100 yards (HT:EE p. 35).
+    if (rangefindingOn() && Array.isArray(context.modifiers) && LASER_MEASURE.skills.test(skill)) {
+      const tool = [...(actor.items ?? [])].find((i: any) => carried(i) && isLaserMeasure(nameOf(i)));
+      if (tool) context.modifiers.push({ label: F("LaserMeasureLine", { name: tool.name, yards: LASER_MEASURE.yards }), value: LASER_MEASURE.bonus });
     }
     // A hydrophone's fix: +4 to shadow the target (p. 49).
     if (on.passive() && subject && /^shadowing\b/i.test(skill) && lockTargetOf(api, actor) === String(subject.uuid)) {

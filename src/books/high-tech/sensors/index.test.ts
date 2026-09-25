@@ -779,6 +779,16 @@ describe("detecting a sensor's emissions (HT:EE p. 35), with only the supplement
     targets = [character("Ship", [gear("Medium Radar")])];
   };
 
+  it("gives the laser measuring tool's +1 to Cartography and Engineer rolls (HT:EE p. 35)", () => {
+    const surveyor = character("Surveyor", [gear("Laser Measuring Tool")]);
+    const roll = (skill: string) => fire("gworld.successRollModifiers", { actor: surveyor, skill, tags: [], modifiers: [] }).modifiers.map((m: any) => m.value);
+    expect(roll("Cartography")).toEqual([1]);
+    expect(roll("Engineer (Civil)")).toEqual([1]);
+    expect(roll("Architecture")).toEqual([]);
+    on = new Set();
+    expect(roll("Cartography")).toEqual([]);
+  });
+
   it("offers the tool with the switch on, not the sweep", () => {
     expect(tools.get("ht-emissions").visible()).toBe(true);
     expect(tools.get("sensor-sweep").visible()).toBe(false);

@@ -8191,7 +8191,8 @@
         "GeigerTitle": "Read the radiation",
         "GeigerRoll": "Reading the {name}",
         "GeigerClue": "A clue to the radiation's source: the GM says what the readings suggest.",
-        "GeigerNothing": "The readings say nothing about where it comes from."
+        "GeigerNothing": "The readings say nothing about where it comes from.",
+        "LaserMeasureLine": "{name}, measuring out to {yards} yards"
       },
       "Survival": {
         "Title": "Survival gear",
