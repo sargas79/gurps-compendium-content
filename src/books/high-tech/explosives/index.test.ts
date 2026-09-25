@@ -46,6 +46,7 @@ let dialog: Record<string, string> | null;
 let targets: any[];
 let traitsAdded: any[];
 let worldTime: number;
+let damages: any[];
 
 const fire = (name: string, ...args: any[]) => (hooks.get(name) ?? []).map((fn) => fn(...args));
 const flush = async () => { for (let i = 0; i < 20; i += 1) await Promise.resolve(); };
@@ -112,6 +113,7 @@ function fakeApi() {
       update: async (message: any, data: any) => { message.data = data; return true; },
     },
     items: {
+      changeQuantity: async (item: any, delta: number) => { const from = item.system.quantity; item.system.quantity = Math.max(0, from + delta); return { from, to: item.system.quantity }; },
       // Wears the piece down, and the DR at the place with it, as the system's pipeline would show it.
       wearDr: async (item: any, amount: number, o: any) => {
         const from = Number(item.system.drLost) || 0;
@@ -136,7 +138,10 @@ function fakeApi() {
       applyInjury: async (actor: any, injury: any) => { injuries.push({ actor: actor.name, ...injury }); return null; },
       changeTrait: async (actor: any, o: any) => { traitsAdded.push({ actor: actor.name, ...o }); return { itemId: "t1", from: null, to: { name: o.add }, added: true, removed: false }; },
     },
-    roll: { success: async (o: any) => { successes.push(o); return outcomes.shift() ?? { success: true, criticalFailure: false, margin: 0 }; } },
+    roll: {
+      success: async (o: any) => { successes.push(o); return outcomes.shift() ?? { success: true, criticalFailure: false, margin: 0 }; },
+      damage: async (o: any) => { damages.push(o); return 0; },
+    },
   };
 }
 
@@ -172,6 +177,7 @@ beforeEach(() => {
   targets = [];
   traitsAdded = [];
   worldTime = 1000;
+  damages = [];
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
@@ -235,6 +241,28 @@ describe("demolition charges (pp. 182-183)", () => {
     actions.get("ht-detonate").run(c4, actorWith("Sapper"));
     await flush();
     expect(detonations[0].structure).toMatchObject({ dr: 5, hp: 60 });
+  });
+
+  it("cuts with cutting cord: a pound per 2', 4dx2 nearby, and 24 against a fifth of the DR (p. 188)", async () => {
+    const cord = { id: "cord", name: "Cutting Cord (per pound)", type: "equipment", isOwner: true, system: { quantity: 3, carried: true, meleeModes: [], rangedModes: [] } };
+    const sapper = actorWith("Sapper", [cord]);
+    expect(actions.get("ht-cutting-cord").visible(cord)).toBe(true);
+    expect(actions.get("ht-cutting-cord").visible(record("TNT (per pound)", "TNT"))).toBe(false);
+    dialog = { feet: "3", structure: "custom", dr: "12", hp: "20", taken: "0" };
+    actions.get("ht-cutting-cord").run(cord, sapper);
+    await flush();
+    // 3' of cord is two 2' lengths: 2 lb.
+    expect(cord.system.quantity).toBe(1);
+    expect(damages[0]).toMatchObject({ formula: "4dx2", damageType: "cr", explosive: true, actor: sapper });
+    // 24 against DR 12/5 = 2: 22 injury of 20 HP.
+    expect(chat.at(-1)).toContain('"damage":24,"dr":12,"divided":2,"injury":22,"hp":-2,"max":20');
+    expect(chat.at(-1)).toContain("Cord.RollsToHold");
+
+    dialog = { feet: "4", structure: "", dr: "0", hp: "0", taken: "0" };
+    actions.get("ht-cutting-cord").run(cord, sapper);
+    await flush();
+    expect(damages).toHaveLength(1);
+    expect(cord.system.quantity).toBe(1);
   });
 
   it("works out the charge a job takes and rolls for it", async () => {

@@ -254,6 +254,26 @@ export function shapedDr(dr: number): number {
   return Math.floor(Math.max(0, Number(dr) || 0) / SHAPED_DIVISOR);
 }
 
+/**
+ * Cutting cord, a flexible linear shaped charge (p. 188): a 2' length weighs
+ * a pound and does 4dx2 cr ex to anyone nearby, but against the thing it is
+ * laid on to cut, 4d(5) cr ex at its maximum.
+ */
+export const CUTTING_CORD = Object.freeze({ feetPerPound: 2, blast: "4dx2", cutDice: 4, cutDivisor: 5 });
+
+/** A record of cutting cord, by its name. */
+export const isCuttingCord = (item: any): boolean => item?.type === "equipment" && /^cutting cord\b/i.test(String(item?.name ?? ""));
+
+/** The pounds of cord a cut this many feet long takes, a part of a 2' length counting as the whole of it. */
+export function cordPounds(feet: number): number {
+  return Math.ceil(Math.max(0, Number(feet) || 0) / CUTTING_CORD.feetPerPound);
+}
+
+/** What the cord does to the thing it cuts: 4d at its maximum, against a fifth of the DR (p. 188). */
+export function cordCut(dr: number): { damage: number; dr: number } {
+  return { damage: CUTTING_CORD.cutDice * 6, dr: Math.floor(Math.max(0, Number(dr) || 0) / CUTTING_CORD.cutDivisor) };
+}
+
 // ── unstable and home-made explosives (pp. 184-187) ─────────────────────────
 
 /** Nitroglycerin that is dropped or jolted goes off on 12+ on 3d; impure nitro, on 10+ (p. 184). */

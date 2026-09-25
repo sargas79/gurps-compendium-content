@@ -24,7 +24,9 @@
  *     against a door or wall or set nearby, a shaped charge dividing the
  *     structure's DR by 10); and one that works out the charge a job takes
  *     (a crater, timbers, girders, holes in walls and plates), tamped or
- *     shaped, and rolls Explosives (Demolition) for it.
+ *     shaped, and rolls Explosives (Demolition) for it; and cutting cord laid
+ *     along a cut, a pound for each 2', 4dx2 to anyone nearby and 4d(5) at
+ *     its maximum to what it cuts.
  *   - **Unstable explosives (unstableExplosives):** nitroglycerin that is
  *     jolted -- a row action, or a blow to whoever carries it -- goes off on
  *     12+ on 3d, and anything with a number set on it (impure nitro, sweating
@@ -67,8 +69,11 @@ import {
   canShape,
   canTamp,
   carriesNitro,
+  CUTTING_CORD,
   chargeFor,
   concussionModifier,
+  cordCut,
+  cordPounds,
   enclosureFactor,
   eyeBonus,
   failedBatch,
@@ -78,6 +83,7 @@ import {
   formatDamage,
   hearingBonus,
   isDynamite,
+  isCuttingCord,
   isFuelAir,
   isNapalm,
   isNitro,
@@ -425,6 +431,46 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
       })();
     },
   } as any);
+
+  // Cutting cord laid along a cut (p. 188): a pound for each 2', 4dx2 to anyone
+  // nearby, and 4d(5) at its maximum to the thing it cuts.
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-cutting-cord",
+    itemTypes: ["equipment"],
+    label: L("Cord.Action"),
+    icon: "fa-solid fa-scissors",
+    visible: (item: any) => on.demolition() && api.registry.isRuleOn("explosions") && isCuttingCord(item),
+    run: (item: any, actor: any) => { void cutWithCord(item, actor); },
+  } as any);
+
+  const cutWithCord = async (item: any, actor: any) => {
+    const value = await ask(String(item.name ?? ""), [
+      row(L("Cord.Feet"), number("feet", CUTTING_CORD.feetPerPound)),
+      row(L("Target"), select("structure", structures())),
+      row(L("CustomDr"), number("dr", 0, "1")),
+      row(L("CustomHp"), number("hp", 0, "1")),
+      row(L("DamageTaken"), number("taken", 0, "1")),
+      `<p class="ihint" style="margin:0">${esc(L("Cord.Hint"))}</p>`,
+    ].join(""), L("Cord.Action"));
+    if (!value) return;
+    const feet = Math.max(0, Number(value("feet")) || 0);
+    const pounds = cordPounds(feet);
+    if (!(pounds > 0)) return;
+    const have = Math.max(0, Number(item.system?.quantity) || 0);
+    if (pounds > have) return void ui.notifications?.warn(F("Cord.Short", { pounds, have }));
+    await api.items.changeQuantity(item, -pounds, { reason: L("Cord.Action") } as any);
+    await api.roll.damage({ actor, item, label: F("Cord.BlastLabel", { feet }), formula: CUTTING_CORD.blast, damageType: "cr", explosive: true } as any);
+    const structure = structureFrom(value);
+    if (!structure) return;
+    const cut = cordCut(structure.dr);
+    const blast = (api.rules as any).blastAgainstStructure({ damage: cut.damage, dr: cut.dr, hp: structure.hp, damageTaken: structure.damageTaken });
+    await say(actor, L("Cord.Title"), [
+      F("Cord.Cut", { label: structure.label, damage: cut.damage, dr: structure.dr, divided: cut.dr, injury: blast.injury, hp: blast.hp, max: structure.hp }),
+      L(`Cord.States.${blast.state}`),
+      ...(blast.rollsToHold || blast.rollsToStand ? [L(blast.rollsToStand ? "Cord.RollsToStand" : "Cord.RollsToHold")] : []),
+    ]);
+  };
 
   // How much a job takes, and the Explosives (Demolition) roll to do it (pp. 182-183).
   api.sheets.registerRowAction({
