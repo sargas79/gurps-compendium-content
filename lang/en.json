@@ -5579,7 +5579,9 @@
           "incident": "An incident: pills passed too quickly, or some thrown up.",
           "burst": "A packet bursts!",
           "dosed": "The contents are dosed as an overdose: 1 point of toxic damage every 15 minutes for 24 cycles, HT-4 to resist.",
-          "tells": "Cramps and sweating can tip off observers."
+          "tells": "Cramps and sweating can tip off observers.",
+          "cramps": "The pills' pressure brings cramps: moderate pain while they're carried. The GM removes it once they pass, or makes it worse.",
+          "out": "Overdose, as heroin (a depressant): unconscious for {hours} hours (Campaigns p. 441). If the packet held cocaine, the GM uses a stimulant's overdose instead: a HT roll, a heart attack on a critical failure (Campaigns p. 440)."
         },
         "BurstPoison": "Burst mule pill",
         "SpotTitle": "Spot a mule",
@@ -8142,6 +8144,8 @@
         "ImproviseFailed": "The {name} is a dud ({minutes} minutes spent).",
         "Engine": {
           "Action": "Engine fire",
+          "Option": "Through the engine grating (vital area)",
+          "HitHint": "The Molotov went through the engine grating: the vehicle rolls HT at once and every 3 seconds until the fire burns out.",
           "Title": "Molotov through the engine grating",
           "Ht": "Vehicle's HT",
           "Hint": "A hit through an unprotected engine grating is a vital-area hit, at {penalty} to hit. The vehicle rolls HT at once and every 3 seconds until the fire burns out.",
@@ -8157,6 +8161,7 @@
         "CloudSensors": "Smoke (sensors)",
         "CloudPlaced": "Smoke fills a {radius}-yard radius for {seconds} seconds.",
         "CloudNoPlace": "No scene or spot to put the cloud on: place a template or target a token.",
+        "HotCanister": "The canister burns hot enough to do {dice} burn to bare flesh touching it, and sets dry vegetation and paper alight (Campaigns p. 433).",
         "FlashbangHearing": "Protected Hearing",
         "FlashbangVision": "Protected Vision",
         "FlashbangRecovery": "Flashbang stun",
@@ -8683,6 +8688,7 @@
         "HoldLabel": "Held in contact (seconds)",
         "HoldNote": "Held in contact for {seconds} s.",
         "StunDr": "Armour against the shock",
+        "ProdProtected": "The prod's burn needs bare skin: {armour} covers it",
         "ShockLabel": "{weapon}: recovery at {penalty}",
         "ShockLine": "{weapon}'s shock",
         "Stunned": "{name} is stunned: {held} s in contact, {seconds} s in all before the first roll to recover at HT{recovery}.",
@@ -9040,6 +9046,10 @@
         "AnesthesiaItem": "A Physician roll puts the patient under; if it fails, Surgery is at {penalty}. Good for {hours} hours here.",
         "AnesthesiaMachineItem": "A Physician roll at +{bonus} puts the patient under; if it fails, Surgery is at {penalty}. A tank lasts {hours} hours.",
         "AntisepticItem": "Cleaning a wound takes no roll and removes up to -{bonus} of the dirt's penalty on the roll against infection.",
+        "UsesLeft": "{left} of {per} uses left in this container.",
+        "ResupplyItem": "Its needles, blades, sutures and sponges cost ${cost} to replace after each operation ({percent}% of its price; High-Tech p. 223).",
+        "ImagingLine": "{name}'s scan",
+        "ImagingReason": "an imaging instrument helps only the Diagnosis roll its scan allows",
         "DefibrillateAction": "Defibrillate",
         "AedAction": "Use the AED",
         "Minutes": "Minutes since the fibrillation began",
@@ -9495,6 +9505,7 @@
         "PickVictims": "Target the characters to poison first.",
         "NoneLeft": "{name}: none left.",
         "NoPoison": "{name} has no poison in them to treat.",
+        "NoDigestivePoison": "{name} has no digestive poison in them for this to work on.",
         "NoIllness": "{name} has no illness to treat.",
         "TreatHint": "What the dose treats in {name}.",
         "Dose": "Treat",
@@ -9535,6 +9546,10 @@
         "TruthSerumResisted": "{name} keeps a clear head.",
         "PsychiatricTaken": "{name} takes the day's dose: {list} out of play for a day.",
         "PsychiatricMitigates": "Mitigated by today's {item}",
+        "PsychiatricWornOff": "{name}'s day's dose has worn off: {list} back in play.",
+        "DoubledDoseLine": "{doses} doses of depressants",
+        "OverdoseName": "Overdose ({name})",
+        "Overdose": "Overdose! {name} is unconscious for {hours} hours, and the drug works as a poison at {roll}: 1 point of toxic damage every 15 minutes for 24 cycles (Campaigns p. 441).",
         "NoAgentForDmso": "Carry a blood or digestive poison to mix the DMSO into.",
         "DmsoHint": "One dose of DMSO lets one dose of a blood or digestive agent work through the skin.",
         "DmsoMixed": "{agent} is now a contact agent.",
@@ -9665,8 +9680,24 @@
           "spaced": "Spaced armour ({where}): DR x1.5 against HEAT and HEDP; no HESH spall.",
           "skirt": "Armour skirts: DR {dr} on the {part} sides, as spaced armour.",
           "riveted": "Riveted armour: {damage}+ stopped may send rivets flying inside.",
+          "crewArmour": "Cockpit armour around the {post} against an occupant hit: {faces}.",
+          "gunShield": "A DR {dr} gun shield on the {mount}, for its gunner alone.",
           "tank": "Tank crew: -4 to hear each other with the motor running, -10 to hear outside; -2 Vision buttoned up.",
           "tankIntercom": "Tank crew with headsets: -10 to hear outside with the motor running; -2 Vision buttoned up."
+        },
+        "Face": "DR {dr} from the {face}",
+        "Post": {
+          "pilot": "pilot",
+          "coxswain": "coxswain"
+        },
+        "Mount": {
+          "rearPintle": "rear pintle mount"
+        },
+        "Occupant": {
+          "Title": "Occupant hit",
+          "armour": "If the {post} is the one hit, his cockpit armour gives DR {dr} from the {face} against the {dice}d cutting.",
+          "noArmour": "The {post}'s cockpit armour gives nothing from the {face}.",
+          "gunShield": "A gunner at the {mount} is behind a DR {dr} gun shield, if the shot came from where the gun points."
         },
         "Spall": {
           "Title": "Flying rivets",

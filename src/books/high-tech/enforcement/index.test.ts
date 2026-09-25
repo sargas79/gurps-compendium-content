@@ -317,6 +317,20 @@ describe("lie detection (pp. 215-216)", () => {
     expect(roll(person("Detective"), { skill: "Interrogation", opponent: liar }).map((l: any) => l.value)).toEqual([-5]);
   });
 
+  it("finds a reading on a machine an unlinked token carries, which the world's actors don't hold", async () => {
+    const suspect = person("Suspect");
+    const { operator } = await test("Polygraph (TL8)", { outcome: "first", marginOfVictory: 2 }, suspect);
+    // The technician is an unlinked token on the scene: not among the world's actors.
+    actors = [suspect];
+    expect(roll(person("Detective"), { skill: "Interrogation", opponent: suspect })).toEqual([]);
+    vi.stubGlobal("canvas", { scene: { tokens: [{ actorLink: false, actor: operator }, { actorLink: true, actor: suspect }] } });
+    try {
+      expect(roll(person("Detective"), { skill: "Interrogation", opponent: suspect }).map((l: any) => l.value)).toEqual([2]);
+    } finally {
+      vi.stubGlobal("canvas", undefined);
+    }
+  });
+
   it("clears a reading", async () => {
     const suspect = person("Suspect");
     const { machine } = await test("Polygraph (TL8)", { outcome: "first", marginOfVictory: 3 }, suspect);
