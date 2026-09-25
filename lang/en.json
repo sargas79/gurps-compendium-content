@@ -8916,6 +8916,10 @@
           "cattleFence": "Cattle fence",
           "lethalFence": "Lethal fence",
           "carStopper": "Electromagnetic car stopper",
+          "spikeStrip": "Spike strip",
+          "tiresChanged": "Tires changed after a spike strip",
+          "FlatTire": "Flat tire (spike strip)",
+          "EngineOut": "Engine out (car stopper)",
           "Spot": "Spotting the {trap} (Per-based Traps)",
           "MoveSpeed": "Moving at Move {move}",
           "NotWatching": "Not watching the ground",
@@ -8961,7 +8965,10 @@
           "Stunned": "{name} is stunned, and may roll HT each second to recover.",
           "StunnedHeld": "{name} is stunned while touching the fence, {seconds} second(s) more; the rolls to recover begin once the contact ends.",
           "Unaffected": "{name} has no electronics for it to disable.",
-          "KnockedOut": "{name} is out of action for {seconds} second(s)."
+          "KnockedOut": "{name} is out of action for {seconds} second(s).",
+          "NoTires": "{name} has no tires to puncture.",
+          "Punctured": "{name} runs over the spike strip: a tire is flat in {seconds} seconds, then {driving} to control rolls and half Top Speed until it is changed.",
+          "TiresChanged": "{name}'s punctured tire is changed."
         },
         "Item": {
           "Safe": "DR {dr}, HP {hp}; the lock's own toughness doesn't count.",
