@@ -6366,6 +6366,8 @@
         "DrumFittedHint": "Fed from its Broadwell drum rather than its hopper: the drum's rounds, a cell at a time (High-Tech p. 127).",
         "DrumTurn": "The drum's cell is fired out: turn the drum from the gun's row first ({readies} Ready maneuvers, {assisted} with an assistant).",
         "DrumCellShort": "Only {left} rounds are left in the drum's cell: fire no more than that, or turn the drum.",
+        "UpperHopperAction": "Replace the upper hopper",
+        "UpperHopperReplaced": "A fresh upper hopper goes on: {rounds} rounds, {loaded} in the gun. The book times only the whole reload, both hoppers together; how long the upper one alone takes is the GM's call.",
         "DrumTurnAction": "Turn the drum",
         "DrumTurned": "The drum turned to a fresh cell of {cell} rounds: {readies} Ready maneuvers, {assisted} with an assistant.",
         "CanisterLine": "Fires canister from the same feed: {damage} x{projectiles}, Acc {acc}, Range {half}/{max}, Rcl 1.",

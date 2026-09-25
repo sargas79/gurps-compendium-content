@@ -14132,7 +14132,8 @@
       "extensions": {
         "gurps-compendium-content": {
           "firearm": {
-            "mechanicalMg": true
+            "mechanicalMg": true,
+            "upperHopper": 15
           }
         }
       }

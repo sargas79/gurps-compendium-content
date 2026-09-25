@@ -6732,6 +6732,14 @@
         "system.rangedModes.0.scatterSquared": true
       },
       "reason": "an Indirect fire mode shoots at a target its gunner can't see (p. 139), so a miss scatters by the square of the margin (Campaigns p. 414) (#510)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Nordenfelt Single-Barrel, \\.450 MH$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.upperHopper": 15
+      },
+      "reason": "two stacked 15-round hoppers, the upper replaced alone once fired out (p. 128) (#510)"
     }
   ]
 }

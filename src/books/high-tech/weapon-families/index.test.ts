@@ -38,6 +38,7 @@ let chat: string[];
 let weaponState: Map<any, any>;
 let on: Record<string, boolean>;
 let rowActions: any[] = [];
+let loads: any[] = [];
 
 function fakeApi() {
   return {
@@ -57,6 +58,13 @@ function fakeApi() {
       conditions: () => conditions.map((c) => ({ id: c.module ? `${c.module}.${c.key}` : c.key })),
       removeCondition: async (_a: any, id: string) => { conditions = conditions.filter((c) => `${c.module}.${c.key}` !== id); },
       applyCondition: async (_a: any, c: any) => { conditions.push(c); },
+    },
+    items: {
+      load: async (item: any, modeIndex: number, shots: number) => {
+        loads.push({ modeIndex, shots });
+        item.system.rangedModes[modeIndex].loaded += shots;
+        return item.system.rangedModes[modeIndex].loaded;
+      },
     },
     roll: {
       damage: async (o: any) => { damage.push(o); return 0; },
@@ -300,6 +308,24 @@ describe("mechanical machine guns (High-Tech p. 127)", () => {
     // Not fitted: the hopper, as the table has it.
     const hopper = gun({ name: "Gatling M1874, .45-70", skill: "Gunner (Machine Gun)", rof: 15, shots: "40(5)", firearm: { mechanicalMg: true, drumCells: 20, drumCellRounds: 20 } });
     expect(fire(HOOKS.shotsEntry, { item: hopper, entry: { capacity: 40, reloadSeconds: 5 } }).entry.capacity).toBe(40);
+  });
+
+  it("replaces the Nordenfelt's upper hopper alone once its 15 rounds are fired (p. 128)", async () => {
+    on = { mechanicalMachineGuns: true };
+    rowActions = [];
+    ready();
+    loads = [];
+    const nordenfelt = gun({ name: "Nordenfelt Single-Barrel, .450 MH", skill: "Gunner (Machine Gun)", rof: 3, shots: "30(5)", firearm: { mechanicalMg: true, upperHopper: 15 } });
+    const action = rowActions.find((a) => a.key === "ht-upper-hopper");
+    nordenfelt.system.rangedModes[0].loaded = 20;
+    expect(action.visible(nordenfelt)).toBe(false);
+    nordenfelt.system.rangedModes[0].loaded = 12;
+    expect(action.visible(nordenfelt)).toBe(true);
+    action.run(nordenfelt, shooter);
+    await flush();
+    expect(loads).toEqual([{ modeIndex: 0, shots: 15 }]);
+    expect(chat.at(-1)).toContain('"rounds":15,"loaded":27');
+    expect(action.visible(gun({ name: "Gatling M1874, .45-70", skill: "Gunner (Machine Gun)", shots: "40(5)", firearm: { mechanicalMg: true } }))).toBe(false);
   });
 
   it("gives a gun that fires canister a canister row from its own feed", () => {

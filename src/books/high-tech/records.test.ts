@@ -100,6 +100,12 @@ describe("High-Tech's hand-kept weapons", () => {
       expect(gun.system.rangedModes[1]?.scatterSquared).toBeUndefined();
     }
   });
+
+  it("feeds the Nordenfelt from two stacked 15-round hoppers (p. 128)", () => {
+    const nordenfelt = named(extracted, "Nordenfelt Single-Barrel, .450 MH").system;
+    expect(nordenfelt.rangedModes[0].shots).toBe("30(5)");
+    expect(nordenfelt.extensions["gurps-compendium-content"].firearm).toMatchObject({ mechanicalMg: true, upperHopper: 15 });
+  });
 });
 
 describe("High-Tech's hand-kept traits, skills and the Way of the Pistol", () => {

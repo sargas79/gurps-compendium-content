@@ -1,6 +1,17 @@
 import { describe, expect, it } from "vitest";
 
-import { airBand, airShotsLeft, heldSeconds, pistolWhip, stunAfterSeconds, suppressorWorks, unsafeRevolver } from "./rules.js";
+import { airBand, airShotsLeft, heldSeconds, pistolWhip, stunAfterSeconds, suppressorWorks, unsafeRevolver, upperHopperRounds } from "./rules.js";
+
+describe("stacked hoppers (High-Tech p. 128)", () => {
+  it("adds a fresh upper hopper's rounds only once the upper one is fired out", () => {
+    expect(upperHopperRounds(30, 30, 15)).toBe(0);
+    expect(upperHopperRounds(16, 30, 15)).toBe(0);
+    expect(upperHopperRounds(15, 30, 15)).toBe(15);
+    expect(upperHopperRounds(0, 30, 15)).toBe(15);
+    expect(upperHopperRounds(0, 30, 0)).toBe(0);
+    expect(upperHopperRounds(0, 15, 15)).toBe(0);
+  });
+});
 
 const GIRANDONI = [
   { from: 11, damage: "1d+2", halfDamageRange: 50, maxRange: 400 },
