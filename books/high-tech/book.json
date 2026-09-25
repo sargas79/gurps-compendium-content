@@ -6631,6 +6631,14 @@
         ]
       },
       "reason": "the file's alternate default is a GCA placeholder, Armoury (%Gun SkillsAliasList%); Guns versions default to Armoury (Small Arms)-4, and the Immediate Action switch gives a Gunner version Armoury (Heavy Weapons)-4 (p. 251) (#364)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^MBA Gyrojet Mk I, 13x36mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.underwaterFactor": 100
+      },
+      "reason": "fires underwater at Range 10 (p. 99): its 1,000 yards counted a hundred times over (#368)"
     }
   ]
 }

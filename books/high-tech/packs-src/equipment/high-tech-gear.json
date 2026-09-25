@@ -4774,7 +4774,14 @@
           "recoil": 1,
           "malfunction": 16
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearmBuild": {
+            "underwaterFactor": 100
+          }
+        }
+      }
     }
   },
   {

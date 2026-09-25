@@ -96,7 +96,7 @@
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { initDrawing, readyDrawing } from "./drawing/index.js";
-import { ammunitionGunFields, ammunitionHearing, firesMinieBalls, firesPaperCartridges, initAmmunition, projectileUnderwaterFactor, readyAmmunition } from "./ammunition/index.js";
+import { ammunitionGunFields, ammunitionHearing, firesMinieBalls, firesPaperCartridges, initAmmunition, projectileUnderwaterFactor, readyAmmunition, underwaterRounds } from "./ammunition/index.js";
 import { accessoryGunFields, initAccessories, readyAccessories } from "./accessories/index.js";
 import { readyAftermath } from "./aftermath/index.js";
 import { readyBlackMarket } from "./black-market/index.js";
@@ -471,7 +471,10 @@ function ready(api: GWorldApi): void {
   // Before the shooting options, whose Pistolero stance starts from the Bulk the accessories leave.
   readyAccessories(api, accessories, { hearing: (item) => ammunitionHearing(item, ammunition) });
   readyShooting(api, shooting, accessories);
-  readyEnvironments(api, rule("shootingEnvironments"), { underwaterFactor: (item, modeIndex) => projectileUnderwaterFactor(item, modeIndex, ammunition) });
+  readyEnvironments(api, rule("shootingEnvironments"), {
+    underwaterFactor: (item, modeIndex) => projectileUnderwaterFactor(item, modeIndex, ammunition),
+    rounds: (item, modeIndex) => underwaterRounds(item, modeIndex, ammunition),
+  });
   readySustainedFire(api, { sustained: rule("sustainedFire") }, rule("gunCare"));
   readyAftermath(api, rule("firefightAftermath"));
   readyReloading(api, {

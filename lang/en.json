@@ -4895,7 +4895,7 @@
         },
         "shootingEnvironments": {
           "Name": "Special shooting situations",
-          "Hint": "A scene the GM marks underwater: a TL6-8 gun's ranges divided by 1,000 (by 25 for a gun built to fire underwater, such as the H&K P11 and the APS), Malf. 1 less, 2 less for an automatic. A scene in space: an automatic TL6-8 gun malfunctions on 14 (not revolvers or manual repeaters). Shots into water at -4, with the water's depth counted a thousand times over against the gun's ranges; shots at 50-90 degrees into the air at 80% of the range (High-Tech pp. 85, 92, 117)."
+          "Hint": "A scene the GM marks underwater: a TL6-8 gun's ranges divided by 1,000 (by 25 for a gun built to fire underwater, such as the H&K P11 and the APS), Malf. 1 less, 2 less for an automatic. A scene in space: an automatic TL6-8 gun malfunctions on 14 (not revolvers or manual repeaters). Underwater, hollow-points can't be fired and caseless rounds are noted as failing in time. Shots into water at -4, with the water's depth counted a thousand times over against the gun's ranges; a gun toggled to fire 50-90 degrees into the air has its 1/2D and Max at 80% (High-Tech pp. 85, 92, 99, 117)."
         },
         "sustainedFire": {
           "Name": "Sustained fire",
@@ -6167,17 +6167,25 @@
         "DoneSpace": "The scene is in space.",
         "DoneStandard": "The scene is in air.",
         "UnderwaterNote": "Underwater: range /{factor}, Malf. -{malf}",
-        "UnderwaterHint": "Only cased ammunition with sealed primers is reliable; caseless ammo fails in time; hollow-points do nothing (High-Tech p. 85).",
+        "UnderwaterHint": "Only cased ammunition with sealed primers is reliable; caseless ammo fails in time; hollow-points can't be fired (High-Tech p. 85).",
+    "HollowPointNote": "Hollow-points: can't be fired underwater",
+    "HollowPointHint": "They expand before they leave the barrel, damaging the gun or leaving no effective range. Load other rounds (High-Tech p. 85).",
+    "HollowPointRefusal": "Hollow-points can't be fired underwater: they expand in the barrel (High-Tech p. 85).",
+    "CaselessNote": "Caseless: fails in time underwater",
+    "CaselessHint": "Caseless rounds may work for a while after immersion but eventually fail; the GM says when (High-Tech p. 85).",
+    "SteepNote": "Steeply up: 1/2D and Max at 80%",
+    "SteepOn": "{gun} is aimed steeply up (50-90 degrees): its 1/2D and Max are at 80%.",
+    "SteepOff": "{gun} is aimed level again.",
         "SpaceNote": "In space: Malf. {malf}",
         "SpaceHint": "Vacuum and temperature extremes: an automatic TL6-8 gun malfunctions on 14 (High-Tech p. 85).",
         "IntoWater": "Into water (feet deep)",
         "IntoWaterLine": "Into water",
         "IntoWaterNote": "{feet} feet of water count as {yards} yards more.",
         "SteepAngle": "Steeply up (50-90 degrees)",
-        "SteepAngleNote": "Range at 80% (High-Tech p. 85).",
+        "SteepAngleNote": "Fired 50-90 degrees into the air: 1/2D and Max at 80%. Toggle it off from the gun's row to shoot level (High-Tech p. 85).",
         "OutOfRange": "Out of range: the shot counts {yards} yards against a Max of {max}.",
         "UnderwaterRangeNote": "Underwater: range /{factor}",
-        "UnderwaterBuiltHint": "Built to fire underwater: distance counts x25, not x1,000 (High-Tech pp. 85, 92, 117).",
+        "UnderwaterBuiltHint": "Built to fire underwater: distance counts x{factor}, not x1,000 (High-Tech pp. 85, 92, 99, 117).",
         "IntoWaterHalf": "Past its 1/2D of {half} yards: half damage."
       },
       "Aftermath": {
