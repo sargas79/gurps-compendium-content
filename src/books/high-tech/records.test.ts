@@ -73,6 +73,14 @@ describe("High-Tech's hand-kept weapons", () => {
     for (const mode of modes) expect(mode.linked).toMatchObject({ damage: "2d-1", damageType: "pi" });
   });
 
+  it("keeps the AM-402T: the AM-402's gun shaped like a tonfa, at 1.6 lb. (p. 199)", () => {
+    const t = named(gear, "Condor AM-402T, 12G 2.75''").system;
+    const am402 = named(extracted, "Condor AM-402, 12G 2.75''").system;
+    expect(t).toMatchObject({ weight: 1.6, lc: 2, weaponClass: "firearm", reference: "High-Tech p. 199" });
+    expect(t.rangedModes).toEqual(am402.rangedModes);
+    expect(t.meleeModes).toEqual(named(gear, "Tonfa").system.meleeModes);
+  });
+
   it("gives the extracted weapons the modes the file couldn't carry", () => {
     expect(named(extracted, "AN-M8").system.rangedModes[0]).toMatchObject({ damageSpecial: true, radius: 7, thrown: true });
     expect(named(extracted, "AN-M14").system.rangedModes[0]).toMatchObject({ damageSpecial: true, damageType: "burn" });
