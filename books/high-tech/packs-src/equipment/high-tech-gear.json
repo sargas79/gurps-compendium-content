@@ -3231,7 +3231,14 @@
           "recoil": 2,
           "malfunction": 16
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "cylinderSwapSeconds": 15
+          }
+        }
+      }
     }
   },
   {
@@ -3572,7 +3579,14 @@
           "recoil": 3,
           "malfunction": 16
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "cylinderSwapSeconds": 10
+          }
+        }
+      }
     }
   },
   {
@@ -9517,7 +9531,14 @@
           "recoil": 3,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "spareMagazine": true
+          }
+        }
+      }
     }
   },
   {

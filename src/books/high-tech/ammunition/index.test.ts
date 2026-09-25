@@ -33,7 +33,7 @@ function fakeApi() {
     rules: { ...rules, weaponClassOf: () => "firearm" },
     registry: { isRuleOn: () => false },
     combat: { hooks: HOOKS },
-    sheets: { registerSheetSection: () => undefined },
+    sheets: { registerSheetSection: () => undefined, registerRowAction: () => undefined },
     data: { registerPriceModifier: (m: any) => prices.push(m), registerPoison: () => undefined },
     items: { setMalfunction: async (item: any, malfunction: any) => { malfunctions.push({ item: item.name, ...malfunction }); } },
     actors: { skillLevel: () => null, attribute: () => 10, vehicleAboard: () => null },

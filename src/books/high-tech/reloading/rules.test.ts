@@ -13,6 +13,7 @@ import {
   loadingSeconds,
   loadsLoose,
   multiBarrelled,
+  NO_EJECTOR_ROD_SECONDS,
   SPEEDLOADER,
   workedOutLoading,
   type LoadingType,
@@ -140,7 +141,18 @@ describe("loose powder and ball (High-Tech p. 86)", () => {
     expect([kentucky.seconds, kentucky.fastDraw]).toEqual([60, 50]);
     expect(withAids(kentucky, ["greasedPatch"])).toEqual([42, 35]);
     expect(withAids(kentucky, ["flask"])).toEqual([55, 45]);
-    expect(withAids(kentucky, ["greasedPatch", "flask"])).toEqual([37, 30]);
+    expect(withAids(kentucky, ["flaskAndPatch"])).toEqual([37, 30]);
+    // Patched paper cartridges: half of 42, and Fast-Draw's half of 50 patched.
+    expect(withAids(kentucky, ["cartridgesAndPatch"])).toEqual([21, 18]);
+    // Every one of a rifle's powder aids is one choice of the same group.
+    expect(kentucky.aids.map((a) => a.exclusiveGroup)).toEqual(["powder", "powder", "powder", "powder", "powder"]);
+  });
+
+  it("times a gate revolver without an ejector rod longer over each case", () => {
+    expect(loadingSeconds("gate", 6)).toEqual({ seconds: 20, fastDraw: 14 });
+    expect(loadingSeconds("gate", 6, { caseSeconds: NO_EJECTOR_ROD_SECONDS })).toEqual({ seconds: 26, fastDraw: 20 });
+    // The Sheriff's model: five seconds a round (p. 95).
+    expect(loadingByTheRound("gate", { caseSeconds: 3 })).toEqual({ seconds: 2, perRound: 5, fastDrawPerRound: 1 });
   });
 
   it("halves a musket's time with paper cartridges, Fast-Draw's too", () => {

@@ -6639,6 +6639,30 @@
         "system.extensions.gurps-compendium-content.firearmBuild.underwaterFactor": 100
       },
       "reason": "fires underwater at Range 10 (p. 99): its 1,000 yards counted a hundred times over (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Colt M1851 Navy, \\.36 Caplock$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.cylinderSwapSeconds": 15
+      },
+      "reason": "a removable cylinder: 15 seconds to detach it and put a preloaded spare in (p. 93) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Remington New Model Army, \\.44 Caplock$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.cylinderSwapSeconds": 10
+      },
+      "reason": "a removable cylinder: 10 seconds to detach it and put a preloaded spare in (p. 94) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^SMLE Mk III, \\.303$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.spareMagazine": true
+      },
+      "reason": "its magazine detaches, though it is normally charged in place: with a spare, a reload is three Ready maneuvers (p. 112) (#369)"
     }
   ]
 }

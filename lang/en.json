@@ -4879,7 +4879,7 @@
         },
         "firearmLoading": {
           "Name": "Reloading guns",
-          "Hint": "How a gun loads is a field on it, worked out from its Shots column where that is reliable: loose powder down the muzzle, a black-powder breechloader, a breechloader with or without an ejector, a gate, break-open or swing-out revolver, a tube or box magazine filled round by round or by charger clip, a detachable magazine, a drum or a belt. The Reload button takes the book's time for it and what Fast-Draw (Ammo) saves: a swing-out revolver 3 seconds and 2 a round (1 a round with Fast-Draw), timed for the rounds it is asked to load, a detachable magazine 3 (2), a belt 5 (3). It offers the aids that help: a powder flask or paper cartridges (which halve the time), a greased patch, a speedloader the character carries, clamped magazines, an assistant gunner. A character who knows Double-Loading rolls it at its own level in place of Fast-Draw (Ammo). Loading in the saddle needs a roll against the lower of the weapon skill and Riding (-3 for loose powder, -1 for cartridges), and loose powder on a moving vehicle the weapon skill at -2. A muzzle-loading long arm loaded other than standing takes 1.5 times as long (High-Tech pp. 86-88, 251)."
+          "Hint": "How a gun loads is a field on it, worked out from its Shots column where that is reliable: loose powder down the muzzle, a black-powder breechloader, a breechloader with or without an ejector, a gate, break-open or swing-out revolver, a tube or box magazine filled round by round or by charger clip, a detachable magazine, a drum or a belt. The Reload button takes the book's time for it and what Fast-Draw (Ammo) saves: a swing-out revolver 3 seconds and 2 a round (1 a round with Fast-Draw), timed for the rounds it is asked to load, a detachable magazine 3 (2), a belt 5 (3). It offers the aids that help: a powder flask or paper cartridges (which halve the time), either with a greased patch, a speedloader the character carries, clamped magazines, an assistant gunner, a spare for a magazine normally charged in place. A gate revolver without an ejector rod takes longer over each case, and a removable cylinder is swapped for a preloaded spare from the gun's row (pp. 93-95, 112). A character who knows Double-Loading rolls it at its own level in place of Fast-Draw (Ammo). Loading in the saddle needs a roll against the lower of the weapon skill and Riding (-3 for loose powder, -1 for cartridges), and loose powder on a moving vehicle the weapon skill at -2. A muzzle-loading long arm loaded other than standing takes 1.5 times as long (High-Tech pp. 86-88, 251)."
         },
         "carefulLoading": {
           "Name": "Careful loading",
@@ -6269,10 +6269,21 @@
           "flask": "Self-measuring powder flask (-{seconds} s; not with paper cartridges)",
           "greasedPatch": "Greased patch (-{seconds} s)",
           "paperCartridges": "Paper cartridges (half the time; not with the flask)",
+          "flaskAndPatch": "Flask and greased patch (-{seconds} s)",
+          "cartridgesAndPatch": "Paper cartridges and greased patch (-{seconds} s, then half the time)",
           "speedloader": "Speedloader ({seconds} s, {fastDraw} with Fast-Draw)",
           "clamped": "Clamped magazines ({seconds} s; not with Fast-Draw)",
-          "assistant": "Assistant gunner ({seconds} s; not with Fast-Draw)"
+          "assistant": "Assistant gunner ({seconds} s; not with Fast-Draw)",
+          "spareMagazine": "A spare magazine, swapped in ({seconds} s)"
         },
+        "CaseSeconds": "Seconds a case (gate)",
+        "CaseSecondsTooltip": "Seconds to clear each spent case through the loading gate: 0 for an ejector rod's one second; at least 2 without a rod, 3 for the Colt's Sheriff's model (High-Tech pp. 87, 95).",
+        "CylinderSwap": "Cylinder swap (s)",
+        "CylinderSwapTooltip": "A removable cylinder: the seconds to take it out and put a preloaded spare in, 0 for none -- 15 for the Colt M1851 Navy, 10 for the Remington New Model Army. The gun's row then offers the swap (High-Tech pp. 93-94).",
+        "SpareMagazine": "Detachable magazine, with a spare",
+        "SpareMagazineHint": "A magazine normally charged in place that can come out, as the SMLE's: with a spare, the Reload offers swapping it in three Ready maneuvers (High-Tech p. 112).",
+        "SwapCylinder": "Swap cylinder",
+        "CylinderSwapped": "A preloaded spare cylinder swapped in: {seconds} seconds of Ready maneuvers, {rounds} rounds ready. The cylinder taken out is loaded as usual for a caplock.",
         "DoubleLoadingLine": "The reload rolls {name} at {level} in place of Fast-Draw (Ammo): a success saves Fast-Draw's seconds and a second or two a pair more (High-Tech p. 251).",
         "MountedRoll": "Loading in the saddle: the lower of {skill} and Riding, {modifier}",
         "VehicleRoll": "Loading on a moving vehicle: {skill} {modifier}"

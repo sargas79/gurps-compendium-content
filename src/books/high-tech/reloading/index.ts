@@ -32,6 +32,7 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { isFirearm, techniqueRelative } from "../firearms/index.js";
+import { isRevolver } from "../rate-of-fire/index.js";
 import { isMachineGun } from "../sustained-fire/index.js";
 import {
   BLACK_POWDER_LOADING,
@@ -78,6 +79,12 @@ export function reloadingFields(f: any): Record<string, unknown> {
     loadingType: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: ["", ...LOADING_TYPES] }),
     powder: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...POWDERS] }),
     loadCarefully: new f.BooleanField({ initial: false }),
+    // A gate revolver without an ejector rod: the seconds to clear each case, 0 for the rod's one (pp. 87, 95).
+    caseSeconds: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 10 }),
+    // A removable cylinder: the seconds to swap in a preloaded spare, 0 for none (pp. 93-94).
+    cylinderSwapSeconds: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 120 }),
+    // A magazine that detaches, though it is usually charged in place: a spare swaps in as a detachable one (p. 112).
+    spareMagazine: new f.BooleanField({ initial: false }),
   };
 }
 
@@ -85,14 +92,21 @@ interface ReloadingData {
   loadingType: LoadingType | "";
   powder: Powder;
   loadCarefully: boolean;
+  caseSeconds: number;
+  cylinderSwapSeconds: number;
+  spareMagazine: boolean;
 }
 
 function reloadingData(item: any): ReloadingData {
   const d = item?.system?.extensions?.[MODULE_ID]?.[FIELD] ?? {};
+  const whole = (v: unknown) => Math.max(0, Math.floor(Number(v) || 0));
   return {
     loadingType: LOADING_TYPES.includes(d.loadingType) ? d.loadingType : "",
     powder: POWDERS.includes(d.powder) ? d.powder : "",
     loadCarefully: d.loadCarefully === true,
+    caseSeconds: whole(d.caseSeconds),
+    cylinderSwapSeconds: whole(d.cylinderSwapSeconds),
+    spareMagazine: d.spareMagazine === true,
   };
 }
 
@@ -257,7 +271,8 @@ export function reloadEntry(api: GWorldApi, item: any, modeIndex: number, mode: 
   const full = entry.capacity + (entry.chambered ? 1 : 0);
   const missing = full - Math.max(0, Number(mode?.loaded) || 0);
   const rounds = Math.min(entry.capacity, missing > 0 ? missing : full);
-  const time = on.loading() ? loadingSeconds(type, rounds) : null;
+  const own = reloadingData(item);
+  const time = on.loading() ? loadingSeconds(type, rounds, { caseSeconds: own.caseSeconds }) : null;
   if (!time) {
     // The table's own time, loaded carefully or fouled.
     let seconds = entry.reloadSeconds;
@@ -268,12 +283,12 @@ export function reloadEntry(api: GWorldApi, item: any, modeIndex: number, mode: 
 
   const speedloader = SPEEDLOADER[type] && carries(actor, /^speedloader/i) ? SPEEDLOADER[type] : null;
   const doubling = doubleLoads(type, 2) ? doubleLoadingRoll(api, actor) : null;
-  const byTheRound = loadingByTheRound(type);
+  const byTheRound = loadingByTheRound(type, { caseSeconds: own.caseSeconds });
   entry.perShot = false;
 
   // A round at a time: the Reload button asks how many and times that many (GWorld API 1.88.0). Not
   // where the time is a whole: a speedloader's, Double-Loading's pairs, fouling's tenths of the total.
-  if (byTheRound && !speedloader && !doubling && !fouling) {
+  if (byTheRound && !speedloader && !doubling && !fouling && !own.spareMagazine) {
     entry.reloadSeconds = byTheRound.seconds;
     entry.perRoundSeconds = byTheRound.perRound;
     entry.fastDrawSeconds = byTheRound.fastDrawPerRound;
@@ -307,6 +322,11 @@ export function reloadEntry(api: GWorldApi, item: any, modeIndex: number, mode: 
     const off = { seconds: helped - time.seconds, fastDrawSeconds: 0 };
     if (type === "magazine") aids.push({ id: aidId("clamped"), label: F("Aid.clamped", { seconds: helped }), ...off, checked: carries(actor, /^magazine clamp/i) });
     if (type !== "magazine" || isMachineGun(item)) aids.push({ id: aidId("assistant"), label: F("Aid.assistant", { seconds: helped }), ...off });
+  }
+  // A spare for a magazine that detaches, though it is normally charged in place: swapped in as a detachable one (p. 112).
+  if (own.spareMagazine && (type === "clip" || type === "internal")) {
+    const swap = loadingSeconds("magazine", 1)!;
+    aids.push({ id: aidId("spareMagazine"), label: F("Aid.spareMagazine", { seconds: swap.seconds }), seconds: swap.seconds - entry.reloadSeconds, fastDrawSeconds: swap.seconds - swap.fastDraw });
   }
 }
 
@@ -358,7 +378,29 @@ function itemContext(api: GWorldApi, item: any, on: ReloadingSwitches): Record<s
       : "",
     canClean: on.fouling() && black && shots > 0,
     cleanMinutes: CLEANING_SECONDS / 60,
+    // A gate revolver's case clearing, a removable cylinder, a spare magazine for a gun charged in place.
+    gate: on.loading() && loadingOf(api, item) === "gate",
+    caseSeconds: data.caseSeconds,
+    revolver: on.loading() && isRevolver(item),
+    cylinderSwapSeconds: data.cylinderSwapSeconds,
+    chargedInPlace: on.loading() && ["clip", "internal"].includes(loadingOf(api, item)),
+    spareMagazine: data.spareMagazine,
   };
+}
+
+/**
+ * Swaps a preloaded spare cylinder into a revolver whose cylinder comes
+ * out (pp. 93-94): the seconds the gun takes, and the mode loaded full.
+ * The spare's own load is the player's to keep track of.
+ */
+export async function swapCylinder(api: GWorldApi, item: any, actor: any, modeIndex = 0): Promise<number | null> {
+  const seconds = reloadingData(item).cylinderSwapSeconds;
+  const capacity = shotsOf(api, rangedModes(item)[modeIndex]).capacity;
+  if (!seconds || capacity === null) return null;
+  const loaded = await api.items.load(item, modeIndex, capacity);
+  if (loaded === null) return null;
+  await say(actor, String(item.name ?? ""), [F("CylinderSwapped", { seconds, rounds: loaded })]);
+  return loaded;
 }
 
 function itemListeners(element: HTMLElement, item: any): void {
@@ -385,6 +427,17 @@ export function readyReloading(api: GWorldApi, on: ReloadingSwitches): void {
     visible: (item) => (on.loading() || on.careful() || on.fouling()) && isFirearm(api, item),
     context: (item) => itemContext(api, item, on),
     listeners: (element, item) => itemListeners(element, item),
+  });
+
+  // A preloaded spare cylinder, swapped in from the gun's row (pp. 93-94).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-swap-cylinder",
+    itemTypes: ["equipment"],
+    label: L("SwapCylinder"),
+    icon: "fa-solid fa-rotate",
+    visible: (item) => on.loading() && isFirearm(api, item) && reloadingData(item).cylinderSwapSeconds > 0,
+    run: (item, actor) => { void swapCylinder(api, item, actor); },
   });
 
   // The Reload button's time, Fast-Draw saving and aids (pp. 86-88, 251).
