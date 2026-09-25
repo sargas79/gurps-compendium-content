@@ -74,6 +74,7 @@ function fakeApi() {
     },
     actors: {
       conditions: (actor: any) => actor?.conditionList ?? [],
+      activePoisons: (actor: any) => actor?.poisons ?? [],
       removeCondition: async (actor: any, id: string) => { actor.conditionList = (actor.conditionList ?? []).filter((c: any) => c.id !== id); },
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? 10,
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
@@ -477,21 +478,28 @@ describe("household hazards (High-Tech pp. 31-33)", () => {
     expect(chat).toHaveLength(1);
   });
 
-  it("counts lead's failed rolls: the second, and each after, intensifies the symptoms", async () => {
-    const victim = flagged({ name: "Explorer", isOwner: true });
+  it("counts lead's failed rolls by the dose: the second, and each after, intensifies the symptoms", async () => {
+    const victim = flagged({ name: "Explorer", isOwner: true, poisons: [{ id: "dose1" }, { id: "dose2" }] });
     victim.unsetFlag = async () => { await victim.setFlag(MODULE_ID, "htLeadCourse", undefined); };
-    const cycle = (resisted: boolean | null, symptomsNow: string[] = [], finished = false) =>
-      fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.leadPoisoning`, resisted, symptomsNow, finished });
-    cycle(false);
+    const cycle = (id: string, resisted: boolean | null, symptomsNow: string[] = [], finished = false) =>
+      fire(HOOKS.poisonCycle, { actor: victim, poison: { id }, source: `${MODULE_ID}.leadPoisoning`, resisted, symptomsNow, finished });
+    cycle("dose1", false);
     await flush();
     expect(chat).toEqual([]);
-    cycle(true, ["1/2"]);
+    // Another dose keeps its own count.
+    cycle("dose2", false);
+    await flush();
+    expect(chat).toEqual([]);
+    cycle("dose1", true, ["1/2"]);
     await flush();
     expect(chat.at(-1)).toContain("LeadWorse");
-    cycle(false);
+    cycle("dose1", false);
     await flush();
     expect(chat.at(-1)).toContain('LeadIntensifies {"name":"Explorer","failed":2}');
-    cycle(false, [], true);
+    expect(victim.getFlag(MODULE_ID, "htLeadCourse")).toEqual({ dose1: { failed: 2, pastHalf: true }, dose2: { failed: 1, pastHalf: false } });
+    // The second dose is cleared from the sheet: its count goes on the next cycle.
+    victim.poisons = [{ id: "dose1" }];
+    cycle("dose1", false, [], true);
     await flush();
     expect(chat.at(-1)).toContain('"failed":3');
     expect(victim.getFlag(MODULE_ID, "htLeadCourse")).toBeUndefined();

@@ -225,7 +225,8 @@ export function failureLines(table: GadgetTable, item: any): Array<{ label: stri
   const quality = String(item?.system?.equipmentQuality ?? "");
   const fromQuality = figures.qualityHealth?.[quality] ?? 0;
   if (fromQuality) lines.push({ label: F(table.i18n, "Quality", { quality }), value: fromQuality });
-  const missed = missedChecks(item);
+  // A firearm's missed checks are the system's own field, which it takes off itself.
+  const missed = systemCountsMaintenance(item) ? 0 : missedChecks(item);
   if (missed) lines.push({ label: F(table.i18n, "MissedChecksLine", { missed }), value: -missed });
   return lines;
 }
@@ -234,6 +235,19 @@ export function failureLines(table: GadgetTable, item: any): Array<{ label: stri
 
 /** The maintenance checks missed or failed since the gadget was last repaired, kept in this module's flag. */
 const MISSED_FLAG = "gadgetMissedChecks";
+
+/**
+ * Whether the system keeps this thing's missed maintenance itself: a firearm,
+ * whose sheet has the Basic Set's missed-maintenance field, which the system's
+ * HT rolls read (Campaigns p. 485). Its checks go there, not in this module's count.
+ */
+export function systemCountsMaintenance(item: any): boolean {
+  if (item?.type !== "equipment") return false;
+  const sys = item.system ?? {};
+  const weaponClass = String(sys.weaponClass ?? "");
+  if (weaponClass) return weaponClass === "firearm";
+  return (sys.rangedModes ?? []).some((m: any) => m?.malfunction);
+}
 
 /** The points of HT a gadget has lost to missed or failed maintenance checks (Campaigns p. 485). */
 export function missedChecks(item: any): number {
@@ -297,12 +311,28 @@ async function askMaintenance(ns: string, item: any, title: string, withMissed: 
   return answer ?? null;
 }
 
-/** A skill's level, or its default: IQ-5, IQ-4 for Computer Operation, DX-5 for Sewing (Characters pp. 178-220). */
-function technicalLevel(api: GWorldApi, actor: any, skill: string): number {
+/** A skill's name without its TL and specialty, for comparing: "Armoury/TL8 (Small Arms)" is "armoury". */
+export function skillBaseName(name: unknown): string {
+  return String(name ?? "").replace(/\s*\(.*\)\s*$/, "").replace(/\/TL\s*\d*\s*$/i, "").trim().toLowerCase();
+}
+
+/**
+ * The character's best level in a technical skill, whatever the specialty
+ * ("Armoury (Small Arms)" for Armoury), with the name it goes by; else the
+ * default: IQ-5, IQ-4 for Computer Operation, DX-5 for Sewing (Characters pp. 178-220).
+ */
+export function technicalLevel(api: GWorldApi, actor: any, skill: string): { skill: string; level: number } {
+  let best: { skill: string; level: number } | null = null;
+  for (const item of actor?.items ?? []) {
+    if (item?.type !== "skill" || skillBaseName(item.name) !== skillBaseName(skill)) continue;
+    const level = api.actors.skillLevel(actor, String(item.name));
+    if (typeof level === "number" && (best === null || level > best.level)) best = { skill: String(item.name), level };
+  }
+  if (best) return best;
   const own = api.actors.skillLevel(actor, skill);
-  if (own !== null) return own;
-  if (skill === "Sewing") return (Number(api.actors.attribute(actor, "DX")) || 10) - 5;
-  return (Number(api.actors.attribute(actor, "IQ")) || 10) - (skill === "Computer Operation" ? 4 : 5);
+  if (own !== null) return { skill, level: own };
+  if (skill === "Sewing") return { skill, level: (Number(api.actors.attribute(actor, "DX")) || 10) - 5 };
+  return { skill, level: (Number(api.actors.attribute(actor, "IQ")) || 10) - (skill === "Computer Operation" ? 4 : 5) };
 }
 
 /** A maintenance check (Campaigns p. 485): missed or failed, the gadget loses a point of HT. */
@@ -314,11 +344,17 @@ async function checkMaintenance(api: GWorldApi, item: any, actor: any): Promise<
   if (!answer) return;
   let success = false;
   if (!answer.missed) {
-    const result: any = await api.roll.success({ actor, base: technicalLevel(api, actor, answer.skill), skill: answer.skill, label: F(ns, "MaintenanceLabel", { name: item.name, skill: answer.skill }), tags: ["maintenance"], item } as any);
+    // The gadget is what is being maintained, not a tool the roll is made with: it isn't named as the roll's item.
+    const use = technicalLevel(api, actor, answer.skill);
+    const result: any = await api.roll.success({ actor, base: use.level, skill: use.skill, label: F(ns, "MaintenanceLabel", { name: item.name, skill: use.skill }), tags: ["maintenance"] } as any);
     if (!result) return;
     success = Boolean(result.success);
   }
   if (maintenanceOutcome({ missed: answer.missed, success }) === "kept") return void sayGadget(actor, String(item.name ?? ""), [L(ns, "MaintenanceKept")]);
+  // A firearm's count is the system's field on its sheet, which this module doesn't write.
+  if (systemCountsMaintenance(item)) {
+    return void sayGadget(actor, String(item.name ?? ""), [F(ns, answer.missed ? "MaintenanceSkippedSheet" : "MaintenanceFailedSheet", { missed: (Number(item.system?.missedMaintenance) || 0) + 1 })]);
+  }
   const missed = missedChecks(item) + 1;
   await item.setFlag(MODULE_ID, MISSED_FLAG, missed);
   await sayGadget(actor, String(item.name ?? ""), [F(ns, answer.missed ? "MaintenanceSkipped" : "MaintenanceFailed", { missed })]);
@@ -327,18 +363,19 @@ async function checkMaintenance(api: GWorldApi, item: any, actor: any): Promise<
 /** A point of HT lost to maintenance put back: a major repair at -2, with parts at 1d x 10% of the price (Campaigns pp. 484-485). */
 async function restoreMaintenance(api: GWorldApi, item: any, actor: any): Promise<void> {
   const table = gadgetTables(item).options;
-  if (!table || !item.isOwner || !missedChecks(item)) return;
+  if (!table || !item.isOwner || systemCountsMaintenance(item) || !missedChecks(item)) return;
   const ns = table.i18n;
   const answer = await askMaintenance(ns, item, L(ns, "RestoreAction"), false);
   if (!answer) return;
+  // The thing under repair isn't a tool the roll is made with: it isn't named as the roll's item.
+  const use = technicalLevel(api, actor, answer.skill);
   const result: any = await api.roll.success({
     actor,
-    base: technicalLevel(api, actor, answer.skill),
-    skill: answer.skill,
-    label: F(ns, "RestoreLabel", { name: item.name, skill: answer.skill }),
+    base: use.level,
+    skill: use.skill,
+    label: F(ns, "RestoreLabel", { name: item.name, skill: use.skill }),
     modifiers: [{ label: L(ns, "MajorRepair"), value: MAJOR_REPAIR.modifier }],
     tags: ["repair", "maintenance"],
-    item,
   } as any);
   if (!result) return;
   const die = new Roll("1d6");
@@ -426,7 +463,9 @@ function itemContext(api: GWorldApi, item: any): Record<string, unknown> {
     antique: antique.steps ? F(ns, "Antique", { lc: antique.lc, was: lc, campaign }) : "",
     maintenance: [
       campaign && threshold !== null ? F(ns, needsMaintenanceChecks(table.figures, { cost, tl: campaign }, wealthAt) ? "Maintained" : "Simple", { threshold, campaign }) : "",
-      tables.options && missedChecks(item) ? F(ns, "MissedChecks", { missed: missedChecks(item) }) : "",
+      tables.options && systemCountsMaintenance(item) && (Number(item.system?.missedMaintenance) || 0) > 0
+        ? F(ns, "MissedChecksSheet", { missed: Number(item.system.missedMaintenance) })
+        : tables.options && missedChecks(item) ? F(ns, "MissedChecks", { missed: missedChecks(item) }) : "",
     ].filter(Boolean).join(" "),
   };
 }
@@ -508,7 +547,7 @@ export function readyGadgets(api: GWorldApi): void {
     itemTypes: ["equipment", "armor"],
     label: L(ns, "RestoreAction"),
     icon: "fa-solid fa-toolbox",
-    visible: (item) => Boolean(item?.isOwner) && isGear(item) && gadgetTables(item).options !== null && missedChecks(item) > 0,
+    visible: (item) => Boolean(item?.isOwner) && isGear(item) && gadgetTables(item).options !== null && !systemCountsMaintenance(item) && missedChecks(item) > 0,
     run: (item, actor) => { void restoreMaintenance(api, item, actor); },
   });
 

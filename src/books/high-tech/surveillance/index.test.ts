@@ -721,7 +721,7 @@ describe("optical recognition software (p. 207)", () => {
     successResult = { success: false };
     dialogAnswer = { per: 14 };
     await actions.get("ht-optical-recognition").run(software, guard);
-    expect(successes.at(-1)).toMatchObject({ base: 14, tags: ["opticalRecognition"] });
+    expect(successes.at(-1)).toMatchObject({ base: 14, tags: ["opticalRecognition"], secret: true });
     expect(chat.at(-1).content).toContain("Security.NotRecognized");
     on.delete(key("securityScreening"));
     expect(actions.get("ht-optical-recognition").visible(software)).toBe(false);

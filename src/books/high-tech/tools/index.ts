@@ -1077,12 +1077,22 @@ export function readyTools(api: GWorldApi, on: ToolSwitches): void {
     const actor = context?.actor;
     if (!on.hazards() || context?.source !== `${MODULE_ID}.${LEAD}` || !actor?.isOwner) return;
     void (async () => {
-      const course = (actor.getFlag?.(MODULE_ID, LEAD_FLAG) ?? {}) as { failed?: number; pastHalf?: boolean };
+      // One course per dose, by the active poison's id; doses gone from the actor are forgotten.
+      const id = String(context.poison?.id ?? "");
+      const live = new Set(((api.actors.activePoisons(actor) ?? []) as any[]).map((p) => String(p?.id ?? "")));
+      const stored = (actor.getFlag?.(MODULE_ID, LEAD_FLAG) ?? {}) as Record<string, { failed?: number; pastHalf?: boolean }>;
+      const courses: Record<string, { failed: number; pastHalf: boolean }> = {};
+      for (const [key, value] of Object.entries(stored)) {
+        if (live.has(key) && key !== id) courses[key] = { failed: Number(value?.failed) || 0, pastHalf: value?.pastHalf === true };
+      }
+      const course = stored[id] ?? {};
       const failedNow = context.resisted === false;
       const failed = (Number(course.failed) || 0) + (failedNow ? 1 : 0);
       const pastHalf = course.pastHalf === true || leadSymptomsWorsen(context.symptomsNow ?? []);
-      if (context.finished) await actor.unsetFlag?.(MODULE_ID, LEAD_FLAG);
-      else await actor.setFlag?.(MODULE_ID, LEAD_FLAG, { failed, pastHalf });
+      if (id && !context.finished) courses[id] = { failed, pastHalf };
+      // The whole flag is written, so doses cleared or finished leave no entry behind.
+      await actor.unsetFlag?.(MODULE_ID, LEAD_FLAG);
+      if (Object.keys(courses).length) await actor.setFlag?.(MODULE_ID, LEAD_FLAG, courses);
       const stage = leadStage({ pastHalf, failedRolls: failed });
       // The worse symptoms are named once, as the victim passes half their HP; intensifying ones on each failed roll.
       if (stage === "intensifying" && failedNow) await say(actor, L("Lead"), [F("LeadIntensifies", { name: actor.name, failed })]);

@@ -8,9 +8,10 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } 
 
 import * as rules from "../../../../system/src/rules/index.js";
 import { setRuleReader } from "../../../shared/book-tables.js";
-import { GADGET_TABLES, maintenanceDue, missedChecks, readyGadgets } from "../../../shared/gadgets/index.js";
+import { GADGET_TABLES, maintenanceDue, missedChecks, readyGadgets, systemCountsMaintenance, technicalLevel } from "../../../shared/gadgets/index.js";
 import { MAINTENANCE_SKILLS, maintenanceOutcome, maintenanceSkillFor } from "../../../shared/gadgets/rules.js";
 import { MODULE_ID } from "../../../shared/module.js";
+import { readyDevices } from "../devices/index.js";
 import { highTechGadgets } from "./index.js";
 
 type Listener = (context: any) => void;
@@ -26,16 +27,27 @@ let successResult: any;
 let dialogAnswer: any;
 let chat: string[];
 
+const SRM = "gworld.successRollModifiers";
+
 const api: any = {
   rules,
-  combat: { hooks: { equipmentFailure: "gworld.equipmentFailure", reactionModifiers: "gworld.reactionModifiers" } },
-  data: { registerPriceModifier: () => undefined },
+  combat: { hooks: { equipmentFailure: "gworld.equipmentFailure", reactionModifiers: "gworld.reactionModifiers", successRollModifiers: SRM, afterSuccessRoll: "gworld.afterSuccessRoll" } },
+  data: { hooks: { objectStats: "gworld.objectStats" }, registerPriceModifier: () => undefined, registerToolGrade: () => "x" },
   sheets: { registerSheetSection: () => undefined, registerRowAction: (a: any) => actions.set(a.key, a) },
+  items: { objectStats: () => ({ kind: "unliving", dr: 2, hp: 5, ht: 10, notes: [] }), applyDamage: async () => null },
   actors: {
     skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
     attribute: (actor: any, attribute: string) => actor?.attributes?.[attribute] ?? 10,
   },
-  roll: { success: async (o: any) => { successes.push(o); return successResult; } },
+  // As the system does: the roll passes through the modifiers hook, and a listener's refusal stops it.
+  roll: {
+    success: async (o: any) => {
+      const context = { ...o, modifiers: [...(o.modifiers ?? [])], refusal: null };
+      for (const fn of hooks.get(SRM) ?? []) fn(context);
+      successes.push({ ...o, refusal: context.refusal });
+      return context.refusal ? null : successResult;
+    },
+  },
 };
 
 function gadget(name: string, cost: number, more: Record<string, unknown> = {}): any {
@@ -63,6 +75,8 @@ beforeAll(() => {
   vi.stubGlobal("Roll", class { total = 3; async evaluate() { return this; } });
   GADGET_TABLES.register(highTechGadgets(SWITCHES));
   readyGadgets(api);
+  // The supplement's broken parts, whose listener refuses a roll made with a broken device.
+  readyDevices(api, { cuttingEdge: () => false, breakable: () => true, kits: () => false });
 });
 
 beforeEach(() => {
@@ -137,5 +151,51 @@ describe("maintenance checks (High-Tech p. 9; Campaigns pp. 484-485)", () => {
     await flush();
     expect(missedChecks(radio)).toBe(0);
     expect(actions.get("gadget-restore").visible(radio)).toBe(false);
+  });
+});
+
+describe("the review's cases (#571)", () => {
+  it("takes the actor's best skill of that name, whatever its specialty", () => {
+    const actor = {
+      items: [{ type: "skill", name: "Armoury/TL8 (Small Arms)" }, { type: "skill", name: "Armoury/TL8 (Heavy Weapons)" }, { type: "skill", name: "Mechanic (Automobile)" }],
+      skills: { "Armoury/TL8 (Small Arms)": 14, "Armoury/TL8 (Heavy Weapons)": 11, "Mechanic (Automobile)": 12 },
+      attributes: { IQ: 10 },
+    };
+    expect(technicalLevel(api, actor, "Armoury")).toEqual({ skill: "Armoury/TL8 (Small Arms)", level: 14 });
+    expect(technicalLevel(api, actor, "Mechanic")).toEqual({ skill: "Mechanic (Automobile)", level: 12 });
+    // Nobody with it: IQ-5, IQ-4 for Computer Operation.
+    expect(technicalLevel(api, actor, "Machinist")).toEqual({ skill: "Machinist", level: 5 });
+    expect(technicalLevel(api, actor, "Computer Operation").level).toBe(6);
+  });
+
+  it("maintains a broken device without its broken parts refusing the roll: the gadget isn't the roll's item", async () => {
+    const radio = gadget("Tube Radio", 200, { extensions: { [MODULE_ID]: { device: { parts: { count: 5, label: "vacuum tubes", hp: 1, ht: 10, broken: 2 } } } } });
+    successResult = { success: true };
+    dialogAnswer = { skill: "Electronics Repair", missed: false };
+    actions.get("gadget-maintenance").run(radio, radio.actor);
+    await flush();
+    expect(successes[0]).toMatchObject({ tags: ["maintenance"], refusal: null });
+    expect(successes[0].item).toBeUndefined();
+    expect(chat.at(-1)).toContain("MaintenanceKept");
+    // A roll made with the broken radio as its tool is still refused.
+    await api.roll.success({ actor: radio.actor, base: 12, item: radio });
+    expect(successes.at(-1).refusal).toContain("BrokenRefusal");
+  });
+
+  it("sends a firearm's missed checks to the system's own field, and keeps its count off the add-on's", async () => {
+    const pistol = gadget("Pistol", 500, { weaponClass: "firearm", missedMaintenance: 1 });
+    expect(systemCountsMaintenance(pistol)).toBe(true);
+    expect(systemCountsMaintenance(gadget("Radio", 100))).toBe(false);
+    dialogAnswer = { skill: "Armoury", missed: true };
+    actions.get("gadget-maintenance").run(pistol, pistol.actor);
+    await flush();
+    expect(missedChecks(pistol)).toBe(0);
+    expect(chat.at(-1)).toContain('MaintenanceSkippedSheet {"missed":2}');
+    // Even a stale add-on count is left to the system on a firearm.
+    await pistol.setFlag(MODULE_ID, "gadgetMissedChecks", 3);
+    const failure = { item: pistol, modifiers: [] as any[] };
+    for (const fn of hooks.get("gworld.equipmentFailure") ?? []) fn(failure);
+    expect(failure.modifiers).toEqual([]);
+    expect(actions.get("gadget-restore").visible(pistol)).toBe(false);
   });
 });

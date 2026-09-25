@@ -412,7 +412,7 @@ async function opticalRecognition(api: GWorldApi, item: any, actor: any): Promis
   const label = F("Security.RecognitionLabel", { name: item.name, subject: subject.name });
   const cover = recognitionCover(api.actors.skillLevel(subject, "Disguise"), api.actors.skillLevel(subject, "Acting"));
   if (!cover) {
-    const result: any = await api.roll.success({ actor, base: answer.per, label, item, tags: ["opticalRecognition"], subject } as any);
+    const result: any = await api.roll.success({ actor, base: answer.per, label, item, tags: ["opticalRecognition"], subject, secret: true } as any);
     if (result) await gmCard(label, [F(result.success ? "Security.Recognized" : "Security.NotRecognized", { subject: subject.name })]);
     return;
   }

@@ -2166,7 +2166,10 @@
         "RestoreLabel": "{skill}: major repair of {name}",
         "MajorRepair": "Major repair",
         "RestoreFailed": "The repair fails; the parts cost ${parts}.",
-        "Restored": "A point of HT is back ({missed} still lost); the parts cost ${parts}."
+        "Restored": "A point of HT is back ({missed} still lost); the parts cost ${parts}.",
+        "MaintenanceFailedSheet": "The check failed: -1 HT. A firearm's missed checks are the item sheet's Missed maintenance field: set it to {missed}.",
+        "MaintenanceSkippedSheet": "The check was missed: -1 HT. A firearm's missed checks are the item sheet's Missed maintenance field: set it to {missed}.",
+        "MissedChecksSheet": "{missed} missed maintenance check(s), on the item sheet's Missed maintenance field."
       },
       "Power": {
         "Title": "Power",
@@ -5724,7 +5727,10 @@
         "RestoreLabel": "{skill}: major repair of {name}",
         "MajorRepair": "Major repair",
         "RestoreFailed": "The repair fails; the parts cost ${parts}.",
-        "Restored": "A point of HT is back ({missed} still lost); the parts cost ${parts}."
+        "Restored": "A point of HT is back ({missed} still lost); the parts cost ${parts}.",
+        "MaintenanceFailedSheet": "The check failed: -1 HT. A firearm's missed checks are the item sheet's Missed maintenance field: set it to {missed}.",
+        "MaintenanceSkippedSheet": "The check was missed: -1 HT. A firearm's missed checks are the item sheet's Missed maintenance field: set it to {missed}.",
+        "MissedChecksSheet": "{missed} missed maintenance check(s), on the item sheet's Missed maintenance field."
       },
       "Equipment": {
         "ItemTitle": "High-Tech equipment",
