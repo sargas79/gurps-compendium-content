@@ -2034,7 +2034,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 24",
-      "category": "misc",
+      "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -2042,7 +2042,23 @@
       "weaponClass": "",
       "listCost": 100,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Two-Handed Axe/Mace",
+          "reach": "1,2*",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 3,
+          "damageBase": "sw",
+          "damageType": "cut",
+          "minSt": 12,
+          "twoHanded": true,
+          "unbalanced": true,
+          "skillModifier": -3,
+          "unreadyAfterAttack": true
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -2061,7 +2077,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 24",
-      "category": "misc",
+      "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -2069,7 +2085,22 @@
       "weaponClass": "",
       "listCost": 100,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Two-Handed Axe/Mace",
+          "reach": "1,2*",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 3,
+          "damageBase": "sw",
+          "damageType": "cut",
+          "minSt": 12,
+          "twoHanded": true,
+          "unbalanced": true,
+          "unreadyAfterAttack": true
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -2098,7 +2129,37 @@
       "weaponClass": "",
       "listCost": 100,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Two-Handed Axe/Mace",
+          "reach": "1,2*",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 3,
+          "damageBase": "sw",
+          "damageType": "cut",
+          "minSt": 12,
+          "twoHanded": true,
+          "unbalanced": true,
+          "unreadyAfterAttack": true
+        },
+        {
+          "name": "Spike",
+          "skill": "Two-Handed Axe/Mace",
+          "reach": "1,2*",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 3,
+          "damageBase": "sw",
+          "damageType": "imp",
+          "minSt": 12,
+          "twoHanded": true,
+          "unbalanced": true,
+          "pick": true,
+          "unreadyAfterAttack": true
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -2117,7 +2178,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 25",
-      "category": "misc",
+      "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -2125,7 +2186,22 @@
       "weaponClass": "",
       "listCost": 100,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Two-Handed Axe/Mace",
+          "reach": "1,2*",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 3,
+          "damageBase": "sw",
+          "damageType": "cut",
+          "minSt": 12,
+          "twoHanded": true,
+          "unbalanced": true,
+          "unreadyAfterAttack": true
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -2144,7 +2220,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 25",
-      "category": "misc",
+      "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -2152,7 +2228,23 @@
       "weaponClass": "",
       "listCost": 100,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Two-Handed Axe/Mace",
+          "reach": "1,2*",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 3,
+          "damageBase": "sw",
+          "damageType": "cut",
+          "minSt": 12,
+          "twoHanded": true,
+          "unbalanced": true,
+          "skillModifier": -3,
+          "unreadyAfterAttack": true
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -2181,7 +2273,33 @@
       "weaponClass": "",
       "listCost": 200,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Axe/Mace",
+          "reach": "1",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 2,
+          "damageBase": "sw",
+          "damageType": "cut",
+          "minSt": 11,
+          "unbalanced": true
+        },
+        {
+          "name": "Pick",
+          "skill": "Axe/Mace",
+          "reach": "1",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 1,
+          "damageBase": "sw",
+          "damageType": "imp",
+          "minSt": 10,
+          "unbalanced": true,
+          "pick": true
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -2356,7 +2474,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 25",
-      "category": "misc",
+      "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -2364,7 +2482,20 @@
       "weaponClass": "",
       "listCost": 15,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Axe/Mace",
+          "reach": "1",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 2,
+          "damageBase": "sw",
+          "damageType": "cr",
+          "minSt": 10,
+          "unbalanced": true
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -2392,7 +2523,17 @@
       "listCost": 75,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "lift": {
+              "lbs": 8000,
+              "st": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -2453,7 +2594,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 25",
-      "category": "misc",
+      "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -2461,7 +2602,23 @@
       "weaponClass": "",
       "listCost": 15,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Two-Handed Axe/Mace",
+          "reach": "1,2*",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 3,
+          "damageBase": "sw",
+          "damageType": "cut",
+          "minSt": 12,
+          "twoHanded": true,
+          "unbalanced": true,
+          "skillModifier": -2,
+          "unreadyAfterAttack": true
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -2480,7 +2637,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 25",
-      "category": "misc",
+      "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -2488,7 +2645,23 @@
       "weaponClass": "",
       "listCost": 10,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Two-Handed Axe/Mace",
+          "reach": "1,2*",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 4,
+          "damageBase": "sw",
+          "damageType": "cr",
+          "minSt": 13,
+          "twoHanded": true,
+          "unbalanced": true,
+          "skillModifier": -2,
+          "unreadyAfterAttack": true
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -2663,7 +2836,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 25",
-      "category": "misc",
+      "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -2671,7 +2844,21 @@
       "weaponClass": "",
       "listCost": 10,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Axe/Mace",
+          "reach": "1",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 2,
+          "damageBase": "sw",
+          "damageType": "cut",
+          "minSt": 11,
+          "unbalanced": true,
+          "skillModifier": -2
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -2690,7 +2877,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 25",
-      "category": "misc",
+      "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -2698,7 +2885,20 @@
       "weaponClass": "",
       "listCost": 2,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Knife",
+          "reach": "C,1",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": -3,
+          "damageBase": "sw",
+          "damageType": "cut",
+          "minSt": 5,
+          "parryModifier": -1
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -2787,7 +2987,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 26",
-      "category": "misc",
+      "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -2795,7 +2995,23 @@
       "weaponClass": "",
       "listCost": 40,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Two-Handed Axe/Mace",
+          "reach": "1,2*",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 3,
+          "damageBase": "sw",
+          "damageType": "cut",
+          "minSt": 12,
+          "twoHanded": true,
+          "unbalanced": true,
+          "skillModifier": -2,
+          "unreadyAfterAttack": true
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -3253,6 +3469,11 @@
               "against": "",
               "stRoll": null,
               "carbideBonus": 0
+            },
+            "supply": {
+              "kind": "seconds",
+              "amount": 30,
+              "refill": "bottle"
             }
           }
         }
@@ -3382,6 +3603,11 @@
               "against": "",
               "stRoll": null,
               "carbideBonus": 0
+            },
+            "supply": {
+              "kind": "seconds",
+              "amount": 1200,
+              "refill": "refill"
             }
           }
         }
@@ -3425,6 +3651,11 @@
               "against": "",
               "stRoll": null,
               "carbideBonus": 0
+            },
+            "supply": {
+              "kind": "seconds",
+              "amount": 600,
+              "refill": "airTank"
             }
           }
         }
@@ -3922,7 +4153,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 29",
-      "category": "misc",
+      "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -3930,7 +4161,21 @@
       "weaponClass": "",
       "listCost": 15,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Axe/Mace",
+          "reach": "1",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 2,
+          "damageBase": "sw",
+          "damageType": "cr",
+          "minSt": 10,
+          "unbalanced": true,
+          "skillModifier": -2
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -3958,7 +4203,17 @@
       "listCost": 20,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "lift": {
+              "lbs": 0,
+              "st": 25
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -3976,7 +4231,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 29",
-      "category": "misc",
+      "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -3984,7 +4239,23 @@
       "weaponClass": "",
       "listCost": 175,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Two-Handed Axe/Mace",
+          "reach": "1,2*",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 4,
+          "damageBase": "sw",
+          "damageType": "cr",
+          "minSt": 13,
+          "twoHanded": true,
+          "unbalanced": true,
+          "skillModifier": -2,
+          "unreadyAfterAttack": true
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -4096,7 +4367,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 30",
-      "category": "misc",
+      "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -4104,7 +4375,21 @@
       "weaponClass": "",
       "listCost": 50,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Axe/Mace",
+          "reach": "1",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": 2,
+          "damageBase": "sw",
+          "damageType": "cr",
+          "minSt": 10,
+          "unbalanced": true,
+          "skillModifier": -1
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -4144,7 +4429,18 @@
           "damageType": "pi++"
         }
       ],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "supply": {
+              "kind": "shots",
+              "amount": 10,
+              "refill": "strip"
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -4287,7 +4583,17 @@
       "listCost": 3500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "lift": {
+              "lbs": 500,
+              "st": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -4332,7 +4638,11 @@
       "extensions": {
         "gurps-compendium-content": {
           "tool": {
-            "readies": 4
+            "readies": 4,
+            "lift": {
+              "lbs": 0,
+              "st": 36
+            }
           }
         }
       }
@@ -4380,7 +4690,11 @@
       "extensions": {
         "gurps-compendium-content": {
           "tool": {
-            "readies": 4
+            "readies": 4,
+            "lift": {
+              "lbs": 0,
+              "st": 45
+            }
           }
         }
       }
@@ -4476,7 +4790,17 @@
       "listCost": 5000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "lift": {
+              "lbs": 140000,
+              "st": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -4521,7 +4845,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 31",
-      "category": "misc",
+      "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -4529,7 +4853,32 @@
       "weaponClass": "",
       "listCost": 5,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Knife",
+          "reach": "C,1",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": -4,
+          "damageBase": "sw",
+          "damageType": "cut",
+          "minSt": 5,
+          "parryModifier": -1
+        },
+        {
+          "name": "Thrust",
+          "skill": "Knife",
+          "reach": "C",
+          "canParry": true,
+          "armorDivisor": 1,
+          "damageModifier": -2,
+          "damageBase": "thr",
+          "damageType": "imp",
+          "minSt": 5,
+          "parryModifier": -1
+        }
+      ],
       "rangedModes": []
     }
   },

@@ -5074,7 +5074,7 @@
         },
         "forcedEntryTools": {
           "Name": "Forced-entry tools",
-          "Hint": "Saws, drills, cutters and torches get a Forced Entry row with the damage they do each second (or each use) and what they work on; the rock drill and lock buster pass on a maul's blow. The hand ram (below ST 20), door opener and spreader/cutter need their Ready maneuvers before each use; the glass cutter and duct tape are row actions. A fire extinguisher's bursts put out a flamethrower's burning fuel, and a fire shelter gives DR 10 against burning to whoever is inside (High-Tech pp. 25-30)."
+          "Hint": "Saws, drills, cutters and torches get a Forced Entry row with the damage they do each second (or each use) and what they work on; the rock drill and lock buster pass on a maul's blow. The hand ram (below ST 20), door opener and spreader/cutter need their Ready maneuvers before each use; a torch's burn time and the doorbuster's strips run down as they are used and are refilled from the row; a jack, lift bags, a hoist, a spreader or a come-along says whether it manages a load; the glass cutter and duct tape are row actions. A fire extinguisher's bursts put out a flamethrower's burning fuel, and a fire shelter gives DR 10 against burning to whoever is inside (High-Tech pp. 25-30)."
         },
         "chainsaws": {
           "Name": "Chainsaws and nail guns",
@@ -5082,7 +5082,7 @@
         },
         "householdHazards": {
           "Name": "Household hazards",
-          "Hint": "A row action rolls what a ruptured propane cylinder (a burning explosion with 1d cutting fragments), a hot stove, a blender, hot coffee, a hotplate, toaster or waffle iron, or an institutional microwave does. Lead is a poison the sheet doses; past half the victim's HP the worse symptoms are named (High-Tech pp. 31-33)."
+          "Hint": "A row action rolls what a ruptured propane cylinder (a burning explosion with 1d cutting fragments), a hot stove, a blender, hot coffee, a hotplate, toaster or waffle iron, or an institutional microwave does; a blow struck at a propane cylinder ruptures it through DR 6 with anything but crushing, and sets it off near a flame. Lead is a poison the sheet doses; past half the victim's HP the worse symptoms are named, and a second failed roll intensifies them (High-Tech pp. 31-33)."
         },
         "flamethrowers": {
           "Name": "Flamethrowers",
@@ -7498,7 +7498,66 @@
         "HazardLabel": "{name}",
         "HazardPerSecond": "{name}, for a second",
         "Lead": "Lead",
-        "LeadWorse": "{name} has lost half their HP to lead: worse symptoms now, as the GM chooses: Bad Temper (15) or Laziness, or spells of agony, daze or retching, and a lost appetite. More failed rolls bring seizures and coma (High-Tech p. 33)."
+        "LeadWorse": "{name} has lost half their HP to lead: worse symptoms now, as the GM chooses: Bad Temper (15) or Laziness, or spells of agony, daze or retching, and a lost appetite. More failed rolls bring seizures and coma (High-Tech p. 33).",
+        "LeadPoison": "Lead (a dose of 0.25 oz. or more)",
+        "LeadIntensifies": "{name} has failed {failed} rolls against lead: the symptoms intensify, toward seizures and coma (Campaigns p. 429) as the GM judges (High-Tech p. 33).",
+        "Propane": {
+          "Strike": "Strike the cylinder",
+          "StrikeHint": "The blow's basic damage goes on the cylinder at its DR {dr}. Anything but crushing that gets through ruptures it; near a flame it goes up in a fireball (High-Tech p. 31).",
+          "Damage": "Damage",
+          "Type": "Type",
+          "Divisor": "Armor divisor",
+          "NearFlame": "Near a flame",
+          "Struck": "{name} is struck",
+          "Holds": "{name} holds: nothing but crushing damage through its DR ruptures it.",
+          "Vents": "{name} ruptures, but with no flame near, the gas escapes without igniting.",
+          "Fireball": "{name} ruptures near a flame and ignites into a huge fireball.",
+          "DrNote": "A propane cylinder: DR {dr} (High-Tech p. 31)"
+        },
+        "Supply": {
+          "Action": "Refill",
+          "secondsLine": "Burn time: {left} of {amount} left; refilled with a {refill} (High-Tech p. 27).",
+          "shotsLine": "{left} of {amount} left in the strip; refilled with a {refill} (High-Tech pp. 28, 30).",
+          "secondsRefusal": "{name} is out of burn time: fit a new {refill} first (High-Tech p. 27).",
+          "shotsRefusal": "{name} has fired its strip: load a new {refill} first (High-Tech pp. 28, 30).",
+          "Refilled": "Refilled with a new {refill}: {amount}.",
+          "Shots": "{shots} shot(s)",
+          "Refill": {
+            "refill": "refill",
+            "bottle": "bottle",
+            "airTank": "small air tank (or an air compressor)",
+            "strip": "10-shot strip"
+          }
+        },
+        "Lift": {
+          "Action": "Lift a load",
+          "Load": "Load (lbs.)",
+          "RatedLine": "Lifts up to {load} (High-Tech pp. 25, 29-30).",
+          "StLine": "ST {st}, Basic Lift {bl} lbs.: lifts {lift} and shifts {shift} a little (High-Tech pp. 29-30; Campaigns p. 353).",
+          "Tons": "{tons} tons",
+          "Lbs": "{lbs} lbs.",
+          "lifts": "{name} lifts the load of {load}.",
+          "shifts": "{name} can only shift the load of {load} a little.",
+          "tooHeavy": "The load of {load} is too heavy for {name}."
+        },
+        "Alert": {
+          "Action": "Set off or reset the alarm",
+          "Line": "Worn: sounds an alarm when its wearer stops moving, +{bonus} to Hearing to find him; it sounds by itself once he is out cold (High-Tech p. 30).",
+          "SoundingLine": "Sounding: +{bonus} to Hearing to find its wearer (High-Tech p. 30).",
+          "Sounds": "{name}'s alert is sounding: +{bonus} to Hearing to find them.",
+          "Reset": "{name}'s alert is reset.",
+          "HearingLine": "{name} sounding (High-Tech p. 30)"
+        },
+        "Litter": {
+          "Action": "Drop the litter",
+          "Line": "Its occupant has DR {dr} if it is dropped or in a collision (High-Tech p. 29).",
+          "Target": "Target the one token in the litter.",
+          "Hint": "{name} falls in the litter, with DR {dr} against the fall (High-Tech p. 29).",
+          "Yards": "Yards fallen",
+          "Soft": "Onto something soft",
+          "DrLine": "Stokes litter, DR {dr}",
+          "Gm": "{name} falls {yards} yards in the litter, with DR {dr}: the GM runs the fall."
+        }
       },
       "Projectors": {
         "Flame": {

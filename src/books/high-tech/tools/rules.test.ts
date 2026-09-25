@@ -2,7 +2,15 @@ import { describe, expect, it } from "vitest";
 
 import { toolSkillKey } from "../../../../system/src/rules/tech-level.js";
 import {
+  FIREFIGHTER_ALERT,
+  LEAD_DOSE_OZ,
   LEAD_POISON,
+  STOKES_LITTER,
+  alertSounding,
+  leadStage,
+  liftOutcome,
+  propaneRuptures,
+  supplyLeft,
   addToDice,
   breakFreeRoll,
   chainsawMishap,
@@ -116,5 +124,46 @@ describe("household hazards (High-Tech pp. 31-33)", () => {
     expect(LEAD_POISON.intervalSeconds).toBe(6 * 7 * 86400);
     expect(leadSymptomsWorsen(["1/3"])).toBe(false);
     expect(leadSymptomsWorsen(["1/3", "1/2"])).toBe(true);
+  });
+});
+
+describe("supplies, lifting, propane, lead and the rescue gear (High-Tech pp. 25-33)", () => {
+  it("counts down a torch's burn time and a strip's shots", () => {
+    const bottle = { kind: "seconds" as const, amount: 30, refill: "bottle" as const };
+    expect(supplyLeft(bottle, 0)).toBe(30);
+    expect(supplyLeft(bottle, 29.7)).toBe(1);
+    expect(supplyLeft(bottle, 45)).toBe(0);
+  });
+
+  it("lifts up to a rated load, and by ST up to 8 times Basic Lift, shifting up to 50", () => {
+    const bl = (st: number) => (st * st) / 5;
+    expect(liftOutcome({ lbs: 8000, st: 0 }, 8000, bl)).toBe("lifts");
+    expect(liftOutcome({ lbs: 8000, st: 0 }, 8001, bl)).toBe("tooHeavy");
+    // The TL8 spreader's Arm ST 45: BL 405.
+    expect(liftOutcome({ lbs: 0, st: 45 }, 3240, bl)).toBe("lifts");
+    expect(liftOutcome({ lbs: 0, st: 45 }, 20000, bl)).toBe("shifts");
+    expect(liftOutcome({ lbs: 0, st: 45 }, 20251, bl)).toBe("tooHeavy");
+  });
+
+  it("ruptures a propane cylinder with anything but crushing that gets through", () => {
+    expect(propaneRuptures("pi", 1)).toBe(true);
+    expect(propaneRuptures("cr", 5)).toBe(false);
+    expect(propaneRuptures("burn", 0)).toBe(false);
+  });
+
+  it("brings lead's worse symptoms past half the HP, and intensifying ones from the second failed roll", () => {
+    expect(leadStage({ pastHalf: false, failedRolls: 1 })).toBe("");
+    expect(leadStage({ pastHalf: true, failedRolls: 1 })).toBe("worse");
+    expect(leadStage({ pastHalf: false, failedRolls: 2 })).toBe("intensifying");
+    expect(LEAD_DOSE_OZ).toBe(0.25);
+  });
+
+  it("sounds a worn alert set off or on a wearer out cold, and gives the litter's occupant DR 5", () => {
+    expect(alertSounding({ worn: true, set: false, unconscious: true })).toBe(true);
+    expect(alertSounding({ worn: true, set: true, unconscious: false })).toBe(true);
+    expect(alertSounding({ worn: false, set: true, unconscious: true })).toBe(false);
+    expect(alertSounding({ worn: true, set: false, unconscious: false })).toBe(false);
+    expect(FIREFIGHTER_ALERT.hearing).toBe(4);
+    expect(STOKES_LITTER.dr).toBe(5);
   });
 });
