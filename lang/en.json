@@ -5007,7 +5007,7 @@
         },
         "batteryChemistry": {
           "Name": "Battery chemistry (Electricity and Electronics)",
-          "Hint": "A battery's chemistry is a field on it: carbon-zinc and wet cells last a quarter as long, lead-acid and NiCad a third, NiMH as long, lithium-ion 10% longer, each at its own price and weight, and the rechargeable ones are recharged at their own price in place of High-Tech's five times. High-Tech's batteries are alkaline to M and lead-acid at L and VL, so no chemistry set keeps the printed figures. A lithium-ion battery can run away (3d burning, a large-area injury from M up) and, confined, is an explosive of REF 0.25; the car-battery recharger's high setting explodes the battery on a critical failure; a voltaic pile rolls HT 10 every half hour (High-Tech: Electricity and Electronics pp. 16-18)."
+          "Hint": "A battery's chemistry is a field on it: carbon-zinc and wet cells last a quarter as long, lead-acid and NiCad a third, NiMH as long, lithium-ion 10% longer, each at its own price and weight, and the rechargeable ones are recharged at their own price in place of High-Tech's five times. High-Tech's batteries are alkaline to M and lead-acid at L and VL, so no chemistry set keeps the printed figures. A Daniell cell gives -1 to Electrician and Electronics Operation with what it powers; a gravity cell's row action rolls its daily upkeep (Electronics Operation (Communications) at TL5-7, or Chemistry; a failure spends its power) or sets up a new cell. A lithium-ion battery can run away (3d burning, a large-area injury from M up) and, confined, is an explosive of REF 0.25; the car-battery recharger's high setting explodes the battery on a critical failure; a voltaic pile rolls HT 10 every half hour (High-Tech: Electricity and Electronics pp. 16-18)."
         },
         "energyStorage": {
           "Name": "Energy storage and generators (Electricity and Electronics)",
@@ -5143,7 +5143,7 @@
         },
         "illumination": {
           "Name": "Illumination (Electricity and Electronics)",
-          "Hint": "A lamp's lux is its rated wattage times its geometry (x1.5 exposed, x3 recessed, x6 conical beam, x30 close-range beam), read against the Illumination Levels table: -5 at 0.05 lux up to no penalty from 100. It falls a step at 2 yards, two at 3-5, three at 6-10 and 3 more for each tenfold distance; a beam gives its lux out to its range and never leaves worse than -9. The supplement's lamps on the map (a light the GM marks with a tool, or a token's own light where its character carries one) leave that darkness; the least darkness wins and no lamp darkens a spot. A GM tool reads the light at the selected tokens: reading needs 500 lux and surgery 50,000, else -2. A row action aims a beam on DX at the darkness where it is aimed; a miss lands yards equal to the margin to the left or right (High-Tech: Electricity and Electronics pp. 20-22)."
+          "Hint": "A lamp's lux is its rated wattage times its geometry (x1.5 exposed, x3 recessed, x6 conical beam, x30 close-range beam), read against the Illumination Levels table: -5 at 0.05 lux up to no penalty from 100. It falls a step at 2 yards, two at 3-5, three at 6-10 and 3 more for each tenfold distance; a beam gives its lux out to its range and never leaves worse than -9. The supplement's lamps on the map (a light the GM marks with a tool, or a token's own light where its character carries one) leave that darkness; the least darkness wins and no lamp darkens a spot. Reading and sewing need 500 lux and surgery 50,000, else -2: Sewing and Surgery rolls take it from the light at the roller's token, and a GM tool reads the light at the selected tokens. A row action aims a beam on DX at the darkness where it is aimed; a miss lands yards equal to the margin to the left or right (High-Tech: Electricity and Electronics pp. 20-22)."
         },
         "lightDazzle": {
           "Name": "Glare (Electricity and Electronics)",
@@ -5407,11 +5407,11 @@
         },
         "electricAppliances": {
           "Name": "Electric appliances",
-          "Hint": "From the supplement Electricity and Electronics. A heater in use (equipped) adds to HT against the cold, +1 for the incandescent bulb heater and +2 for the resistance wire heater; a fan in use adds to HT against ordinary heat, +2 for the large fan and +1 for a small one (the Weather roll). Kitchen gear in use is the equipment on Cooking and Housekeeping: a microwave oven -2 and -1, an induction cooker +1 to both (-2 more until the cook is familiar with it), a hot plate improvised. A GM tool rolls Forensics to put shredded documents back together, -5 after a cross-cut shredder; a shopvac's row action marks the scene cleaned, -2 to Forensics rolls there after. An electromagnet's ST is 8 times its interior diameter in inches with an iron core, 100 times for a superconducting air core; it holds up to 10 times the Basic Lift for that ST and pulls from as far as its coil is long. Remote control costs 10% more; an emergency stop's row action shuts the machine down with an HT roll against equipment failure (Electricity and Electronics pp. 21-25; Campaigns p. 485)."
+          "Hint": "From the supplement Electricity and Electronics. A heater in use (equipped) adds to HT against the cold, +1 for the incandescent bulb heater and +2 for the resistance wire heater; a fan in use adds to HT against ordinary heat, +2 for the large fan and +1 for a small one (the Weather roll). Kitchen gear in use is the equipment on Cooking and Housekeeping: a microwave oven -2 and -1, an induction cooker +1 to both (-2 more until the cook is familiar with it), a hot plate improvised. A row action rolls the burns an appliance does at a touch: an early resistance wire heater's 1d-3 a second, the induction furnace's molten metal 3d at first contact. A GM tool rolls Forensics to put shredded documents back together, -5 after a cross-cut shredder; a shopvac's row action marks the scene cleaned, -2 to Forensics rolls there after. An electromagnet's ST is 8 times its interior diameter in inches with an iron core, 100 times for a superconducting air core; it holds up to 10 times the Basic Lift for that ST and pulls from as far as its coil is long. Remote control costs 10% more; an emergency stop's row action shuts the machine down with an HT roll against equipment failure (Electricity and Electronics pp. 21-25; Campaigns p. 485)."
         },
         "powerTools": {
           "Name": "Power tools",
-          "Hint": "From the supplement Electricity and Electronics. The supplement's power drills (1d+2(2) pi++ against wood and plaster; an early model -2), circular saws (sw+3(2) cut, the compact saw sw+1(2), (5) with a diamond blade against concrete and brick), arc welder (3d(2) burn), hot plate (1d-3 burn) and soldering irons (1 point burn) get a Work row with Forced Entry, the damage for each second of work, as High-Tech's forced-entry tools do (Electricity and Electronics pp. 14, 21, 24; High-Tech pp. 25-30)."
+          "Hint": "From the supplement Electricity and Electronics. The supplement's power drills (1d+2(2) pi++ against wood and plaster; an early model -2), circular saws (sw+3(2) cut, the compact saw sw+1(2), (5) with a diamond blade against concrete and brick), arc welder (3d(2) burn), hot plate (1d-3 burn) and soldering irons (1 point burn) get a Work row with Forced Entry, the damage for each second of work, as High-Tech's forced-entry tools do; wire cutters' 2d(2) cut, each use (Electricity and Electronics pp. 14, 21, 24; High-Tech pp. 25-30)."
         },
         "electromedicine": {
           "Name": "Electromedicine",
@@ -5448,6 +5448,8 @@
         "SuperconductingLine": "A superconducting magnet needs TL{tl} superconductors, kept cold in liquid nitrogen.",
         "RemoteLine": "Built for remote control: 10% more (HT:EE p. 25).",
         "EmergencyStopLine": "An emergency stop, made to be seen ({per} to Per); its row action shuts the machine down (HT:EE p. 25).",
+        "HazardLine": "Touching it does {damage} burning at first contact; its row action rolls it (HT:EE p. 21).",
+        "HazardLinePerSecond": "An early model's inadequate screening: {damage} burning for each second of contact; its row action rolls it (HT:EE p. 21).",
         "WorkLine": "Work: {damage}{divisor} {type} {pace} (HT:EE p. 24).",
         "EarlyLine": "An early model: {penalty} to skill.",
         "CoreLabel": "Magnet core",
@@ -5468,6 +5470,7 @@
         "StopHint": "A kill switch: shutting the machine down with it calls for an HT roll against equipment failure (HT:EE p. 25).",
         "Early": "Early model",
         "EarlyHint": "An early drill without the trigger switch and pistol grip: -2 to skill (HT:EE p. 24).",
+        "EarlyHeaterHint": "An early heater with inadequate screening: it burns 1d-3 a second at a touch (HT:EE p. 21).",
         "Diamond": "Diamond blade",
         "DiamondHint": "An abrasive diamond blade for hard materials such as concrete or brick: (5) in place of (2) (HT:EE p. 24).",
         "DiamondNote": "Diamond blade",
@@ -5476,6 +5479,9 @@
         "WorkHint": "Roll the damage for each second the tool is worked against the thing, and apply it to the thing's DR and HP (HT:EE pp. 14, 21, 24; High-Tech pp. 25-30).",
         "EmergencyStop": "Emergency stop",
         "EmergencyStopRoll": "{name}: emergency stop",
+        "HazardAction": "Roll what it does",
+        "HazardLabel": "{name}",
+        "HazardPerSecond": "{name}, for a second",
         "CleanAction": "Clean up the scene",
         "CleanTitle": "{name}: the scene cleaned",
         "CleanAsk": "{name} cleans up {scene} with a shopvac; the GM marks the scene.",
@@ -8465,6 +8471,7 @@
         },
         "TaskMet": "{task} ({lux} lux): enough",
         "TaskShort": "{task} ({lux} lux): {penalty} to tasks that need it",
+        "DimTask": "Too dim for {task} ({lux} lux)",
         "AimAction": "Aim the beam",
         "AimTarget": "Target the one token the beam is aimed at.",
         "AimRoll": "Aiming {name} (DX)",
@@ -9954,6 +9961,8 @@
         "ChemistryOption": "{chemistry} (TL{tl})",
         "Chemistry": {
           "wetCell": "Wet cell",
+          "daniellCell": "Wet cell (Daniell)",
+          "gravityCell": "Wet cell (gravity)",
           "carbonZinc": "Carbon-zinc",
           "alkaline": "Alkaline",
           "leadAcid": "Lead-acid",
@@ -9968,6 +9977,9 @@
         "MediumNote": "High-Tech's M battery weighs 2 lbs. against the supplement's 1.5; it is scaled as if it were alkaline.",
         "LithiumIonHint": "Shorted, or failing HT after crushing or while overcharged, it runs away: 3d burning, a large-area injury from M up, and it may start a fire.",
         "WetCellHint": "Stationary; the price and weight aren't printed, so they stay the size's.",
+        "DaniellHint": "A porous barrier weakens the current: {penalty} to Electrician or Electronics Operation with what it powers (HT:EE p. 17).",
+        "DaniellLine": "Daniell cell's weak current",
+        "GravityHint": "A stronger current, but the solution must be watched: its row action rolls the day's upkeep, or sets up a new cell (HT:EE p. 17).",
         "SupercapacitorLine": "Gives the output of one {size} battery for {minutes} minute, at twenty times the price.",
         "SupercapacitorLargest": "Gives ten times the output of one {size} battery for {minutes} minute, at twenty times the price.",
         "MaterialLabel": "Material",
@@ -10040,6 +10052,20 @@
           "Label": "{name}: HT after {minutes} minutes",
           "Runs": "The pile keeps its current for another {minutes} minutes.",
           "Blocked": "Hydrogen bubbles cover the copper: the current stops."
+        },
+        "Gravity": {
+          "Title": "Gravity cell",
+          "Hint": "Each day, Electronics Operation (Communications) at TL5-7, or Chemistry, keeps the cell's power; setting up a new cell is Electronics Repair (Communications) at TL5-7, or Chemistry (HT:EE p. 17).",
+          "Task": "Task",
+          "tend": "Tend it for the day",
+          "setUp": "Set up a new cell (power after {hours} hour)",
+          "tendLabel": "{name}: the day's upkeep",
+          "setUpLabel": "{name}: a new cell",
+          "Tended": "The solution is kept right: the cell keeps its power for the day.",
+          "Lost": "The solution goes wrong: the cell loses its power, and what it runs is out of charge.",
+          "LostUntracked": "The solution goes wrong: the cell loses its power.",
+          "SetUp": "The new cell is set up: it gives power in {hours} hour.",
+          "NotSetUp": "The new cell isn't set up right; try again."
         },
         "Discharge": {
           "Title": "Discharge",
