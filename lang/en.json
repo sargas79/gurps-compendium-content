@@ -7505,6 +7505,15 @@
         "LeadWorse": "{name} has lost half their HP to lead: worse symptoms now, as the GM chooses: Bad Temper (15) or Laziness, or spells of agony, daze or retching, and a lost appetite. More failed rolls bring seizures and coma (High-Tech p. 33)."
       },
       "Projectors": {
+        "Engine": {
+          "Title": "Burning fuel in a vital area",
+          "Burns": "The fuel burns on {vehicle} for {seconds} seconds.",
+          "CheckMade": "Second {second}: HT roll {roll} against {ht}, made.",
+          "CheckFailed": "Second {second}: HT roll {roll} against {ht}, failed.",
+          "Runs": "{vehicle}'s air-breathing engine keeps running.",
+          "BrokenDown": "{vehicle}'s air-breathing engine breaks down.",
+          "MayCatchFire": "It may also catch fire: the GM's call (High-Tech p. 179)."
+        },
         "Flame": {
           "Note": "Burning fuel",
           "NoteHint": "A large-area injury that can set clothes alight; unsealed DR at a fifth. The fuel burns on for 2d x 5 seconds (1d x 5 past 1/2D), 1d burn a second. Even plywood cover stops the jet. The GM may call for a Fright Check (High-Tech pp. 178-179).",

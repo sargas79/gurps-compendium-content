@@ -18,6 +18,9 @@
  *     and an Armoury or IQ-based Liquid Projector roll, a critical failure an
  *     explosion. A shot at the weapon meets its DR 2, at no penalty, and
  *     damage that gets through blows it up on a 1 in 6, else disables it.
+ *     A vehicle with an air-breathing engine (one whose HT code marks it as
+ *     burning fuel) hit in a vital area rolls HT at once and every 3 seconds
+ *     while the fuel burns, breaking down on a failure (`gworld.afterVehicleHit`).
  *   - **Spray guns (sprayGuns):** +2 to hit the face with the wide jet; a hit
  *     forces two rolls, one against coughing and one against blindness, each
  *     lasting minutes equal to the margin, or until washed off for pepper
@@ -49,7 +52,10 @@ import {
   SQUIRT_GUN_SKILL,
   TANK_DR,
   WIDE_JET_BONUS,
+  airBreathing,
   burnDice,
+  engineRollsFor,
+  engineUnderFire,
   burnSeconds,
   eyeBeamOf,
   flameDr,
@@ -302,6 +308,28 @@ export function readyProjectors(api: GWorldApi, on: ProjectorSwitches): void {
     if (seconds <= 0) return;
     await startBurn(api, victim, fuel, { seconds });
     await say(victim, L("Flame.Title"), [F("Flame.Burns", { name: String(victim.name ?? ""), seconds, dice: dice.join(", ") })]);
+  });
+
+  // A vehicle with an air-breathing engine hit in a vital area: HT or it breaks down, rolled again
+  // every 3 seconds until the fuel burns out; whether it also catches fire is the GM's (p. 179).
+  Hooks.on(api.combat.hooks.afterVehicleHit, async (context: any) => {
+    const item = context?.item;
+    const vehicle = context?.vehicle;
+    if (!on.flamethrowers() || !isFlamethrower(item) || context.location !== "vitalArea" || !context.actor?.isOwner) return;
+    const stats = vehicle?.system?.vehicle ?? null;
+    if (!airBreathing(stats)) return;
+    const ht = Math.max(1, Math.floor(Number(stats.ht) || 10));
+    const state = stateOf(item);
+    const dice = Array.from({ length: burnDice(state.htFlameBeyondHalf === true) }, d6);
+    const seconds = burnSeconds(dice, sweepWidth(state.htFlameSweep));
+    const result = engineUnderFire(ht, seconds, Array.from({ length: engineRollsFor(seconds) }, () => d6() + d6() + d6()));
+    const name = String(vehicle?.name ?? "");
+    await say(context.actor, L("Engine.Title"), [
+      F("Engine.Burns", { vehicle: name, seconds }),
+      ...result.checks.map((c) => F(c.success ? "Engine.CheckMade" : "Engine.CheckFailed", { second: c.second, roll: c.roll, ht })),
+      F(result.brokenDown ? "Engine.BrokenDown" : "Engine.Runs", { vehicle: name }),
+      L("Engine.MayCatchFire"),
+    ]);
   });
 
   /** The tank goes up: one second's damage to everything within two yards of the firer (p. 179). */
