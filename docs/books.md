@@ -63,6 +63,33 @@ of pp. 324-334, 337-342, 566 and 570-578 with the text under it to
 pack entry to look for. Set `GURPS_REVISED_PDF` to run the profile's tests
 against the real pages.
 
+The rules journal (`books/basic-set/journals`) is regenerated from the Revised
+text the same way:
+
+```bash
+node tools/rules.mjs --revised <pdf> [--register <optional-rules.ts>] [--write]
+```
+
+Every retained page keeps its id, so a page a hand-made link points at still
+opens. The register is the pinned system's; `--register` reads another
+release's `src/system/optional-rules.ts` for the switches a later release has
+added (the Revised addenda's switches arrived after the pin). Beyond the
+retained pages the tool builds:
+
+- the four addenda, one page to a section (`ADDENDA_RULES` in `tools/rules.mjs`
+  names the switch each defining section carries in its `rule` flag; a switch
+  gets the flag on one page only, because the Rules settings page links the
+  first entry it finds for a switch);
+- pages for boxes the 2004 headings never had (`REVISED_NEW_PAGES`, and
+  `ADDENDA_HAND` for the addenda's).
+
+The reader cannot give every box, table or margin note in the Revised layout,
+so `tools/lib/revised-fixes.mjs` corrects them by page id (a fix whose words
+are not found fails the run, so a stale one is noticed), and a page it cannot
+correct is written by hand in `journals-by-hand` from `pdftotext -raw`. The
+run writes what the reader gives for each hand page to
+`build/recapture/revised-by-hand/`, to read the hand page against.
+
 ## Adding a book
 
 1. Create `books/<slug>/book.json` with the title, page prefix and GCA data
