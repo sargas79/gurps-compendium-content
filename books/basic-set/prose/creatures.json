@@ -5,7 +5,7 @@
     "pages": "B456",
     "status": "reviewed",
     "notes": "",
-    "description": "<p>A peaceful plant-eater. A chimp won't fight unless it or its young are threatened.</p>"
+    "description": "<p>Territorial and aggressive, chimps (particularly males) may attack for no apparent reason.</p>"
   },
   {
     "_id": "49fe0d9522716ae2",
@@ -125,7 +125,7 @@
     "pages": "B458",
     "status": "reviewed",
     "notes": "",
-    "description": "<p>A common poisonous snake. Even little ones are dangerous; the gigantic diamondback described here (8' long) is deadly. Modifiers to HT roll for venom: +1 if venom is immediately sucked out; +2 if antivenin (TL6+) is used.</p>"
+    "description": "<p>A common venomous snake. Even little ones are dangerous; the gigantic diamondback described here (8' long) is deadly. Modifier to HT roll for venom: +2 if antivenin (TL6+) is used.</p>"
   },
   {
     "_id": "a307b858fcfb9f08",
@@ -269,7 +269,7 @@
     "pages": "B461",
     "status": "reviewed",
     "notes": "",
-    "description": "<p>A strix (plural striges) is a bloodsucking, birdlike creature about the size of a crow, with a long beak and large eyes. Striges are nocturnal. A strix attacks with its long, barbed beak. If the attack penetrates armor, the strix sucks its victim's blood.</p><p>Striges have excellent aim, and can even attack through the eyeslits of a helm. Only two striges can strike thus in a second, but a successful hit can also blind the eye!</p>"
+    "description": "<p>A strix (plural striges) is a blood-sucking, birdlike creature about the size of a crow, with a long beak and large eyes. Striges are nocturnal. A strix attacks with its long, barbed beak. If the attack penetrates armor, the strix sucks its victim's blood.</p><p>Striges have excellent aim, and can even attack through the eyeslits of a helm. Only two striges can strike thus in a second, but a successful hit can also blind the eye!</p>"
   },
   {
     "_id": "6a61f2cf6fe14b35",
@@ -293,6 +293,6 @@
     "pages": "B461",
     "status": "reviewed",
     "notes": "",
-    "description": "<p>A \"swarm\" is about a dozen rats. It has Move 4. Does 1d cutting damage per turn. Armor protects with its normal DR. Dispersed after losing 6 HP.</p>"
+    "description": "<p>A \"swarm\" is about a dozen rats. Scurries at Move 4. Does 1d cutting damage per turn. Armor protects with its normal DR. Dispersed after losing 6 HP.</p>"
   }
 ]
