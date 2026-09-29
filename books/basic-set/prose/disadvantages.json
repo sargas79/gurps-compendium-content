@@ -1889,11 +1889,11 @@
   },
   {
     "_id": "64d3974ee15da74a",
-    "name": "Slave Mentality",
-    "pages": "B154",
+    "name": "Heteronomy",
+    "pages": "B138",
     "status": "reviewed",
-    "notes": "the Revised edition renamed this disadvantage Heteronomy (p. 138); the entry there replaces the old text",
-    "description": "<p>Renamed Heteronomy, p. 138.</p>"
+    "notes": "",
+    "description": "<p>This is the opposite of autonomy: You were built or afflicted to be ineffectual without external orders. You must make an IQ roll at -8 before you can take any action that isn't either obeying a direct order or part of an established routine. You also automatically fail any Will roll to assert yourself or resist social influence unless the GM rules that success might be possible, in which case you roll at -6.</p><p>This doesn't necessarily imply low IQ or Will. You might be intelligent enough to obey exceedingly complex commands - but if you were starving and found $10, you'd have to roll at IQ-8 to decide to pick up the money and buy food without being told to do so. Similarly, you might be strong-willed enough to make all your Fright Checks, yet roll at Will-6 to resist an obvious conman's unsubtle manipulations.</p><p>Heteronomy is for supernatural thralls (golems, zombies, etc.), technological and biological constructs with low-powered synthetic \"brains,\" and the effects of Mind Control (p. 68) and certain Afflictions (p. 35) and spells. It suits neither natural beings nor PCs.</p>"
   },
   {
     "_id": "1f04502650b22694",
