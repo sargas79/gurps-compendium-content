@@ -5,3 +5,5 @@ Injury often results from “penetrating damage”: the damage left after Damage
 If any injury reduces you to 0 or fewer HP, you will soon fall unconscious. You can even go to negative HP . . . but if you go too far, you risk death. For the average man, the difference between full HP and negative HP is one or two sword blows or bullets. This is realistic . . . and dramatic.
 
 Even in cinematic battles, heroes rarely shrug off dozens of blows. Instead, they avoid being hit. Armor helps . . . but fights can be deadly, so think before you act!
+
+For mental hardships, see Stress and Derangement (pp. 572-573). Stress corresponds roughly to fatigue; Derangement, to injury; and mental disadvantages, to crippling and attribute loss. The GM may adapt the rules for treating physical troubles to their mental analogs, using Physician (Psychiatric) or Psychology for skill rolls.

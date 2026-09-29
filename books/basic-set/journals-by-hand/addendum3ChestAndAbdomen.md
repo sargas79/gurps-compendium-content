@@ -1,0 +1,1 @@
+**Chest (0) and Abdomen (-1):** Optionally, separate the torso into chest (areas 9-10), the breast and upper back, and abdomen (replacing the groin as area 11 when rolling randomly), including the stomach and groin. Treat as torso, but torso armor often protects only the chest – see its description.

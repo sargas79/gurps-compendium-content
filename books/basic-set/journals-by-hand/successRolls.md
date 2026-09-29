@@ -4,7 +4,7 @@ Example: If you attempt to pick a lock with a Lockpicking skill of 9, you must r
 
 Regardless of the score you are rolling against, a roll of 3 or 4 is always a success, while a roll of 17 or 18 is always a failure.
 
-In general, the player makes the die rolls for his character’s actions. However, the GM may always choose to roll the dice in secret – see When the GM Rolls, below.
+In general, the player makes the die rolls for his character’s actions. However, the GM may always choose to roll the dice in secret – see When the GM Rolls (p. 344).
 
 ### When to Roll
 
@@ -18,7 +18,9 @@ The GM should not require rolls for . . .
 
 - Utterly trivial tasks, such as crossing the street, driving into town, feeding the dog, finding the corner store, or turning on the computer.
 
-- Daily work at a mundane, nonadventuring job. (To evaluate job performance, make monthly “job rolls”; see Jobs, p. 516.)
+- Daily work at a mundane, non-adventuring job. (To evaluate job performance, make monthly “job rolls”; see Jobs, p. 516.)
+
+For a faster, smoother game, avoid success rolls that cannot result in meaningful failure or gainful success.
 
 ### When the GM Rolls
 
@@ -27,3 +29,5 @@ There are two sets of circumstances under which the GM should roll for a PC and 
 1\. When the character wouldn’t know for sure whether he had succeeded. This is true of all rolls to gain information, whether through skills such as Detect Lies, Interrogation, Meteorology, and Search, advantages like Intuition and Oracle, or supernatural divinatory abilities. In this situation, the player declares that he is using his ability and the GM rolls in secret. On a success, the GM gives the player true information – the lower the roll, the better the information. On a failure, the GM either gives no information at all or lies (the higher the roll, the more severe the lie), as appropriate.
 
 2\. When the player shouldn’t know what’s going on. This includes most Sense rolls, rolls to use Danger Sense, etc. Suppose the party is walking along a jungle trail. A jaguar is on a limb ahead. The GM should not say, “There’s a jaguar ahead of you. Roll to see if you notice it.” Neither should he say, “Everybody make a Vision roll. Does anybody have Danger Sense?” Either of these approaches gives too much away. Instead, the GM should roll for each character in secret. If anyone succeeds, the GM can say, “You notice a jaguar on a branch 20 yards ahead!” If nobody succeeds . . . they’re in for a surprise.
+
+Let players roll for their characters unless that would spoil secrets like conspiracies, mysteries, NPCs’ motivations, and what is behind doors. – How to Be a GURPS GM: Managing Expectations, pp. 11-12
