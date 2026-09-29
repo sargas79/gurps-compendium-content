@@ -42,6 +42,27 @@ anything:
 node tools/recapture.mjs skills --characters <pdf> --campaigns <pdf>
 ```
 
+### The Basic Set, Fourth Edition Revised
+
+The Revised edition is one PDF, printed page *p* on PDF page *p* + 10, set in
+two columns with its own type. `--revised <pdf>` reads it with a second
+heading profile (`tools/lib/revised.mjs`) in place of the two 2004 volumes; the
+book's citations are unchanged, because every heading kept its page.
+
+```bash
+node tools/recapture.mjs skills --revised <pdf>        # report: build/recapture/revised-skills.*
+node tools/recapture.mjs --addenda --revised <pdf>     # the four addenda as sections
+node tools/transcribe.mjs basic-set skills --revised <pdf> [--pages A-B] [--write]
+```
+
+`transcribe.mjs` reads the PDF with `pdftotext -raw -enc UTF-8`, which keeps
+the columns apart and the minus signs (the default output interleaves the
+columns, and Latin-1 drops the minus signs). `--addenda` writes every heading
+of pp. 324-334, 337-342, 566 and 570-578 with the text under it to
+`build/recapture/revised-addenda.json` and `.txt`, since an addendum has no
+pack entry to look for. Set `GURPS_REVISED_PDF` to run the profile's tests
+against the real pages.
+
 ## Adding a book
 
 1. Create `books/<slug>/book.json` with the title, page prefix and GCA data

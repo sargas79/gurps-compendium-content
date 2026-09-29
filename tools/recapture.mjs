@@ -33,6 +33,7 @@ import { book, buildRoot, projectRoot, readProse, readStatistics } from "./lib/b
 import { joinText, structureOf, useLexicon } from "./lib/book-structure.mjs";
 import { lexiconOf } from "./lib/lexicon.mjs";
 import { openBook, readPage } from "./lib/pdf-layout.mjs";
+import { ADDENDA, REVISED, VOLUME as REVISED_VOLUME } from "./lib/revised.mjs";
 import { inSource, volumeKey, volumeOfPages, withSource } from "./lib/sources.mjs";
 
 const BASIC_SET_VOLUMES = {
@@ -40,9 +41,13 @@ const BASIC_SET_VOLUMES = {
   campaigns: { first: 337, last: 576, pdfPage: (page) => page - 334 },
 };
 
-/** A book's volumes: the Basic Set's two, or one for any other book, cached under its slug. */
-function volumesOf(bk) {
-  if (bk.slug === "basic-set") return BASIC_SET_VOLUMES;
+/**
+ * A book's volumes: the Basic Set's two, or one for any other book, cached
+ * under its slug. The Basic Set Revised is one volume, read with its own
+ * profile (lib/revised.mjs).
+ */
+function volumesOf(bk, revised) {
+  if (bk.slug === "basic-set") return revised ? { [REVISED.volume]: REVISED_VOLUME } : BASIC_SET_VOLUMES;
   const offset = bk.transcription.pdfOffset ?? 0;
   // A book's other volume is its own PDF, cached apart from the book's.
   return { [volumeKey(bk)]: { first: 1, last: 100000, pdfPage: (page) => page + offset } };
@@ -78,7 +83,7 @@ function option(name) {
   return at !== -1 ? process.argv[at + 1] : null;
 }
 
-function library(paths, volumes) {
+function library(paths, volumes, profile = null) {
   const open = new Map();
   const memory = new Map();
   const names = Object.keys(volumes);
@@ -94,7 +99,7 @@ function library(paths, volumes) {
       s = JSON.parse(readFileSync(cacheFile, "utf8"));
     } else {
       if (!open.has(volume)) open.set(volume, await openBook(paths[volume]));
-      s = structureOf(await readPage(open.get(volume), pdfPage(page)), { top: topMargin });
+      s = structureOf(await readPage(open.get(volume), pdfPage(page), { profile }), { top: topMargin });
       for (const block of s.blocks) block.page = page;
       for (const aside of s.asides) {
         aside.page = page;
@@ -243,6 +248,9 @@ function section(blocks, at, spells = false) {
     if (b.kind in RANK) {
       const r = RANK[b.kind];
       if (leading && b.kind === "h4" && STAT_LINE.test(b.text.trim().replace(/\*+$/, ""))) continue;
+      // A stub that points to another entry -- the Revised edition's "Aquabatics /
+      // see Acrobatics, p. 174" -- describes nothing; the entry is elsewhere.
+      if (leading && b.kind === "h4" && /^see\b/i.test(b.text.trim()) && /\bpp?\.\s*\d/.test(b.text)) return null;
       if (r <= rank) break;
       if (PERK_HEADING.test(b.text.trim())) break;
       // A sub-heading that carries a cost is the next entry, set one level down.
@@ -464,16 +472,60 @@ function likeness(a, b) {
   return (2 * common) / (wa.length + wb.length);
 }
 
+/**
+ * The Revised edition's addenda as sections: each run of pages (lib/revised.mjs)
+ * is read in order, and every heading opens a section holding the paragraphs
+ * and tables under it, until the next heading. There is no pack entry to look
+ * for in an addendum, so what is written is what the book prints, by heading.
+ */
+async function addendaSections(structure, only) {
+  const out = [];
+  for (const addendum of ADDENDA.filter((a) => !only || a.id === only)) {
+    const { blocks } = await flowOf(structure, addendum.first, addendum.last);
+    const sections = [];
+    let current = { heading: null, level: null, page: addendum.first, paragraphs: [] };
+    const close = () => {
+      if (current.heading || current.paragraphs.length) sections.push(current);
+    };
+    for (const block of blocks) {
+      if (block.kind in RANK) {
+        close();
+        current = { heading: block.text.trim(), level: block.kind, page: block.page, paragraphs: [] };
+        for (const rows of block.tables ?? []) current.paragraphs.push({ kind: "table", rows });
+        continue;
+      }
+      if (block.kind !== "p") continue;
+      current.paragraphs.push({ kind: "p", text: block.text.trim(), runIn: block.runIn });
+      for (const rows of block.tables ?? []) current.paragraphs.push({ kind: "table", rows });
+    }
+    close();
+    out.push({
+      id: addendum.id,
+      title: addendum.title,
+      pages: `${addendum.first}-${addendum.last}`,
+      sections: sections.map((s) => ({ ...s, description: toHtml(s.paragraphs) })),
+    });
+  }
+  return out;
+}
+
 async function main() {
-  const pack = process.argv[2];
+  const wantsAddenda = process.argv.includes("--addenda");
+  const pack = wantsAddenda ? null : process.argv[2];
   const bk = withSource(book(option("--book") ?? "basic-set"), option("--source"));
-  const paths = bk.slug === "basic-set"
-    ? { characters: option("--characters"), campaigns: option("--campaigns") }
-    : { [volumeKey(bk)]: option("--pdf") };
+  // The Basic Set Revised is one PDF; the 2004 Basic Set is two.
+  const revised = bk.slug === "basic-set" && option("--revised") ? REVISED : null;
+  const paths = revised
+    ? { [REVISED.volume]: option("--revised") }
+    : bk.slug === "basic-set"
+      ? { characters: option("--characters"), campaigns: option("--campaigns") }
+      : { [volumeKey(bk)]: option("--pdf") };
   const statuses = new Set((option("--status") ?? "needs-review,reviewed").split(","));
-  if (!pack || pack.startsWith("--") || Object.values(paths).some((path) => !path)) {
+  if ((!wantsAddenda && (!pack || pack.startsWith("--"))) || (wantsAddenda && !revised) || Object.values(paths).some((path) => !path)) {
     console.error(
       "Usage: node tools/recapture.mjs <pack> --characters <pdf> --campaigns <pdf> [--status needs-review,reviewed]\n" +
+        "       node tools/recapture.mjs <pack> --revised <Basic Set Revised pdf> [--status ...]\n" +
+        "       node tools/recapture.mjs --addenda --revised <Basic Set Revised pdf> [--only addendum-1]\n" +
         "       node tools/recapture.mjs <pack> --book <slug> --pdf <pdf> [--status ...]",
     );
     process.exit(1);
@@ -481,7 +533,22 @@ async function main() {
   useLexicon(await lexiconOf(Object.values(paths)));
   asidesAsText = Boolean(bk.transcription?.asidesAsText);
   topMargin = bk.transcription?.topMargin;
-  const structure = library(paths, volumesOf(bk));
+  const structure = library(paths, volumesOf(bk, revised), revised);
+  if (wantsAddenda) {
+    const sections = await addendaSections(structure, option("--only"));
+    const outDir = join(buildRoot, "recapture");
+    mkdirSync(outDir, { recursive: true });
+    writeFileSync(join(outDir, "revised-addenda.json"), JSON.stringify(sections, null, 2), "utf8");
+    const plain = (html) => plainText(String(html).replace(/<\/p>|<\/li>|<\/tr>/g, "\n").replace(/<[^>]+>/g, " ")).trim();
+    const report = sections.map(
+      (a) =>
+        `########## ${a.title} (pp. ${a.pages})\n` +
+        a.sections.map((s) => `\n=== ${s.level ?? "text"} p.${s.page}: ${s.heading ?? "(before the first heading)"}\n${plain(s.description)}`).join("\n"),
+    );
+    writeFileSync(join(outDir, "revised-addenda.txt"), report.join("\n\n"), "utf8");
+    for (const a of sections) console.log(`${a.id}: pp. ${a.pages}, ${a.sections.length} sections`);
+    return;
+  }
   const { records } = readProse(bk, pack);
   // Only the volume being read: a text record is its volume's by its pages ("HT:EE12").
   for (const [id, record] of records) {
@@ -522,7 +589,7 @@ async function main() {
 
   const outDir = join(buildRoot, "recapture");
   mkdirSync(outDir, { recursive: true });
-  const stem = bk.slug === "basic-set" ? pack : `${volumeKey(bk)}-${pack}`;
+  const stem = revised ? `revised-${pack}` : bk.slug === "basic-set" ? pack : `${volumeKey(bk)}-${pack}`;
   writeFileSync(join(outDir, `${stem}.json`), JSON.stringify(results, null, 2), "utf8");
   const text = (html) => plainText(String(html).replace(/<\/p>|<\/li>/g, "\n").replace(/<[^>]+>/g, "")).trim();
   const report = results.map(

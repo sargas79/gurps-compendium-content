@@ -77,8 +77,17 @@ export function joinText(before, after) {
   return `${before} ${after}`;
 }
 
+/**
+ * The typography being read, when it is not the 2004 Basic Set's: the page
+ * says so (`page.profile`, see lib/revised.mjs) and `structureOf` holds it for
+ * the length of one page. A profile decides what each line is; the rest of the
+ * page's reading (regions, columns, paragraphs) is the same for every book.
+ */
+let profile = null;
+
 /** The kind of a line of running text, by how it is set. */
 function kindOf(line) {
+  if (profile) return profile.kindOf(line);
   const text = line.text;
   if (line.black && (line.size >= 40 || /^CHAPTER\b/.test(text))) return "chapter";
   if (line.black && line.size >= 26) return "h1";
@@ -259,7 +268,7 @@ function regionsOf(lines) {
     }
     const wide = [...rows.values()].filter((cells) => cells >= 3).length;
     region.kind = title ? "sidebar" : wide >= Math.max(2, rows.size / 2) ? "table" : "sidebar";
-    region.title = title ? region.titleLines.map((l) => l.text).join(" ") : null;
+    region.title = title ? headingOf(region.titleLines) : null;
   }
   return real;
 }
@@ -323,7 +332,10 @@ function tableOf(lines) {
           cell = { text: run.text.trim(), x: run.x, x1: run.x1 };
           cells.push(cell);
         } else {
-          cell.text += (/\s$/.test(cell.text) ? "" : " ") + run.text.trim();
+          // The Revised edition sets its minus sign as a run of its own, flush
+          // against the figure: "-8 points", not "- 8 points".
+          const minus = profile && /(?:^|\s)[-‐‑−]$/.test(cell.text) && /^\d/.test(run.text.trim());
+          cell.text += (/\s$/.test(cell.text) || minus ? "" : " ") + run.text.trim();
           cell.x1 = run.x1;
         }
       }
@@ -381,6 +393,17 @@ function tableOf(lines) {
 }
 
 /**
+ * A heading's text, from its line or the lines it is set over. A
+ * small-capitals heading is typed in lower case and reads in title case, its
+ * lines together: "Damage Resistance" over "and Penetration".
+ */
+function headingOf(lines) {
+  const set = [lines].flat();
+  const text = set.map((l) => l.text).join(" ");
+  return profile && set.every((l) => /Black-SC/.test(l.font ?? "")) ? profile.headingText(text) : text;
+}
+
+/**
  * Paragraphs and headings from lines already in reading order.
  *
  * A new paragraph starts at an indented line, after a heading, or across a
@@ -403,10 +426,11 @@ function blocksOf(lines, { page, column } = {}) {
       // A heading set over two lines arrives as two lines of the same kind.
       const last = blocks[blocks.length - 1];
       if (!current && last && last.kind === kind && previous && Math.abs(line.y - previous.y) < line.size * 1.6) {
-        last.text = `${last.text} ${line.text}`;
+        last.lines.push(line);
+        last.text = headingOf(last.lines);
       } else {
         close();
-        blocks.push({ kind: kind === "sidebar-title" ? "h2" : kind, text: line.text, page: line.page, y: line.y, column: line.column });
+        blocks.push({ kind: kind === "sidebar-title" ? "h2" : kind, text: headingOf(line), page: line.page, y: line.y, column: line.column, lines: [line] });
       }
       previous = line;
       continue;
@@ -481,6 +505,7 @@ function blocksOf(lines, { page, column } = {}) {
   close();
 
   for (const block of blocks) {
+    delete block.lines;
     block.text = spaceDashes(block.text.replace(/\s+/g, " ").replace(/�/g, "•").trim());
     // A chapter's opening lines are set large and italic, and several lines of
     // them joined read as one very long "heading". A heading is a name, not a
@@ -615,9 +640,19 @@ function spanningTables(lines, edges) {
 /**
  * A page's structure: its running text in reading order, and its sidebars and
  * tables kept apart from it. `top` is where the page's text block starts
- * (`transcription.topMargin`, 45 points unless a book says otherwise).
+ * (`transcription.topMargin`, 45 points unless a book or the page's profile
+ * says otherwise).
  */
-export function structureOf(page, { top = 45 } = {}) {
+export function structureOf(page, options = {}) {
+  profile = page.profile ?? null;
+  try {
+    return structureOfPage(page, { top: options.top ?? profile?.top ?? 45 });
+  } finally {
+    profile = null;
+  }
+}
+
+function structureOfPage(page, { top }) {
   // A quotation set in the margin -- "I'm 37. I'm not old." / "– Dennis," /
   // "Monty Python and the Holy Grail" -- is plain italic with its source in
   // bold italic underneath. The source is the size of a heading, so it is

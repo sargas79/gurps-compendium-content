@@ -20,7 +20,7 @@
  * line is.
  */
 
-import { getDocument } from "pdfjs-dist/legacy/build/pdf.mjs";
+import { getDocument, OPS } from "pdfjs-dist/legacy/build/pdf.mjs";
 
 /** An open book, so a caller reading many pages opens the file once. */
 export async function openBook(path) {
@@ -193,8 +193,15 @@ function mostCommon(values) {
  */
 const GRID = { width: 146, pitch: 164, odd: 78, even: 60 };
 
-function columnsOf(lines, width, number) {
+function columnsOf(lines, width, number, profile) {
   const measured = measuredColumns(lines, width);
+  // The Revised edition's grid is two columns, and is trusted the same way.
+  if (profile) {
+    const g = profile.grid;
+    if (measured.edges.length === g.columns && Math.abs(measured.width - g.width) <= 3) return measured;
+    const start = number % 2 === 1 ? g.odd : g.even;
+    return { edges: Array.from({ length: g.columns }, (_, i) => start + i * g.pitch), width: g.width, lines: measured.lines };
+  }
   const base = number % 2 === 1 ? GRID.odd : GRID.even;
   // Trust the measurement when it found the whole grid; otherwise the grid.
   if (measured.edges.length === 3 && Math.abs(measured.width - GRID.width) <= 3) return measured;
@@ -304,11 +311,15 @@ function rejoinLoose(lines, columns) {
  * One page, laid out: every line with its column, its style, and whether it is
  * part of the running text or sits off the column grid.
  */
-export async function readPage(book, number) {
+export async function readPage(book, number, { profile = null } = {}) {
   const page = await book.pdf.getPage(number);
-  const { runs, width, height } = await runsOf(page);
+  const read = await runsOf(page);
+  const { width, height } = read;
+  // A profile can name a font that is never text: the Revised edition sets its
+  // trait-type letters ("Absolute Direction M P") in an icon face.
+  const runs = profile?.iconFont ? read.runs.filter((r) => !profile.iconFont.test(r.font)) : read.runs;
   const lines = linesOf(runs);
-  const columns = columnsOf(lines, width, number);
+  const columns = columnsOf(lines, width, number, profile);
   for (const line of lines) {
     line.column = columnOf(line, columns);
     line.page = number;
@@ -319,8 +330,108 @@ export async function readPage(book, number) {
     line.column = columnOf(line, columns);
     line.indent = line.column >= 0 ? line.x - columns.edges[line.column] : null;
   }
+  if (profile) {
+    // A box's text is off the column grid, however it lines up with one.
+    const boxes = await boxesOf(page);
+    for (const box of boxes) {
+      const inside = rejoined.filter((l) => l.x >= box.x0 - 2 && l.x1 <= box.x1 + 2 && l.y >= box.y0 - 2 && l.y <= box.y1 + 2);
+      // A heading standing on the box's first line is its title.
+      const title = inside.filter((l) => !l.text.match(/^\d+$/)).sort((a, b) => a.y - b.y)[0];
+      for (const l of inside) {
+        l.column = -1;
+        l.indent = null;
+        l.box = box;
+      }
+      if (title && title.size >= 11 && (title.bold || title.black)) {
+        // A title set over two lines is one title.
+        let last = title;
+        for (const l of inside.sort((a, b) => a.y - b.y)) {
+          if (l === title || l.y <= last.y || l.font !== title.font || l.size !== title.size || l.y - last.y > l.size * 1.6) continue;
+          last = l;
+          l.boxTitle = true;
+        }
+        title.boxTitle = true;
+      }
+    }
+    insetIndents(rejoined, columns);
+  }
   page.cleanup();
-  return { number, width, height, lines: rejoined, columns };
+  return { number, width, height, lines: rejoined, columns, profile };
+}
+
+/**
+ * The tinted boxes a page draws: a clipped region filled with a gradient, which
+ * is how the Revised edition sets a sidebar. The text of a box cannot be told
+ * from running text by its type, only by where it sits.
+ */
+async function boxesOf(page) {
+  const view = page.getViewport({ scale: 1 });
+  const ops = await page.getOperatorList();
+  const boxes = [];
+  const mul = (m, n) => [
+    m[0] * n[0] + m[2] * n[1], m[1] * n[0] + m[3] * n[1],
+    m[0] * n[2] + m[2] * n[3], m[1] * n[2] + m[3] * n[3],
+    m[0] * n[4] + m[2] * n[5] + m[4], m[1] * n[4] + m[3] * n[5] + m[5],
+  ];
+  let ctm = [1, 0, 0, 1, 0, 0];
+  const stack = [];
+  for (let i = 0; i < ops.fnArray.length; i++) {
+    const fn = ops.fnArray[i];
+    const args = ops.argsArray[i];
+    if (fn === OPS.save) stack.push(ctm);
+    else if (fn === OPS.restore) ctm = stack.pop() ?? ctm;
+    else if (fn === OPS.transform) ctm = mul(ctm, args);
+    else if (fn === OPS.constructPath && ops.fnArray[i + 1] === OPS.clip) {
+      // A clip that a gradient fills within a few operations is a box.
+      const shaded = ops.fnArray.slice(i + 2, i + 8).includes(OPS.shadingFill);
+      if (!shaded) continue;
+      const [x0, y0, x1, y1] = args[2];
+      const at = ([x, y]) => [ctm[0] * x + ctm[2] * y + ctm[4], view.height - (ctm[1] * x + ctm[3] * y + ctm[5])];
+      const [a, b] = [at([x0, y0]), at([x1, y1])];
+      const box = { x0: Math.min(a[0], b[0]), x1: Math.max(a[0], b[0]), y0: Math.min(a[1], b[1]), y1: Math.max(a[1], b[1]) };
+      // The page's own background is filled the same way.
+      if (box.x1 - box.x0 < view.width * 0.9 && box.y1 - box.y0 < view.height * 0.9) boxes.push(box);
+    }
+  }
+  return boxes;
+}
+
+/**
+ * Text set in from a column's edge, beside a box or a picture, is indented from
+ * its own margin, not from the column's: a paragraph opens 12 points in from
+ * wherever its lines start. Left as measured, every line of it read as the
+ * first line of a paragraph (the Revised edition's p. 30 and p. 378).
+ *
+ * The margin is where most of a stretch of full lines start, which is a
+ * paragraph's continuation lines; its first lines stand 12 points in.
+ */
+function insetIndents(lines, columns) {
+  const body = lines
+    .filter((l) => l.column >= 0 && l.size < 10.6)
+    .sort((a, b) => a.column - b.column || a.y - b.y);
+  let group = [];
+  const flush = () => {
+    const full = group.filter((l) => l.x1 - l.x > 120);
+    const votes = new Map();
+    for (const l of full) votes.set(Math.round(l.x), (votes.get(Math.round(l.x)) ?? 0) + 1);
+    const [margin, count] = [...votes].sort((a, b) => b[1] - a[1] || a[0] - b[0])[0] ?? [null, 0];
+    const edge = group.length ? columns.edges[group[0].column] : 0;
+    // Only a margin that several lines share, within a box's inset, and only
+    // where no line stands on the column's own edge: a paragraph's first lines
+    // are the ones set in from a margin, and they can outnumber the rest in a
+    // short stretch of text.
+    const onEdge = group.some((l) => Math.abs(l.x - edge) < 3);
+    if (margin !== null && count >= 3 && !onEdge && margin - edge > -4 && margin - edge < 40) {
+      for (const l of group) l.indent = l.x - margin;
+    }
+    group = [];
+  };
+  for (const line of body) {
+    const last = group[group.length - 1];
+    if (last && (last.column !== line.column || line.y - last.y > 24)) flush();
+    group.push(line);
+  }
+  flush();
 }
 
 /**
