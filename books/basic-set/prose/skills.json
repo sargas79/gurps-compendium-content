@@ -2752,6 +2752,14 @@
     "description": "<p>This skill allows you to strike difficult targets with ease when using a bow. On a success, add up the penalties for size and speed/range, and then divide them by three (round down).</p><p><em>Modifiers:</em> -10 if used instantly, dropping to -5 after 1 turn of concentration, -4 after 2 turns, -3 after 4 turns, -2 after 8 turns, -1 after 16 turns, and no penalty after 32 turns.</p>"
   },
   {
+    "_id": "f70bd677ccd18378",
+    "name": "Area Knowledge",
+    "pages": "B176",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This skill represents familiarity with the people, places, and politics of a given region. You usually have Area Knowledge only for the area you consider your \"home base,\" whether that's a single farm or a solar system. If information about other areas is available, the GM may allow you to learn additional Area Knowledge skills.</p><p>The GM should not require Area Knowledge rolls for ordinary situations; e.g., to find the blacksmith, tavern, or your own home. But he could require a roll to locate a smith to shoe your horse at 3 a.m., or to find the best ambush spot along a stretch of road. \"Secret\" or obscure information might give a penalty, require a Hidden Lore skill (p. 199), or simply be unavailable - GM's decision. For instance, Area Knowledge of Washington, D.C. gives you the location of the Russian Embassy, but not the KGB's current safe house.</p><p>The information covered by Area Knowledge often overlaps such skills as Current Affairs, Geography, Naturalist, and Streetwise. The difference is that Area Knowledge works for a single area: you know the habits of this tiger or gang boss, but have no special insight into tigers or gangs in general.</p><p>You can learn Area Knowledge for any sort of area. The larger the territory, the less \"personal\" and more general your knowledge becomes. Almost everyone will have Area Knowledge of some type. The \"canonical\" area classes are:</p><p><em>Neighborhood:</em> For an urban area: the residents and buildings of a few city blocks. For a rural area: the inhabitants, trails, streams, hiding places, ambush sites, flora, and fauna of a few hundred acres.</p><p><em>Village or Town:</em> All important citizens and businesses, and most unimportant ones; all public buildings and most houses.</p><p><em>City:</em> All important businesses, streets, citizens, leaders, etc.</p><p><em>Barony, County, Duchy, or Small Nation:</em> General nature of its settlements and towns, political allegiances, leaders, and most citizens of Status 5+.</p><p><em>Large Nation:</em> Location of its major cities and important sites; awareness of its major customs, ethnic groups, and languages (but not necessarily expertise); names of folk of Status 6+; and a general understanding of the economic and political situation.</p><p><em>Planet:</em> As for a large nation, but more general; knowledge of people of Status 7+ only.</p><p><em>Interplanetary State:</em> Location of major planets; familiarity with all known races (but not necessarily expertise); knowledge of people of Status 7+; general understanding of the economic and political situation.</p><p><em>Galaxy:</em> Location of the capitals of interplanetary states and the homeworlds of major races; general awareness of all major races; knowledge of individuals of Status 8; general understanding of relations between interplanetary states.</p><p>Area Knowledge for anything larger than a galaxy would be meaninglessly vague.</p><p>Your IQ-4 default applies to any of these classes, as long as you have lived in the area. Defaults are limited by \"common knowledge\" at your tech level! A TL0 hunter would have a default for every level up to \"Village or Town,\" while a TL8 student would have defaults up to \"Planet\" level. You must live in an interplanetary or interstellar state to have defaults for levels above \"Planet.\"</p><p>In some game worlds, Area Knowledge specialties may exist for parallel realities and other dimensions - Area Knowledge (Cyberspace), Area Knowledge (Dream Realms), etc. The knowledge such skills provide is left to the GM's judgment.</p>"
+  },
+  {
     "_id": "7b8502210c93ed71",
     "name": "Computer Operation/TL",
     "pages": "B184",
@@ -2918,6 +2926,22 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>This skill represents knowledge that is lost, deliberately hidden, or simply neglected. Whatever the reason, the general public is unaware of it. It is only available to those who study it specifically.</p><p>You must specialize in a particular body of secret knowledge. If you wish to enter play with Hidden Lore skills, you must account for this specific knowledge in your character story. The GM might even require you to purchase an Unusual Background before you can learn Hidden Lore skills. Of course, the GM is also free to forbid Hidden Lore skills to starting characters . . . or to PCs in general!</p><p>To acquire Hidden Lore in play, you must find a reliable source of relevant information. The GM may choose to tie skill increases in Hidden Lore to specific acts - such as reading moldy tomes - instead of allowing you to spend points freely. For instance, an ancient manuscript might let you spend up to eight points (and no more) on a specific Hidden Lore skill.</p><p>Remember that most Hidden Lore is secret because somebody powerful wants it kept that way. Thus, discussing or revealing your knowledge can be extremely hazardous.</p><p>Possible Hidden Lore specialties include:</p><p><em>Spirit Lore:</em> You know about ghosts and other spirit entities - names, motivations, etc.</p>"
+  },
+  {
+    "_id": "a41a4e74e6c213a8",
+    "name": "Hobby Skill (DX-based)",
+    "pages": "B200",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>DX or IQ/Easy</em></p><p><em>Default:</em> DX-4 or IQ-4, depending on the controlling attribute.</p><p>Many fields of study have little to do with adventuring or making a living - but people study them nonetheless. Each of these is a separate Hobby Skill. Those that require agility or a delicate touch (e.g., juggling, kite flying, needlepoint, and origami) are DX/Easy skills that default to DX-4, while those that focus on knowledge and trivia (e.g., comic books, rock music, science fiction, and tropical fish) are IQ/Easy skills that default to IQ-4.</p><p>A few points in a Hobby Skill can make roleplaying more fun - and possibly come in handy once in a while. You do not need a teacher to learn or improve a Hobby Skill. However, you cannot learn skills defined elsewhere in this chapter as Hobby Skills.</p>"
+  },
+  {
+    "_id": "31000f624363d7c5",
+    "name": "Hobby Skill (IQ-based)",
+    "pages": "B200",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>DX or IQ/Easy</em></p><p><em>Default:</em> DX-4 or IQ-4, depending on the controlling attribute.</p><p>Many fields of study have little to do with adventuring or making a living - but people study them nonetheless. Each of these is a separate Hobby Skill. Those that require agility or a delicate touch (e.g., juggling, kite flying, needlepoint, and origami) are DX/Easy skills that default to DX-4, while those that focus on knowledge and trivia (e.g., comic books, rock music, science fiction, and tropical fish) are IQ/Easy skills that default to IQ-4.</p><p>A few points in a Hobby Skill can make roleplaying more fun - and possibly come in handy once in a while. You do not need a teacher to learn or improve a Hobby Skill. However, you cannot learn skills defined elsewhere in this chapter as Hobby Skills.</p>"
   },
   {
     "_id": "8f0f3afcaa929e53",
@@ -5112,6 +5136,14 @@
     "description": "<p>This technique lets you \"buy off\" the basic -2 to Judo or -3 to Wrestling when using the rules given under Choke Hold on p. 404.</p>"
   },
   {
+    "_id": "4054fb00638fdfd4",
+    "name": "Disarming",
+    "pages": "B230",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If you know this technique above default, you may use it instead of the underlying skill whenever you attack to disarm (see Striking at Weapons, p. 400). For instance, if you have Broadsword-14 and Disarming (Broadsword)-17, you disarm as if you had Broadsword-17.</p>"
+  },
+  {
     "_id": "e3153aa8385e92d8",
     "name": "Dual-Weapon Attack (Beam Weapons (Pistol))",
     "pages": "B230",
@@ -5136,6 +5168,14 @@
     "description": "<p>Normally, you are at -4 to attack with two weapons at once unless you make an All-Out Attack. This technique lets you \"buy off\" that penalty. (Note that you must still learn Off-Hand Weapon Training, p. 232, to reduce the -4 for using the \"off\" hand!) For detailed rules, see Dual-Weapon Attacks (p. 417).</p>"
   },
   {
+    "_id": "a0ddc641c2597c4c",
+    "name": "Dual-Weapon Attack",
+    "pages": "B230",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Normally, you are at -4 to attack with two weapons at once unless you make an All-Out Attack. This technique lets you \"buy off\" that penalty. (Note that you must still learn Off-Hand Weapon Training, p. 232, to reduce the -4 for using the \"off\" hand!) For detailed rules, see Dual-Weapon Attacks (p. 417).</p><p>* You may learn this technique for Guns (Pistol), even in a realistic campaign.</p>"
+  },
+  {
     "_id": "0d5ae0ee56947a24",
     "name": "Elbow Strike (Brawling)",
     "pages": "B230",
@@ -5152,6 +5192,14 @@
     "description": "<p>This technique lets you \"buy off\" the -2 penalty to strike with the elbow. See Elbow Strike (p. 404) for more information.</p>"
   },
   {
+    "_id": "ef4753c40bc946fc",
+    "name": "Feint",
+    "pages": "B231",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If you know this technique above default, you may use it instead of the underlying skill whenever you feint (see Feint, p. 365). For instance, if you have Broadsword-14 and Feint (Broadsword)-16, you feint as if you had Broadsword-16.</p>"
+  },
+  {
     "_id": "9720daa1d5504dce",
     "name": "Finger Lock (Judo)",
     "pages": "B231",
@@ -5166,6 +5214,14 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>This technique lets you grab fingers and twist them painfully. Use the rules for Arm Lock (p. 403), except that all damage is to the hand - which is easier to cripple than the arm.</p>"
+  },
+  {
+    "_id": "0cfcf0aa76b29fa6",
+    "name": "Ground Fighting",
+    "pages": "B231",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique lets you \"buy off\" the -4 for attacking from your back. Roll against this technique instead of the prerequisite skill whenever you use that skill to attack from the ground. For instance, if you had Wrestling-14 and Ground Fighting (Wrestling)-13, you could grapple from the ground at skill 13.</p><p>In addition, make a roll against Ground Fighting whenever you must defend yourself from your back. On a success, you defend at -1 instead of at -3.</p>"
   },
   {
     "_id": "eacccc968a311509",
@@ -5214,6 +5270,30 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>This technique lets you \"buy off\" the -1 penalty to strike with the knee - see Knee Strike (p. 404).</p>"
+  },
+  {
+    "_id": "e5083e88dfaba363",
+    "name": "Neck Snap (ST)",
+    "pages": "B232",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This brute-force attack consists of grabbing and suddenly twisting the victim's head, with the intent of snapping the neck - see Neck Snap or Wrench Limb (p. 404). Unlike most techniques, Neck Snap defaults to ST, not a skill. Wrestling gives its usual skill-based ST bonus.</p>"
+  },
+  {
+    "_id": "4ea725f533d5761c",
+    "name": "Off-Hand Weapon Training",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique lets you \"buy off\" the -4 for using your \"off\" hand with one specific Melee Weapon skill. Use your level with this technique instead of the prerequisite skill whenever you use that skill to attack or parry with your off hand. For instance, if you had Rapier-14 and Off-Hand Weapon Training (Rapier)-14, you could attack and parry at full skill with your off hand.</p><p>With the GM's permission, you can learn this technique for any DX-based skill that requires only one hand.</p>"
+  },
+  {
+    "_id": "62425579c5b8e371",
+    "name": "Retain Weapon",
+    "pages": "B232",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If you know this technique above default, you may use it instead of the underlying skill whenever someone attempts to disarm you (see Striking at Weapons, p. 400). For instance, if you have Staff-13 and Retain Weapon (Staff)-16, you resist disarm attempts as if you had Staff-16.</p><p>You can also learn this technique for missile weapons, such as guns and bows. In that case, it defaults to DX and cannot exceed DX+5.</p>"
   },
   {
     "_id": "19fb0c146865d56f",
@@ -5312,6 +5392,14 @@
     "description": "<p>This technique, common among professional cameramen, allows you to buy off the -3 to use a motion-picture camera with Photography skill.</p>"
   },
   {
+    "_id": "99c6309521c2f701",
+    "name": "No-Landing Extraction",
+    "pages": "B233",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique lets you pick up cargo from the ground without landing. You can only fetch cargos outfitted with special no-landing extraction apparatus. Someone on the ground must make a successful Freight Handling roll to prepare the cargo (takes 2d hours). A failed Freight Handling or No-Landing Extraction roll means a missed pick-up or damaged cargo. Critical failure indicates the cargo is lost (critically injured, if a living passenger).</p>"
+  },
+  {
     "_id": "0eebd1c77ca6b03f",
     "name": "Rope Up (Climbing)",
     "pages": "B233",
@@ -5352,27 +5440,115 @@
     "description": "<p>Lockpicking is normally at -5 if you must work by touch, but if you routinely practice this way, it will eventually become second nature.</p><p>The GM might permit you to learn a Work by Touch technique for other \"thief\" skills - e.g., Explosives and Traps - allowing you to operate in total darkness, which is a common way to use such skills . . .</p>"
   },
   {
-    "_id": "f70bd677ccd18378",
-    "name": "Area Knowledge",
-    "pages": "B176",
+    "_id": "710da28197313fc4",
+    "name": "Acrobatic Stand",
+    "pages": "B333",
     "status": "reviewed",
     "notes": "",
-    "description": "<p>This skill represents familiarity with the people, places, and politics of a given region. You usually have Area Knowledge only for the area you consider your \"home base,\" whether that's a single farm or a solar system. If information about other areas is available, the GM may allow you to learn additional Area Knowledge skills.</p><p>The GM should not require Area Knowledge rolls for ordinary situations; e.g., to find the blacksmith, tavern, or your own home. But he could require a roll to locate a smith to shoe your horse at 3 a.m., or to find the best ambush spot along a stretch of road. \"Secret\" or obscure information might give a penalty, require a Hidden Lore skill (p. 199), or simply be unavailable - GM's decision. For instance, Area Knowledge of Washington, D.C. gives you the location of the Russian Embassy, but not the KGB's current safe house.</p><p>The information covered by Area Knowledge often overlaps such skills as Current Affairs, Geography, Naturalist, and Streetwise. The difference is that Area Knowledge works for a single area: you know the habits of this tiger or gang boss, but have no special insight into tigers or gangs in general.</p><p>You can learn Area Knowledge for any sort of area. The larger the territory, the less \"personal\" and more general your knowledge becomes. Almost everyone will have Area Knowledge of some type. The \"canonical\" area classes are:</p><p><em>Neighborhood:</em> For an urban area: the residents and buildings of a few city blocks. For a rural area: the inhabitants, trails, streams, hiding places, ambush sites, flora, and fauna of a few hundred acres.</p><p><em>Village or Town:</em> All important citizens and businesses, and most unimportant ones; all public buildings and most houses.</p><p><em>City:</em> All important businesses, streets, citizens, leaders, etc.</p><p><em>Barony, County, Duchy, or Small Nation:</em> General nature of its settlements and towns, political allegiances, leaders, and most citizens of Status 5+.</p><p><em>Large Nation:</em> Location of its major cities and important sites; awareness of its major customs, ethnic groups, and languages (but not necessarily expertise); names of folk of Status 6+; and a general understanding of the economic and political situation.</p><p><em>Planet:</em> As for a large nation, but more general; knowledge of people of Status 7+ only.</p><p><em>Interplanetary State:</em> Location of major planets; familiarity with all known races (but not necessarily expertise); knowledge of people of Status 7+; general understanding of the economic and political situation.</p><p><em>Galaxy:</em> Location of the capitals of interplanetary states and the homeworlds of major races; general awareness of all major races; knowledge of individuals of Status 8; general understanding of relations between interplanetary states.</p><p>Area Knowledge for anything larger than a galaxy would be meaninglessly vague.</p><p>Your IQ-4 default applies to any of these classes, as long as you have lived in the area. Defaults are limited by \"common knowledge\" at your tech level! A TL0 hunter would have a default for every level up to \"Village or Town,\" while a TL8 student would have defaults up to \"Planet\" level. You must live in an interplanetary or interstellar state to have defaults for levels above \"Planet.\"</p><p>In some game worlds, Area Knowledge specialties may exist for parallel realities and other dimensions - Area Knowledge (Cyberspace), Area Knowledge (Dream Realms), etc. The knowledge such skills provide is left to the GM's judgment.</p>"
+    "description": "<p>You can regain your feet quickly. A successful roll takes you from lying down to standing as a single Change Posture maneuver; on a critical success, you do so as a \"step.\" Failure means you go to a sitting posture. Critical failure leaves you lying down, wasting your turn.</p><p>You can also use Acrobatic Stand to go from crawling or sitting to standing as a step. In this case, failure means you stand as a Change Posture maneuver, not as a step. Critical failure means you fall down!</p><p><em>Modifiers:</em> A penalty equal to encumbrance level.</p>"
   },
   {
-    "_id": "a41a4e74e6c213a8",
-    "name": "Hobby Skill (DX-based)",
-    "pages": "B200",
+    "_id": "37b7e652421466bc",
+    "name": "Armed Grapple (Cloak)",
+    "pages": "B334",
     "status": "reviewed",
     "notes": "",
-    "description": "<p><em>DX or IQ/Easy</em></p><p><em>Default:</em> DX-4 or IQ-4, depending on the controlling attribute.</p><p>Many fields of study have little to do with adventuring or making a living - but people study them nonetheless. Each of these is a separate Hobby Skill. Those that require agility or a delicate touch (e.g., juggling, kite flying, needlepoint, and origami) are DX/Easy skills that default to DX-4, while those that focus on knowledge and trivia (e.g., comic books, rock music, science fiction, and tropical fish) are IQ/Easy skills that default to IQ-4.</p><p>A few points in a Hobby Skill can make roleplaying more fun - and possibly come in handy once in a while. You do not need a teacher to learn or improve a Hobby Skill. However, you cannot learn skills defined elsewhere in this chapter as Hobby Skills.</p>"
+    "description": "<p>You can use a weapon to restrain an opponent in close combat, resulting in a grapple. To snag someone at full reach, use a weapon made for that, like a whip (p. 406).</p><p>A one-handed weapon other than a cloak can grapple only if you grip it in two hands first; this requires a Ready maneuver. To initiate an armed grapple with most weapons, roll against weapon skill at -2 - this attack is awkward and unconventional. However, it's a standard move with a cloak (p. 404), and uses unpenalized Cloak skill. Use the hit location penalties for grappling (p. 370), not those for striking.</p><p>Your target may use any normal defense. If they fail to defend, you've successfully grappled them with your weapon.</p><p>While using your weapon to grapple, you can neither attack nor defend with it. On your turn, you can follow up with a takedown, pin, choke, or Arm Lock (options depend on the body part grappled). Releasing the grapple is a free action.</p>"
   },
   {
-    "_id": "31000f624363d7c5",
-    "name": "Hobby Skill (IQ-based)",
-    "pages": "B200",
+    "_id": "7d31fb1889a05375",
+    "name": "Armed Grapple",
+    "pages": "B334",
     "status": "reviewed",
     "notes": "",
-    "description": "<p><em>DX or IQ/Easy</em></p><p><em>Default:</em> DX-4 or IQ-4, depending on the controlling attribute.</p><p>Many fields of study have little to do with adventuring or making a living - but people study them nonetheless. Each of these is a separate Hobby Skill. Those that require agility or a delicate touch (e.g., juggling, kite flying, needlepoint, and origami) are DX/Easy skills that default to DX-4, while those that focus on knowledge and trivia (e.g., comic books, rock music, science fiction, and tropical fish) are IQ/Easy skills that default to IQ-4.</p><p>A few points in a Hobby Skill can make roleplaying more fun - and possibly come in handy once in a while. You do not need a teacher to learn or improve a Hobby Skill. However, you cannot learn skills defined elsewhere in this chapter as Hobby Skills.</p>"
+    "description": "<p>You can use a weapon to restrain an opponent in close combat, resulting in a grapple. To snag someone at full reach, use a weapon made for that, like a whip (p. 406).</p><p>A one-handed weapon other than a cloak can grapple only if you grip it in two hands first; this requires a Ready maneuver. To initiate an armed grapple with most weapons, roll against weapon skill at -2 - this attack is awkward and unconventional. However, it's a standard move with a cloak (p. 404), and uses unpenalized Cloak skill. Use the hit location penalties for grappling (p. 370), not those for striking.</p><p>Your target may use any normal defense. If they fail to defend, you've successfully grappled them with your weapon.</p><p>While using your weapon to grapple, you can neither attack nor defend with it. On your turn, you can follow up with a takedown, pin, choke, or Arm Lock (options depend on the body part grappled). Releasing the grapple is a free action.</p>"
+  },
+  {
+    "_id": "3135ed63550b578e",
+    "name": "Close Combat",
+    "pages": "B334",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The GM may let fighters use weapons without \"C\" in their Reach statistic in close combat (see Weapons for Close Combat, p. 391) at penalties based on their longest reach - not the reach at which they're currently ready. Skill is at -4 for reach 1, -8 for reach 2, or -12 for reach 3, and Parry is based on reduced skill. Swing damage is at -1 per yard of reach; e.g., -1 for a broadsword, -2 for a greatsword, or -3 for a halberd. Thrusting attacks do normal damage. (Ignore these rules for hilt and pommel strikes, Armed Grapple, and other tactics that assume close combat.)</p><p>This technique lets you buy off half the skill penalty. You may improve it to skill-2 for a reach 1 weapon, skill-4 for a reach 2 weapon, or skill-6 for a reach 3 weapon.</p><p>* Close Combat is also available for ranged weapons, letting you buy off the entire Bulk penalty for close-combat purposes only.</p>"
+  },
+  {
+    "_id": "6f0c1d7a2b9e4835",
+    "name": "Close Combat (Reach 2)",
+    "pages": "B334",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The GM may let fighters use weapons without \"C\" in their Reach statistic in close combat (see Weapons for Close Combat, p. 391) at penalties based on their longest reach - not the reach at which they're currently ready. Skill is at -4 for reach 1, -8 for reach 2, or -12 for reach 3, and Parry is based on reduced skill. Swing damage is at -1 per yard of reach; e.g., -1 for a broadsword, -2 for a greatsword, or -3 for a halberd. Thrusting attacks do normal damage. (Ignore these rules for hilt and pommel strikes, Armed Grapple, and other tactics that assume close combat.)</p><p>This technique lets you buy off half the skill penalty. You may improve it to skill-2 for a reach 1 weapon, skill-4 for a reach 2 weapon, or skill-6 for a reach 3 weapon.</p><p>* Close Combat is also available for ranged weapons, letting you buy off the entire Bulk penalty for close-combat purposes only.</p>"
+  },
+  {
+    "_id": "a41e8c53d7b20f96",
+    "name": "Close Combat (Reach 3)",
+    "pages": "B334",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The GM may let fighters use weapons without \"C\" in their Reach statistic in close combat (see Weapons for Close Combat, p. 391) at penalties based on their longest reach - not the reach at which they're currently ready. Skill is at -4 for reach 1, -8 for reach 2, or -12 for reach 3, and Parry is based on reduced skill. Swing damage is at -1 per yard of reach; e.g., -1 for a broadsword, -2 for a greatsword, or -3 for a halberd. Thrusting attacks do normal damage. (Ignore these rules for hilt and pommel strikes, Armed Grapple, and other tactics that assume close combat.)</p><p>This technique lets you buy off half the skill penalty. You may improve it to skill-2 for a reach 1 weapon, skill-4 for a reach 2 weapon, or skill-6 for a reach 3 weapon.</p><p>* Close Combat is also available for ranged weapons, letting you buy off the entire Bulk penalty for close-combat purposes only.</p>"
+  },
+  {
+    "_id": "e15555ad121bdaeb",
+    "name": "Evade (Acrobatics)",
+    "pages": "B334",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Evade (Acrobatics) lets you flip over, tumble under, or twist around your foe, while Evade (Judo) allows you to ward them off as you run past. Either replaces DX when trying to evade (p. 368). All normal modifiers apply.</p>"
+  },
+  {
+    "_id": "23b17801dd8308da",
+    "name": "Evade (Judo)",
+    "pages": "B334",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Evade (Acrobatics) lets you flip over, tumble under, or twist around your foe, while Evade (Judo) allows you to ward them off as you run past. Either replaces DX when trying to evade (p. 368). All normal modifiers apply.</p>"
+  },
+  {
+    "_id": "2def5945efbb6b4a",
+    "name": "Head Butt (Brawling)",
+    "pages": "B334",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a close-combat strike using the forehead. Natural targets are the face (-5) and skull (-7) of a standing adversary, but you can attack anything! However, while the skull is hard, it has poor reach and leverage.</p><p>Roll against Head Butt to hit. Damage is thrust-1 crushing. Your victim may defend normally; if they parry, any damage this causes affects your face. Self-inflicted injury for a target with DR 3+ applies to the skull; however, your skull's DR 2 protects normally. If you have rigid head protection - e.g., a metal helm - add +1 to damage and apply your armor's DR against self-inflicted injury.</p><p>* Those without either skill strike at DX-2 and do thrust-2 damage.</p>"
+  },
+  {
+    "_id": "6d235f9d052a4363",
+    "name": "Head Butt (Karate)",
+    "pages": "B334",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a close-combat strike using the forehead. Natural targets are the face (-5) and skull (-7) of a standing adversary, but you can attack anything! However, while the skull is hard, it has poor reach and leverage.</p><p>Roll against Head Butt to hit. Damage is thrust-1 crushing. Your victim may defend normally; if they parry, any damage this causes affects your face. Self-inflicted injury for a target with DR 3+ applies to the skull; however, your skull's DR 2 protects normally. If you have rigid head protection - e.g., a metal helm - add +1 to damage and apply your armor's DR against self-inflicted injury.</p><p>* Those without either skill strike at DX-2 and do thrust-2 damage.</p>"
+  },
+  {
+    "_id": "953cfad02fe22142",
+    "name": "Stamp Kick (Brawling)",
+    "pages": "B334",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This swift, downward heel strike uses your entire body weight to add force to the blow. It does more damage than a normal kick, but can only target an opponent who's lying down, or a standing foe's foot or leg.</p><p>Roll against Stamp Kick to hit. Damage is thrust+1, plus your Brawling or Karate bonus. On a miss, you stomp the ground and must make a DX roll to avoid ending up off balance and unable to retreat until your next turn.</p>"
+  },
+  {
+    "_id": "4978d1b586e6979d",
+    "name": "Stamp Kick (Karate)",
+    "pages": "B334",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This swift, downward heel strike uses your entire body weight to add force to the blow. It does more damage than a normal kick, but can only target an opponent who's lying down, or a standing foe's foot or leg.</p><p>Roll against Stamp Kick to hit. Damage is thrust+1, plus your Brawling or Karate bonus. On a miss, you stomp the ground and must make a DX roll to avoid ending up off balance and unable to retreat until your next turn.</p>"
+  },
+  {
+    "_id": "dbba439caaddbd7c",
+    "name": "Wrench Arm (ST)",
+    "pages": "B334",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This brute-force attack consists of grabbing and suddenly twisting the victim's limb - see Neck Snap or Wrench Limb (p. 404). The technique defaults to ST, not a skill, and must be learned separately for each limb: Wrench Arm, Wrench Leg, and so forth. Wrestling gives its usual skill-based ST bonus.</p>"
+  },
+  {
+    "_id": "ed3ed29e9ff1caaa",
+    "name": "Wrench Leg (ST)",
+    "pages": "B334",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This brute-force attack consists of grabbing and suddenly twisting the victim's limb - see Neck Snap or Wrench Limb (p. 404). The technique defaults to ST, not a skill, and must be learned separately for each limb: Wrench Arm, Wrench Leg, and so forth. Wrestling gives its usual skill-based ST bonus.</p>"
   }
 ]
