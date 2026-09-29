@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 
 import { slamDamage } from "../../../../system/src/rules/attack-options.js";
-import { longCrouchPosture, longDamagePenalty, moveAndAttackRefusals, slamMayUseFullMove, slamThrust, strikingPart } from "./rules.js";
+import { longCrouchPosture, longDamagePenalty, moveAndAttackRefusals, slamThrust, strikingPart } from "./rules.js";
 
-/** All-Out Attack (Long), slams and Move and Attack (GURPS Martial Arts pp. 97-98, 107). */
+/** All-Out Attack (Long) and Move and Attack (GURPS Martial Arts pp. 97-98, 107). */
 describe("All-Out Attack (Long)", () => {
   it("costs a swing -2 damage, or -1 per die, and leaves a thrust alone", () => {
     expect(longDamagePenalty("sw", 1)).toBe(-2);
@@ -15,14 +15,6 @@ describe("All-Out Attack (Long)", () => {
     expect(longCrouchPosture({ success: true, criticalFailure: false })).toBe("crouching");
     expect(longCrouchPosture({ success: false, criticalFailure: false })).toBe("kneeling");
     expect(longCrouchPosture({ success: false, criticalFailure: true })).toBe("lying");
-  });
-});
-
-describe("slams as All-Out Attacks", () => {
-  it("take full Move with Determined, Feint or Strong, but not Long or Double", () => {
-    expect(["determined", "feint", "strong"].every(slamMayUseFullMove)).toBe(true);
-    expect(slamMayUseFullMove("double")).toBe(false);
-    expect(slamMayUseFullMove("gurps-compendium-content.ma-long")).toBe(false);
   });
 });
 

@@ -534,13 +534,9 @@
     },
     "MA": {
       "Rules": {
-        "committedDefensiveAttack": {
-          "Name": "Committed and Defensive Attack",
-          "Hint": "Two maneuvers between Attack and the All-Out ones. Committed Attack: +2 to hit or +1 damage, a second step at -2, and defenses at -2 with no retreat. Defensive Attack: -2 damage, or -1 per die, for +1 to a defense or an unbalanced weapon that can still parry."
-        },
         "allOutAttackOptions": {
           "Name": "All-Out Attack (Long) and slams",
-          "Hint": "All-Out Attack (Long): a yard more reach, swings at -2 damage or -1 per die, and a DX roll to end in a crouch. A slam, flying tackle, pounce or shield rush may take All-Out Attack at full Move with Determined, Feint or Strong."
+          "Hint": "All-Out Attack (Long): a yard more reach, swings at -2 damage or -1 per die, and a DX roll to end in a crouch. Slams as an All-Out Attack are the Basic Set (Revised) rule \"All-Out Attack slams\"."
         },
         "moveAndAttack": {
           "Name": "Move and Attack with any melee attack",
@@ -578,10 +574,6 @@
           "Name": "Weapon balance, custom quality, combination and hidden weapons",
           "Hint": "Balance and custom quality levels, combination-weapon accessories with their attack modes, and concealment (rigs, trick weapons, special clothing, disguises) on a weapon's item sheet, priced in the book's order. Holdout and trick-weapon buttons on the weapon's row."
         },
-        "finerHitLocations": {
-          "Name": "New hit locations",
-          "Hint": "Ear, jaw, joints, nose, spine, and veins and arteries as called shots, the skull and face from behind, crushing blows at the vitals, the 1d sub-rolls on random hits, and the lasting results of an ear, nose, spine or joint wound for the GM to confirm."
-        },
         "multipleAttacks": {
           "Name": "Multiple attacks",
           "Hint": "Attacks from the maneuver and Extra Attack (All-Out Attack (Double) adds one), a Rapid Strike option applied to every attack in it, one special option per maneuver, a target picked per attack with an attack used up per yard skipped, feints traded for attacks, and no grappling move repeated on the same foe in a turn."
@@ -596,7 +588,7 @@
         },
         "limitedDefenses": {
           "Name": "Limits on dodging and blocking",
-          "Hint": "-1 per dodge after the first in a turn, more than one block at -5 each (less for a Weapon Master), and dodging firearms only with evasive movement against the shooter. Trained by a Master and Weapon Master fighters are exempt from the dodge limits, as the book recommends."
+          "Hint": "-1 per dodge after the first in a turn, more than one block at -5 each (less for a Weapon Master), Dodging firearms only with evasive movement is the Basic Set (Revised) rule \"Restricted Dodge Against Firearms\". Trained by a Master and Weapon Master fighters are exempt from the dodge limits, as the book recommends."
         },
         "targetedAttacks": {
           "Name": "Targeted Attacks and Combinations",
@@ -604,11 +596,11 @@
         },
         "extraEffort": {
           "Name": "Extra effort in combat",
-          "Hint": "Giant Step, Great Lunge, Heroic Charge and Rapid Recovery; one offensive and one defensive extra-effort option a turn; Flurry of Blows a point of FP per Rapid Strike attack, halved again; Mighty Blows on Attack only; a critical failure on a new option costs 1 HP."
+          "Hint": "Flurry of Blows a point of FP per Rapid Strike attack, halved again, and Mighty Blows on Attack only. Giant Step, Great Lunge, Heroic Charge, Rapid Recovery and the limit of one offensive and one defensive option a turn are the Basic Set (Revised) rules of the same name."
         },
         "rangedOptions": {
           "Name": "Ranged attack options",
-          "Hint": "Quick-shooting bows, blowpipes and slings; Rapid Strike and handfuls of thrown weapons; prediction shots that lower Dodge; feints at range; a Heroic Archer's extra aim."
+          "Hint": "Quick-shooting bows, blowpipes and slings; Rapid Strike and handfuls of thrown weapons; a Heroic Archer's extra aim. Prediction shots and feints at range are the Basic Set (Revised) rule \"Tricky Shooting\", and a Heroic Archer's quick ready is the Basic Set trait's."
         },
         "cinematicRangedOptions": {
           "Name": "Cinematic ranged options",
@@ -640,7 +632,7 @@
         },
         "longWeaponsInClose": {
           "Name": "Long weapons in close combat",
-          "Hint": "-4 skill a yard of reach, Parry from that skill and -1 swing damage a yard, and a haft attack for long polearms."
+          "Hint": "A haft attack for long polearms, and choking up around the head. Fighting with a long weapon in close combat at -4 skill a yard of reach is the Basic Set (Revised) rule \"Any weapon in close combat\", which choking up needs."
         },
         "grabAndSmash": {
           "Name": "Grab and Smash, and pain",
@@ -733,13 +725,10 @@
       },
       "Committed": {
         "Title": "Committed Attack",
-        "Mode": "Committed as",
         "Modes": {
           "determined": "Determined (+2 to hit)",
           "strong": "Strong (+1 damage)"
         },
-        "Steps": "Steps taken",
-        "SecondStep": "Second step",
         "NoDodge": "No dodge after a Committed Attack kick",
         "NoBlock": "No block with the shield that made the Committed Attack",
         "NoParry": "Made the Committed Attack",
@@ -747,14 +736,7 @@
         "NoFeverish": "No Feverish Defense after a Committed Attack"
       },
       "Defensive": {
-        "Title": "Defensive Attack",
-        "Benefit": "Defensive Attack for",
-        "Benefits": {
-          "parry": "+1 to Parry",
-          "block": "+1 to Block",
-          "sameWeapon": "Parry with this unbalanced weapon",
-          "kick": "Kick: +2 against Leg Grapple and to stay standing"
-        }
+        "Title": "Defensive Attack"
       },
       "Wait": {
         "Response": "Respond with",
@@ -771,10 +753,6 @@
         "Crouch": "End in a crouch (DX)",
         "CrouchRoll": "Ending the Long attack in a crouch",
         "OnlyLong": "Only with All-Out Attack (Long)"
-      },
-      "Slam": {
-        "FullMove": "Slam at full Move",
-        "NotThisOption": "A slam at full Move takes Determined, Feint or Strong"
       },
       "Move": {
         "SlamDamage": "Thrusts use slam damage when better",
@@ -1118,53 +1096,6 @@
         "DeployLabel": "Working the mechanism ({weapon})",
         "PopOut": "Pops out of another weapon"
       },
-      "HitLocations": {
-        "Locations": {
-          "ear": "Ear",
-          "earSlice": "Ear (slicing it off)",
-          "jaw": "Jaw",
-          "nose": "Nose",
-          "spine": "Spine",
-          "armJoint": "Arm joint",
-          "legJoint": "Leg joint",
-          "handJoint": "Hand joint",
-          "footJoint": "Foot joint",
-          "armVein": "Arm vein or artery",
-          "legVein": "Leg vein or artery",
-          "neckVein": "Neck vein or artery",
-          "skullBehind": "Skull (from behind)",
-          "faceBehind": "Face (from behind)",
-          "vitalsCrushing": "Vitals (crushing)"
-        },
-        "Outcomes": {
-          "earLost": {
-            "Title": "Ear cut",
-            "Text": "{name}'s ear is cut; injury past HP/4 was lost. It counts as a major wound, without the face's -5 to knockdown."
-          },
-          "earRemoved": {
-            "Title": "Ear lost",
-            "Text": "{name}'s ear is cut off: a major wound, and a level of Appearance lost."
-          },
-          "noseBroken": {
-            "Title": "Broken nose",
-            "Text": "{name}'s nose is broken: a major wound to the face, and No Sense of Smell/Taste until it heals."
-          },
-          "noseLopped": {
-            "Title": "Nose lopped off",
-            "Text": "{name}'s nose is cut off: two levels of Appearance lost."
-          },
-          "spineCrippled": {
-            "Title": "Crippled spine",
-            "Text": "{name}'s spine is crippled: automatic knockdown and stunning, Bad Back (Severe) and Lame (Paraplegic), each with its own recovery roll."
-          },
-          "jointCrippled": {
-            "Title": "Crippled joint",
-            "Text": "{name}'s joint is crippled; recovery rolls are at -2."
-          }
-        },
-        "Confirm": "Apply as a condition",
-        "Applied": "{name}: {what}"
-      },
       "MultipleAttacks": {
         "RapidStrike": "Rapid Strike (attacks, 2+)",
         "RapidStrikeLine": "Rapid Strike ({attacks} attacks)",
@@ -1202,9 +1133,7 @@
         "Dual": "Parry both halves (Dual-Weapon Attack)",
         "DualFailed": "Failed: both halves of the Dual-Weapon Attack hit.",
         "DodgeLimit": "Dodged already this turn",
-        "MultipleBlocks": "Blocked already this turn",
-        "Evasive": "Evasive movement (against the shooter you target at the end of your turn)",
-        "NoEvasive": "Dodging firearms takes evasive movement against this shooter"
+        "MultipleBlocks": "Blocked already this turn"
       },
       "Techniques": {
         "TargetedAttack": "Targeted Attack",
@@ -1230,21 +1159,8 @@
         "SetupFailed": "{name} ends: its setup failed"
       },
       "Effort": {
-        "GiantStep": "Giant Step",
-        "GiantStepNote": "Giant Step: an extra step before or after the attack",
-        "GreatLunge": "Great Lunge",
-        "GreatLungeNote": "Great Lunge: +1 reach, swings -2 damage (or -1 per die), defenses kept",
-        "HeroicCharge": "Heroic Charge",
-        "HeroicChargeNote": "Heroic Charge: no Move and Attack penalty or cap; its defense limits still apply",
         "Flurry": "Flurry of Blows (Rapid Strike)",
-        "RapidRecovery": "Rapid Recovery (1 FP)",
-        "Recovered": "{weapon} can parry again this turn",
-        "Critical": "{option}: critical failure",
-        "CriticalLeg": "{option}: critical failure, hurting the leg",
         "Refusals": {
-          "oneOffense": "Only one offensive extra-effort option a turn",
-          "oneDefense": "Only one defensive extra-effort option a turn",
-          "defensiveGrip": "No Great Lunge from a Defensive Grip",
           "mightyAttackOnly": "Mighty Blows only on an Attack maneuver"
         },
         "FlurryWithoutRapidStrike": "Flurry of Blows needs a Rapid Strike: no FP spent"
@@ -1262,11 +1178,6 @@
         "DroppedWeapon": "{weapon} is dropped!",
         "TooSlow": "Readied too slowly to shoot this turn; it can shoot on a later turn at no penalty",
         "ShootNow": "{weapon} is ready: its next shot this turn is at {penalty}",
-        "Prediction": "Prediction shot (Deceptive, Dodge only)",
-        "PredictionTooLow": "A prediction shot needs effective skill {minimum} or better; this shot is at {skill}",
-        "FeintRange": "Range ({yards} yd)",
-        "FeintOutOfRange": "The target is {yards} yards away, past this weapon's range of {range}",
-        "TargetSize": "Target's size",
         "HeroicArcherAim": "Heroic Archer, aiming",
         "Hand": "Throwing hand",
         "Hands": {
@@ -1411,8 +1322,6 @@
         "GrappledNoRetreat": "Grappled: no retreat",
         "LetGoToRetreat": "Let go with every limb to retreat",
         "HandsHolding": "Both hands are holding",
-        "InClose": "In close combat",
-        "InCloseHint": "A long weapon in close combat: {skill} skill, {parry} Parry, less swing damage",
         "Haft": "Haft (close combat)",
         "BearHugAsk": "Squeeze {foe}: crush the breath out of him for fatigue, or squeeze for injury?",
         "BearHugFatigue": "Fatigue",

@@ -15,7 +15,6 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { COMMITTED, DEFENSIVE } from "../committed-defensive/index.js";
 import { gripOf } from "../readying/index.js";
 import { isDefensive } from "../grips/rules.js";
 import {
@@ -91,7 +90,7 @@ export function readyUntrained(api: GWorldApi, untrained: () => boolean, harsh: 
     const maneuver = String(context.actor.system?.maneuver ?? "");
     const rapid = Math.floor(Number(context.options?.[`${MODULE_ID}.ma-rapid-strike`]) || 0) >= 2;
     const grip = context.item && !context.ranged ? isDefensive(gripOf(api, context.item)) : false;
-    if (rapid || Number(context.deceptive) > 0 || grip || maneuver === `${MODULE_ID}.${COMMITTED}` || maneuver === `${MODULE_ID}.${DEFENSIVE}`) {
+    if (rapid || Number(context.deceptive) > 0 || grip || maneuver === "committedAttack" || maneuver === "defensiveAttack") {
       context.refusal = L("Limited");
     }
   });

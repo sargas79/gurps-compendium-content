@@ -74,28 +74,6 @@
     }
   },
   {
-    "_id": "deb4a2255bcab566",
-    "name": "Heroic Archer",
-    "type": "trait",
-    "system": {
-      "category": "advantage",
-      "points": 20,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Martial Arts p. 45"
-    }
-  },
-  {
     "_id": "6eb14cd60ccb6833",
     "name": "Armor Familiarity",
     "type": "trait",
@@ -228,28 +206,6 @@
     }
   },
   {
-    "_id": "c7ea140f07c31dd9",
-    "name": "Improvised Weapons",
-    "type": "trait",
-    "system": {
-      "category": "perk",
-      "points": 1,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Martial Arts p. 50"
-    }
-  },
-  {
     "_id": "a028bd1cf56cff64",
     "name": "Naval Training",
     "type": "trait",
@@ -318,28 +274,6 @@
   {
     "_id": "7023ec41a822e204",
     "name": "Neck Control (Karate)",
-    "type": "trait",
-    "system": {
-      "category": "perk",
-      "points": 1,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Martial Arts p. 50"
-    }
-  },
-  {
-    "_id": "99baf1b023f6e233",
-    "name": "Off-Hand Weapon Training",
     "type": "trait",
     "system": {
       "category": "perk",
@@ -624,28 +558,6 @@
     }
   },
   {
-    "_id": "f4e7192822942e39",
-    "name": "Skill Adaptation (Acrobatic Feints)",
-    "type": "trait",
-    "system": {
-      "category": "perk",
-      "points": 1,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Martial Arts p. 51"
-    }
-  },
-  {
     "_id": "de940a1bec944919",
     "name": "Skill Adaptation (Acrobatic Kicks)",
     "type": "trait",
@@ -668,118 +580,8 @@
     }
   },
   {
-    "_id": "00ce73c10bf37908",
-    "name": "Special Exercises",
-    "type": "trait",
-    "system": {
-      "category": "perk",
-      "points": 1,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Martial Arts p. 51"
-    }
-  },
-  {
-    "_id": "87749d0c50473833",
-    "name": "Special Exercises (DR 1 with Tough Skin)",
-    "type": "trait",
-    "system": {
-      "category": "perk",
-      "points": 1,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Martial Arts p. 51"
-    }
-  },
-  {
-    "_id": "385a4d91922b00c9",
-    "name": "Special Exercises (Striking ST +1)",
-    "type": "trait",
-    "system": {
-      "category": "perk",
-      "points": 1,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Martial Arts p. 51"
-    }
-  },
-  {
-    "_id": "c1daa85c67956092",
-    "name": "Special Exercises (Arm ST +1)",
-    "type": "trait",
-    "system": {
-      "category": "perk",
-      "points": 1,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Martial Arts p. 51"
-    }
-  },
-  {
     "_id": "850acbbb359cb92b",
     "name": "Special Setup",
-    "type": "trait",
-    "system": {
-      "category": "perk",
-      "points": 1,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Martial Arts p. 51"
-    }
-  },
-  {
-    "_id": "cb64e26af4259376",
-    "name": "Strongbow",
     "type": "trait",
     "system": {
       "category": "perk",
@@ -998,28 +800,6 @@
     }
   },
   {
-    "_id": "3cbc51eb5fedc450",
-    "name": "Unusual Training",
-    "type": "trait",
-    "system": {
-      "category": "perk",
-      "points": 1,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Martial Arts p. 52"
-    }
-  },
-  {
     "_id": "86cd29b9a18134c6",
     "name": "Weapon Adaptation",
     "type": "trait",
@@ -1039,28 +819,6 @@
       "rangedModes": [],
       "description": "",
       "reference": "Martial Arts p. 52"
-    }
-  },
-  {
-    "_id": "89a98a90852a3ea6",
-    "name": "Weapon Bond",
-    "type": "trait",
-    "system": {
-      "category": "perk",
-      "points": 1,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Martial Arts p. 53"
     }
   },
   {
