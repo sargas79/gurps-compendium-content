@@ -15,12 +15,13 @@
 import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
 import { isHoldoutRoll, wearClothingLine } from "../../../shared/concealment/rules.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { gearData, loadFor, registerGearData, storeGear, type GearData, type StoredLoad } from "./data.js";
+import { gearData, loadFor, ownGadget, ownWeapon, registerGearData, storeGear, storeSystemOption, type GearData, type StoredLoad } from "./data.js";
 import {
   adjustWeaponRows,
   askedWeapon,
   bookBreakage,
   concealmentOf,
+  gadgetPricing,
   gearPrice,
   isGadget,
   isWeapon,
@@ -28,7 +29,7 @@ import {
   weaponClassOf,
   weaponProblems,
 } from "./effects.js";
-import { gadgetCostFactor, gadgetWeightFactor, RUGGED_BONUS } from "./gadgets.js";
+import { RUGGED_BONUS } from "./gadgets.js";
 import {
   HAND_LOADED,
   PAYLOAD_OPTIONS,
@@ -55,13 +56,13 @@ function itemContext(api: GWorldApi, item: any): Record<string, unknown> {
   const priced = gearPrice(api, item);
   const context: Record<string, unknown> = { data, priced: priced ? F("Gadget.PricedAt", { cost: priced.cost, weight: priced.weight }) : "" };
   if (isGadget(item)) {
-    const quality = item.type === "equipment" && item.system?.category !== "tool" ? String(item.system?.equipmentQuality ?? "basic") : "basic";
+    const pricing = gadgetPricing(api, item, data);
     context.gadget = {
       clothing: item.type === "armor",
       undercover: [0, 1, 2].map((n) => ({ value: n, label: L(`Gadget.${n ? `Undercover${n}` : "UndercoverNone"}`), selected: data.gadget.undercover === n })),
       hint: F("Gadget.Priced", {
-        cf: gadgetCostFactor(data.gadget, quality),
-        weight: Math.round(gadgetWeightFactor(data.gadget) * 100) / 100,
+        cf: pricing.costFactor,
+        weight: Math.round(pricing.weightFactor * 100) / 100,
         cost: data.listCost || Number(item.system?.listCost) || Number(item.system?.cost) || 0,
         listWeight: data.listWeight || Number(item.system?.weight) || 0,
       }),
@@ -95,6 +96,8 @@ function itemContext(api: GWorldApi, item: any): Record<string, unknown> {
       });
     }
   }
+  // Signature Gear's flag is the system's; under its flat rule the system bills it, and this book's variant stands aside.
+  context.signatureVariant = !api.registry.isRuleOn("flatSignatureGear");
   return context;
 }
 
@@ -122,15 +125,18 @@ function itemListeners(api: GWorldApi, element: HTMLElement, item: any): void {
           (input as HTMLInputElement).checked = false;
           return;
         }
-        await storeGear(item, { weapon: asked.weapon });
+        // Balanced and Disguised are the system's fields; the rest of the book's weapon options are this module's.
+        if (key === "balanced" || key === "disguised") await storeSystemOption(item, key, Boolean(value));
+        else await storeGear(item, { weapon: ownWeapon(asked.weapon) });
         return;
       }
       if (group === "gadget" && key) {
-        await storeGear(item, { gadget: { ...data.gadget, [key]: key === "undercover" ? Math.max(0, Math.min(2, Number(value))) : Boolean(value) } });
+        if (key === "cuttingEdge" || key === "rugged" || key === "disguised") await storeSystemOption(item, key, Boolean(value));
+        else await storeGear(item, { gadget: ownGadget(item, { ...data.gadget, [key]: key === "undercover" ? Math.max(0, Math.min(2, Number(value))) : Boolean(value) }) });
         return;
       }
       if (group === "improvisedPenalty") await storeGear(item, { improvisedPenalty: Math.min(0, Math.floor(Number(value))) });
-      else if (group === "signature") await storeGear(item, { signature: Boolean(value) });
+      else if (group === "signature") await storeSystemOption(item, "signature", Boolean(value));
       else if (group === "holdout" || group === "listCost" || group === "listWeight") await storeGear(item, { [group]: Math.max(0, Number(value)) });
     });
   });

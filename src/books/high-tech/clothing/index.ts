@@ -1,7 +1,7 @@
 /**
  * High-Tech's clothing against the weather and its climate-controlled
  * clothing (pp. 63-65, 74), registered with the system through the add-on API
- * under three switches. The rules are in `rules.ts`; what an outfit is comes
+ * under two switches. The rules are in `rules.ts`; what an outfit is comes
  * from its name, and what its wearer has left off from this module's
  * `clothing` data on it.
  *
@@ -16,9 +16,8 @@
  *     hot day's battle, and 2 an hour on a hot march (`gworld.fatigueCost`:
  *     the system's `hotDay` part, API 1.147.0), which a worn ghillie suit costs too, as an
  *     overcoat, under the camouflage switch (p. 77).
- *   - **Frostbite (frostbite):** where the cold costs FP, a damage card for
- *     each exposed hit location, a point of injury per FP it came to after
- *     Very Fit, through no DR (`gworld.afterFatigue`).
+ *   - **Frostbite** is the system's since Basic Set Revised p. 574 (its `frostbite`
+ *     switch): the exposed locations are what the worn clothing leaves bare.
  *   - **Climate control (climateControl):** worn heated clothing, a
  *     climate-control system or a cooling vest widens the comfort zone
  *     (`temperatureTolerance`) through the shared climate engine, the powered
@@ -52,8 +51,6 @@ import {
   betterClass,
   coolingCharge,
   coolingUntil,
-  exposedLocations,
-  frostbiteInjury,
   furCovers,
   missingPiecesPenalty,
   outfitOf,
@@ -74,7 +71,6 @@ const FIELD = "clothing";
 
 export interface ClothingSwitches {
   clothing: () => boolean;
-  frostbite: () => boolean;
   climate: () => boolean;
   /** Camouflage's switch: a worn ghillie suit counts as an overcoat for fatigue (p. 77). */
   ghillie?: () => boolean;
@@ -166,7 +162,6 @@ export function clothingData(item: any): ClothingData {
 
 const tlOf = (item: any): number => Number(/\d+/.exec(String(item?.system?.tl ?? ""))?.[0]) || 0;
 const isWorn = (item: any): boolean => item?.type === "equipment" && item.system?.carried !== false && item.system?.equipped === true;
-const actorKey = (actor: any): string => String(actor?.uuid ?? actor?.id ?? "");
 
 /** What a worn piece is worth against the cold, or null for a piece that isn't clothing to these rules. */
 function clothingOf(item: any, on: ClothingSwitches): { clothing: ClothingClass; outfit: Outfit | null } | null {
@@ -219,27 +214,6 @@ function wornGhillie(actor: any): any {
     const data = camouflageData(i);
     return patternShowing(data) === "ghillie" && !data.net;
   }) ?? null;
-}
-
-// ── frostbite (p. 63) ──
-
-/** The class of clothing each character's last cold roll was made in, for the FP it costs. */
-const lastColdRoll = new Map<string, ClothingClass>();
-
-async function frostbite(api: GWorldApi, actor: any, fp: number, clothing: ClothingClass, on: ClothingSwitches): Promise<void> {
-  const injury = frostbiteInjury(fp);
-  if (injury <= 0) return;
-  for (const location of exposedLocations(clothing, missingFor(actor, clothing, on))) {
-    await api.roll.damage({
-      actor,
-      label: F("FrostbiteLabel", { name: String(actor?.name ?? ""), location: game.i18n.localize(`GCC.HT.Clothing.Location.${location}`), fp }),
-      formula: String(injury),
-      damageType: "tox" as never,
-      ignoresDr: true,
-      calledShot: { hitLocation: location, chink: false } as never,
-      source: "frostbite",
-    });
-  }
 }
 
 // ── the item sheet ──
@@ -363,7 +337,6 @@ export function readyClothing(api: GWorldApi, on: ClothingSwitches): void {
 
     if (tags.includes("cold")) {
       const clothing: ClothingClass = context.weather?.clothing ?? "winter";
-      lastColdRoll.set(actorKey(actor), clothing);
       // Winter or arctic clothes with pieces left off: -1 each (p. 63).
       if (on.clothing()) {
         const missing = missingFor(actor, clothing, on);
@@ -412,17 +385,6 @@ export function readyClothing(api: GWorldApi, on: ClothingSwitches): void {
     const fp = HOT_BATTLE_ARMOUR_FP * hours;
     context.parts[at].fp = fp;
     context.sources.push(F(armour ? "HotBattleLine" : "HotGhillieLine", { name: garment.name, fp }));
-  });
-
-  // Frostbite: a point to each exposed location per FP the cold took, once
-  // Very Fit and the fatigue chart have had their say (p. 63; API 1.138.0).
-  Hooks.on(api.combat.hooks.afterFatigue, (context: any) => {
-    const actor = context?.actor;
-    if (!actor || context.reason !== "exposure" || context.details?.heat !== false) return;
-    const clothing = lastColdRoll.get(actorKey(actor)) ?? "winter";
-    lastColdRoll.delete(actorKey(actor));
-    const fp = Number(context.fpLost) || 0;
-    if (on.frostbite() && fp > 0) void frostbite(api, actor, fp, clothing, on);
   });
 
   // Fur winter or arctic clothes: DR 1 wherever the outfit covers (p. 64).

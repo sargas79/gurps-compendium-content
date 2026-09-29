@@ -75,13 +75,6 @@ const SCENARIOS: Record<string, { record: string; arrange: Arrange }> = {
       actor.system.aim = { turns: 6 };
     },
   },
-  // FP lost to the cold after a roll made in light clothing (p. 63).
-  frostbite: {
-    record: "Summer Clothes",
-    arrange: (_actor, _item, context) => {
-      Object.assign(context, { tags: ["exposure", "cold"], weather: { clothing: "light" }, reason: "exposure", details: { heat: false }, fp: 2, fpLost: 2 });
-    },
-  },
   // A blow that cripples an arm with twice what it takes (p. 162).
   realisticLimbWounds: {
     record: "Springfield M1873, .45-70",
@@ -527,7 +520,7 @@ describe("each High-Tech switch, on alone over the book's records (#397)", () =>
 
   it("reads the book's records and its switches, and nothing else registers", async () => {
     expect(docs.length).toBeGreaterThan(1400);
-    expect(switches()).toHaveLength(160);
+    expect(switches()).toHaveLength(157);
     on = new Set();
     baseOffered = await offered();
   });

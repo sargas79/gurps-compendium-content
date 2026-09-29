@@ -120,12 +120,12 @@ EQUIPMENT	Workshop (Electrician)	Workshop	HT:EE15, HT24	skip	identical: $15,000,
 EQUIPMENT	Mini-Tool Kit (Electronics Repair)	Mini-Tool Kit (Electronics Repair)	HT:EE15, HT24	skip	identical: $400, 2 lbs.
 EQUIPMENT	Portable Tool Kit (Electronics Repair)	Portable Tool Kit (Electronics Repair)	HT:EE15, HT24	skip	identical: $1,200, 10 lbs.
 EQUIPMENT	Workshop (Electronics Repair)	Workshop (Electronics Repair)	HT:EE15, HT24	skip	identical: $30,000, 500 lbs.
-EQUIPMENT	Tiny (T)	T Battery	HT:EE16, HT13	skip	same $0.25, neg. (High-Tech 0.02 lb.); the battery table stays High-Tech's (E1)
-EQUIPMENT	Extra-Small (XS)	XS Battery	HT:EE16, HT13	skip	identical: $0.50, 0.1 lb.
-EQUIPMENT	Small (S)	S Battery	HT:EE16, HT13	skip	identical: $1, 0.33 lb.
-EQUIPMENT	Medium (M)	M Battery	HT:EE16, HT13	skip	1.5 lbs. against 2 lbs.: the supplement's sizes are alkaline, High-Tech's M, L and VL heavier; E1 keeps High-Tech's table and #488's chemistry field reconciles them (TRIAGE.md)
-EQUIPMENT	Large (L)	L Battery	HT:EE16, HT13	skip	$15, 15 lbs. against $10, 10 lbs.: High-Tech's L is the supplement's lead-acid L (E1, #488)
-EQUIPMENT	Very Large (VL)	VL Battery	HT:EE16, HT13	skip	$30, 75 lbs. against $20, 50 lbs.: High-Tech's VL is the supplement's lead-acid VL (E1, #488)
+EQUIPMENT	Tiny (T)	Battery, Tiny (T)	HT:EE16, HT13	skip	the Basic Set's battery (p. 578) is the record now, which the system prints; High-Tech's T Battery record is retired (#583). same $0.25, neg. (High-Tech 0.02 lb.); the battery table stays High-Tech's (E1)
+EQUIPMENT	Extra-Small (XS)	Battery, Extra-Small (XS)	HT:EE16, HT13	skip	the Basic Set's battery (p. 578) is the record now, which the system prints; High-Tech's XS Battery record is retired (#583). identical: $0.50, 0.1 lb.
+EQUIPMENT	Small (S)	Battery, Small (S)	HT:EE16, HT13	skip	the Basic Set's battery (p. 578) is the record now, which the system prints; High-Tech's S Battery record is retired (#583). identical: $1, 0.33 lb.
+EQUIPMENT	Medium (M)	Battery, Medium (M)	HT:EE16, HT13	skip	the Basic Set's battery (p. 578) is the record now, which the system prints; High-Tech's M Battery record is retired (#583). 1.5 lbs. against 2 lbs.: the supplement's sizes are alkaline, High-Tech's M, L and VL heavier; E1 keeps High-Tech's table and #488's chemistry field reconciles them (TRIAGE.md)
+EQUIPMENT	Large (L)	Battery, Large (L)	HT:EE16, HT13	skip	the Basic Set's battery (p. 578) is the record now, which the system prints; High-Tech's L Battery record is retired (#583). $15, 15 lbs. against $10, 10 lbs.: High-Tech's L is the supplement's lead-acid L (E1, #488)
+EQUIPMENT	Very Large (VL)	Battery, Very Large (VL)	HT:EE16, HT13	skip	the Basic Set's battery (p. 578) is the record now, which the system prints; High-Tech's VL Battery record is retired (#583). $30, 75 lbs. against $20, 50 lbs.: High-Tech's VL is the supplement's lead-acid VL (E1, #488)
 EQUIPMENT	Laser Scalpel	Surgical Laser	HT:EE14, HT224	keep	near-duplicate: $1,850, 45 lbs., household power, against $100,000, 200 lbs.
 EQUIPMENT	Inkjet Printer	Desktop Printer	HT:EE24, HT21	keep	near-duplicate: $110, 12 lbs., against $100, 10 lbs.
 EQUIPMENT	Multifunction Printer	Desktop Printer	HT:EE23, HT21	keep	near-duplicate: $100, 12 lbs., a printer, scanner, copier and fax in one, against $100, 10 lbs.

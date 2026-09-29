@@ -31,6 +31,7 @@ import { CELL_TABLES, cellOf, cellTableOf, isPluggable, isPowered, powerData, re
 import { linkedSource, powerSources, sourceFits, type PowerSource } from "./sources.js";
 import {
   cellCost,
+  spareRecordsFor,
   cellLegality,
   cellsWeight,
   enduranceHours,
@@ -209,7 +210,7 @@ async function changeCells(item: any, table: CellTable): Promise<void> {
   else if (table.figures.rechargeable && cell) {
     if (data.rechargeable) lines[0] = F(ns, "Recharged", { supply: supplyText(ns, data) });
     else {
-      const spares = await useSpares(item.actor, table.figures.spareRecord, cell, table.chemistryOf ? (spare) => table.chemistryOf!(spare, cell.size) === table.chemistryOf!(item, cell.size) : null);
+      const spares = await useSpares(item.actor, spareRecordsFor(table.figures, cell.size), cell, table.chemistryOf ? (spare) => table.chemistryOf!(spare, cell.size) === table.chemistryOf!(item, cell.size) : null);
       lines.push(spares ? F(ns, "SparesUsed", { cells: cell.cells, name: spares.name, left: spares.left }) : F(ns, "NewCellsCost", { cost: Math.round(cellPrice(table.figures, cell.size, data) * cell.cells * 100) / 100 }));
     }
   }
@@ -223,15 +224,15 @@ async function changeCells(item: any, table: CellTable): Promise<void> {
  * one of the gadget's chemistry, each read as the table prints it where none
  * is chosen; null takes any.
  */
-export async function useSpares(actor: any, record: string | undefined, cell: { size: string; cells: number }, matches: ((spare: any) => boolean) | null = null): Promise<{ name: string; left: number } | null> {
+export async function useSpares(actor: any, record: string | readonly string[] | undefined, cell: { size: string; cells: number }, matches: ((spare: any) => boolean) | null = null): Promise<{ name: string; left: number } | null> {
   if (!actor || !record) return null;
-  const name = record.replace("{size}", cell.size);
-  const spare = [...(actor.items ?? [])].find((i: any) => i.name === name && i.system?.carried !== false && (Number(i.system?.quantity) || 0) >= cell.cells
+  const names = [record].flat().map((r) => r.replace("{size}", cell.size));
+  const spare = [...(actor.items ?? [])].find((i: any) => names.includes(i.name) && i.system?.carried !== false && (Number(i.system?.quantity) || 0) >= cell.cells
     && (matches === null || matches(i)));
   if (!spare) return null;
   const left = (Number(spare.system.quantity) || 0) - cell.cells;
   await spare.update({ "system.quantity": left });
-  return { name, left };
+  return { name: String(spare.name), left };
 }
 
 /**

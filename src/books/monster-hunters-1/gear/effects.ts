@@ -10,7 +10,7 @@ import { isHoly } from "../holy.js";
 import { gearData, loadFor, type GearData } from "./data.js";
 import { bestConcealment, wornArticle } from "../../../shared/concealment/rules.js";
 import { firearmGradeClaimedBy } from "../../../shared/firearm-grade.js";
-import { gadgetCostFactor, gadgetWeightFactor, improvedGadget, SCENT_MASKING_PENALTY, signatureGearPointCost } from "./gadgets.js";
+import { gadgetCostFactor, gadgetWeightFactor, SCENT_MASKING_PENALTY, signatureGearPointCost } from "./gadgets.js";
 import { isShotgun, specialAmmunitionEffect } from "./special-ammunition.js";
 import {
   allowedWeapon,
@@ -70,6 +70,32 @@ function listOf(item: any, data: GearData): { cost: number; weight: number } {
 }
 
 /**
+ * A gadget's or article of clothing's cost factor and weight factor. The
+ * system prices what it owns, the calculated fields of Basic Set Revised
+ * p. 342 (`rules.pricingOf`): Cutting-Edge, Disguised and Rugged on equipment,
+ * Disguised, fine and Presentation on clothing, and good or fine equipment.
+ * This book adds what the system has no field for: Cutting-Edge and Rugged on
+ * clothing, Scent-Masking and Undercover.
+ */
+export function gadgetPricing(api: GWorldApi, item: any, data: GearData = gearData(item)): { costFactor: number; weightFactor: number } {
+  const equipment = item?.type === "equipment";
+  const quality = equipment && item.system?.category !== "tool" ? String(item.system?.equipmentQuality ?? "basic") : "basic";
+  const system = api.rules.pricingOf({
+    kind: equipment ? "tool" : "armor",
+    equipmentQuality: quality as never,
+    fine: item?.system?.fine === true,
+    cuttingEdge: equipment && data.gadget.cuttingEdge,
+    rugged: equipment && data.gadget.rugged,
+    disguised: data.gadget.disguised,
+    presentation: Number(item?.system?.presentation) || 0,
+    qualityAddsTools: item?.system?.qualityAddsTools === true,
+  });
+  const clothing = equipment ? { cuttingEdge: false, rugged: false } : data.gadget;
+  const extra = gadgetCostFactor({ cuttingEdge: clothing.cuttingEdge, rugged: clothing.rugged, scentMasking: data.gadget.scentMasking, undercover: data.gadget.undercover });
+  return { costFactor: system.total + extra, weightFactor: system.weightFactor * gadgetWeightFactor(clothing) };
+}
+
+/**
  * An item's price and weight under the book's gear rules, or null where they
  * don't change it. A weapon is priced by its options, grade, material and
  * holiness; a gadget or article of clothing by its improvements and, other
@@ -82,12 +108,9 @@ export function gearPrice(api: GWorldApi, item: any): { cost: number; weight: nu
   if (isWeapon(item)) {
     priced = improvedWeaponPrice(allowedWeapon(askedWeapon(api, item, data)), list);
   } else if (isGadget(item)) {
-    const quality = item.type === "equipment" && item.system?.category !== "tool" ? String(item.system?.equipmentQuality ?? "basic") : "basic";
-    const cf = gadgetCostFactor(data.gadget, quality);
-    const wf = gadgetWeightFactor(data.gadget);
+    const { costFactor: cf, weightFactor: wf } = gadgetPricing(api, item, data);
     if (cf === 0 && wf === 1 && !data.listCost && !data.listWeight) return null;
-    const g = improvedGadget({ listCost: list.cost, listWeight: list.weight, improvements: data.gadget, quality });
-    priced = { cost: g.cost, weight: g.weight, costFactor: g.costFactor };
+    priced = { cost: Math.round(Math.max(0, list.cost) * (1 + cf) * 100) / 100, weight: Math.round(Math.max(0, list.weight) * wf * 100) / 100, costFactor: cf };
   }
   if (!priced) return null;
   const stored = { cost: Number(item?.system?.cost) || 0, weight: Number(item?.system?.weight) || 0 };
@@ -218,6 +241,8 @@ export function concealmentOf(actor: any): { holdout: number; smell: number; sou
  */
 export function signatureGearOf(api: GWorldApi, actor: any): { needed: number; points: number } {
   const traits = [...(actor?.items ?? [])].filter((i: any) => i?.type === "trait").map((i: any) => ({ name: String(i.name ?? ""), levels: Number(i.system?.levels ?? 0) }));
+  // The system's flat Signature Gear (a point an item, its own switch) is the system's to bill; this book's is the variant.
+  if (api.registry.isRuleOn("flatSignatureGear")) return { needed: 0, points: 0 };
   const needed = [...(actor?.items ?? [])]
     .filter((i: any) => gearData(i).signature)
     .reduce((sum, i: any) => sum + signatureGearPointCost(api.data.effectivePrice(i).cost * Math.max(1, Number(i.system?.quantity ?? 1) || 1)), 0);

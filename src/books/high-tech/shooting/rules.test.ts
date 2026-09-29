@@ -16,7 +16,6 @@ import {
   precisionCap,
   precisionOutcome,
   precisionRollsDue,
-  rangedRapidStrikeRefusal,
   readGunTargetedAttack,
   withinCloseQuarters,
 } from "./rules.js";
@@ -62,15 +61,6 @@ describe("Precision Aiming (p. 84)", () => {
     expect(precisionOutcome(true, false)).toBe("gained");
     expect(precisionOutcome(false, false)).toBe("lost");
     expect(precisionOutcome(false, true)).toBe("spotted");
-  });
-});
-
-describe("the Ranged Rapid Strike (p. 85)", () => {
-  it("needs RoF 2+ on Attack or All-Out Attack, and isn't Spraying Fire", () => {
-    expect(rangedRapidStrikeRefusal({ rateOfFire: 1, maneuver: "attack", spraying: false })).toBe("rateOfFire");
-    expect(rangedRapidStrikeRefusal({ rateOfFire: 3, maneuver: "moveAndAttack", spraying: false })).toBe("maneuver");
-    expect(rangedRapidStrikeRefusal({ rateOfFire: 3, maneuver: "allOutAttack", spraying: true })).toBe("spraying");
-    expect(rangedRapidStrikeRefusal({ rateOfFire: 2, maneuver: "attack", spraying: false })).toBeNull();
   });
 });
 

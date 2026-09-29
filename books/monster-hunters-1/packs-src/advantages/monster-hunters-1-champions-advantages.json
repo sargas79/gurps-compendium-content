@@ -88,34 +88,6 @@
     }
   },
   {
-    "_id": "804261a3391dc927",
-    "name": "Born War-Leader",
-    "type": "trait",
-    "system": {
-      "category": "advantage",
-      "points": 0,
-      "levels": 1,
-      "pointsPerLevel": 5,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 4,
-      "reactionModifier": 0,
-      "talentSkills": [
-        "Intelligence Analysis",
-        "Leadership",
-        "Savoir-Faire (Military)",
-        "Strategy",
-        "Tactics"
-      ],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Monster Hunters 1: Champions p. 25"
-    }
-  },
-  {
     "_id": "3e1f146151129255",
     "name": "Close to Heaven",
     "type": "trait",
@@ -133,35 +105,6 @@
         "Meditation",
         "Religious Ritual",
         "Theology"
-      ],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Monster Hunters 1: Champions p. 25"
-    }
-  },
-  {
-    "_id": "9c9c8530cc31dd97",
-    "name": "Craftiness",
-    "type": "trait",
-    "system": {
-      "category": "advantage",
-      "points": 0,
-      "levels": 1,
-      "pointsPerLevel": 5,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 4,
-      "reactionModifier": 0,
-      "talentSkills": [
-        "Acting",
-        "Camouflage",
-        "Disguise",
-        "Holdout",
-        "Shadowing",
-        "Stealth"
       ],
       "power": "",
       "powerTalent": false,
@@ -1962,28 +1905,6 @@
     }
   },
   {
-    "_id": "bd00e70de8092acb",
-    "name": "Equipment Bond",
-    "type": "trait",
-    "system": {
-      "category": "perk",
-      "points": 1,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Monster Hunters 1: Champions p. 25"
-    }
-  },
-  {
     "_id": "2c73280918817b29",
     "name": "Improvised Weapons",
     "type": "trait",
@@ -2118,28 +2039,6 @@
   {
     "_id": "6f60c63b25c81c61",
     "name": "Trademark Move",
-    "type": "trait",
-    "system": {
-      "category": "perk",
-      "points": 1,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Monster Hunters 1: Champions p. 25"
-    }
-  },
-  {
-    "_id": "15eca61723de50da",
-    "name": "Weapon Bond",
     "type": "trait",
     "system": {
       "category": "perk",

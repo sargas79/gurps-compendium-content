@@ -10,6 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { setRuleReader } from "../../../shared/book-tables.js";
 import { CELL_TABLES, enduranceLeft, fittingSources, powerGearContext, registerPowerSource, shotsScale, useSpares } from "../../../shared/power/index.js";
+import { spareRecordsFor } from "../../../shared/power/rules.js";
 import { isPluggable, loadedCellWeight, powerData } from "../../../shared/power/data.js";
 import { sourceFits } from "../../../shared/power/sources.js";
 import { MODULE_ID } from "../../../shared/module.js";
@@ -107,6 +108,13 @@ describe("spare batteries of the gadget's chemistry (HT:EE pp. 16-18)", () => {
     expect(await useSpares({ items: [alkaline, lead] }, "{size} Battery", { size: "L", cells: 1 }, matching(phone, "L"))).toBeNull();
     // With no chemistries in play, any will do.
     expect(await useSpares({ items: [spare("S", "nicad")] }, "{size} Battery", { size: "S", cells: 2 }, null)).toMatchObject({ left: 2 });
+  });
+
+  it("uses the system's own battery records as spares, and an older world's", async () => {
+    const system = { ...spare("M", ""), name: "Battery, Medium (M)" };
+    expect(await useSpares({ items: [system] }, ["Battery, Medium (M)", "{size} Battery"], { size: "M", cells: 1 }, null)).toEqual({ name: "Battery, Medium (M)", left: 3 });
+    expect(await useSpares({ items: [spare("M", "")] }, ["Battery, Medium (M)", "{size} Battery"], { size: "M", cells: 1 }, null)).toMatchObject({ name: "M Battery" });
+    expect(spareRecordsFor(HIGH_TECH_BATTERIES, "T")).toEqual(["Battery, Tiny (T)", "T Battery"]);
   });
 
   it("is what High-Tech's table gives the engine", () => {
