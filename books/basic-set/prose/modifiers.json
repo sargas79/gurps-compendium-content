@@ -1,5 +1,381 @@
 [
   {
+    "_id": "88f43f0928ea768f",
+    "name": "Slow Recharge (1 ER/hour)",
+    "pages": "B326",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your ER recharges slowly. -20% for 1 ER/hour; -60% for 1 ER/day.</p>"
+  },
+  {
+    "_id": "d383e8a76343a78a",
+    "name": "Slow Recharge (1 ER/day)",
+    "pages": "B326",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your ER recharges slowly. -20% for 1 ER/hour; -60% for 1 ER/day.</p>"
+  },
+  {
+    "_id": "bd3c7a5ed789b45b",
+    "name": "Special Recharge (energy theft only)",
+    "pages": "B326",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If your ER recharges on its own only under particular conditions, apply a suitable Accessibility limitation at half value (you always have access to the ER, but not to recharging). If your ER doesn't recharge on its own and must be refilled using skills or abilities of its origin for energy theft rather than recovery (Vampiric Bite or an FP-stealing spell would work, but not Recover Energy), that's -70%, and incompatible with Slow Recharge.</p>"
+  },
+  {
+    "_id": "d36436a47f5a5fe6",
+    "name": "Special Recharge (accessibility, half value)",
+    "pages": "B326",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If your ER recharges on its own only under particular conditions, apply a suitable Accessibility limitation at half value (you always have access to the ER, but not to recharging). If your ER doesn't recharge on its own and must be refilled using skills or abilities of its origin for energy theft rather than recovery (Vampiric Bite or an FP-stealing spell would work, but not Recover Energy), that's -70%, and incompatible with Slow Recharge.</p>"
+  },
+  {
+    "_id": "3b9e34216db23036",
+    "name": "Affects Others",
+    "pages": "B330",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can extend your advantage's benefits to others. If you can affect a limited number of willing subjects by touching them, Affects Others costs +50% per person. There's no effect on unwilling recipients! You must take a separate Ready maneuver to make contact with each companion, who must be within reach. This grants the advantage's effects, not the ability to use it. You turn it \"off\" and \"on,\" set its level, and so on, and your decisions apply equally to you and all subjects.</p><p>Your ability affects others only while they're touching you. They can end its effects by breaking contact with you. To affect those who are merely nearby, add Area Effect - in which case a Ready maneuver lets you affect any number of people up to your limit within your area.</p><p>As described above, Affects Others is for movement abilities like Flight and physical transformations like Shrinking. It's a good way to keep the PCs together on adventures that would leave behind those who can't fly, shrink, etc. The GM may allow Affects Others on other traits when it serves this purpose.</p><p>If you apply Force Field (p. 47) to Damage Resistance or another defense, you may add Affects Others for a flat +50% if you also take any level of Area Effect. Together, these three modifiers let you extend your advantage's protection to everyone inside your area. This force field works against attacks and hazards crossing it from the outside. Threats inside the field bypass its protection.</p><p>A force field based on Damage Resistance impedes movement. Anyone who wishes to cross it must force their way in. Those who try this as a free action (allowed once per turn) roll thrust damage. Those who use Attack, Move and Attack, or All-Out Attack to blast their way in roll their attack's usual damage. Damage in excess of DR makes an opening large enough to step through. This closes at the end of their turn, and doesn't weaken the force field.</p><p>The GM shouldn't allow Affects Others on advantages that let the user do something, such as Healing, Innate Attack, or Mind Control. To bestow forbidden traits or affect unwilling subjects, buy Affliction with the Advantage enhancement.</p>"
+  },
+  {
+    "_id": "c5401e8542236fec",
+    "name": "Affects Others (Force Field with Area Effect, flat)",
+    "pages": "B330",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can extend your advantage's benefits to others. If you can affect a limited number of willing subjects by touching them, Affects Others costs +50% per person. There's no effect on unwilling recipients! You must take a separate Ready maneuver to make contact with each companion, who must be within reach. This grants the advantage's effects, not the ability to use it. You turn it \"off\" and \"on,\" set its level, and so on, and your decisions apply equally to you and all subjects.</p><p>Your ability affects others only while they're touching you. They can end its effects by breaking contact with you. To affect those who are merely nearby, add Area Effect - in which case a Ready maneuver lets you affect any number of people up to your limit within your area.</p><p>As described above, Affects Others is for movement abilities like Flight and physical transformations like Shrinking. It's a good way to keep the PCs together on adventures that would leave behind those who can't fly, shrink, etc. The GM may allow Affects Others on other traits when it serves this purpose.</p><p>If you apply Force Field (p. 47) to Damage Resistance or another defense, you may add Affects Others for a flat +50% if you also take any level of Area Effect. Together, these three modifiers let you extend your advantage's protection to everyone inside your area. This force field works against attacks and hazards crossing it from the outside. Threats inside the field bypass its protection.</p><p>A force field based on Damage Resistance impedes movement. Anyone who wishes to cross it must force their way in. Those who try this as a free action (allowed once per turn) roll thrust damage. Those who use Attack, Move and Attack, or All-Out Attack to blast their way in roll their attack's usual damage. Damage in excess of DR makes an opening large enough to step through. This closes at the end of their turn, and doesn't weaken the force field.</p><p>The GM shouldn't allow Affects Others on advantages that let the user do something, such as Healing, Innate Attack, or Mind Control. To bestow forbidden traits or affect unwilling subjects, buy Affliction with the Advantage enhancement.</p>"
+  },
+  {
+    "_id": "41c11670507d76a0",
+    "name": "Costs Hit Points",
+    "pages": "B330",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This limitation works exactly like Costs Fatigue (p. 111), except that it depletes HP instead of FP and is worth twice as much: -10% per HP per use, doubled to -20% if the cost is per second. It can also convert FP costs built into advantages to HP costs, at -5% per FP converted - or -10% per FP, if the cost is per second.</p>"
+  },
+  {
+    "_id": "2ea98f23480f5faa",
+    "name": "Costs Hit Points (per second)",
+    "pages": "B330",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This limitation works exactly like Costs Fatigue (p. 111), except that it depletes HP instead of FP and is worth twice as much: -10% per HP per use, doubled to -20% if the cost is per second. It can also convert FP costs built into advantages to HP costs, at -5% per FP converted - or -10% per FP, if the cost is per second.</p>"
+  },
+  {
+    "_id": "583d4d523e6432bb",
+    "name": "Costs Hit Points (FP cost converted)",
+    "pages": "B330",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This limitation works exactly like Costs Fatigue (p. 111), except that it depletes HP instead of FP and is worth twice as much: -10% per HP per use, doubled to -20% if the cost is per second. It can also convert FP costs built into advantages to HP costs, at -5% per FP converted - or -10% per FP, if the cost is per second.</p>"
+  },
+  {
+    "_id": "20540f13f834ff0f",
+    "name": "Costs Hit Points (FP cost per second converted)",
+    "pages": "B330",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This limitation works exactly like Costs Fatigue (p. 111), except that it depletes HP instead of FP and is worth twice as much: -10% per HP per use, doubled to -20% if the cost is per second. It can also convert FP costs built into advantages to HP costs, at -5% per FP converted - or -10% per FP, if the cost is per second.</p>"
+  },
+  {
+    "_id": "7f95eb690f5d1837",
+    "name": "Fixed Duration",
+    "pages": "B330",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns a duration that depends on margin of success or failure (e.g., for Affliction) into a fixed time. Figure duration as if margin of success or failure were 3; for most abilities, this means three minutes. You can modify this further with Extended Duration (p. 105).</p>"
+  },
+  {
+    "_id": "158c94029fa23ba0",
+    "name": "Game Time",
+    "pages": "B331",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some traits - including Luck, Serendipity, and Wild Talent - rely on real time. This modifier makes such an advantage use game time (p. 497) instead. If the ability usually works at least once per real hour, you get uses per game day equal to its maximum uses per real hour; e.g., Ridiculous Luck, which works every 10 real minutes, gets six uses per game day. If the ability is rated in uses per session, you get that many uses per game week; e.g., Serendipity 3 gives three uses per game week.</p><p>These ratios may feel unfair in a combat-heavy game - or in any game with lots of \"slow\" time. The GM is welcome to adjust them, multiplying frequency by anywhere from 2 (e.g., \"twice per hour\" becomes \"four times per game day,\" and \"once per session\" becomes \"twice per game week\") to 7 (e.g., \"once per hour\" becomes \"seven times per game day,\" and \"twice per session\" becomes \"14 times per game week\").</p>"
+  },
+  {
+    "_id": "9e9f02b6134f8d62",
+    "name": "Hard to Use",
+    "pages": "B331",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Each level of Hard to Use (maximum four) gives -3 to all rolls to use your ability, which also cannot benefit from power Talents. This is incompatible with Reliable (p. 332) and forbidden on ranged attacks (but see Inaccurate, p. 112).</p>"
+  },
+  {
+    "_id": "72e0acc0e50d5598",
+    "name": "Reliable",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your ability generally works as intended. You get a bonus equal to enhancement level (maximum 10) on all rolls to use it. This works exactly like - and is cumulative with - power Talent (see Other Powers, p. 257). Reliable is incompatible with Hard to Use (p. 331) and forbidden on ranged attacks (but see Accurate, p. 102).</p>"
+  },
+  {
+    "_id": "4a0648f42de6de97",
+    "name": "Maximum Duration",
+    "pages": "B331",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Available only for switchable, beneficial abilities that you could normally leave \"on\" indefinitely (e.g., Insubstantiality). Your ability can operate for only a limited length of time. After that, it shuts down without warning, and you can't reactivate it for five minutes. Limitation value depends on time limit:</p><table><tr><th>Time Limit</th><th>Modifier</th></tr><tr><td>Less than 30 seconds</td><td>-75%</td></tr><tr><td>Up to 1 minute</td><td>-65%</td></tr><tr><td>Up to 10 minutes</td><td>-50%</td></tr><tr><td>Up to 30 minutes</td><td>-25%</td></tr><tr><td>Up to 1 hour</td><td>-10%</td></tr><tr><td>Up to 12 hours (or one night)</td><td>-5%</td></tr><tr><td>Greater than 12 hours</td><td>-0%</td></tr></table>"
+  },
+  {
+    "_id": "5ac3b1db18e75403",
+    "name": "Minimum Duration",
+    "pages": "B331",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Available only for switchable abilities that would - in the GM's opinion - seriously inconvenience you if you couldn't deactivate them at will. Your ability must stay \"on\" for a certain period of time once activated; you can't shut it off sooner. Minimum Duration can never exceed Maximum Duration (if any). Limitation value depends on the minimum time your ability stays on:</p><table><tr><th>Minimum Time</th><th>Modifier</th></tr><tr><td>Less than 1 hour</td><td>-0%</td></tr><tr><td>Up to 8 hours</td><td>-5%</td></tr><tr><td>Up to 12 hours (or one night)</td><td>-10%</td></tr><tr><td>Up to 24 hours</td><td>-15%</td></tr><tr><td>Up to 1 week</td><td>-20%</td></tr><tr><td>Up to 1 month</td><td>-25%</td></tr><tr><td>Greater than 1 month</td><td>-30%</td></tr></table><p>On an advantage that allows Always On (p. 110), this limitation is worth at most -5% less than Always On; e.g., if Always On is -20%, Minimum Duration stops at -15%.</p>"
+  },
+  {
+    "_id": "2c51aa05517b3ed5",
+    "name": "Reduced Duration",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your ability lasts for a shorter time than it should. Limitation value depends on the duration reduction:</p><table><tr><th>Multiple</th><th>Modifier</th><th>Multiple</th><th>Modifier</th></tr><tr><td>1/2 duration</td><td>-5%</td><td>1/20 duration</td><td>-25%</td></tr><tr><td>1/3 duration</td><td>-10%</td><td>1/30 duration</td><td>-30%</td></tr><tr><td>1/6 duration</td><td>-15%</td><td>1/60 duration</td><td>-35%</td></tr><tr><td>1/10 duration</td><td>-20%</td><td></td><td></td></tr></table><p>You can extend the table from the progression shown, but you cannot take an ability's minimum duration below one second. For example, Affliction (Disadvantage) has a variable duration that lasts a minimum of one minute, and thus is eligible for at worst Reduced Duration, 1/60 - but unmodified Affliction, with a minimum duration of one second, cannot have any level of Reduced Duration.</p><p>Advantages with a \"maintained\" duration, such as Mind Control, cannot have this limitation.</p>"
+  },
+  {
+    "_id": "98205033d8910411",
+    "name": "Requires DX Roll",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard - once per minute, for constant exposure.</p><p>This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.</p><p><em>Requires (Skill) Roll:</em> Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn't change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).</p>"
+  },
+  {
+    "_id": "9f945894c085cf04",
+    "name": "Requires DX Roll (Quick Contest)",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard - once per minute, for constant exposure.</p><p>This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.</p><p><em>Requires (Skill) Roll:</em> Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn't change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).</p>"
+  },
+  {
+    "_id": "bc2236550cb2d337",
+    "name": "Requires IQ Roll",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard - once per minute, for constant exposure.</p><p>This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.</p><p><em>Requires (Skill) Roll:</em> Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn't change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).</p>"
+  },
+  {
+    "_id": "526d07683802004a",
+    "name": "Requires IQ Roll (Quick Contest)",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard - once per minute, for constant exposure.</p><p>This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.</p><p><em>Requires (Skill) Roll:</em> Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn't change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).</p>"
+  },
+  {
+    "_id": "132880c05d0f314d",
+    "name": "Requires HT Roll",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard - once per minute, for constant exposure.</p><p>This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.</p><p><em>Requires (Skill) Roll:</em> Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn't change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).</p>"
+  },
+  {
+    "_id": "a46af72e01b16f2b",
+    "name": "Requires HT Roll (Quick Contest)",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard - once per minute, for constant exposure.</p><p>This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.</p><p><em>Requires (Skill) Roll:</em> Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn't change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).</p>"
+  },
+  {
+    "_id": "f59574410a5523f5",
+    "name": "Requires Will Roll",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard - once per minute, for constant exposure.</p><p>This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.</p><p><em>Requires (Skill) Roll:</em> Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn't change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).</p>"
+  },
+  {
+    "_id": "09f2ab41104791f2",
+    "name": "Requires Will Roll (Quick Contest)",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard - once per minute, for constant exposure.</p><p>This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.</p><p><em>Requires (Skill) Roll:</em> Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn't change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).</p>"
+  },
+  {
+    "_id": "b9687e0dcce331c6",
+    "name": "Requires Per Roll",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard - once per minute, for constant exposure.</p><p>This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.</p><p><em>Requires (Skill) Roll:</em> Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn't change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).</p>"
+  },
+  {
+    "_id": "8d6ad710f194d909",
+    "name": "Requires Per Roll (Quick Contest)",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard - once per minute, for constant exposure.</p><p>This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.</p><p><em>Requires (Skill) Roll:</em> Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn't change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).</p>"
+  },
+  {
+    "_id": "72ad26f86dc2b696",
+    "name": "Requires Skill Roll (DX, IQ or HT skill)",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard - once per minute, for constant exposure.</p><p>This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.</p><p><em>Requires (Skill) Roll:</em> Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn't change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).</p>"
+  },
+  {
+    "_id": "0ba55c2369aa0177",
+    "name": "Requires Skill Roll (Will or Per skill)",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard - once per minute, for constant exposure.</p><p>This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.</p><p><em>Requires (Skill) Roll:</em> Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn't change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).</p>"
+  },
+  {
+    "_id": "e3f967c36b5509e2",
+    "name": "Requires Skill Roll (Easy DX, IQ or HT skill)",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard - once per minute, for constant exposure.</p><p>This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.</p><p><em>Requires (Skill) Roll:</em> Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn't change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).</p>"
+  },
+  {
+    "_id": "0082d461199a8132",
+    "name": "Requires Skill Roll (Easy Will or Per skill)",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard - once per minute, for constant exposure.</p><p>This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.</p><p><em>Requires (Skill) Roll:</em> Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn't change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).</p>"
+  },
+  {
+    "_id": "8a302d0ad5c2dcb2",
+    "name": "Requires Active Defense Roll",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A defensive ability might protect only against threats you're aware of - and only if you make a roll to interpose it in time. This roll is at DX/2 + 3, +1 for Combat Reflexes. If you try to use your ability more than once in a turn, you have a cumulative -4 per attempt after the first. You're at -4 if stunned, and can't roll at all in situations where you'd get no active defense (attacked from behind, unconscious, etc.). -40%.</p>"
+  },
+  {
+    "_id": "f71a9559c55a02cf",
+    "name": "Switchable",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This exists only for physiological features (e.g., Claws), defenses, and other traits that are normally \"always on.\" It lets you switch your advantage off and on with a Ready maneuver. Specify whether it switches on or off - or remains in its current state - when you're knocked out.</p><p>You can't add Switchable to an advantage that lists special modifiers that enable you to turn it off and on, regardless of whether your ability has those modifiers. If a trait notes Switchable as a special enhancement with a different value, use that value instead. You can't add it to meta-traits, either - for a switchable meta-trait, buy Alternate Form.</p>"
+  },
+  {
+    "_id": "7bbda7003a51f5ab",
+    "name": "Biological",
+    "pages": "B331",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Abilities are physical capabilities of the body. They cost 1 FP per use to activate, and can be blocked or perverted by drugs, nanotech, pathogens, surgery, etc. -10%.</p>"
+  },
+  {
+    "_id": "657bfdf0ca03c202",
+    "name": "Chi",
+    "pages": "B331",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Abilities emanate from your life force. You must take a -10-point self-imposed mental disadvantage (p. 121), typically Disciplines of Faith or Vow, that requires daily exercise and meditation. Skipping a day means the entire power fails the first time you try to use any ability. Restoring it takes 1d days of rebalancing, during which the GM can inflict Irritating Conditions (p. 428) on you! -10%.</p>"
+  },
+  {
+    "_id": "79da4585ce3c6e91",
+    "name": "Cosmic",
+    "pages": "B331",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Abilities originate from the energy of creation! All attempts to negate, block, or neutralize them fail unless Cosmic themselves. This is identical to the +50% level of Cosmic on p. 103. Individual abilities may have more expensive forms of Cosmic, in which case this modifier covers the first +50%. +50%.</p>"
+  },
+  {
+    "_id": "cc5c4c2a8c60356f",
+    "name": "Divine",
+    "pages": "B331",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Abilities flow from a god. You must take a -10-point self-imposed mental disadvantage that suits your patron - often Honesty or Sense of Duty for a good entity, Intolerance or a heinous Vow for an evil one, or Code of Honor or Disciplines of Faith in general. Breaking faith costs you your power. Good deities spare you this until you're out of danger, but require a month of penance to re-earn your powers; evil ones pervert your power horribly, but let you off the hook with a single act of darker-than-usual evil; most others fall somewhere in between, cutting off your powers immediately but not turning them against you, and requiring a minor quest to get them back. -10%.</p>"
+  },
+  {
+    "_id": "7517a4b84fc0264c",
+    "name": "Magical",
+    "pages": "B331",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Identical to Mana Sensitive, p. 34. -10%.</p>"
+  },
+  {
+    "_id": "6680e0bb0d539ac5",
+    "name": "Moral",
+    "pages": "B331",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Abilities are manifestations of a general moral principle - Chaos, Evil, Good, Order, etc. You must take a -15-point self-imposed mental disadvantage associated with this cause, often Fanaticism. If you falter even briefly, you lose your power immediately. Regaining it requires you to recommit to your values for at least 2d days of lost time or earnings. Moreover, your guiding principle has an \"opposite\" (e.g., Evil opposes Good) whose effects, artifacts, and entities interfere with and sometimes neutralize your power. -20%.</p>"
+  },
+  {
+    "_id": "dc20b82729f356dd",
+    "name": "Nature",
+    "pages": "B331",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Abilities channel the vital energy surrounding all living things. The ravages of civilization interfere with this, giving -1 to use your abilities in despoiled wild places (e.g., clear-cut forest), -3 in settlements, -5 amidst ordinary pollution, and -10 in poisoned wastelands. Where a penalty to dice rolls makes no sense, treat each -1 as a 10% loss of effect (advantage level, damage, reaction bonus, etc.). -10%, worsening to -20% if you're also at a penalty equal to half the TL (round up) of the most advanced artifact you're carrying, wearing, or riding in or on, or the full TL of any implants.</p>"
+  },
+  {
+    "_id": "b869572d10a937f9",
+    "name": "Nature (with a TL penalty)",
+    "pages": "B331",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Abilities channel the vital energy surrounding all living things. The ravages of civilization interfere with this, giving -1 to use your abilities in despoiled wild places (e.g., clear-cut forest), -3 in settlements, -5 amidst ordinary pollution, and -10 in poisoned wastelands. Where a penalty to dice rolls makes no sense, treat each -1 as a 10% loss of effect (advantage level, damage, reaction bonus, etc.). -10%, worsening to -20% if you're also at a penalty equal to half the TL (round up) of the most advanced artifact you're carrying, wearing, or riding in or on, or the full TL of any implants.</p>"
+  },
+  {
+    "_id": "cb9b1fb11d741a62",
+    "name": "Psionic",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The generic version of the ESP, Psychic Healing, Psychokinetic, Telepathic, and Psionic Teleportation modifiers on pp. 256-257. Use it for any power subject to the Antipsi power (p. 255) and anti-psionic technology (see GURPS Psi-Tech). -10%.</p>"
+  },
+  {
+    "_id": "03964f4899bc086f",
+    "name": "Spirit",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Abilities come from spirits - you give orders and spirits do the work. You must take a -5-point self-imposed mental disadvantage, usually Disciplines of Faith or Sense of Duty (Servitor Spirits). If you fail to live up to this, the spirits deprive you of your power at the worst possible moment and refuse to listen to you until you make a minor sacrifice to them. -5%, or -25% if your spirits are also fickle and each use of any ability requires an unmodified reaction roll, with \"Neutral\" or better granting the desired effect but \"Poor\" or worse giving progressively more unpleasant perversions.</p>"
+  },
+  {
+    "_id": "0e94c4711876d2da",
+    "name": "Spirit (fickle)",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Abilities come from spirits - you give orders and spirits do the work. You must take a -5-point self-imposed mental disadvantage, usually Disciplines of Faith or Sense of Duty (Servitor Spirits). If you fail to live up to this, the spirits deprive you of your power at the worst possible moment and refuse to listen to you until you make a minor sacrifice to them. -5%, or -25% if your spirits are also fickle and each use of any ability requires an unmodified reaction roll, with \"Neutral\" or better granting the desired effect but \"Poor\" or worse giving progressively more unpleasant perversions.</p>"
+  },
+  {
+    "_id": "fef0b0c830c2e1ed",
+    "name": "Super",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Abilities stem from whatever \"generic superpower origin\" most of the game world's power-wielders share. Special versions of Neutralize and Psi Static - and a bewildering range of weird-science plagues, rays, serums, etc. - work against them. In effect, this is an alternative form of Psionic. -10%.</p>"
+  },
+  {
+    "_id": "5a6f2cb009f926e7",
+    "name": "Superscience",
+    "pages": "B332",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Abilities are generated by implausible genetic modifications, implants, or surgery that don't drain the user like abilities with Biological do. When combined with gadget limitations (p. 116), they're the effects of external artifacts. All are subject to just as many countermeasures as abilities with Super, although the two may be distinct if they coexist. -10%.</p>"
+  },
+  {
+    "_id": "c2e9a7d41b5f0836",
+    "name": "Capricious Assistance",
+    "pages": "B338",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Something akin to Minimal Intervention or Unwilling might fit an organization that places its needs ahead of its members' emergencies. Treat such \"Capricious Assistance\" as a -50% limitation that reduces the cost of most Rank from 5 to 3 points/level. It means that only Assistance Rolls (p. 338) that succeed by 5+ summon the requested aid without complication. Success by 0-4 brings the desired help with a minor downside, or a benefit other than what was asked for. Failure by 1-4 brings nothing, or an unpredictable benefit outweighed by a major drawback. Failure by 5+ or critical failure spells disaster (\"Agent Ripley requests assistance with aliens. Recommend nuking area from orbit.\").</p>"
+  },
+  {
     "_id": "005c10e3ffe81878",
     "name": "Accessibility",
     "pages": "B110",
