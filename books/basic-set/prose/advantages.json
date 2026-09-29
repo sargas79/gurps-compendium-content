@@ -1,5 +1,421 @@
 [
   {
+    "_id": "82306eda836309df",
+    "name": "Born Entertainer",
+    "pages": "B325",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Acting, Dancing, Performance, Public Speaking, Singing, and Stage Combat. Reaction bonus: crowds - they love you! 5 points/level.</p>"
+  },
+  {
+    "_id": "08642bd08d2ea286",
+    "name": "Born to be Wired",
+    "pages": "B325",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Computer Hacking, Computer Operation, Computer Programming, Cryptography, Electronics Repair (Computers), and Expert Skill (Computer Security). Reaction bonus: hackers; people buying stock in your dot-com. 5 points/level.</p>"
+  },
+  {
+    "_id": "6483f3ff4759a9f9",
+    "name": "Born War-Leader",
+    "pages": "B325",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Intelligence Analysis, Leadership, Savoir-Faire (Military), Strategy, and Tactics. Reaction bonus: military officers, tribal war-leaders, soldiers, and other professional warriors. 5 points/level.</p>"
+  },
+  {
+    "_id": "8f08a8d78fc59b91",
+    "name": "Circuit Sense",
+    "pages": "B326",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Electrician, Electronics Operation, Electronics Repair, and Engineer (Electrical and Electronics). Reaction bonus: anyone for whom you use your skills. 5 points/level.</p>"
+  },
+  {
+    "_id": "04f89aafed477f8c",
+    "name": "Craftiness",
+    "pages": "B326",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Acting, Camouflage, Disguise, Holdout, Shadowing, and Stealth. Reaction bonus: none - the entire point is that people don't know you're sneaky! 5 points/level.</p>"
+  },
+  {
+    "_id": "06c8eb0d26e37c84",
+    "name": "Driver's Reflexes",
+    "pages": "B326",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Boating, Driving, Piloting, and Submarine. Reaction bonus: passengers; gamblers betting on you in a race. 5 points/level.</p>"
+  },
+  {
+    "_id": "ce27f04092c078d3",
+    "name": "Natural Athlete",
+    "pages": "B326",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Bicycling, Breath Control, Hiking, Jumping, Lifting, Running, Skating, Skiing, Sports, Swimming, and Throwing. Reaction bonus: sports fans, coaches, and recruiters. 10 points/level.</p>"
+  },
+  {
+    "_id": "5b341da646bfc387",
+    "name": "Natural Scientist",
+    "pages": "B326",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Astronomy, Biology, Chemistry, Expert Skill (Hydrology and Natural Philosophy), Geology, Mathematics (Applied, Statistics, and Surveying), Metallurgy, Meteorology, Paleontology, Physics, and Physiology. Reaction bonus: other scientists and anybody impressed by \"smart people.\" 10 points/level.</p>"
+  },
+  {
+    "_id": "b8274c06c8b2143f",
+    "name": "Social Scientist",
+    "pages": "B326",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Anthropology, Archaeology, Criminology, Economics, Expert Skill (Political Science), Geography, History, Philosophy, Psychology, Sociology, and Theology (Comparative). Reaction bonus: social and political thinkers, theorists, and activists. 10 points/level.</p>"
+  },
+  {
+    "_id": "413592899697e4ef",
+    "name": "Street-Smart",
+    "pages": "B326",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Merchant, Panhandling, Scrounging, Shadowing, Streetwise, and Urban Survival. Reaction bonus: street denizens, especially hustlers. 5 points/level.</p>"
+  },
+  {
+    "_id": "39f185045deb48d7",
+    "name": "Universal Translator",
+    "pages": "B327",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These gifts replace long lists of languages (p. 23), whether as a cinematic convenience or as supernatural (Su) or exotic (X) abilities. The GM decides which advantages exist. In all cases, the GM may rule that you need a suitable Hidden Lore roll to use - or cannot use - a language to which you couldn't possibly have been exposed: forgotten, invented, secret, etc.</p><p><em>Universal Translator:</em> You can understand any language you encounter, with Native-level fluency and literacy. This works only with one language beyond your native one at a time. You need one second of concentration to switch languages. 30 points.</p>"
+  },
+  {
+    "_id": "955d9f99dfbaf945",
+    "name": "Omnilingual",
+    "pages": "B327",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These gifts replace long lists of languages (p. 23), whether as a cinematic convenience or as supernatural (Su) or exotic (X) abilities. The GM decides which advantages exist. In all cases, the GM may rule that you need a suitable Hidden Lore roll to use - or cannot use - a language to which you couldn't possibly have been exposed: forgotten, invented, secret, etc.</p><p><em>Omnilingual:</em> You don't speak all of the Earth's 5,000 or so languages, but each new language you encounter turns out to be one you've studied. You enjoy Accented-level fluency and literacy - or Native-level, if you also have Language Talent (p. 65). You can use several languages at once without concentrating to switch between them. 40 points.</p>"
+  },
+  {
+    "_id": "e0c218fa7e441904",
+    "name": "Xeno-Omnilingual",
+    "pages": "B327",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These gifts replace long lists of languages (p. 23), whether as a cinematic convenience or as supernatural (Su) or exotic (X) abilities. The GM decides which advantages exist. In all cases, the GM may rule that you need a suitable Hidden Lore roll to use - or cannot use - a language to which you couldn't possibly have been exposed: forgotten, invented, secret, etc.</p><p><em>Xeno-Omnilingual:</em> As Omnilingual, but covering all of the campaign's planets, dimensions, etc. Languages spoken by beings with exotic vocal organs may require Mimicry (p. 68) and an IQ roll for you to speak them. 80 points.</p>"
+  },
+  {
+    "_id": "4b03d25178258204",
+    "name": "Foresight",
+    "pages": "B326",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You plan so well that you can declare yourself to have taken retroactive actions. You may do this once per game session per level of Foresight. The action must be something you did in the past that has a specific result right now. There are limits on this:</p><p>1. It must be an action you could realistically have taken. If you're whisked away to a secret headquarters for the first time, you cannot say that you've previously disabled the alarm system, because you've never been there and didn't previously know where \"there\" is. You could say that you thought to bring along tools with which to do so now, though. You must also possess all of the skills and abilities necessary to have accomplished the task (see below), though you may rely on defaults, if applicable.</p><p>2. It cannot directly contradict established facts. If you're being shot at, you cannot say that you decided to wear full body armor today - no one could have overlooked that! You can say that you put on a concealed Kevlar vest this morning, but only if you haven't taken off your shirt recently. However, if you've been injured by previous shots, the \"sudden reveal\" of your vest doesn't change your previous injuries! Reconcile this however you can (e.g., the previous bullets missed the vest); if you cannot, this isn't a legal use of Foresight.</p><p>3. It cannot be obvious. No one who wasn't involved can be aware of the action; its effects must lie in wait, unnoticed, until this very moment. So, you cannot retroactively attack a foe or speak with them, because this would contradict established facts from the foe's point of view. For indirect interaction (e.g., picking someone's pocket), the GM should make your roll (see below) in secret, as a Quick Contest against your target's Per or an appropriate skill. If you win, you acted unnoticed; otherwise, either you failed or they saw what you did and can now turn the situation around to their own benefit, using your Foresight against you!</p><p>Some actions are automatic; e.g., it requires no roll to remember to tuck a handcuff key under your tongue. For others, the GM should require whatever roll or rolls would be necessary. (Indirect interaction always demands a roll of some sort; use DX or IQ if nothing else fits.) If they feel that you're trying to do too much as a single \"retroaction,\" they can either forbid it or penalize every roll involved (-2 per \"extra action\" is fair). If the roll fails, your planning fell through; this still counts as a use of Foresight.</p><p>Any consequences of the action are paid for now, not in the past. (This may not be realistic, but it's the only way to prevent certain kinds of abuse, as well as to keep the GM sane.) If you cast a spell in the past, you lose the FP now; if you entered a room full of toxic gas, the cyclic damage begins now; if you bribed someone, you must pay the money now; and so on.</p><p>With GM permission, you can involve helpers in your past action. Each person must have been present at the time and able to act. The limitations above apply to everyone. Only voluntary help is possible - tricking an unsuspecting person into having assisted you in the past would be an action all on its own!</p><p>The 10-point version of this trait allows you to take any retroactive action, subject to GM approval and the limits above. The 5-point version is limited to a specific type of action or actions pertaining to a specific situation, and should be written as, e.g., \"Foresight 1 (Ambushes) [5].\" Suitable examples include (but aren't limited to):</p><p>Ambushes: Being ready for surprise attacks.</p><p>Backup: Calling friends in advance for assistance.</p><p>Getaways: Stashing vehicles, unlocking doors, etc.</p><p>Gizmos: Bringing along useful gear.</p><p>Loyalty: Anticipating betrayals, lies, and moles.</p><p>Research: Creating in-depth dossiers, maps, psych evaluations, etc.</p><p>Survival: Preparing for acts of God and forces of Nature.</p><p>Swaps: Trading one thing for another when no one's looking.</p><p>The GM decides how much Foresight each player can take. A suggested cap is no more than 15 points spent on any combination of Foresight. For example, a \"big brain\" might take Foresight 1 [10] + Foresight 1 (Research) [5], while the ex-soldier could have Foresight 3 (Ambushes) [15].</p>"
+  },
+  {
+    "_id": "266f108474162e60",
+    "name": "Foresight (Limited Type)",
+    "pages": "B326",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You plan so well that you can declare yourself to have taken retroactive actions. You may do this once per game session per level of Foresight. The action must be something you did in the past that has a specific result right now. There are limits on this:</p><p>1. It must be an action you could realistically have taken. If you're whisked away to a secret headquarters for the first time, you cannot say that you've previously disabled the alarm system, because you've never been there and didn't previously know where \"there\" is. You could say that you thought to bring along tools with which to do so now, though. You must also possess all of the skills and abilities necessary to have accomplished the task (see below), though you may rely on defaults, if applicable.</p><p>2. It cannot directly contradict established facts. If you're being shot at, you cannot say that you decided to wear full body armor today - no one could have overlooked that! You can say that you put on a concealed Kevlar vest this morning, but only if you haven't taken off your shirt recently. However, if you've been injured by previous shots, the \"sudden reveal\" of your vest doesn't change your previous injuries! Reconcile this however you can (e.g., the previous bullets missed the vest); if you cannot, this isn't a legal use of Foresight.</p><p>3. It cannot be obvious. No one who wasn't involved can be aware of the action; its effects must lie in wait, unnoticed, until this very moment. So, you cannot retroactively attack a foe or speak with them, because this would contradict established facts from the foe's point of view. For indirect interaction (e.g., picking someone's pocket), the GM should make your roll (see below) in secret, as a Quick Contest against your target's Per or an appropriate skill. If you win, you acted unnoticed; otherwise, either you failed or they saw what you did and can now turn the situation around to their own benefit, using your Foresight against you!</p><p>Some actions are automatic; e.g., it requires no roll to remember to tuck a handcuff key under your tongue. For others, the GM should require whatever roll or rolls would be necessary. (Indirect interaction always demands a roll of some sort; use DX or IQ if nothing else fits.) If they feel that you're trying to do too much as a single \"retroaction,\" they can either forbid it or penalize every roll involved (-2 per \"extra action\" is fair). If the roll fails, your planning fell through; this still counts as a use of Foresight.</p><p>Any consequences of the action are paid for now, not in the past. (This may not be realistic, but it's the only way to prevent certain kinds of abuse, as well as to keep the GM sane.) If you cast a spell in the past, you lose the FP now; if you entered a room full of toxic gas, the cyclic damage begins now; if you bribed someone, you must pay the money now; and so on.</p><p>With GM permission, you can involve helpers in your past action. Each person must have been present at the time and able to act. The limitations above apply to everyone. Only voluntary help is possible - tricking an unsuspecting person into having assisted you in the past would be an action all on its own!</p><p>The 10-point version of this trait allows you to take any retroactive action, subject to GM approval and the limits above. The 5-point version is limited to a specific type of action or actions pertaining to a specific situation, and should be written as, e.g., \"Foresight 1 (Ambushes) [5].\" Suitable examples include (but aren't limited to):</p><p>Ambushes: Being ready for surprise attacks.</p><p>Backup: Calling friends in advance for assistance.</p><p>Getaways: Stashing vehicles, unlocking doors, etc.</p><p>Gizmos: Bringing along useful gear.</p><p>Loyalty: Anticipating betrayals, lies, and moles.</p><p>Research: Creating in-depth dossiers, maps, psych evaluations, etc.</p><p>Survival: Preparing for acts of God and forces of Nature.</p><p>Swaps: Trading one thing for another when no one's looking.</p><p>The GM decides how much Foresight each player can take. A suggested cap is no more than 15 points spent on any combination of Foresight. For example, a \"big brain\" might take Foresight 1 [10] + Foresight 1 (Research) [5], while the ex-soldier could have Foresight 3 (Ambushes) [15].</p>"
+  },
+  {
+    "_id": "e752311623c53b8f",
+    "name": "Heroic Archer",
+    "pages": "B333",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can draw and shoot a bow quickly. To do so, take a Ready maneuver to get an arrow. On your next turn, make a Bow roll at -3 to ready your bow in no time. Failure means you can only ready, but success lets you attack at -3 on the same turn! Both penalties are only -1 if you have Weapon Master (Bow). This trick shaves a second off the usual two-second ready time, letting you shoot every other turn. By making a Fast-Draw (Arrow) roll to ready an arrow instantly before the above rolls, you can shoot every turn using Attack, All-Out Attack, or Move and Attack!</p><p>You're also a \"natural\" with the bow in general. Whenever you Attack or All-Out Attack, your attack roll (not the roll to ready your bow hastily) benefits from your bow's Accuracy without requiring an Aim maneuver - and if you do Aim, add another +1 after one second, or +2 after two. When you Move and Attack or are in close combat, ignore your bow's Bulk penalty instead of adding Acc; this renders the Close Combat technique (p. 334) redundant for you. Finally, ignore penalties for crazy positions or acrobatics while shooting, halve similar penalties to Fast-Draw (Arrow), and halve all penalties the GM assesses for stunt shots (e.g., two arrows at once).</p>"
+  },
+  {
+    "_id": "56feba76e7788c87",
+    "name": "Impulse Points",
+    "pages": "B327",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Many optional rules let players spend bonus character points in play (not to improve their characters!), including Buying Success and Player Guidance (p. 347), Flesh Wounds (p. 417), Character-Point Powered Abilities (p. 325), and everything in GURPS Power-Ups 5: Impulse Buys. At the GM's option, players can pay these costs using Impulse Points (IP) as well as or instead of character points. Nobody can spend more IP than they currently have - IP cannot \"go negative\" - but they can make up any cost shortfall with character points.</p><p>Unlike character points, IP refresh. At the start of each game session, anyone with less than their full number of IP regains 1 IP. Those at their maximum stay there - it's impossible to begin a game session with IP above one's maximum.</p><p>The GM decides how many IP are allowed. If the GM wants a dramatic campaign, they might make a certain number of IP a mandatory campaign advantage or even a 0-point feature (like ST 10 and SM 0 for humans).</p>"
+  },
+  {
+    "_id": "64ad73a6dce40103",
+    "name": "Jack of All Trades",
+    "pages": "B327",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Whenever you roll at a default from an attribute for a skill that has such a default and on which you've spent no points, you get a bonus equal to your Jack of All Trades level (maximum three). This doesn't make learning skills cheaper or faster, nor does it boost skills you know - it benefits only default rolls.</p>"
+  },
+  {
+    "_id": "62d152eccea75df9",
+    "name": "Injury Tolerance (Damage Reduction 2)",
+    "pages": "B325",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A new form suits many supers and monsters:</p><p><em>Damage Reduction:</em> After subtracting DR from damage and applying any wounding modifiers, the injury you suffer is subject to a divisor. Round up - minimum injury from an attack that pierces DR is 1 HP. This costs 50 points for a divisor of 2, 75 points for 3, 100 points for 4, and 125 points for 5. To price a divisor of 10 or more, find it in the \"Linear Measurement\" column of the Size and Speed/Range Table (p. 550), add 2 to the corresponding entry in the \"Size\" column, and multiply the sum by 25. This gives 150 points for a divisor of 10, 300 points for 100, 450 points for 1,000, and so on. Common modifiers are Limited (see Limited Defenses, p. 46) and Cosmic, Rounds down, +50% (which removes the minimum 1 HP injury).</p>"
+  },
+  {
+    "_id": "58e3782422643eff",
+    "name": "Injury Tolerance (Damage Reduction 3)",
+    "pages": "B325",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A new form suits many supers and monsters:</p><p><em>Damage Reduction:</em> After subtracting DR from damage and applying any wounding modifiers, the injury you suffer is subject to a divisor. Round up - minimum injury from an attack that pierces DR is 1 HP. This costs 50 points for a divisor of 2, 75 points for 3, 100 points for 4, and 125 points for 5. To price a divisor of 10 or more, find it in the \"Linear Measurement\" column of the Size and Speed/Range Table (p. 550), add 2 to the corresponding entry in the \"Size\" column, and multiply the sum by 25. This gives 150 points for a divisor of 10, 300 points for 100, 450 points for 1,000, and so on. Common modifiers are Limited (see Limited Defenses, p. 46) and Cosmic, Rounds down, +50% (which removes the minimum 1 HP injury).</p>"
+  },
+  {
+    "_id": "10266efcf329c00a",
+    "name": "Injury Tolerance (Damage Reduction 4)",
+    "pages": "B325",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A new form suits many supers and monsters:</p><p><em>Damage Reduction:</em> After subtracting DR from damage and applying any wounding modifiers, the injury you suffer is subject to a divisor. Round up - minimum injury from an attack that pierces DR is 1 HP. This costs 50 points for a divisor of 2, 75 points for 3, 100 points for 4, and 125 points for 5. To price a divisor of 10 or more, find it in the \"Linear Measurement\" column of the Size and Speed/Range Table (p. 550), add 2 to the corresponding entry in the \"Size\" column, and multiply the sum by 25. This gives 150 points for a divisor of 10, 300 points for 100, 450 points for 1,000, and so on. Common modifiers are Limited (see Limited Defenses, p. 46) and Cosmic, Rounds down, +50% (which removes the minimum 1 HP injury).</p>"
+  },
+  {
+    "_id": "99ac26becc7a5344",
+    "name": "Injury Tolerance (Damage Reduction 5)",
+    "pages": "B325",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A new form suits many supers and monsters:</p><p><em>Damage Reduction:</em> After subtracting DR from damage and applying any wounding modifiers, the injury you suffer is subject to a divisor. Round up - minimum injury from an attack that pierces DR is 1 HP. This costs 50 points for a divisor of 2, 75 points for 3, 100 points for 4, and 125 points for 5. To price a divisor of 10 or more, find it in the \"Linear Measurement\" column of the Size and Speed/Range Table (p. 550), add 2 to the corresponding entry in the \"Size\" column, and multiply the sum by 25. This gives 150 points for a divisor of 10, 300 points for 100, 450 points for 1,000, and so on. Common modifiers are Limited (see Limited Defenses, p. 46) and Cosmic, Rounds down, +50% (which removes the minimum 1 HP injury).</p>"
+  },
+  {
+    "_id": "50059fa9ba6d5a7e",
+    "name": "Injury Tolerance (Damage Reduction 10)",
+    "pages": "B325",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A new form suits many supers and monsters:</p><p><em>Damage Reduction:</em> After subtracting DR from damage and applying any wounding modifiers, the injury you suffer is subject to a divisor. Round up - minimum injury from an attack that pierces DR is 1 HP. This costs 50 points for a divisor of 2, 75 points for 3, 100 points for 4, and 125 points for 5. To price a divisor of 10 or more, find it in the \"Linear Measurement\" column of the Size and Speed/Range Table (p. 550), add 2 to the corresponding entry in the \"Size\" column, and multiply the sum by 25. This gives 150 points for a divisor of 10, 300 points for 100, 450 points for 1,000, and so on. Common modifiers are Limited (see Limited Defenses, p. 46) and Cosmic, Rounds down, +50% (which removes the minimum 1 HP injury).</p>"
+  },
+  {
+    "_id": "3316c095372bd344",
+    "name": "Injury Tolerance (Damage Reduction 100)",
+    "pages": "B325",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A new form suits many supers and monsters:</p><p><em>Damage Reduction:</em> After subtracting DR from damage and applying any wounding modifiers, the injury you suffer is subject to a divisor. Round up - minimum injury from an attack that pierces DR is 1 HP. This costs 50 points for a divisor of 2, 75 points for 3, 100 points for 4, and 125 points for 5. To price a divisor of 10 or more, find it in the \"Linear Measurement\" column of the Size and Speed/Range Table (p. 550), add 2 to the corresponding entry in the \"Size\" column, and multiply the sum by 25. This gives 150 points for a divisor of 10, 300 points for 100, 450 points for 1,000, and so on. Common modifiers are Limited (see Limited Defenses, p. 46) and Cosmic, Rounds down, +50% (which removes the minimum 1 HP injury).</p>"
+  },
+  {
+    "_id": "4ca8664d4c8a71aa",
+    "name": "Energy Reserve",
+    "pages": "B326",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a \"power supply\" for abilities of a specific origin (pp. 33-34) like chi, divine, magic, or psionic. Possibilities depend on the game world, and might be divided more finely (e.g., divine may be split into holy, unholy, druidic, and shamanic) - ask the GM. Write this as, for instance, \"Energy Reserve 10 (Magical) [30].\"</p><p>Energy Reserve (ER) works like Fatigue Points for the purposes of paying FP costs for advantages of the associated origin - be those costs built in, added by Costs Fatigue, or incurred by extra effort - and related skills, like spells for ER (Magical) or \"cinematic martial-arts skills\" for ER (Chi). It cannot fuel abilities of other origins or without specific origins, nor ordinary extra effort.</p><p>Beyond deliberate expenditure, only hostile powers of the ER's origin - e.g., magical Fatigue Attacks or FP-theft spells for ER (Magical) - can deplete the ER. Poisons, missed sleep, exertion, etc., cannot sap it. Neither can powers not of the same origin; for instance, magical FP drains cannot deplete ER (Chi). Furthermore, low ER causes none of the bad effects of going below 1/3 FP, and having a full ER doesn't protect against those effects.</p><p>You recharge 1 ER every 10 minutes, independent of rest. If you do rest, you recover FP at the same time. Most factors affecting FP recovery have no effect on ER recovery, but special skills or abilities of the ER's origin affect it exactly as they do FP recovery. For instance, Recover Energy (p. 248) accelerates recovery of ER (Magical) and FP, and Damage Resistance modified with Absorption and Mana Sensitive, or Vampiric Bite with Mana Sensitive, can heal your choice of ER (Magical), FP, or HP.</p><p><em>Special Limitations</em></p><p><em>Slow Recharge:</em> Your ER recharges slowly. -20% for 1 ER/hour; -60% for 1 ER/day.</p><p><em>Special Recharge:</em> If your ER recharges on its own only under particular conditions, apply a suitable Accessibility limitation at half value (you always have access to the ER, but not to recharging). If your ER doesn't recharge on its own and must be refilled using skills or abilities of its origin for energy theft rather than recovery (Vampiric Bite or an FP-stealing spell would work, but not Recover Energy), that's -70%, and incompatible with Slow Recharge.</p>"
+  },
+  {
+    "_id": "6f917fdc4eab69b7",
+    "name": "Alternative Feints",
+    "pages": "B328",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can use a noncombat skill to Feint (p. 365). The GM decides what perks suit the campaign; e.g., Acrobatic Feints for Acrobatics, Dancing Feints for Dancing, or Sexy Feints for Sex Appeal.</p>"
+  },
+  {
+    "_id": "1cd8cc4ba0e6dfdc",
+    "name": "Classic Features",
+    "pages": "B328",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You embody certain features, specified when you buy this perk; e.g., you're markedly pale or tan, or the epitome of blondes or redheads, or have idealized ethnic or racial looks. When you interact with an NPC who fancies those looks for some reason (often a quirk), treat your Appearance as one level higher, cumulative with any specified reaction bonus. For instance, someone with the quirk \"Prefers redheads (+2 reactions)\" treats a Classic Redhead with Average looks as Attractive (+1) and reacts at +2 for their quirk.</p>"
+  },
+  {
+    "_id": "aab8f0e97ceef1ec",
+    "name": "Controllable Disadvantage",
+    "pages": "B328",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can inflict one specific disadvantage on yourself by rolling against HT (if the trait is physical P) or Will (if mental M), at -1 per additional attempt per hour. It's up to you to make this useful. The GM decides what disadvantages to allow, but you cannot have both the controllable and regular form of a disadvantage, nor select a disadvantage that already includes similar rules, like Berserk or Epilepsy.</p>"
+  },
+  {
+    "_id": "fbac9f82ba108b6d",
+    "name": "Cutting-Edge Training",
+    "pages": "B328",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've received instruction beyond your personal TL in one specific technological skill; e.g., Cutting-Edge Training (Piloting/TL8 (Aerospace)) for a TL7 test pilot. If the setting spans many TLs, the GM may allow multiple levels; e.g., Cutting-Edge Training 2 (Piloting/TL9 (Aerospace)) [2].</p><p>Cutting-Edge Training is cheaper than High TL (p. 23) for people with fewer than five specialties. Should you eventually acquire five such perks, the GM may let you exchange them for High TL 1 [5].</p><p>This perk often has social prerequisites like Duty, Rank, or Security Clearance.</p>"
+  },
+  {
+    "_id": "4f1b163382f28ec6",
+    "name": "Dabbler",
+    "pages": "B328",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You know a little about several related skills - but not enough to have a full point in any of them. Select eight skills (which must have defaults) that you can use at +1 to the usual attribute default. You can trade two choices for one at default+2, or four for one at default+3. If a skill has an unusually generous default, you can't raise it to the level that points in the skill would buy.</p><p><em>Example:</em> A schoolteacher dabbles in Biology, Chemistry, Mathematics (Applied), and Physics. All four default to IQ-6. They choose Biology and Chemistry at IQ-5, trade two choices for Physics at IQ-4, and exchange four choices for Mathematics at IQ-3.</p><p>These skills still count as defaults, not as studied. You can't default other skills to the improved defaults, nor benefit from rules that require you to \"know\" a skill.</p>"
+  },
+  {
+    "_id": "dee81386a7ee9295",
+    "name": "Equipment Bond",
+    "pages": "B328",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You own a piece of equipment (e.g., sensor or vehicle) or a kit (tool, medical, etc.) that's uniquely suited to you - specify it when you take the perk. When you use that gear, you get +1 to the skill associated with it, regardless of its quality, cumulative with any bonus inherent to the hardware. This represents being used to your stuff or having assembled your kit.</p><p>You must acquire this equipment normally; e.g., with money or as Signature Gear. If you lose it, you lose the perk - though you can acquire a new Equipment Bond in play.</p>"
+  },
+  {
+    "_id": "7594e4b3e1c10ad8",
+    "name": "Improvised Weapons",
+    "pages": "B328",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've practiced fighting with everyday items to the point where you can ignore skill penalties (only) when wielding them. You must specialize by combat skill. You can learn Improvised Weapons (Brawling) or (Karate) to avoid penalties for improvised fist loads.</p>"
+  },
+  {
+    "_id": "8a73c19f7749d964",
+    "name": "Convincing Nod",
+    "pages": "B328",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can use a specific Influence skill through body language alone! You still have to make an Influence roll (p. 359) and your subject must be able to see you - you're out of luck via phone, telepathy, etc. - but you can act without talking (so Voice and Disturbing Voice are irrelevant, and you can't make demands more complex than \"come here,\" \"go away,\" \"leave me be,\" \"let me go,\" or \"let me in\"), physical contact, or appreciable time. Standard specialties are Convincing Nod for Fast-Talk, Disarming Smile for Diplomacy, Fearsome Stare for Intimidation, Gangster Swagger for Streetwise, Haughty Sneer for Savoir-Faire (High Society), and Sexy Pose for Sex Appeal.</p>"
+  },
+  {
+    "_id": "8c9992b4a2aa3efd",
+    "name": "Disarming Smile",
+    "pages": "B328",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can use a specific Influence skill through body language alone! You still have to make an Influence roll (p. 359) and your subject must be able to see you - you're out of luck via phone, telepathy, etc. - but you can act without talking (so Voice and Disturbing Voice are irrelevant, and you can't make demands more complex than \"come here,\" \"go away,\" \"leave me be,\" \"let me go,\" or \"let me in\"), physical contact, or appreciable time. Standard specialties are Convincing Nod for Fast-Talk, Disarming Smile for Diplomacy, Fearsome Stare for Intimidation, Gangster Swagger for Streetwise, Haughty Sneer for Savoir-Faire (High Society), and Sexy Pose for Sex Appeal.</p>"
+  },
+  {
+    "_id": "90a395d412546184",
+    "name": "Fearsome Stare",
+    "pages": "B328",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can use a specific Influence skill through body language alone! You still have to make an Influence roll (p. 359) and your subject must be able to see you - you're out of luck via phone, telepathy, etc. - but you can act without talking (so Voice and Disturbing Voice are irrelevant, and you can't make demands more complex than \"come here,\" \"go away,\" \"leave me be,\" \"let me go,\" or \"let me in\"), physical contact, or appreciable time. Standard specialties are Convincing Nod for Fast-Talk, Disarming Smile for Diplomacy, Fearsome Stare for Intimidation, Gangster Swagger for Streetwise, Haughty Sneer for Savoir-Faire (High Society), and Sexy Pose for Sex Appeal.</p>"
+  },
+  {
+    "_id": "66fc8c1f62d98815",
+    "name": "Gangster Swagger",
+    "pages": "B328",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can use a specific Influence skill through body language alone! You still have to make an Influence roll (p. 359) and your subject must be able to see you - you're out of luck via phone, telepathy, etc. - but you can act without talking (so Voice and Disturbing Voice are irrelevant, and you can't make demands more complex than \"come here,\" \"go away,\" \"leave me be,\" \"let me go,\" or \"let me in\"), physical contact, or appreciable time. Standard specialties are Convincing Nod for Fast-Talk, Disarming Smile for Diplomacy, Fearsome Stare for Intimidation, Gangster Swagger for Streetwise, Haughty Sneer for Savoir-Faire (High Society), and Sexy Pose for Sex Appeal.</p>"
+  },
+  {
+    "_id": "b764caef4a36a294",
+    "name": "Haughty Sneer",
+    "pages": "B328",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can use a specific Influence skill through body language alone! You still have to make an Influence roll (p. 359) and your subject must be able to see you - you're out of luck via phone, telepathy, etc. - but you can act without talking (so Voice and Disturbing Voice are irrelevant, and you can't make demands more complex than \"come here,\" \"go away,\" \"leave me be,\" \"let me go,\" or \"let me in\"), physical contact, or appreciable time. Standard specialties are Convincing Nod for Fast-Talk, Disarming Smile for Diplomacy, Fearsome Stare for Intimidation, Gangster Swagger for Streetwise, Haughty Sneer for Savoir-Faire (High Society), and Sexy Pose for Sex Appeal.</p>"
+  },
+  {
+    "_id": "3a2790a64e29b2ff",
+    "name": "Sexy Pose",
+    "pages": "B328",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can use a specific Influence skill through body language alone! You still have to make an Influence roll (p. 359) and your subject must be able to see you - you're out of luck via phone, telepathy, etc. - but you can act without talking (so Voice and Disturbing Voice are irrelevant, and you can't make demands more complex than \"come here,\" \"go away,\" \"leave me be,\" \"let me go,\" or \"let me in\"), physical contact, or appreciable time. Standard specialties are Convincing Nod for Fast-Talk, Disarming Smile for Diplomacy, Fearsome Stare for Intimidation, Gangster Swagger for Streetwise, Haughty Sneer for Savoir-Faire (High Society), and Sexy Pose for Sex Appeal.</p>"
+  },
+  {
+    "_id": "b1945d93e1a71139",
+    "name": "No Nuisance Rolls",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're exempt from skill or attribute rolls to perform a specific background task that occurs between rather than during such adventure scenes as combat, investigation, or theft. Each perk exempts you from one task; this can involve multiple skills, but you must have 16+ in any score for which you want the GM to waive success rolls. This most often affects \"off-screen\" rolls to get from A to B, as in this example:</p><p><em>Transporter:</em> You needn't make skill rolls to get your vehicle and its passengers and cargo safely through known friendly or neutral territory. Your vehicle operation skill, relevant Navigation specialty, and Area Knowledge for areas you're crossing must all be at 16+.</p>"
+  },
+  {
+    "_id": "8364e547fbda0d63",
+    "name": "Off-Hand Training",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can ignore the -4 for using the \"off\" hand (see Handedness, p. 14) with a specific skill, specified when you buy the perk. Any skill with applications that normally use one hand - including combat skills - qualifies. Benefits extend to all defenses and techniques based on the skill.</p><p>This perk completely replaces the Off-Hand Weapon Training technique (p. 232) - paying 5 points to remove -4 for one skill that way is a bad deal next to Ambidexterity! In this vein, if you eventually acquire five Off-Hand Training perks, the GM may let you exchange them for Ambidexterity [5].</p>"
+  },
+  {
+    "_id": "81777d50595b0d2c",
+    "name": "Citizenship",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The GM may define minor, setting-specific social benefits as perks. Some examples:</p><p><em>Citizenship:</em> If formal citizenship exists, everybody gets one citizenship for free. Each beyond the first is a perk.</p>"
+  },
+  {
+    "_id": "39c59cf4e91becd0",
+    "name": "Courtesy Title",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The GM may define minor, setting-specific social benefits as perks. Some examples:</p><p><em>Courtesy Title:</em> You have an honorary social advantage; e.g., Courtesy Rank (p. 29), Emeritus Professor (for Tenure), Ex-Cop (for Legal Enforcement Powers), or Honorary Title (for Status). This lets you legally use a title and avoid skill penalties when trying to impersonate the real thing. It costs 1 point per 5 points the full advantage costs.</p>"
+  },
+  {
+    "_id": "881b4993a501e280",
+    "name": "License",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The GM may define minor, setting-specific social benefits as perks. Some examples:</p><p><em>License:</em> Licenses for regulated activities may carry modest social benefits set by the GM. These are perks with skill prerequisites: Law for lawyers, Physician for doctors, and so on. Where Status, Tenure, etc. are standard in a profession, take License only where it gives more leeway; e.g., Status 1 doctors have privileges that other Status 1 people don't.</p>"
+  },
+  {
+    "_id": "43e9acc1d9feea71",
+    "name": "Office",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The GM may define minor, setting-specific social benefits as perks. Some examples:</p><p><em>Office:</em> A minor civil office may have real authority equivalent to 5 points of Legal Enforcement Powers, Security Clearance, Status, or similar - but of such limited scope (e.g., \"Dogcatcher of the City of Austin\") that it's only a perk.</p>"
+  },
+  {
+    "_id": "ad087f8bd3607645",
+    "name": "Permit",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The GM may define minor, setting-specific social benefits as perks. Some examples:</p><p><em>Permit:</em> If a piece of gear has a Legality Class (LC) lower than the setting's Control Rating, legal carriage and use may require a permit for those without Legal Enforcement Powers, Rank, etc. (or even for such people when they're \"off the job\"). Concealment can reduce effective LC for this purpose. Each such permit is a perk.</p>"
+  },
+  {
+    "_id": "865530f0a8f7a4d6",
+    "name": "Strongbow",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've learned how best to draw a heavy bow. If you know Bow at DX+1, you can shoot a bow of your ST+1 unpenalized. Bow at DX+2 or better lets you use a bow of your ST+2. You need such a bow to see range and damage improvements - there's no effect when shooting a bow of your ST or less.</p>"
+  },
+  {
+    "_id": "d2b711c2c2e38f01",
+    "name": "Extra Option",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some Unusual Backgrounds (p. 96) are so minor as to be perks. Examples are Extra Option (entitlement to use a beneficial optional rule not otherwise used in the campaign), Rules Exemption (immunity to a detrimental optional rule used in the campaign), Secret Knowledge (access to a specific skill with controlled access), Special Exercises (right to exceed a human norm, usually a maximum attribute or advantage level, by one level per perk), and Unusual Training (access to one skill or technique that otherwise requires a special advantage like Trained by a Master). The GM may restrict when, where, and how especially powerful or unrealistic rules or abilities work.</p>"
+  },
+  {
+    "_id": "ef163947d3ecf98b",
+    "name": "Rules Exemption",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some Unusual Backgrounds (p. 96) are so minor as to be perks. Examples are Extra Option (entitlement to use a beneficial optional rule not otherwise used in the campaign), Rules Exemption (immunity to a detrimental optional rule used in the campaign), Secret Knowledge (access to a specific skill with controlled access), Special Exercises (right to exceed a human norm, usually a maximum attribute or advantage level, by one level per perk), and Unusual Training (access to one skill or technique that otherwise requires a special advantage like Trained by a Master). The GM may restrict when, where, and how especially powerful or unrealistic rules or abilities work.</p>"
+  },
+  {
+    "_id": "ea1cb6e7dc6c1cdf",
+    "name": "Secret Knowledge",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some Unusual Backgrounds (p. 96) are so minor as to be perks. Examples are Extra Option (entitlement to use a beneficial optional rule not otherwise used in the campaign), Rules Exemption (immunity to a detrimental optional rule used in the campaign), Secret Knowledge (access to a specific skill with controlled access), Special Exercises (right to exceed a human norm, usually a maximum attribute or advantage level, by one level per perk), and Unusual Training (access to one skill or technique that otherwise requires a special advantage like Trained by a Master). The GM may restrict when, where, and how especially powerful or unrealistic rules or abilities work.</p>"
+  },
+  {
+    "_id": "60370ed87549f47d",
+    "name": "Special Exercises",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some Unusual Backgrounds (p. 96) are so minor as to be perks. Examples are Extra Option (entitlement to use a beneficial optional rule not otherwise used in the campaign), Rules Exemption (immunity to a detrimental optional rule used in the campaign), Secret Knowledge (access to a specific skill with controlled access), Special Exercises (right to exceed a human norm, usually a maximum attribute or advantage level, by one level per perk), and Unusual Training (access to one skill or technique that otherwise requires a special advantage like Trained by a Master). The GM may restrict when, where, and how especially powerful or unrealistic rules or abilities work.</p>"
+  },
+  {
+    "_id": "dc87a9448a9d65be",
+    "name": "Unusual Training",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some Unusual Backgrounds (p. 96) are so minor as to be perks. Examples are Extra Option (entitlement to use a beneficial optional rule not otherwise used in the campaign), Rules Exemption (immunity to a detrimental optional rule used in the campaign), Secret Knowledge (access to a specific skill with controlled access), Special Exercises (right to exceed a human norm, usually a maximum attribute or advantage level, by one level per perk), and Unusual Training (access to one skill or technique that otherwise requires a special advantage like Trained by a Master). The GM may restrict when, where, and how especially powerful or unrealistic rules or abilities work.</p>"
+  },
+  {
+    "_id": "7820825018a16a5c",
+    "name": "Weapon Bond",
+    "pages": "B329",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You own a weapon that's uniquely suited to you - specify it when you take the perk. When you use this weapon, you're at +1 to effective skill and all techniques based on it. This is largely a matter of intimate familiarity.</p><p>You must acquire your weapon normally; e.g., with money or as Signature Gear. It can be of any quality, and this perk changes neither the weapon nor its price. If you lose the weapon, you lose this perk - although you can buy a new Weapon Bond in play.</p>"
+  },
+  {
     "_id": "b7855b4aaa0ee284",
     "name": "Extra ST",
     "pages": "B14",
@@ -110,6 +526,38 @@
     "status": "no-entry",
     "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
+  },
+  {
+    "_id": "cd7c3ab033fcffdb",
+    "name": "Racial Skill Bonus",
+    "pages": "B452",
+    "status": "reviewed",
+    "notes": "the book describes racial skill bonuses together under Racial Skill Bonuses and Penalties",
+    "description": "<p>A race with a particular gift for a skill or a set of skills has an advantage, while a race that is unusually inept has a disadvantage.</p><p>Racial talent for one skill costs 2 points for +1 to skill, 4 points for +2, or 6 points for +3 (the maximum bonus allowed). Write this as, for instance, \"+1 to Forgery [2]\" or \"+3 to Fast-Talk [6].\" This trait does not actually grant the skill - it gives a bonus whenever a member of the race rolls against that skill or its default.</p><p>Treat a racial knack for a group of related skills as a Talent (see p. 89). Each +1 to those skills costs 5 points for six or fewer skills, 10 points for seven to 12 skills, or 15 points for 13 or more skills. The maximum bonus is +4. If this is not a standard Talent, note which skills get the bonus. (Keep an open mind - some unusual things might be \"closely related\" for a race that thinks nothing like humanity!)</p><p>The bonuses and penalties above apply to all specialties of any affected skills.</p><p><em>Effects of Experience:</em> When an individual improves a racially modified skill, disregard the racial modifiers and calculate the new level based solely on the points he spent. Apply the racial skill bonus to his final skill level. For example, a member of a race with +1 to Fast-Talk would pay only 1 point to have Fast-Talk at IQ. If he wanted to improve Fast-Talk to IQ+1 later on, he would pay 1 more point.</p>"
+  },
+  {
+    "_id": "b05dc8bf1dfbf031",
+    "name": "Racial Skill Point Bonus",
+    "pages": "B452",
+    "status": "reviewed",
+    "notes": "the book describes racial skill bonuses together under Racial Skill Bonuses and Penalties",
+    "description": "<p>A race with a particular gift for a skill or a set of skills has an advantage, while a race that is unusually inept has a disadvantage.</p><p>Racial talent for one skill costs 2 points for +1 to skill, 4 points for +2, or 6 points for +3 (the maximum bonus allowed). Write this as, for instance, \"+1 to Forgery [2]\" or \"+3 to Fast-Talk [6].\" This trait does not actually grant the skill - it gives a bonus whenever a member of the race rolls against that skill or its default.</p><p>Treat a racial knack for a group of related skills as a Talent (see p. 89). Each +1 to those skills costs 5 points for six or fewer skills, 10 points for seven to 12 skills, or 15 points for 13 or more skills. The maximum bonus is +4. If this is not a standard Talent, note which skills get the bonus. (Keep an open mind - some unusual things might be \"closely related\" for a race that thinks nothing like humanity!)</p><p>The bonuses and penalties above apply to all specialties of any affected skills.</p><p><em>Effects of Experience:</em> When an individual improves a racially modified skill, disregard the racial modifiers and calculate the new level based solely on the points he spent. Apply the racial skill bonus to his final skill level. For example, a member of a race with +1 to Fast-Talk would pay only 1 point to have Fast-Talk at IQ. If he wanted to improve Fast-Talk to IQ+1 later on, he would pay 1 more point.</p>"
+  },
+  {
+    "_id": "c8ab81125233f493",
+    "name": "Racial Spell Bonus",
+    "pages": "B452",
+    "status": "reviewed",
+    "notes": "the book describes racial skill bonuses together; a spell is a skill",
+    "description": "<p>A race with a particular gift for a skill or a set of skills has an advantage, while a race that is unusually inept has a disadvantage.</p><p>Racial talent for one skill costs 2 points for +1 to skill, 4 points for +2, or 6 points for +3 (the maximum bonus allowed). Write this as, for instance, \"+1 to Forgery [2]\" or \"+3 to Fast-Talk [6].\" This trait does not actually grant the skill - it gives a bonus whenever a member of the race rolls against that skill or its default.</p><p>Treat a racial knack for a group of related skills as a Talent (see p. 89). Each +1 to those skills costs 5 points for six or fewer skills, 10 points for seven to 12 skills, or 15 points for 13 or more skills. The maximum bonus is +4. If this is not a standard Talent, note which skills get the bonus. (Keep an open mind - some unusual things might be \"closely related\" for a race that thinks nothing like humanity!)</p><p>The bonuses and penalties above apply to all specialties of any affected skills.</p><p><em>Effects of Experience:</em> When an individual improves a racially modified skill, disregard the racial modifiers and calculate the new level based solely on the points he spent. Apply the racial skill bonus to his final skill level. For example, a member of a race with +1 to Fast-Talk would pay only 1 point to have Fast-Talk at IQ. If he wanted to improve Fast-Talk to IQ+1 later on, he would pay 1 more point.</p>"
+  },
+  {
+    "_id": "39c4707cad1a0a97",
+    "name": "Racial Spell Point Bonus",
+    "pages": "B452",
+    "status": "reviewed",
+    "notes": "the book describes racial skill bonuses together; a spell is a skill",
+    "description": "<p>A race with a particular gift for a skill or a set of skills has an advantage, while a race that is unusually inept has a disadvantage.</p><p>Racial talent for one skill costs 2 points for +1 to skill, 4 points for +2, or 6 points for +3 (the maximum bonus allowed). Write this as, for instance, \"+1 to Forgery [2]\" or \"+3 to Fast-Talk [6].\" This trait does not actually grant the skill - it gives a bonus whenever a member of the race rolls against that skill or its default.</p><p>Treat a racial knack for a group of related skills as a Talent (see p. 89). Each +1 to those skills costs 5 points for six or fewer skills, 10 points for seven to 12 skills, or 15 points for 13 or more skills. The maximum bonus is +4. If this is not a standard Talent, note which skills get the bonus. (Keep an open mind - some unusual things might be \"closely related\" for a race that thinks nothing like humanity!)</p><p>The bonuses and penalties above apply to all specialties of any affected skills.</p><p><em>Effects of Experience:</em> When an individual improves a racially modified skill, disregard the racial modifiers and calculate the new level based solely on the points he spent. Apply the racial skill bonus to his final skill level. For example, a member of a race with +1 to Fast-Talk would pay only 1 point to have Fast-Talk at IQ. If he wanted to improve Fast-Talk to IQ+1 later on, he would pay 1 more point.</p>"
   },
   {
     "_id": "c595de80a1f6fc96",
@@ -2630,37 +3078,5 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>You have a cool move or slick feature that sets you apart from the masses. This provides no combat or reaction bonuses, and you can't use it to earn money, but it might occasionally give you some minor benefit in play (GM's discretion). Example: your clothing is always spotless, even after combat or swimming the Nile; you can run, climb, fight, etc. while wearing high heels without suffering any special penalty for bad footing.</p>"
-  },
-  {
-    "_id": "cd7c3ab033fcffdb",
-    "name": "Racial Skill Bonus",
-    "pages": "B452",
-    "status": "reviewed",
-    "notes": "the book describes racial skill bonuses together under Racial Skill Bonuses and Penalties",
-    "description": "<p>A race with a particular gift for a skill or a set of skills has an advantage, while a race that is unusually inept has a disadvantage.</p><p>Racial talent for one skill costs 2 points for +1 to skill, 4 points for +2, or 6 points for +3 (the maximum bonus allowed). Write this as, for instance, \"+1 to Forgery [2]\" or \"+3 to Fast-Talk [6].\" This trait does not actually grant the skill - it gives a bonus whenever a member of the race rolls against that skill or its default.</p><p>Treat a racial knack for a group of related skills as a Talent (see p. 89). Each +1 to those skills costs 5 points for six or fewer skills, 10 points for seven to 12 skills, or 15 points for 13 or more skills. The maximum bonus is +4. If this is not a standard Talent, note which skills get the bonus. (Keep an open mind - some unusual things might be \"closely related\" for a race that thinks nothing like humanity!)</p><p>The bonuses and penalties above apply to all specialties of any affected skills.</p><p><em>Effects of Experience:</em> When an individual improves a racially modified skill, disregard the racial modifiers and calculate the new level based solely on the points he spent. Apply the racial skill bonus to his final skill level. For example, a member of a race with +1 to Fast-Talk would pay only 1 point to have Fast-Talk at IQ. If he wanted to improve Fast-Talk to IQ+1 later on, he would pay 1 more point.</p>"
-  },
-  {
-    "_id": "b05dc8bf1dfbf031",
-    "name": "Racial Skill Point Bonus",
-    "pages": "B452",
-    "status": "reviewed",
-    "notes": "the book describes racial skill bonuses together under Racial Skill Bonuses and Penalties",
-    "description": "<p>A race with a particular gift for a skill or a set of skills has an advantage, while a race that is unusually inept has a disadvantage.</p><p>Racial talent for one skill costs 2 points for +1 to skill, 4 points for +2, or 6 points for +3 (the maximum bonus allowed). Write this as, for instance, \"+1 to Forgery [2]\" or \"+3 to Fast-Talk [6].\" This trait does not actually grant the skill - it gives a bonus whenever a member of the race rolls against that skill or its default.</p><p>Treat a racial knack for a group of related skills as a Talent (see p. 89). Each +1 to those skills costs 5 points for six or fewer skills, 10 points for seven to 12 skills, or 15 points for 13 or more skills. The maximum bonus is +4. If this is not a standard Talent, note which skills get the bonus. (Keep an open mind - some unusual things might be \"closely related\" for a race that thinks nothing like humanity!)</p><p>The bonuses and penalties above apply to all specialties of any affected skills.</p><p><em>Effects of Experience:</em> When an individual improves a racially modified skill, disregard the racial modifiers and calculate the new level based solely on the points he spent. Apply the racial skill bonus to his final skill level. For example, a member of a race with +1 to Fast-Talk would pay only 1 point to have Fast-Talk at IQ. If he wanted to improve Fast-Talk to IQ+1 later on, he would pay 1 more point.</p>"
-  },
-  {
-    "_id": "c8ab81125233f493",
-    "name": "Racial Spell Bonus",
-    "pages": "B452",
-    "status": "reviewed",
-    "notes": "the book describes racial skill bonuses together; a spell is a skill",
-    "description": "<p>A race with a particular gift for a skill or a set of skills has an advantage, while a race that is unusually inept has a disadvantage.</p><p>Racial talent for one skill costs 2 points for +1 to skill, 4 points for +2, or 6 points for +3 (the maximum bonus allowed). Write this as, for instance, \"+1 to Forgery [2]\" or \"+3 to Fast-Talk [6].\" This trait does not actually grant the skill - it gives a bonus whenever a member of the race rolls against that skill or its default.</p><p>Treat a racial knack for a group of related skills as a Talent (see p. 89). Each +1 to those skills costs 5 points for six or fewer skills, 10 points for seven to 12 skills, or 15 points for 13 or more skills. The maximum bonus is +4. If this is not a standard Talent, note which skills get the bonus. (Keep an open mind - some unusual things might be \"closely related\" for a race that thinks nothing like humanity!)</p><p>The bonuses and penalties above apply to all specialties of any affected skills.</p><p><em>Effects of Experience:</em> When an individual improves a racially modified skill, disregard the racial modifiers and calculate the new level based solely on the points he spent. Apply the racial skill bonus to his final skill level. For example, a member of a race with +1 to Fast-Talk would pay only 1 point to have Fast-Talk at IQ. If he wanted to improve Fast-Talk to IQ+1 later on, he would pay 1 more point.</p>"
-  },
-  {
-    "_id": "39c4707cad1a0a97",
-    "name": "Racial Spell Point Bonus",
-    "pages": "B452",
-    "status": "reviewed",
-    "notes": "the book describes racial skill bonuses together; a spell is a skill",
-    "description": "<p>A race with a particular gift for a skill or a set of skills has an advantage, while a race that is unusually inept has a disadvantage.</p><p>Racial talent for one skill costs 2 points for +1 to skill, 4 points for +2, or 6 points for +3 (the maximum bonus allowed). Write this as, for instance, \"+1 to Forgery [2]\" or \"+3 to Fast-Talk [6].\" This trait does not actually grant the skill - it gives a bonus whenever a member of the race rolls against that skill or its default.</p><p>Treat a racial knack for a group of related skills as a Talent (see p. 89). Each +1 to those skills costs 5 points for six or fewer skills, 10 points for seven to 12 skills, or 15 points for 13 or more skills. The maximum bonus is +4. If this is not a standard Talent, note which skills get the bonus. (Keep an open mind - some unusual things might be \"closely related\" for a race that thinks nothing like humanity!)</p><p>The bonuses and penalties above apply to all specialties of any affected skills.</p><p><em>Effects of Experience:</em> When an individual improves a racially modified skill, disregard the racial modifiers and calculate the new level based solely on the points he spent. Apply the racial skill bonus to his final skill level. For example, a member of a race with +1 to Fast-Talk would pay only 1 point to have Fast-Talk at IQ. If he wanted to improve Fast-Talk to IQ+1 later on, he would pay 1 more point.</p>"
   }
 ]
