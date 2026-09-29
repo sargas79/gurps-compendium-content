@@ -8,15 +8,21 @@ Tactical Combat with Vehicles: When using the rules in Chapter 12 with vehicles,
 
 Treat a vehicle as an extension of its operator. It moves on the operator’s turn, at his place in the turn sequence (as determined by his Basic Speed). To control his vehicle, the operator must take a Move or Move and Attack maneuver on his turn – but it’s the vehicle that moves or attacks, while the operator remains at the controls. If the operator takes any other maneuver, or is stunned or otherwise incapacitated, his vehicle plows ahead with the same speed and course it had on the previous turn.
 
-The vehicle’s other occupants take their turns at their place in the turn sequence. They may use vehicle systems, provided they are stationed next to the appropriate controls and take a suitable maneuver: Concentrate to use instruments or electronics, Attack or All-Out Attack to fire vehicular weapons, etc.
+The vehicle’s other occupants take their turns at their place in the turn sequence.
+
+They may use vehicle systems, provided they are stationed next to the appropriate controls and take a suitable maneuver: Concentrate to use instruments or electronics, Attack or All-Out Attack to fire vehicular weapons, etc.
 
 Occupants leaning out windows, standing on a deck, etc. may find Attack or even All-Out Defense preferable to All-Out Attack, as they will have a defense if someone attacks them instead of the vehicle. This matters most for vehicles with an exposed rider (E), glass windows (G or g), or open cabin (O), and for crew manning exposed weapon mounts (X).
 
-Bailing Out of a Moving Vehicle: Anyone who jumps or falls from a moving vehicle and hits the ground suffers a collision with an immovable object, at the vehicle’s speed. If the vehicle was flying, add falling damage as well. For details, see Collisions and Falls (p. 430). To jump between two moving vehicles, make a DX or Jumping roll. Apply the penalty for relative speed given on the Size and Speed/Range Table (p. 550).
+Bailing Out of a Moving Vehicle: Anyone who jumps or falls from a moving vehicle and hits the ground suffers a collision with an immovable object, at the vehicle’s speed.
+
+If the vehicle was flying, add falling damage as well. For details, see Collisions and Falls (p. 430). To jump between two moving vehicles, make a DX or Jumping roll. Apply the penalty for relative speed given on the Size and Speed/Range Table (p. 550).
 
 ### Movement During Combat
 
-As explained under Vehicle Statistics (p. 462), a vehicle’s Move score is split into two numbers: Acceleration and Top Speed. Acceleration functions just like Basic Move for a character; at this speed or less, the vehicle has no special restrictions on movement. At higher speeds – anything up to Top Speed – use the High-Speed Movement rules (p. 394), but substitute control rolls (see Control Rolls, p. 466) for DX rolls.
+As explained under Vehicle Statistics (p. 462), a vehicle’s Move score is split into two numbers: Acceleration and Top Speed.
+
+Acceleration functions just like Basic Move for a character; at this speed or less, the vehicle has no special restrictions on movement. At higher speeds – anything up to Top Speed – use the High-Speed Movement rules (p. 394), but substitute control rolls (see Control Rolls, p. 466) for DX rolls.
 
 Acceleration: A vehicle can accelerate up to its Acceleration each turn. A diving flyer may add 10 × local gravity in Gs (1G on Earth) to this.
 
@@ -24,7 +30,7 @@ Deceleration: A powered, wheeled ground vehicle can decelerate by 5 yards/second
 
 #### Control Rolls
 
-The operator must make a control roll whenever he attempts a risky maneuver or encounters an obstacle, and whenever his vehicle suffers knockback or major damage. On a failure, he loses control of the vehicle. If you are using a rulebook that supplies a “crash table” for that type of vehicle, roll on the table; otherwise, see the applicable paragraph below. In addition to these results, a failed control roll always erases any accumulated bonuses for Aim maneuvers, and gives a penalty equal to the margin of failure to any attack from the vehicle until the operator’s next turn.
+The operator must make a control roll whenever he attempts a risky maneuver or encounters an obstacle, and whenever his vehicle suffers knockback or major damage (p. 484). On a failure, he loses control of the vehicle. When using a rulebook that supplies a “crash table” for that type of vehicle, roll on the table; otherwise, see the applicable paragraph below. In addition to these results, a failed control roll always erases any accumulated bonuses for Aim maneuvers, and gives a penalty equal to the margin of failure to any attack from the vehicle until the operator’s next turn.
 
 Air Vehicle: Failure by the vehicle’s Stability Rating (SR) or less means the vehicle loses 5 yards of altitude and decelerates by 10 yards/second. If it was flying dangerously low or slow, it could hit the ground or stall; otherwise, it just blunders ahead. Failure by more than SR, or critical failure, means an uncontrollable dive, tailspin, etc. If the vehicle was climbing, it stalls, then starts to fall; otherwise, it dives at Top Speed each turn. Either way, on subsequent turns, the operator must make a Piloting-5 roll to pull out!
 
@@ -58,7 +64,7 @@ Occupants who are free to move (not strapped in, etc.) may dodge attacks specifi
 
 A vehicle suffers damage like any other artifact. Certain hit locations have special damage effects – see the Vehicle Hit Location Table (p. 554) for details.
 
-Hit locations for a given vehicle appear in the Locations column on the relevant vehicle table, or in the vehicle’s text description. Assume that attacks are aimed at the vehicle’s body (equivalent to the torso on a living being) unless the attacker specifically stated that he was targeting another location. Alternatively, roll randomly for hit location. In all cases, only exposed locations can be hit; e.g., if a tank is behind a hill and only its turret is visible, the turret is the only valid target.
+Hit locations for a given vehicle appear in the “Locations” column on the relevant vehicle table, or in the vehicle’s text description. Assume that attacks are aimed at the vehicle’s body (equivalent to the torso on a living being) unless the attacker specifically stated that he was targeting another location. Alternatively, roll randomly for hit location. In all cases, only exposed locations can be hit; e.g., if a tank is behind a hill and only its turret is visible, the turret is the only valid target.
 
 An attacker can sometimes target a vehicle’s occupants directly. This is only possible if the vehicle has an exposed rider (E), glass windows (G or g), or an open cabin (O), or if the occupants are on a ship’s deck, cargo bed, etc. A rider has no cover; someone in an open or glass-windowed vehicle has partial cover (legs, groin, and half the torso). There is an extra -1 to shoot into or out of a window unless the occupant is actually leaning out.
 

@@ -10,7 +10,7 @@ Drunk: You are highly intoxicated: -2 to DX and IQ, and -4 to self-control rolls
 
 Euphoria: You have a -3 penalty to all DX, IQ, skill, and self-control rolls.
 
-Nauseated: You have -2 to all attribute and skill rolls, and -1 to active defenses. As well, roll vs. HT after you eat, are exposed to a foul odor, fail a Fright Check, or are stunned, and every hour in free fall or in any situation where you might suffer motion sickness. A rich meal in the past hour gives -2; anti-nausea remedies give +2. On a failure, you vomit for (25 - HT) seconds – treat as Retching, below.
+Nauseated: You have -2 to all attribute and skill rolls, and -1 to active defenses. As well, roll vs. HT after you eat, are exposed to a foul odor, fail a Fright Check, or are stunned, and every hour in free fall or in any situation where you might suffer motion sickness. A rich meal in the past hour gives -2; anti-nausea remedies give +2. On a failure, you vomit for (25 - HT) seconds – treat as Retching, p. 429.
 
 Pain: You have a penalty to all DX, IQ, skill, and self-control rolls. This is -2 for Moderate Pain, -4 for Severe Pain, and -6 for Terrible Pain. High Pain Threshold halves these penalties; Low Pain Threshold doubles them.
 
@@ -20,7 +20,7 @@ Tipsy: You are slightly intoxicated: -1 to DX and IQ, and -2 to self-control rol
 
 All of these afflictions prevent you from taking voluntary action for the duration. In addition to their other effects, you’re effectively stunned (-4 to active defenses). In combat, you must Do Nothing on your turn. If an affliction lets you drop, you can sit, kneel, go prone, etc. if standing, or go prone if kneeling or sitting. If it lets you stagger, you can drop, change facing, or step or crawl one yard. In all cases, you are still effectively stunned.
 
-Agony: You are conscious but in such terrible pain that you can do nothing but moan or scream. If standing or sitting, you fall down. While the affliction endures, you lose 1 FP per minute or fraction thereof. After you recover, anyone who can credibly threaten you with a resumption of the pain gets +3 to Interrogation and Intimidation skill rolls. Low Pain Threshold doubles the FP loss and torture bonus. High Pain Threshold lets you overcome the agony enough to function, but at -3 to DX and IQ.
+Agony: You are conscious but in such terrible pain that you can do nothing but moan or scream. If standing or sitting, you fall down. While the affliction endures, you lose 1 FP per minute or fraction thereof. After you recover, anyone who can credibly threaten you with a resumption of the pain gets +3 to Interrogation and Intimidation skill rolls. Low Pain Threshold doubles the FP loss and torture bonus. High Pain Threshold lets you function at -3 to DX, IQ, skill, and self-control rolls; you still lose FP.
 
 Choking: You are unable to breathe or speak. You may do nothing but drop. While the choking endures, you suffer the effects of suffocation (see Suffocation, p. 436). If you have an object lodged in your throat, a friend can try a First Aid roll to clear it; roll at -2 before TL7. Each attempt takes 2 seconds. If you have Doesn’t Breathe or Injury Tolerance (Homogenous), you cannot choke!
 
@@ -43,3 +43,5 @@ Unconsciousness: You are knocked out, just as if you had suffered injury.
 Coma: You collapse just as if you had been wounded to -1×HP or below and passed out; see Recovering from Unconsciousness (p. 423). You get a single HT roll to awaken after 12 hours. On a failure, you won’t recover without medical treatment. Until you receive treatment, roll vs. HT every 12 hours. On any failure, you die.
 
 Heart Attack: Your heart stops functioning (“cardiac arrest”). You immediately drop to -1×FP. Regardless of your current HP, you will die in HT/3 minutes unless resuscitated – see Resuscitation (p. 425). If you survive, you will be at 0 HP or your current HP, whichever is worse. Missing HP heal normally. If you die and it matters what your HP total was, treat this as death at -1×HP or your current HP, whichever is worse. Injury Tolerance (Diffuse, Homogenous, or No Vitals) grants immunity to this affliction.
+
+GURPS Powers, p. 118 adds the Banishment, Petrifaction, and Temporal Stasis afflictions.

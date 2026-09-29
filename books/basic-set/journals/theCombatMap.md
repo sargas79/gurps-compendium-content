@@ -6,12 +6,16 @@ Tactical combat uses a “combat map” marked off in hexagons, or hexes. Each o
 
 You need a marker or miniature figure to represent each combatant. This can be metal, plastic . . . even cardboard. These rules assume one-inch hexes, or a 50mm scale, for maps – but 25mm figures are easier to handle. Of course, you need not use figures! Any counter will do, as long as it has a “front” to indicate facing and some way to show when the fighter it represents is prone.
 
+Gamers who want the fun of detailed figures at the cost of cardboard counters should consider Cardboard Heroes, SJ Games’ line of upright cardboard figures.
+
 ### Hexes
 
 One hex on the combat map represents one yard of distance. It is also the basic unit of movement: each hex a fighter moves represents one yard of movement. The number of hexes you can move on your turn depends on your Move score and your maneuver (see Maneuvers in Tactical Combat, p. 385).
 
 Each human-sized or smaller fighter must occupy one hex. Exceptions include close combat (see Close Combat, p. 391), swarms (see Swarm Attacks, p. 461), and situations in which people are crowded together but not fighting (you could cram up to four ordinary-sized humans into a single hex, if they were friendly).
 
-A human-sized fighter who is lying down or who has the Horizontal disadvantage occupies two hexes; see Change Posture (p. 385). Larger fighters also occupy more than one hex; see Multi-Hex Figures (p. 392).
+GURPS Tactical Shooting offers more detail (and diagrams!) for tactical movement on a combat map – “peeling,” “slicing the pie,” dynamic entry, clearing corners, etc. – useful even to combatants without guns.
 
-Treat a fractional hex (e.g., one cut in half by a wall) as if it were a full hex: you can move through it and occupy it without penalty, unless the GM rules otherwise. You can also move through an ally’s hex, although the movement cost is higher. You cannot move through or occupy a hex completely filled by a solid barrier (e.g., a pillar).
+A human-sized fighter who is lying down or who has the Horizontal disadvantage occupies two hexes; see Change Posture (below). Larger fighters also occupy more than one hex; see Multi-Hex Figures (p. 392).
+
+Treat a partial hex (e.g., one cut in half by a wall) as if it were a full hex: you can move through it and occupy it without penalty, unless the GM rules otherwise. You can also move through an ally’s hex, although the movement cost is higher. You cannot move through or occupy a hex completely filled by a solid barrier (e.g., a pillar).

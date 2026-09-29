@@ -1,0 +1,1 @@
+The GM – possibly in response to Serendipity, Unluckiness, etc. – might specify an unusually rich or desolate area in any terrain. Use the maximum or minimum foraging modifier instead of rolling or using the average. If it changes effective terrain type, use that biome’s range (e.g., an oasis in Desert is functionally Island/Beach, for +5).

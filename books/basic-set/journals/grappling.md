@@ -2,7 +2,7 @@
 
 Each attempt requires an Attack, All-Out Attack, or Move and Attack maneuver. Roll against basic DX or a grappling skill to hit. Your foe may defend normally – he can parry, dodge, or block. You may Evaluate or Feint beforehand to improve your odds of success.
 
-Grappling does no damage, but if you successfully hit, the foe has -4 to DX as long as you’re holding on. He may not move away until he breaks free (see Actions After Being Grappled, p. 371) or you let go. Exception: If you grapple a foe of more than twice your ST, you do not prevent him from moving away – you’re just extra encumbrance for him!
+Grappling does no damage, but if you successfully hit, the foe has -4 to DX as long as you’re holding on. He may not move away until he breaks free (see Actions After Being Grappled, p. 371) or you let go. Exception: If you grapple a foe of twice your ST or more, you do not prevent him from moving away – you’re just extra encumbrance for him!
 
 You may grapple with any or all of your arms. If you grapple with more than two arms, each arm beyond the first two gives a bonus of +2 to hit. An arm committed to grappling cannot make unarmed parries until you let go. Letting go is a free action on your turn.
 

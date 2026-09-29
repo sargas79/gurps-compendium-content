@@ -6,13 +6,15 @@ Throwing an object during combat – whether as an attack or not – requires an
 
 To avoid slowing down the game with math, the GM should allow any throw he deems reasonable . . . but when you need to know the exact distance you can throw an object, use the following procedure:
 
-1. Divide the object’s weight in pounds by your Basic Lift to get the “weight ratio.”
+1. Divide the object’s weight in pounds by your Basic Lift to get the weight ratio.
 
-2. Find the weight ratio in the Weight Ratio column of the table below. If it falls between two values, use the higher value.
+2. Find the weight ratio in the “Weight Ratio” column of the table below. If it falls between two values, use the higher value.
 
-3. Read across to the Distance Modifier column and find the “distance modifier.”
+3. Read across to the “Distance Modifier” column and find the distance modifier.
 
 4. Multiply your ST by the distance modifier to find the distance in yards you can throw the object.
+
+Example: You have ST 12, giving a BL of 29 lbs. You need to throw a 120-lb. body over a two-yard pit. Divide weight by BL: 120/29 = 4.1. This falls between 4.0 and 5.0 in the “Weight Ratio” column, so treat it as 5.0. The associated distance modifier is 0.12. Multiplying by ST, your range is 0.12 × 12 = 1.4 yards. Oops! The body just hit the bottom of the pit.
 
 | Weight | Distance | Weight | Distance |
 | --- | --- | --- | --- |
@@ -29,8 +31,6 @@ To avoid slowing down the game with math, the GM should allow any throw he deems
 | 1.00 | 0.6 | 10.0 | 0.06 |
 | 1.50 | 0.4 | 12.0 | 0.05 |
 
-Example: You have ST 12, giving a BL of 29 lbs. You need to throw a 120-lb. body over a two-yard pit. Divide weight by BL: 120/29 = 4.1. This falls between 4.0 and 5.0 in the Weight Ratio column, so treat it as 5.0. The associated distance modifier is 0.12. Multiplying by ST, your range is 0.12 × 12 = 1.4 yards. Oops! The body just hit the bottom of the pit.
-
 ### Damage From Thrown Objects
 
 Thrown objects inflict thrust damage for your ST (see Damage Table, p. 16), modified for weight as shown on the table below. Damage is usually crushing, but the GM may rule that a sharp object does cutting, piercing, or impaling damage instead. A fragile object (or a thrown character) takes the same amount of damage it inflicts; roll damage separately for the object and the target.
@@ -43,8 +43,8 @@ Thrown objects inflict thrust damage for your ST (see Damage Table, p. 16), modi
 | Up to BL | Thrust, +1 per die |
 | Up to 2×BL | Thrust |
 | Up to 4×BL | Thrust, -1/2 per die |
-
-(round down) Up to 8×BL Thrust, -1 per die
+| (round down) |  |
+| Up to 8×BL | Thrust, -1 per die |
 
 Example: You have ST 28, which gives you a BL of 157 lbs. and a thrust damage of 3d-1. You hit a foe with a hurled 50-lb. bag of cement. It is between BL/4 (39 lbs.) and BL/2 (78 lbs.). As shown on the table above, it does straight thrust damage, or 3d-1.
 

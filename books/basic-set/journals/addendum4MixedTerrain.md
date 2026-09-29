@@ -1,0 +1,1 @@
+Where terrain types overlap for long stretches (e.g., Mountain and Woodlands along an alpine tree line), or when one roll covers crossing several terrain types, pick one type as “dominant” and use its modifiers, but allow all applicable Survival specialties to work.

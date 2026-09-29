@@ -22,7 +22,9 @@ Note that if you’re very large, your reach will increase – see Size Modifier
 
 ### Attacking Through an Occupied Hex
 
-You can attack “through” someone else in melee if you are using a weapon with a reach of two yards or more. You may attack through a friend at no penalty (this is a basic part of your training with any long weapon). If you attack through an enemy’s hex, the penalty is -4. If your attack passes along a line between two hexes, there is no penalty unless both hexes are occupied. If they are, treat the situation as a single occupied hex – friendly, unless foes occupy both hexes.
+You can attack “through” someone else in melee if you are using a weapon with a reach of two yards or more. You may attack through a friend at no penalty (this is a basic part of your training with any long weapon). If you attack through an enemy’s hex, the penalty is -4. If your attack passes along a line between two hexes, there is no penalty unless both hexes are occupied.
+
+If they are, treat the situation as a single occupied hex – friendly, unless foes occupy both hexes.
 
 ### Wild Swings
 
@@ -39,3 +41,5 @@ If you have Peripheral Vision (p. 74), two-handed melee attacks into your right 
 If you have 360° Vision (p. 34), no attack to your sides or back is a Wild Swing – but attacks to the back and opposite side at -2 due to the clumsy angle of attack.
 
 Note that some martial-arts techniques (e.g., Back Kick, p. 230) allow you to attack foes behind you without making a Wild Swing.
+
+GURPS Martial Arts has abilities and rules that let melee attackers move farther, exploit reach, and strike foes behind them.

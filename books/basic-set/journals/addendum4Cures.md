@@ -1,0 +1,1 @@
+You can get rid of the shakes with a time-out, but psychiatric conditions take days of work – or character points, if you wait too long. The GM decides what medical, magical, or other treatments relieve Stress or Derangement. Broadly, anything capable of erasing -1 point of mental disadvantages can remove -2 Derangement or all Stress.

@@ -2,7 +2,7 @@ Most medieval shields were wood, or wood with a thin layer of metal. After one g
 
 See Shields (p. 287) for the Defense Bonus (DB), DR, and HP of shields. If your shield’s DB makes the difference between success and failure on any active defense (not just a block), the blow struck the shield squarely, and may damage it.
 
-Apply the attack’s damage to the shield. Subtract the shield’s DR. If no damage penetrates the shield, there is no effect . . . but you experience full knockback!
+Apply the attack’s damage to the shield. Subtract the shield’s DR. If no damage penetrates the shield, there is no injury . . . but you experience full knockback!
 
 If damage penetrates the shield’s DR, mark it off against the shield’s HP. Use the standard Damage to Objects rules; ordinary shields are Homogenous, with HT 12. If the shield is disabled or destroyed, it no longer provides its DB, but it still encumbers you until dropped. If it is completely destroyed (-10×HP), it falls off.
 

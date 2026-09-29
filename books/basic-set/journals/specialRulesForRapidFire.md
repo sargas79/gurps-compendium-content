@@ -14,11 +14,13 @@ If your target is totally immobile (for instance, an inanimate object, or someon
 
 Example: When shooting at a door with SM +2, this rule would apply at any range up to 5 yards (range modifier -2). If the target were a man (SM 0), this would only apply at a range of up to 2 yards (range modifier 0) – and only if he were tied up or unconscious.
 
+For speedy shooting techniques, see GURPS Gun Fu and GURPS Tactical Shooting.
+
 ### Shotguns and Multiple Projectiles
 
 A weapon with a RoF followed by a multiplier (e.g., RoF 3×9) fires shots that release multiple, smaller projectiles. The most common example is a shotgun. The first number is the number of shots the weapon can actually fire; this is how much ammunition is used up. When resolving the attack, however, multiply shots fired by the second number to get the effective RoF.
 
-Example: Father O’Leary’s shotgun has RoF 3×9. He chooses to fire three times at a demon flapping toward him. For the purpose of the Rapid Fire rules, he his three shots are an attack at RoF 3 × 9 = 27, because each shell releases multiple buckshot pellets.
+Example: Father O’Leary’s shotgun has RoF 3×9. He chooses to fire three times at a demon flapping toward him. For the purpose of the Rapid Fire rules, his three shots are an attack at RoF 3 × 9 = 27, because each shell releases multiple buckshot pellets.
 
 At extremely close range, multiple projectiles don’t have time to spread. This increases lethality! At ranges less than 10% of 1/2D, don’t apply the RoF multiplier to RoF. Instead, multiply both basic damage dice and the target’s DR by half that value (round down).
 
@@ -28,7 +30,7 @@ Example: Father O’Leary’s shotgun has 1/2D 50, so once that demon flies to w
 
 A weapon fired at RoF 5+ can attack multiple targets. All the targets must be in the same general direction (within a 30° angle), and you must engage them in succession – from right to left or from left to right, your choice.
 
-Announce how many shots you will fire at each target before you roll to hit. You may split up your RoF however you wish. If the targets are more than one yard apart, traversing between them wastes some shots. For RoF 16 or less, you lose one shot for each yard between targets. For RoF 16+, you lose two shots per yard. These “wasted” shots may hit unintended targets (see Hitting the Wrong Target, p. 389).
+Announce how many shots you will fire at each target before you roll to hit. You may split up your RoF however you wish. If the targets are more than one yard apart, traversing between them wastes some shots. For RoF 15 or less, you lose one shot for each yard between targets. For RoF 16+, you lose two shots per yard. These “wasted” shots may hit unintended targets (see Hitting the Wrong Target, p. 389).
 
 Make a separate attack roll against each target. Your effective RoF for each attack is just the number of shots you fired at that target. Since a weapon is harder to control when you swing it to engage multiple targets, add +1 to effective Recoil for your attack on the second target, +2 to Recoil when you engage the third target, and so on.
 

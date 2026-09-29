@@ -12,4 +12,8 @@ The Heaves: If you are drunk and keep drinking, your body will try to purge itse
 
 Sobering Up: To sober up, you must first stop drinking. After half as many hours as the total number of drinks you consumed, roll vs. HT. Various remedies may give a bonus. On a success, you move one step toward sober. Continue to roll each time this many hours pass until you are sober. Exception: To recover from a coma, you need medical help!
 
-Hangovers: If you are tipsy or worse, you must roll vs. HT when you stop drinking, at -2 if you’re drunk or -4 if you’re unconscious. On a failure, you will suffer a hangover. This kicks in 1d hours after the end of the drinking session – or on awakening, if you pass out or fall asleep before this time – and lasts hours equal to your margin of failure. During this time, you will suffer from moderate pain (see Irritating Conditions, p. 428) and acquire Low Pain Threshold (or lose High Pain Threshold, if you have it). The GM may decide that preventative treatment (including drinking plenty of water and possibly taking a mild analgesic) gives you a bonus to this roll.
+Hangovers: If you are tipsy or worse, you must roll vs. HT when you stop drinking, at -2 if you’re drunk or -4 if you’re unconscious. On a failure, you will suffer a hangover. This kicks in 1d hours after the end of the drinking session – or on awakening, if you pass out or fall asleep before this time – and lasts hours equal to your margin of failure.
+
+During this time, you will suffer from moderate pain (see Irritating Conditions, p. 428) and acquire Low Pain Threshold (or lose High Pain Threshold, if you have it).
+
+The GM may decide that preventative treatment (including drinking plenty of water and possibly taking a mild analgesic) gives you a bonus to this roll.

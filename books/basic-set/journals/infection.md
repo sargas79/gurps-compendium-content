@@ -16,4 +16,4 @@ Treatment with antibiotics (TL6+) gives +3 to HT rolls. This usually halts the i
 
 If drugs are unavailable, or if the patient doesn’t respond, a surgeon can cut out the infected tissue if the injury from infection hasn’t progressed beyond a certain point. On the head or torso, this limit is the patient’s HP/2. On a limb or extremity, it is the amount of injury required to cripple the body part. Surgery cannot help infections more severe than this.
 
-The surgeon must make a Surgery roll. This inflicts 2d of injury to the head or torso, or amputates a limb or extremity. On a success, it cures the infection. On a failure, damage or amputation occurs but the patient remains infected.
+The surgeon must make a Surgery roll. This inflicts 2d HP of injury to the head or torso, or amputates a limb or extremity. On a success, it cures the infection. On a failure, injury or amputation occurs but the patient remains infected.

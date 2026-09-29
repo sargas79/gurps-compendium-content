@@ -1,4 +1,4 @@
-The next few sections discuss your society’s level of technological development, cultures, and languages. It is an advantage to be technologically advanced, culturally literate, or linguistically talented. Inadequacy in these areas can be a crippling disadvantage.
+The next few sections discuss your society’s level of technological development, cultures, and languages. It is an advantage to be technologically advanced, culturally literate, or linguistically talented. Inadequacy in these areas can be a serious disadvantage.
 
 ### Technology Level (TL)
 
@@ -26,7 +26,7 @@ Your personal TL is above that of the campaign world. You may enter play with sk
 
 You are automatically familiar with the social peculiarities of one major culture of your choice. You suffer no skill penalties when interacting with people from that culture. The GM will provide a list of cultures to choose from (or let you invent your own – many GMs appreciate players’ contributions to the game world!).
 
-When dealing with an unfamiliar culture, you have -3 to use any skill with a significant cultural component, including Carousing, Connoisseur, Criminology, Dancing, Detect Lies, Diplomacy, Fast-Talk, Games, Gesture, Heraldry, Intimidation, Leadership, Merchant, Poetry, Politics, Psychology, Public Speaking, Savoir-Faire, Sex Appeal, Sociology, Streetwise, and Teaching. To get rid of this penalty, buy the following advantage:
+When dealing with an unfamiliar culture, you have -3 to use any skill with a significant cultural component, including Carousing, Connoisseur, Criminology, Dancing, Detect Lies, Diplomacy, Fast-Talk, Games, Gesture, Heraldry, Intimidation, Leadership, Merchant, Poetry, Politics, Psychology, Public Speaking, Savoir-Faire, Sex Appeal, Sociology, Streetwise, and Teaching. To get rid of this penalty, buy the following advantage.
 
 #### Cultural Familiarity
 
@@ -40,7 +40,7 @@ See Cultural Adaptability (p. 46) for additional options.
 
 ### Language
 
-GURPS assumes that most characters can read and write their “native” language. This ability costs no points, but you should note your native language on your character sheet; e.g., “English (Native) [0].”
+**GURPS** assumes that most characters can read and write their “native” language. This ability costs no points, but you should note your native language on your character sheet; e.g., “English (Native) [0].”
 
 The rest of this section is only important if you can communicate in more than one language (an advantage) or have difficulty with your native tongue (a disadvantage).
 

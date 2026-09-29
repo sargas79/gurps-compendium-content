@@ -9,3 +9,5 @@ Hollow-Point (HP): Bullets designed to expand in flesh, causing bigger wounds. T
 Armor-Piercing Hard Core (APHC): Solid bullets with a dense, armor-piercing core. Add a (2) armor divisor, but if the gun caliber is below 20mm (.80), damage type degrades: pi++ drops to pi+, pi+ to pi, and pi to pi-. (There is no effect on pi-.) APHC ammo is available at TL7+. It has double normal cost and is LC2.
 
 Armor-Piercing Discarding-Sabot (APDS): A small tungsten dart encased in a larger plastic sheath that peels away when the round leaves the barrel, increasing velocity. APDS works like APHC, but also adds 50% to range and +1 damage per die. Used by tanks at TL6-7 and machine guns at TL8, it is available for small arms by TL9. It has five times normal cost and is LC1.
+
+For extra-powerful, incendiary, less-lethal, match-grade, and tracer ammo, armor-piercing and explosive variants, and every shotshell ever, see GURPS High-Tech.

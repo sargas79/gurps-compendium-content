@@ -24,7 +24,7 @@ Any crippling injury is also a major wound, and requires a HT roll for knockdown
 
 Hand: You drop anything you were carrying in that hand. If you were using two or more hands to hold an object, roll vs. DX to avoid dropping it. You cannot hold anything (e.g., a weapon) in that hand. You can wear a shield on that arm and use it to block, but you cannot attack with it. Until healed, you have the One Hand disadvantage (p. 147).
 
-Arm: As for a crippled hand . . . but while someone with a crippled hand could at least carry something in the crook of the arm, you cannot use a crippled arm to carry anything! You do not drop a shield on that arm (unless the arm is severed), but you cannot use it to block – and since it’s just hanging in front of you, reduce its usual Defense Bonus by one. Until healed, you have the One Arm disadvantage (p. 147).
+Arm: As for a crippled hand . . . but while someone with a crippled hand could at least carry something in the crook of the arm, you cannot use a crippled arm to carry anything! You do not drop a shield on that arm (unless the arm is severed), but you cannot use it to block – and since it’s just hanging in front of you, reduce its usual Defense Bonus by 1. Until healed, you have the One Arm disadvantage (p. 147).
 
 Foot: You fall down! You cannot stand or walk without a crutch or something to lean on. You can still fight if you brace yourself against a wall. If you have nothing to lean on, you may assume a kneeling or sitting posture. Until healed, you have the Lame (Crippled Legs) disadvantage (p. 141).
 
@@ -42,15 +42,15 @@ Extra Legs: If you have three or more legs, see Extra Legs (p. 54) for the effec
 
 Striker: You cannot use your Striker to attack. If your Striker is also a wing or a tail, see below for additional effects.
 
-Tail: Any advantages the tail provides (e.g., Extra Arm or Striker) no longer function. As well, your balance is off: -1 DX, except for close manual tasks. If you’re a swimmer or winged flyer, the DX penalty is -2 and you are at half your usual water or air Move (which will also halve your top speed with Enhanced Move).
+Tail: Any advantages the tail provides (e.g., Extra Arm or Striker) no longer function. As well, your balance is off: -1 DX, except for close manual tasks.
+
+If you’re a swimmer or winged flyer, the DX penalty is -2 and you are at half your usual water or air Move (which will also halve your top speed with Enhanced Move).
 
 Wing: If you have Flight (Winged), you cannot fly – and if you were airborne, you fall. If your wing is also a Striker, you cannot use it to attack.
 
 ### Duration of Crippling Injuries
 
-If you suffer a crippling injury, make a HT roll to see how serious it is. For battlefield injuries, roll at the end of combat.
-
-Success means the crippling is temporary, failure means it’s lasting, and critical failure means it’s permanent. Dismemberment is automatically permanent – don’t bother rolling!
+If you suffer a crippling injury, make a HT roll to see how serious it is. For battlefield injuries, roll at the end of combat. Success means the crippling is temporary, failure means it’s lasting, and critical failure means it’s permanent. Dismemberment is automatically permanent – don’t bother rolling!
 
 Temporary Crippling: Until you are back at full HP, you suffer the disadvantages described under Effects of Crippling Injury, above. Once you are fully healed, these effects disappear.
 

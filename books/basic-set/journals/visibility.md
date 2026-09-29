@@ -14,6 +14,6 @@ Note also that an unseen fighter can safely try things that a normal fighter cou
 
 A torch or flashlight reduces the penalty to attack rolls for darkness. Assume that any such light within line of sight reduces the penalty from -10 (total darkness) to -3. Almost every light source has a limited range or radius – see the item description for details.
 
-You can also use a torch as a weapon: treat it as a baton that does one point of burning damage as a linked effect (see Linked Effects, p. 381). A torch can set things afire, given enough time. Most oil you’re likely to encounter in a medieval world catches fire after three seconds of contact with an open flame; ordinary clothing ignites after four seconds, and kindling after 10 seconds. Other things are left to the GM’s judgment.
+You can also use a torch as a weapon: treat it as a baton that does one point of burning damage as a linked effect (see Linked Effects, p. 381). A torch can set things afire, given enough time. For rules for what you can set aflame and how long it takes, see Making Things Burn (p. 433) and Flame (pp. 433-434).
 
 It’s possible to carry a light in your “off” hand, leaving your weapon hand free for combat. It’s even possible to parry with it – at the usual penalties for using the off hand. A torch or ordinary flashlight will smash on the first blow if it is used to parry a weapon three times its weight or more! TL7+ “police” flashlights are serviceable batons: triple the cost and weight for an ordinary heavy flashlight (see Camping and Survival Gear, p. 288).

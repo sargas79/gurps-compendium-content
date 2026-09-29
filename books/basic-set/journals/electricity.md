@@ -10,7 +10,7 @@ Modifiers: From +2 for a short circuit in a battery-powered gadget down to -3 or
 
 On a failure, the victim is stunned. An instantaneous jolt (static electricity, electrolaser, etc.) stuns for one second, after which time the victim may roll vs. HT once per second to recover. A continuous shock (stun gun, electric fence, etc.) stuns for as long as the victim is in contact with the source, and for (20 - HT) seconds after that, with a minimum of 1 second. After this time, the victim may roll vs. HT each second to recover. The basic HT modifier for the strength of the shock (but not for DR) applies to all recovery rolls.
 
-Electromuscular Disruption (EMD): Some ultra-tech weapons deliver a more powerful current that induces convulsions. The HT roll is at -5, and if the victim fails, he is knocked down and paralyzed instead of merely stunned. Otherwise, the effects are as above.
+Electromuscular Disruption (EMD): Some TL8+ weapons deliver a more powerful current that induces convulsions. The HT roll is at -5, and if the victim fails, he is knocked down and paralyzed instead of merely stunned. Otherwise, the effects are as above.
 
 ### Lethal Electrical Damage
 

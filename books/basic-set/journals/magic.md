@@ -1,48 +1,8 @@
-**abort:** To stop the casting of a spell before its completion.
+These rules only matter to wizards, and only in worlds where magic exists. If you are not creating a wizard for a magical setting, you can safely skip this chapter.
 
-**backfire:** A critical failure when casting a spell.
+Magic is a powerful force manipulated using skills called spells. By casting spells, a wizard can direct magical energy – known as mana – to produce almost any effect. This is a fickle art in some settings, a precise science in others.
 
-**base skill:** Your unmodified skill with a spell; compare with effective skill.
-
-**basic spell:** A spell with no other spells as prerequisites.
-
-**cancel:** To end your own spell before it would normally be over.
-
-**caster:** The person casting a spell.
-
-**class:** A group of spells that use the same special rules. Three examples appear in this glossary: Melee spells, Missile spells, and Resisted spells.
-
-**college:** A group of spells that deal with the same subject – fire, healing, etc.
-
-**effective skill:** Your base skill, plus any modifiers (usually penalties) for range, circumstances, etc. A caster rolls against effective skill.
-
-**Enchantment spell:** A spell for creating permanent magic items. See Magic Items, p. 480.
-
-**energy:** The “cost” to cast a spell. You may pay this in either FP or HP. Some game worlds offer alternative energy sources.
-
-**grimoire:** The list of spells you know (and more generally, any book of spells).
-
-**mage:** Anyone with the Magery advantage.
-
-**Magery:** The advantage of being “in tune” with magic; see p. 66.
-
-**maintain:** To continue a spell after it would normally end. This costs more energy, unless you have high skill.
-
-**mana:** The ambient magical energy manipulated by spells. Different areas (or worlds) have different levels of mana; see Mana (p. 235).
-
-**Melee spell:** A spell that “charges” your hand or a magic staff with harmful energies that affect the first target you strike.
-
-**Missile spell:** A spell that summons a magical projectile that you must “throw” at the subject.
-
-**Prerequisites:** A requirement for learning a spell. Means exactly what it means for skills; see Prerequisites (p. 169).
-
-**Resisted spell:** Any spell that must overcome the “power” of its subject before it works.
-
-**spell:** A skill that produces a specific magical effect when used successfully.
-
-**subject:** The person, place, or thing on which a spell is cast.
-
-**wizard:** Any user of magic, whether he is a mage or not.
+The best wizards have an inborn ability to learn and use magic, called Magery (p. 66). Anyone with any degree of Magery is called a mage. In many game worlds, only mages can use magic. In all worlds, they are better with magic than non-mages.
 
 ### Learning Magic
 
@@ -50,7 +10,7 @@ Anyone can learn most spells – although in some worlds, you must be a mage to 
 
 Each magic spell is a separate skill, learned just like any other skill. Most spells are IQ/Hard skills, but a few potent spells are IQ/Very Hard. Spells have no default – you can only cast spells you know.
 
-Add your Magery to IQ when you learn spells. For instance, if you have IQ 12 and Magery 3, you learn spells as if you had IQ 15. In addition, reduce the time required to learn spells (but not the point cost) by 10% per Magery level, to a minimum of 60% the usual time at Magery 4; e.g., Magery 3 would let you learn spells in 70% the usual time.
+When you learn spells, base them on IQ + Magery. For instance, if you have IQ 12 and Magery 3, you learn spells as if you had IQ 15. In addition, reduce the time required to learn spells (but not the point cost) by 10% per Magery level, to a minimum of 60% the usual time at Magery 4; e.g., Magery 3 would let you learn spells in 70% the usual time.
 
 The maximum level of Magery available in your world is up to the GM. Most GMs will want to limit PCs to Magery 3 or 4.
 
@@ -58,7 +18,9 @@ If you know more than a few spells, you may wish to make a “grimoire.” This 
 
 #### Prerequisites
 
-Any spell but the most basic has one or more prerequisites: requirements you must meet in order to learn the spell. If the prerequisite is another spell, you must have at least one point in the prerequisite spell before you can study the advanced spell. Some spells require a minimum Magery level; for instance, “Magery 2” means you must have Magery 2 (or higher) to learn the spell. A few spells require a minimum basic attribute score, an advantage, or even a mundane skill.
+Any spell but the most basic has one or more prerequisites: requirements you must meet in order to learn the spell. If the prerequisite is another spell, you must have at least one point in the prerequisite spell before you can study the advanced spell.
+
+Some spells require a minimum Magery level; for instance, “Magery 2” means you must have Magery 2 (or higher) to learn the spell. A few spells require a minimum basic attribute score, an advantage, or even a mundane skill.
 
 ### Casting Spells
 
@@ -98,7 +60,7 @@ Example: If a spell takes three seconds to cast, you must spend three turns doin
 
 Each spell has an energy cost. When you cast the spell, you must pay this cost in either FP or HP. The better you know the spell, the less energy you need to cast it. If you know it well enough, you can cast it at no cost. Exception: Never reduce the cost of a Blocking spell; see Blocking Spells (p. 241).
 
-If your base skill with a spell – modified only by the -5 for low mana, if applicable – is 15 or higher, reduce the cost to cast the spell by 1. If you have skill 20 or higher, reduce the cost by 2. Cost continues to decrease by 1 per full five skill levels beyond skill 20. Apply the same reduction to the cost to maintain a spell. Calculate the entire cost for a spell (for instance, by multiplying cost for the size of the subject or the area affected) before applying energy cost reductions for high skill. Energy is still going into the spell, but your skill lets you draw it from the surrounding mana rather than supplying it yourself!
+If your base skill with a spell – modified only by the -5 for low mana, if applicable – is 15 or higher, reduce the cost to cast the spell by 1. If you have skill 20 or higher, reduce the cost by 2. Cost continues to decrease cost by 1 per full five skill levels beyond skill 20. Apply the same reduction to the cost to maintain a spell. Calculate the entire cost for a spell (for instance, by multiplying cost for the size of the subject or the area affected) before applying energy cost reductions for high skill. Energy is still going into the spell, but your skill lets you draw it from the surrounding mana rather than supplying it yourself!
 
 You normally pay the energy cost of a spell in FP. You can recover lost FP by resting. A mage with the Recover Energy spell (p. 248) recovers FP faster than normal.
 
@@ -128,17 +90,17 @@ The higher your skill with a spell, the easier it is to cast: it takes less time
 
 **Skill 30 or more –** As above, but for every five levels of skill beyond skill 25 (that is, at levels 30, 35, 40, etc.), halve casting time again and reduce energy cost by one more point.
 
-Certain spells always require a specific ritual. Such requirements override the rules above. For instance, high skill has no effect on the cost to cast Blocking spells (p. 241) or the time to cast Missile spells (p. 240).
+Certain spells have ritual, time, or cost requirements that override the rules above. Notably, high skill has no effect on the cost to cast Blocking spells (p. 241) or the time to cast Missile spells (p. 240).
 
 #### Limits on Effect
 
 The effects of many spells vary with the energy spent. For instance, a healing spell might heal 1 HP per energy point, or a combat spell might inflict 1d damage per point.
 
-If the spell description sets no upper limit, then you may spend as much energy as you can afford! The more you spend, the greater the effect.
+If the spell description sets no upper limit, you may spend as much energy as you can afford! The more you spend, the greater the effect.
 
 If the spell specifies a finite range of effects and associated energy costs, though, you cannot exceed the upper limit without a high level of Magery (see below).
 
-If either type of variable spell is cast on the same subject more than once, only the spell with the most powerful effects counts – multiple instances of a given spell do not “stack” or add in any way. Spells that heal, damage, or otherwise permanently affect the subject are an exception: you may cast such spells repeatedly, healing or damaging the subject by the full amount each time.
+If either type of variable spell is cast on the same subject more than once, only the spell with the most powerful effects counts – multiple instances of a given spell do not “stack” or add in any way. Spells that heal, injure, or otherwise permanently affect the subject are an exception: you may cast such spells repeatedly, healing or injuring the subject by the full amount each time.
 
 ##### Magery and Effect
 
@@ -168,15 +130,19 @@ You can maintain a spell without concentration unless the spell requires constan
 
 Casting another spell does not break concentration, but you suffer a skill penalty for doing two things at once (see below).
 
+GURPS Magic adds nuance to spell duration with instantaneous, temporary, lasting, permanent, and enchantment spells.
+
 #### Casting Spells While Maintaining Other Spells
 
-You can only cast one new spell at a time. However, you can cast new spells before older ones end. Apply the
-
-**Skill Bonus** +1 +2 +3 +4 following modifiers whenever you cast spells while you have other spells active:
+You can only cast one new spell at a time. However, you can cast new spells before older ones end. Apply the following modifiers whenever you cast spells while you have other spells active:
 
 -3 per spell you are concentrating on at the moment. See the individual spell descriptions to learn which spells require concentration.
 
 -1 per other spell you have “on” at the moment. A spell that lasts permanently (as indicated in the spell description) does not carry a penalty.
+
+| 20% | 40% | 60% | 100% |
+| --- | --- | --- | --- |
+| +1 | +2 | +3 | +4 |
 
 ### Different Kinds of Magic
 
@@ -222,10 +188,6 @@ If you cannot touch some part of the affected area, apply a skill penalty equal 
 
 Otherwise, Area spells work like Regular spells.
 
-##### Area Spells on a Battle Map
-
-of a spell cast over a two-yard radius is a central hex and all adjacent hexes. The area of effect of a spell cast over a three-yard radius is a central two-yard area of effect plus the ring of hexes adjacent to that. And so on, building up larger areas by adding successive rings of adjacent hexes.
-
 ##### Melee Spells
 
 Melee spells “charge” your hand or magic staff (see box) with harmful energies that affect the first target you strike. These spells require two skill rolls: a roll against spell skill to cast the spell, and a normal melee attack roll to hit your target with your hand or staff.
@@ -242,6 +204,8 @@ Armor protects normally against some Melee spells, not at all against others. If
 
 Note that some Melee spells are Resisted (see p. 241). These spells require a second roll against spell skill, when the spell actually takes effect, to overcome the target’s resistance.
 
+For “Magic Perks” that boost Missile spells, check out Mighty Spell, Missile Spell Mastery, Power Casting, Psychic Guidance, and Spell Enhancement in GURPS Thaumatology: Magical Styles.
+
 ##### Missile Spells
 
 This class of spells encompasses long-distance “projectile” or “bolt” attacks, such as Fireball (p. 247) and Lightning (p. 244). Missile spells require two skill rolls: a roll against spell skill to cast the spell, and a roll against Innate Attack skill (p. 201) to hit the target.
@@ -254,7 +218,7 @@ The turn after that, you have the same options: attack, hold, or enlarge. On you
 
 Once you stop enlarging a Missile spell, you may “hold” it in hand, ready to attack. You do not have to launch the missile until you want to. While holding a Missile spell, you may move up to your full Move, take a Wait or Aim maneuver, or even attack using the hand that isn’t “holding” the missile. You may defend normally. However, you cannot cast another spell.
 
-There is one drawback: if you are injured while you have a missile “in hand,” you must make a Will roll. If you fail, the missile immediately affects you!
+There is one drawback: If you are injured while you have a missile “in hand,” you must make a Will roll. If you fail, the missile immediately affects you!
 
 When you are ready to attack, roll against your Innate Attack skill to hit. This is a standard ranged attack, subject to the usual modifiers for target size, speed, and range. Once launched, the missile flies in a straight line to the target. Physical barriers affect it just as they would affect any missile weapon.
 
@@ -282,20 +246,14 @@ Except where specifically noted, Information spells have no duration. They grant
 
 A spell of any type can also be “Resisted.” A spell like this works automatically only on a critical success. On a regular success, your spell must defeat the subject’s resistance to work.
 
-| Distance | Penalty |
-| --- | --- |
-| Up to 200 yards | 0 |
-| 1/2 mile | -1 |
-| 1 mile | -2 |
-| 3 miles | -3 |
-| 10 miles | -4 |
-| 30 miles | -5 |
-| 100 miles | -6 |
-| 300 miles | -7 |
-| 1,000 miles | -8 |
-
-Add another -2 per additional factor of 10.
-
 The subject always has a chance to resist, even if he is unconscious. A conscious subject is aware that something is happening, and may choose not to resist. Individuals who are unconscious, unfamiliar with magic, or wary of hostile magic always try to resist.
+
+| Distance | Penalty | Distance | Penalty |
+| --- | --- | --- | --- |
+| Up to 200 yards | 0 | 30 miles | -5 |
+| 1/2 mile | -1 | 100 miles | -6 |
+| 1 mile | -2 | 300 miles | -7 |
+| 3 miles | -3 | 1,000 miles | -8 |
+| 10 miles | -4 |  |  |
 
 To resolve a Resisted spell, you must first succeed at your skill roll. If the spell has a single subject (that is, it isn’t an Area spell), you have a penalty equal to the subject’s Magic Resistance (p. 67), if any – even if he is willing! On a failure, the spell fails and the subject notices nothing. On a success, note your margin of success; e.g., if you rolled a 6 against an effective skill of 13, you succeeded by 7. If the subject is living or sapient, the Rule of 16 applies (see The Rule of 16, p. 349). There is no such limit if the subject is a spell.

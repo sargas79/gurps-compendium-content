@@ -24,7 +24,7 @@ Set distances by common sense and mutual agreement (beforehand, if possible). So
 
 ### Size Modifier and Reach
 
-If your SM is greater than 0, you have a longer reach with your arms. Increase the upper end of the reach of any melee weapon according to the table below.
+If your SM is greater than 0, you have a longer reach with your arms. Increase the upper end of the reach of any melee weapon according to the table at right.
 
 | SM | Reach |
 | --- | --- |

@@ -14,4 +14,4 @@ The higher your skill with a spell, the easier it is to cast: it takes less time
 
 **Skill 30 or more –** As above, but for every five levels of skill beyond skill 25 (that is, at levels 30, 35, 40, etc.), halve casting time again and reduce energy cost by one more point.
 
-Certain spells always require a specific ritual. Such requirements override the rules above. For instance, high skill has no effect on the cost to cast Blocking spells (p. 241) or the time to cast Missile spells (p. 240).
+Certain spells have ritual, time, or cost requirements that override the rules above. Notably, high skill has no effect on the cost to cast Blocking spells (p. 241) or the time to cast Missile spells (p. 240).

@@ -1,0 +1,1 @@
+**GURPS Powers, Power-Ups 4: Enhancements,** and Power-Ups 8: Limitations offer numerous rules for enhancements and limitations to use with advantages (Chapter 2) and powers (like those in Chapter 6). Here are some highlights.

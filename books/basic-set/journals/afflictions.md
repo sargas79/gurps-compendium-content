@@ -4,7 +4,7 @@ You have an attack that causes a baneful, nondamaging effect: blindness, paralys
 
 By default, Affliction is a ranged attack with 1/2D 10, Max 100, Acc 3, RoF 1, Shots N/A, and Recoil 1, although you can apply modifiers to change these statistics (see pp. 101-116).
 
-If you hit, your victim gets a HT+1 roll to resist. Apply a penalty equal to the level of the Affliction (so Affliction 1 gives an unmodified HT roll). The victim gets a bonus equal to his DR unless the Affliction has one of the following modifiers: Blood Agent, Contact Agent, Cosmic, Follow-Up, Malediction, Respiratory Agent or Sense-Based. To reduce the effects of DR, add the Armor Divisor enhancement. The victim gets a further +3 if he is beyond 1/2D range.
+If you hit, your victim gets a HT+1 roll to resist. Apply a penalty equal to the level of the Affliction (so Affliction 1 gives an unmodified HT roll). The victim gets a bonus equal to his DR unless the Affliction has one of the following modifiers: Blood Agent, Contact Agent, Cosmic, Follow-Up, Malediction, Respiratory Agent, or Sense-Based. To reduce the effects of DR, add the Armor Divisor enhancement. The victim gets a further +3 if he is beyond 1/2D range.
 
 If the victim makes his HT roll, he is unaffected. If he fails, he suffers the effects of the Affliction. By default, he is stunned (see p. 420). He may roll vs. HT+1 once per second to recover, but once again at a penalty equal to the level of the Affliction (DR has no effect on this roll).
 

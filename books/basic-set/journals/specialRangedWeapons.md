@@ -42,7 +42,7 @@ If you rope the foot, the target must make a DX roll to remain standing (this is
 
 You must keep the lariat taut at all times to immobilize or suffocate your victim. This requires a Ready maneuver each turn. If your horse is trained to do this for you, substitute its ST for yours in the Quick Contest.
 
-To escape from a taut lariat, cut the rope (DR 1, 2 HP). To escape from a limp lariat (including one pulled from the attacker’s grasp), use the rules given under Bolas (p. 410).
+To escape from a taut lariat, cut the rope (DR 1, HP 2). To escape from a limp lariat (including one pulled from the attacker’s grasp), use the rules given under Bolas (p. 410).
 
 A lariat takes 1 turn per 5 yards to ready after a miss. A typical lariat is 10 yards long.
 
@@ -63,6 +63,10 @@ If the Molotov cocktail bursts on the target, it inflicts 3d burning damage, and
 Below TL3, flammable, hot-burning liquids are unavailable in realistic game worlds.
 
 Note that these weapons are fragile. Roll 1d for each bottle if you fall; it breaks on a roll of 1-4. A foe may strike at a bottle on your belt (-5 to hit); it breaks automatically if hit. Either result soaks you in flammable liquid: any burning damage will set you on fire!
+
+Oil Flask (TL3). $10+, 1-2 lbs.
+
+Molotov Cocktail (TL6). Neg. cost, 1-2 lbs.
 
 ### Nets
 

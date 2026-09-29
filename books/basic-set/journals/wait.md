@@ -2,7 +2,9 @@ Do nothing unless a particular event you specified in advance occurs before your
 
 You must specify exactly what your action will be when you take the Wait maneuver, and what will trigger it. For instance, “I’ll make an All-Out Attack (Determined) with my sword on the first orc to move toward me.”
 
-You may take a Wait with a ready ranged weapon; this is known as “covering” a target or area. If so, you must specify the zone that you are covering with that weapon. There is no penalty to cover a one-yard area. For larger areas and additional rules, see Opportunity Fire (p. 390).
+You may take a Wait with a ready ranged weapon; this is known as “covering” a target or area. If so, you must specify the zone that you are covering with that weapon. There is no penalty to cover a one-yard area.
+
+For larger areas and additional rules, see Opportunity Fire (p. 390).
 
 You can use the Wait maneuver for any “reflex action” you want to plan in advance, provided you specify both the response and the action that will trigger it. This can include holding a knife at a hostage’s throat, or even a noncombat action (e.g., “If Dora sees any orcs, she will pull this rope immediately – otherwise, she does nothing.”). An action only qualifies as a “reflex” if you could do it in a single motion. The GM’s decision is final.
 

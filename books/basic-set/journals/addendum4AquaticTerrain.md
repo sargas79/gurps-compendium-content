@@ -1,0 +1,1 @@
+If the party can travel underwater, ignore tracking and travel modifiers, but foraging rolls – usually against Fishing – are at 2d-6 (-4 to +6) for Bank, Deep Ocean Vent, Reef, and Tropical Lagoon; 2d-7 (-5 to +5) for Fresh-Water Lake and River/Stream; and 2d-8 (-6 to +4) for Open Ocean and Salt-Water Sea.

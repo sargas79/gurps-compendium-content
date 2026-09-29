@@ -2,6 +2,8 @@ You might strike at a weapon because you want to take its user alive . . . or be
 
 State whether you are striking to disarm or to break the weapon, and then roll to hit. You are at -5 to hit a reach “C” melee weapon (e.g., a knife) or a pistol; -4 to hit a melee weapon with reach 1 (broadsword, mace, etc.) or a medium-sized firearm (e.g., a carbine or sawed-off shotgun); and -3 to hit a melee weapon with reach 2+ (spear, greatsword, polearm, etc.) or a rifle. Attempts to disarm are generally at an extra -2, but see next page.
 
+**Attacking Weapons:** Location of enemy melee weapons with reach 1, 2, and 3.
+
 Striking at Weapons in Tactical Combat: A reach “C” weapon is in its wielder’s hex. A weapon with a one-yard reach is in the user’s hex and in the hex directly in front of him. A 2- or 3-yard weapon is in the two or three hexes directly in front of the user. See the diagram on p. 400. However, you can always strike at a reach 2+ weapon on your first turn after it was used to attack or feint against you.
 
 ### Defending Your Weapon
@@ -18,7 +20,9 @@ You may combine a dodge or a parry with a retreat to get the usual bonus. The De
 
 A strike to disarm is an attempt to knock or twist the weapon out of your foe’s grasp without damaging it. Only a weapon that can parry can attempt to disarm, which limits disarming to unarmed attacks, melee weapons, and certain thrown weapons. You have an extra -2 to hit unless you use a fencing weapon (main-gauche, rapier, saber, or smallsword).
 
-If you hit and your foe fails to defend, roll a Quick Contest of weapon skills with your foe; if you’re attempting to knock away a missile weapon, your opponent rolls against DX. Either of you may opt to make a ST-based skill roll instead of the standard DX-based one, if that would be better. You get +2 if you use Jitte/Sai or Whip skill (having it is not enough!). Your foe gets +2 if he is using a two-handed weapon.
+If you hit and your foe fails to defend, roll a Quick Contest of weapon skills with your foe; if you’re attempting to knock away a missile weapon, your opponent rolls against DX. Either of you may opt to make a ST-based skill roll instead of the standard DX-based one, if that would be better. You get +2 if you use Jitte/Sai or Whip skill (having it is not enough!).
+
+Your foe gets +2 if he is using a two-handed weapon.
 
 If you win, you disarm your foe; his weapon flies one yard in a random direction. If your foe wins or ties, he keeps his weapon, but it will be unready unless he won by 3 or more. If you roll a critical failure, you are the one disarmed!
 

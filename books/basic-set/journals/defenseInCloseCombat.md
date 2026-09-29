@@ -1,6 +1,6 @@
 You can dodge normally in close combat. You can only parry using an empty hand or a weapon with reach “C” (e.g., a knife). You cannot block at all!
 
-You can retreat (see p. 377) in close combat, if you aren’t being grappled. Simply step out of close combat and into any of the three hexes on your side of the close-combat hex. This gives the usual bonus to your active defense roll.
+You can retreat (p. 377) from close combat, if you aren’t being grappled. Simply step out of close combat and into any of the three hexes on your side of the close-combat hex. This gives the usual bonus to your active defense roll.
 
 ### Shields in Close Combat
 

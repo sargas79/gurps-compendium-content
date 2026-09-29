@@ -2,7 +2,9 @@ Damage Resistance (DR) rates the degree of protection that natural or worn armor
 
 Subtract DR from basic damage. The result is the “penetrating damage” that punched through or deformed the armor enough to cause a significant injury. For instance, if you are hit by an attack that inflicts 6 points of basic damage and you’re wearing mail with DR 4, you take 2 points of penetrating damage.
 
-In general, DR from multiple sources is additive; e.g., if you have a natural DR of 2 and put on a tactical vest with DR 15, your total DR is 17. Exceptions will always be noted.
+In general, DR from multiple sources is additive; e.g., if you have a natural DR of 2 and put on a tactical vest with DR 15, your total DR is 17.
+
+Exceptions will always be noted.
 
 The DR of armor often varies by body part. If you are not using the hit location rules (see Hit Location, p. 398), just assume that any hit strikes the torso, and apply its DR.
 
@@ -22,7 +24,7 @@ There are several other “penetration modifiers” that affect the protection r
 
 ### Flexible Armor and Blunt Trauma
 
-Flexible armor such as a leather jacket, mail hauberk, or a modern ballistic vest is much lighter than rigid armor, but it doesn’t absorb the full force of the blows it stops. An attack that does crushing (cr), cutting (cut), impaling (imp), or piercing (pi-, pi, pi+, pi++) damage may inflict “blunt trauma” if it fails to penetrate flexible DR.
+Flexible armor such as a leather jacket, mail hauberk, or modern ballistic vest is much lighter than rigid armor, but it doesn’t absorb the full force of the blows it stops. An attack that does crushing (cr), cutting (cut), impaling (imp), or piercing (pi-, pi, pi+, pi++) damage may inflict “blunt trauma” if it fails to penetrate flexible DR.
 
 For every full 10 points of cutting, impaling, or piercing damage or 5 points of crushing damage stopped by your DR, you suffer 1 HP of injury due to blunt trauma. This is actual injury, not basic damage. There is no wounding multiplier.
 
@@ -40,4 +42,4 @@ Some attacks are powerful enough to pass right through cover, a shield, or a vic
 
 ### Hurting Yourself
 
-Any time you strike unarmed (with bare hands, feet, fangs, etc.) and hit a target with DR 3+, you may hurt yourself! For every 5 points of basic damage you roll, you take one point of crushing damage, up to a maximum equal to the DR of the target you hit. Apply this damage to the body part you used to attack, if you are using hit locations. Your own DR protects against this damage. Exception: This rule does not apply if the target’s DR has the Tough Skin limitation (see Damage Resistance, p. 46).
+Any time you strike unarmed (with hands, feet, fangs, etc.) and hit a target with DR 3+, you may hurt yourself! For every 5 points of basic damage you roll, you take one point of crushing damage, up to a maximum equal to the DR of the target you hit. Apply this damage to the body part you used to attack, if you are using hit locations. Your own DR protects against this damage. Exception: This rule does not apply if the target’s DR has the Tough Skin limitation (see Damage Resistance, p. 46).

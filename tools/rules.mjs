@@ -28,6 +28,25 @@
  * Usage:
  *   node tools/rules.mjs --characters <pdf> --campaigns <pdf> [--write] [--reviewed]
  *   node tools/rules.mjs --characters <pdf> --campaigns <pdf> --headings <book-page>
+ *   node tools/rules.mjs --revised <Basic Set Revised pdf> [--write] [--reviewed]
+ *
+ * `--revised` reads the Fourth Edition Revised instead: one PDF, printed page p
+ * on PDF page p + 10, read with its own profile (lib/revised.mjs). Every
+ * heading kept its page, so the register, the core chapters and the citations
+ * are the same and the page files keep their names. What the Revised edition
+ * adds is built in three ways:
+ *
+ *   - the switches of its four addenda (pp. 324-334, 337-342, 566, 570-578) get
+ *     one page to a section, each section that defines a switch carrying its
+ *     `rule` flag (`ADDENDA_RULES`), read with the layout reader
+ *   - a box the reader cannot give (a table beside the text, a note in the
+ *     margin, a heading it loses) is corrected in lib/revised-fixes.mjs, or
+ *     written by hand under `journals-by-hand` from `pdftotext -raw`
+ *   - the pages kept by hand are read against what the reader gives for the
+ *     Revised layout, written to build/recapture/revised-by-hand/
+ *
+ * The register is the pinned system's; `--register <optional-rules.ts>` reads
+ * another release's, for the switches a later release has added.
  *
  * `--headings` lists every heading, sidebar and run-in on a page and the two
  * after it, which is how a rule the register names differently from the book is
@@ -38,19 +57,41 @@
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-import { book, projectRoot, systemRoot } from "./lib/books.mjs";
+import { book, buildRoot, projectRoot, systemRoot } from "./lib/books.mjs";
 import { openBook, readPage } from "./lib/pdf-layout.mjs";
 import { joinText, structureOf, titleCase, useLexicon } from "./lib/book-structure.mjs";
 import { lexiconOf } from "./lib/lexicon.mjs";
+import { REVISED_FIXES } from "./lib/revised-fixes.mjs";
+import { ADDENDA, PDF_OFFSET as REVISED_OFFSET, LAST_PAGE as REVISED_LAST, REVISED, addendumOf } from "./lib/revised.mjs";
 
 /** The two volumes, and how a printed page number becomes a page in each file. */
 const VOLUMES = {
   characters: { label: "Characters", first: 1, last: 336, pdfPage: (page) => page + 2 },
   campaigns: { label: "Campaigns", first: 337, last: 576, pdfPage: (page) => page - 334 },
+  // The Revised edition is one volume; its pages are cited as the 2004 ones were.
+  revised: { label: "Revised", first: 1, last: REVISED_LAST, pdfPage: (page) => page + REVISED_OFFSET },
 };
+
+/** Whether the Revised edition is being read (`--revised`). */
+let revised = false;
+
+/** The volume a printed page is read from. */
+function volumeOf(page) {
+  if (revised) return "revised";
+  return page > VOLUMES.characters.last ? "campaigns" : "characters";
+}
+
+/** The 2004 volume a page was cited in, which the journal's citations keep. */
+function citedVolume(page) {
+  return page > VOLUMES.characters.last ? "Campaigns" : "Characters";
+}
 
 /** How deep a heading sits: a chapter is the top, a run-in the bottom. */
 const LEVEL = { chapter: 0, h1: 1, h2: 2, h3: 3, h4: 4 };
+
+/** A chapter's number, which the Revised edition sets in a line of its own: "Chapter Fifteen". */
+const CHAPTER_NUMBER =
+  /^Chapter\s+(?:One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven|Twelve|Thirteen|Fourteen|Fifteen|Sixteen|Seventeen|Eighteen|Nineteen|Twenty(?:-\w+)?)$/i;
 
 /** A rule is cut at a subsection boundary once it has run this long. */
 const LONGEST = 16000;
@@ -134,6 +175,9 @@ const CORE = [
     // The chapter opens with When to Roll, set across the page as a sidebar
     // is, so its page is written by hand and found by the section after it.
     extra: [{ key: "successRolls", title: "Success Rolls", names: ["When the GM Rolls"], page: 344 }],
+    // The Revised layout finds When to Roll as a heading, but its lists are a
+    // box, so the hand page above holds the section whole.
+    covered: ["When to Roll"],
   },
   { from: 362, to: 383, folder: () => "combat" },
   // A chapter's name tells apart a section it shares with an earlier chapter:
@@ -162,7 +206,11 @@ const CORE = [
     covered: ["Describing Poisons", "Addictive Drugs"],
     // The page's layout loses Resuscitation's heading, so its page is written
     // by hand and found by the sidebar that follows it.
-    extra: [{ key: "resuscitation", title: "Resuscitation", names: ["Ultra-Tech Drugs"], page: 425, group: "injury" }],
+    extra: [
+      { key: "resuscitation", title: "Resuscitation", names: ["Ultra-Tech Drugs"], page: 425, group: "injury" },
+      // The Revised edition sets it as a box, not a heading of the section.
+      { key: "ultraTechDrugs", title: "Ultra-Tech Drugs", names: ["Ultra-Tech Drugs"], page: 425, group: "injury", revisedOnly: true },
+    ],
   },
 ];
 
@@ -234,7 +282,7 @@ function library(paths) {
     const { first, last, pdfPage } = VOLUMES[volume];
     if (page < first || page > last) return null;
     if (!open.has(volume)) open.set(volume, await openBook(paths[volume]));
-    const laid = await readPage(open.get(volume), pdfPage(page));
+    const laid = await readPage(open.get(volume), pdfPage(page), { profile: revised ? REVISED : null });
     // Where the page's text block starts, when the book says (`transcription.topMargin`):
     // a page read from its first line down, not from a margin that cuts it off.
     const structured = structureOf(laid, { top: book("basic-set").transcription.topMargin });
@@ -271,6 +319,8 @@ async function flowOf(structure, volume, from, to) {
     if (!s) continue;
     pages.set(page, s);
     for (const block of s.blocks) {
+      // The Revised edition sets a chapter's number in a line of its own ahead of the title.
+      if (CHAPTER_NUMBER.test(block.text)) continue;
       const last = blocks[blocks.length - 1];
       // An item set with a hanging indent carries on indented at the head of
       // the next page, so the page could not mark it as continuing; a line
@@ -341,7 +391,7 @@ function locate(reference) {
   }
   if (pages.size === 0) return null;
   const first = Math.min(...pages);
-  return { pages: [...pages], page: first, volume: first > VOLUMES.characters.last ? "campaigns" : "characters" };
+  return { pages: [...pages], page: first, volume: volumeOf(first) };
 }
 
 /**
@@ -398,7 +448,8 @@ function render(blocks, baseLevel) {
     }
     // A trait's cost is set like a heading under its name -- "10 points/level"
     // -- but it is a line of the entry, not a section.
-    if (block.kind === "h4" && /^[-+]?\d[\d,]*(\s+or\s+\d+)?\s+points?\b/i.test(block.text)) {
+    // The Revised edition's cost lines also read "Variable", "+50% per person", "-5% per -3", "Average", "Hard".
+    if (block.kind === "h4" && /^(?:[-+]?\d[\d,]*(\s+or\s+\d+)?\s+points?\b|Variable$|[-+]\d+%|(?:Easy|Average|Hard|Very Hard)$)/i.test(block.text)) {
       out.push(`**${escape(block.text)}**`);
       continue;
     }
@@ -427,9 +478,38 @@ const MENDS = [
   [/over-heat/g, "overheat"],
   [/hex-byhex/g, "hex-by-hex"],
   [/maneuver-able/g, "maneuverable"],
+  [/manage-able/g, "manageable"],
+  [/\bunder-taking\b/g, "undertaking"],
+  [/\bdoor-way\b/g, "doorway"],
+  [/\bhead-lights\b/g, "headlights"],
+  [/\bspot-lights\b/g, "spotlights"],
+  [/\bswim-wear\b/g, "swimwear"],
+  [/\bpoint-less\b/g, "pointless"],
+  // A line broken after a slash or a hyphen the book leaves closed: "cf/ hr", "hard- to-hit".
+  [/\b(cf|yards|hours|Taste)\/ (hr|second|day|Smell)\b/g, "$1/$2"],
+  [/\(Native\)\/ Written/g, "(Native)/Written"],
+  [/\bhard- to-hit/g, "hard-to-hit"],
   // Not a broken word: the bold run-in of "-1×HP –" stops at the times sign.
   [/\*\*(-\d+)\*\*×(HP|FP) –/g, "**$1×$2 –**"],
 ];
+
+/** The corrections for one page of the Revised edition (lib/revised-fixes.mjs). */
+function revisedFixed(id, markdown) {
+  let text = markdown;
+  for (const fix of REVISED_FIXES[id] ?? []) {
+    if (fix.append !== undefined) {
+      text = text.replace(/\n*$/, "\n\n") + fix.append + "\n";
+      continue;
+    }
+    const at = typeof fix.find === "string" ? text.indexOf(fix.find) : text.search(fix.find);
+    if (at === -1) throw new Error(`${id}: the words a fix looks for are not on the page: ${String(fix.find).slice(0, 60)}`);
+    text =
+      typeof fix.find === "string"
+        ? text.replace(fix.find, () => fix.with)
+        : text.replace(fix.find, (...m) => (typeof fix.with === "function" ? fix.with(m) : fix.with));
+  }
+  return text;
+}
 
 /** Characters Markdown would read as formatting: "-10 points*", "a_b". */
 function escape(text) {
@@ -579,7 +659,9 @@ async function capture(structure, found, { shallow = false, lastPage = null } = 
 // ---------------------------------------------------------------------------
 
 function registeredRules() {
-  const source = readFileSync(join(systemRoot, "src", "system", "optional-rules.ts"), "utf8");
+  // `--register` names another copy of the register, for reading the switches of a later release
+  // of the system than the one the submodule is pinned to.
+  const source = readFileSync(flag("--register") ?? join(systemRoot, "src", "system", "optional-rules.ts"), "utf8");
   const body = source.slice(source.indexOf("OPTIONAL_RULES: Record"));
   const groups = [...body.matchAll(/^\s{2}(\w+):\s*\[/gm)];
   const rules = [];
@@ -610,9 +692,11 @@ async function coreRules(structure, registered) {
   for (const chapter of CORE) {
     const headings = [];
     for (let page = chapter.from; page <= chapter.to; page++) {
-      const s = await structure("campaigns", page);
+      const s = await structure(volumeOf(page), page);
       if (!s) continue;
       for (const block of s.blocks) {
+        // The Revised edition's chapter number, and the "and" of a chapter's title set over three lines.
+        if (CHAPTER_NUMBER.test(block.text) || (revised && block.text === "And")) continue;
         if (block.kind === "h1" || block.kind === "h2") headings.push({ ...block, page });
       }
     }
@@ -647,6 +731,9 @@ async function coreRules(structure, registered) {
   }
   for (const chapter of CORE) {
     for (const extra of chapter.extra ?? []) {
+      // The Revised layout finds a heading the 2004 one lost; the section is already a rule.
+      if (extra.revisedOnly && !revised) continue;
+      if (revised && used.has(extra.key)) continue;
       if (used.has(extra.key)) throw new Error(`Two rules share the key "${extra.key}".`);
       used.add(extra.key);
       rules.push({
@@ -660,6 +747,126 @@ async function coreRules(structure, registered) {
     }
   }
   return rules;
+}
+
+// ---------------------------------------------------------------------------
+// The Revised edition's addenda
+// ---------------------------------------------------------------------------
+
+/**
+ * The switch each addendum section describes, by the section's printed page
+ * and its title. A switch's flag goes on the one page that defines it: the
+ * Rules settings page shows a single link to a switch and takes the first
+ * entry it finds (GWorldVTT #189), so a second page flagged for the same
+ * switch would only make that link ambiguous.
+ */
+const ADDENDA_RULES = {
+  "327 Heroic Archer": "heroicArcher",
+  "333 Bonuses for Wildcard Skills": "wildcardBonus",
+  "334 Close Combat": "closeCombatAnyWeapon",
+  "337 Pulling Rank": "pullingRank",
+  "342 Flat-Cost Signature Gear": "flatSignatureGear",
+  "566 Additional Hit Locations": "finerHitLocations",
+  "571 Expanded Influence Rolls": "expandedInfluence",
+  "571 Extra Effort with Powers": "powerExtraEffort",
+  "572 Godlike Extra Effort": "godlikeExtraEffort",
+  "572 Trading Fatigue for Skill": "fatigueForSkill",
+  "572 Humping, Tramping, and Yomping": "realisticMarching",
+  "572 Stress and Derangement": "stressAndDerangement",
+  "573 Stress": "stressRollPenalties",
+  "573 Derangement": "derangementRollPenalties",
+  "573 Terrain Types Redux": "terrainTypes",
+  "574 Vision Rolls in Combat": "visionRollsInCombat",
+  "575 All-Out Attack with Slams": "allOutSlams",
+  "575 All-Out Concentrate": "allOutConcentrate",
+  "575 All-Out Defense (Mental Defense)": "mentalDefense",
+  "575 Committed Attack": "committedAttack",
+  "576 Defensive Attack": "defensiveAttack",
+  "576 Close-Contact Shots": "closeContactShots",
+  "577 Tricky Shooting": "trickyShooting",
+  "577 Simplified Range": "simplifiedRange",
+  "577 Piercing and Impaling Damage vs Large Targets": "largeTargetDamage",
+  "577 Restricted Dodge Against Firearms": "restrictedDodge",
+  "578 Basic Abstract Difficulty": "basicAbstractDifficulty",
+  "578 Simplified Resources": "simplifiedResources",
+};
+
+/**
+ * Sections of the addenda that the layout reader cannot give as pages: a box
+ * it takes for a table, or a heading it loses. Each is written by hand under
+ * `journals-by-hand` from `pdftotext -raw`, found by its id.
+ */
+const ADDENDA_HAND = [
+  { id: "addendum3ChestAndAbdomen", title: "Chest and Abdomen", addendum: "addendum-3", page: 566, rule: "chestAbdomenSplit" },
+  { id: "addendum3MissingHitLocations", title: "Missing Hit Locations", addendum: "addendum-3", page: 566, rule: null },
+  { id: "addendum4Frostbite", title: "Frostbite", addendum: "addendum-4", page: 574, rule: "frostbite" },
+  { id: "addendum4HittingEmWhereItHurts", title: "Hitting ’Em Where It Hurts", addendum: "addendum-4", page: 576, rule: "partialCoverage" },
+  { id: "addendum4NonCombatBonuses", title: "Non-Combat Bonuses", addendum: "addendum-4", page: 576, rule: "nonCombatBonuses" },
+  // What each addendum says before its first heading, and the boxes and tables beside its sections.
+  { id: "addendum1Introduction", title: "Addendum 1: Traits and Techniques", addendum: "addendum-1", page: 324, rule: null },
+  { id: "addendum1SelfControlNA", title: "Self-Control “N/A”", addendum: "addendum-1", page: 328, rule: null },
+  { id: "addendum2Introduction", title: "Addendum 2: Organizations and Gear", addendum: "addendum-2", page: 337, rule: null },
+  { id: "addendum2PatronToRankTables", title: "Patron-to-Rank and Rank-to-Patron Tables", addendum: "addendum-2", page: 338, rule: null },
+  { id: "addendum2AssistanceRollsTable", title: "Assistance Rolls Table", addendum: "addendum-2", page: 339, rule: null },
+  { id: "addendum2PrivilegeVsAssistance", title: "Privilege vs. Assistance", addendum: "addendum-2", page: 340, rule: null },
+  { id: "addendum2TechLevelAndSkillAvailability", title: "Tech Level and Skill Availability", addendum: "addendum-2", page: 341, rule: null },
+  { id: "addendum4Introduction", title: "Addendum 4: Tasks and Combat", addendum: "addendum-4", page: 570, rule: null },
+  { id: "addendum4BatteriesAndPowerCells", title: "Batteries and Power Cells", addendum: "addendum-4", page: 578, rule: null },
+];
+
+/**
+ * Sections the layout reader finds that are not sections: the titles of the two tables in the
+ * Batteries and Power Cells box, which the reader takes for headings.
+ */
+const ADDENDA_NOT_SECTIONS = new Set(["addendum4BatteriesTl68", "addendum4PowerCellsTl9"]);
+
+/**
+ * Boxes the Revised edition adds to pages it kept, which no heading of the 2004 layout has a page
+ * for: written by hand under `journals-by-hand` from `pdftotext -raw`. (Deceptive Attack's note
+ * and Turn Sequence's box sit in the text of the pages already there.)
+ */
+const REVISED_NEW_PAGES = [
+  { id: "movementPointCosts", title: "Movement Point Costs", chapter: "Combat", page: 387 },
+  { id: "meleeAttackModifiers", title: "Melee Attack Modifiers", chapter: "Combat", page: 547 },
+];
+
+/** Whether a register entry belongs to an addendum, whose pages are built from the section list below. */
+function inAddendum(rule) {
+  if (!/^Basic Set Revised/.test(rule.reference)) return false;
+  const first = locate(rule.reference)?.page;
+  return first !== undefined && addendumOf(first) !== null;
+}
+
+/**
+ * The pages of one addendum, one to a section.
+ *
+ * A second-level section that has third-level sections under it has a page of
+ * its own for the words before them, and so does a first-level one; a
+ * third-level section is a page whole, with any fourth-level parts. So a page
+ * is one heading's own words and the parts below it that have no page of
+ * their own. Addendum 3 has no headings but its title, so its page is the
+ * chapter's own text.
+ */
+async function addendumPages(structure, addendum) {
+  const flow = await flowOf(structure, "revised", addendum.first, addendum.last);
+  const outline = flow.blocks.filter((b) => b.kind in LEVEL);
+  const found = (block) => ({ type: "heading", volume: "revised", page: block.page, block });
+  const pages = [];
+
+  for (const [i, block] of outline.entries()) {
+    const level = LEVEL[block.kind];
+    // A cost line ("3 points/level") set as a heading belongs to the entry above it.
+    if (level === 4) continue;
+    if (level === 0 && addendum.id !== "addendum-3") continue;
+    const next = outline[i + 1];
+    // Addendum 3's title has a third-level section under it and no first- or second-level ones.
+    const hasChildren = Boolean(next) && (LEVEL[next.kind] === level + 1 || level === 0) && level <= 2;
+    const got = await capture(structure, found(block), { shallow: hasChildren, lastPage: addendum.last });
+    if (!got || got.blocks.length === 0) continue;
+    const title = level === 0 ? "Additional Hit Locations" : titleCase(block.text).replace(/\*$/, "");
+    pages.push({ title, page: block.page, got, level, intro: hasChildren });
+  }
+  return pages;
 }
 
 function readingDecisions() {
@@ -685,7 +892,7 @@ function doubts(markdown, captured) {
 
 async function listHeadings(structure, pageText) {
   const page = Number(pageText);
-  const volume = page > VOLUMES.characters.last ? "campaigns" : "characters";
+  const volume = volumeOf(page);
   for (let p = page; p <= page + 2; p++) {
     const s = await structure(volume, p);
     if (!s) continue;
@@ -701,13 +908,109 @@ async function listHeadings(structure, pageText) {
   }
 }
 
+/** The addenda as journal pages, and what the register expects them to answer for. */
+async function addendaAsPages(structure, decisions) {
+  const out = [];
+  const seen = new Set();
+  const handDir = join(book("basic-set").dir, "journals-by-hand");
+  const push = (page) => {
+    if (seen.has(page.rule.key)) throw new Error(`Two addendum pages share the id "${page.rule.key}".`);
+    seen.add(page.rule.key);
+    out.push(page);
+  };
+  const flagged = new Set();
+
+  for (const addendum of ADDENDA) {
+    const number = addendum.id.slice(-1);
+    for (const p of await addendumPages(structure, addendum)) {
+      const id = `addendum${number}${keyOf(p.title).replace(/^./, (c) => c.toUpperCase())}`;
+      if (ADDENDA_NOT_SECTIONS.has(id)) continue;
+      const handFile = join(handDir, `${id}.md`);
+      const byHand = existsSync(handFile);
+      const markdown = byHand ? readFileSync(handFile, "utf8").replace(/\r\n/g, "\n") : revisedFixed(id, render(p.got.blocks, p.got.base));
+      const why = byHand ? [] : doubts(markdown, p.got).filter((doubt) => !((p.intro || markdown.trim().length < 40) && doubt === "very short"));
+      const read = byHand ? null : decisions.get(id);
+      if (read) why.push(`read and found wanting: ${read}`);
+      const cited = p.got.endPage > p.page ? `${p.page}-${p.got.endPage}` : `${p.page}`;
+      const rule = ADDENDA_RULES[`${p.page} ${p.title}`] ?? null;
+      if (rule) flagged.add(rule);
+      push({
+        rule: { key: id, group: addendum.title, core: true },
+        chapter: addendum.title,
+        title: p.title,
+        volume: "revised",
+        pagesCited: cited,
+        reference: `Basic Set Revised p${cited.includes("-") ? "p" : ""}. ${cited}`,
+        ruleFlag: rule,
+        markdown,
+        why,
+        via: "addendum",
+      });
+    }
+  }
+
+  for (const hand of ADDENDA_HAND) {
+    const handFile = join(handDir, `${hand.id}.md`);
+    if (!existsSync(handFile)) {
+      console.log(`  addenda: ${hand.id} needs journals-by-hand/${hand.id}.md, written from the raw text of p. ${hand.page}`);
+      continue;
+    }
+    if (hand.rule) flagged.add(hand.rule);
+    const addendum = ADDENDA.find((a) => a.id === hand.addendum);
+    push({
+      rule: { key: hand.id, group: addendum.title, core: true },
+      chapter: addendum.title,
+      title: hand.title,
+      volume: "revised",
+      pagesCited: String(hand.page),
+      reference: `Basic Set Revised p. ${hand.page}`,
+      ruleFlag: hand.rule,
+      markdown: readFileSync(handFile, "utf8").replace(/\r\n/g, "\n"),
+      why: [],
+      via: "addendum",
+    });
+  }
+
+  for (const extra of REVISED_NEW_PAGES) {
+    const handFile = join(handDir, `${extra.id}.md`);
+    if (!existsSync(handFile)) {
+      console.log(`  new page: ${extra.id} needs journals-by-hand/${extra.id}.md, written from the raw text of p. ${extra.page}`);
+      continue;
+    }
+    push({
+      rule: { key: extra.id, group: extra.chapter.toLowerCase(), core: true },
+      chapter: extra.chapter,
+      title: extra.title,
+      volume: "revised",
+      pagesCited: String(extra.page),
+      markdown: readFileSync(handFile, "utf8").replace(/\r\n/g, "\n"),
+      why: [],
+      via: "new box",
+    });
+  }
+
+  // Every switch the register points into an addendum has a page that answers for it.
+  // Two switches share their section with another: Expanded Influence's critical option is a note under
+  // its table, and the clock is how Stress and Derangement bleed off, on the pages of those two sections.
+  const shared = new Set(["expandedInfluenceCritical", "mentalOnTheClock"]);
+  const unanswered = registeredRules().filter((rule) => inAddendum(rule) && !flagged.has(rule.key) && !shared.has(rule.key));
+  if (unanswered.length) console.log(`  addenda: no page for ${unanswered.map((r) => r.key).join(", ")}`);
+  return out;
+}
+
 async function main() {
-  const paths = { characters: flag("--characters"), campaigns: flag("--campaigns") };
-  if (!paths.characters || !paths.campaigns || !existsSync(paths.characters) || !existsSync(paths.campaigns)) {
-    console.error("Usage: node tools/rules.mjs --characters <pdf> --campaigns <pdf> [--write] [--reviewed]");
+  revised = Boolean(flag("--revised"));
+  const paths = revised
+    ? { revised: flag("--revised") }
+    : { characters: flag("--characters"), campaigns: flag("--campaigns") };
+  if (Object.values(paths).some((path) => !path || !existsSync(path))) {
+    console.error(
+      "Usage: node tools/rules.mjs --characters <pdf> --campaigns <pdf> [--write] [--reviewed]\n" +
+        "       node tools/rules.mjs --revised <Basic Set Revised pdf> [--write] [--reviewed]",
+    );
     process.exit(1);
   }
-  useLexicon(await lexiconOf([paths.characters, paths.campaigns]));
+  useLexicon(await lexiconOf(Object.values(paths)));
   const structure = library(paths);
 
   if (flag("--headings")) {
@@ -719,7 +1022,10 @@ async function main() {
   const reviewed = process.argv.includes("--reviewed");
   const decisions = readingDecisions();
   const registered = registeredRules();
-  const rules = [...registered, ...(await coreRules(structure, registered))];
+  // The addenda's switches are pages built from the addenda's own sections, below.
+  // A switch for a table's own option (the book raises attributes with earned points only) has no page to give.
+  const noPage = new Set(["studyAttributes"]);
+  const rules = [...registered.filter((rule) => !inAddendum(rule) && !noPage.has(rule.key)), ...(await coreRules(structure, registered))];
   const pages = [];
   const missing = [];
 
@@ -761,7 +1067,14 @@ async function main() {
       missing.push(rule);
       continue;
     }
+    // What the Revised layout gives for a page kept by hand, to read the hand page against.
+    if (byHand && revised && markdown) {
+      const compare = join(buildRoot, "recapture", "revised-by-hand");
+      mkdirSync(compare, { recursive: true });
+      writeFileSync(join(compare, `${rule.key}.md`), markdown, "utf8");
+    }
     if (byHand) markdown = readFileSync(handFile, "utf8").replace(/\r\n/g, "\n");
+    else if (revised) markdown = revisedFixed(rule.key, markdown);
     // A section's opening words before its subsections, which have pages of
     // their own, can be a single sentence: Special Movement.
     const why = byHand ? [] : doubts(markdown, captured).filter((doubt) => !(rule.shallow && doubt === "very short"));
@@ -779,6 +1092,8 @@ async function main() {
       via: found.type,
     });
   }
+
+  if (revised) pages.push(...(await addendaAsPages(structure, decisions)));
 
   const flagged = pages.filter((p) => p.why.length).length;
   console.log(`${rules.length} rules in the system's register`);
@@ -808,10 +1123,10 @@ async function main() {
     index.pages.push({
       id: page.rule.key,
       title: page.title,
-      chapter: page.rule.group.charAt(0).toUpperCase() + page.rule.group.slice(1),
+      chapter: page.chapter ?? page.rule.group.charAt(0).toUpperCase() + page.rule.group.slice(1),
       pages: `B${page.pagesCited}`,
-      reference: `Basic Set: ${VOLUMES[page.volume].label} p${page.pagesCited.includes("-") ? "p" : ""}. ${page.pagesCited}`,
-      rule: page.rule.core ? null : page.rule.key,
+      reference: page.reference ?? `Basic Set: ${citedVolume(Number.parseInt(page.pagesCited, 10))} p${page.pagesCited.includes("-") ? "p" : ""}. ${page.pagesCited}`,
+      rule: page.ruleFlag !== undefined ? page.ruleFlag : page.rule.core ? null : page.rule.key,
       file,
       status: page.why.length ? "needs-review" : reviewed ? "reviewed" : "transcribed",
       ...(page.why.length ? { notes: page.why.join("; ") } : {}),

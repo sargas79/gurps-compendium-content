@@ -24,6 +24,8 @@ Preparation: +1 if you have previous personal experience with this kind of threa
 
 If final, modified Will exceeds 13, reduce it to 13 for the purpose of the Fright Check. This means that a roll of 14 or more is automatically a failure. This rule does not apply to other Will rolls (resistance rolls, rolls to avoid distraction, etc.) – only to Fright Checks.
 
+For variant tables, see GURPS Horror, pp. 143-144, GURPS Powers, p. 85, and GURPS Steampunk 1: Settings and Style, pp. 41-43.
+
 ### Fright Check Table
 
 When you fail a Fright Check, roll 3d, add your margin of failure on the Fright Check, and consult the table below. This sometimes gives implausible results. The GM should either reroll these or change them to something more appropriate – especially for Fright Checks stemming from awe (e.g., divine beauty) or mind-warping complexity (e.g., otherworldly geometry or radical philosophical concepts) instead of fear.
@@ -76,9 +78,9 @@ Many of these results give a new mental quirk or disadvantage. The GM assigns th
 
 **30 –** Catatonia. Stare into space for 1d days. Then roll vs. HT. On a failed roll, remain catatonic for another 1d days, and so on. If you have no medical care, lose 1 HP the first day, 2 the second, and so on. If you survive and awaken, all skill rolls and attribute checks are at -2 for as many days as the catatonia lasted.
 
-**31 –** Seizure. You lose control of your body and fall to the ground in a fit lasting 1d minutes and costing 1d FP. Also, roll vs. HT. On a failure, take 1d of injury. On a critical failure, you also lose 1 HT permanently.
+**31 –** Seizure. You lose control of your body and fall to the ground in a fit lasting 1d minutes and costing 1d FP. Also, roll vs. HT. On a failure, take 1d HP of injury. On a critical failure, you also lose 1 HT permanently.
 
-**32 –** Stricken. You fall to the ground, taking 2d of injury in the form of a mild heart attack or stroke.
+**32 –** Stricken. You fall to the ground, taking 2d HP of injury in the form of a mild heart attack or stroke.
 
 **33 –** Total panic. You are out of control; you might do anything (the GM rolls 3d: the higher the roll, the more useless your reaction). For instance, you might jump off a cliff to avoid the monster. If you survive your first reaction, roll vs. Will to come out of the panic. If you fail, the GM rolls for another panic reaction, and so on!
 
@@ -94,4 +96,4 @@ Many of these results give a new mental quirk or disadvantage. The GM assigns th
 
 **39 –** Coma, as per 29, and a -15-point Phobia or other -15-point mental disadvantage, as per 35.
 
-**40+ –** As 39, above, but victim also loses 1 point of IQ permanently. This automatically reduces all IQ-based skills, including magic spells, by 1.
+**40+ –** As 39, above, but you also lose 1 point of IQ permanently. This automatically reduces all IQ-based skills, including magic spells, by 1.

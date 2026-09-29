@@ -1,0 +1,1 @@
+Even without cosmic horrors, each failed Fright Check leads to failing further Fright Checks, causing you to grow shaky and skittish. If this goes on for long, you become wild-eyed or withdrawn. Then you acquire long-term mental problems.

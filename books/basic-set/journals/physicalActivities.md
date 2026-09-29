@@ -6,6 +6,8 @@ To climb anything more difficult than a ladder, roll against Climbing skill (p. 
 
 Make one roll to start the climb and another roll every five minutes. Any failure means you fall (see Falling, p. 431). If you secured yourself with a rope, you will fall only to the end of the rope unless you rolled a critical failure.
 
+The table below gives skill modifiers and climbing speeds for some common climbs. In most cases, use the speeds in the “Regular” column. The “Combat” column is for climbs inspired by rage or terror, which always cost at least 1 FP – or double the FP cost given in an adventure or assessed by the GM. Climbs in combat require a Move maneuver.
+
 | Type of Climb | Modifier | Combat | Regular |
 | --- | --- | --- | --- |
 | Ladder going up | no roll | 3 rungs/sec | 1 rung/sec |
@@ -18,17 +20,15 @@ Make one roll to start the climb and another roll every five minutes. Any failur
 | Rope-down (w/o equipment) | -1 | 2 ft/sec | 30 ft/min |
 | (w/ equipment) | -1 | 12 ft/sec | 12 ft/sec |
 
-The table below gives skill modifiers and climbing speeds for some common climbs. In most cases, use the speeds in the “Regular” column. The “Combat” column is for climbs inspired by rage or terror, which always cost at least 1 FP – or double the FP cost given in an adventure or assessed by the GM. Climbs in combat require a Move maneuver.
-
 ### Digging
 
 Digging rate depends on the type of soil, the digger’s Basic Lift (that is, ST×ST/5), and the quality of the tools available.
 
-Loose Soil, Sand, etc.: A man can dig 2×BL cubic feet per hour (cf/hr).
+Loose Soil, Sand, etc.: A human can dig 2×BL cubic feet per hour (cf/hr).
 
-Ordinary Soil: A man can dig BL cf/hr. One man with a pick can break up 4×BL cf/hr, making it into loose soil, which is easier to remove. The most efficient way to dig is with one man with a pick, and two shovelers clearing behind him.
+Ordinary Soil: A human can dig BL cf/hr. One person with a pick can break up 4×BL cf/hr, making it into loose soil, which is easier to remove. The most efficient way to dig is with one person with a pick, and two shovelers clearing behind them.
 
-Hard Soil, Clay, etc.: Must be broken up first by a pick, at 2×BL cf/hr, and then shoveled at 2×BL cf/hr. A lone man with both pick and shovel can only remove 0.6×BL cf/hr – he loses time switching between tools.
+Hard Soil, Clay, etc.: Must be broken up first by a pick, at 2×BL cf/hr, and then shoveled at 2×BL cf/hr. A lone person with both pick and shovel can only remove 0.6×BL cf/hr – they lose time switching between tools.
 
 Hard Rock: Must be broken by a pick at BL cf/hr (or slower, for very hard rock!), and then shoveled at BL cf/hr.
 
@@ -44,7 +44,7 @@ Each hour of work costs 1 FP for loose soil, 2 FP for ordinary soil, 3 FP for ha
 
 Sustainable cross-country speed on foot depends on ground Move. Start with Basic Move and reduce it for encumbrance (see Encumbrance and Move, p. 17), injury (see General Injury, p. 419), and exhaustion (see Lost Fatigue Points, p. 426), as applicable. The distance in miles you can march in one day, under ideal conditions, equals 10 × Move.
 
-If you have the Enhanced Move (Ground) advantage, you may apply your movement multiple to this distance. For instance, Enhanced Move 1 (Ground) multiplies Move by two, doubling daily marching distance. See Enhanced Move (p. 52).
+If you have the Enhanced Move (Ground) advantage, you may apply your movement multiple to this distance. For instance, Enhanced Move 1 (Ground) multiplies Move by 2, doubling daily marching distance. See Enhanced Move (p. 52).
 
 A successful roll against Hiking skill (p. 200) increases marching distance by 20%. Roll daily. A group led by someone with Leadership skill at 12+ may make a single roll against the group’s average Hiking skill. (Hiking defaults to HT-5 for those who have not studied it.) Success lets the entire group march 20% farther; failure means the whole group must forgo the bonus.
 
@@ -174,7 +174,7 @@ A successful roll against Lifting skill (p. 205) increases your Basic Lift by 5%
 
 ### Running
 
-Your running speed, or ground Move, is equal to your Basic Move score modified for encumbrance – see Encumbrance and Move (p. 17). In combat, running is just a series of Move maneuvers. Use the more detailed rules below when it is important to know whether the heroes catch the plane, escape the savage pygmies, or whatever.
+Your running speed, or ground Move, is equal to your Basic Move score modified for encumbrance – see Encumbrance and Move (p. 17). In combat, running is just a series of Move maneuvers. Use the more detailed rules below when it is important to know whether the heroes catch the plane, escape the cannibals, or whatever.
 
 #### Sprinting
 
@@ -240,13 +240,15 @@ Throwing an object during combat – whether as an attack or not – requires an
 
 To avoid slowing down the game with math, the GM should allow any throw he deems reasonable . . . but when you need to know the exact distance you can throw an object, use the following procedure:
 
-1. Divide the object’s weight in pounds by your Basic Lift to get the “weight ratio.”
+1. Divide the object’s weight in pounds by your Basic Lift to get the weight ratio.
 
-2. Find the weight ratio in the Weight Ratio column of the table below. If it falls between two values, use the higher value.
+2. Find the weight ratio in the “Weight Ratio” column of the table below. If it falls between two values, use the higher value.
 
-3. Read across to the Distance Modifier column and find the “distance modifier.”
+3. Read across to the “Distance Modifier” column and find the distance modifier.
 
 4. Multiply your ST by the distance modifier to find the distance in yards you can throw the object.
+
+Example: You have ST 12, giving a BL of 29 lbs. You need to throw a 120-lb. body over a two-yard pit. Divide weight by BL: 120/29 = 4.1. This falls between 4.0 and 5.0 in the “Weight Ratio” column, so treat it as 5.0. The associated distance modifier is 0.12. Multiplying by ST, your range is 0.12 × 12 = 1.4 yards. Oops! The body just hit the bottom of the pit.
 
 | Weight | Distance | Weight | Distance |
 | --- | --- | --- | --- |
@@ -263,8 +265,6 @@ To avoid slowing down the game with math, the GM should allow any throw he deems
 | 1.00 | 0.6 | 10.0 | 0.06 |
 | 1.50 | 0.4 | 12.0 | 0.05 |
 
-Example: You have ST 12, giving a BL of 29 lbs. You need to throw a 120-lb. body over a two-yard pit. Divide weight by BL: 120/29 = 4.1. This falls between 4.0 and 5.0 in the Weight Ratio column, so treat it as 5.0. The associated distance modifier is 0.12. Multiplying by ST, your range is 0.12 × 12 = 1.4 yards. Oops! The body just hit the bottom of the pit.
-
 #### Damage From Thrown Objects
 
 Thrown objects inflict thrust damage for your ST (see Damage Table, p. 16), modified for weight as shown on the table below. Damage is usually crushing, but the GM may rule that a sharp object does cutting, piercing, or impaling damage instead. A fragile object (or a thrown character) takes the same amount of damage it inflicts; roll damage separately for the object and the target.
@@ -277,8 +277,8 @@ Thrown objects inflict thrust damage for your ST (see Damage Table, p. 16), modi
 | Up to BL | Thrust, +1 per die |
 | Up to 2×BL | Thrust |
 | Up to 4×BL | Thrust, -1/2 per die |
-
-(round down) Up to 8×BL Thrust, -1 per die
+| (round down) |  |
+| Up to 8×BL | Thrust, -1 per die |
 
 Example: You have ST 28, which gives you a BL of 157 lbs. and a thrust damage of 3d-1. You hit a foe with a hurled 50-lb. bag of cement. It is between BL/4 (39 lbs.) and BL/2 (78 lbs.). As shown on the table above, it does straight thrust damage, or 3d-1.
 
@@ -300,7 +300,9 @@ The rules above are for throwing rocks, bodies, televisions . . . anything but w
 
 ### Extra Effort
 
-Through sheer force of will, you can push your body past its usual limits when you perform physical tasks. This is called “extra effort.” Note that if you have the Machine meta-trait, you cannot use extra effort!
+Through sheer force of will, you can push your body past its usual limits when you perform physical tasks.
+
+This is called “extra effort.” Note that if you have the Machine meta-trait, you cannot use extra effort!
 
 You can use extra effort to increase Basic Lift (but not ST itself) when digging or lifting; daily mileage when hiking; Move when running or swimming; distance (but not Basic Move itself) when jumping; and ST for the purposes of throwing, making a single ST roll, or drawing or cocking a bow or crossbow that’s too strong for you. You cannot use extra effort to increase the time you can hold your breath – that would be self-defeating!
 
@@ -322,7 +324,7 @@ Instead of rolling against Will to use extra effort, you may make a Will-based r
 
 Digging: For every hour of digging, make an extra-effort roll and pay 1 FP. This adds to the usual FP cost. On a critical failure, the injury is to your back, and will heal only with rest (not First Aid); on an 18, you temporarily acquire the Bad Back disadvantage (p. 123).
 
-Hiking: Make one extra-effort roll per day. Extra effort increases the FP you suffer by two when you stop on the march (see Fatigue, p. 426). Assess injury due to critical failure at the end of the day, and base it on the modified FP penalty. For instance, if you would normally be missing 5 FP when you stopped, you would be missing 7 FP if you used extra effort – and if you critically failed, you would end the day with 7 HP of injury! When using Hiking skill, make a single Will-based Hiking roll at -1 per 5% extra mileage beyond the basic +20% for a successful Hiking roll (-1 for +25%, -2 for +30%, and so on).
+Hiking: Make one extra-effort roll per day. Extra effort increases the FP you suffer by 2 when you stop on the march (see Fatigue, p. 426). Assess injury due to critical failure at the end of the day, and base it on the modified FP penalty. For instance, if you would normally be missing 5 FP when you stopped, you would be missing 7 FP if you used extra effort – and if you critically failed, you would end the day with 7 HP of injury! When using Hiking skill, make a single Will-based Hiking roll at -1 per 5% extra mileage beyond the basic +20% for a successful Hiking roll (-1 for +25%, -2 for +30%, and so on).
 
 Jumping: On a critical failure, apply the injury to the foot or leg (GM’s option, or roll randomly); on an 18, you temporarily acquire the Crippled Leg disadvantage (see Lame, p. 141).
 
@@ -336,9 +338,9 @@ Throwing: Increases to ST affect both damage and distance, but not Basic Lift fo
 
 #### Optional Rule: Extra Effort in Combat
 
-At the GM’s option, fighters can use extra effort in combat. These rules work differently from those above – mainly to avoid bogging down combat with extra die rolls and calculations.
+At the GM’s option, fighters can use extra effort in combat. To avoid bogging down combat with extra rolls and calculations, these rules work differently from those above – notably, they don’t require Will rolls.
 
-You must declare that you are using extra effort and spend the required FP before you make your attack or defense roll. A critical failure on the roll causes 1 HP of injury to the arm (if blocking, parrying, or attacking with a shield, weapon, or hand) or leg (if dodging or kicking) in addition to the usual critical miss results. DR does not protect you from this damage!
+You must declare that you are using extra effort and spend the required FP before you make your attack or defense roll. A critical failure on the roll causes 1 HP of injury to the arm (if blocking, parrying, or attacking with a shield, weapon, or hand) or leg (if dodging or kicking) in addition to the usual critical miss results. DR does not protect you from this!
 
 Feverish Defense: If you take any maneuver other than All-Out Attack, you can spend 1 FP to get +2 to a single active defense roll. (You can use this bonus to offset the penalty for parrying multiple times with one hand; see Parrying, p. 376.)
 
