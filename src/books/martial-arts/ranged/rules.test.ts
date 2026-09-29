@@ -5,7 +5,6 @@ import {
   handfulProfile,
   heroicArcherAim,
   isSharp,
-  predictionShot,
   quickDrawPenalty,
   quickShootDraw,
   quickShootManeuver,
@@ -18,12 +17,11 @@ import { rapidStrikePenalty } from "../multiple-attacks/rules.js";
 
 /** Ranged attack options (GURPS Martial Arts pp. 97, 119-121). */
 describe("quick-shooting bows", () => {
-  const shooter = { heroicArcher: false, weaponMaster: false, determined: false, realisticUnderFire: false };
+  const shooter = { weaponMaster: false, determined: false, realisticUnderFire: false };
 
-  it("is -6, -3 with Heroic Archer or Weapon Master, -1 with both, +1 on All-Out Attack (Determined)", () => {
+  it("is -6, -3 with Weapon Master, +1 on All-Out Attack (Determined)", () => {
     expect(quickShootPenalty(shooter)).toBe(-6);
     expect(quickShootPenalty({ ...shooter, weaponMaster: true })).toBe(-3);
-    expect(quickShootPenalty({ ...shooter, heroicArcher: true, weaponMaster: true })).toBe(-1);
     expect(quickShootPenalty({ ...shooter, determined: true })).toBe(-5);
     expect(quickShootPenalty({ ...shooter, realisticUnderFire: true })).toBe(-10);
     expect(quickDrawPenalty(true)).toBe(-4);
@@ -36,12 +34,11 @@ describe("quick-shooting bows", () => {
     expect(quickShootDraw({ skill: "Bow", shots: "1(4)", rateOfFire: 1 })).toBeNull();
   });
 
-  it("needs Attack or All-Out Attack (Determined), or Move and Attack for a Heroic Archer", () => {
-    expect(quickShootManeuver("attack", "", false)).toBe(true);
-    expect(quickShootManeuver("allOutAttack", "determined", false)).toBe(true);
-    expect(quickShootManeuver("allOutAttack", "double", false)).toBe(false);
-    expect(quickShootManeuver("moveAndAttack", "", false)).toBe(false);
-    expect(quickShootManeuver("moveAndAttack", "", true)).toBe(true);
+  it("needs Attack or All-Out Attack (Determined)", () => {
+    expect(quickShootManeuver("attack", "")).toBe(true);
+    expect(quickShootManeuver("allOutAttack", "determined")).toBe(true);
+    expect(quickShootManeuver("allOutAttack", "double")).toBe(false);
+    expect(quickShootManeuver("moveAndAttack", "")).toBe(false);
   });
 });
 
@@ -66,12 +63,7 @@ describe("thrown weapons", () => {
   });
 });
 
-describe("prediction shots and aim", () => {
-  it("takes -2 per level to hit and -1 per level off Dodge alone", () => {
-    expect(predictionShot(1)).toEqual({ toHit: -2, dodge: -1 });
-    expect(predictionShot(0)).toEqual({ toHit: 0, dodge: 0 });
-  });
-
+describe("aim", () => {
   it("gives a Heroic Archer +1 for a second of Aim and +2 for more", () => {
     expect([heroicArcherAim(0), heroicArcherAim(1), heroicArcherAim(3)]).toEqual([0, 1, 2]);
   });

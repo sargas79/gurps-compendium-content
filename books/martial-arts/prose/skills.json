@@ -120,14 +120,6 @@
     "description": "<p>Sensitivity represents skill at being hyperaware of a nearby enemy's stance and intent. Choose one opponent - who must be in close combat with you and either touching you, visible, or detected with Blind Fighting - and roll against Sensitivity. This is a free action on your turn.</p><p><em>Modifiers:</em> +2 for Sensitive Touch; +2 for Vibration Sense; the higher of Telepathy Talent (p. B257) or Inner Balance (p. 47); -1 per failed attempt against the subject this combat.</p><p>Success gives +1 to all close-combat attacks and defenses against that opponent, and to Blind Fighting, Immovable Stance, Precognitive Parry, and Push rolls made to combat him. Success by 3 or more, or critical success, gives +2. These benefits last for as long as you and your rival stay in close combat. If you leave and return, roll again. You may opt to reroll each turn. You must reroll if you change subjects.</p>"
   },
   {
-    "_id": "4d9051b436c58f51",
-    "name": "Acrobatic Stand (Acrobatics)",
-    "pages": "MA65",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>This represents training at quickly regaining your feet in a fight; see Acrobatic Stand (p. 98) for details. A successful roll lets you go from lying down to standing as a single Change Posture maneuver; on a critical success, you do so as a \"step.\" Failure means you go to a sitting posture. Critical failure leaves you lying down, wasting your turn.</p><p>You can also use Acrobatic Stand to go from crawling or sitting to standing as a step. In this case, failure means you stand as a Change Posture maneuver, not as a step. Critical failure means you fall down!</p><p><em>Modifiers:</em> A penalty equal to your encumbrance level.</p>"
-  },
-  {
     "_id": "ca2f58ea6065dadb",
     "name": "Wrist Lock (Judo)",
     "pages": "MA65",
@@ -150,14 +142,6 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>An arm (or wrist) lock is an attempt to restrain or cripple an opponent by twisting his arm. It normally uses Judo or Wrestling skill. This technique lets you improve effective skill for this purpose only.</p><p>To use Arm Lock, you must have two hands free and make a successful barehanded parry with Judo or Wrestling against your opponent's melee attack. On your first turn following the parry, you may attempt to capture your attacker's arm if he's still within one yard. This is an attack: step into close combat and roll against Arm Lock to hit. Your foe may use any active defense - he can parry your hand with a weapon! If his defense fails, you trap his arm.</p><p>Your foe may attempt to break free (p. B371) on his next turn, but you're at +4 in the Quick Contest. If he loses, he has a cumulative -1 on future attempts to break free.</p><p>On your next turn - and each turn thereafter, until your foe breaks free - you may try to damage the trapped arm. Roll a Quick Contest: the higher of your ST (including your Wrestling bonus) or Arm Lock vs. the higher of your victim's ST or HT. If you win, you inflict crushing damage equal to your margin of victory. The target's rigid DR protects normally. Flexible armor, including natural DR with the Flexible or Tough Skin limitation, has no effect.</p><p>If you cripple your victim's arm, he drops anything in that hand. You can inflict no further damage on a crippled limb but you can continue to roll the Contest each turn. If you win, your target suffers shock and stunning just as if you had inflicted damage.</p><p>Rolls to inflict damage are completely passive and don't count as attacks. You can simultaneously make close-combat attacks on your opponent, who defends at -4 in addition to any penalties due to injury caused by the lock itself. If you decide to throw him using the lock, this does count as an attack; see Throws from Locks (pp. 118-119).</p><p>You can use this ability offensively as well. Instead of waiting to parry an attack, grapple your foe normally with Judo or Wrestling. If he fails to break free on his next turn, you may try Arm Lock on your next turn, just as if you had parried his attack.</p><p>You can also apply this lock with a weapon. Default and prerequisite skills become a weapon skill. To initiate the lock requires a weapon parry or an Armed Grapple (p. 67). A reach C weapon gets +1 in the Quick Contest to cause damage; anything longer gets +2. Edged weapons can inflict crushing or cutting damage, but you must make a DX roll when you roll to inflict injury. Failure does thrust cutting damage to your off hand (DR protects normally). Otherwise, use the rules above.</p><p>Arm Lock uses precision and skill to cripple a foe's limb. For a brute-force technique, see Wrench (Limb) (p. 82).</p>"
-  },
-  {
-    "_id": "d7d9571c05fbfa54",
-    "name": "Armed Grapple (Cloak)",
-    "pages": "MA67",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>Many armed styles teach how to step close to a foe, maneuver a weapon past him, and then pull it in tightly to restrain him. This results in an actual grapple of his body in close combat. To snag an opponent at full reach, use Entangle (p. 71) for a flexible weapon or Hook (p. 74) for one with a hook or other projection. To lock blades with him, use Bind Weapon (see below).</p><p>To initiate an armed grapple, roll against weapon skill at -2 - this is an awkward and unconventional attack for most weapons. It's a standard move with a cloak, however, and uses your unpenalized Cloak skill (see p. B404). Use the hit location penalties for grappling, not those for striking.</p><p>Your opponent may use any normal defense. If he fails to defend, you've successfully grappled him with your weapon. While using your weapon to grapple, you can neither attack nor defend with it. On your turn, you can follow up with a takedown, pin, choke, or Arm Lock (options depend on the body part grappled). Releasing the grapple is a free action.</p><p>A one-handed weapon other than a cloak can only grapple if you grip it in two hands first. This requires a Ready maneuver.</p>"
   },
   {
     "_id": "a401cf8eab92931c",
@@ -302,22 +286,6 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>You can use a flexible weapon such as a whip or a kusari to entangle a foe. Roll against Entangle to hit. If your opponent fails to defend, the weapon wraps around him.</p><p>If you hit your victim's arm or torso, you ensnare it. On subsequent turns, you must take a Ready maneuver to keep your opponent snared. Roll a Quick Contest of ST each turn. If you win, you immobilize your foe. If you lose, he pulls your weapon from your grasp. On a tie, he immediately breaks free without disarming you.</p><p>If you entangle the neck, use the same rules but your opponent has -5 in the Contest. If you win, the whip or kusari cuts off the victim's breathing - see Suffocation (p. B436).</p><p>If you entangle a foot or a leg, the target must make a DX roll to remain standing (this is instead of the Contest above). He's at -4 if he was running. If he falls, he takes 1d-4 crushing damage - or 1d-2 if running. On subsequent turns, use the rules above to keep him entangled.</p><p>You must keep your weapon taut at all times to immobilize or suffocate your victim. This requires a Ready maneuver each turn. If you're mounted and your mount is trained to do this for you, substitute its ST for yours in the Quick Contest.</p><p>To escape from a taut whip or kusari, you must attack and cut it (the damage required depends on the weapon). To escape from a limp weapon - including one pulled from the attacker's grasp - you need a free hand and must make three successful DX rolls. Each attempt counts as a Ready maneuver, during which you may take no other action.</p>"
-  },
-  {
-    "_id": "c9d1df0d468731f0",
-    "name": "Evade (Acrobatics)",
-    "pages": "MA71",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>This technique represents training at avoiding opponents who wish to obstruct your movement. Evade (Acrobatics) lets you flip over, tumble under, or twist around your foe, while Evade (Judo) allows you to ward off your enemy's hands as you run past. Either replaces DX when trying to evade (see Evading, p. B368). All normal penalties apply.</p>"
-  },
-  {
-    "_id": "7b2a4a5d5c17dccf",
-    "name": "Evade (Judo)",
-    "pages": "MA71",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>This technique represents training at avoiding opponents who wish to obstruct your movement. Evade (Acrobatics) lets you flip over, tumble under, or twist around your foe, while Evade (Judo) allows you to ward off your enemy's hands as you run past. Either replaces DX when trying to evade (see Evading, p. B368). All normal penalties apply.</p>"
   },
   {
     "_id": "e04abb16b85b356c",
@@ -622,22 +590,6 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>This technique involves turning in a circle before attacking. You must specialize. Spinning Punch defaults to Karate-2, and covers all forms of spinning hand and arm strikes. Spinning Kick defaults to Karate-3. Spinning Strike defaults to Melee Weapon-2, and you must specify the skill; e.g., Spinning Strike (Knife). All of these are special options for All-Out Attack or Committed Attack (pp. 99-100) - use the rules below instead of the normal ones for those maneuvers.</p><p>The goal behind spinning before attacking is to deceive your opponent. This might work on a less-skilled adversary, but a skilled fighter is likely to detect your ploy and defend more easily. To simulate this, roll a Quick Contest of Spinning Attack against your opponent's best melee combat skill before you make your attack roll. If you win, you may subtract your margin of victory from your victim's defense roll against the blow. If you lose, you \"telegraph\" your intentions and your foe may add his margin of victory to his defense! Thus, this move is risky . . . but it's still common in tournaments and sport martial arts.</p><p>Next, make an attack roll against Spinning Attack. Your target may use any active defense, adjusted by the modifier determined in the Contest. This does add to the penalty for a feint, Deceptive Attack, etc. - a well-executed Spinning Attack can increase the defense penalty while a bad one can cancel it out (or worse). However, if you wish to try a Deceptive Attack, you must apply the penalty for that option to both your roll in the Contest and your attack roll.</p><p>As a Committed Attack, a Spinning Attack does normal damage for your punch, kick, or weapon. It leaves you at -3 on all defense rolls and unable to retreat. If you struck with a hand or a weapon, you can't use it to parry. If you kicked, you can't dodge at all. These penalties last until your next turn.</p><p>As an All-Out Attack, a Spinning Attack involves putting your full weight behind the blow, using an exaggerated spin (360° or more!), and/or a making a wide, looping attack. You're at -2 to skill for both the Contest and your attack roll. However, your damage is at +2 or +1 per die, whichever is better. You have no defenses.</p><p>In either case, if you throw a Spinning Kick, balancing during the spin is especially difficult. If your kick misses or your foe successfully defends, the roll to avoid falling is against DX-2.</p><p>You can combine Spinning Punch with Elbow Strike (p. 71), Exotic Hand Strike (p. 71), Hammer Fist (p. 73), or Lethal Strike (p. 85). Likewise, you can mix Spinning Kick with Lethal Kick (p. 85). The GM may permit other techniques, and may allow armed techniques to work with Spinning Strike. See Using Techniques Together (p. 64) to find effective skill level.</p>"
-  },
-  {
-    "_id": "0e367c5f009b17f5",
-    "name": "Stamp Kick (Brawling)",
-    "pages": "MA80",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>This kick consists of a swift, downward stamp with the heel, using your entire body weight to give additional force to the kick. It does more damage than a normal kick, but it can only target an opponent who's lying down or the foot or leg of a standing foe.</p><p>Roll against Stamp Kick to hit. Damage is thrust+1, plus your Brawling or Karate bonus. On a miss, you stomp the ground and must make a DX roll to avoid ending up off-balance and unable to retreat until your next turn.</p>"
-  },
-  {
-    "_id": "c8abd50ce5cc76ea",
-    "name": "Stamp Kick (Karate)",
-    "pages": "MA80",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>This kick consists of a swift, downward stamp with the heel, using your entire body weight to give additional force to the kick. It does more damage than a normal kick, but it can only target an opponent who's lying down or the foot or leg of a standing foe.</p><p>Roll against Stamp Kick to hit. Damage is thrust+1, plus your Brawling or Karate bonus. On a miss, you stomp the ground and must make a DX roll to avoid ending up off-balance and unable to retreat until your next turn.</p>"
   },
   {
     "_id": "689489bfd3e7c699",
@@ -3144,14 +3096,6 @@
     "description": "<p>This technique helps you defend against opponents who use acrobatics or speed to move behind you and attack. It lets you buy off the -2 for a flank or \"runaround\" attack (p. B391) for one active defense. For Block or Parry, you must specialize by combat skill. You may use Timed Defense (Dodge) only once per turn.</p>"
   },
   {
-    "_id": "71cacdfc2ab66a0b",
-    "name": "Acrobatic Stand",
-    "pages": "MA65",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>This represents training at quickly regaining your feet in a fight; see Acrobatic Stand (p. 98) for details. A successful roll lets you go from lying down to standing as a single Change Posture maneuver; on a critical success, you do so as a \"step.\" Failure means you go to a sitting posture. Critical failure leaves you lying down, wasting your turn.</p><p>You can also use Acrobatic Stand to go from crawling or sitting to standing as a step. In this case, failure means you stand as a Change Posture maneuver, not as a step. Critical failure means you fall down!</p><p><em>Modifiers:</em> A penalty equal to your encumbrance level.</p>"
-  },
-  {
     "_id": "9a121ddefc8e5878",
     "name": "Aggressive Parry",
     "pages": "MA65",
@@ -3230,14 +3174,6 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>You can use a flexible weapon such as a whip or a kusari to entangle a foe. Roll against Entangle to hit. If your opponent fails to defend, the weapon wraps around him.</p><p>If you hit your victim's arm or torso, you ensnare it. On subsequent turns, you must take a Ready maneuver to keep your opponent snared. Roll a Quick Contest of ST each turn. If you win, you immobilize your foe. If you lose, he pulls your weapon from your grasp. On a tie, he immediately breaks free without disarming you.</p><p>If you entangle the neck, use the same rules but your opponent has -5 in the Contest. If you win, the whip or kusari cuts off the victim's breathing - see Suffocation (p. B436).</p><p>If you entangle a foot or a leg, the target must make a DX roll to remain standing (this is instead of the Contest above). He's at -4 if he was running. If he falls, he takes 1d-4 crushing damage - or 1d-2 if running. On subsequent turns, use the rules above to keep him entangled.</p><p>You must keep your weapon taut at all times to immobilize or suffocate your victim. This requires a Ready maneuver each turn. If you're mounted and your mount is trained to do this for you, substitute its ST for yours in the Quick Contest.</p><p>To escape from a taut whip or kusari, you must attack and cut it (the damage required depends on the weapon). To escape from a limp weapon - including one pulled from the attacker's grasp - you need a free hand and must make three successful DX rolls. Each attempt counts as a Ready maneuver, during which you may take no other action.</p>"
-  },
-  {
-    "_id": "0c5002c82bf567ba",
-    "name": "Evade",
-    "pages": "MA71",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>This technique represents training at avoiding opponents who wish to obstruct your movement. Evade (Acrobatics) lets you flip over, tumble under, or twist around your foe, while Evade (Judo) allows you to ward off your enemy's hands as you run past. Either replaces DX when trying to evade (see Evading, p. B368). All normal penalties apply.</p>"
   },
   {
     "_id": "09eb4e6709e71eaf",
@@ -3480,14 +3416,6 @@
     "description": "<p>This technique involves turning in a circle before attacking. You must specialize. Spinning Punch defaults to Karate-2, and covers all forms of spinning hand and arm strikes. Spinning Kick defaults to Karate-3. Spinning Strike defaults to Melee Weapon-2, and you must specify the skill; e.g., Spinning Strike (Knife). All of these are special options for All-Out Attack or Committed Attack (pp. 99-100) - use the rules below instead of the normal ones for those maneuvers.</p><p>The goal behind spinning before attacking is to deceive your opponent. This might work on a less-skilled adversary, but a skilled fighter is likely to detect your ploy and defend more easily. To simulate this, roll a Quick Contest of Spinning Attack against your opponent's best melee combat skill before you make your attack roll. If you win, you may subtract your margin of victory from your victim's defense roll against the blow. If you lose, you \"telegraph\" your intentions and your foe may add his margin of victory to his defense! Thus, this move is risky . . . but it's still common in tournaments and sport martial arts.</p><p>Next, make an attack roll against Spinning Attack. Your target may use any active defense, adjusted by the modifier determined in the Contest. This does add to the penalty for a feint, Deceptive Attack, etc. - a well-executed Spinning Attack can increase the defense penalty while a bad one can cancel it out (or worse). However, if you wish to try a Deceptive Attack, you must apply the penalty for that option to both your roll in the Contest and your attack roll.</p><p>As a Committed Attack, a Spinning Attack does normal damage for your punch, kick, or weapon. It leaves you at -3 on all defense rolls and unable to retreat. If you struck with a hand or a weapon, you can't use it to parry. If you kicked, you can't dodge at all. These penalties last until your next turn.</p><p>As an All-Out Attack, a Spinning Attack involves putting your full weight behind the blow, using an exaggerated spin (360° or more!), and/or a making a wide, looping attack. You're at -2 to skill for both the Contest and your attack roll. However, your damage is at +2 or +1 per die, whichever is better. You have no defenses.</p><p>In either case, if you throw a Spinning Kick, balancing during the spin is especially difficult. If your kick misses or your foe successfully defends, the roll to avoid falling is against DX-2.</p><p>You can combine Spinning Punch with Elbow Strike (p. 71), Exotic Hand Strike (p. 71), Hammer Fist (p. 73), or Lethal Strike (p. 85). Likewise, you can mix Spinning Kick with Lethal Kick (p. 85). The GM may permit other techniques, and may allow armed techniques to work with Spinning Strike. See Using Techniques Together (p. 64) to find effective skill level.</p>"
   },
   {
-    "_id": "7d020d8de9b1b086",
-    "name": "Stamp Kick",
-    "pages": "MA80",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>This kick consists of a swift, downward stamp with the heel, using your entire body weight to give additional force to the kick. It does more damage than a normal kick, but it can only target an opponent who's lying down or the foot or leg of a standing foe.</p><p>Roll against Stamp Kick to hit. Damage is thrust+1, plus your Brawling or Karate bonus. On a miss, you stomp the ground and must make a DX roll to avoid ending up off-balance and unable to retreat until your next turn.</p>"
-  },
-  {
     "_id": "5f1041ca70e85632",
     "name": "Trip",
     "pages": "MA81",
@@ -3646,14 +3574,6 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>An arm (or wrist) lock is an attempt to restrain or cripple an opponent by twisting his arm. It normally uses Judo or Wrestling skill. This technique lets you improve effective skill for this purpose only.</p><p>To use Arm Lock, you must have two hands free and make a successful barehanded parry with Judo or Wrestling against your opponent's melee attack. On your first turn following the parry, you may attempt to capture your attacker's arm if he's still within one yard. This is an attack: step into close combat and roll against Arm Lock to hit. Your foe may use any active defense - he can parry your hand with a weapon! If his defense fails, you trap his arm.</p><p>Your foe may attempt to break free (p. B371) on his next turn, but you're at +4 in the Quick Contest. If he loses, he has a cumulative -1 on future attempts to break free.</p><p>On your next turn - and each turn thereafter, until your foe breaks free - you may try to damage the trapped arm. Roll a Quick Contest: the higher of your ST (including your Wrestling bonus) or Arm Lock vs. the higher of your victim's ST or HT. If you win, you inflict crushing damage equal to your margin of victory. The target's rigid DR protects normally. Flexible armor, including natural DR with the Flexible or Tough Skin limitation, has no effect.</p><p>If you cripple your victim's arm, he drops anything in that hand. You can inflict no further damage on a crippled limb but you can continue to roll the Contest each turn. If you win, your target suffers shock and stunning just as if you had inflicted damage.</p><p>Rolls to inflict damage are completely passive and don't count as attacks. You can simultaneously make close-combat attacks on your opponent, who defends at -4 in addition to any penalties due to injury caused by the lock itself. If you decide to throw him using the lock, this does count as an attack; see Throws from Locks (pp. 118-119).</p><p>You can use this ability offensively as well. Instead of waiting to parry an attack, grapple your foe normally with Judo or Wrestling. If he fails to break free on his next turn, you may try Arm Lock on your next turn, just as if you had parried his attack.</p><p>You can also apply this lock with a weapon. Default and prerequisite skills become a weapon skill. To initiate the lock requires a weapon parry or an Armed Grapple (p. 67). A reach C weapon gets +1 in the Quick Contest to cause damage; anything longer gets +2. Edged weapons can inflict crushing or cutting damage, but you must make a DX roll when you roll to inflict injury. Failure does thrust cutting damage to your off hand (DR protects normally). Otherwise, use the rules above.</p><p>Arm Lock uses precision and skill to cripple a foe's limb. For a brute-force technique, see Wrench (Limb) (p. 82).</p>"
-  },
-  {
-    "_id": "33bdd411129fe40a",
-    "name": "Armed Grapple (Melee Weapon)",
-    "pages": "MA67",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>Many armed styles teach how to step close to a foe, maneuver a weapon past him, and then pull it in tightly to restrain him. This results in an actual grapple of his body in close combat. To snag an opponent at full reach, use Entangle (p. 71) for a flexible weapon or Hook (p. 74) for one with a hook or other projection. To lock blades with him, use Bind Weapon (see below).</p><p>To initiate an armed grapple, roll against weapon skill at -2 - this is an awkward and unconventional attack for most weapons. It's a standard move with a cloak, however, and uses your unpenalized Cloak skill (see p. B404). Use the hit location penalties for grappling, not those for striking.</p><p>Your opponent may use any normal defense. If he fails to defend, you've successfully grappled him with your weapon. While using your weapon to grapple, you can neither attack nor defend with it. On your turn, you can follow up with a takedown, pin, choke, or Arm Lock (options depend on the body part grappled). Releasing the grapple is a free action.</p><p>A one-handed weapon other than a cloak can only grapple if you grip it in two hands first. This requires a Ready maneuver.</p>"
   },
   {
     "_id": "08413c8abd39bfa4",
@@ -3974,14 +3894,6 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>This brute-force attack consists of grabbing and suddenly twisting the victim's head, with the intent of snapping the neck. Unlike most techniques, Neck Snap defaults to ST, not a skill. Wrestling gives its usual skill-based ST bonus.</p><p>To use this technique, you must first grapple your opponent by the neck using two hands; see Grappling (p. B370). Your victim may attempt to break free on his turn. If he fails, then on your next turn, roll a Quick Contest: Neck Snap vs. the higher of his ST or HT. This counts as an attack.</p><p>If you win, you inflict swing crushing damage on your victim's neck, with the usual ×1.5 wounding modifier for hit location. The target's rigid DR protects normally, but flexible armor – including natural DR with the Flexible or Tough Skin limitation – has no effect. Neck injury can have serious consequences; see Lasting and Permanent Injuries (pp. 138-139).</p><p>Otherwise, you inflict no damage. You may make repeated attempts on later turns. Your opponent may attack you or attempt to break free during this time, subject to the usual limitations of being grappled.</p>"
-  },
-  {
-    "_id": "f30c7ad89a75092b",
-    "name": "Wrench [Limb]",
-    "pages": "MA82",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>This technique involves grabbing and suddenly twisting an enemy's limb to dislocate or break it. It defaults to ST – not a skill – and must be learned separately for each limb: Wrench Arm, Wrench Leg, and so forth. Wrestling gives its usual skill-based ST bonus.</p><p>To use this technique, you must first grapple your opponent by the desired limb using two hands; see Grappling (p. B370). He may attempt to break free on his turn. If he fails, then on your next turn, roll a Quick Contest: Wrench (Limb) vs. the higher of your victim's ST or HT. He gets +4 if you're wrenching his leg. This counts as an attack.</p><p>If you win, you inflict swing crushing damage on the limb. The target's rigid DR protects normally. Flexible armor – including natural DR with the Flexible or Tough Skin limitation – has no effect.</p><p>Otherwise, you inflict no damage. You may make repeated attempts on later turns. Your opponent may attack you or attempt to break free during this time, subject to the usual limitations of being grappled.</p>"
   },
   {
     "_id": "764ab81cf6363820",
@@ -4382,38 +4294,6 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>The best defense against Double Eye-Poke is to place a hand upright along the nose, which forces the attacker's fingertips to stop short of the eyes. This parry is an ultimate defense, and can go as high as Parry+5. Of course, it only works against Double Eye-Poke . . .</p>"
-  },
-  {
-    "_id": "502c92b9dc4a0f63",
-    "name": "Wrench Arm",
-    "pages": "MA82",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>Some old wrestling manuals depict techniques for breaking an opponent's back: pick him up, hoist him over both shoulders, and then pull his leg and arm (or neck) to snap his spine. While not difficult, this procedure is slow and requires great strength. For a rapid, cinematic spine-snapper, see Backbreaker (see below).</p><p>Wrench Spine takes several turns to execute. On your first turn, you must grapple your opponent with two hands around the torso. Resolve this as a normal grapple.</p><p>If your victim fails to break free on his turn, roll against Wrench Spine on your next turn to hoist him into position. Success means you lift him up and swing him over your shoulders. Any failure means you fall down with your foe on top of you and take thrust damage to your own neck. If your opponent's weight exceeds your BL×4, you simply can't pick him up; your attempt fails but you don't fall or hurt yourself.</p><p>On later turns, roll a Quick Contest of Wrench Spine vs. the higher of your victim's ST+4 or HT+4. If you win, you inflict swing crushing damage. The target is the spine. There's no wounding multiplier for this location but sufficient injury can mean severe and possibly permanent crippling; see New Hit Locations (p. 137). Even if the GM isn't using the spine hit location in general, he should use those rules for Wrench Spine.</p><p>The target's rigid DR protects normally. Flexible armor, including natural DR with the Flexible or Tough Skin limitation, has no effect. The spine's own DR doesn't help, either - you're not striking the spine but applying continuous pressure to break it.</p><p>You may make repeated attempts on later turns. Your opponent may attack you or attempt to break free during this time, subject to the usual limitations of being grappled.</p>"
-  },
-  {
-    "_id": "81c5d2125d47ac3c",
-    "name": "Wrench Leg",
-    "pages": "MA82",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>Some old wrestling manuals depict techniques for breaking an opponent's back: pick him up, hoist him over both shoulders, and then pull his leg and arm (or neck) to snap his spine. While not difficult, this procedure is slow and requires great strength. For a rapid, cinematic spine-snapper, see Backbreaker (see below).</p><p>Wrench Spine takes several turns to execute. On your first turn, you must grapple your opponent with two hands around the torso. Resolve this as a normal grapple.</p><p>If your victim fails to break free on his turn, roll against Wrench Spine on your next turn to hoist him into position. Success means you lift him up and swing him over your shoulders. Any failure means you fall down with your foe on top of you and take thrust damage to your own neck. If your opponent's weight exceeds your BL×4, you simply can't pick him up; your attempt fails but you don't fall or hurt yourself.</p><p>On later turns, roll a Quick Contest of Wrench Spine vs. the higher of your victim's ST+4 or HT+4. If you win, you inflict swing crushing damage. The target is the spine. There's no wounding multiplier for this location but sufficient injury can mean severe and possibly permanent crippling; see New Hit Locations (p. 137). Even if the GM isn't using the spine hit location in general, he should use those rules for Wrench Spine.</p><p>The target's rigid DR protects normally. Flexible armor, including natural DR with the Flexible or Tough Skin limitation, has no effect. The spine's own DR doesn't help, either - you're not striking the spine but applying continuous pressure to break it.</p><p>You may make repeated attempts on later turns. Your opponent may attack you or attempt to break free during this time, subject to the usual limitations of being grappled.</p>"
-  },
-  {
-    "_id": "6bf3b1da6acf8364",
-    "name": "Wrench Arm (ST)",
-    "pages": "MA82",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>Some old wrestling manuals depict techniques for breaking an opponent's back: pick him up, hoist him over both shoulders, and then pull his leg and arm (or neck) to snap his spine. While not difficult, this procedure is slow and requires great strength. For a rapid, cinematic spine-snapper, see Backbreaker (see below).</p><p>Wrench Spine takes several turns to execute. On your first turn, you must grapple your opponent with two hands around the torso. Resolve this as a normal grapple.</p><p>If your victim fails to break free on his turn, roll against Wrench Spine on your next turn to hoist him into position. Success means you lift him up and swing him over your shoulders. Any failure means you fall down with your foe on top of you and take thrust damage to your own neck. If your opponent's weight exceeds your BL×4, you simply can't pick him up; your attempt fails but you don't fall or hurt yourself.</p><p>On later turns, roll a Quick Contest of Wrench Spine vs. the higher of your victim's ST+4 or HT+4. If you win, you inflict swing crushing damage. The target is the spine. There's no wounding multiplier for this location but sufficient injury can mean severe and possibly permanent crippling; see New Hit Locations (p. 137). Even if the GM isn't using the spine hit location in general, he should use those rules for Wrench Spine.</p><p>The target's rigid DR protects normally. Flexible armor, including natural DR with the Flexible or Tough Skin limitation, has no effect. The spine's own DR doesn't help, either - you're not striking the spine but applying continuous pressure to break it.</p><p>You may make repeated attempts on later turns. Your opponent may attack you or attempt to break free during this time, subject to the usual limitations of being grappled.</p>"
-  },
-  {
-    "_id": "7812b840b62e5ed9",
-    "name": "Wrench Leg (ST)",
-    "pages": "MA82",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>Some old wrestling manuals depict techniques for breaking an opponent's back: pick him up, hoist him over both shoulders, and then pull his leg and arm (or neck) to snap his spine. While not difficult, this procedure is slow and requires great strength. For a rapid, cinematic spine-snapper, see Backbreaker (see below).</p><p>Wrench Spine takes several turns to execute. On your first turn, you must grapple your opponent with two hands around the torso. Resolve this as a normal grapple.</p><p>If your victim fails to break free on his turn, roll against Wrench Spine on your next turn to hoist him into position. Success means you lift him up and swing him over your shoulders. Any failure means you fall down with your foe on top of you and take thrust damage to your own neck. If your opponent's weight exceeds your BL×4, you simply can't pick him up; your attempt fails but you don't fall or hurt yourself.</p><p>On later turns, roll a Quick Contest of Wrench Spine vs. the higher of your victim's ST+4 or HT+4. If you win, you inflict swing crushing damage. The target is the spine. There's no wounding multiplier for this location but sufficient injury can mean severe and possibly permanent crippling; see New Hit Locations (p. 137). Even if the GM isn't using the spine hit location in general, he should use those rules for Wrench Spine.</p><p>The target's rigid DR protects normally. Flexible armor, including natural DR with the Flexible or Tough Skin limitation, has no effect. The spine's own DR doesn't help, either - you're not striking the spine but applying continuous pressure to break it.</p><p>You may make repeated attempts on later turns. Your opponent may attack you or attempt to break free during this time, subject to the usual limitations of being grappled.</p>"
   },
   {
     "_id": "c11cb388b90a6fc9",

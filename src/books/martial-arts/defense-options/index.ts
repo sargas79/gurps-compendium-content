@@ -7,8 +7,9 @@
  * fencing parries and long two-handed weapons' multiple parries; weapons a
  * Cross or Supported Parry used are out of the running for the rest of the
  * turn; a Riposte's penalty waits for the fighter's next attack. A second
- * switch limits dodges, allows more than one block at a price, and asks for
- * evasive movement to dodge firearms.
+ * switch limits dodges and allows more than one block at a price. Evasive
+ * movement to dodge firearms is the Basic Set's now (Revised, p. 577) and the
+ * system's.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
@@ -39,15 +40,12 @@ const RETREAT = "ma-retreat-option";
 const RIPOSTE = "ma-riposte";
 const LEG = "ma-leg-parry";
 const DUAL = "ma-dual-weapon-parry";
-const EVASIVE = "ma-evasive-movement";
 /** Weapons a Cross or Supported Parry used, out of the running this turn. */
 const LOCKED = "ma-parry-locked";
 const LEG_USED = "ma-leg-parry-used";
 const RIPOSTE_STATE = "ma-riposte-pending";
-const EVASIVE_STATE = "ma-evasive-against";
 const WAIT_PARRIED = "ma-wait-parried";
 
-const BASIC_MANEUVERS = ["doNothing", "move", "changePosture", "ready", "aim", "evaluate", "attack", "feint", "allOutAttack", "moveAndAttack", "allOutDefense", "concentrate", "wait"];
 const QUALITY_RANK: Record<string, number> = { cheap: 0, good: 1, fine: 2, veryFine: 3 };
 
 interface RipostePending { foe: string; penalty: number; weaponId: string; against: RiposteAgainst }
@@ -55,7 +53,6 @@ interface RipostePending { foe: string; penalty: number; weaponId: string; again
 const traitNamed = (actor: any, pattern: RegExp) => [...(actor?.items ?? [])].some((item: any) => item.type === "trait" && pattern.test(String(item.name ?? "")));
 const master = (actor: any) => traitNamed(actor, /^(trained by a master|weapon master)\b/i);
 const weaponMaster = (actor: any) => traitNamed(actor, /^weapon master\b/i);
-const firearm = (skill: unknown) => ["guns", "beam weapons", "gunner"].includes(String(skill ?? "").replace(/\s*\(.*$/, "").trim().toLowerCase());
 const reachYards = (reach: unknown) => Math.max(0, ...String(reach ?? "").split(/[,-]/).map((r) => Number(r.trim().replace("*", ""))).filter(Number.isFinite));
 
 /** The defender's ready melee weapons that can parry, one row each (the best), and not locked this turn. */
@@ -302,38 +299,6 @@ export function readyDefenseOptions(api: GWorldApi, on: () => boolean, limits: (
     if (on() && api.combat.getCombatState(defender, MODULE_ID, LEG_USED)) Object.assign(context.retreat, { available: false, refusal: L("LegNoRetreat") });
     // More than one block, at a price (p. 123).
     if (limits() || chambara(defender)) context.blockAgain = true;
-    if (!limits()) return;
-    // Dodging a firearm takes evasive movement against that shooter (p. 122).
-    if (firearm(context.attackWeapon?.skill) && !master(defender)) {
-      const against = api.combat.getCombatState(defender, MODULE_ID, EVASIVE_STATE);
-      const attackerUuid = String((context.attacker ?? null)?.uuid ?? "");
-      const dodge = (context.choices ?? []).find((c: any) => c.key === "dodge");
-      if (dodge && (!against || (attackerUuid && against !== attackerUuid))) Object.assign(dodge, { available: false, refusal: L("NoEvasive") });
-    }
-  });
-
-  // Evasive movement, declared on the fighter's own turn against the shooter they target (p. 122).
-  for (const maneuver of BASIC_MANEUVERS) {
-    api.combat.registerManeuverOption({
-      module: MODULE_ID,
-      key: `${EVASIVE}-${maneuver}`,
-      maneuver,
-      label: L("Evasive"),
-      input: { type: "checkbox" },
-      available: () => limits(),
-    });
-  }
-  Hooks.on(api.combat.hooks.turnEnd, (_combat: any, combatant: any) => {
-    const actor = combatant?.actor;
-    if (!limits() || !actor?.isOwner) return;
-    // The client of a player who owns the fighter, or the GM's for one nobody plays.
-    const players = (game as any).users?.filter?.((u: any) => u.active && !u.isGM && actor.testUserPermission?.(u, "OWNER")) ?? [];
-    if (game.user?.isGM ? players.length > 0 : false) return;
-    const maneuver = String(actor.system?.maneuver ?? "");
-    const chosen = actor.getFlag?.("gworld", "maneuverOptions")?.[MODULE_ID]?.[`${EVASIVE}-${maneuver}`];
-    const targets = [...((game as any).user?.targets ?? [])];
-    if (chosen && targets.length === 1 && targets[0]?.actor) void api.combat.setCombatState(actor, MODULE_ID, EVASIVE_STATE, String(targets[0].actor.uuid), "combat");
-    else void api.combat.clearCombatState(actor, MODULE_ID, EVASIVE_STATE);
   });
 
   // Note an unbalanced weapon parrying during a Wait (p. 125).

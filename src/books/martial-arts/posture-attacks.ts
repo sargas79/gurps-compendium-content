@@ -18,7 +18,7 @@ const DAMAGE = "ma-posture-damage";
 /** The maneuvers a drop rides along with, by the system's key. */
 const DROP_MANEUVERS: Record<string, DropManeuver> = {
   attack: "attack",
-  [`${MODULE_ID}.ma-committed-attack`]: "committed",
+  committedAttack: "committed",
   allOutAttack: "allOutAttack",
   moveAndAttack: "moveAndAttack",
 };

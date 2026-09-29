@@ -1,6 +1,7 @@
 /**
- * All-Out Attack (Long), slams as All-Out Attacks, and Move and Attack with any
- * melee attack, at the table (GURPS Martial Arts pp. 97-98, 107).
+ * All-Out Attack (Long) and Move and Attack with any melee attack, at the
+ * table (GURPS Martial Arts pp. 97-98, 107). Slams as All-Out Attacks are the
+ * Basic Set's now (Revised, p. 575) and the system's.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
@@ -8,7 +9,6 @@ import {
   longCrouchPosture,
   longDamagePenalty,
   moveAndAttackRefusals,
-  slamMayUseFullMove,
   slamThrust,
   strikingPart,
   type StrikingPart,
@@ -18,7 +18,6 @@ const L = (key: string) => game.i18n.localize(`GCC.MA.${key}`);
 
 export const LONG = "ma-long";
 const CROUCH_OPTION = "ma-long-crouch";
-const SLAM_OPTION = "ma-slam-full-move";
 const SLAM_DAMAGE_OPTION = "ma-move-slam-damage";
 /** What struck on a Move and Attack, until the fighter's next turn. */
 const STRUCK = "ma-move-struck";
@@ -32,7 +31,7 @@ const onLong = (actor: any) =>
 
 const onMoveAndAttack = (actor: any) => String(actor?.system?.maneuver ?? "") === "moveAndAttack";
 
-/** Registers the All-Out Attack options and slams. */
+/** Registers the All-Out Attack (Long) option. */
 export function readyAllOutAttack(api: GWorldApi, on: () => boolean): void {
   // All-Out Attack (Long): a yard more reach (p. 98).
   api.combat.registerAllOutAttackOption({
@@ -51,21 +50,6 @@ export function readyAllOutAttack(api: GWorldApi, on: () => boolean): void {
     label: L("Long.Crouch"),
     available: () => on(),
     refuse: ({ actor }) => (onLong(actor) ? null : L("Long.OnlyLong")),
-  });
-
-  // A slam, flying tackle, pounce or shield rush at full Move (p. 98).
-  api.combat.registerManeuverOption({
-    module: MODULE_ID,
-    key: SLAM_OPTION,
-    maneuver: "allOutAttack",
-    label: L("Slam.FullMove"),
-    available: () => on(),
-    refuse: ({ actor }) => (slamMayUseFullMove(String(actor?.system?.allOutAttackOption ?? "")) ? null : L("Slam.NotThisOption")),
-  });
-
-  Hooks.on(api.combat.hooks.maneuverAllowances, (context: any) => {
-    if (!on() || context?.maneuver !== "allOutAttack") return;
-    if (optionValue(context.actor, SLAM_OPTION) === true && slamMayUseFullMove(String(context.option ?? ""))) context.movement = "full";
   });
 
   // A swing made Long is -2 damage, or -1 per die (p. 98).

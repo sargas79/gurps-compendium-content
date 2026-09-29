@@ -8,8 +8,11 @@
  * Him, Shove Around, Throw from a Lock and Sprawl. A grappled fighter defends
  * at -2 (-1 Dodge) and can't retreat, and neither can a grappler still holding.
  *
- * Long weapons in close combat: -4 skill a yard of reach, the Parry from it and
- * -1 swing damage a yard, and a haft attack for long polearms.
+ * Long weapons in close combat: a haft attack for long polearms, and choking
+ * up around the head. The -4 skill a yard of reach, the Parry from it and -1
+ * swing damage a yard are the Basic Set's now (Revised, p. 334) and the
+ * system's, under its rule for a weapon without a C reach in close combat;
+ * choking up is offered only while that rule is on.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
@@ -27,7 +30,6 @@ import {
   SAT_ON_GRIP,
   SPRAWL_BONUS,
   allOutGrappling,
-  closeCombatPenalty,
   followsGrapple,
   grappledDefense,
   haftOnly,
@@ -340,31 +342,22 @@ export function readyCloseCombat(api: GWorldApi, grappling: () => boolean, longW
   });
 
   // ── long weapons in close combat (p. 117) ──
+  // A reach 2 or 3 polearm, spear or two-handed axe has only its haft until a
+  // Ready chokes it up, and again until another Ready readies it (p. 117). The
+  // penalties of a weapon used in close combat otherwise are the system's.
   Hooks.on(api.combat.hooks.weaponAttacks, (context: any) => {
-    if (!longWeapons()) return;
-    const inClose = context?.actor?.system?.conditions?.closeCombat === true;
-    // A reach 2 or 3 polearm, spear or two-handed axe has only its haft until a
-    // Ready chokes it up, and again until another Ready readies it (p. 117).
-    const haft = longInClose(context?.item, context?.actor);
-    if (!inClose && !haft) return;
+    if (!longWeapons() || !longInClose(context?.item, context?.actor)) return;
     for (const entry of context.rows ?? []) {
       if (entry.kind !== "melee") continue;
-      const penalty = closeCombatPenalty(String(entry.row.reach ?? ""));
-      if (!penalty.skill) continue;
-      if (haft) {
-        entry.row.usable = false;
-        entry.row.notes.push({ label: L("ChokeUp"), hint: L("HaftOnlyHint") });
-        continue;
-      }
-      // The awkward attack the Basic Set doesn't allow at all, at its penalties.
-      entry.row.usable = true;
-      if (typeof entry.row.skillLevel === "number") entry.row.skillLevel += penalty.skill;
-      if (typeof entry.row.parry === "number") entry.row.parry += penalty.parry;
-      if (entry.mode?.damageBase === "sw") entry.row.damage = context.addToDamage(String(entry.row.damage ?? ""), penalty.swing);
-      entry.row.notes.push({ label: L("InClose"), hint: F("InCloseHint", { skill: penalty.skill, parry: penalty.parry }) });
+      const { longest, close } = reachOf(String(entry.row.reach ?? ""));
+      if (close || longest < 1) continue;
+      entry.row.usable = false;
+      entry.row.notes.push({ label: L("ChokeUp"), hint: L("HaftOnlyHint") });
     }
   });
-  const chokedUp = (item: any) => (api.combat.getWeaponState(item, MODULE_ID) as any)?.[CHOKED_UP] === true;
+  // Where the system doesn't let a long weapon fight in close combat at all, there is nothing to choke up to.
+  const chokeUpOn = () => longWeapons() && api.registry.isRuleOn("closeCombatAnyWeapon");
+  const chokedUp = (item: any) => chokeUpOn() && (api.combat.getWeaponState(item, MODULE_ID) as any)?.[CHOKED_UP] === true;
   const longInClose = (item: any, actor: any) => longWeapons()
     && ((item?.system?.meleeModes ?? []) as any[]).some((m) => haftOnly(String(m?.skill ?? ""), String(m?.reach ?? "")))
     && haftRefused({ inClose: actor?.system?.conditions?.closeCombat === true, chokedUp: chokedUp(item) });
@@ -375,7 +368,7 @@ export function readyCloseCombat(api: GWorldApi, grappling: () => boolean, longW
     itemTypes: ["equipment"],
     label: L("ChokeUp"),
     icon: "fa-solid fa-hands-holding",
-    visible: (item: any) => longWeapons() && ((item?.system?.meleeModes ?? []) as any[]).some((m) => haftOnly(String(m?.skill ?? ""), String(m?.reach ?? ""))),
+    visible: (item: any) => chokeUpOn() && ((item?.system?.meleeModes ?? []) as any[]).some((m) => haftOnly(String(m?.skill ?? ""), String(m?.reach ?? ""))),
     run: async (item: any) => {
       const next = !chokedUp(item);
       await api.combat.setWeaponState(item, MODULE_ID, { [CHOKED_UP]: next });

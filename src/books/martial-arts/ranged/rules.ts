@@ -1,12 +1,13 @@
 /**
  * Ranged attack options (GURPS Martial Arts pp. 97, 119-121): the pure rules
  * for quick-shooting bows, Rapid Strike and Rapid Fire with thrown weapons,
- * aiming them, and prediction shots.
+ * and aiming them. Prediction shots and ranged feints are the Basic Set's now
+ * (Revised, p. 577), and so is a Heroic Archer's quick-shooting (p. 327): the
+ * system carries them.
  */
 
 /** What a quick-shooter brings to the two rolls (p. 119). */
 export interface QuickShooter {
-  heroicArcher: boolean;
   /** A Weapon Master whose weapons include this one. */
   weaponMaster: boolean;
   /** On All-Out Attack (Determined): +1 to both rolls. */
@@ -15,10 +16,9 @@ export interface QuickShooter {
   realisticUnderFire: boolean;
 }
 
-/** The penalty on both quick-shooting rolls: -6, -3 with Heroic Archer or Weapon Master, -1 with both. */
+/** The penalty on both quick-shooting rolls: -6, or -3 with Weapon Master. */
 export function quickShootPenalty(shooter: QuickShooter): number {
-  const halvings = (shooter.heroicArcher ? 1 : 0) + (shooter.weaponMaster ? 1 : 0);
-  const base = halvings === 2 ? -1 : halvings === 1 ? -3 : -6;
+  const base = shooter.weaponMaster ? -3 : -6;
   return base + (shooter.determined ? 1 : 0) + (shooter.realisticUnderFire ? -4 : 0);
 }
 
@@ -40,11 +40,10 @@ export function quickShootDraw(mode: { skill?: unknown; shots?: unknown; rateOfF
   return null;
 }
 
-/** The maneuvers a quick-shot may be made on: Attack or All-Out Attack (Determined), and Move and Attack for a Heroic Archer. */
-export function quickShootManeuver(maneuver: string, allOutOption: string, heroicArcher: boolean): boolean {
+/** The maneuvers a quick-shot may be made on: Attack or All-Out Attack (Determined). */
+export function quickShootManeuver(maneuver: string, allOutOption: string): boolean {
   if (maneuver === "attack") return true;
-  if (maneuver === "allOutAttack") return allOutOption === "determined";
-  return heroicArcher && maneuver === "moveAndAttack";
+  return maneuver === "allOutAttack" && allOutOption === "determined";
 }
 
 /** How one hand's throws in a two-handed Rapid Strike are penalized: -4 for Dual-Weapon Attack, -4 more for the off hand (p. 121). */
@@ -87,15 +86,6 @@ export function handfulProfile(count: number): { perDie: number; rangeFactor: nu
 export function scaledRange(yards: number, factor: number): number {
   return Math.max(0, Math.round((Number(yards) || 0) * factor));
 }
-
-/** A prediction shot at `level`: -2 per level to hit, -1 per level to the target's Dodge only (p. 121). */
-export function predictionShot(level: number): { toHit: number; dodge: number } {
-  const n = Math.max(0, Math.floor(Number(level) || 0));
-  return n > 0 ? { toHit: -2 * n, dodge: -n } : { toHit: 0, dodge: 0 };
-}
-
-/** A Deceptive Attack needs effective skill of at least 10 after every modifier (p. B369). */
-export const DECEPTIVE_MINIMUM = 10;
 
 /** A Heroic Archer's extra aim: +1 for the first second, +2 for two or more (p. 97). */
 export function heroicArcherAim(turns: number): number {

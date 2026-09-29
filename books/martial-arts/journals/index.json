@@ -83,7 +83,7 @@
       "chapter": "Combat",
       "pages": "MA99-100",
       "reference": "Martial Arts pp. 99-100",
-      "rule": "gurps-compendium-content.committedDefensiveAttack",
+      "rule": "committedAttack",
       "file": "committed-attack.md",
       "status": "reviewed"
     },
@@ -93,7 +93,7 @@
       "chapter": "Combat",
       "pages": "MA100",
       "reference": "Martial Arts p. 100",
-      "rule": "gurps-compendium-content.committedDefensiveAttack",
+      "rule": "defensiveAttack",
       "file": "defensive-attack.md",
       "status": "reviewed"
     },
@@ -527,7 +527,7 @@
       "chapter": "Combat",
       "pages": "MA121",
       "reference": "Martial Arts p. 121",
-      "rule": "gurps-compendium-content.rangedOptions",
+      "rule": "trickyShooting",
       "file": "tricky-shooting.md",
       "status": "reviewed"
     },
@@ -909,7 +909,7 @@
       "chapter": "Combat",
       "pages": "MA137",
       "reference": "Martial Arts p. 137",
-      "rule": "gurps-compendium-content.finerHitLocations",
+      "rule": "finerHitLocations",
       "file": "new-hit-locations.md",
       "status": "reviewed"
     },

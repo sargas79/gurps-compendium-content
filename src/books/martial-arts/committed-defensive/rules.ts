@@ -1,14 +1,13 @@
 /**
- * Committed Attack and Defensive Attack (GURPS Martial Arts pp. 99-100): the
- * pure rules.
+ * A Wait's response of Committed Attack or Defensive Attack (GURPS Martial
+ * Arts p. 108): the pure rules. The maneuvers are the Basic Set's now (Revised,
+ * pp. 575-576) and the system's; this is the figures a Wait's response takes
+ * from them.
  *
- * Committed Attack sits between Attack and All-Out Attack: Determined for +2
- * to hit or Strong for +1 to ST-based damage, a second step at -2, and the
- * defenses after it at -2, with no retreat, no parry with what attacked, no
- * block with a shield that attacked, and no dodge after a kick. Defensive
- * Attack sits between Attack and All-Out Defense: -2 damage, or -1 per die if
- * that is worse, for +1 to one defense, or an unbalanced weapon that can still
- * parry.
+ * Committed Attack: Determined for +2 to hit or Strong for +1 to ST-based
+ * damage, and the defenses after it at -2, with no retreat, no parry with what
+ * attacked, no block with a shield that attacked, and no dodge after a kick.
+ * Defensive Attack: -2 damage, or -1 per die if that is worse.
  */
 
 /** How a Committed Attack is made. */
@@ -33,24 +32,12 @@ export function committedDamageBonus(mode: CommittedMode | null, stBased: boolea
   return mode === "strong" && stBased ? 1 : 0;
 }
 
-/** The to-hit penalty for the steps taken: a second step is -2. */
-export function committedStepPenalty(steps: number): number {
-  return Math.floor(Number(steps) || 0) >= 2 ? -2 : 0;
-}
-
 /** Every defense after a Committed Attack is at -2. */
 export const COMMITTED_DEFENSE_PENALTY = -2;
 
 /** A Defensive Attack's damage: -2, or -1 per die if that is worse. */
 export function defensiveDamagePenalty(dice: number): number {
   return -Math.max(2, Math.floor(Number(dice) || 0));
-}
-
-/** The defense bonus a Defensive Attack's benefit gives to one defense. */
-export function defensiveDefenseBonus(benefit: DefensiveBenefit | null, defense: string): number {
-  if (benefit === "parry" && defense === "parry") return 1;
-  if (benefit === "block" && defense === "block") return 1;
-  return 0;
 }
 
 /** What a fighter attacked with, as the defenses after it need to know. */
