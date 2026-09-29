@@ -9,3 +9,5 @@ If a foe makes a successful attack roll against you, you may choose one active d
 The active defense you choose depends on your situation – especially the maneuver you chose last turn. Some maneuvers restrict the active defenses you can make. Notably, if you made an All-Out Attack, you have no active defense.
 
 You also get no active defense if you’re unaware of the attack. Examples of situations in which no active defense is possible include a stab in the back from a “friend,” a surprise sniper’s shot, and a totally unexpected booby trap. And you get no active defense if you are unconscious, immobilized, or otherwise unable to react.
+
+When in doubt about whether someone saw an attack coming, see Vision Rolls in Combat (p. 574).

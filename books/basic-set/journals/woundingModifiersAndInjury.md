@@ -2,7 +2,9 @@ Any damage left over after subtracting DR from basic damage is “penetrating da
 
 - Small piercing (pi-): ×0.5.
 
-- Burning (burn), corrosion (cor), crushing (cr), fatigue (fat), piercing (pi), and toxic (tox): ×1 (damage is unchanged).
+- Burning (burn), corrosion (cor), crushing (cr), fatigue (fat), piercing (pi), and toxic (tox):
+
+×1 (damage is unchanged).
 
 - Cutting (cut) and large piercing (pi+): ×1.5.
 

@@ -7,3 +7,5 @@ Each attack is at -4 to hit, but you can learn the Dual-Weapon Attack technique 
 Roll to hit separately for each hand. You can attack one target or two – but to strike two foes with melee attacks, they must be adjacent. If you aim both attacks at a single opponent, he defends at -1 against them, as his attention is divided!
 
 If you already have multiple attacks – for instance, from an Extra Attack (p. 53) – you may “trade” only one of these for a Dual-Weapon Attack. All your remaining attacks must be simple, single-weapon attacks.
+
+GURPS Action 2: Exploits adds more cinematic combat rules for double the fun!

@@ -10,11 +10,11 @@ Location: The area the armor protects on a humanoid wearer. Individual locations
 
 DR: The amount of Damage Resistance the item gives. Subtract this from any blow that strikes the armored location. For instance, if you’re wearing a DR 6 corselet and are hit in the torso for 8 points of damage, only 2 points penetrate and affect you. Some armor has a split DR; e.g., “4/2.” This means DR varies by location or by type of attack; see the notes for that piece of armor.
 
-“\*” means the armor is flexible. Flexible armor is easier to conceal or wear under other armor, and quicker to don or remove, but it is more vulnerable to blunt trauma damage.
+“\*” means the armor is flexible. Flexible armor is easier to conceal or wear under other armor, and quicker to don or remove, but it is more vulnerable to blunt trauma (p. 379).
 
 “F” means the DR only protects against attacks from the front.
 
-Cost: The item’s price, in $. “K” is thousands; “M” is millions.
+Cost: The item’s price, in $.
 
 Weight: The item’s weight, in pounds.
 

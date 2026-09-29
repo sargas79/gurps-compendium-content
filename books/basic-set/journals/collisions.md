@@ -10,6 +10,24 @@ An object in a collision inflicts dice of crushing damage equal to (HP × veloci
 
 If an object is bullet-shaped, sharp, or spiked, it does half damage, but this damage is piercing, cutting, or impaling, rather than crushing.
 
+### Immovable Objects
+
+If a moving object hits a stationary object that is too big to push aside – like the ground, a mountain, or an iceberg – it inflicts its usual collision damage on that object and on itself. If the obstacle is breakable, the moving object cannot inflict or take more damage than the obstacle’s HP + DR.
+
+Hard Objects: If the immovable object is hard, use twice the HP of the moving object to calculate damage. Clay, concrete, ordinary soil, and sand are all “hard,” as is a building, mountain, or similar obstacle.
+
+Soft Objects: If the immovable object is soft – e.g., forest litter, hay, swamp, or water – damage is normal. However, elastic objects (mattresses, nets, airbags, etc.) give extra DR against collision damage, ranging from DR 2 for a feather bed to DR 10 for a safety net, trampoline, or airbag. When striking water or a similar fluid, a successful Swimming roll (or vehicle control roll, if “ditching” a vehicle) means a clean dive that negates all damage. This roll is at a penalty for velocity; use the speed penalty from the Size and Speed/Range Table (p. 550).
+
+### Falling
+
+A fall is a collision with an immovable object: the ground. Find your velocity when you hit using the Falling Velocity Table (below).
+
+Example: Bill is pushed out a fifth-story window. He falls 17 yards. When he hits the street, his velocity is 19 yards/second. Bill has 10 HP, but he uses twice this because he hit a “hard” surface. Damage is (2 × 10 × 19)/100 = 3.8d, which rounds up to 4d crushing.
+
+Falls and Armor: All armor, flexible or not (but not innate DR), counts as “flexible” for the purpose of calculating blunt trauma from falling damage. Thus, even if the victim has enough armor DR to stop the falling damage, he suffers 1 HP of injury per 5 points of falling damage. See Flexible Armor and Blunt Trauma (p. 379).
+
+Controlled Falls: If you are free to move, you can use Acrobatics skill to land properly. On a success, reduce falling distance by five yards when calculating velocity. If falling into water, you can do this or attempt a proper dive (see above) – decide which first!
+
 ### Falling Velocity Table
 
 | Fall | Velocity | Fall | Velocity | Fall | Velocity | Fall | Velocity |
@@ -25,24 +43,6 @@ If an object is bullet-shaped, sharp, or spiked, it does half damage, but this d
 | 9 yards | 14 | 28-29 yards | 25 | 58-61 yards | 36 | 100-103 yards | 47 |
 | 10-11 yards | 15 | 30-32 yards | 26 | 62-64 yards | 37 | 104-108 yards | 48 |
 | 12 yards | 16 | 33-34 yards | 27 | 65-67 yards | 38 | 109-112 yards | 49 |
-
-### Immovable Objects
-
-If a moving object hits a stationary object that is too big to push aside – like the ground, a mountain, or an iceberg – it inflicts its usual collision damage on that object and on itself. If the obstacle is breakable, the moving object cannot inflict or take more damage than the obstacle’s HP + DR.
-
-Hard Objects: If the immovable object is hard, use twice the HP of the moving object to calculate damage. Clay, concrete, ordinary soil, and sand are all “hard,” as is a building, mountain, or similar obstacle.
-
-Soft Objects: If the immovable object is soft – e.g., forest litter, hay, swamp, or water – damage is normal. However, elastic objects (mattresses, nets, airbags, etc.) give extra DR against collision damage, ranging from DR 2 for a feather bed to DR 10 for a safety net, trampoline, or airbag. When striking water or a similar fluid, a successful Swimming roll (or vehicle control roll, if “ditching” a vehicle) means a clean dive that negates all damage. This roll is at a penalty for velocity; use the speed penalty from the Size and Speed/Range Table (p. 550).
-
-### Falling
-
-A fall is a collision with an immovable object: the ground. Find your velocity when you hit using the Falling Velocity Table.
-
-Example: Bill is pushed out a fifth-story window. He falls 17 yards. When he hits the street, his velocity is 19 yards/second. Bill has 10 HP, but he uses twice this because he hit a “hard” surface. Damage is (2 × 10 × 19)/100 = 3.8d, which rounds up to 4d crushing.
-
-Falls and Armor: All armor, flexible or not (but not innate DR), counts as “flexible” for the purpose of calculating blunt trauma from falling damage. Thus, even if the victim has enough armor DR to stop the falling damage, he suffers 1 HP of injury per 5 points of falling damage. See Flexible Armor and Blunt Trauma (p. 379).
-
-Controlled Falls: If you are free to move, you can use Acrobatics skill to land properly. On a success, reduce falling distance by five yards when calculating velocity. If falling into water, you can do this or attempt a proper dive (see above) – decide which first!
 
 Terminal Velocity: “Terminal velocity” is the maximum speed a falling object can achieve before air resistance negates further acceleration under gravity. Air resistance is relatively negligible for distances shown on the table, but increases drastically for longer falls.
 

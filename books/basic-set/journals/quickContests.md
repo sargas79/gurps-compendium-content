@@ -1,6 +1,6 @@
-A “Quick Contest” is a competition that is over in very little time – often in one second, perhaps even instantly. Examples include two enemies lunging for a gun, or two knife throwers seeing who gets closer to the bull’s-eye.
+A “Quick Contest” is a competition that is over in very little time – often in one second, perhaps even instantly. Examples include two enemies lunging for a gun, or two knife throwers seeing who gets closer to the bullseye.
 
-Each competitor attempts his success roll. If one succeeds and the other fails, the winner is obvious. If both succeed, the winner is the one with the largest margin of success; if both fail, the winner is the one with the smallest margin of failure. A tie means nobody won (in the examples above, both fighters grabbed the weapon at once, or the knives hit the same distance from the bull’s-eye).
+Each competitor attempts his success roll. If one succeeds and the other fails, the winner is obvious. If both succeed, the winner is the one with the largest margin of success; if both fail, the winner is the one with the smallest margin of failure. A tie means nobody won (in the examples above, both fighters grabbed the weapon at once, or the knives hit the same distance from the bullseye).
 
 ### Margin of Victory
 

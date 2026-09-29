@@ -4,7 +4,7 @@ If the victim is splashed with strong acid, he suffers 1d-3 points of corrosion 
 
 If the victim is immersed in acid, he takes 1d-1 corrosion damage per second. If his face is immersed, he must also roll for eye damage (see above) every second.
 
-If the victim swallows acid, he takes 3d damage at the rate of 1 HP per 15 minutes. A successful Physician or Poisons roll can halt this damage; treatment requires 2d minutes.
+If the victim swallows acid, he takes 3d HP of injury at the rate of 1 HP per 15 minutes. A successful Physician or Poisons roll can halt this injury; treatment requires 2d minutes.
 
 Used against a lock’s pins or other small, vulnerable items, acid requires 3d minutes to eat through the item.
 

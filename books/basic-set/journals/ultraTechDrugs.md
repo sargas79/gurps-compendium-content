@@ -2,7 +2,7 @@ Miraculous drugs are a staple of science-fiction medicine. Below is a quick-and-
 
 Effects: Select one or more attribute modifiers, advantages, or disadvantages to represent the drug’s effects and (usually bad) side effects. Most medical drugs give Rapid Healing, Resistant to Disease, HT bonuses, or similar benefits. Some mitigate disadvantages, canceling them for the drug’s duration (e.g., a psychiatric drug might suppress Delusions and Paranoia). A few provide unique effects, such as healing lost HP or FP.
 
-Duration: Select the duration of the effects. Standard durations are short-term (lasts [25 - HT] minutes), medium-term ([25 - HT]/4 hours), long-term (one full day), or very long-term (up to a week). Multiple doses generally extend duration rather than increasing effect; e.g., two doses of a long-term drug last two days.
+Duration: Select the duration of the effects. Standard durations are short-term (lasts [25 - HT] minutes), medium-term ([25 - HT]/4 hours), long-term (one full day), or very long-term (up to a week). Multiple doses generally extend duration rather than increase effect; e.g., two doses of a long-term drug last two days.
 
 Potency: The subject gets a HT roll to resist disadvantages and other negative effects. The drug’s potency is a modifier to this roll. Assume that each doubling of dosage gives an extra -1 to the roll.
 

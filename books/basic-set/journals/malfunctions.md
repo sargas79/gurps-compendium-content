@@ -1,6 +1,6 @@
 This optional rule applies only to firearms, grenades, and incendiaries. A “malfunction” is a mechanical failure of the weapon; e.g., a misfire or a jam. Unlike a critical failure, a malfunction does not normally endanger the user.
 
-For the purpose of this rule, firearms, grenades, and incendiaries have a “malfunction number,” or “Malf.,” a function of TL.
+For the purpose of this rule, firearms, grenades, and incendiaries have a “malfunction number” or “Malf.,” a function of TL.
 
 | TL | Malf. |
 | --- | --- |
@@ -49,4 +49,4 @@ Grenades and other single-use weapons: The weapon is a dud; it will never fire o
 
 #### Explosion
 
-Any TL3 firearm or TL4 grenade, breechloader, or repeating firearm may blow up in the gunner’s face, inflicting 1d+2 cr ex [2d]. If the weapon uses an explosive warhead, use the warhead’s damage instead. TL5+ weapons do not explode – treat as a mechanical or electrical problem.
+A TL3 or TL4 firearm may blow up in the gunner’s face, inflicting 1d+2 [2d] cr ex. A TL3 or TL4 grenade or weapon that fires an explosive warhead does its usual explosive damage instead. TL5+ weapons do not explode – treat as a mechanical or electrical problem.

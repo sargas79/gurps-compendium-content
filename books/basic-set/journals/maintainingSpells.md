@@ -18,12 +18,16 @@ You can maintain a spell without concentration unless the spell requires constan
 
 Casting another spell does not break concentration, but you suffer a skill penalty for doing two things at once (see below).
 
+GURPS Magic adds nuance to spell duration with instantaneous, temporary, lasting, permanent, and enchantment spells.
+
 ### Casting Spells While Maintaining Other Spells
 
-You can only cast one new spell at a time. However, you can cast new spells before older ones end. Apply the
-
-**Skill Bonus** +1 +2 +3 +4 following modifiers whenever you cast spells while you have other spells active:
+You can only cast one new spell at a time. However, you can cast new spells before older ones end. Apply the following modifiers whenever you cast spells while you have other spells active:
 
 -3 per spell you are concentrating on at the moment. See the individual spell descriptions to learn which spells require concentration.
 
 -1 per other spell you have “on” at the moment. A spell that lasts permanently (as indicated in the spell description) does not carry a penalty.
+
+| 20% | 40% | 60% | 100% |
+| --- | --- | --- | --- |
+| +1 | +2 | +3 | +4 |

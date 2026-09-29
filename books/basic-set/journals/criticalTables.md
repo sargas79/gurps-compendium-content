@@ -116,7 +116,7 @@ Use this table only for critical misses on unarmed attacks (bites, claws, grappl
 
 **14 –** You stumble; see 7.
 
-**15 –** You tear a muscle. Take 1d-3 of injury to the limb you used (to one limb, if you used two), or to your neck if biting, butting, etc. You are off balance and at -1 to all attacks and defenses for the next turn. You are at -3 to any action involving that limb (or to any action, if you injure your neck!) until this damage heals. Reduce this penalty to -1 if you have High Pain Threshold.
+**15 –** You tear a muscle. Take 1d-3 HP of injury to the limb you used (to one limb, if you used two), or to your neck if biting, butting, etc. You are off balance and at -1 to all attacks and defenses for the next turn. You are at -3 to any action involving that limb (or to any action, if you injure your neck!) until this damage heals. Reduce this penalty to -1 if you have High Pain Threshold.
 
 **16 –** You hit a solid object; see 5.
 
@@ -124,6 +124,6 @@ Use this table only for critical misses on unarmed attacks (bites, claws, grappl
 
 **18 –** You knock yourself out; see 3.
 
-Fighters that cannot fall down (e.g., snakes, and anyone already on the ground): Treat any “fall down” result as 1d-3 of general injury instead. Details are up to the GM – perhaps your opponent steps on you!
+Fighters that cannot fall down (e.g., snakes, and anyone already on the ground): Treat any “fall down” result as 1d-3 HP of general injury instead. Details are up to the GM – perhaps your opponent steps on you!
 
 Fliers and swimmers: Treat any “fall down” result as being forced into an awkward flying or swimming position with the same effective results (-4 to attack, -3 to defend).

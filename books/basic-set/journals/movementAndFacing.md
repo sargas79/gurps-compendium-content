@@ -2,15 +2,21 @@ Movement and facing interact when you move as part of a Move, Move and Attack, A
 
 ### Forward Movement and Facing
 
-It costs one movement point to enter each hex when moving forward. A “forward” move is a move into one of your three front hexes. If you go straight ahead, your facing will not change; otherwise it will change by one hex-side: you must turn to face the hex as you enter it (see illustration above).
+It costs one movement point to enter each hex when moving forward. A “forward” move is a move into one of your three front hexes. If you go straight ahead, your facing will not change; otherwise it will change by one hex-side: you must turn to face the hex as you enter it (see top illustration below).
 
-Thus, you can change direction while moving “forward.” Three consecutive hexes of “forward” movement let you run in a half-circle and end up facing the opposite direction (see illustration below).
+Thus, you can change direction while moving “forward.” Three consecutive hexes of “forward” movement let you run in a half-circle and end up facing the opposite direction (see bottom illustration below).
+
+**Movement:** Directions and facing changes allowed for forward movement.
+
+**Movement:** Turning using only forward movement.
 
 ### Backward and Sideways Movement and Facing
 
 If you take a Move, Move and Attack, or All-Out Defense (Increased Dodge) – but not an All-Out Attack – and don’t want to move forward, you can move backward (A) or sideways (B), keeping the same facing (see the illustration to the right). Each sideways or backward hex costs two movement points.
 
 You can also “sidestep” into a front hex (C) while keeping your original facing. This is allowed during an All-Out attack (as well as on a Move, etc.). It also costs two movement points.
+
+**Movement:** Backward (A) and sideways (B and C) movement without facing change.
 
 ### Facing Changes and Movement
 

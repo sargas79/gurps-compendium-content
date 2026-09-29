@@ -1,4 +1,4 @@
-Your running speed, or ground Move, is equal to your Basic Move score modified for encumbrance – see Encumbrance and Move (p. 17). In combat, running is just a series of Move maneuvers. Use the more detailed rules below when it is important to know whether the heroes catch the plane, escape the savage pygmies, or whatever.
+Your running speed, or ground Move, is equal to your Basic Move score modified for encumbrance – see Encumbrance and Move (p. 17). In combat, running is just a series of Move maneuvers. Use the more detailed rules below when it is important to know whether the heroes catch the plane, escape the cannibals, or whatever.
 
 ### Sprinting
 

@@ -26,7 +26,7 @@ Groin (-3): The lower torso. Jackets and light armor don’t always cover this a
 
 Arm or Leg (-2): A good way to disable without killing! Against a living target, reduce the wounding multiplier of large piercing, huge piercing, and impaling damage to ×1. Any major wound (loss of over 1/2 HP from one blow) cripples the limb – but damage beyond the minimum required to inflict a crippling injury is lost. Note: The penalty to hit an arm with a shield is -4.
 
-Hands or Feet (-4): As for an arm or leg, but damage over 1/3 HP in one blow inflicts a crippling major wound (excess damage is still lost). This gives you a chance to cripple the foe with little real damage. However, your foe might just switch hands (or hop) and finish you off! Note: The penalty to hit a hand holding a shield is -8.
+Hands or Feet (-4): As for an arm or leg, but injury over 1/3 HP in one blow inflicts a crippling major wound (excess injury is still lost). This gives you a chance to cripple the foe with little real damage. However, your foe might just switch hands (or hop) and finish you off! Note: The penalty to hit a hand holding a shield is -8.
 
 Weapon (varies): The place to strike if you need to take the foe unharmed, if you have to disarm a friend, or if you just want to show off. See Striking at Weapons (p. 400).
 
@@ -38,7 +38,7 @@ Halve hit location penalties (round up) if you are grappling a body part – it�
 
 You never have to target a hit location – you can always just strike at “whatever target presents itself.” To do so, attack with no modifier for hit location. If you hit, and your foe fails to defend, roll 3d on the appropriate hit location table to find out where the blow fell; see Hit Location Tables (p. 552). The GM decides what table to use for non-humanoids.
 
-Use random hit location for a Wild Swing (p. 388), shooting blind (p. 389), suppression fire (p. 409), fragmentation damage (p. 414), and any other situation where the GM feels targeting a location is unrealistic. If a random attack comes from directly above, treat “feet” as “hands” and “legs” as “arms.”
+Also use random hit location for a Wild Swing (p. 388), shooting blind (p. 389), suppression fire (p. 409), fragmentation damage (p. 414), and any other situation where the GM feels targeting a location is unrealistic. If a random attack comes from directly above, treat “feet” as “hands” and “legs” as “arms.”
 
 #### Injury Tolerance and Hit Location
 
@@ -58,13 +58,13 @@ Unliving: Hit location has its usual effect, save that piercing and impaling dam
 
 Some attacks affect much or most of the victim’s body – for instance, dragon’s breath, a bomb blast, a huge fire, or immersion in an acid pit. In particular, any damage described as being “area effect” or “cone,” and any external explosion, inflicts large-area injury.
 
-A melee attack from an attacker whose Size Modifier exceeds that of his target by seven or more is also a large-area injury – if the attacker is striking unarmed or with a weapon scaled to his body size. (If he wishes to target a hit location, his tiny victim must be pinned or otherwise immobile.)
+A melee attack from an attacker whose Size Modifier exceeds that of his target by 7 or more is also a large-area injury – if the attacker is striking unarmed or with a weapon scaled to his body size. (If he wishes to target a hit location, his tiny victim must be pinned or otherwise immobile.)
 
 Damage Resistance protects normally against large-area injury – but if your DR varies by location, your “effective DR” is the average of your torso DR and the DR of the least protected hit location exposed to the attack (which could still be your torso), rounding up. If your DR varies against different attacks, “least protected” refers to the location with the lowest DR against that particular type of attack.
 
 A location protected by cover or masked by the body does not count as “exposed to the attack.” Against an explosion or cone, only locations facing the blast or cone are exposed (e.g., if you’re turned away, your face and eyes aren’t exposed). For damage caused by immersion in a hazardous environment (e.g., fire or acid), only the immersed locations are exposed. Against a true area effect, all locations are exposed.
 
-Don’t modify large-area injury for hit location (that is, treat it as a torso hit) unless only one location is exposed. If a single limb (hand, arm, etc.) is exposed, damage in excess of that required to inflict a major wound is lost.
+Don’t modify large-area injury for hit location (that is, treat it as a torso hit) unless only one location is exposed. If a single limb (hand, arm, etc.) is exposed, injury in excess of that required to inflict a major wound is lost.
 
 #### Hit Location for Non-Humanoids and Vehicles
 
@@ -75,6 +75,8 @@ It is impossible to supply hit location rules for every type of animal or machin
 You might strike at a weapon because you want to take its user alive . . . or because the weapon is the only thing you can reach, or is less well-armored than its wielder.
 
 State whether you are striking to disarm or to break the weapon, and then roll to hit. You are at -5 to hit a reach “C” melee weapon (e.g., a knife) or a pistol; -4 to hit a melee weapon with reach 1 (broadsword, mace, etc.) or a medium-sized firearm (e.g., a carbine or sawed-off shotgun); and -3 to hit a melee weapon with reach 2+ (spear, greatsword, polearm, etc.) or a rifle. Attempts to disarm are generally at an extra -2, but see next page.
+
+**Attacking Weapons:** Location of enemy melee weapons with reach 1, 2, and 3.
 
 Striking at Weapons in Tactical Combat: A reach “C” weapon is in its wielder’s hex. A weapon with a one-yard reach is in the user’s hex and in the hex directly in front of him. A 2- or 3-yard weapon is in the two or three hexes directly in front of the user. See the diagram on p. 400. However, you can always strike at a reach 2+ weapon on your first turn after it was used to attack or feint against you.
 
@@ -92,7 +94,9 @@ You may combine a dodge or a parry with a retreat to get the usual bonus. The De
 
 A strike to disarm is an attempt to knock or twist the weapon out of your foe’s grasp without damaging it. Only a weapon that can parry can attempt to disarm, which limits disarming to unarmed attacks, melee weapons, and certain thrown weapons. You have an extra -2 to hit unless you use a fencing weapon (main-gauche, rapier, saber, or smallsword).
 
-If you hit and your foe fails to defend, roll a Quick Contest of weapon skills with your foe; if you’re attempting to knock away a missile weapon, your opponent rolls against DX. Either of you may opt to make a ST-based skill roll instead of the standard DX-based one, if that would be better. You get +2 if you use Jitte/Sai or Whip skill (having it is not enough!). Your foe gets +2 if he is using a two-handed weapon.
+If you hit and your foe fails to defend, roll a Quick Contest of weapon skills with your foe; if you’re attempting to knock away a missile weapon, your opponent rolls against DX. Either of you may opt to make a ST-based skill roll instead of the standard DX-based one, if that would be better. You get +2 if you use Jitte/Sai or Whip skill (having it is not enough!).
+
+Your foe gets +2 if he is using a two-handed weapon.
 
 If you win, you disarm your foe; his weapon flies one yard in a random direction. If your foe wins or ties, he keeps his weapon, but it will be unready unless he won by 3 or more. If you roll a critical failure, you are the one disarmed!
 

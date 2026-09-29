@@ -12,7 +12,7 @@ If you have a job, time spent on the job counts as “study” of the skills use
 
 #### Self-Teaching
 
-You can teach yourself a skill, unless the skill description attaches specific conditions that would preclude this (such as “only taught by the military” or a prerequisite of Trained By A Master). Every two hours of reading, exercises, practice, etc. without an instructor count as one hour of learning. This must take place in time not used for adventuring, working, eating, sleeping, or taking care of personal hygiene. The GM should limit self-teaching to 12 hours per day – or eight hours/day for those with part-time jobs, only four hours/day for those with full-time jobs.
+You can teach yourself a skill, unless the skill description attaches specific conditions that would preclude this (such as “only taught by the military” or a prerequisite of Trained by a Master). Every two hours of reading, exercises, practice, etc. without an instructor count as one hour of learning. This must take place in time not used for adventuring, working, eating, sleeping, or taking care of personal hygiene. The GM should limit self-teaching to 12 hours per day – or eight hours/day for those with part-time jobs, only four hours/day for those with full-time jobs.
 
 #### Education
 
@@ -34,9 +34,11 @@ Combat Reflexes: The GM may rule that fighting is the only way to “learn” Co
 
 Cultural Familiarity and Languages: Time spent in a foreign land counts as four hours per day toward both Cultural Familiarity and the local Language, no matter what else you are doing (even studying skills – an exception to the “one skill at a time” rule).
 
+For detailed, case-by-case rules for learning advantages, see GURPS Social Engineering: Back to School.
+
 Eidetic Memory: By apprenticing as a bard or doing daily mental exercises, you can “learn” the first level of this advantage. This requires an hour a day, meaning it takes a little less than three years of constant practice to gain this trait.
 
-Enhanced Defenses: Only those with Trained By A Master or Weapon Master may “learn” these advantages. The GM should handle them as if they were martial-arts skills.
+Enhanced Defenses: Only those with Trained by a Master or Weapon Master may “learn” these advantages. The GM should handle them as if they were martial-arts skills.
 
 Fit: You can acquire either level of Fit through exercise – on your own or with a trainer – just as you would athletic skills like Hiking and Running.
 
@@ -44,4 +46,4 @@ G-Experience: The standard way to “learn” G-Experience is to visit planets t
 
 Psionic Abilities and Talents: In some game worlds, “psi academies” teach psionic Talents and abilities. The rules under Gaining New Psi Abilities (p. 255) apply to learning psi advantages as well as to buying them with earned points: you must possess Talent or abilities in a power to acquire new abilities, and you must have abilities to acquire Talent.
 
-Trained By A Master and Weapon Master: See Finding a Teacher (p. 293).
+Trained by a Master and Weapon Master: See Finding a Teacher (p. 293).

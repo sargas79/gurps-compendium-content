@@ -1,4 +1,4 @@
-Knights, cowboys and Indians, and other adventurers often fight from the saddle. A mount not only provides additional mobility, but its extra height and momentum can make the rider’s attacks more effective, while the shock of a mounted charge can panic unprepared opponents. Some mounts even fight in their own right.
+Knights, horse archers, cowboys, and other adventurers often fight from the saddle. A mount not only provides additional mobility, but its extra height and momentum can make the rider’s attacks more effective, while the shock of a mounted charge can panic unprepared opponents. Some mounts even fight in their own right.
 
 With the exception of the occasional camel or elephant, mounted warriors usually ride horses, and these rules assume that. For the differences between horses and various mounts from fantasy and science fiction, see the pertinent animal descriptions.
 
@@ -16,7 +16,9 @@ When you are using Tactical Combat, a rider is in the center of a 3-hex mount li
 
 ### Movement and Maneuvers
 
-See Riding and Draft Animals (p. 459) for the Move of various mounts. The animal’s Basic Move is the pace it can achieve while walking or trotting; its Enhanced Move is for a gallop, and uses the rules under High-Speed Movement (p. 394). Encumbrance penalties apply normally (see Encumbrance and Move, p. 17) . . . but few mounts willingly carry more than Medium encumbrance.
+See Riding and Draft Animals (p. 459) for the Move of various mounts. The animal’s Basic Move is the pace it can achieve while walking or trotting; its Enhanced Move is for a gallop, and uses the rules under High-Speed Movement (p. 394).
+
+Encumbrance penalties apply normally (see Encumbrance and Move, p. 17) . . . but few mounts willingly carry more than Medium encumbrance.
 
 In combat, the mount can take any maneuver, unless it’s moving at high speed. Then it is limited to Move or Move and Attack.
 
@@ -50,13 +52,13 @@ Roll 2d on the following table if you completely lose control of a mount. Also r
 
 **11 –** The saddle comes loose. All Riding rolls and attack rolls made while riding are at -3 until you dismount and spend 4d seconds tightening the straps. If you’re riding without a saddle, treat as 3, above.
 
-**12 –** The mount falls! It must make a DX+1 roll or it breaks a leg. In any case, the rider must roll vs. Riding-2. On a failure, he is unseated and takes damage for a three-yard fall. On a success, he must make another Riding roll, this one at a penalty equal to his Encumbrance, to leap clear of the falling mount. On a success, he leaps clear and takes damage as per 3, above. On a failure, the mount falls on him, inflicting thrust/crushing damage based on its ST, plus the damage for a 2-yard fall.
+**12 –** The mount falls! It must make a DX+1 roll or it breaks a leg. In any case, the rider must roll vs. Riding-2. On a failure, he is unseated and takes damage for a three-yard fall. On a success, he must make another Riding roll, this one at a penalty equal to his encumbrance level, to leap clear of the falling mount. On a success, he leaps clear and takes damage as per 3, above. On a failure, the mount falls on him, inflicting thrust/crushing damage based on its ST, plus the damage for a 2-yard fall.
 
 ### Attacks by Mounts
 
 A war-trained mount can attack if it takes an appropriate maneuver; see Chapter 16 for details. A horse can bite, kick with hooves, or trample; iron horseshoes give +1 to kicking or trampling damage. The rider’s attack is at an extra -2 if the mount attacked on its last turn.
 
-Panic: If a mounted fighter charges directly toward an NPC who is unused to facing cavalry (GM’s option), the GM may require him to make a Will roll to stand his ground and fight. If he fails, he’ll try to run instead. Anyone with Combat Reflexes gets +6 to this roll. Those with a SM equal to or greater than that of the mount do not have to roll!
+Panic: If a mounted fighter charges directly toward an NPC who is unused to facing cavalry (GM’s option), the GM may require that NPC to roll against Will. Success lets him stand his ground and fight; failure means he tries to run. Anyone with Combat Reflexes rolls at +6. Those with a SM equal to or greater than that of the mount do not have to roll!
 
 ### Cavalry Weapons
 
@@ -70,7 +72,7 @@ Tournament jousting uses blunted wooden lances, specially designed to break if t
 
 Attack: Firing from atop a moving animal tests both marksmanship and riding. Roll against the lower of Riding or ranged weapon skill to hit. If you are firing a noisy weapon (e.g., an unsilenced gun), you must make a Riding roll after each attack. On a failure, the mount is spooked (see Spooked Mounts, above); on a critical failure, you lose control (see Mount Loss of Control Table, above).
 
-Aim: You may Aim a ranged weapon while mounted, but if the mount moves more than a step, you suffer the same penalties that you would if firing from a moving vehicle: you can’t benefit from extra turns of Aim, or from telescopic scopes and other targeting systems.
+Aim: You may Aim a ranged weapon while mounted, but if the mount moves more than a step, you suffer the same penalties that you would if firing from a moving vehicle: you can’t benefit from extra turns of Aim, or from telescopic sights and other targeting systems.
 
 Tricks: To turn in the saddle and fire at the foe behind you: -4 to weapon skill, and -1 to any Riding roll made that turn. To hang on the far side of the mount and shoot over it or underneath it: -6 to weapon skill, -3 to any Riding roll. This latter move means your foe’s only targets are your foot, face, eyes, skull, and one hand. But if he attacks and misses by 4 or less, he hits your mount!
 
@@ -78,7 +80,7 @@ Tricks: To turn in the saddle and fire at the foe behind you: -4 to weapon skill
 
 A mount’s only defense is Dodge. Some mounts may have barding (see Horse Armor (Barding) Table, p. 286) or natural DR.
 
-A rider can Dodge, Block, or Parry. If he has Riding at 12+, all of these defenses are at normal levels. For a less-skilled rider, reduce active defenses by the difference between 12 and the rider’s skill; e.g., someone with Riding-9 would have -3 to all active defenses.
+A rider can use Dodge, Block, or Parry. If he has Riding at 12+, all of these defenses are at normal levels. For a less-skilled rider, reduce active defenses by the difference between 12 and Riding skill; e.g., someone with Riding-9 would have -3 to all active defenses.
 
 ### Height Difference
 
@@ -90,7 +92,7 @@ A rider who is stunned must make a Riding roll at -4 or fall off. A rider who su
 
 If any attack aimed at a rider misses by 1, it hits the mount unless it makes its active defense roll; the reverse is true for attacks aimed at the mount. Of course, either may be attacked intentionally!
 
-If the mount is hit, the rider must roll vs. Riding, minus the shock penalty suffered by the mount, to keep it from spooking (see p. 397). If the mount is crippled and falls, effects are as per result 12 on the Mount Loss of Control Table.
+If the mount is hit, the rider must roll vs. Riding, minus the shock penalty suffered by the mount, to keep it from spooking (see p. 397). If injury causes the mount to fall, effects are as per result 12 on the Mount Loss of Control Table.
 
 ### Multiple Riders
 

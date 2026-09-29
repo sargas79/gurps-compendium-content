@@ -20,13 +20,13 @@ Many skills suggest difficulty modifiers – e.g., the -5 to use Lockpicking ski
 
 **-1 –** Unfavorable. Stressful tasks that would challenge a novice adventurer, but not an old hand. Example: A Driving roll in a high-speed car chase.
 
-**-2 or -3 –** Very Unfavorable. Stressful tasks that would challenge a professional. Skilled adventurers still routinely accept such risks! Example: A Driving roll in a high-speed car chase on a busy freeway.
+-2 or -3 – Very Unfavorable. Stressful tasks that would challenge a professional. Skilled adventurers still routinely accept such risks! Example: A Driving roll in a high-speed car chase on a busy freeway.
 
-**-4 or -5 –** Hard. Tasks so challenging that even an expert will look for alternatives. A true “master” is still unlikely to feel challenged. Example: A Driving roll to keep the car on the road while shooting a gun out the window during a high-speed chase.
+-4 or -5 – Hard. Tasks so challenging that even an expert will look for alternatives. A true “master” is still unlikely to feel challenged. Example: A Driving roll to keep the car on the road while shooting a gun out the window during a high-speed chase.
 
-**-6 or -7 –** Very Hard. Situations that even the masters might have second thoughts about. Example: A Driving roll in a high-speed chase during a blizzard.
+-6 or -7 – Very Hard. Situations that even the masters might have second thoughts about. Example: A Driving roll in a high-speed chase during a blizzard.
 
-**-8 or -9 –** Dangerous. Tasks at which even the greatest masters expect to fail. Example: A Driving roll while shooting a gun in a high-speed chase during a blizzard.
+-8 or -9 – Dangerous. Tasks at which even the greatest masters expect to fail. Example: A Driving roll while shooting a gun in a high-speed chase during a blizzard.
 
 **-10 –** Impossible. No sane person would attempt such a task. The GM may wish to forbid such attempts altogether. Example: A Driving roll to steer a car with the knees while firing a bazooka two-handed during a chase through a blizzard.
 
@@ -42,6 +42,8 @@ You can reduce the penalty for a tough task – or even get a bonus – by worki
 
 Extra Time: Taking more time than usual for a task (as specified by the rules or the GM) gives a bonus to a noncombat action: 2× as long gives +1, 4× gives +2, 8× gives +3, 15× gives +4, and 30× gives +5. For instance, taking a work day (eight hours) to do a one-hour task would give +3. This bonus only applies if it would make sense to take extra time for the task at hand (GM’s judgment). You can take extra time to open a safe or figure out an alien artifact, but not to neutralize poison or chase a fleeing suspect!
 
-Haste: Hurrying gives a penalty: -1 per 10% less time taken. For instance, attempting a task in half the usual time (-50%) is at -5. The maximum time reduction is normally 90% (taking 1/10 the prescribed time), at -9. In a cinematic game, the GM might allow one attempt at -10 to complete a task instantly; e.g., a Mechanic roll at -10 to fix a machine by kicking it! However, you cannot hasten tasks that require a certain amount of time due to natural laws (e.g., a chemical reaction) or the limitations of equipment (e.g., the top speed of a vehicle). When in doubt, the GM’s decision is final.
+Haste: Hurrying gives a penalty: -1 per 10% less time taken. For instance, attempting a task in half the usual time (-50%) is at -5. The maximum time reduction is normally 90% (taking 1/10 the prescribed time), at -9. In a cinematic game, the GM might allow one attempt at -10 to complete a task instantly; e.g., a Mechanic roll at -10 to fix a machine by kicking it! However, you cannot hasten tasks that require a certain amount of time due to natural laws (e.g., a chemical reaction) or the limitations of equipment (e.g., the top speed of a vehicle).
+
+When in doubt, the GM’s decision is final.
 
 Note that if a skill specifies time modifiers, these override the generic modifiers above. For instance, magic spells have their own rules for extra time (see Ceremonial Magic, p. 238) and cannot be rushed save by those with high skill (see Magic Rituals, p. 237).

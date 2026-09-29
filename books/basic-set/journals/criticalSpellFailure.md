@@ -1,6 +1,6 @@
 Roll 3d on the table below. If the result is inappropriate – or if it is the result that the caster intended – roll again. The GM is free to improvise instead of using the table. Improvisations should be appropriate to the spell and the situation, and should never kill the caster outright.
 
-**3 –** Spell fails entirely. Caster takes 1d of injury.
+**3 –** Spell fails entirely. Caster takes 1d HP of injury.
 
 **4 –** Spell is cast on caster (if harmful) or on a random nearby foe (if beneficial).
 
@@ -25,3 +25,5 @@ Roll 3d on the table below. If the result is inappropriate – or if it is the r
 **17 –** Spell fails entirely. Caster temporarily forgets the spell. Make an IQ roll after a week, and again each following week, until he remembers.
 
 **18 –** Spell fails entirely. A demon or other malign entity appropriate to the setting appears and attacks the caster. (The GM may waive this result if, in his opinion, caster and spell were both lily-white, pure good in intent.)
+
+**GURPS Thaumatology**, pp. 256-260, offers several alternative critical failure tables.

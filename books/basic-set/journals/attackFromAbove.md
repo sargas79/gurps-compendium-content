@@ -4,4 +4,4 @@ If you win the Quick Contest, your victim fails to spot you. He gets no active d
 
 You can drop from any height before attacking (a special kind of “step”). You have an extra -2 to hit. Regardless of the results of your attack, you take falling damage if you dropped from more than two yards – see Falling (p. 431). You may attempt an Acrobatics roll to reduce this. Natural ambushers-from-above (e.g., jaguars) have Catfall (p. 41).
 
-You can opt to drop onto your victim instead – animals often attack this way! Resolve damage to yourself and your target separately from your attack. Note that a victim is a soft thing to land on, unless he has DR 3+.
+You can opt to drop onto your victim instead – animals (and ninjas!) often attack this way! Resolve damage to yourself and to your target separately from your attack. Note that a victim is a soft thing to land on, unless he has DR 3+ (e.g., like a robot or an armored knight).

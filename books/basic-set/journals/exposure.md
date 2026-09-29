@@ -11,8 +11,7 @@ Make a HT or HT-based Survival (Arctic) roll, whichever is better, every 30 minu
 | “Arctic” clothing | +5 |
 | Heated suit | +10 |
 | Wet clothes | additional -5 |
-| Every 10° below 0°F |  |
-| effective temperature | -1 |
+| Every 10° below 0°F | -1 |
 
 Failure costs 1 FP. As usual, once you go below 0 FP, you will start to lose 1 HP per FP. Recovery of FP or HP lost to cold requires adequate shelter and a heat source (flame, electric heat, body warmth, etc.).
 
@@ -26,10 +25,12 @@ Modifiers: A penalty equal to your encumbrance level (-1 for Light, -2 for Mediu
 
 Failure costs 1 FP. On a critical failure, you suffer heat stroke: lose 1d FP. As usual, if you go below 0 FP, you start to lose 1 HP per FP. You cannot recover FP or HP lost to heat until you move into cooler surroundings.
 
-In addition, at temperatures up to 30° over your comfort zone (91-120° for humans), you lose an extra 1 FP whenever you lose FP to exertion or dehydration. At temperatures up to 60° over your comfort zone (121-150° for humans), this becomes an extra 2 FP.
+In addition, at temperatures up to 30° over your comfort zone (91-120° for humans), you lose an extra 1 FP whenever you lose FP to exertion or dehydration.
+
+At temperatures up to 60° over your comfort zone (121-150° for humans), this becomes an extra 2 FP.
 
 Intense Heat: Human skin starts to burn at 160°; see Flame (p. 433) for damage. Even if no damage penetrates your DR, you will rapidly overheat if the ambient temperature is more than 6 × your comfort zone’s width over your comfort zone (e.g., in a fire). After 3 × DR seconds, make a HT roll every second. On a failure, you lose 1 FP. Your DR provides its usual protection against burning damage, but it has no effect on this FP loss.
 
-Sunburn: After a day of full sun on unprotected skin, an albino will be near death and a light-skinned Caucasian will be very uncomfortable (1d-3 damage). Darker-skinned individuals may itch, but aren’t in much danger. Details are up to the GM.
+Sunburn: After a day of full sun on unprotected skin, an albino will be near death and a light-skinned person will be very uncomfortable (1d-3 HP of injury). Darker-skinned individuals may itch, but aren’t in much danger. Details are up to the GM.
 
 Armor: Armor prevents sunburn and provides its full DR against burning damage – but only armor that provides Temperature Tolerance (through insulation or a cooling system) can prevent FP loss due to heat. This feature is standard on battlesuits and TL9+ combat armor.

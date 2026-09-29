@@ -36,8 +36,8 @@ Rapiers and Smallswords: On 1-3, treat a broken smallsword as a dagger and a bro
 
 Spears: On 1-3, the head breaks off where it joins the shaft, leaving you with a quarterstaff. On 4-6, the spear breaks further down; you have a baton, and there’s a spear with reach 1, doing normal damage, lying in front of you.
 
-Swords (broadswords, greatswords, katanas, shortswords, etc.) and Sabers: On 1-3, the blade breaks off at the halfway mark, losing its tip. It can still make a cutting attack at -2 to damage, but it is useless as an impaling weapon: a thrust does thrust crushing damage. If the sword was reach 2, it is now reach 1. On 4-6, the blade snaps off at the hilt; the sword is useless.
+Swords (broadswords, greatswords, katanas, short-swords, etc.) and Sabers: On 1-3, the blade breaks off at the halfway mark, losing its tip. It can still make a cutting attack at -2 to damage, but it is useless as an impaling weapon: a thrust does thrust crushing damage. If the sword was reach 2, it is now reach 1. On 4-6, the blade snaps off at the hilt; the sword is useless.
 
-Two-Handed Axe/Mace Weapons: On 1-3, the head breaks off where it joins the shaft, leaving you with a quarterstaff. On 4-6, the weapon breaks further down; you have a light club, and there’s a very clumsy (-4 to hit) axe with reach 1 lying in front of you.
+Two-Handed Axe/Mace Weapons: On 1-3, the head breaks off where it joins the shaft, leaving you with a quarterstaff. On 4-6, the weapon breaks further down; you have a light club, and there’s a very clumsy (-4 to hit) axe, mace, or pick with reach 1 lying in front of you.
 
 Other Weapons: Use the closest weapon listed above. The GM has the final say, and may choose to roll if there is more than one way for the weapon to break.

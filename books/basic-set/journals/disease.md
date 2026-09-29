@@ -20,7 +20,7 @@ Symptoms: A disease can cause attribute penalties, temporary disadvantages, etc.
 
 Contagion: Some diseases are mildly or highly contagious – although sometimes not until after the incubation period.
 
-The combination of resistance roll, damage, and cycles determines “deadliness.” By carefully selecting these statistics, the GM can distinguish between a virulent but mild flu that ends in a day or two (24-hour delay, HT-2, 1 point of toxic damage, 12-hour interval, six cycles) and a slower but usually fatal disease (72-hour delay, HT-5, 1 point of toxic damage, daily interval, 30 cycles).
+The combination of resistance roll, delay, damage, and cycles determines “deadliness.” By carefully selecting these statistics, the GM can distinguish between a virulent-but-mild flu that ends in a day or two (24-hour delay, HT-2, 1 point of toxic damage, 12-hour interval, six cycles) and a slower but usually fatal disease (72-hour delay, HT-5, 1 point of toxic damage, daily interval, 30 cycles).
 
 ### Diagnosis
 

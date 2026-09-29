@@ -14,6 +14,8 @@ Divers and mountaineers use precise tables to determine decompression times base
 
 Safe decompression involves slowly lowering the pressure, either naturally (e.g., a diver deliberately taking hours to reach the surface) or in a decompression chamber. The time required increases with both pressure and exposure time. It can be several hours – or even days.
 
-If you fail to decompress slowly enough, make a HT roll. Critical success means no ill effects. Success means severe joint pain, causing agony (see Incapacitating Conditions, p. 428); roll vs. HT hourly to recover. Failure means unconsciousness or painful paralysis; roll vs. HT hourly to regain consciousness, with each failure causing 1d of injury. Once conscious, you suffer joint pain, as described above. Critical failure results in painful death. Recompression to the highest pressure experienced lets you roll at HT+4 every five minutes to recover from all effects short of death.
+If you fail to decompress slowly enough, make a HT roll. Critical success means no ill effects.
+
+Success means severe joint pain, causing agony (see Incapacitating Conditions, p. 428); roll vs. HT hourly to recover. Failure means unconsciousness or painful paralysis; roll vs. HT hourly to regain consciousness, with each failure causing 1d HP of injury. Once conscious, you suffer joint pain, as described above. Critical failure results in painful death. Recompression to the highest pressure experienced lets you roll at HT+4 every five minutes to recover from all effects short of death.
 
 An instant pressure reduction can also result in explosive decompression; see Vacuum (p. 437) for details. All effects are cumulative!

@@ -4,7 +4,7 @@ Note to the GM: If keeping up with the party’s meals doesn’t sound like fun,
 
 ### Starvation
 
-A human needs three meals per day. For each meal you miss, take 1 FP. You can only recover “starvation” fatigue with a day of rest: no fighting or travel, and three full meals. Each day of rest makes up for three skipped meals.
+A human needs three meals per day. For each meal you miss, lose 1 FP. You can only recover “starvation” fatigue with a day of rest: no fighting or travel, and three full meals. Each day of rest makes up for three skipped meals.
 
 ### Dehydration
 

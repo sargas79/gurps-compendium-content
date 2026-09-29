@@ -46,7 +46,9 @@ If you fail, you lose traction and fall or spin out of control – see Losing Co
 
 ### Tactical Movement
 
-If you are using the tactical movement rules with high-speed movement, your movement points equal your velocity at the start of your turn. You cannot sidestep or step back. Turning radius limits facing changes: a 60° turn is a one hex-side facing change.
+If you are using the tactical movement rules with high-speed movement, your movement points equal your velocity at the start of your turn. You cannot sidestep or step back.
+
+Turning radius limits facing changes: a 60° turn is a one hex-side facing change.
 
 Minor obstructions and bad footing cost movement points as usual (see Movement Point Costs, p. 387), and also decelerate you at the end of your turn by an amount equal to the extra movement points paid. For example, if your high-speed velocity is 14 and you run through six yards of mud (+1 movement point per hex), you’ll automatically decelerate to a velocity of 8 at the end of the turn. Add this to any voluntary deceleration. If the total exceeds your Basic Move, roll as described for Pushing the Envelope, above. If it exceeds Basic Move × 2, you lose control automatically.
 

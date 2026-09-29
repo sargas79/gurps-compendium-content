@@ -1,10 +1,10 @@
 Digging rate depends on the type of soil, the digger’s Basic Lift (that is, ST×ST/5), and the quality of the tools available.
 
-Loose Soil, Sand, etc.: A man can dig 2×BL cubic feet per hour (cf/hr).
+Loose Soil, Sand, etc.: A human can dig 2×BL cubic feet per hour (cf/hr).
 
-Ordinary Soil: A man can dig BL cf/hr. One man with a pick can break up 4×BL cf/hr, making it into loose soil, which is easier to remove. The most efficient way to dig is with one man with a pick, and two shovelers clearing behind him.
+Ordinary Soil: A human can dig BL cf/hr. One person with a pick can break up 4×BL cf/hr, making it into loose soil, which is easier to remove. The most efficient way to dig is with one person with a pick, and two shovelers clearing behind them.
 
-Hard Soil, Clay, etc.: Must be broken up first by a pick, at 2×BL cf/hr, and then shoveled at 2×BL cf/hr. A lone man with both pick and shovel can only remove 0.6×BL cf/hr – he loses time switching between tools.
+Hard Soil, Clay, etc.: Must be broken up first by a pick, at 2×BL cf/hr, and then shoveled at 2×BL cf/hr. A lone person with both pick and shovel can only remove 0.6×BL cf/hr – they lose time switching between tools.
 
 Hard Rock: Must be broken by a pick at BL cf/hr (or slower, for very hard rock!), and then shoveled at BL cf/hr.
 

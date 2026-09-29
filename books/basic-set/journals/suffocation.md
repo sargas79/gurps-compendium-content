@@ -1,4 +1,4 @@
-If you completely lack air – see Actions After a Grapple (p. 370), Choke Hold (p. 371), and Holding Your Breath (p. 351) for examples – you lose 1 FP per second. If you are drowning after a failed Swimming roll, you can get some air, but you also inhale water: roll vs. Swimming every five seconds; failure costs 1 FP (see Swimming, p. 354).
+If you completely lack air – see Holding Your Breath (p. 351), Choke or Strangle (p. 370), and Choke Hold (p. 404) for examples – you lose 1 FP per second. If you are drowning after a failed Swimming roll, you can get some air, but you also inhale water: roll vs. Swimming every five seconds; failure costs 1 FP (see Swimming, p. 354).
 
 At 0 FP, you must make a Will roll every second or fall unconscious. You are likely to die unless rescued (see Lost Fatigue Points, p. 426). Regardless of FP or HP, you die after four minutes without air.
 

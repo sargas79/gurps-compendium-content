@@ -8,7 +8,7 @@ Thin (0.51-0.8 atm.): Earth’s atmosphere is “thin” between 6,000’ and 20
 
 Dense (1.21-1.5 atm.): The air is breathable, with some discomfort: -1 to all HT rolls, unless you have a pressure suit. If the air contains more than 50% oxygen, you must wear a “reducing respirator” that lowers oxygen partial pressure, or suffer -2 to DX due to coughing and lung damage.
 
-Very Dense (1.51+ atm.): As “dense,” but a reducing respirator is required if the air is more than 10% oxygen. Usually quite hot from green-house effects.
+Very Dense (1.51+ atm.): As “dense,” but a reducing respirator is required if the air is more than 10% oxygen. Usually quite hot from greenhouse effects.
 
 Superdense (10+ atm.): As “very dense,” but the atmospheric pressure is so great that it can actually crush someone who is not native to it, unless he has Pressure Support or an armored suit that provides this advantage; see Pressure (p. 435). Visitors to Venus, or deep inside Jupiter, experience hundreds of atmospheres of pressure! Such atmospheres are often poisonous, which presents a separate problem.
 

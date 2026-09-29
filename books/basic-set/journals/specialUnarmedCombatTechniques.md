@@ -36,7 +36,7 @@ This is a vicious, snapping blow with the knee. Unlike a kick, it only has reach
 
 ### Lethal Strike
 
-This is a blow that focuses all of your strength onto a single narrow point: a toe, a few stiffened fingers, etc. It is an option for any punch or kick with Karate. Roll against Karate to hit, but at -2 over and above any other penalties. You get -1 to damage, but your blow is piercing instead of crushing. This lets you target the vitals or eyes! There is a down side: the Hurting Yourself rule (p. 379) applies if your target has DR 1+ (as opposed to DR 3+).
+This is a blow that focuses all of your strength onto a single narrow point: a toe, a few stiffened fingers, etc. It is an option for any punch or kick with Karate. Roll against Karate to hit, but at -2 over and above any other penalties. You get -1 to damage, but your blow is piercing instead of crushing. This lets you target the vitals or eyes! There is a downside: Hurting Yourself (p. 379) applies if your target has DR 1+ (as opposed to DR 3+).
 
 ### Neck Snap or Wrench Limb
 

@@ -6,4 +6,6 @@ Special clothing (a wetsuit or beekeeper’s suit, or high-tech airtight armor) 
 
 Special tactics may work on some types of swarms. For instance, one can destroy bees with insecticide or baffle them by leaping into a pond. This is up to the players’ cleverness and the GM’s common sense.
 
-Attacking a Swarm: Any attack against a swarm hits automatically. The swarm gets no defense roll. (A swarm of hard-to-hit creatures just requires more damage to disperse.) A swarm takes damage as if it were Diffuse – see Injury to Unliving, Homogenous, and Diffuse Targets (p. 380). Shields can crush flying creatures; a shield does 2 HP per turn, and can attack at the same time as a weapon. Stomping does 1 HP per turn to nonflying vermin, and can be done while attacking with a weapon.
+Attacking a Swarm: Any attack against a swarm hits automatically. The swarm gets no defense roll. (A swarm of hard-to-hit creatures just requires more damage to disperse.)
+
+A swarm takes damage as if it were Diffuse – see Injury to Unliving, Homogenous, and Diffuse Targets (p. 380). Shields can crush flying creatures; a shield does 2 HP per turn, and can attack at the same time as a weapon. Stomping does 1 HP per turn to nonflying vermin, and can be done while attacking with a weapon.

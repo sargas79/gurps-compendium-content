@@ -1,4 +1,6 @@
-Through sheer force of will, you can push your body past its usual limits when you perform physical tasks. This is called “extra effort.” Note that if you have the Machine meta-trait, you cannot use extra effort!
+Through sheer force of will, you can push your body past its usual limits when you perform physical tasks.
+
+This is called “extra effort.” Note that if you have the Machine meta-trait, you cannot use extra effort!
 
 You can use extra effort to increase Basic Lift (but not ST itself) when digging or lifting; daily mileage when hiking; Move when running or swimming; distance (but not Basic Move itself) when jumping; and ST for the purposes of throwing, making a single ST roll, or drawing or cocking a bow or crossbow that’s too strong for you. You cannot use extra effort to increase the time you can hold your breath – that would be self-defeating!
 
@@ -20,7 +22,7 @@ Instead of rolling against Will to use extra effort, you may make a Will-based r
 
 Digging: For every hour of digging, make an extra-effort roll and pay 1 FP. This adds to the usual FP cost. On a critical failure, the injury is to your back, and will heal only with rest (not First Aid); on an 18, you temporarily acquire the Bad Back disadvantage (p. 123).
 
-Hiking: Make one extra-effort roll per day. Extra effort increases the FP you suffer by two when you stop on the march (see Fatigue, p. 426). Assess injury due to critical failure at the end of the day, and base it on the modified FP penalty. For instance, if you would normally be missing 5 FP when you stopped, you would be missing 7 FP if you used extra effort – and if you critically failed, you would end the day with 7 HP of injury! When using Hiking skill, make a single Will-based Hiking roll at -1 per 5% extra mileage beyond the basic +20% for a successful Hiking roll (-1 for +25%, -2 for +30%, and so on).
+Hiking: Make one extra-effort roll per day. Extra effort increases the FP you suffer by 2 when you stop on the march (see Fatigue, p. 426). Assess injury due to critical failure at the end of the day, and base it on the modified FP penalty. For instance, if you would normally be missing 5 FP when you stopped, you would be missing 7 FP if you used extra effort – and if you critically failed, you would end the day with 7 HP of injury! When using Hiking skill, make a single Will-based Hiking roll at -1 per 5% extra mileage beyond the basic +20% for a successful Hiking roll (-1 for +25%, -2 for +30%, and so on).
 
 Jumping: On a critical failure, apply the injury to the foot or leg (GM’s option, or roll randomly); on an 18, you temporarily acquire the Crippled Leg disadvantage (see Lame, p. 141).
 
@@ -34,9 +36,9 @@ Throwing: Increases to ST affect both damage and distance, but not Basic Lift fo
 
 ### Optional Rule: Extra Effort in Combat
 
-At the GM’s option, fighters can use extra effort in combat. These rules work differently from those above – mainly to avoid bogging down combat with extra die rolls and calculations.
+At the GM’s option, fighters can use extra effort in combat. To avoid bogging down combat with extra rolls and calculations, these rules work differently from those above – notably, they don’t require Will rolls.
 
-You must declare that you are using extra effort and spend the required FP before you make your attack or defense roll. A critical failure on the roll causes 1 HP of injury to the arm (if blocking, parrying, or attacking with a shield, weapon, or hand) or leg (if dodging or kicking) in addition to the usual critical miss results. DR does not protect you from this damage!
+You must declare that you are using extra effort and spend the required FP before you make your attack or defense roll. A critical failure on the roll causes 1 HP of injury to the arm (if blocking, parrying, or attacking with a shield, weapon, or hand) or leg (if dodging or kicking) in addition to the usual critical miss results. DR does not protect you from this!
 
 Feverish Defense: If you take any maneuver other than All-Out Attack, you can spend 1 FP to get +2 to a single active defense roll. (You can use this bonus to offset the penalty for parrying multiple times with one hand; see Parrying, p. 376.)
 

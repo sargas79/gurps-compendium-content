@@ -10,7 +10,7 @@ If you and your foe both succeed, but you succeed by more, subtract your margin 
 
 You cannot Feint if your foe is unable to observe you! However, if your foe runs away, turns his back on you, or loses sight of you in some way after you successfully Feint, he will still suffer his defense penalty if you attack him on your next turn. If you lose track of the foe, or cannot attack him next turn, your foe’s defense penalty vanishes.
 
-A Feint is good for one second! But if you Feint and then make an All-Out Attack (Double), the feint applies to both attacks.
+A Feint is good for one second! But if you Feint and somehow make multiple attacks next turn, the feint applies to them all.
 
 In all cases, your allies cannot take advantage of your Feint. The defense penalty applies only to your next attack.
 
@@ -18,4 +18,4 @@ Shield Feints: After you have attacked your foe once by striking with your shiel
 
 Movement: Step.
 
-Active Defense: Any. However, if you Feint and then parry with an unbalanced weapon, you cannot attack on your next turn, making your Feint pointless.
+Active Defense: Any. However, if you Feint with an unbalanced weapon (“U” on Parry), you cannot parry with it, exactly as if you had used it to attack.

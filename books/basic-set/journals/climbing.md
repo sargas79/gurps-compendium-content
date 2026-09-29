@@ -2,6 +2,8 @@ To climb anything more difficult than a ladder, roll against Climbing skill (p. 
 
 Make one roll to start the climb and another roll every five minutes. Any failure means you fall (see Falling, p. 431). If you secured yourself with a rope, you will fall only to the end of the rope unless you rolled a critical failure.
 
+The table below gives skill modifiers and climbing speeds for some common climbs. In most cases, use the speeds in the “Regular” column. The “Combat” column is for climbs inspired by rage or terror, which always cost at least 1 FP – or double the FP cost given in an adventure or assessed by the GM. Climbs in combat require a Move maneuver.
+
 | Type of Climb | Modifier | Combat | Regular |
 | --- | --- | --- | --- |
 | Ladder going up | no roll | 3 rungs/sec | 1 rung/sec |
@@ -13,5 +15,3 @@ Make one roll to start the climb and another roll every five minutes. Any failur
 | Rope-up | -2 | 1 ft/sec | 20 ft/min |
 | Rope-down (w/o equipment) | -1 | 2 ft/sec | 30 ft/min |
 | (w/ equipment) | -1 | 12 ft/sec | 12 ft/sec |
-
-The table below gives skill modifiers and climbing speeds for some common climbs. In most cases, use the speeds in the “Regular” column. The “Combat” column is for climbs inspired by rage or terror, which always cost at least 1 FP – or double the FP cost given in an adventure or assessed by the GM. Climbs in combat require a Move maneuver.

@@ -30,7 +30,7 @@ Modifiers: Homing missiles ignore range modifiers and all modifiers for your inj
 
 ### Time to Target
 
-If a guided or homing attack has a 1/2D statistic, do not halve damage. Instead, read this as the attack’s speed in yards/second. The projectile can hit a target at up to its 1/2D range on the turn you launch it. It requires multiple turns to reach a more distant target. Defer the attack roll until the projectile actually reaches its target.
+A guided or homing attack has a 1/2D statistic, but do not halve damage. Instead, read this as the attack’s speed in yards/second. The projectile can hit a target at up to its 1/2D range on the turn you launch it. It requires multiple turns to reach a more distant target. Defer the attack roll until the projectile actually reaches its target.
 
 The projectile continues to close at a speed equal to its 1/2D until it has traveled a total distance equal to its Max (that is, for Max/speed seconds, including the turn of firing). If it still has not hit, it will crash, self-destruct, etc. Thus, it’s possible to “outrun” a guided or homing attack . . . if you’re fast enough!
 

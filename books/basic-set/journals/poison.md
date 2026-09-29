@@ -16,7 +16,7 @@ Contact Agent: The poison must be inhaled or touch skin to take effect. If it is
 
 Digestive Agent: The victim must swallow the poison. This is typical of poisonous plants and toxic substances such as arsenic. If the poison has a slight but distinctive taste (e.g., cyanide), the GM can allow the victim a Taste roll or Perception-based Poisons roll – at a basic -2, but +2 per doubling of dosage – to notice it in time. Poisons that are easier to detect give a bonus; those that are harder to detect, or whose taste is masked by suitable food or drink, give a penalty. To force someone to swallow a poison rather than spit it out, you must grapple him by the head or neck and maintain your hold for 10 seconds.
 
-Follow-Up Poison: The poison must be placed on a piercing or impaling weapon, or injected using a hollow projectile, hypodermic needle, etc. If the weapon penetrates DR and does any damage, it delivers the poison. Most “follow-up” poisons are simply blood or contact agents injected into the body.
+Follow-Up Poison: The poison must be placed on a cutting, piercing, or impaling weapon, or injected using a hollow projectile, hypodermic needle, etc. If the weapon penetrates DR and does any injury, it delivers the poison. Most “follow-up” poisons are simply blood or contact agents introduced this way.
 
 Respiratory Agent: The poison is a gas that only affects those who inhale it into their lungs. Delivery is usually via an area or cone attack (e.g., gas grenade, spray gun, or dragon’s breath), but an entire atmosphere could be poisonous! Only Doesn’t Breathe and Filter Lungs protect completely against respiratory agents – but a victim who makes a Sense roll to notice the poison in time may hold his breath (see Holding Your Breath, p. 351). Unconscious or stunned victims inhale automatically. An improvised mask, such as a wet towel over the face, gives +1 to HT to resist.
 
@@ -48,6 +48,8 @@ A poison always has some symptoms. The basic damage includes symptoms such as sw
 
 Some poisons cause effects other than injury or fatigue, including attribute penalties, irritating or incapacitating conditions (see Afflictions, p. 428), temporary disadvantages, or even the removal of existing advantages (e.g., an alchemical poison that negates Magery). The victim usually gets a resistance roll against these effects, and the effects always have a specific duration. The default duration is a number of minutes equal to the margin of failure on the resistance roll. In a poisonous environment, a failed resistance roll means the effects last for as long as you’re in the environment plus the duration.
 
+Noxious magic potions use the rules in Chapter 28 of GURPS Magic – not these ones.
+
 #### Cost Per Dose
 
 It is up to the GM whether a particular poison is for sale – it might be impossible to extract in a useful form, or the authorities might want to keep it off the market. If a poison is available, its cost often reflects how difficult it is to obtain, not its effectiveness. In most game worlds, people who sell poisons are criminals. All of these factors make cost per dose highly variable. See Poison Examples (p. 439) for suggestions . . . but the GM is free to use whatever prices he feels are reasonable.
@@ -68,7 +70,7 @@ Varying the Dosage: It is possible to vary the dosage of a digestive agent or a 
 
 If the poison has a delay, there may be time to treat the victim before he suffers any ill effects. Since he will not yet be showing symptoms, he must be aware of his predicament in order to seek help!
 
-A poisonous animal bite is usually obvious – but the GM may require a Naturalist roll to realize that an animal is venomous. Sucking the poison from the wound takes a minute, requires a First Aid or Physician roll at -2, and gives +2 on HT rolls to resist.
+A venomous animal bite is usually obvious – but the GM may require a Naturalist roll to realize that an animal is venomous. Sucking poison from such a wound is an obsolete, ineffective, harmful practice, but many venoms have antidotes (see below).
 
 If the victim suspects a digestive agent, he or a friend can induce vomiting to expel the poison. This takes 10 seconds, calls for a First Aid or Physician roll, and gives +2 to resist the poison. But for some poisons, vomiting is a bad idea – it can increase injury!
 
@@ -96,7 +98,11 @@ The Heaves: If you are drunk and keep drinking, your body will try to purge itse
 
 Sobering Up: To sober up, you must first stop drinking. After half as many hours as the total number of drinks you consumed, roll vs. HT. Various remedies may give a bonus. On a success, you move one step toward sober. Continue to roll each time this many hours pass until you are sober. Exception: To recover from a coma, you need medical help!
 
-Hangovers: If you are tipsy or worse, you must roll vs. HT when you stop drinking, at -2 if you’re drunk or -4 if you’re unconscious. On a failure, you will suffer a hangover. This kicks in 1d hours after the end of the drinking session – or on awakening, if you pass out or fall asleep before this time – and lasts hours equal to your margin of failure. During this time, you will suffer from moderate pain (see Irritating Conditions, p. 428) and acquire Low Pain Threshold (or lose High Pain Threshold, if you have it). The GM may decide that preventative treatment (including drinking plenty of water and possibly taking a mild analgesic) gives you a bonus to this roll.
+Hangovers: If you are tipsy or worse, you must roll vs. HT when you stop drinking, at -2 if you’re drunk or -4 if you’re unconscious. On a failure, you will suffer a hangover. This kicks in 1d hours after the end of the drinking session – or on awakening, if you pass out or fall asleep before this time – and lasts hours equal to your margin of failure.
+
+During this time, you will suffer from moderate pain (see Irritating Conditions, p. 428) and acquire Low Pain Threshold (or lose High Pain Threshold, if you have it).
+
+The GM may decide that preventative treatment (including drinking plenty of water and possibly taking a mild analgesic) gives you a bonus to this roll.
 
 ### Addictive Drugs
 
@@ -110,7 +116,7 @@ Stimulants elevate the user’s mood and energy level . . . temporarily. Potent 
 
 If the user takes multiple doses in 24 hours, he must roll vs. HT after the second and later doses, at a cumulative -1 per dose after the first. On a critical failure, he suffers a heart attack (see Mortal Conditions, p. 429).
 
-Stimulants are cheap and only slightly addictive. If they are legal, stimulant addiction is a Minor Addiction (-1 point); if they are illegal, it is a -5-point Addiction.
+Stimulants are cheap and only slightly addictive. If they are legal, stimulant addiction is a -1-point Minor Addiction; if they are illegal, it is a -5-point Addiction.
 
 #### Hallucinogens
 

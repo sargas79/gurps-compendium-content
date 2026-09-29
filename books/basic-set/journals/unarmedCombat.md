@@ -20,7 +20,7 @@ If you hit, you’ve grabbed hold of your foe’s weapon. On subsequent turns, y
 
 Each attempt requires an Attack, All-Out Attack, or Move and Attack maneuver. Roll against basic DX or a grappling skill to hit. Your foe may defend normally – he can parry, dodge, or block. You may Evaluate or Feint beforehand to improve your odds of success.
 
-Grappling does no damage, but if you successfully hit, the foe has -4 to DX as long as you’re holding on. He may not move away until he breaks free (see Actions After Being Grappled, p. 371) or you let go. Exception: If you grapple a foe of more than twice your ST, you do not prevent him from moving away – you’re just extra encumbrance for him!
+Grappling does no damage, but if you successfully hit, the foe has -4 to DX as long as you’re holding on. He may not move away until he breaks free (see Actions After Being Grappled, p. 371) or you let go. Exception: If you grapple a foe of twice your ST or more, you do not prevent him from moving away – you’re just extra encumbrance for him!
 
 You may grapple with any or all of your arms. If you grapple with more than two arms, each arm beyond the first two gives a bonus of +2 to hit. An arm committed to grappling cannot make unarmed parries until you let go. Letting go is a free action on your turn.
 
@@ -70,15 +70,15 @@ You can bite or use a Striker (provided it has reach C) even if all your hands a
 
 ### Slam
 
-You can deliberately collide with an opponent. This requires an Attack, All-Out Attack, or Move and Attack maneuver. Roll against DX, Brawling, or Sumo Wrestling to hit. Note that the -4 to hit and effective skill cap of 9 for a Move and Attack do not apply to slams.
+You can deliberately collide with an opponent. This requires an Attack, All-Out Attack, or Move and Attack maneuver. Roll against DX, Brawling, or Sumo Wrestling to hit. The -4 to hit and effective skill cap of 9 for a Move and Attack do not apply to slams.
 
 Your foe may block, dodge, or parry (but your body counts as a heavy weapon; see Parrying Heavy Weapons, p. 376). If your foe dodges, you must move at least two yards past him if you have enough movement. If you would hit someone else, see Hitting the Wrong Target (p. 389).
 
-If you hit, you and your foe each inflict dice of crushing damage on the other equal to (HP × velocity)/100. “Velocity” is usually just the number of yards you moved this turn – but in a head-on collision, add the distance your foe moved toward you on his last turn (that is, use relative velocity).
+If you hit, you both take crushing damage. You inflict dice equal to your (HP × velocity)/100; he inflicts dice equal to his (HP × velocity)/100. For both of you, “velocity” is usually the number of yards you moved this turn – but in a head-on collision, add the distance he moved toward you on his last turn.
 
-If damage is less than 1d, treat fractions up to 0.25 as 1d-3, fractions up to 0.5 as 1d-2, and any larger fraction as 1d-1. Otherwise, round fractions of 0.5 or more up to a full die. You can use All-Out Attack (Strong) to increase your damage!
+If damage is less than 1d, treat fractions up to 0.25 as 1d-3, fractions up to 0.5 as 1d-2, and any larger fraction as 1d-1. Otherwise, round fractions of 0.5 or more up to a full die. You add any damage bonuses for skill (Brawling or Sumo Wrestling) or All-Out Attack (Strong); your foe does not.
 
-If your damage roll equals or exceeds that of your foe, he must make a DX roll or fall down. You knock him down automatically if you roll twice his damage or more. If he rolls twice your damage or more, though, you fall down instead!
+If your damage roll equals or exceeds you foe’s, he must make a DX roll or fall down. You knock him down automatically if you roll twice his damage or more. If he rolls twice your damage or more, though, you fall down instead!
 
 If your opponent dodged and you went past him and hit a solid obstacle, apply your damage roll to yourself (and to the obstacle, if it matters).
 

@@ -6,7 +6,7 @@ Objects of magical power are a staple of fantasy. The following rules are intend
 
 - Magic items retain their power indefinitely – their magic does not “wear out.” But if the item breaks or wears out, it loses all of its magical properties and ordinary repairs cannot restore the magic.
 
-The GM is free to change some or all of these assumption to suit his campaign!
+The GM is free to change some or all of these assumptions to suit his campaign!
 
 ### Enchantment Spells
 
@@ -125,7 +125,7 @@ Prerequisites: Enchant.
 
 ### Enchanting
 
-“Enchanting” is the process of creating a magic item. It is a special kind of spell casting; see Casting Spells (p. 235). The caster must use ceremonial magic (see Ceremonial Magic, p. 238), and he and any assistants must know both the Enchant spell (see p. 480) and the specific spell being put on the item at level 15+ – or at level 20+, in a low-mana area. Unskilled spectators cannot contribute energy.
+“Enchanting” is the process of creating a magic item. It is a special kind of spellcasting; see Casting Spells (p. 235). The caster must use ceremonial magic (see Ceremonial Magic, p. 238), and he and any assistants must know both the Enchant spell (see p. 480) and the specific spell being put on the item at level 15+ – or at level 20+, in a low-mana area. Unskilled spectators cannot contribute energy.
 
 Enchanting always requires time and energy. A particular enchantment might also require a specific item or material (e.g., a gem), or the expenditure of cash for “generic” magic supplies.
 
@@ -149,7 +149,7 @@ On a failure, the results depend on the method used to enchant the item – see 
 
 #### Quick and Dirty Enchantment
 
-Use this method to create a magic item quickly. It requires one hour per 100 points of energy required (round up). Make the success roll at the end of that time. Succeed or fail, all the energy is spent when the GM rolls the dice.
+Use this method to create a magic item quickly. It takes one hour per 100 points of energy required (round up). Make the success roll at the end of that time. Succeed or fail, all the energy is spent when the GM rolls the dice.
 
 A lone caster is limited to the energy provided by his FP and HP, but he may have assistants, who can contribute their own FP and HP as described for ceremonial magic. The caster is at -1 to skill for each assistant; therefore, the number of assistants allowed is the number that would reduce the caster’s effective skill to 15. With more assistants, the enchantment won’t work.
 
@@ -243,10 +243,12 @@ The cash price of magic items is up to the GM. In fantasy settings where “ench
 
 In game worlds like this, enchanters might mass-produce low-energy cost items using the “quick and dirty” method. The GM is the final arbiter of what is possible, but note that a talented enchanter with skill 20 and five partners could spend 50 FP without breaking a sweat, much less spending HP. Realistically, this should drastically reduce the price of minor magic items.
 
-At the GM’s option, any magic item that a “typical” collaboration of wizards in the setting could enchant with an hour’s work costs only $1 per energy point. In the example above, the cutoff might be 50 energy points – one arrow with Accuracy +1 or Puissance +1 would be $25, a magic staff would be $30, and a shirt with Fortify +1 would be $50 . . . but that sword with Accuracy +2 would still cost $25,000.
+At the GM’s option, any magic item that a “typical” collaboration of wizards in the setting could enchant with an hour’s work costs only $1 per energy point. In the example above, the cutoff might be 50 energy points – Accuracy +1 or Puissance +1 on one arrow would be $25, Staff on a wand would be $30, and Fortify +1 on a shirt would be $50 . . . but that sword with Accuracy +2 would still cost an extra $25,000.
 
 In game worlds with few enchanters, magic items will be rare and prized, and even the most minor items will sell for $50 or more per energy point. This is likely to be the case in settings with secret magic – especially if the reason for the secret is an enchanters’ monopoly.
 
 In game worlds where magic is basically unknown, magic items will not have a fixed, fair price. If the buyer knows the item is authentic, the seller can often name his price!
 
 In all cases, add the cost of magical materials (if any) and the cost of the item being enchanted to the cost for the enchantment itself.
+
+The standard enchantment rules cannot explain every possible “magic item.” The GURPS Dungeon Fantasy series (notably its Treasures sub-series), the GURPS Fantasy-Tech volumes, GURPS Meta-Tech, and GURPS Thaumatology propose many alternatives.
