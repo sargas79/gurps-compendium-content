@@ -61,3 +61,29 @@ EQUIPMENT	Bolas	B275, MA227
 EQUIPMENT	Shuriken	B276, MA226
 EQUIPMENT	Ahlspiess	B273, MA212
 EQUIPMENT	Chigoridani	B272, MA214
+SKILLS	Acrobatic Stand	B333, MA65
+SKILLS	Evade	B334, MA71
+SKILLS	Stamp Kick	B334, MA80
+SKILLS	Wrench Arm	B334, MA82
+SKILLS	Wrench Leg	B334, MA82
+SKILLS	Wrench [Limb]	B334, MA82
+SKILLS	Acrobatic Stand (Acrobatics)	B333, MA65
+SKILLS	Armed Grapple (Cloak)	B334, MA67
+SKILLS	Armed Grapple (Melee Weapon)	B334, MA67
+SKILLS	Evade (Acrobatics)	B334, MA71
+SKILLS	Evade (Judo)	B334, MA71
+SKILLS	Stamp Kick (Brawling)	B334, MA80
+SKILLS	Stamp Kick (Karate)	B334, MA80
+SKILLS	Wrench Arm (ST)	B334, MA82
+SKILLS	Wrench Leg (ST)	B334, MA82
+ADVANTAGES	Heroic Archer	B327, MA45
+PERKS	Improvised Weapons	B328, MA50
+PERKS	Off-Hand Weapon Training	B329, MA50
+PERKS	Skill Adaptation (Acrobatic Feints)	B328, MA51
+PERKS	Special Exercises	B329, MA51
+PERKS	Special Exercises (DR 1 with Tough Skin)	B329, MA51
+PERKS	Special Exercises (Striking ST +1)	B329, MA51
+PERKS	Special Exercises (Arm ST +1)	B329, MA51
+PERKS	Strongbow	B329, MA51
+PERKS	Unusual Training	B329, MA52
+PERKS	Weapon Bond	B329, MA53

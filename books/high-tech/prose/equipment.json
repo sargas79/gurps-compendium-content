@@ -1296,54 +1296,6 @@
     "description": "<p>The main battle tank (MBT) is the ultimate land-bound fighting machine at TL7-8. It's capable of destroying any ground vehicle short of another MBT - and often, even rival MBTs aren't safe. Within its class, individual designs evolve so rapidly that last year's model might already be obsolete against a certain enemy tank, while next year's design might have a significant edge over it.</p><p>Main battle tanks have little purpose beyond direct combat with other MBTs. Their weapons are expensive overkill against less-armored opponents, while their relatively thin top and rear armor is vulnerable to infantry attack in close quarters. Antitank missiles (see Guided and Homing Missiles, p. 150) - in particular those launched from helicopter gunships - also pose a serious threat.</p><p>Outside a military campaign, PCs will seldom come into contact with MBTs. If they get involved in revolution, civil war, or similar unrest, though, all bets are off. Even civilians might get a closer look . . .</p><p>The driver uses Driving (Tracked) and Mechanic (Tracked); the commander needs Gunner (Machine Gun) and Electronics Operation (Comm); and the gunner requires Gunner (Cannon) and (Machine Gun). Designs without an autoloader require a loader. The loader can be unskilled - he's always the most inexperienced crewmember - but a ST-based Gunner (Cannon) roll reduces reloading times by a second.</p><p>The Soviet T-72 is probably the late 20th century's most widespread MBT. Between 1972 and 1991, some 20,000 T-72s were built in Russia alone. Over half of these were of the T-72A variant; alternate models and upgraded versions are too numerous to mention. The T-72A was exported as the T-72M1. Czechoslovakia, India, Iraq, Poland, Romania, and Yugoslavia produced equivalents under license. The tank saw use in both Gulf Wars and in conflicts in Afghanistan, Chechnya, Ethiopia, and the former Yugoslavia. It also appeared in the WWIII film Red Dawn.</p><p>The T-72A is inferior to many other modern MBTs. Its disadvantages include obsolete night-fighting equipment and vulnerable ammo storage. Nevertheless, it offers good protection and heavy armament at rock-bottom prices.</p><p>The gunner rides in the turret with the main armament: a stabilized Motovilikha D-81TM tank gun (p. 141) with 44 rounds (9 APFSDS, 20 HEAT, and 15 HE), fed by a 22-shot autoloader. A KMZ PKMT machine gun (see KMZ PK, p. 135) with eight 250-round belts is mounted coaxially, and a two-shot smoke discharger faces the turret front (two reloads). The gunner has an 8× day sight (+3 Acc), a 4,400-yard laser rangefinder (+3 Acc), and a targeting computer (+1 Gunner). At night, he uses a 5.5× image-intensifying sight (+2 Acc and Night Vision 7) with an IR searchlight (0.75-mile range); see IR Illumination (p. 47). Turret rotation takes three Ready maneuvers per facing.</p><p>The commander also rides in the turret. He fires an external Molot NSV-12.7 HMG (p. 136) with a collimating sight (+1 Gunner) and three 100-round belts. He has a 5.5× image-intensifying sight (+2 Vision and Night Vision 7) with an IR searchlight (0.25-mile range) for observation, and operates a scrambled radio (12-mile range).</p><p>The driver sits in the body. He has an active IR sight with an IR headlight (70-yard range). By injecting diesel into the exhaust manifold, he can generate a smokescreen.</p><p>A dozer blade mounted under the vehicle's nose lets the crew clear obstacles and prepare firing positions. The T-72A can carry two drop tanks on the body rear (+60 Range each).</p><p>Top armor is DR 90. Underbody armor provides DR 70. The turret has DR 1,375 in front, DR 420 to the sides, and DR 180 on top. Front armor on both body and turret is an early laminate; treat it as spaced (p. 229).</p>"
   },
   {
-    "_id": "a5c5670116ca450b",
-    "name": "T Battery",
-    "pages": "HT13",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>A button- or coin-sized battery for watches, mini-flashlights, hearing aids, laser sights, tiny bugs, etc.</p>"
-  },
-  {
-    "_id": "7865b5d0e56f13f3",
-    "name": "XS Battery",
-    "pages": "HT13",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>A battery used in such portable consumer electronics as audio recorders, CD/MP3 players, digital cameras, and night-vision goggles. Similar to a 9-volt or AA battery.</p>"
-  },
-  {
-    "_id": "3f0c749c5c9319bf",
-    "name": "S Battery",
-    "pages": "HT13",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>A standard battery for flashlights, portable radios, or cellular phones. Similar to a D-cell or C-cell battery.</p>"
-  },
-  {
-    "_id": "55af11dddd009cff",
-    "name": "M Battery",
-    "pages": "HT13",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>A common power source for lanterns or squad-level radios. More expensive rechargeable models are used in laptops, video cameras, and the like.</p>"
-  },
-  {
-    "_id": "48f1e7c6df4fdbb7",
-    "name": "L Battery",
-    "pages": "HT13",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>A lunchbox-sized battery. At TL5, it's used in telegraph stations. At TL6+, rechargeables are found in small vehicles (such as ATVs, motorcycles, and snowmobiles), base-camp radios, and the like.</p>"
-  },
-  {
-    "_id": "004689665b38f077",
-    "name": "VL Battery",
-    "pages": "HT13",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>A toolbox-sized battery found in cars, trucks, golf carts, etc. It can power radios or other heavy-duty electronics for extended periods. A bank of these is often used for external power.</p>"
-  },
-  {
     "_id": "e064d5aa088b32be",
     "name": "Wood (per cord)",
     "pages": "HT15",

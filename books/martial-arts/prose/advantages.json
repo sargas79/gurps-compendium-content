@@ -16,14 +16,6 @@
     "description": "<p>Autohypnosis, Blind Fighting, Body Control, Body Language, Body Sense, Breath Control, Dreaming, Immovable Stance, Light Walk, Lizard Climb, Meditation, Mental Strength, Mind Block, and Sensitivity. Reaction bonus: pacifists, ascetics, and those who practice \"soft\" or \"internal\" martial-arts styles.</p><p>A hero with Inner Balance has superior control over his body and mind. This inner peace strengthens his will, sharpens his senses, and enables him to perform impossible feats of endurance and balance. He's visibly at peace, and those who appreciate order and focus find him pleasant to be around.</p><p>Forceful Chi and Inner Balance are in many ways opposites. The GM could even make them mutually exclusive. However, the greatest masters of the Chinese martial arts - whose yang and yin are in perfect balance - might have high levels of both talents.</p><p>These Talents don't guarantee access to cinematic skills. If a skill lists Trained by a Master or Weapon Master as a prerequisite, you must possess the relevant advantage to learn it.</p>"
   },
   {
-    "_id": "deb4a2255bcab566",
-    "name": "Heroic Archer",
-    "pages": "MA45",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>You can perform amazing feats with any weapon that uses the Bow skill. When you Attack or All-Out Attack with a bow, you may add its Accuracy bonus to skill without taking an Aim maneuver. If you do Aim, you get +1 after one second or +2 after two or more seconds, in addition to Acc.</p><p>When you Move and Attack, you don't get your bow's Acc bonus but may ignore its Bulk penalty. Ignore the extra -1 or -2 to skill for a Flying Attack (p. 107) or an Acrobatic Attack (p. 107), too. This lets you shoot at full skill even while running, jumping, sliding down banisters, etc.</p><p>You can also disregard Bulk in close combat (see Weapons for Close Combat, p. B391). You never get an Acc bonus there but you do shoot at full skill. This makes the Close Combat technique (p. 69) redundant for you.</p><p>You can use Quick-Shooting Bows (pp. 119-120) to improve your rate of fire when you Move and Attack as well as when you Attack or All-Out Attack. Regardless of your maneuver, halve the -6 to skill for this stunt. On an Attack or All-Out Attack, add Acc to your attack roll but not to the skill roll to ready your bow hastily. Similarly, halve the penalty to shoot two arrows at once using Dual-Weapon Attack (p. 83); DWA (Bow) defaults to Bow-2 for you, not Bow-4.</p><p>Finally, when you use Fast-Draw (Arrow), total all applicable penalties from Multiple Fast-Draw (p. 103), Fast-Draw from Odd Positions (pp. 103-104), and Move and Attack (p. 107), halve the sum, and round in your favor.</p><p>You can combine Heroic Archer with any Weapon Master specialty that covers bows. This gives you the damage bonus for Weapon Master and all of the above benefits - and makes the quick-shooting penalty a mere -1!</p>"
-  },
-  {
     "_id": "6eb14cd60ccb6833",
     "name": "Armor Familiarity",
     "pages": "MA49",
@@ -72,14 +64,6 @@
     "description": "<p>You know a body of tactics for use when you and your opponent are both on the ground. In that situation only, you get +1 in all Regular or Quick Contests to do with grappling - pins, chokes, attempts to break free, etc. If your foe knows Ground Guard, too, your bonuses cancel out. This perk is named for a fighting position used when lying face-up, commonly called the \"guard,\" but encompasses many related positions and also works when crawling or lying face-down.</p>"
   },
   {
-    "_id": "c7ea140f07c31dd9",
-    "name": "Improvised Weapons",
-    "pages": "MA50",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>You've practiced fighting with everyday items. These weapons might be improvised for others but they're familiar to you. Ignore skill penalties (only) when wielding them; see Improvised Weapons (p. 224). You must specialize by combat skill. You can learn Improvised Weapons (Brawling) or Improvised Weapons (Karate) to use improvised fist loads effectively.</p>"
-  },
-  {
     "_id": "a028bd1cf56cff64",
     "name": "Naval Training",
     "pages": "MA50",
@@ -110,14 +94,6 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>You're adept at striking from the clinch. You must specialize in one unarmed striking skill. Whenever you've grappled a standing opponent's head, neck, or torso (only), you get +1 to hit when you strike that foe with your skill.</p>"
-  },
-  {
-    "_id": "99baf1b023f6e233",
-    "name": "Off-Hand Weapon Training",
-    "pages": "MA50",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>You've practiced a particular skill enough with your \"off\" hand that you can ignore the -4 for using that hand (see Handedness, p. B14). This extends to all active defenses and techniques based on that skill. You must specialize by skill; any one-handed Melee Weapon, ranged weapon, or Fast-Draw skill qualifies.</p><p>This perk completely replaces the Off-Hand Weapon Training (OHWT) technique on p. B232. This is because the cost to buy off -4 as a Hard technique for even one skill is 5 points - the same as Ambidexterity, which eliminates the penalty for all skills - and in a Martial Arts campaign, fighters may need several versions of OHWT to be proficient in their style. As a perk, OHWT is cheaper than Ambidexterity for those with fewer than five specialties . . . and if someone is that dedicated, the GM should let him replace his five perks with Ambidexterity for the same points!</p>"
   },
   {
     "_id": "880514fa4ab5cd40",
@@ -216,14 +192,6 @@
     "description": "<p>A style's skills represent its basic \"subsystems.\" The techniques that normally default to each skill are that subsystem's core moves - but you know some less-orthodox tactics. You can learn techniques that don't default to a skill as if they did, at the usual default penalties. If a technique notes several penalties, use the easiest; e.g., Drop Kick defaults to Brawling-1, Sumo Wrestling-1, or Wrestling-2, so adapting it to Karate makes your default Karate-1. The GM sets the scope of each specialty. It may be as sweeping as Skill Adaptation (Brawling techniques default to Karate) or as narrow as Skill Adaptation (Breakfall defaults to Karate). A few examples important enough to get special names:</p><p><em>Acrobatic Feints:</em> You've practiced using gymnastics to catch enemies off-guard. You may use the Acrobatics skill to feint and may improve the Feint (Acrobatics) technique. Similar perks might exist for other skills (e.g., \"Dancing Feints\" for the Dancing skill); see Feints Using Non-Combat Skills (p. 101).</p><p><em>Acrobatic Kicks:</em> You've learned to kick as a natural extension of flips, jumps, and spins. You can default kicking techniques to Acrobatics instead of to Brawling or Karate. Acrobatic kicks never receive Brawling or Karate damage bonuses.</p><p><em>Clinch:</em> You've integrated limited grappling moves into your Boxing, Brawling, or Karate skill - choose one. Whenever you grapple a standing opponent's head, neck, or torso (only), use your striking skill for the attack roll. This is rarely worth the point if you already know a grappling skill!</p>"
   },
   {
-    "_id": "f4e7192822942e39",
-    "name": "Skill Adaptation (Acrobatic Feints)",
-    "pages": "MA51",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>A style's skills represent its basic \"subsystems.\" The techniques that normally default to each skill are that subsystem's core moves - but you know some less-orthodox tactics. You can learn techniques that don't default to a skill as if they did, at the usual default penalties. If a technique notes several penalties, use the easiest; e.g., Drop Kick defaults to Brawling-1, Sumo Wrestling-1, or Wrestling-2, so adapting it to Karate makes your default Karate-1. The GM sets the scope of each specialty. It may be as sweeping as Skill Adaptation (Brawling techniques default to Karate) or as narrow as Skill Adaptation (Breakfall defaults to Karate). A few examples important enough to get special names:</p><p><em>Acrobatic Feints:</em> You've practiced using gymnastics to catch enemies off-guard. You may use the Acrobatics skill to feint and may improve the Feint (Acrobatics) technique. Similar perks might exist for other skills (e.g., \"Dancing Feints\" for the Dancing skill); see Feints Using Non-Combat Skills (p. 101).</p>"
-  },
-  {
     "_id": "de940a1bec944919",
     "name": "Skill Adaptation (Acrobatic Kicks)",
     "pages": "MA51",
@@ -232,52 +200,12 @@
     "description": "<p>A style's skills represent its basic \"subsystems.\" The techniques that normally default to each skill are that subsystem's core moves - but you know some less-orthodox tactics. You can learn techniques that don't default to a skill as if they did, at the usual default penalties. If a technique notes several penalties, use the easiest; e.g., Drop Kick defaults to Brawling-1, Sumo Wrestling-1, or Wrestling-2, so adapting it to Karate makes your default Karate-1. The GM sets the scope of each specialty. It may be as sweeping as Skill Adaptation (Brawling techniques default to Karate) or as narrow as Skill Adaptation (Breakfall defaults to Karate). A few examples important enough to get special names:</p><p><em>Acrobatic Kicks:</em> You've learned to kick as a natural extension of flips, jumps, and spins. You can default kicking techniques to Acrobatics instead of to Brawling or Karate. Acrobatic kicks never receive Brawling or Karate damage bonuses.</p>"
   },
   {
-    "_id": "00ce73c10bf37908",
-    "name": "Special Exercises",
-    "pages": "MA51",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>You pursue an exercise regimen that grants access to a capability that's normally cinematic or off-limits for your race. This is a perk-level Unusual Background - the ability itself has its own cost. Each trait requires its own perk: Special Exercises (DR 1 with Tough Skin), Special Exercises (Striking ST +1), Special Exercises (Arm ST +1), Special Exercises (HP can exceed ST by 100%), and so on.</p>"
-  },
-  {
-    "_id": "87749d0c50473833",
-    "name": "Special Exercises (DR 1 with Tough Skin)",
-    "pages": "MA51",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>You pursue an exercise regimen that grants access to a capability that's normally cinematic or off-limits for your race. This is a perk-level Unusual Background - the ability itself has its own cost. Each trait requires its own perk: Special Exercises (DR 1 with Tough Skin), Special Exercises (Striking ST +1), Special Exercises (Arm ST +1), Special Exercises (HP can exceed ST by 100%), and so on.</p>"
-  },
-  {
-    "_id": "385a4d91922b00c9",
-    "name": "Special Exercises (Striking ST +1)",
-    "pages": "MA51",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>You pursue an exercise regimen that grants access to a capability that's normally cinematic or off-limits for your race. This is a perk-level Unusual Background - the ability itself has its own cost. Each trait requires its own perk: Special Exercises (DR 1 with Tough Skin), Special Exercises (Striking ST +1), Special Exercises (Arm ST +1), Special Exercises (HP can exceed ST by 100%), and so on.</p>"
-  },
-  {
-    "_id": "c1daa85c67956092",
-    "name": "Special Exercises (Arm ST +1)",
-    "pages": "MA51",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>You pursue an exercise regimen that grants access to a capability that's normally cinematic or off-limits for your race. This is a perk-level Unusual Background - the ability itself has its own cost. Each trait requires its own perk: Special Exercises (DR 1 with Tough Skin), Special Exercises (Striking ST +1), Special Exercises (Arm ST +1), Special Exercises (HP can exceed ST by 100%), and so on.</p>"
-  },
-  {
     "_id": "850acbbb359cb92b",
     "name": "Special Setup",
     "pages": "MA51",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Certain techniques require a specific \"setup\" before you can execute them. You've learned an alternative setup. Your specialty must name one technique and spell out the change. For instance, if you can use Arm Lock after a Karate parry instead of after a Judo parry, you have Special Setup (Karate Parry &gt; Arm Lock).</p>"
-  },
-  {
-    "_id": "cb64e26af4259376",
-    "name": "Strongbow",
-    "pages": "MA51",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>You've learned how best to draw a heavy bow. If you know Bow at DX+1, you can shoot a bow of your ST+1 instead of your ST. Bow at DX+2 or better lets you use a bow of your ST+2. You need a strong bow to see range and damage improvements; there's no effect when shooting a bow of your ST or less.</p>"
   },
   {
     "_id": "53c531f0a3d14d7b",
@@ -352,28 +280,12 @@
     "description": "<p>You can use and improve a technique that's otherwise forbidden by Creating New Techniques (pp. 89-95). All such techniques are Hard. Each exemption requires its own perk.</p><p>This is a perk-level Unusual Background.</p>"
   },
   {
-    "_id": "3cbc51eb5fedc450",
-    "name": "Unusual Training",
-    "pages": "MA52",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>With sufficient training, certain cinematic skills and techniques might work in reality. You've studied one of these. Unusual Training is an Unusual Background that lets you buy a cinematic capability without Trained by a Master or Weapon Master. Since what's \"cinematic\" is often not the feat but the ability to perform it unrestricted, the perk might specify a set of \"believable\" circumstances that must be true to use the skill or technique. For instance, Unusual Training (Dual-Weapon Attack, Both attacks must target the same foe) permits a fighter to improve Dual-Weapon Attack for use on one opponent; he still has the full -4 if he attacks adjacent adversaries simultaneously, because he lacks Trained by a Master and Weapon Master. Tameshiwari - realistic breaking techniques - is Unusual Training (Breaking Blow, Only vs. well-braced objects out of combat).</p>"
-  },
-  {
     "_id": "86cd29b9a18134c6",
     "name": "Weapon Adaptation",
     "pages": "MA52",
     "status": "reviewed",
     "notes": "",
     "description": "<p>You've adapted the moves used with one group of melee weapons to another class of weapons. This lets you wield the weapons covered by one weapon skill using a different skill and its techniques, with all of the benefits and drawbacks of that skill, provided the replacement skill defaults to the usual one at no worse than -4 and uses the same number of hands. Each adaptation is a separate perk; e.g., Weapon Adaptation (Shortsword to Smallsword) lets you use the Smallsword skill to fight when equipped with a Shortsword weapon - complete with fencing parries, superior retreats, and encumbrance penalties. The GM may permit silly adaptations, such as Knife to Halberd, as cinematic perks.</p>"
-  },
-  {
-    "_id": "89a98a90852a3ea6",
-    "name": "Weapon Bond",
-    "pages": "MA53",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>You own a weapon that's uniquely suited to you. Its quality might be no better than normal, but when you use it, you're at +1 to effective skill. This isn't a mystical attunement but a physical matter of balance, fit to your hand, and the like. If the weapon is lost or destroyed, the bond doesn't transfer to a new weapon, but you can acquire a new Weapon Bond in play.</p><p>You can have a bond to a weapon of any quality. The price paid for the weapon reflects the quality but not your special bond with it.</p>"
   },
   {
     "_id": "56cad6cbebf228a1",

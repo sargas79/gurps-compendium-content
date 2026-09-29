@@ -9,8 +9,6 @@
  *   - Winter and arctic clothes must cover feet, hands, head and neck; each
  *     piece missing is -1 on the roll against the cold (p. 63, taking the
  *     Basic Set's -1 per missing item, Campaigns p. 345).
- *   - Frostbite (p. 63), at the GM's option: a point of injury to each exposed
- *     hit location for each FP lost to the cold.
  *   - A wicking undergarment (p. 64): +1 on rolls against FP loss in the heat.
  *   - Fur winter or arctic clothes may give DR 1 (p. 64, GM's option).
  *   - An outfit's weight by TL (p. 65): the table's multiple of the TL7
@@ -120,22 +118,6 @@ export function stillMissing(missing: readonly Piece[], wornApart: readonly Piec
 export function missingPiecesPenalty(missing: readonly Piece[]): number {
   const count = new Set(missing).size;
   return count ? MISSING_PIECE_PENALTY * count : 0;
-}
-
-/**
- * The hit locations the cold reaches, for frostbite (p. 63): everything a
- * winter outfit must cover, under light clothing; under winter or arctic
- * clothing, what its missing pieces leave bare; nothing inside a heated suit.
- */
-export function exposedLocations(clothing: ClothingClass, missing: readonly Piece[]): string[] {
-  if (clothing === "heatedSuit") return [];
-  const pieces = clothing === "light" ? PIECES : PIECES.filter((p) => missing.includes(p));
-  return [...new Set(pieces.flatMap((p) => PIECE_LOCATIONS[p]))];
-}
-
-/** Frostbite's injury to each exposed location: a point per FP lost to the cold (p. 63). */
-export function frostbiteInjury(fpLost: number): number {
-  return Math.max(0, Math.floor(fpLost));
 }
 
 /** The locations fur winter or arctic clothes cover, less what the missing pieces leave bare (p. 64). */

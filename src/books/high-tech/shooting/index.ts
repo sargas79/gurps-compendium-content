@@ -1,6 +1,6 @@
 /**
  * High-Tech's shooting options and gun techniques (pp. 84-85, 249-252),
- * registered with the system through the add-on API under five switches.
+ * registered with the system through the add-on API under four switches.
  * The rules themselves are in `rules.ts`.
  *
  *   - **Pistolero:** a pistol held in the two-handed stance, toggled from its
@@ -11,9 +11,8 @@
  *     the technique) adds +1 to the aim, up to the lower of the scope's bonus
  *     and the gun's Acc; a failure ends the aim (`actors.loseAim`), a
  *     critical failure gives the sniper away.
- *   - **Ranged Rapid Strike:** two attacks in one second from a gun of RoF
- *     2+, each at -6 (bought off by Quick-Shot) and half the RoF, on Attack or
- *     All-Out Attack.
+ *   - **Ranged Rapid Strike:** the system's rule (Basic Set Revised p. 577);
+ *     Quick-Shot buys its -6 off here, and the expanded Gunslinger halves it.
  *   - **Gun techniques:** Close-Quarters Battle on Move and Attack within
  *     Per yards; Targeted Attacks with guns, "TA (Pistol/Skull)", on the
  *     shared Targeted Attack engine with this book's table ("TA
@@ -40,7 +39,6 @@ import {
   INSTANT_ARSENAL_GRAB_PENALTY,
   PRECISION_PENALTY,
   RANGED_RAPID_STRIKE_PENALTY,
-  RANGED_RAPID_STRIKE_ROF_SHARE,
   aimedAtWeapon,
   aimedWhereTaAims,
   closeQuartersLine,
@@ -57,7 +55,6 @@ import {
   precisionCap,
   precisionOutcome,
   precisionRollsDue,
-  rangedRapidStrikeRefusal,
   readGunTargetedAttack,
   withinCloseQuarters,
   MOUNTED_SHOOTING_DEFAULT,
@@ -69,8 +66,6 @@ const L = (key: string) => game.i18n.localize(`GCC.HT.Shooting.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.HT.Shooting.${key}`, data);
 const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 
-const RAPID = "ht-ranged-rapid-strike";
-const RAPID_STATE = "ht-ranged-rapid-strike-state";
 const TA_KIND = "ht-targeted-attack";
 const PRECISION_KEY = "precisionAiming";
 const WEAPON_BOND_KEY = `${MODULE_ID}.weaponBond`;
@@ -83,13 +78,10 @@ const option = (key: string) => `${MODULE_ID}.${key}`;
 export interface ShootingSwitches {
   pistolero: () => boolean;
   precisionAiming: () => boolean;
-  rangedRapidStrike: () => boolean;
   gunTechniques: () => boolean;
   gunslinger: () => boolean;
   zenMarksmanship: () => boolean;
 }
-
-interface RapidState { remaining: number; penalty: number }
 
 const rangedModes = (item: any): any[] => item?.system?.rangedModes ?? [];
 const modeOf = (item: any, index = 0): any => rangedModes(item)[index] ?? rangedModes(item)[0] ?? {};
@@ -218,13 +210,6 @@ export async function precisionAim(api: GWorldApi, item: any, actor: any): Promi
   return result;
 }
 
-/** The RoF an attack option context may be fired at: the gun's, or what fast-firing, fanning or thumbing chose. */
-function rofFor(item: any, chosen: Record<string, unknown> | undefined): number {
-  const own = Number(modeOf(item).rateOfFire) || 1;
-  const faster = Math.max(picked(chosen?.[option("ht-fast-firing")]), picked(chosen?.[option("ht-fanning")]), chosen?.[option("ht-thumbing")] === true ? 2 : 0);
-  return Math.max(own, faster);
-}
-
 /** The Rapid Strike's penalty for a shooter: Quick-Shot's level, the Gunslinger's halved default, or -6 (pp. 85, 249, 252). */
 function rapidPenalty(api: GWorldApi, on: ShootingSwitches, actor: any, item: any): number {
   const skill = String(modeOf(item).skill ?? "");
@@ -237,7 +222,6 @@ const gunTa = (technique: any): GunTargetedAttack | null => readGunTargetedAttac
 
 export function readyShooting(api: GWorldApi, on: ShootingSwitches, fitted?: AccessorySwitches): void {
   accessories = fitted ?? null;
-  const state = <T>(actor: any, key: string) => api.combat.getCombatState(actor, MODULE_ID, key) as T | undefined;
 
   // ── Pistolero (p. 84) ──
 
@@ -294,32 +278,9 @@ export function readyShooting(api: GWorldApi, on: ShootingSwitches, fitted?: Acc
     },
   });
 
-  // ── Ranged Rapid Strike (p. 85) ──
-
-  api.combat.registerAttackOption({
-    module: MODULE_ID,
-    key: RAPID,
-    label: L("RapidStrike"),
-    attack: "ranged",
-    available: (context) => on.rangedRapidStrike() && isFirearm(api, context.item),
-    refuse: (context) => {
-      const reason = rangedRapidStrikeRefusal({ rateOfFire: rofFor(context.item, context.chosen), maneuver: String(context.maneuver ?? ""), spraying: false });
-      return reason ? L(`RapidRefusal.${reason}`) : null;
-    },
-    apply: (context) => {
-      const penalty = rapidPenalty(api, on, context.actor, context.item);
-      return {
-        modifiers: penalty ? [{ label: L("RapidStrikeLine"), value: penalty }] : [],
-        rateOfFireMultiplier: RANGED_RAPID_STRIKE_ROF_SHARE,
-        notes: [L("RapidStrikeNote")],
-      };
-    },
-  });
-
-  // The Rapid Strike's second attack counts towards the maneuver's.
-  Hooks.on(api.combat.hooks.attackSequence, (context: any) => {
-    if (on.rangedRapidStrike() && Number(context?.count) > 0 && state<RapidState>(context.actor, RAPID_STATE)) context.count = Number(context.count) + 1;
-  });
+  // ── Ranged Rapid Strike (Basic Set Revised p. 577) ──
+  // The system carries the rule (its trickyShooting switch, a Rapid Strike box in the ranged dialog, a
+  // -6 line keyed rapidStrike); the attack roll below eases the penalty by Quick-Shot (p. 252).
 
   // ── the attack roll ──
 
@@ -331,24 +292,14 @@ export function readyShooting(api: GWorldApi, on: ShootingSwitches, fitted?: Acc
     const mode = modeOf(item, index);
     const skill = String(context.dataset?.rollSkill || mode.skill || "");
     const lines: any[] = context.modifiers ?? [];
-    const options = context.options ?? {};
 
-    // The Rapid Strike: declared on the first attack, taken again on the second (p. 85).
-    if (on.rangedRapidStrike()) {
-      const declared = options[option(RAPID)] === true;
-      const running = state<RapidState>(actor, RAPID_STATE);
-      if (declared && context.spraying) {
-        context.refusal = L("RapidRefusal.spraying");
-        return;
-      }
-      // A finished one starts afresh: the turn's state is cleared at its end in combat, and never outside it.
-      if (declared && !(running && running.remaining > 0)) {
-        void api.combat.setCombatState(actor, MODULE_ID, RAPID_STATE, { remaining: 1, penalty: rapidPenalty(api, on, actor, item) } satisfies RapidState, "turn");
-      } else if (declared && running) {
-        void api.combat.setCombatState(actor, MODULE_ID, RAPID_STATE, { ...running, remaining: running.remaining - 1 }, "turn");
-      } else if (running && running.remaining > 0) {
-        context.refusal = L("RapidSecond");
-        return;
+    // The system's Ranged Rapid Strike line, at what Quick-Shot or the expanded Gunslinger makes of it (pp. 249, 252).
+    const rapid = lines.find((l) => l?.key === "rapidStrike");
+    if (rapid) {
+      const penalty = rapidPenalty(api, on, actor, item);
+      if (penalty > (Number(rapid.value) || 0)) {
+        rapid.value = penalty;
+        rapid.label = L("RapidStrikeLine");
       }
     }
 

@@ -91,17 +91,6 @@ export function reachOf(reach: string): { longest: number; close: boolean } {
   return { longest: Math.max(0, ...parts.map((p) => (p === "C" ? 0 : Number(p))).filter(Number.isFinite)), close: parts.includes("C") };
 }
 
-/**
- * A long weapon in close combat (p. 117): -4 to skill per yard of its longest
- * reach, the Parry from that skill (-2 a yard), and -1 swing damage a yard.
- * Nothing for a weapon with "C" in its reach.
- */
-export function closeCombatPenalty(reach: string): { skill: number; parry: number; swing: number } {
-  const { longest, close } = reachOf(reach);
-  if (close || longest < 1) return { skill: 0, parry: 0, swing: 0 };
-  return { skill: -4 * longest, parry: -2 * longest, swing: -longest };
-}
-
 /** Whether a long weapon only does quarterstaff damage with its haft in close combat (p. 117). */
 export function haftOnly(skill: string, reach: string): boolean {
   const { longest } = reachOf(reach);

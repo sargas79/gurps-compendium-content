@@ -16,7 +16,7 @@ const gear = (patch: Record<string, unknown> = {}) => ({ extensions: { [M]: patc
 
 describe("prices under the book's gear rules (pp. 54, 59-61)", () => {
   it("makes a cutting-edge, rugged flashlight three times its list price at 0.8 of its weight", () => {
-    const flashlight = { type: "equipment", system: { cost: 10, weight: 1, ...gear({ gadget: { cuttingEdge: true, rugged: true } }) } };
+    const flashlight = { type: "equipment", system: { cost: 10, weight: 1, cuttingEdge: true, rugged: true } };
     expect(gearPrice(api(), flashlight)).toEqual({ cost: 30, weight: 0.8, costFactor: 2 });
     expect(gearPrice(api(), { type: "equipment", system: { cost: 10, weight: 1 } })).toBeNull();
   });
@@ -45,12 +45,12 @@ describe("attack rows under the book's gear rules", () => {
     rangeAt: () => ({ halfDamageRange: 0, maxRange: 0 }),
   };
 
-  it("takes the Basic Set's very fine bonus back out and puts the book's in, with balanced's +1 skill", () => {
-    const sword = { type: "equipment", name: "Sword", system: { quality: "veryFine", weaponClass: "sword", meleeModes: [{ skill: "Broadsword", damageType: "cut" }], ...gear({ weapon: { balanced: true } }) } };
+  it("takes the Basic Set's very fine bonus back out and puts the book's in, and leaves balanced's +1 skill to the system", () => {
+    const sword = { type: "equipment", name: "Sword", system: { quality: "veryFine", balanced: true, weaponClass: "sword", meleeModes: [{ skill: "Broadsword", damageType: "cut" }] } };
     const row = entry("melee", { skill: "Broadsword", damageType: "cut" }, { skillLevel: 12, damage: "1d+3" }, { damage: "1d+1", damageType: "cut" });
     adjustWeaponRows(api(true), { item: sword, actor: { items: [] }, rows: [row], ...helpers }, (key) => ({ label: key, hint: "" }), "(follow-up)");
-    // Basic Set very fine was already +2; the book's is +2 too, so only the skill moves.
-    expect(row.row).toMatchObject({ skillLevel: 13, damage: "1d+3" });
+    // Basic Set very fine was already +2; the book's is +2 too, and the system adds Balanced's skill itself.
+    expect(row.row).toMatchObject({ skillLevel: 12, damage: "1d+3" });
   });
 
   it("gives a thermate load its lost damage, its burning follow-up, and a match-grade powder's Acc", () => {

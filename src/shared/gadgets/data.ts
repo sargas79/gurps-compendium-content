@@ -4,7 +4,13 @@
  *
  * The options are fields that reprice the item, never items of their own,
  * and the book's list figures stay the system's: what is kept here is what
- * the gadget was built with.
+ * the gadget was built with. Rugged (on equipment) and a custom-built
+ * Disguise are the system's calculated fields since the Basic Set Revised
+ * (p. 342; API 1.187.0), which read them from there: `system.rugged` and
+ * `system.disguised`, the same +1 CF (x2 the price) and, for Rugged, the same
+ * x1.2 weight, +2 HT and DR x2. The copies this module kept wait for the
+ * migration (`../system-fields.ts`); a mass-produced Disguise, and Rugged on
+ * clothing, stay this module's.
  */
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../extensions.js";
@@ -51,11 +57,11 @@ export function registerGadgetData(): void {
   const f = foundry.data.fields as any;
   addExtensionFields("Item", ITEM_TYPES, {
     [FIELD]: new f.SchemaField({
-      /** Disguised as something else of similar shape. */
+      /** Disguised as something else of similar shape. A custom-built one is the system's `disguised` field. */
       disguise: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...DISGUISES] }),
       /** Styling's multiplier on the price, 2 to 10; zero for a gadget with none. */
       styling: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 10 }),
-      /** Built to withstand abuse. */
+      /** Built to withstand abuse; on equipment the system's `rugged` field. */
       rugged: new f.BooleanField({ initial: false }),
       /** Built down to a price or up to a weight. */
       grade: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...GRADES] }),
@@ -72,14 +78,15 @@ export function registerGadgetData(): void {
 /** The gadget data on an item, with nothing missing. */
 export function gadgetItem(item: any): GadgetItem {
   const data = item?.system?.extensions?.[MODULE_ID]?.[FIELD] ?? {};
-  const disguise = DISGUISES.includes(data.disguise) ? (data.disguise as Disguise) : NO_OPTIONS.disguise;
+  const own = DISGUISES.includes(data.disguise) ? (data.disguise as Disguise) : NO_OPTIONS.disguise;
+  const disguise: Disguise = item?.system?.disguised === true ? "custom" : own;
   const grade = GRADES.includes(data.grade) ? (data.grade as Grade) : NO_OPTIONS.grade;
   const build = BUILDS.includes(data.build) ? (data.build as Build) : "plastic";
   return {
     options: {
       disguise,
       styling: Math.max(0, Math.min(10, Math.floor(Number(data.styling) || 0))),
-      rugged: Boolean(data.rugged),
+      rugged: Boolean(data.rugged) || (item?.type === "equipment" && item?.system?.rugged === true),
       grade,
     },
     cellWeight: Math.max(0, Number(data.cellWeight) || 0),
@@ -96,7 +103,23 @@ export function isBuilt(data: GadgetItem): boolean {
   return Boolean(data.options.disguise || data.options.styling >= 2 || data.options.rugged || data.options.grade || data.adjustForSm);
 }
 
-/** Writes part of the gadget data on an item. */
+/**
+ * Writes part of the gadget data on an item. Rugged on equipment and a custom
+ * Disguise go to the system's fields, and the module's copies are cleared.
+ */
 export function storeGadget(item: any, patch: Record<string, unknown>): Promise<unknown> {
-  return item.update(Object.fromEntries(Object.entries(patch).map(([key, value]) => [`system.extensions.${MODULE_ID}.${FIELD}.${key}`, value])));
+  const own: Record<string, unknown> = { ...patch };
+  const system: Record<string, unknown> = {};
+  if ("rugged" in own && item?.type === "equipment") {
+    system["system.rugged"] = Boolean(own.rugged);
+    own.rugged = false;
+  }
+  if ("disguise" in own) {
+    system["system.disguised"] = own.disguise === "custom";
+    if (own.disguise === "custom") own.disguise = "";
+  }
+  return item.update({
+    ...system,
+    ...Object.fromEntries(Object.entries(own).map(([key, value]) => [`system.extensions.${MODULE_ID}.${FIELD}.${key}`, value])),
+  });
 }

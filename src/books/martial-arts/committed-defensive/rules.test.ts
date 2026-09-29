@@ -4,18 +4,15 @@ import {
   committedDamageBonus,
   committedHitBonus,
   committedRefusals,
-  committedStepPenalty,
   defensiveDamagePenalty,
-  defensiveDefenseBonus,
   isStBased,
   stanceOfResponse,
 } from "./rules.js";
 
-/** Committed Attack and Defensive Attack (GURPS Martial Arts pp. 99-100). */
+/** A Wait's response of Committed Attack or Defensive Attack (GURPS Martial Arts p. 108). */
 describe("Committed Attack", () => {
-  it("gives Determined +2 to hit, and a second step takes it back", () => {
-    expect(committedHitBonus("determined") + committedStepPenalty(2)).toBe(0);
-    expect(committedHitBonus("determined") + committedStepPenalty(1)).toBe(2);
+  it("gives Determined +2 to hit", () => {
+    expect(committedHitBonus("determined")).toBe(2);
     expect(committedHitBonus("strong")).toBe(0);
     expect(committedHitBonus(null)).toBe(0);
   });
@@ -40,13 +37,6 @@ describe("Defensive Attack", () => {
     expect(defensiveDamagePenalty(1)).toBe(-2);
     expect(defensiveDamagePenalty(2)).toBe(-2);
     expect(defensiveDamagePenalty(3)).toBe(-3);
-  });
-
-  it("gives +1 to the one defense it was made for", () => {
-    expect(defensiveDefenseBonus("parry", "parry")).toBe(1);
-    expect(defensiveDefenseBonus("parry", "block")).toBe(0);
-    expect(defensiveDefenseBonus("block", "block")).toBe(1);
-    expect(defensiveDefenseBonus("sameWeapon", "parry")).toBe(0);
   });
 });
 

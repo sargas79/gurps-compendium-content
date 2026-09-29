@@ -1,12 +1,14 @@
 /**
- * Committed Attack and Defensive Attack at the table (GURPS Martial Arts
- * pp. 99-100, 108).
+ * A Wait's response of Committed Attack or Defensive Attack at the table
+ * (GURPS Martial Arts p. 108).
  *
- * Two maneuvers, each with its choice as a maneuver option. What they do to
- * the attack comes through the options and the damage hook; what they take
- * away from the defenses after a Committed Attack comes through the defense
- * hooks, from a note of what the fighter attacked with. A Wait may name either
- * as its response.
+ * The two maneuvers themselves are the Basic Set's (Revised, pp. 575-576) and
+ * the system carries them. What Martial Arts adds is that a Wait may name
+ * either as its response: once triggered, the fighter's attack and defenses
+ * take what the maneuver would give, through the options and the damage hook,
+ * and through the defense hooks from a note of what the fighter attacked with.
+ * The Wait's response is offered while the system's rule for either maneuver
+ * is on.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
@@ -18,9 +20,7 @@ import {
   committedDamageBonus,
   committedHitBonus,
   committedRefusals,
-  committedStepPenalty,
   defensiveDamagePenalty,
-  defensiveDefenseBonus,
   isStBased,
   stanceOfResponse,
   type AttackedWith,
@@ -31,11 +31,6 @@ import {
 
 const L = (key: string) => game.i18n.localize(`GCC.MA.${key}`);
 
-export const COMMITTED = "ma-committed-attack";
-export const DEFENSIVE = "ma-defensive-attack";
-const MODE_OPTION = "ma-committed-mode";
-const STEPS_OPTION = "ma-committed-steps";
-const BENEFIT_OPTION = "ma-defensive-benefit";
 const WAIT_OPTION = "ma-wait-response";
 /** What the fighter attacked with, until their next turn. */
 const ATTACKED_WITH = "ma-attacked-with";
@@ -43,28 +38,40 @@ const ATTACKED_WITH = "ma-attacked-with";
 const RESPONDED = "ma-wait-responded";
 
 /** A maneuver option's stored value on this actor, read from where the system keeps the choices. */
-function optionValue(actor: any, key: string): unknown {
-  return actor?.getFlag?.("gworld", "maneuverOptions")?.[MODULE_ID]?.[key];
+function optionValue(actor: any, module: string, key: string): unknown {
+  return actor?.getFlag?.("gworld", "maneuverOptions")?.[module]?.[key];
 }
 
 type Stance = { kind: "committed"; mode: CommittedMode | null } | { kind: "defensive"; benefit: DefensiveBenefit | null } | null;
 
-/** Which of the two maneuvers this fighter is on: chosen outright, or a Wait's response once triggered. */
+/**
+ * Which of the two maneuvers this fighter is on: a Wait's response once
+ * triggered, or the system's own maneuver while its rule is on. Only the Wait's
+ * is this module's to carry out; the system's does its own.
+ */
 export function stanceOf(api: GWorldApi, actor: any): Stance {
+  return waitStance(api, actor) ?? systemStance(api, actor);
+}
+
+/** The system's Committed Attack or Defensive Attack, its choices read where the system keeps them. */
+function systemStance(api: GWorldApi, actor: any): Stance {
   const maneuver = String(actor?.system?.maneuver ?? "");
-  if (maneuver === `${MODULE_ID}.${COMMITTED}`) {
-    const mode = optionValue(actor, MODE_OPTION);
+  if (maneuver === "committedAttack" && api.registry.isRuleOn("committedAttack")) {
+    const mode = optionValue(actor, "gworld", "committedKind");
     return { kind: "committed", mode: COMMITTED_MODES.includes(mode as CommittedMode) ? (mode as CommittedMode) : null };
   }
-  if (maneuver === `${MODULE_ID}.${DEFENSIVE}`) {
-    const benefit = optionValue(actor, BENEFIT_OPTION);
+  if (maneuver === "defensiveAttack" && api.registry.isRuleOn("defensiveAttack")) {
+    const benefit = optionValue(actor, "gworld", "defensiveBenefit");
     return { kind: "defensive", benefit: DEFENSIVE_BENEFITS.includes(benefit as DefensiveBenefit) ? (benefit as DefensiveBenefit) : null };
   }
-  if (maneuver === "wait") {
-    const responded = api.combat.getCombatState(actor, MODULE_ID, RESPONDED);
-    return WAIT_RESPONSES.includes(responded as WaitResponse) ? stanceOfResponse(responded as WaitResponse) : null;
-  }
   return null;
+}
+
+/** A Wait's response, once triggered. */
+function waitStance(api: GWorldApi, actor: any): Stance {
+  if (String(actor?.system?.maneuver ?? "") !== "wait") return null;
+  const responded = api.combat.getCombatState(actor, MODULE_ID, RESPONDED);
+  return WAIT_RESPONSES.includes(responded as WaitResponse) ? stanceOfResponse(responded as WaitResponse) : null;
 }
 
 function attackedWith(api: GWorldApi, actor: any): AttackedWith | null {
@@ -78,54 +85,11 @@ const select = (values: readonly string[], prefix: string) => ({
   choices: values.map((value) => ({ value, label: L(`${prefix}.${value}`) })),
 });
 
-/** Registers the maneuvers, their options and the hooks that carry them out. */
-export function readyCommittedDefensive(api: GWorldApi, on: () => boolean, allowed: (actor: any) => boolean = () => true): void {
+/** Registers the Wait's response and the hooks that carry it out. */
+export function readyCommittedDefensive(api: GWorldApi, allowed: (actor: any) => boolean = () => true): void {
+  // The response is offered while the system's rule for either maneuver is on.
+  const on = () => api.registry.isRuleOn("committedAttack") || api.registry.isRuleOn("defensiveAttack");
   const offered = (actor?: any) => on() && (actor === undefined || allowed(actor));
-
-  api.combat.registerManeuver({ module: MODULE_ID, key: COMMITTED, label: L("Committed.Title"), movement: "step", defense: "any", attacks: true, available: offered });
-  api.combat.registerManeuver({ module: MODULE_ID, key: DEFENSIVE, label: L("Defensive.Title"), movement: "step", defense: "any", attacks: true, available: offered });
-
-  // Determined or Strong, said before the attack (p. 99).
-  api.combat.registerManeuverOption({
-    module: MODULE_ID,
-    key: MODE_OPTION,
-    maneuver: `${MODULE_ID}.${COMMITTED}`,
-    label: L("Committed.Mode"),
-    input: select(COMMITTED_MODES, "Committed.Modes"),
-    available: offered,
-    attack: (context, value) => {
-      const bonus = committedHitBonus(COMMITTED_MODES.includes(value as CommittedMode) ? (value as CommittedMode) : null);
-      return bonus ? { modifiers: [{ label: L("Committed.Modes.determined"), value: bonus }] } : null;
-    },
-  });
-
-  // A second step is -2 to hit (p. 99).
-  api.combat.registerManeuverOption({
-    module: MODULE_ID,
-    key: STEPS_OPTION,
-    maneuver: `${MODULE_ID}.${COMMITTED}`,
-    label: L("Committed.Steps"),
-    input: { type: "number", min: 0, max: 2 },
-    available: offered,
-    attack: (_context, value) => {
-      const penalty = committedStepPenalty(Number(value));
-      return penalty ? { modifiers: [{ label: L("Committed.SecondStep"), value: penalty }] } : null;
-    },
-  });
-
-  // What the Defensive Attack buys, picked before rolling (p. 100).
-  api.combat.registerManeuverOption({
-    module: MODULE_ID,
-    key: BENEFIT_OPTION,
-    maneuver: `${MODULE_ID}.${DEFENSIVE}`,
-    label: L("Defensive.Benefit"),
-    input: select(DEFENSIVE_BENEFITS, "Defensive.Benefits"),
-    available: offered,
-    defense: ({ defense }, value) => {
-      const bonus = defensiveDefenseBonus(DEFENSIVE_BENEFITS.includes(value as DefensiveBenefit) ? (value as DefensiveBenefit) : null, defense);
-      return bonus ? [{ label: L("Defensive.Title"), value: bonus }] : null;
-    },
-  });
 
   // A Wait names either as its response, a Committed Attack with its kind (p. 108).
   api.combat.registerManeuverOption({
@@ -154,7 +118,7 @@ export function readyCommittedDefensive(api: GWorldApi, on: () => boolean, allow
   // Note what the fighter attacked with, for the defenses that follow.
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
     if (!on() || !context?.actor?.isOwner || context.ranged) return;
-    if (!stanceOf(api, context.actor)) return;
+    if (!waitStance(api, context.actor)) return;
     const label = `${String(context.dataset?.rollLabel ?? "")} ${String(context.dataset?.rollSkill ?? "")}`;
     const record: AttackedWith = {
       itemId: String(context.item?.id ?? ""),
@@ -167,7 +131,7 @@ export function readyCommittedDefensive(api: GWorldApi, on: () => boolean, allow
   // Strong's +1 and a Defensive Attack's -2, or -1 per die (pp. 99-100).
   Hooks.on(api.combat.hooks.damageModifiers, (context: any) => {
     if (!on() || context?.mode?.ranged) return;
-    const stance = stanceOf(api, context?.actor);
+    const stance = waitStance(api, context?.actor);
     if (!stance) return;
     if (stance.kind === "committed") {
       const mode = context.item?.system?.meleeModes?.[Number(context.mode?.index) || 0];
@@ -181,14 +145,14 @@ export function readyCommittedDefensive(api: GWorldApi, on: () => boolean, allow
 
   // Every defense after a Committed Attack is at -2 (p. 99).
   Hooks.on(api.combat.hooks.defenseModifiers, (context: any) => {
-    if (!on() || stanceOf(api, context?.defender)?.kind !== "committed") return;
+    if (!on() || waitStance(api, context?.defender)?.kind !== "committed") return;
     context.modifiers.push({ label: L("Committed.Title"), value: COMMITTED_DEFENSE_PENALTY });
   });
 
   // No retreat and no Feverish Defense after a Committed Attack, no dodge after
   // a kick, and no block with a shield that attacked (pp. 99, 131).
   Hooks.on(api.combat.hooks.defenseChoices, (context: any) => {
-    if (!on() || stanceOf(api, context?.defender)?.kind !== "committed") return;
+    if (!on() || waitStance(api, context?.defender)?.kind !== "committed") return;
     const refused = committedRefusals(attackedWith(api, context.defender));
     for (const choice of context.choices ?? []) {
       if (choice.key === "dodge" && refused.dodge) Object.assign(choice, { available: false, refusal: L("Committed.NoDodge") });
@@ -202,7 +166,7 @@ export function readyCommittedDefensive(api: GWorldApi, on: () => boolean, allow
   // a Defensive Attack may still parry, where that was the benefit (pp. 99-100, 125).
   Hooks.on(api.combat.hooks.parryWeapons, (context: any) => {
     if (!on()) return;
-    const stance = stanceOf(api, context?.actor);
+    const stance = waitStance(api, context?.actor);
     const attacked = attackedWith(api, context?.actor);
     if (!stance || !attacked) return;
     for (const candidate of context.candidates ?? []) {

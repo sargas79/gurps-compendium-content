@@ -6,7 +6,6 @@ import {
   canTurnUpTops,
   clothingHoldout,
   clothingHoldoutBonus,
-  combinedSixths,
   concealArmorModifier,
   coversArc,
   frontDrAt,
@@ -16,24 +15,12 @@ import {
   pieceDrAt,
   plateLoss,
   sideMeets,
-  sixths,
-  strikeAroundPenalty,
 } from "./rules.js";
 
-describe("partial coverage (High-Tech p. 69)", () => {
-  it("protects on 1d at or under n, the n of several pieces added up", () => {
+describe("beside the system's partial coverage (High-Tech pp. 66-69)", () => {
+  it("stands on 1d at or under n", () => {
     expect(partialStands(2, 2)).toBe(true);
     expect(partialStands(2, 3)).toBe(false);
-    expect(combinedSixths([2, 3])).toBe(5);
-    expect(combinedSixths([5, 3])).toBe(6);
-    expect(sixths(0)).toBe(6);
-    expect(sixths(3)).toBe(3);
-  });
-
-  it("strikes around at -(n-1), never better than -1", () => {
-    expect([1, 2, 3, 4, 5].map((n) => strikeAroundPenalty(n))).toEqual([-1, -1, -2, -3, -4]);
-    expect(strikeAroundPenalty(6)).toBeNull();
-    expect(strikeAroundPenalty(0)).toBeNull();
   });
 
   it("gives a piece's better DR from the front, an unknown arc counting as the front", () => {

@@ -143,7 +143,9 @@ export interface WeaponImprovementEffects {
  * - very fine "-2 to odds of breakage (not cumulative with titanium) and +2
  *   to damage";
  * - silver "+2 to odds of breakage"; titanium "-2 to odds of breakage";
- * - weighted "+1 damage"; balanced "+1 to skill", or "+1 to Accuracy" on a bow;
+ * - weighted "+1 damage"; balanced ("+1 to skill", or "+1 to Accuracy" on a bow)
+ *   is the system's calculated field, whose bonus the system puts on the rows
+ *   itself (Basic Set Revised p. 342), so it adds none here;
  * - a fine bow's "1/2D and Max by 20%"; a compound bow's ST+2;
  * - a fine gun "with base Acc 2 or better another +1 Acc", a very fine one
  *   "with base Acc 4 or better another +2 Acc".
@@ -161,12 +163,10 @@ export function weaponImprovementEffects(
     return out;
   }
   if (isBow(weapon)) {
-    if (i.balanced) out.accuracy = 1;
     if (quality === "fine") out.rangeMultiplier = 1.2;
     if (i.compound) out.st = 2;
     return out;
   }
-  if (i.balanced && (!mode.ranged || mode.thrown)) out.skill = 1;
   if (quality === "fine" && (mode.damageType === "cut" || mode.damageType === "imp")) out.damage += 1;
   if (quality === "veryFine") out.damage += 2;
   if (i.weighted) out.damage += 1;

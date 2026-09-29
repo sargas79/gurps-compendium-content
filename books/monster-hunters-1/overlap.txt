@@ -1,0 +1,9 @@
+ADVANTAGES	Born War-Leader	B325, MH1:25
+ADVANTAGES	Craftiness	B326, MH1:25
+PERKS	Equipment Bond	B328, MH1:25
+PERKS	Weapon Bond	B329, MH1:25
+MODIFIERS	Bioenhancement	B331, MH1:41
+MODIFIERS	Psionic: ESP	B332, MH1:45
+MODIFIERS	Psionic: Psychokinesis	B332, MH1:46
+MODIFIERS	Psionic: Telepathy	B332, MH1:47
+MODIFIERS	Psionic: Teleportation	B332, MH1:48
