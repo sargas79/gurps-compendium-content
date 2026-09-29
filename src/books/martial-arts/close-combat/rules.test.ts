@@ -2,11 +2,11 @@ import { describe, expect, it } from "vitest";
 
 import {
   allOutGrappling,
-  closeCombatPenalty,
   followsGrapple,
   grappledDefense,
   haftOnly,
   oneHandedStrangle,
+  reachOf,
   shiftGripBonus,
   sitOnHimModifiers,
   sprawlResult,
@@ -53,9 +53,9 @@ describe("defense while grappling, and long weapons", () => {
     expect([grappledDefense("parry"), grappledDefense("block"), grappledDefense("dodge")]).toEqual([-2, -2, -1]);
   });
 
-  it("puts a spear (reach 1, 2*) at -8 to attack and -4 to parry, and spares a weapon with C", () => {
-    expect(closeCombatPenalty("1,2*")).toEqual({ skill: -8, parry: -4, swing: -2 });
-    expect(closeCombatPenalty("C,1")).toEqual({ skill: 0, parry: 0, swing: 0 });
+  it("reads a weapon's reach, and holds a long polearm to its haft", () => {
+    expect(reachOf("1,2*")).toEqual({ longest: 2, close: false });
+    expect(reachOf("C,1")).toEqual({ longest: 1, close: true });
     expect(haftOnly("Polearm", "2,3*")).toBe(true);
     expect(haftOnly("Broadsword", "1")).toBe(false);
   });

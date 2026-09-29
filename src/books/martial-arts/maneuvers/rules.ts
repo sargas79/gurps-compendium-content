@@ -1,6 +1,5 @@
 /**
- * All-Out Attack (Long), slams as All-Out Attacks, and Move and Attack with
- * any melee attack (GURPS Martial Arts pp. 97-98, 107): the pure rules.
+ * All-Out Attack (Long) and Move and Attack with any melee attack (GURPS Martial Arts pp. 97-98, 107): the pure rules.
  */
 
 /** A swing made with All-Out Attack (Long): -2 damage, or -1 per die if that is worse. Thrusts are unchanged. */
@@ -12,11 +11,6 @@ export function longDamagePenalty(damageBase: string | null | undefined, dice: n
 export function longCrouchPosture(outcome: { success: boolean; criticalFailure: boolean }): "crouching" | "kneeling" | "lying" {
   if (outcome.success) return "crouching";
   return outcome.criticalFailure ? "lying" : "kneeling";
-}
-
-/** Which All-Out Attack options a slam at full Move may use: Determined, Feint or Strong, not Long (or Double, which slams at half Move). */
-export function slamMayUseFullMove(option: string): boolean {
-  return option === "determined" || option === "feint" || option === "strong";
 }
 
 /** A melee attack's body part, as Move and Attack's defense limits read it. */

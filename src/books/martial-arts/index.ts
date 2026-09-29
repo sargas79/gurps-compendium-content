@@ -1,16 +1,21 @@
 /**
  * GURPS Martial Arts: the book's rules, registered with the GWorld system
  * through its add-on API. The book calls every one of its rules optional
- * (p. 96), so its group's switches all start off. So far this registers
- * Committed Attack and Defensive Attack (pp. 99-100), the wider All-Out
- * Attack (pp. 97-98), Move and Attack with any melee attack (p. 107), and
+ * (p. 96), so its group's switches all start off. The Basic Set (Revised)
+ * now prints some of what the book adds, and the system carries that as Basic
+ * Set rules: finer hit locations, Giant Step, Great Lunge, Heroic Charge and
+ * Rapid Recovery, Committed and Defensive Attack, slams in All-Out Attack,
+ * evasive movement against firearms, Prediction Shot and Ranged Feint, the
+ * long-weapon penalty in close combat and a Heroic Archer's quick-shooting.
+ * So far this registers a Wait's response of Committed or Defensive Attack
+ * (p. 108), the wider All-Out Attack (pp. 97-98), Move and Attack with any melee attack (p. 107), and
  * acrobatics: Acrobatic Stand, movement stunts, Acrobatic and Flying Attacks
  * (pp. 98, 105-107), and the posture tables with drops during an attack
  * (pp. 98-99), and feints: Beats, Ruses, defensive feints and resisting them
  * (pp. 49, 100-101), readying weapons (pp. 101-104), and the melee attack
  * options: grips, Pummeling, Tip Slash and Telegraphic Attack (pp. 109-113),
  * styles and training (pp. 49, 141-148, 232-233), and building weapons
- * (pp. 214, 216-218, 221), new hit locations (p. 137), multiple attacks
+ * (pp. 214, 216-218, 221), multiple attacks
  * (pp. 126-128), active defense options (pp. 121-125), Targeted Attacks
  * and Combinations (pp. 64, 68, 80), extra effort in combat (p. 131), and
  * ranged attack options (pp. 97, 119-121), and unfamiliar, one-handed,
@@ -30,6 +35,7 @@
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { readyCommittedDefensive } from "./committed-defensive/index.js";
+import { migrateManeuvers } from "./committed-defensive/migration.js";
 import { readyAllOutAttack, readyMoveAndAttack } from "./maneuvers/index.js";
 import { readyAcrobatics } from "./acrobatics/index.js";
 import { initPostureAttacks, readyPostureAttacks } from "./posture-attacks.js";
@@ -38,7 +44,6 @@ import { initReadying, readyReadying } from "./readying/index.js";
 import { readyMeleeOptions } from "./grips/index.js";
 import { initStyles, readyStyles } from "./styles/index.js";
 import { initWeapons, readyWeapons } from "./weapons/index.js";
-import { readyHitLocations } from "./hit-locations/index.js";
 import { readyMultipleAttacks } from "./multiple-attacks/index.js";
 import { readyDefenseOptions } from "./defense-options/index.js";
 import { readyTechniques } from "./techniques/index.js";
@@ -61,7 +66,6 @@ const REFERENCE = "Martial Arts";
 
 /** The book's switches. */
 const RULES = [
-  { key: "committedDefensiveAttack", pages: "pp. 99-100", implemented: true },
   { key: "allOutAttackOptions", pages: "pp. 97-98", implemented: true },
   { key: "moveAndAttack", pages: "p. 107", implemented: true },
   { key: "acrobatics", pages: "pp. 98, 105-107", implemented: true },
@@ -72,7 +76,6 @@ const RULES = [
   { key: "styles", pages: "pp. 49, 141-148", implemented: true },
   { key: "training", pages: "pp. 147, 232-233", implemented: true },
   { key: "weaponBuilding", pages: "pp. 214, 216-218, 221", implemented: true },
-  { key: "finerHitLocations", pages: "p. 137", implemented: true },
   { key: "multipleAttacks", pages: "pp. 126-128", implemented: true },
   { key: "cinematicRapidStrike", pages: "p. 127", implemented: true },
   { key: "defenseOptions", pages: "pp. 121-125", implemented: true },
@@ -133,7 +136,11 @@ function registerRules(registry: RuleRegistry, group: string): void {
 }
 
 function ready(api: GWorldApi): void {
-  readyCommittedDefensive(api, () => api.registry.isRuleOn(ruleKey("committedDefensiveAttack")), allowsAdvancedOptions(() => api.registry.isRuleOn(ruleKey("untrainedFighters"))));
+  // Fighters left on the maneuvers this module used to register move to the system's.
+  void migrateManeuvers().then((moved) => {
+    if (moved) console.info(`${MODULE_ID} | moved ${moved} fighter(s) to the system's Committed and Defensive Attack`);
+  });
+  readyCommittedDefensive(api, allowsAdvancedOptions(() => api.registry.isRuleOn(ruleKey("untrainedFighters"))));
   readyAllOutAttack(api, () => api.registry.isRuleOn(ruleKey("allOutAttackOptions")));
   readyMoveAndAttack(api, () => api.registry.isRuleOn(ruleKey("moveAndAttack")));
   const chambara = chambaraFighter(() => api.registry.isRuleOn(ruleKey("chambara")));
@@ -144,7 +151,6 @@ function ready(api: GWorldApi): void {
   readyMeleeOptions(api, () => api.registry.isRuleOn(ruleKey("meleeOptions")));
   readyStyles(api, () => api.registry.isRuleOn(ruleKey("styles")), () => api.registry.isRuleOn(ruleKey("training")));
   readyWeapons(api, () => api.registry.isRuleOn(ruleKey("weaponBuilding")));
-  readyHitLocations(api, () => api.registry.isRuleOn(ruleKey("finerHitLocations")));
   readyMultipleAttacks(api, () => api.registry.isRuleOn(ruleKey("multipleAttacks")), (actor) => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")) || chambara(actor), () => api.registry.isRuleOn(ruleKey("rangedOptions")), (actor) => ({ ok: allowsAdvancedOptions(() => api.registry.isRuleOn(ruleKey("untrainedFighters")))(actor), reason: game.i18n.localize("GCC.MA.Untrained.Limited") }));
   readyDefenseOptions(api, () => api.registry.isRuleOn(ruleKey("defenseOptions")), () => api.registry.isRuleOn(ruleKey("limitedDefenses")), () => api.registry.isRuleOn(ruleKey("harshRealism")), chambara);
   readyTechniques(api, () => api.registry.isRuleOn(ruleKey("targetedAttacks")));
