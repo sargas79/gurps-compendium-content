@@ -1,7 +1,6 @@
 /**
- * High-Tech's armour as the system meets it: the partial pieces, the toe box,
- * the tops and the front figures through `gworld.armorDr`, striking around
- * through `gworld.attackModifiers`, the plates through `gworld.afterDamage`,
+ * High-Tech's armour as the system meets it: the toe box, the tops and the
+ * front figures through `gworld.armorDr` (the system rolls partial coverage), the plates through `gworld.afterDamage`,
  * the clothes as a Holdout roll's clothing line through
  * `gworld.successRollModifiers` (API 1.152.0), the concealing contest through
  * `roll.quickContest`, and the materials as a price modifier and on a
@@ -12,7 +11,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { setRuleReader } from "../../../shared/book-tables.js";
 import { MODULE_ID } from "../../../shared/module.js";
-import { STRIKE_AROUND_OPTION, concealFromSearch, readyHighTechArmor, sixthsAt } from "./index.js";
+import { concealFromSearch, readyHighTechArmor } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -121,84 +120,31 @@ afterEach(() => {
 describe("with every switch off", () => {
   it("changes nothing", () => {
     ready();
-    const guard = piece("Shin Guards", { dr: 4, locations: ["leg"] }, { coverage: 2, material: "steel" });
+    const guard = piece("Shin Guards", { dr: 4, locations: ["leg"] }, { material: "steel" });
     const soldier = person("Soldier", [guard]);
     const lines = [line(guard)];
     fire(HOOKS.armorDr, { actor: soldier, hitLocation: "leg", damageType: "cr", lines });
     expect(lines).toEqual([line(guard)]);
-    const pads = piece("Shoulder Pads", { dr: 1, locations: ["torso"] }, { coverage: 1, slamPads: true });
+    const pads = piece("Shoulder Pads", { dr: 1, locations: ["torso"] }, { slamPads: true });
     expect(fire(HOOKS.damageModifiers, { actor: person("Player", [pads]), source: "slam", modifiers: [] }).modifiers).toEqual([]);
     expect(prices[0].apply(piece("Plate", {}, { material: "titanium" }), { cost: 100, weight: 30 })).toBeNull();
     const roll = fire(HOOKS.successRollModifiers, { actor: person("Spy", [piece("Long Coat", { equipped: true }, {}, "equipment")]), skill: "Holdout", tags: ["holdout"], modifiers: [] });
     expect(roll.modifiers).toEqual([]);
     expect(actions.every((a) => !a.visible(guard))).toBe(true);
-    expect(options[0].available()).toBe(false);
   });
 });
 
-describe("partial coverage (High-Tech p. 69)", () => {
+describe("beside the system's partial coverage (High-Tech pp. 66-69)", () => {
   beforeEach(() => { on = { partialCoverage: true }; ready(); });
 
-  it("rolls 1d against the sixths the partial pieces there add up to", () => {
-    const guard = piece("Shin Guards", { dr: 4, locations: ["leg"] }, { coverage: 2 });
-    const legs = piece("Aircrew Leg Armor", { dr: 15, locations: ["leg"] }, { coverage: 3 });
-    const soldier = person("Soldier", [guard, legs]);
-    expect(sixthsAt(soldier, "leg")).toBe(5);
-
-    dice = [5];
-    let lines = [line(guard), line(legs)];
-    fire(HOOKS.armorDr, { actor: soldier, hitLocation: "leg", damageType: "pi", lines });
-    expect(lines.map((l) => l.applies)).toEqual([true, true]);
-    expect(lines[0]!).toMatchObject({ reason: expect.stringContaining("PartialStood") });
-
+  it("leaves a piece that covers part of a location to the system's coverage roll", () => {
+    const guard = piece("Shin Guards", { dr: 4, locations: ["leg"], coverage: 2 });
+    const soldier = person("Soldier", [guard]);
     dice = [6];
-    lines = [line(guard), line(legs)];
+    const lines = [line(guard)];
     fire(HOOKS.armorDr, { actor: soldier, hitLocation: "leg", damageType: "pi", lines });
-    expect(lines.map((l) => l.applies)).toEqual([false, false]);
-  });
-
-  it("lets a whole piece stand beside the partial ones", () => {
-    const guard = piece("Shin Guards", { dr: 4, locations: ["leg"] }, { coverage: 2 });
-    const trousers = piece("Ballistic Leggings", { dr: 12, locations: ["leg"] });
-    const soldier = person("Soldier", [guard, trousers]);
-    dice = [4];
-    const lines = [line(guard), line(trousers)];
-    fire(HOOKS.armorDr, { actor: soldier, hitLocation: "leg", damageType: "pi", lines });
-    expect(lines.map((l) => l.applies)).toEqual([false, true]);
-  });
-
-  it("strikes around the partial armour at -(n-1), and the blow passes it", async () => {
-    const legs = piece("Aircrew Leg Armor", { dr: 15, locations: ["leg"] }, { coverage: 3 });
-    const pilot = person("Pilot", [legs]);
-    const gun = flagged({ id: "gun", name: "Pistol" }) as any;
-    const shooter = person("Shooter", [gun]);
-    const chosen = { [`${MODULE_ID}.${STRIKE_AROUND_OPTION}`]: true };
-    const attack = fire(HOOKS.attackModifiers, { actor: shooter, item: gun, options: chosen, calledShot: { hitLocation: "leg" }, targets: [pilot], modifiers: [] });
-    expect(attack.modifiers).toEqual([{ label: expect.stringContaining("StrikeAroundLine"), value: -2 }]);
-    await flush();
-    // Nothing is kept on the attacker: the blow carries its options and called shot (API 1.108.0).
-    expect(shooter.getFlag(MODULE_ID, "htStrikeAround")).toBeUndefined();
-
-    dice = [1];
-    const lines = [line(legs)];
-    fire(HOOKS.armorDr, { actor: pilot, item: gun, hitLocation: "leg", damageType: "pi", calledShot: { hitLocation: "leg", addonLocation: null, chink: false }, options: chosen, lines });
-    expect(lines[0]).toMatchObject({ applies: false, reason: expect.stringContaining("StruckAround") });
-    // A blow that landed elsewhere (a miss by 1): the armour there is rolled for as usual.
-    const arm = [line(legs)];
-    fire(HOOKS.armorDr, { actor: pilot, item: gun, hitLocation: "arm", damageType: "pi", calledShot: { hitLocation: "leg", addonLocation: null, chink: false }, options: chosen, lines: arm });
-    expect(arm[0]!.applies).toBe(true);
-    // A blow without the option rolls for the partial armour.
-    dice = [6];
-    const plain = [line(legs)];
-    fire(HOOKS.armorDr, { actor: pilot, item: gun, hitLocation: "leg", damageType: "pi", calledShot: { hitLocation: "leg", addonLocation: null, chink: false }, options: {}, lines: plain });
-    expect(plain[0]).toMatchObject({ applies: false, reason: expect.stringContaining("PartialMissed") });
-  });
-
-  it("finds nothing to strike around on a wholly armoured location", () => {
-    const vest = piece("Vest", { dr: 12, locations: ["torso"] });
-    const shooter = person("Shooter", []);
-    const attack = fire(HOOKS.attackModifiers, { actor: shooter, item: null, options: { [`${MODULE_ID}.${STRIKE_AROUND_OPTION}`]: true }, calledShot: null, targets: [person("Cop", [vest])], modifiers: [] });
-    expect(attack.modifiers).toEqual([{ label: expect.stringContaining("StrikeAroundNothing"), value: 0 }]);
+    expect(lines).toEqual([line(guard)]);
+    expect(dice).toEqual([6]);
   });
 
   it("gives a steel toe box's DR on 2 in 6 foot hits, not from below", () => {
@@ -218,14 +164,10 @@ describe("partial coverage (High-Tech p. 69)", () => {
     expect(lines[0]!.dr).toBe(2);
   });
 
-  it("rolls nothing for the sheet's figures: partial pieces and the toe box keep their DR, with a note (API 1.140.0)", () => {
-    const guard = piece("Shin Guards", { dr: 4, locations: ["leg"] }, { coverage: 2 });
+  it("rolls nothing for the sheet's figures: the toe box keeps its DR, with a note (API 1.140.0)", () => {
     const boots = piece("Boots, Steel-Toed", { dr: 2, locations: ["foot"] }, { toeDr: 6 });
-    const soldier = person("Soldier", [guard, boots]);
+    const soldier = person("Soldier", [boots]);
     dice = [6, 6];
-    const legs = [line(guard)];
-    fire(HOOKS.armorDr, { actor: soldier, hitLocation: "leg", damageType: "cr", preview: true, options: {}, lines: legs });
-    expect(legs[0]).toMatchObject({ applies: true, dr: 4, reason: expect.stringContaining("PartialPreview") });
     const feet = [line(boots)];
     fire(HOOKS.armorDr, { actor: soldier, hitLocation: "foot", damageType: "cr", preview: true, options: {}, lines: feet });
     expect(feet[0]).toMatchObject({ dr: 2, reason: expect.stringContaining("ToePreview") });
@@ -233,7 +175,7 @@ describe("partial coverage (High-Tech p. 69)", () => {
   });
 
   it("gives shoulder pads +1 to a slam's damage and DR 3, whole, against what the slammer takes back (p. 66 note 4; API 1.139.0)", () => {
-    const pads = piece("Shoulder Pads", { dr: 1, locations: ["torso", "vitals", "arm"] }, { coverage: 1, slamPads: true });
+    const pads = piece("Shoulder Pads", { dr: 1, locations: ["torso", "vitals", "arm"] }, { slamPads: true });
     const player = person("Player", [pads]);
     const blow = (source: string | null) => fire(HOOKS.damageModifiers, { actor: player, source, modifiers: [] }).modifiers;
     expect(blow("slam")).toEqual([{ label: expect.stringContaining("Shoulder Pads"), value: 1 }]);
@@ -248,11 +190,11 @@ describe("partial coverage (High-Tech p. 69)", () => {
     const skull: any[] = [];
     fire(HOOKS.armorDr, { actor: player, hitLocation: "skull", damageType: "cr", source: "slammed", lines: skull });
     expect(skull).toEqual([expect.objectContaining({ itemId: "Shoulder Pads", dr: 3, applies: true })]);
-    // Any other blow: the 1 in 6 is rolled as ever.
+    // Any other blow: the pads' own coverage (1 in 6) is the system's roll, not this book's.
     dice = [6];
     const other = [line(pads)];
     fire(HOOKS.armorDr, { actor: player, hitLocation: "torso", damageType: "cr", source: null, lines: other });
-    expect(other[0]!.applies).toBe(false);
+    expect(other[0]!.applies).toBe(true);
     // Not worn: nothing.
     const off = person("Off", [piece("Shoulder Pads", { equipped: false }, { slamPads: true })]);
     expect(fire(HOOKS.damageModifiers, { actor: off, source: "slam", modifiers: [] }).modifiers).toEqual([]);

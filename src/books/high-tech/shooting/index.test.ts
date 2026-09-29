@@ -80,7 +80,6 @@ function fakeApi() {
 const switches: ShootingSwitches = {
   pistolero: () => on.pistolero === true,
   precisionAiming: () => on.precisionAiming === true,
-  rangedRapidStrike: () => on.rangedRapidStrike === true,
   gunTechniques: () => on.gunTechniques === true,
   gunslinger: () => on.gunslinger === true,
   zenMarksmanship: () => on.zenMarksmanship === true,
@@ -110,7 +109,6 @@ const colt = () => gun("Colt Government", { minSt: 10, bulk: -2 });
 const deagle = () => gun("Desert Eagle", { minSt: 11, bulk: -4 });
 const tommy = () => gun("Thompson M1928A1", { skill: "Guns (Submachine Gun)", rateOfFire: 13, bulk: -5 });
 const mosin = () => gun("Mosin-Nagant", { skill: "Guns (Rifle)", accuracy: 5, rateOfFire: 1, bulk: -6, minSt: 10 });
-const peacemaker = () => gun("Colt SAA", { rateOfFire: 1, shots: "6(5i)" });
 
 const technique = (name: string, level: number, extra: Record<string, unknown> = {}) => ({ id: name, type: "technique", name, system: { derived: { level }, prerequisite: "", points: 0, ...extra } });
 const trait = (name: string) => ({ id: name, type: "trait", name, system: {} });
@@ -278,43 +276,19 @@ describe("Precision Aiming (p. 84)", () => {
   });
 });
 
-describe("the Ranged Rapid Strike (p. 85)", () => {
-  it("is refused below RoF 2 and off Attack", () => {
-    on.rangedRapidStrike = true;
-    const option = options.get("ht-ranged-rapid-strike");
-    const actor = shooter();
-    expect(option.refuse(optionContext(peacemaker(), actor))).toBe("GCC.HT.Shooting.RapidRefusal.rateOfFire");
-    // A single-action revolver fast-fired two-handed at RoF 2 may.
-    expect(option.refuse(optionContext(peacemaker(), actor, { [`${MODULE_ID}.ht-fast-firing`]: "2" }))).toBeNull();
-    actor.system.maneuver = "moveAndAttack";
-    expect(option.refuse(optionContext(colt(), actor))).toBe("GCC.HT.Shooting.RapidRefusal.maneuver");
+describe("the system's Ranged Rapid Strike line (Basic Set Revised p. 577)", () => {
+  const rapidLine = () => [{ label: "Rapid Strike", value: -6, key: "rapidStrike" }];
+
+  it("is left at -6 for a shooter without Quick-Shot", () => {
+    expect(attack(colt(), shooter(), { modifiers: rapidLine() }).modifiers).toEqual(rapidLine());
   });
 
-  it("is -6 at half the RoF, bought off by Quick-Shot, halved by the expanded Gunslinger", () => {
-    on.rangedRapidStrike = true;
-    const option = options.get("ht-ranged-rapid-strike");
-    expect(option.apply(optionContext(colt(), shooter()))).toMatchObject({ modifiers: [{ value: -6 }], rateOfFireMultiplier: 0.5 });
+  it("is eased by Quick-Shot, and halved by the expanded Gunslinger", () => {
     const quick = shooter({ items: [technique("Quick-Shot (Pistol)", 12)] });
-    expect(option.apply(optionContext(colt(), quick)).modifiers).toEqual([{ label: "GCC.HT.Shooting.RapidStrikeLine", value: -2 }]);
+    expect(attack(colt(), quick, { modifiers: rapidLine() }).modifiers).toEqual([{ label: "GCC.HT.Shooting.RapidStrikeLine", value: -2, key: "rapidStrike" }]);
     on.gunslinger = true;
     const gunslinger = shooter({ items: [trait("Gunslinger")] });
-    expect(option.apply(optionContext(colt(), gunslinger)).modifiers[0].value).toBe(-3);
-  });
-
-  it("counts the second attack, which has to take the option too", async () => {
-    on.rangedRapidStrike = true;
-    const actor = shooter();
-    expect(fire(HOOKS.attackSequence, { actor, count: 1 }).count).toBe(1);
-    expect(attack(colt(), actor, { chosen: { "ht-ranged-rapid-strike": true } }).refusal).toBeNull();
-    await vi.waitFor(() => expect(combatState.get("Actor.a1:ht-ranged-rapid-strike-state")).toBeTruthy());
-    expect(fire(HOOKS.attackSequence, { actor, count: 1 }).count).toBe(2);
-    expect(attack(colt(), actor).refusal).toBe("GCC.HT.Shooting.RapidSecond");
-    expect(attack(colt(), actor, { chosen: { "ht-ranged-rapid-strike": true } }).refusal).toBeNull();
-    await vi.waitFor(() => expect((combatState.get("Actor.a1:ht-ranged-rapid-strike-state") as any).remaining).toBe(0));
-    expect(attack(colt(), actor).refusal).toBeNull();
-    // Declared again once both are made, it starts afresh.
-    expect(attack(colt(), actor, { chosen: { "ht-ranged-rapid-strike": true } }).refusal).toBeNull();
-    await vi.waitFor(() => expect((combatState.get("Actor.a1:ht-ranged-rapid-strike-state") as any).remaining).toBe(1));
+    expect(attack(colt(), gunslinger, { modifiers: rapidLine() }).modifiers[0].value).toBe(-3);
   });
 });
 
@@ -441,7 +415,6 @@ describe("with every switch off", () => {
     const shot = attack(pistol, actor, { modifiers: lines.map((l) => ({ ...l })), calledShot: { hitLocation: "skull", addonLocation: null, chink: false } });
     expect(shot.modifiers).toEqual(lines);
     expect(row(pistol, actor).minSt).toBe(11);
-    expect(options.get("ht-ranged-rapid-strike").available(optionContext(colt(), actor))).toBe(false);
   });
 });
 

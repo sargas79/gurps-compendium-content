@@ -1,15 +1,6 @@
-{{!-- Partial coverage, concealing armour and armour materials (High-Tech pp. 64-69). --}}
+{{!-- The armour extras beside the system's partial coverage, concealing armour and armour materials (High-Tech pp. 64-69). --}}
 <div class="isub" data-gcc-ht-armor-section>
   <div class="isub-head">{{localize "GCC.HT.Armor.Title"}}</div>
-  {{#if coverage}}
-    <div class="ifields">
-      <label data-tooltip="{{localize 'GCC.HT.Armor.CoverageHint'}}">{{localize "GCC.HT.Armor.Coverage"}}
-        <select data-gcc-ht-armor="htArmor.coverage" {{#unless editable}}disabled{{/unless}}>
-          {{#each coverage as |option|}}<option value="{{option.value}}" {{#if option.selected}}selected{{/if}}>{{option.label}}</option>{{/each}}
-        </select>
-      </label>
-    </div>
-  {{/if}}
   {{#if topsUp}}
     <div class="ichecks">
       <label class="icheck" data-tooltip="{{localize 'GCC.HT.Armor.TopsUpHint'}}"><input type="checkbox" data-gcc-ht-armor="htArmor.topsUp" {{#if topsUp.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Armor.TopsUp"}}</label>

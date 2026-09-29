@@ -19,7 +19,7 @@
         },
         "monsterHuntersGear": {
           "Name": "Monster Hunters gear",
-          "Hint": "Gadgets and clothing take improvements priced by cost factor (cutting-edge, disguised, rugged, good and fine quality, scent-masking, undercover), and Signature Gear costs a point per $10,000 of each item; the mind disruptor and neutralizer are resisted with Mind Shield, not DR (Monster Hunters 1 pp. 53-54, 58-59)."
+          "Hint": "Gadgets and clothing take improvements priced by cost factor: the book adds scent-masking and undercover, and cutting-edge and rugged clothing, to what the system prices itself (Balanced, Cutting-Edge, Disguised, Rugged, good and fine quality: set on the item and read from there). Signature Gear costs a point per $10,000 of each item flagged, unless the system's flat Signature Gear switch is on and bills it; the mind disruptor and neutralizer are resisted with Mind Shield, not DR (Monster Hunters 1 pp. 53-54, 58-59)."
         },
         "bonusPointSpending": {
           "Name": "Destiny and wildcard points",
@@ -4892,10 +4892,6 @@
           "Name": "Precision Aiming",
           "Hint": "A braced, scoped gun aimed for 6, 12, 24, 45 and 90 seconds may claim a further +1 each time, from the gun's row: an IQ-based weapon skill roll at -6, which the Precision Aiming technique buys off, with the GM's modifier for the conditions. The extra bonus can't pass +5, the scope's bonus or the gun's Acc. A failure loses the aim and every aiming bonus; a critical failure also gives the sniper away (High-Tech pp. 84, 250-251)."
         },
-        "rangedRapidStrike": {
-          "Name": "Ranged Rapid Strike",
-          "Hint": "A gun of RoF 2 or more may make two attacks in one second on Attack or All-Out Attack, each at -6 (Quick-Shot buys it off) and at half the RoF. Tick the option on both attacks; the Combat tab counts the second (High-Tech pp. 85, 252)."
-        },
         "gunTechniques": {
           "Name": "Gun techniques",
           "Hint": "Close-Quarters Battle on a Move and Attack at no more than Per yards (its level in place of the skill, the Bulk penalty still taken, never above the skill). Targeted Attacks with guns, named \"TA (Pistol/Skull)\": the skill at the target's penalty, half of it bought off, the levels taken on a shot aimed there. Instant Arsenal Disarm from its technique's row: a grab at -4, then a Quick Contest against DX or Retain Weapon to take the targeted foe's gun apart. Mounted Shooting improved keeps the rough ride from a moving mount or vehicle from taking a handheld weapon's skill below the technique's level. Weapon Bond, \"Weapon Bond (Colt Python)\", gives +1 on every shot with the gun it names (High-Tech pp. 250-252)."
@@ -5228,10 +5224,6 @@
           "Name": "Clothing against the weather",
           "Hint": "The Weather dialog starts on the clothing class of what the character wears: summer, ordinary, formal and high-fashion clothes (and outfits made on them) as light clothing, winter clothes as winter clothing, arctic clothes as arctic clothing, or as winter or ordinary clothes with layers taken off. A worn winter or arctic outfit is -1 on the cold roll for each piece left off (boots, gloves, hat, scarf), ticked on the outfit's sheet. A worn wicking undergarment gives +1 on the heat roll. Fur winter or arctic clothes, ticked on the sheet, give DR 1 wherever they cover. An outfit's weight follows its TL: x2 at TL5-6, x0.5 at TL8 (arctic clothes x1.5, x1.25 and x0.5) (High-Tech pp. 63-65)."
         },
-        "frostbite": {
-          "Name": "Frostbite",
-          "Hint": "At the GM's option: whenever the cold costs FP, a damage card for each exposed hit location, a point of injury per FP lost, through no DR, so it can cripple a hand or foot. Light clothing leaves the head, face, neck, hands and feet exposed; winter or arctic clothing only where a piece is left off (a hat the skull, a scarf the neck and face, gloves the hands, boots the feet); a heated suit nothing (High-Tech p. 63)."
-        },
         "climateControl": {
           "Name": "Climate-controlled clothing",
           "Hint": "Worn heated clothing adds 60 degrees to the cold end of the comfort zone, a climate-control system 60 to both ends, a cooling vest 30 to the hot end, as Temperature Tolerance the cold and heat rolls read; the powered ones only while their cells last. Heated clothing counts as winter clothes with or without power. While gear that widens the hot end is worn, a hike in the heat costs no extra FP an hour (High-Tech p. 74)."
@@ -5291,10 +5283,6 @@
         "disguiseAndSmuggling": {
           "Name": "Forgery, disguise and smuggling",
           "Hint": "Forgery and counterfeiting tools forge from their row: a TL7+ document needs a computer and printer too (-5 without, as improvised equipment), fake credit cards a card printer and magnetic strip decoder/encoder, and money printed at TL8 takes a secret Counterfeiting roll the first time a printer is used, for whether it marks its pages (the answer kept on the printer). The Disguise skill's row rolls an improvised disguise at -5 in place of any kit; a disguise kit's row rolls Disguise with it, the advanced kit (+2) needing a day to prepare and two to six hours of fitting. Smuggler's luggage (+2) rolls Smuggling for what its secret area holds, a tenth of its capacity. A mule's row rolls HT at -1 per 50 pellets carried: failure is an incident, a critical failure bursts a packet, a dose of the Basic Set's overdose. The GM's token controls screen the targeted character: a Quick Contest of Search or Observation against Acting, or an X-ray machine's Electronics Operation roll and then Search (High-Tech pp. 213-215)."
-        },
-        "partialCoverage": {
-          "Name": "Partial armour coverage",
-          "Hint": "A piece that covers n in 6 of a location (shin guards, limb armour, a DAP, shoulder pads) protects when 1d comes up n or less, the n of several pieces there added up. An attacker may strike around it at -(n-1), never better than -1, and the blow passes it. A steel toe box gives its DR on 2 in 6 hits to the foot, high boots with the tops turned up cover 3 in 6 of the legs, and the TL7 fragmentation vest's vitals and the bomb disposal suit's torso are better armoured from the front (High-Tech pp. 66-69, 75)."
         },
         "concealedArmor": {
           "Name": "Concealing armour",
@@ -6172,15 +6160,7 @@
         "PrecisionGained": "+{bonus} from Precision Aiming (at most +{cap}); the next roll at {next} seconds.",
         "PrecisionLost": "The aim is lost with every aiming bonus: the shooter has to start over.",
         "PrecisionSpotted": "Critical failure: the target sees a protruding barrel or a glint off the scope.",
-        "RapidStrike": "Ranged Rapid Strike",
         "RapidStrikeLine": "Ranged Rapid Strike",
-        "RapidStrikeNote": "Ranged Rapid Strike: two attacks this second, each at half the RoF.",
-        "RapidRefusal": {
-          "rateOfFire": "A Ranged Rapid Strike needs RoF 2 or more.",
-          "maneuver": "A Rapid Strike is made on Attack or All-Out Attack.",
-          "spraying": "A Ranged Rapid Strike isn't Spraying Fire."
-        },
-        "RapidSecond": "The second attack of the Ranged Rapid Strike: tick the option again.",
         "GunslingerBulk": "{label} (Gunslinger: ignored)",
         "Acrobatic": "Leaping or acrobatic movement (GM's penalty)",
         "AcrobaticLine": "Leaping or acrobatic movement",
@@ -9327,7 +9307,6 @@
         "HotMarchItem": "A hike in the heat costs no extra FP while it runs.",
         "HeatedWinterItem": "Counts as winter clothes, with or without power.",
         "HotMarchLine": "{name}: no extra fatigue for the heat",
-        "FrostbiteLabel": "Frostbite: {name}'s {location} ({fp} FP lost to the cold)",
         "Location": {
           "skull": "head",
           "face": "face",
@@ -9856,11 +9835,6 @@
       },
       "Armor": {
         "Title": "High-Tech armour",
-        "Coverage": "Covers",
-        "CoverageHint": "How much of each location the piece covers. A piece covering n in 6 protects when 1d comes up n or less, and an attacker can strike around it (High-Tech p. 69).",
-        "CoverageWhole": "The whole location",
-        "CoverageSixths": "{n} in 6",
-        "CoverageItem": "Covers {n} in 6 of each location: 1d at or under the sixths of every partial piece there protects. Striking around it: {penalty}.",
         "FrontItem": "DR {dr} against blows from the front on the {locations}.",
         "ToeItem": "Steel toe box: DR {dr} on {n} in 6 hits to the foot.",
         "TopsUp": "Tops turned up",
@@ -9885,10 +9859,6 @@
           "leg": "legs",
           "foot": "feet"
         },
-        "StrikeAround": "Strike around partial armour",
-        "StrikeAroundLine": "Striking around armour covering {n} in 6",
-        "StrikeAroundNothing": "Nothing partial to strike around ({location})",
-        "StruckAround": "struck around",
         "PartialStood": "partial: 1d rolled {roll} against {n} in 6, protects",
         "PartialMissed": "partial: 1d rolled {roll} against {n} in 6, missed",
         "FrontReason": "DR {dr} from the front",

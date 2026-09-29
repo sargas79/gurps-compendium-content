@@ -20,7 +20,7 @@
  * drawing guns, holsters and Who Draws First? with guns, how fast a gun
  * fires: triggers, fire selectors and bursts, fast-firing, fanning and
  * thumbing, and the shooting options and gun techniques: the two-handed
- * stance, Precision Aiming, the Ranged Rapid Strike, Close-Quarters Battle,
+ * stance, Precision Aiming, Close-Quarters Battle,
  * Targeted Attacks with guns, Instant Arsenal Disarm, Mounted Shooting, the
  * expanded Gunslinger and Zen Marksmanship, the special shooting situations (underwater, into water,
  * steeply into the air, in space), sustained fire, the aftermath of a
@@ -50,7 +50,7 @@
  * the eyes, and the explosives and incendiaries: an explosion's side
  * effects, demolition charges, unstable and home-made explosives, thermite
  * and napalm, and the grenades, land mines, rifle grenades, bombs and
- * nuclear weapons, and clothing against the weather, frostbite and
+ * nuclear weapons, and clothing against the weather and
  * climate-controlled clothing, and the melee and muscle-powered weapons:
  * bayonets and rifle butts, sheaths, blade composition, electric stun
  * weapons and high-tech bows, and the breathing gear and environment
@@ -198,7 +198,6 @@ const RULES = [
   { key: "fanningAndThumbing", pages: "pp. 83-84, 251-252", implemented: true },
   { key: "pistolero", pages: "p. 84", implemented: true },
   { key: "precisionAiming", pages: "pp. 84, 250-251", implemented: true },
-  { key: "rangedRapidStrike", pages: "pp. 85, 252", implemented: true },
   { key: "gunTechniques", pages: "pp. 250-252", implemented: true },
   { key: "shootingEnvironments", pages: "pp. 85, 92, 117", implemented: true },
   { key: "sustainedFire", pages: "pp. 85-86, 129-137", implemented: true },
@@ -299,9 +298,8 @@ const RULES = [
   { key: "navigationGear", pages: "pp. 52-53", implemented: true },
   { key: "loadBearingEquipment", pages: "pp. 53-55", implemented: true },
   { key: "climbingGear", pages: "pp. 55-56", implemented: true },
-  // Clothing against the weather, frostbite (the GM's option) and climate-controlled clothing.
+  // Clothing against the weather and climate-controlled clothing.
   { key: "clothingAndWeather", pages: "pp. 63-65", implemented: true },
-  { key: "frostbite", pages: "p. 63", implemented: true },
   { key: "climateControl", pages: "p. 74", implemented: true },
   // Melee and muscle-powered weapons.
   { key: "bayonets", pages: "pp. 196-199", implemented: true },
@@ -326,7 +324,6 @@ const RULES = [
   // Personal conveyances: bicycles, skateboards, surfboards and wheelchairs.
   { key: "personalConveyances", pages: "pp. 226, 230-231", implemented: true },
   // Armour: partial coverage and the direction a piece protects from, concealing it, and its materials.
-  { key: "partialCoverage", pages: "pp. 66-69, 75", implemented: true },
   { key: "concealedArmor", pages: "pp. 64, 66", implemented: true },
   { key: "armorMaterials", pages: "pp. 65, 67", implemented: true },
   // Security screening, surveillance and jamming.
@@ -467,7 +464,7 @@ function ready(api: GWorldApi): void {
   };
   // The loads first: what the gun fires is its own row before the setting (underwater, sights, bursts) changes it.
   readyAmmunition(api, ammunition);
-  const shooting = { pistolero: rule("pistolero"), precisionAiming: rule("precisionAiming"), rangedRapidStrike: rule("rangedRapidStrike"), gunTechniques: rule("gunTechniques"), gunslinger: rule("gunslingerExpanded"), zenMarksmanship: rule("zenMarksmanship") };
+  const shooting = { pistolero: rule("pistolero"), precisionAiming: rule("precisionAiming"), gunTechniques: rule("gunTechniques"), gunslinger: rule("gunslingerExpanded"), zenMarksmanship: rule("zenMarksmanship") };
   readyRateOfFire(api, { triggers: rule("triggerMechanisms"), bursts: rule("burstFire"), fastFiring: rule("fastFiring"), fanning: rule("fanningAndThumbing") }, {
     noFanning: (item) => (shooting.pistolero() && inPistoleroStance(api, item) ? game.i18n.localize("GCC.HT.Shooting.StanceNoFanning") : null),
     techniqueDefault: (actor, technique, penalty) => gunslingerDefault(shooting, actor, technique, penalty),
@@ -505,7 +502,7 @@ function ready(api: GWorldApi): void {
   readySurvival(api, { survival: rule("survivalGear"), maritime: rule("maritimeGear"), parachuting: rule("parachuting"), rations: rule("rations") });
   readyExpedition(api, { lights: rule("lightSources"), navigation: rule("navigationGear"), loadBearing: rule("loadBearingEquipment"), climbing: rule("climbingGear") });
   readyLighting(api, { illumination: rule("illumination"), dazzle: rule("lightDazzle") });
-  readyClothing(api, { clothing: rule("clothingAndWeather"), frostbite: rule("frostbite"), climate: rule("climateControl"), ghillie: rule("camouflageGear") });
+  readyClothing(api, { clothing: rule("clothingAndWeather"), climate: rule("climateControl"), ghillie: rule("camouflageGear") });
   // After the reloading rules, whose reload time a fixed bayonet lengthens.
   readyHighTechMelee(api, { bayonets: rule("bayonets"), sheaths: rule("sheaths"), blades: rule("bladeComposition"), stun: rule("stunWeapons"), bows: rule("highTechBows") });
   readyHighTechCamouflage(api);
@@ -515,7 +512,7 @@ function ready(api: GWorldApi): void {
   readyMedicine(api, { emergency: rule("emergencyMedicine"), facilities: rule("medicalFacilities") });
   readyHighTechCodes(api, { encryption: rule("encryption"), disguise: rule("disguiseAndSmuggling"), cipher: rule("cipherMachines") });
   readySigint(api, { sigint: rule("signalsIntelligence"), cipher: rule("cipherMachines") });
-  readyHighTechArmor(api, { partial: rule("partialCoverage"), conceal: rule("concealedArmor"), materials: rule("armorMaterials") });
+  readyHighTechArmor(api, { partial: () => api.registry.isRuleOn("partialCoverage"), conceal: rule("concealedArmor"), materials: rule("armorMaterials") });
   readySurveillance(api, { screening: rule("securityScreening"), surveillance: rule("surveillanceGear"), jamming: rule("jamming"), jammerKinds: rule("jammerKinds"), radarJamming: rule("radarJamming"), covert: rule("covertListening") });
   readyCovertListening(api, rule("covertListening"), rule("surveillanceGear"));
   readyElectricSecurity(api, electric);

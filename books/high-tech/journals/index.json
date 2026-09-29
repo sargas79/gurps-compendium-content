@@ -638,7 +638,7 @@
       "title": "Frostbite",
       "chapter": "4. Defenses",
       "pages": "HT63",
-      "rule": "gurps-compendium-content.frostbite",
+      "rule": "frostbite",
       "reference": "High-Tech p. 63",
       "file": "frostbite.md",
       "status": "reviewed"
@@ -697,7 +697,7 @@
       "title": "Limb Armor",
       "chapter": "4. Defenses",
       "pages": "HT67",
-      "rule": "gurps-compendium-content.partialCoverage",
+      "rule": "partialCoverage",
       "reference": "High-Tech p. 67",
       "file": "limb-armor.md",
       "status": "reviewed"
@@ -727,7 +727,7 @@
       "title": "Hitting ’Em Where It Hurts",
       "chapter": "4. Defenses",
       "pages": "HT69",
-      "rule": "gurps-compendium-content.partialCoverage",
+      "rule": "partialCoverage",
       "reference": "High-Tech p. 69",
       "file": "hitting-em-where-it-hurts.md",
       "status": "reviewed"
@@ -974,7 +974,7 @@
       "title": "Ranged Rapid Strike",
       "chapter": "5. Weaponry",
       "pages": "HT85",
-      "rule": "gurps-compendium-content.rangedRapidStrike",
+      "rule": "trickyShooting",
       "reference": "High-Tech p. 85",
       "file": "ranged-rapid-strike.md",
       "status": "reviewed"

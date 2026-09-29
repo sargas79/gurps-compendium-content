@@ -4,8 +4,6 @@ import {
   betterClass,
   coolingCharge,
   coolingUntil,
-  exposedLocations,
-  frostbiteInjury,
   furCovers,
   missingPiecesPenalty,
   outfitOf,
@@ -48,19 +46,6 @@ describe("outfits against the cold (High-Tech p. 63)", () => {
   });
 });
 
-describe("frostbite (High-Tech p. 63)", () => {
-  it("reaches what the clothing leaves bare", () => {
-    expect(exposedLocations("light", [])).toEqual(["foot", "hand", "skull", "neck", "face"]);
-    expect(exposedLocations("arctic", [])).toEqual([]);
-    expect(exposedLocations("winter", ["gloves", "scarf"])).toEqual(["hand", "neck", "face"]);
-    expect(exposedLocations("heatedSuit", ["gloves"])).toEqual([]);
-  });
-
-  it("is a point per FP lost", () => {
-    expect(frostbiteInjury(2)).toBe(2);
-    expect(frostbiteInjury(0)).toBe(0);
-  });
-});
 
 describe("fur (High-Tech p. 64)", () => {
   it("covers the body but the face, eyes and what is left off", () => {

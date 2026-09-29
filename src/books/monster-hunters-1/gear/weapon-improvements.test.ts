@@ -25,8 +25,8 @@ describe("the were-hunter's saber (Monster Hunters 1 p. 59)", () => {
     expect(improvedWeaponPrice(saber, { cost: 700, weight: 3 })).toEqual({ cost: 7700, weight: 2.25, costFactor: 10 });
   });
 
-  it("has +1 skill, +2 damage and -2 to odds of breakage", () => {
-    expect(weaponImprovementEffects(saber, { damageType: "cut" })).toMatchObject({ skill: 1, damage: 2, breakage: -2 });
+  it("has +2 damage and -2 to odds of breakage (its balanced +1 skill is the system's)", () => {
+    expect(weaponImprovementEffects(saber, { damageType: "cut" })).toMatchObject({ skill: 0, damage: 2, breakage: -2 });
   });
 });
 
@@ -71,10 +71,10 @@ describe("prices and effects by kind (pp. 59-61)", () => {
     expect(improvedWeaponPrice(knife, { cost: 40, weight: 1 }).cost).toBe(250);
   });
 
-  it("gives a balanced, compound, fine bow +1 Acc, ST+2 and 1.2x range for +8 CF", () => {
+  it("prices a balanced, compound, fine bow +8 CF, with ST+2 and 1.2x range; balanced's +1 Acc is the system's", () => {
     const bow: ImprovedWeapon = { weaponClass: "bow", quality: "fine", material: "", improvements: { balanced: true, compound: true } };
     expect(weaponCostFactor(bow)).toBe(8);
-    expect(weaponImprovementEffects(bow, { damageType: "imp", ranged: true })).toMatchObject({ accuracy: 1, st: 2, rangeMultiplier: 1.2 });
+    expect(weaponImprovementEffects(bow, { damageType: "imp", ranged: true })).toMatchObject({ accuracy: 0, st: 2, rangeMultiplier: 1.2 });
   });
 
   it("gives a fine gun +1 Acc from Acc 2, and a very fine one +2 from Acc 4", () => {

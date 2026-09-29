@@ -1,7 +1,7 @@
 /**
- * Clothing, frostbite and climate-controlled clothing as the system meets
+ * Clothing and climate-controlled clothing as the system meets
  * them: the worn clothing class through `gworld.weatherClothing`, the cold and
- * heat rolls through `gworld.successRollModifiers`, frostbite and a hot march
+ * heat rolls through `gworld.successRollModifiers`, a hot march
  * through `gworld.fatigueCost`, fur through `gworld.armorDr` and the comfort
  * zone through `gworld.traitEffects` -- with only High-Tech's switches on
  * (decision D1).
@@ -105,7 +105,7 @@ const flush = async () => { for (let i = 0; i < 10; i += 1) await Promise.resolv
 
 function ready(): void {
   const rule = (k: string) => () => on[k] === true;
-  readyClothing(fakeApi() as never, { clothing: rule("clothingAndWeather"), frostbite: rule("frostbite"), climate: rule("climateControl"), ghillie: rule("camouflageGear") });
+  readyClothing(fakeApi() as never, { clothing: rule("clothingAndWeather"), climate: rule("climateControl"), ghillie: rule("camouflageGear") });
 }
 
 beforeEach(() => {
@@ -232,55 +232,6 @@ describe("clothing against the weather (High-Tech pp. 63-65)", () => {
   });
 });
 
-describe("frostbite (High-Tech p. 63)", () => {
-  beforeEach(() => { on = { clothingAndWeather: true, frostbite: true }; ready(); });
-
-  // What the cold came to once the fatigue was charged (API 1.138.0).
-  const lose = (actor: any, fp: number) => fire(HOOKS.afterFatigue, { actor, fpLost: fp, hpLost: 0, reason: "exposure", exertion: true, details: { heat: false, temperatureF: -20 }, sources: [] });
-
-  it("injures each exposed location a point per FP lost to the cold, through no DR", async () => {
-    const trekker = person([wear("Winter Clothes", {}, { missing: { gloves: true } })]);
-    coldRoll(trekker, "winter");
-    lose(trekker, 2);
-    await flush();
-    expect(damage).toEqual([expect.objectContaining({ formula: "2", damageType: "tox", ignoresDr: true, calledShot: { hitLocation: "hand", chink: false }, source: "frostbite" })]);
-  });
-
-  it("reaches the head, face, neck, hands and feet in light clothing, and nothing inside whole winter clothes", async () => {
-    const hiker = person([wear("Ordinary Clothes")]);
-    coldRoll(hiker, "light");
-    lose(hiker, 1);
-    await flush();
-    expect(damage.map((d) => d.calledShot.hitLocation)).toEqual(["foot", "hand", "skull", "neck", "face"]);
-    damage = [];
-    const bundled = person([wear("Arctic Clothes")]);
-    coldRoll(bundled, "arctic");
-    lose(bundled, 1);
-    await flush();
-    expect(damage).toEqual([]);
-  });
-
-  it("counts the FP the cold came to after Very Fit, not what it was asked", async () => {
-    const trekker = person([wear("Winter Clothes", {}, { missing: { gloves: true } })]);
-    coldRoll(trekker, "winter");
-    fire(HOOKS.fatigueCost, { actor: trekker, fp: 2, reason: "exposure", exertion: true, details: { heat: false }, sources: [] });
-    await flush();
-    expect(damage).toEqual([]);
-    lose(trekker, 1);
-    await flush();
-    expect(damage).toEqual([expect.objectContaining({ formula: "1", calledShot: { hitLocation: "hand", chink: false } })]);
-  });
-
-  it("is nothing in the heat, or with no FP lost", async () => {
-    const hiker = person([wear("Ordinary Clothes")]);
-    fire(HOOKS.afterFatigue, { actor: hiker, fpLost: 1, reason: "exposure", exertion: true, details: { heat: true }, sources: [] });
-    coldRoll(hiker, "light");
-    lose(hiker, 0);
-    await flush();
-    expect(damage).toEqual([]);
-  });
-});
-
 describe("climate-controlled clothing (High-Tech p. 74)", () => {
   beforeEach(() => { on = { climateControl: true }; ready(); });
 
@@ -298,7 +249,7 @@ describe("climate-controlled clothing (High-Tech p. 74)", () => {
 
   it("counts heated clothing as winter clothes, powered or not", () => {
     expect(clothingOf(person([heated(8)]))).toMatchObject({ clothing: "winter", label: "Heated Clothing" });
-    expect(wornClothing(person([heated()]), { clothing: () => false, frostbite: () => false, climate: () => true })?.clothing).toBe("winter");
+    expect(wornClothing(person([heated()]), { clothing: () => false, climate: () => true })?.clothing).toBe("winter");
   });
 
   it("spares a hot march its extra point an hour while a cooler runs: the hot-day part taken out", () => {
@@ -322,17 +273,13 @@ describe("climate-controlled clothing (High-Tech p. 74)", () => {
 });
 
 describe("pieces worn apart from the outfit (High-Tech p. 63)", () => {
-  beforeEach(() => { on = { clothingAndWeather: true, frostbite: true }; ready(); });
+  beforeEach(() => { on = { clothingAndWeather: true }; ready(); });
 
   const armour = (name: string, more: Record<string, unknown> = {}) => ({ id: name, name, type: "armor", system: { carried: true, equipped: true, ...more } });
 
   it("fills a gap in winter or arctic clothes with boots, gloves, a hat or a scarf worn on their own", async () => {
     const trekker = person([wear("Arctic Clothes", {}, { missing: { boots: true, gloves: true, hat: true } }), armour("Boots, Arctic (TL7)"), wear("Hat, Leather or Felt")]);
     expect(coldRoll(trekker, "arctic")).toEqual([{ label: expect.stringContaining("gloves"), value: -1 }]);
-    // Frostbite finds only the bare hands.
-    fire(HOOKS.afterFatigue, { actor: trekker, fpLost: 1, reason: "exposure", details: { heat: false }, sources: [] });
-    await flush();
-    expect(damage.map((d) => d.calledShot.hitLocation)).toEqual(["hand"]);
     // The outfit's sheet names what fills its gaps.
     const lines: string[] = sections.get("ht-clothing-item").context(trekker.items[0]).lines;
     expect(lines).toContainEqual(expect.stringContaining('"penalty":-1'));
