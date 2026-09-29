@@ -72,28 +72,12 @@
     "description": "<p>If something important is coming up in your future, the GM will roll against your IQ while you sleep; if successful, you have a hazy or metaphorical vision. This ability is so common among monster hunters that any champion may take it.</p>"
   },
   {
-    "_id": "804261a3391dc927",
-    "name": "Born War-Leader",
-    "pages": "MH1:25",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>Talents never add to wildcard skills.</p><p>Intelligence Analysis, Leadership, Savoir-Faire (Military), Strategy, and Tactics. Reaction bonus: soldiers or professional warriors.</p>"
-  },
-  {
     "_id": "3e1f146151129255",
     "name": "Close to Heaven",
     "pages": "MH1:25",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Talents never add to wildcard skills.</p><p>Exorcism, Meditation, Religious Ritual, and Theology. Reaction bonus: members of the clergy.</p>"
-  },
-  {
-    "_id": "9c9c8530cc31dd97",
-    "name": "Craftiness",
-    "pages": "MH1:25",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>Talents never add to wildcard skills.</p><p>Acting, Camouflage, Disguise, Holdout, Shadowing, and Stealth. Reaction bonus: none!</p>"
   },
   {
     "_id": "3121772f802d5c75",
@@ -720,14 +704,6 @@
     "description": "<p>A Fright Check usually fails on any roll of 14+, regardless of modified Will. You only fail on a 15+. (Your modified Will must total 14+ for this to be useful, of course!) You may only take this perk once.</p>"
   },
   {
-    "_id": "bd00e70de8092acb",
-    "name": "Equipment Bond",
-    "pages": "MH1:25",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>You own a piece of gear or tool kit (bought separately with cash or as Signature Gear) that's uniquely suited to you. You are at +1 to effective skill when you use it, cumulative with any modifiers for its quality. You must specialize in a specific item, which cannot be a weapon; if you lose it, you also lose this perk (and the point spent on it).</p>"
-  },
-  {
     "_id": "2c73280918817b29",
     "name": "Improvised Weapons",
     "pages": "MH1:25",
@@ -782,13 +758,5 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>You've got one particular attack down, giving you +1 on all skill rolls made to use it. Write this down as a full turn of action(s), specifying maneuver, combat options, skills used, hit locations, effective skill and damage, etc.; e.g., \"All-Out Attack (Strong) with Broadsword as a Rapid Strike, swinging at the neck (skill 15, 2d+3 cut) then stabbing the vitals as a Deceptive Attack for -2 to defenses (skill 13, 1d+4 imp).\" It cannot be anything boring like, \"Rifle shot to the head.\"</p>"
-  },
-  {
-    "_id": "15eca61723de50da",
-    "name": "Weapon Bond",
-    "pages": "MH1:25",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>As for Equipment Bond (above), but for a specific weapon.</p>"
   }
 ]

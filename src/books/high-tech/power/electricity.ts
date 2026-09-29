@@ -41,7 +41,7 @@
 import { bookOf, isRuleOn } from "../../../shared/book-tables.js";
 import { cellOf, powerData, registerCellVariant, storePower, type CellVariant, type PowerData } from "../../../shared/power/data.js";
 import { enduranceLeft, recharge, rechargeableGear } from "../../../shared/power/index.js";
-import type { CellFigures } from "../../../shared/power/rules.js";
+import { spareRecordsFor, type CellFigures } from "../../../shared/power/rules.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
   CHARGER_HOURS,
@@ -97,11 +97,11 @@ function isOwnGear(item: any): boolean {
   return book === null || book === "high-tech";
 }
 
-/** The size of one of High-Tech's battery records ("M Battery"), or null for anything else. */
+/** The size of one of the batteries the system prints ("Battery, Medium (M)") or High-Tech's older record ("M Battery"), or null for anything else. */
 export function batterySizeOf(item: any, figures: CellFigures): string | null {
-  if (item?.type !== "equipment" || !isOwnGear(item) || !figures.spareRecord) return null;
+  if (item?.type !== "equipment" || !isOwnGear(item)) return null;
   const name = String(item.name ?? "");
-  return figures.sizes.find((size) => figures.spareRecord!.replace("{size}", size) === name) ?? null;
+  return figures.sizes.find((size) => spareRecordsFor(figures, size).includes(name)) ?? null;
 }
 
 /** The size of the batteries a gadget has loaded, where it runs on High-Tech's. */

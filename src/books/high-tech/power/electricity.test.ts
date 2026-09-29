@@ -84,6 +84,9 @@ describe("battery chemistries against High-Tech's table (HT:EE pp. 16-18)", () =
     expect(batterySizeOf(battery, HIGH_TECH_BATTERIES)).toBe("L");
     expect(batteryRecordPrice(battery, HIGH_TECH_BATTERIES, { cost: 10, weight: 10 }, switches())).toBeNull();
     expect(batteryRecordPrice(battery, HIGH_TECH_BATTERIES, { cost: 10, weight: 10 }, switches("chemistry"))).toEqual({ cost: 15, weight: 15, label: "Chemistry" });
+    // The system's own record of the same battery counts, and so does an older world's.
+    expect(batterySizeOf(gear("high-tech", {}, "Battery, Large (L)"), HIGH_TECH_BATTERIES)).toBe("L");
+    expect(batterySizeOf(gear("high-tech", {}, "Battery, Tiny (T)"), HIGH_TECH_BATTERIES)).toBe("T");
     // Another book's record of the same name is left alone.
     expect(batterySizeOf(gear("ultra-tech", {}, "L Battery"), HIGH_TECH_BATTERIES)).toBeNull();
   });

@@ -68,6 +68,13 @@ export interface CellFigures {
   adapters?: Readonly<{ inverterMin: string }>;
   /** The name of the book's record for a spare cell, "{size}" standing for the size: changing cells uses carried ones up. */
   spareRecord?: string;
+  /** The system's own records for a spare cell, by size, where it prints them: the Basic Set's batteries (p. 578). */
+  spareNames?: Readonly<Record<string, string>>;
+}
+
+/** The names a spare cell of a size goes by: the system's record, then the book's own older one. */
+export function spareRecordsFor(figures: CellFigures, size: string): string[] {
+  return [figures.spareNames?.[size], figures.spareRecord?.replace("{size}", size)].filter((n): n is string => Boolean(n));
 }
 
 export function isCellSizeOf(figures: CellFigures, value: unknown): value is string {

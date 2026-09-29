@@ -4,21 +4,22 @@
  * Quick-shooting is a button on a bow's row: the optional Fast-Draw and the
  * readying roll, then the bow loaded and its next shot this turn at the same
  * penalty. A handful of small thrown weapons is a derived attack mode fired as
- * rapid fire. Prediction shots are an attack option on ranged attacks, and
- * ranged rows get the Feint button, the feint taking the shot's range and the
- * target's size. Rapid Strike with thrown weapons lives with the other
+ * rapid fire. Rapid Strike with thrown weapons lives with the other
  * Rapid Strike rules in `multiple-attacks`; the hand a thrower uses is an
  * option here.
+ *
+ * Prediction Shot and Ranged Feint (p. 121) are the Basic Set's now (Revised,
+ * p. 577), and so is a Heroic Archer's quick-shooting (p. 327): the system
+ * carries them, and offers a Heroic Archer's Bow its own quick ready while its
+ * Heroic Archer rule is on.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
-  DECEPTIVE_MINIMUM,
   handfulCount,
   handfulProfile,
   heroicArcherAim,
   isSharp,
-  predictionShot,
   quickDrawPenalty,
   quickShootDraw,
   quickShootManeuver,
@@ -32,7 +33,6 @@ import {
 const L = (key: string) => game.i18n.localize(`GCC.MA.Ranged.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.MA.Ranged.${key}`, data);
 
-const PREDICTION = "ma-prediction-shot";
 const HAND = "ma-throwing-hand";
 /** A quick-shot readied this turn: the weapon, its mode and the penalty its shot takes. */
 const QUICK = "ma-quick-shot";
@@ -55,21 +55,14 @@ export function thrownModes(item: any): number[] {
 /** The first mode that can be quick-shot, or -1. */
 const quickMode = (item: any): number => ((item?.system?.rangedModes ?? []) as any[]).findIndex((mode) => quickShootDraw(mode) !== null);
 
-/** Yards between the actor's token and the one it targets, or null where the map can't say. */
-function yardsToTarget(actor: any): { yards: number; target: any } | null {
-  const targets = [...((game as any).user?.targets ?? [])];
-  const shooter = actor?.getActiveTokens?.()?.[0];
-  const target = targets.length === 1 ? targets[0] : null;
-  const stage = (globalThis as any).canvas;
-  if (!target?.center || !shooter?.center || !stage?.grid?.measurePath) return null;
-  const distance = Number(stage.grid.measurePath([shooter.center, target.center])?.distance);
-  return Number.isFinite(distance) ? { yards: Math.round(distance), target } : null;
-}
-
 /** Registers the options, the row button, the handful modes and the hooks. */
 export function readyRangedOptions(api: GWorldApi, on: () => boolean, cinematic: () => boolean): void {
   // A realistic game's quick-shooting in combat is at an extra -4 (p. 120).
   const underFire = () => !cinematic() && Boolean((game as any).combat?.started);
+
+  // A Heroic Archer's Bow has the system's own quick ready, while its Heroic Archer rule is on (Basic Set Revised p. 327).
+  const systemQuickReady = (item: any, actor: any) =>
+    api.registry.isRuleOn("heroicArcher") && heroicArcher(actor) && String(item?.system?.rangedModes?.[quickMode(item)]?.skill ?? "").trim().toLowerCase() === "bow";
 
   // ── quick-shooting bows (pp. 119-120) ──
   api.sheets.registerRowAction({
@@ -78,8 +71,8 @@ export function readyRangedOptions(api: GWorldApi, on: () => boolean, cinematic:
     itemTypes: ["equipment"],
     label: L("QuickShoot"),
     icon: "fa-solid fa-bullseye",
-    visible: (item, actor) => on() && quickMode(item) >= 0
-      && quickShootManeuver(String(actor?.system?.maneuver ?? ""), String(actor?.system?.allOutAttackOption ?? "determined"), heroicArcher(actor)),
+    visible: (item, actor) => on() && quickMode(item) >= 0 && !systemQuickReady(item, actor)
+      && quickShootManeuver(String(actor?.system?.maneuver ?? ""), String(actor?.system?.allOutAttackOption ?? "determined")),
     run: (item, actor) => quickShoot(api, item, actor, underFire()),
   });
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
@@ -89,51 +82,6 @@ export function readyRangedOptions(api: GWorldApi, on: () => boolean, cinematic:
       context.modifiers.push({ label: L("QuickShoot"), value: quick.penalty });
       void api.combat.clearCombatState(context.actor, MODULE_ID, QUICK);
     }
-  });
-
-  // ── prediction shots (p. 121) ──
-  api.combat.registerAttackOption({
-    module: MODULE_ID,
-    key: PREDICTION,
-    label: L("Prediction"),
-    attack: "ranged",
-    input: { type: "number", min: 0, max: 9 },
-    available: () => on(),
-    apply: (_context, value) => {
-      const shot = predictionShot(Number(value));
-      if (!shot.toHit) return null;
-      return {
-        modifiers: [{ label: L("Prediction"), value: shot.toHit }],
-        defenseModifiers: [{ label: L("Prediction"), value: shot.dodge, defenses: ["dodge"] }],
-      };
-    },
-  });
-  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
-    if (!on() || !context?.ranged || context.rollType !== "attack") return;
-    if (!(Math.floor(Number(context.options?.[`${MODULE_ID}.${PREDICTION}`]) || 0) >= 1)) return;
-    const effective = (Number(context.dataset?.rollTarget) || 0) + (context.modifiers ?? []).reduce((sum: number, line: any) => sum + (Number(line?.value) || 0), 0);
-    if (effective < DECEPTIVE_MINIMUM) context.refusal = F("PredictionTooLow", { skill: effective, minimum: DECEPTIVE_MINIMUM });
-  });
-
-  // ── ranged feints (p. 121) ──
-  Hooks.on(api.combat.hooks.weaponAttacks, (context: any) => {
-    if (!on()) return;
-    for (const entry of context?.rows ?? []) if (entry.kind === "ranged") entry.row.feint = true;
-  });
-  Hooks.on(api.combat.hooks.feintModifiers, (context: any) => {
-    if (!on() || !context?.ranged) return;
-    const measured = yardsToTarget(context.actor);
-    if (!measured) return;
-    const row = ((api.actors.derived(context.actor)?.ranged ?? []) as any[]).find((r) => r.itemId === context.item?.id && r.modeIndex === context.mode?.index);
-    const reach = Number(row?.maxRange) || 0;
-    if (reach > 0 && measured.yards > reach) {
-      context.refusal = F("FeintOutOfRange", { yards: measured.yards, range: reach });
-      return;
-    }
-    const range = api.rules.speedRangeModifier(measured.yards);
-    if (range) context.modifiers.push({ label: F("FeintRange", { yards: measured.yards }), value: range });
-    const size = Number(context.foe?.system?.sm) || 0;
-    if (size) context.modifiers.push({ label: L("TargetSize"), value: size });
   });
 
   // ── a Heroic Archer's aim (p. 97) ──
@@ -249,7 +197,7 @@ async function quickShoot(api: GWorldApi, item: any, actor: any, underFire: bool
   if (!asked) return;
 
   const maneuver = String(actor.system?.maneuver ?? "");
-  const shooter = { heroicArcher: heroicArcher(actor), weaponMaster: weaponMasterOf(actor, skill), realisticUnderFire: underFire };
+  const shooter = { weaponMaster: weaponMasterOf(actor, skill), realisticUnderFire: underFire };
   if (asked.fastDraw && drawLevel !== null) {
     const penalty = quickDrawPenalty(underFire);
     const drew: any = await api.roll.success({

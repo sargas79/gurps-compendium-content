@@ -10,6 +10,7 @@
 import { BOOKS } from "./books/index.js";
 import { initBooks, readyBooks, registerBookRules } from "./shared/book.js";
 import { readyPickerText } from "./shared/picker-text.js";
+import { migrateLegacyFields } from "./shared/system-fields.js";
 import { API_RANGE, HOOKS, MODULE_ID, type GWorldApi, type RuleRegistry } from "./shared/module.js";
 
 Hooks.once(HOOKS.registerRules, (registry: RuleRegistry) => {
@@ -36,4 +37,6 @@ Hooks.once(HOOKS.ready, (api: GWorldApi) => {
   }
   readyBooks(BOOKS, api);
   readyPickerText();
+  // Fields the system now owns (Balanced, Rugged, Disguised, Signature Gear, armour coverage) are carried over once.
+  void migrateLegacyFields();
 });

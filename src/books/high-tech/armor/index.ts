@@ -1,19 +1,19 @@
 /**
  * High-Tech's armour and protective gear (pp. 64-69), registered with the
- * system through the add-on API under three switches. The rules are in
+ * system through the add-on API under two switches, and reading the system's partial coverage switch. The rules are in
  * `rules.ts`; what a piece does comes from this module's `htArmor` data on it,
  * which the records carry and the item sheet lets the table change.
  *
- *   - **Partial coverage (partialCoverage):** a piece that covers n in 6 of a
- *     location protects when 1d comes up n or less, the n of several pieces
- *     there added up; an attack option to strike around it at -(n-1) (never
- *     better than -1), which the blow then passes; a steel toe box's DR on 2
- *     in 6 foot hits; high boots with their tops turned up over 3 in 6 of the
- *     legs; and the better DR a piece gives some locations from the front (the
+ *   - **Partial coverage** is the system's since Basic Set Revised p. 576 (its
+ *     `partialCoverage` switch, the coverage roll, striking around it, and the
+ *     armour's `system.coverage`, which the records here write). What is left
+ *     is High-Tech's own, read while that switch is on: a steel toe box's DR
+ *     on 2 in 6 foot hits; high boots with their tops turned up over 3 in 6 of
+ *     the legs; the better DR a piece gives some locations from the front (the
  *     TL7 fragmentation vest's vitals, the bomb disposal suit's torso); a
  *     one-sided piece worn at the back, as a trauma plate may be, meeting
  *     blows from behind in place of the front (p. 67); all through
- *     `gworld.armorDr` (p. 69; pp. 66-68, 75), none of them rolled for the
+ *     `gworld.armorDr` (pp. 66-68, 75), none of them rolled for the
  *     sheet's figures; and shoulder pads' +1 to a slam's damage and DR 3
  *     against what the slammer takes back (p. 66 note 4).
  *   - **Concealing armour (concealedArmor):** a row action on a worn piece
@@ -42,7 +42,6 @@ import {
   canTurnUpTops,
   clothingHoldout,
   clothingHoldoutBonus,
-  combinedSixths,
   concealArmorModifier,
   frontDrAt,
   materialDr,
@@ -51,7 +50,6 @@ import {
   pieceDrAt,
   plateLoss,
   sideMeets,
-  strikeAroundPenalty,
   type ArmorMaterial,
   type WornSide,
 } from "./rules.js";
@@ -65,12 +63,9 @@ const FIELD = "htArmor";
 const SHIELD_FIELD = "htMaterial";
 /** Item flag: DR a semi-ablative plate has lost. */
 const PLATE_FLAG = "htPlateLost";
-/** Actor flag an older version kept for the attacker's strike around partial armour; cleared when met. */
-const AROUND_FLAG = "htStrikeAround";
-/** The attack option's key. */
-export const STRIKE_AROUND_OPTION = "ht-strike-around";
 
 export interface ArmorSwitches {
+  /** The system's partialCoverage switch: this book's armour extras are read while it is on. */
   partial: () => boolean;
   conceal: () => boolean;
   materials: () => boolean;
@@ -80,8 +75,6 @@ export interface ArmorSwitches {
 
 /** What this module keeps on a piece. */
 export interface HtArmorData {
-  /** Sixths of each location the piece covers, 1-5; 0 for all of it. */
-  coverage: number;
   /** A better DR against a blow from the front, at these locations; 0 for none. */
   frontDr: number;
   frontLocations: string[];
@@ -107,6 +100,7 @@ export function initHighTechArmor(): void {
   const material = () => new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...MATERIALS] });
   addExtensionFields("Item", ITEM_EXTENSION_TYPES, {
     [FIELD]: new f.SchemaField({
+      /** Sixths of a location the piece covers: the system's `system.coverage` now; this copy waits for the migration (`shared/system-fields.ts`). */
       coverage: int(5),
       frontDr: int(),
       frontLocations: new f.ArrayField(new f.StringField({ required: true, nullable: false, blank: false }), { required: true, initial: [] }),
@@ -129,7 +123,6 @@ export function htArmorData(item: any): HtArmorData {
   const whole = (v: unknown, max = Infinity) => Math.max(0, Math.min(max, Math.floor(Number(v) || 0)));
   const material = item?.type === "shield" ? ext[SHIELD_FIELD] : d.material;
   return {
-    coverage: whole(d.coverage, 5),
     frontDr: whole(d.frontDr),
     frontLocations: Array.isArray(d.frontLocations) ? d.frontLocations.map(String) : [],
     toeDr: whole(d.toeDr),
@@ -192,31 +185,15 @@ async function say(actor: any, title: string, lines: string[]): Promise<void> {
 
 // ── partial coverage ─────────────────────────────────────────────────────────
 
-/** The worn pieces covering part of a location, and the sixths each covers. */
+/** The worn high boots with their tops turned up over the legs, and the sixths they cover (p. 68 note 3). */
 export function partialPiecesAt(actor: any, location: string): Array<{ item: any; sixths: number; topsUp: boolean }> {
   const out: Array<{ item: any; sixths: number; topsUp: boolean }> = [];
   for (const item of actor?.items ?? []) {
     if (!isWorn(item)) continue;
     const data = htArmorData(item);
-    if (data.coverage && covers(item, location)) out.push({ item, sixths: data.coverage, topsUp: false });
-    else if (location === TOPS_UP.location && data.topsUp && canTurnUpTops(item.name) && !covers(item, location)) out.push({ item, sixths: TOPS_UP.sixths, topsUp: true });
+    if (location === TOPS_UP.location && data.topsUp && canTurnUpTops(item.name) && !covers(item, location)) out.push({ item, sixths: TOPS_UP.sixths, topsUp: true });
   }
   return out;
-}
-
-/** The sixths of a location a character's partial armour covers, added up; 0 for none. */
-export function sixthsAt(actor: any, location: string): number {
-  return combinedSixths(partialPiecesAt(actor, location).map((p) => p.sixths));
-}
-
-/**
- * Whether the blow struck around partial armour: the attack chose the option
- * and was aimed at the location it landed on. The blow carries its attack
- * options and called shot to `gworld.armorDr` (API 1.108.0).
- */
-function struckAround(context: any, location: string): boolean {
-  if (context.options?.[`${MODULE_ID}.${STRIKE_AROUND_OPTION}`] !== true) return false;
-  return String(context.calledShot?.hitLocation ?? "") === location;
 }
 
 /** The line a piece's own DR makes where the piece isn't listed: high boots' tops over the leg. */
@@ -302,7 +279,6 @@ function itemLines(item: any, on: ArmorSwitches): string[] {
   const lines: string[] = [];
   const data = htArmorData(item);
   if (isArmor(item) && on.partial()) {
-    if (data.coverage) lines.push(F("CoverageItem", { n: data.coverage, penalty: strikeAroundPenalty(data.coverage) }));
     if (data.frontDr && data.frontLocations.length) lines.push(F("FrontItem", { dr: data.frontDr, locations: data.frontLocations.map((l) => game.i18n.localize(`GCC.HT.Armor.Location.${l}`)).join(", ") }));
     if (data.toeDr) lines.push(F("ToeItem", { dr: data.toeDr, n: TOE_BOX_SIXTHS }));
     if (data.topsUp && canTurnUpTops(item.name)) lines.push(F("TopsUpItem", { n: TOPS_UP.sixths }));
@@ -331,9 +307,6 @@ function itemContext(item: any, on: ArmorSwitches): Record<string, unknown> {
   return {
     lines: itemLines(item, on),
     editable: item?.isOwner === true,
-    coverage: armor && on.partial()
-      ? [0, 1, 2, 3, 4, 5].map((n) => ({ value: n, label: n ? F("CoverageSixths", { n }) : L("CoverageWhole"), selected: data.coverage === n }))
-      : null,
     topsUp: armor && on.partial() && canTurnUpTops(item?.name) ? { checked: data.topsUp } : null,
     back: armor && on.sided?.() && sideOf(item) !== null ? { checked: data.back } : null,
     concealment: armor && on.conceal()
@@ -354,7 +327,7 @@ function itemListeners(element: HTMLElement, item: any): void {
       const key = String(input.dataset.gccHtArmor);
       const value = input instanceof HTMLInputElement && input.type === "checkbox"
         ? input.checked
-        : key === `${FIELD}.coverage` || key === `${FIELD}.concealment` ? Math.max(0, Math.floor(Number(input.value) || 0)) : input.value;
+        : key === `${FIELD}.concealment` ? Math.max(0, Math.floor(Number(input.value) || 0)) : input.value;
       await item.update({ [`${path}.${key}`]: value });
     });
   });
@@ -400,7 +373,7 @@ export function readyHighTechArmor(api: GWorldApi, switches: ArmorSwitches): voi
     visible: (item) => {
       if (!anyOn() || !["armor", "shield", "equipment"].includes(item?.type)) return false;
       const context = itemContext(item, on);
-      return (context.lines as string[]).length > 0 || Boolean(context.coverage || context.back || context.concealment || context.materials);
+      return (context.lines as string[]).length > 0 || Boolean(context.back || context.concealment || context.materials);
     },
     context: (item) => itemContext(item, on),
     listeners: (element, item) => itemListeners(element, item),
@@ -430,30 +403,6 @@ export function readyHighTechArmor(api: GWorldApi, switches: ArmorSwitches): voi
     },
   });
 
-  // Striking around partial armour (p. 69): the option, and its penalty once the aim is known.
-  api.combat.registerAttackOption({
-    module: MODULE_ID,
-    key: STRIKE_AROUND_OPTION,
-    label: L("StrikeAround"),
-    available: () => on.partial(),
-    apply: () => null,
-  } as any);
-
-  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
-    const actor = context?.actor;
-    if (!actor || !Array.isArray(context.modifiers)) return;
-    // The flag an older version kept; the blow now carries the option itself.
-    if (actor.getFlag?.(MODULE_ID, AROUND_FLAG) && actor.isOwner) void actor.unsetFlag(MODULE_ID, AROUND_FLAG);
-    const chosen = on.partial() && Boolean(context.options?.[`${MODULE_ID}.${STRIKE_AROUND_OPTION}`]);
-    if (!chosen) return;
-    const location = String(context.calledShot?.hitLocation ?? "torso");
-    const target = (context.targets ?? []).find(Boolean);
-    const sixths = target ? sixthsAt(target, location) : 0;
-    const penalty = strikeAroundPenalty(sixths);
-    if (penalty === null) context.modifiers.push({ label: F("StrikeAroundNothing", { location }), value: 0 });
-    else context.modifiers.push({ label: F("StrikeAroundLine", { n: sixths }), value: penalty });
-  });
-
   // Pads worn to slam with: +1 to the slammer's blow (p. 66 note 4; the slam's source, API 1.139.0).
   Hooks.on(api.combat.hooks.damageModifiers, (context: any) => {
     if (!on.partial() || context?.source !== "slam" || !Array.isArray(context.modifiers)) return;
@@ -467,7 +416,6 @@ export function readyHighTechArmor(api: GWorldApi, switches: ArmorSwitches): voi
     const actor = context.actor;
     const location = String(context.hitLocation ?? "");
     const damageType = String(context.damageType ?? "");
-    const partial: Array<{ line: any; sixths: number }> = [];
     const note = (line: any, reason: string) => { line.reason = [line.reason, reason].filter(Boolean).join("; "); };
     // The sheet's figures (API 1.140.0): no blow, so nothing is rolled for it.
     const preview = context.preview === true;
@@ -529,32 +477,19 @@ export function readyHighTechArmor(api: GWorldApi, switches: ArmorSwitches): voi
         if (partialStands(TOE_BOX_SIXTHS, roll)) { line.dr = data.toeDr; note(line, F("ToeHit", { roll, n: TOE_BOX_SIXTHS })); }
         else note(line, F("ToeMissed", { roll, n: TOE_BOX_SIXTHS }));
       }
-      if (data.coverage) partial.push({ line, sixths: data.coverage });
     }
 
     if (!on.partial()) return;
-    // High boots with the tops up are a layer the leg's list doesn't know.
-    for (const piece of partialPiecesAt(actor, location).filter((p) => p.topsUp)) {
+    // High boots with the tops up are a layer the leg's list doesn't know, standing on 3 in 6.
+    // The system rolls the coverage of armour that has some; these boots are this book's.
+    for (const piece of partialPiecesAt(actor, location)) {
       const line = topsUpLine(piece.item, damageType, on);
       context.lines.push(line);
-      partial.push({ line, sixths: piece.sixths });
-    }
-    if (!partial.length) return;
-    const sixths = combinedSixths(partial.map((p) => p.sixths));
-    if (struckAround(context, location)) {
-      for (const p of partial) { p.line.applies = false; note(p.line, L("StruckAround")); }
-      return;
-    }
-    if (sixths >= 6) return;
-    if (preview) {
-      for (const p of partial) note(p.line, F("PartialPreview", { n: sixths }));
-      return;
-    }
-    const roll = d6();
-    const stands = partialStands(sixths, roll);
-    for (const p of partial) {
-      if (!stands) p.line.applies = false;
-      note(p.line, F(stands ? "PartialStood" : "PartialMissed", { roll, n: sixths }));
+      if (preview) { note(line, F("PartialPreview", { n: piece.sixths })); continue; }
+      const roll = d6();
+      const stands = partialStands(piece.sixths, roll);
+      if (!stands) line.applies = false;
+      note(line, F(stands ? "PartialStood" : "PartialMissed", { roll, n: piece.sixths }));
     }
   });
 

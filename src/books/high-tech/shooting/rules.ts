@@ -71,25 +71,6 @@ export function precisionOutcome(success: boolean, criticalFailure: boolean): "g
 /** The Rapid Strike's penalty on each attack, which Quick-Shot buys off. */
 export const RANGED_RAPID_STRIKE_PENALTY = -6;
 
-/** A gun has to fire at RoF 2 or more to make two attacks in one second. */
-export const RANGED_RAPID_STRIKE_MIN_ROF = 2;
-
-/**
- * The share of the gun's RoF each attack may use: the two attacks come out of
- * one second's shots, so each takes half (rounded down, at least one).
- */
-export const RANGED_RAPID_STRIKE_ROF_SHARE = 0.5;
-
-/** The maneuvers a Rapid Strike may be made on (p. B370). */
-export const RAPID_STRIKE_MANEUVERS = ["attack", "allOutAttack"] as const;
-
-export function rangedRapidStrikeRefusal(options: { rateOfFire: number; maneuver: string; spraying: boolean }): "rateOfFire" | "maneuver" | "spraying" | null {
-  if ((Number(options.rateOfFire) || 1) < RANGED_RAPID_STRIKE_MIN_ROF) return "rateOfFire";
-  if (options.maneuver && !(RAPID_STRIKE_MANEUVERS as readonly string[]).includes(options.maneuver)) return "maneuver";
-  if (options.spraying) return "spraying";
-  return null;
-}
-
 // ── The expanded Gunslinger (p. 249) ──
 
 /** The techniques whose default penalty the expanded Gunslinger halves, by name. */

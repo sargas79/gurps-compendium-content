@@ -1,22 +1,5 @@
 [
   {
-    "_id": "71cacdfc2ab66a0b",
-    "name": "Acrobatic Stand",
-    "type": "technique",
-    "system": {
-      "difficulty": "A",
-      "prerequisite": "",
-      "skillChoices": [
-        "Acrobatics"
-      ],
-      "defaultModifier": -6,
-      "points": 0,
-      "maxRelativeToPrerequisite": 0,
-      "description": "",
-      "reference": "Martial Arts p. 65"
-    }
-  },
-  {
     "_id": "9a121ddefc8e5878",
     "name": "Aggressive Parry",
     "type": "technique",
@@ -234,26 +217,6 @@
       "defaultModifier": -4,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
-      "description": "",
-      "reference": "Martial Arts p. 71"
-    }
-  },
-  {
-    "_id": "0c5002c82bf567ba",
-    "name": "Evade",
-    "type": "technique",
-    "system": {
-      "difficulty": "A",
-      "prerequisite": "",
-      "skillChoices": [
-        "Acrobatics",
-        "Judo",
-        "Judo Art",
-        "Judo Sport"
-      ],
-      "defaultModifier": 0,
-      "points": 0,
-      "maxRelativeToPrerequisite": 5,
       "description": "",
       "reference": "Martial Arts p. 71"
     }
@@ -912,28 +875,6 @@
     }
   },
   {
-    "_id": "7d020d8de9b1b086",
-    "name": "Stamp Kick",
-    "type": "technique",
-    "system": {
-      "difficulty": "H",
-      "prerequisite": "",
-      "skillChoices": [
-        "Brawling",
-        "Karate",
-        "Brawling Art",
-        "Karate Art",
-        "Brawling Sport",
-        "Karate Sport"
-      ],
-      "defaultModifier": -3,
-      "points": 0,
-      "maxRelativeToPrerequisite": 0,
-      "description": "",
-      "reference": "Martial Arts p. 80"
-    }
-  },
-  {
     "_id": "5f1041ca70e85632",
     "name": "Trip",
     "type": "technique",
@@ -1001,57 +942,6 @@
       "maxRelativeToPrerequisite": 0,
       "description": "",
       "reference": "Martial Arts p. 81"
-    }
-  },
-  {
-    "_id": "502c92b9dc4a0f63",
-    "name": "Wrench Arm",
-    "type": "technique",
-    "system": {
-      "difficulty": "H",
-      "prerequisite": "",
-      "skillFamilies": [
-        "any"
-      ],
-      "defaultModifier": -4,
-      "points": 0,
-      "maxRelativeToPrerequisite": 3,
-      "description": "",
-      "reference": "Martial Arts p. 82"
-    }
-  },
-  {
-    "_id": "81c5d2125d47ac3c",
-    "name": "Wrench Leg",
-    "type": "technique",
-    "system": {
-      "difficulty": "H",
-      "prerequisite": "",
-      "skillFamilies": [
-        "any"
-      ],
-      "defaultModifier": -4,
-      "points": 0,
-      "maxRelativeToPrerequisite": 3,
-      "description": "",
-      "reference": "Martial Arts p. 82"
-    }
-  },
-  {
-    "_id": "f30c7ad89a75092b",
-    "name": "Wrench [Limb]",
-    "type": "technique",
-    "system": {
-      "difficulty": "H",
-      "prerequisite": "",
-      "skillFamilies": [
-        "any"
-      ],
-      "defaultModifier": -4,
-      "points": 0,
-      "maxRelativeToPrerequisite": 3,
-      "description": "",
-      "reference": "Martial Arts p. 82"
     }
   },
   {
@@ -1403,20 +1293,6 @@
     }
   },
   {
-    "_id": "4d9051b436c58f51",
-    "name": "Acrobatic Stand (Acrobatics)",
-    "type": "technique",
-    "system": {
-      "difficulty": "A",
-      "prerequisite": "Acrobatics",
-      "defaultModifier": -6,
-      "points": 0,
-      "maxRelativeToPrerequisite": 0,
-      "description": "",
-      "reference": "Martial Arts p. 65"
-    }
-  },
-  {
     "_id": "54fcea984f16f6d2",
     "name": "Aggressive Parry (Boxing)",
     "type": "technique",
@@ -1519,38 +1395,6 @@
       "maxRelativeToPrerequisite": 4,
       "description": "",
       "reference": "Martial Arts p. 65"
-    }
-  },
-  {
-    "_id": "d7d9571c05fbfa54",
-    "name": "Armed Grapple (Cloak)",
-    "type": "technique",
-    "system": {
-      "difficulty": "H",
-      "prerequisite": "Cloak",
-      "defaultModifier": 0,
-      "points": 0,
-      "maxRelativeToPrerequisite": 0,
-      "description": "",
-      "reference": "Martial Arts p. 67"
-    }
-  },
-  {
-    "_id": "33bdd411129fe40a",
-    "name": "Armed Grapple (Melee Weapon)",
-    "type": "technique",
-    "system": {
-      "difficulty": "H",
-      "prerequisite": "",
-      "skillFamilies": [
-        "melee",
-        "shield"
-      ],
-      "defaultModifier": -2,
-      "points": 0,
-      "maxRelativeToPrerequisite": 0,
-      "description": "",
-      "reference": "Martial Arts p. 67"
     }
   },
   {
@@ -1917,34 +1761,6 @@
       "defaultModifier": -4,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
-      "description": "",
-      "reference": "Martial Arts p. 71"
-    }
-  },
-  {
-    "_id": "c9d1df0d468731f0",
-    "name": "Evade (Acrobatics)",
-    "type": "technique",
-    "system": {
-      "difficulty": "A",
-      "prerequisite": "Acrobatics",
-      "defaultModifier": 0,
-      "points": 0,
-      "maxRelativeToPrerequisite": 5,
-      "description": "",
-      "reference": "Martial Arts p. 71"
-    }
-  },
-  {
-    "_id": "7b2a4a5d5c17dccf",
-    "name": "Evade (Judo)",
-    "type": "technique",
-    "system": {
-      "difficulty": "A",
-      "prerequisite": "Judo",
-      "defaultModifier": 0,
-      "points": 0,
-      "maxRelativeToPrerequisite": 5,
       "description": "",
       "reference": "Martial Arts p. 71"
     }
@@ -2679,34 +2495,6 @@
     }
   },
   {
-    "_id": "0e367c5f009b17f5",
-    "name": "Stamp Kick (Brawling)",
-    "type": "technique",
-    "system": {
-      "difficulty": "H",
-      "prerequisite": "Brawling",
-      "defaultModifier": -3,
-      "points": 0,
-      "maxRelativeToPrerequisite": 0,
-      "description": "",
-      "reference": "Martial Arts p. 80"
-    }
-  },
-  {
-    "_id": "c8abd50ce5cc76ea",
-    "name": "Stamp Kick (Karate)",
-    "type": "technique",
-    "system": {
-      "difficulty": "H",
-      "prerequisite": "Karate",
-      "defaultModifier": -3,
-      "points": 0,
-      "maxRelativeToPrerequisite": 0,
-      "description": "",
-      "reference": "Martial Arts p. 80"
-    }
-  },
-  {
     "_id": "6b658867643d04aa",
     "name": "Trip (Judo)",
     "type": "technique",
@@ -2805,36 +2593,6 @@
       "maxRelativeToPrerequisite": 0,
       "description": "",
       "reference": "Martial Arts p. 81"
-    }
-  },
-  {
-    "_id": "6bf3b1da6acf8364",
-    "name": "Wrench Arm (ST)",
-    "type": "technique",
-    "system": {
-      "difficulty": "H",
-      "prerequisite": "",
-      "defaultFrom": "ST",
-      "defaultModifier": -4,
-      "points": 0,
-      "maxRelativeToPrerequisite": 3,
-      "description": "",
-      "reference": "Martial Arts p. 82"
-    }
-  },
-  {
-    "_id": "7812b840b62e5ed9",
-    "name": "Wrench Leg (ST)",
-    "type": "technique",
-    "system": {
-      "difficulty": "H",
-      "prerequisite": "",
-      "defaultFrom": "ST",
-      "defaultModifier": -4,
-      "points": 0,
-      "maxRelativeToPrerequisite": 3,
-      "description": "",
-      "reference": "Martial Arts p. 82"
     }
   },
   {

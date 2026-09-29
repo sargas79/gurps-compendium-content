@@ -1,19 +1,25 @@
 /**
- * High-Tech's armour, as rules the table reads (pp. 64-69): pieces that cover
- * part of a location, concealing armour under clothes, and the materials
- * low-tech armour is remade in.
+ * High-Tech's armour, as rules the table reads (pp. 64-69): what a piece
+ * gives beside the system's partial coverage (a toe box, boots turned up, a
+ * better front), concealing armour under clothes, and the materials low-tech
+ * armour is remade in.
  */
 
 import { holdoutBonus } from "../../../shared/concealment/rules.js";
 
-export { coversArc, combinedSixths, partialStands, sixths, strikeAroundPenalty } from "../../../shared/coverage/rules.js";
+export { coversArc } from "../../../shared/coverage/rules.js";
 
 /** A name without the TL the records add to it: "Fragmentation Vest (TL 7)" is "Fragmentation Vest". */
 export function baseName(name: unknown): string {
   return String(name ?? "").replace(/\s*\(TL\s*\d+\^?\)\s*$/i, "").trim();
 }
 
-// ── partial coverage (pp. 66-69) ────────────────────────────────────────────
+// ── beside the system's partial coverage (pp. 66-69) ────────────────────────
+
+/** Whether a partial piece stands against the blow: 1d at or under n (High-Tech p. 69). */
+export function partialStands(n: number, roll: number): boolean {
+  return roll <= n;
+}
 
 /**
  * A steel toe box protects when an attack on the foot hits the toe, 2 in 6

@@ -34,10 +34,17 @@ function switches(): Map<string, string> {
   return out;
 }
 
+/**
+ * The system's switches a page may name, unprefixed, where the Basic Set Revised
+ * took the rule over (#583): its frostbite (p. 574), partial coverage (p. 576)
+ * and, for the Ranged Rapid Strike, its trickyShooting (p. 577).
+ */
+const SYSTEM_SWITCHES = ["frostbite", "partialCoverage", "trickyShooting"];
+
 describe("High-Tech's rules journal", () => {
-  it("names only switches the book registers", () => {
+  it("names only switches the book registers, or the system's that took a rule over", () => {
     const known = switches();
-    expect(pages.filter((p) => p.rule && !known.has(p.rule)).map((p) => `${p.id}: ${p.rule}`)).toEqual([]);
+    expect(pages.filter((p) => p.rule && !known.has(p.rule) && !SYSTEM_SWITCHES.includes(p.rule)).map((p) => `${p.id}: ${p.rule}`)).toEqual([]);
   });
 
   it("has a written page for every entry", () => {

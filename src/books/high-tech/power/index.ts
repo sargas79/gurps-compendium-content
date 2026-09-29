@@ -77,7 +77,9 @@ export const HIGH_TECH_BATTERIES: CellFigures = Object.freeze({
   rechargeable: RECHARGEABLE_COST,
   swapByWeight: true,
   adapters: Object.freeze({ inverterMin: "M" }),
+  // The system prints the six batteries (Basic Set Revised p. 578); "{size} Battery" is the older record, still read from carried gear.
   spareRecord: "{size} Battery",
+  spareNames: Object.freeze({ T: "Battery, Tiny (T)", XS: "Battery, Extra-Small (XS)", S: "Battery, Small (S)", M: "Battery, Medium (M)", L: "Battery, Large (L)", VL: "Battery, Very Large (VL)" }),
 });
 
 /** The book's battery switch. */
