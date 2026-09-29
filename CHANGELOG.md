@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.23.0 — Basic Set Revised
+
+Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
+High-Tech against **gworld v1.67.0**, which this release requires (add-on API
+1.192.0). On an older system the add-on registers no rules, and says so in the
+console.
+
+The *GURPS Basic Set, Fourth Edition Revised* is now the Basic Set the module reads (#579-#584).
+
+- **Text:** every Basic Set entry recaptured against the Revised edition (295 updated: Slave Mentality is Heteronomy, "Crippling" levels are "Overwhelming", the rewritten entries), plus the Revised-only Talents, advantages, perks, modifiers and techniques (121 new entries).
+- **Rules journal:** regenerated from the Revised text, with Team Efforts, Complementary Skills and the four addenda as chapters, each linked to the system switch it describes.
+- **Retired rules:** the Martial Arts, High-Tech and Monster Hunters rules the Basic Set now carries are gone from the module (hit locations, extra effort options, Committed and Defensive Attack, evasive movement, Prediction Shot and Ranged Feint, frostbite, partial coverage, ranged Rapid Strike, six battery items, the gadget and Signature Gear fields, and the duplicate records). Saved worlds are moved to the system's rules once, on the GM's client.
+
 ## v0.22.0 — The High-Tech backlogs, finished
 
 Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
