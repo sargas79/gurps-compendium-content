@@ -1,0 +1,1 @@
+You’ve learned how best to draw a heavy bow. If you know Bow at DX+1, you can shoot a bow of your ST+1 unpenalized. Bow at DX+2 or better lets you use a bow of your ST+2. You need such a bow to see range and damage improvements – there’s no effect when shooting a bow of your ST or less.

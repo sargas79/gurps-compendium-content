@@ -1,0 +1,3 @@
+**GURPS** specifies many modifiers to success rolls. Looking up and assessing them can bog down the game. The GM who prefers a speedier, somewhat cinematic approach may skip detailed modifiers in favor of this rule:
+
+Tasks and hazards refer to basic versions of situations. Every complication added to the description as an adjective or other qualifier imposes a cumulative -1; e.g., on a slimy, twisting, smoke-obscured path, or an icy, rain-slicked, trembling mountainside, tasks are at -3. Count intensifiers like “extremely,” “highly,” and “very” separately, at -1 apiece. For favorable circumstances, assess +1 per qualifier instead.

@@ -1,0 +1,5 @@
+Some gamers feel that since beams and bullets reach their mark at high speed, before the target could move appreciably, dodging should be less effective against them. Here’s an optional rule for that. Be aware that it makes guns deadlier!
+
+To defend against a firearms attack, a fighter must select All-Out Defense, Attack, Change Posture, Defensive Attack, Feint, Move, or Move and Attack on their turn and specify that they’re taking “evasive movement” – a free action as part of their maneuver – with respect to a specific potential shooter they’re aware of (if unsure, make a Vision roll). If that gunman shoots at them before the start of their next turn, they may dodge as in the standard rules. To claim an Acrobatic Dodge (p. 375) bonus, they must make their Acrobatics roll during their turn, while to claim a Dodge and Drop (p. 377) bonus, they must dive prone at the end of their turn. These things can be part of their free action.
+
+Fighters cannot take “evasive movement” relative to more than one shooter, dodge firearms attacks from enemies they haven’t specified, or wait until after being attacked to designate a foe, use Acrobatic Dodge, or dodge and drop.

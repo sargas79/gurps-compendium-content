@@ -1,0 +1,1 @@
+You’ve practiced fighting with everyday items to the point where you can ignore skill penalties (only) when wielding them. You must specialize by combat skill. You can learn Improvised Weapons (Brawling) or (Karate) to avoid penalties for improvised fist loads.

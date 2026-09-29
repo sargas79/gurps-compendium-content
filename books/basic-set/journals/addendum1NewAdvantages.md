@@ -1,0 +1,1 @@
+What addenda would be complete without new advantages? Below, traits marked with an asterisk (\*) are cinematic, and don’t suit all games. For Control, Create, Illusion, and other complex advantages suited to high-powered games, see GURPS Powers.

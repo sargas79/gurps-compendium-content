@@ -1,0 +1,3 @@
+Visual signals need a line of sight between sender and receiver. An observer whose viewpoint is at a given height above ground level (including their height, represented by SM) can see to the range specified in the Horizon Table (see box). For two individuals, add the ranges for their respective heights; this also applies to signals above ground level, like aerial flares or rising smoke.
+
+Spotting a visual signal requires a Vision roll, but a deliberate, unmistakable signal gets the +10 for “in plain sight” (p. 574). At night, light-emitting signals (fires, flares, spotlights, etc.) become more visible – reverse the sign of the darkness penalty, giving a Vision bonus to see the signal.

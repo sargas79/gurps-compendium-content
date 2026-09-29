@@ -1,0 +1,1 @@
+In over-the-top campaigns, heroes might be able to trade more than 1 FP for any kind of extra effort that improves effect (lifting, running, powers, etc.). Multiply bonus effect by the FP spent, ignoring any limits on maximum bonus. For instance, a hero who makes a Will-3 roll gets +15% effect for 1 FP – or +150% effect for 10 FP. Handle with care!

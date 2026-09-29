@@ -1,0 +1,3 @@
+GURPS assumes that all shooting is done in combat. Under more favorable conditions, non-combat bonuses may apply, up to a total of +10. The GM decides when these accrue. They help explain why recreational shooters hit more often than recreational skill levels would suggest!
+
+**Modifiers:** Lack of psychological pressure gives a bonus, but never for shots at people – add +1 for each of “no risk to self” (nobody else shooting, just-serviced weapon, etc.), “no risk to others” (all allies behind you, no risk of overpenetration or ricochet), and “no political or military stake in the outcome.” An ideal environment helps, giving from +1 for a typical outdoor range to +4 for a perfectly lit indoor range. If target range and speed are known precisely, add +3.

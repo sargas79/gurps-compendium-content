@@ -1,0 +1,5 @@
+Some concepts call for an “either/or” limitation. For example, a creature with Damage Resistance may have thick skin and an armored carapace on its belly (either Tough Skin or Partial, Vitals Only), or your Luck may have to be declared in advance for everything but defensive rolls (either Active or Defensive). In situations like these, multiply the percentage values of both limitations together to find the fair value. (Exception: If either exceeds -80%, reduce it to -80% before this calculation.)
+
+Example: A fantasy race can produce pheromones that knock out males automatically, but give females a HT roll to resist. This is a Fatigue Attack with either Accessibility, Males Only (-20%) or Resistible, HT (-30%) as a limitation. Since 0.20 × 0.30 = 0.06, this is a -6% limitation.
+
+After obtaining the value, the GM may adjust it slightly to produce a result that feels fairer or is easier to work with. In the example above, rounding -6% down to -10% wouldn’t be unreasonable. In all cases, the final value must give less of a discount than either of the base limitations.

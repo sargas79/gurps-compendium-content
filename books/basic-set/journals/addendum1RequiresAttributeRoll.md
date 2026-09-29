@@ -1,0 +1,9 @@
+**Variable**
+
+Similar to Unreliable (p. 116), except that instead of rolling against a fixed activation number to trigger your advantage, you roll against DX, IQ, HT, Will, or Per (choose one when you buy the ability). Temporary modifications to this score do affect your roll. For a defensive ability, roll each time the defense would mitigate an attack or hazard – once per minute, for constant exposure.
+
+This is worth -10% for a DX, IQ, or HT roll, or -5% for a Will or Per roll. If your roll can be resisted by potential subjects as a Quick Contest, add -10%; e.g., Invisibility (Requires IQ vs. Per Roll, -20%) would require you to win a Quick Contest of your IQ vs. the Per of anyone who might see you. This cannot be combined with Resistible (p. 115) and is incompatible with any trait that already allows a resistance roll, but advantages that normally necessitate an attribute roll to work may turn that roll into a Quick Contest for a flat -10%; e.g., Empathy (Requires IQ vs. Will Roll, -10%) means you must win a Quick Contest of IQ vs. Will to use your Empathy.
+
+Requires (Skill) Roll: Requires (Attribute) Roll may be turned into Requires (Skill) Roll for a skill based on that attribute. For example, Requires Mathematics Roll is priced identically to Requires IQ Roll (-10%), because Mathematics is IQ-based. This doesn’t change limitation value except for Easy skills, which reduce limitation size by -5% (e.g., Requires Carpentry Roll is worth -5%).
+
+Requires Active Defense Roll: A defensive ability might protect only against threats you’re aware of – and only if you make a roll to interpose it in time. This roll is at DX/2 + 3, +1 for Combat Reflexes. If you try to use your ability more than once in a turn, you have a cumulative -4 per attempt after the first. You’re at -4 if stunned, and can’t roll at all in situations where you’d get no active defense (attacked from behind, unconscious, etc.). -40%.

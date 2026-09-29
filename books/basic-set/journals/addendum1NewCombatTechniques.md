@@ -1,0 +1,1 @@
+These techniques, as generic as those on pp. 230-232, give warriors new options even if they don’t improve them – anyone with the prerequisite skill may use them at default! For many others, see GURPS Martial Arts.
