@@ -39,6 +39,7 @@
  *
  * Usage:
  *   node tools/transcribe.mjs <book> <pack> --pdf <file> [--offset N] [--pages A-B] [--write]
+ *   node tools/transcribe.mjs basic-set <pack> --revised <Basic Set Revised pdf> [--pages A-B] [--write]
  *   node tools/transcribe.mjs <book> <pack> --source <id> --pdf <volume's file> [--pages A-B] [--write]
  *   node tools/transcribe.mjs <book> <pack> --review [--write]
  *
@@ -50,7 +51,8 @@
  *
  * `--offset` is book page + offset = PDF page. It defaults to the book's
  * `transcription.pdfOffset`, or 2, which is the Basic Set's Characters volume;
- * Campaigns is -334. `--pages` limits the draft to entries citing those book
+ * Campaigns is -334. The Basic Set Revised is one PDF, `--revised`, at offset 10,
+ * read with `pdftotext -raw` (lib/revised.mjs). `--pages` limits the draft to entries citing those book
  * pages; every other entry keeps the text it has. Nothing is written without
  * `--write`.
  */
@@ -61,6 +63,7 @@ import { join } from "node:path";
 
 import { ACTOR_TYPES, book, packsOf, projectRoot, readProse, readStatistics } from "./lib/books.mjs";
 import { gadgetLines, stripPlainClosing, stripPrice } from "./lib/gadget-text.mjs";
+import { PDF_OFFSET as REVISED_OFFSET, isRunningHead, plainRevised, stripIcons } from "./lib/revised.mjs";
 import { inSource, volumeKey, withSource } from "./lib/sources.mjs";
 
 /**
@@ -81,7 +84,8 @@ const COST = new RegExp(
     "^variable$",
     // -10 points*, 2 points/level, and the list forms "0, 1, or 2 points" and
     // "10 or more points", which a family heading prints for all its variants.
-    "^[-+±]?[\\d/½,\\s]+(or\\s+(?:more\\s+|\\d+\\s+))?points?\\b",
+    // "-5, -10, or -20 points" (Shyness) has a sign on every figure.
+    "^[-+±]?[\\d/½,\\s-]+(or\\s+(?:more\\s+|-?\\d+\\s+))?points?\\b",
     "^see\\s", //                                       see Melee Weapon, p. 208
     "^(ST|DX|IQ|HT|Will|Per)/(Easy|Average|Hard|Very Hard)\\b", // DX/Hard
     "^defaults?:", //                                   Defaults: IQ-4 or Survival-2.
@@ -185,7 +189,14 @@ function flag(name, fallback = null) {
   return at !== -1 && process.argv[at + 1] ? process.argv[at + 1] : fallback;
 }
 
+/**
+ * Whether the PDF is the Basic Set Revised (`--revised`), whose text keeps the
+ * minus sign as a non-breaking hyphen and is read with `pdftotext -raw`.
+ */
+let revisedText = false;
+
 function normalise(text) {
+  if (revisedText) text = plainRevised(text);
   return text
     .replace(/’/g, "'")
     .replace(/‘/g, "'")
@@ -206,11 +217,13 @@ function normalise(text) {
  * Read as UTF-8: pdftotext's default is Latin-1 on some builds, and read back
  * as UTF-8 every degree sign and accent became a replacement character.
  */
-function pagesOf(pdf) {
-  const cache = join(projectRoot, "extracted", "pages-" + pdf.replace(/\W+/g, "-").slice(-60) + "-utf8.json");
+function pagesOf(pdf, raw = false) {
+  // -raw keeps the Revised edition's two columns apart; its default layout
+  // interleaves them, and the 2004 books' layout is read as it always was.
+  const cache = join(projectRoot, "extracted", "pages-" + pdf.replace(/\W+/g, "-").slice(-60) + (raw ? "-raw" : "") + "-utf8.json");
   if (existsSync(cache)) return JSON.parse(readFileSync(cache, "utf8"));
 
-  const result = spawnSync("pdftotext", ["-enc", "UTF-8", pdf, "-"], { encoding: "utf8", maxBuffer: 1 << 28 });
+  const result = spawnSync("pdftotext", ["-enc", "UTF-8", ...(raw ? ["-raw"] : []), pdf, "-"], { encoding: "utf8", maxBuffer: 1 << 28 });
   if (result.status !== 0) {
     throw new Error(`pdftotext failed on ${pdf}. Is it installed and is the path right?`);
   }
@@ -628,6 +641,10 @@ function usefulLines(page) {
   return page
     .split("\n")
     .map((line) => normalise(line))
+    // The Revised edition's running head and folio, and the trait-type icons
+    // it sets after a heading, are neither text nor part of a name.
+    .filter((line) => !(revisedText && isRunningHead(line)))
+    .map((line) => (revisedText ? stripIcons(line) : line))
     .flatMap(gadgetLines)
     .filter((line) => line.length > 0);
 }
@@ -1087,14 +1104,21 @@ async function main() {
 
   if (review) return runReview(bk, packName, target, write);
 
-  const pdf = flag("--pdf");
-  if (!pdf || !existsSync(pdf)) {
-    console.error(`--pdf must name the book's PDF. Got: ${pdf}`);
+  // The Basic Set Revised is one PDF: printed page p is PDF page p + 10.
+  const revised = flag("--revised");
+  if (revised && slug !== "basic-set") {
+    console.error("--revised reads the Basic Set Revised, so it takes the book basic-set.");
     process.exit(1);
   }
+  const pdf = revised ?? flag("--pdf");
+  if (!pdf || !existsSync(pdf)) {
+    console.error(`--pdf (or --revised) must name the book's PDF. Got: ${pdf}`);
+    process.exit(1);
+  }
+  revisedText = Boolean(revised);
   // The Basic Set's two volumes each have their own offset, so it is given on
   // the command line; a single-volume book may state it once in book.json.
-  const offset = Number(flag("--offset", String(bk.transcription.pdfOffset ?? 2)));
+  const offset = revised ? REVISED_OFFSET : Number(flag("--offset", String(bk.transcription.pdfOffset ?? 2)));
   const label = bk.transcription.pageLabel;
   const range = flag("--pages");
   const pageRange = range ? range.split("-").map(Number) : null;
@@ -1115,7 +1139,7 @@ async function main() {
     }
     pages = await layoutPagesOf(pdf, bk, wanted);
   } else {
-    pages = pagesOf(pdf);
+    pages = pagesOf(pdf, Boolean(revised));
   }
   const names = headingNames(bk);
   const existing = readProse(bk, packName).records;
