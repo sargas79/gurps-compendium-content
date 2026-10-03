@@ -86,7 +86,7 @@ async function main() {
       `Next:\n` +
       `  git tag v${manifest.version} && git push origin v${manifest.version}\n` +
       `  gh release create v${manifest.version} ${MODULE_ID}.zip dist/module.json \\\n` +
-      `    --repo sargas79/gurps-compendium-content --title "v${manifest.version}"\n` +
+      `    --repo sargas79/sargas-gurps-compendium-content --title "v${manifest.version}"\n` +
       (urls ? `  then upload both files to the release location above.\n` : ""),
   );
 }

@@ -22,7 +22,7 @@ sources**.
 In Foundry, under **Install Module**, paste the manifest URL:
 
 ```
-https://github.com/sargas79/gurps-compendium-content/releases/latest/download/module.json
+https://github.com/sargas79/sargas-gurps-compendium-content/releases/latest/download/module.json
 ```
 
 Or install by hand:
@@ -39,7 +39,7 @@ Requires Foundry VTT v14 with GWorld installed.
 Needs Node.js >= 24.13.1 (and Python 3 for releases).
 
 ```bash
-git clone --recurse-submodules https://github.com/sargas79/gurps-compendium-content.git
+git clone --recurse-submodules https://github.com/sargas79/sargas-gurps-compendium-content.git
 ```
 
 ```bash

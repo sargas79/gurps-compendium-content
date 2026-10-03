@@ -556,7 +556,7 @@ Blocked by: nothing.
 *(S4, later, not now: link each entry on the "GURPS rules in play" page to the module's
 journal page for that rule. Open it when content issue C9 starts.)*
 
-### 11.4 Issues for `sargas79/gurps-compendium-content` (private)
+### 11.4 Issues for `sargas79/sargas-gurps-compendium-content` (private)
 
 #### Milestone: Basic Set (v0.1.0)
 
