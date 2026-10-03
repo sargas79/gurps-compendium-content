@@ -35,7 +35,7 @@ import {
 } from "./lib/books.mjs";
 
 /** Where this module's source and releases live. */
-const REPOSITORY = "sargas79/gurps-compendium-content";
+const REPOSITORY = "sargas79/sargas-gurps-compendium-content";
 
 /** The range of the system's add-on API the module's script is built for, read from where the script declares it. */
 const API_RANGE = (() => {
